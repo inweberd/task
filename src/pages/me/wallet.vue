@@ -1,0 +1,145 @@
+<template>
+	<div class="wallet-page">
+		<van-nav-bar title="收支明细" safe-area-inset-top fixed placeholder @click-left="router.back()" left-text="返回"
+			left-arrow>
+			<template #right>
+				<van-icon name="friends-o" size="18" @click="service = true" />
+			</template>
+		</van-nav-bar>
+		<Loading v-if="loading" />
+
+		<div class="balance-info" v-else>
+			<div class="balance-text">当前钱包余额</div>
+			<div class="balance-amount">￥{{ method.format(state.wallet?.money || 0) }}</div>
+			<div class="balance-actions">
+			<van-image :src="imageSrc" width="100" height="100%"   fit="fill" class="action-button"></van-image>
+				<!-- <van-button type="primary" plain icon="plus" class="action-button">充值</van-button> -->
+				<van-button type="info" plain icon="balance-list-o" class="action-button" @click="go('/dep')">提现</van-button>
+				<!-- <van-image :src="imageSrc" width="100" height="100%"   fit="fill" class="action-button"></van-image> -->
+			</div>
+		</div>
+		<van-tabs v-model:active="activeTab" @change="change">
+			<van-tab title="收入" name="收入">
+				<wallet-income v-if="activeTab === '收入'"></wallet-income>
+			</van-tab>
+			<van-tab title="支出" name="支出">
+				<wallet-expense v-if="activeTab === '支出'"></wallet-expense>
+			</van-tab>
+			<van-tab title="提现" name="提现">
+				<wallet-withdraw v-if="activeTab === '提现'"></wallet-withdraw>
+			</van-tab>
+		</van-tabs>
+		<modzz v-model="service"></modzz>
+
+	</div>
+</template>
+
+<script lang='ts' setup>
+import WalletIncome from './wallet/income.vue'
+import WalletExpense from './wallet/expense.vue'
+import WalletWithdraw from './wallet/withdraw.vue'
+import modzz from '../login/model.vue'
+import imageSrc from '@/assets/img/chongzhi.png'
+import { axiosInstance as axios } from '@/utils/myrequest'
+
+const router = useRouter()
+const service = ref(false)
+const activeTab = ref('收入');
+const state = reactive({
+	
+	wallet: {},
+	tabs: {
+		value: 0,
+		list: [
+			{ name: '收入' },
+			{ name: '支出', badge: { isDot: true } },
+			{ name: '提现' },
+			// , disabled: true
+		],
+		lineBg: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAOCAYAAABdC15GAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFxSURBVHgBzZNRTsJAEIb/WTW+lpiY+FZPIDew3ABP4GJ8hxsI9zBpOYHeQDwBPQI+mRiRvpLojtPdYhCorQqF/6GdbGd2vvwzBXZcNAt4oj1ANeUoAT5iqkUjbEFLHNmhD1YPEvpZ3ghkGlVDCkc94/BmHMq998I5ONiY1ZBfpKAyuOtgAc5yOEDmYEWNh32BHF91sGHZHmwW4azciN9aQwnz3SJEgOmte+R2tdLprTYoa50mvuomlLpD4Y3oQZnov6D2RzCqI93bWOHaEmAGqQUyRBlZR1WfarcD/EJ2z8DtzDGvsMCwpm8XOCfDUsVOCYhiqRxI/CTQo4UOvjzO7Pow18vfywneuUHHUUxLn55lLw5JFpZ8bEUcY8oXdOLWiHLTxvoGpLqoUmy6dBT15o/ox3znpoycAmxUsiJTbs1cmxeVKp+0zmFIS7bGWiVghC7Vwse8jFKAX9eljh4ggKLLv7uaQvG9/F59Oo2SouxPu7OTCxN/s8wAAAAASUVORK5CYII=',
+	},
+	modal: {
+		service: false
+	},
+})
+const loading = ref(false)
+function change(e) {
+	console.log(e)
+}
+function go (e) {
+
+	router.push(e)
+}
+const method = {
+	init: async () => {
+		await method.wallet()
+	},
+	// 获取钱包信息
+	wallet: async () => {
+		loading.value = true
+		const { code, data } = await axios.get('/api/wallet/query')
+		loading.value = false
+		if (code !== 200) return
+
+		state.wallet = data
+	},
+
+	// 跳转
+	// 格式化数字
+	format: (price = 0) => {
+		let result = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+		return result === '0' ? '0.00' : result
+	}
+}
+
+onMounted(() => method.init())
+</script>
+
+<style lang='less' scoped>
+.fixed-back {
+	position: fixed;
+	left: 10rem;
+	top: 20rem;
+	z-index: 3;
+}
+
+.wallet-page {
+	padding: 16px;
+	background-color: #f7f8fa;
+	height: 100%;
+}
+
+.balance-info {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.balance-text {
+	color: #999;
+	font-size: 14px;
+}
+
+.balance-amount {
+	color: #000;
+	font-size: 32px;
+	font-weight: bold;
+	margin: 10px 0;
+}
+
+.balance-actions {
+	margin: 30rem 0;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+
+	.van-button {
+		border-radius: 20rem;
+	}
+}
+
+.action-button {
+	width:100px;
+	height:50px;
+	border:none
+}
+</style>

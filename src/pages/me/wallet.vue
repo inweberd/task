@@ -46,7 +46,7 @@ const router = useRouter()
 const service = ref(false)
 const activeTab = ref('收入');
 const state = reactive({
-	
+
 	wallet: {},
 	tabs: {
 		value: 0,

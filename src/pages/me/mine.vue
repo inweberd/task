@@ -1,708 +1,674 @@
 <script setup>
-import { useRouter } from 'vue-router';
-import { reactive, onMounted } from 'vue';
-import { logout as fnlogout } from '@/api/myApi'
+import { useRouter } from 'vue-router'
+import { reactive, onMounted } from 'vue'
+import { logout as fnlogout, reqUserIncome, reqUserInfo } from '@/api/myApi'
 import modzz from '../login/model.vue'
 import { _no, _sleep, _notice } from '@/utils'
 import { articleall } from '@/api/myApi'
-const props = defineProps({});
+import { getSerialName } from '../../utils/getSerialName'
+import Loading from '@/components/Loading.vue'
+const props = defineProps({})
 let userInfo = ref({})
-const Caidan  = ref([])
+const userIncomeInfo = ref({})
+const Caidan = ref([])
 const data = reactive({
-	phone: '135****8989',
-	userId: 'XXX',
-	code: '1234555'
-});
-
-
-const GetName = (val) =>{
-	if(val==1){
-		return '一级合伙'
-	}
-	if(val==2){
-		return '二级合伙'
-	}
-	if(val==3){
-		return '三级合伙'
-	}
-	if(val==4){
-		return '四级合伙'
-	}
-	if(val==5){
-		return '五级合伙'
-	}
-	if(val==6){
-		return '六级合伙'
-	}
-	if(val==7){
-		return '七级合伙'
-	}
-}
-const router = useRouter()
-function zzz () {
-	// closeShare()
-	router.push('/invest')
-}
-async function logout () {
-	window.localStorage.removeItem('userInfo')
-	window.localStorage.removeItem('token')
-	await fnlogout()
-	window.location.reload()
-	router.push('/login')
-
-}
-function go (e) {
-
-	router.push(e)
-}
-function go2 (val1,val2) {
-	console.log(val1,val2)
-	router.push({ path: '/article', query: { id:val2.id}})
-	// router.push(e)
-}
-async function copy () {
-	try {
-		const title = '网页';
-		const url = window.location.href;
-		const summary = '网页';
-		const shareUrl = `https://connect.qq.com/widget/shareqq/index.html?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&summary=${encodeURIComponent(summary)}`;
-
-		window.open(shareUrl, '_blank');
-	} catch (err) {
-		_notice('复制失败')
-
-		console.error('复制失败:', err);
-	}
-}
-function goDownload () {
-
-	try {
-		// state.loading.app = true
-
-		// const { VITE_APP_URL } = import.meta.env
-		// 跳转下载
-		window.location.href = `https://dlm.nsmicrowave.com/download`
-
-
-	} catch (e) {
-		_notice('下载失败')
-		// state.loading.app = false
-		// proxy.$refs['notify'].error('下载失败，请稍后再试！')
-	}
-}
-const service = ref(false)
-onMounted(() => {
-	userInfo.value = JSON.parse(window.localStorage.getItem('userInfo'))
-	console.log(userInfo.value)
-	getData()
+  phone: '135****8989',
+  userId: 'XXX',
+  code: '1234555'
 })
 
+const router = useRouter()
+function zzz() {
+  // closeShare()
+  router.push('/invest')
+}
+async function logout() {
+  window.localStorage.removeItem('userInfo')
+  window.localStorage.removeItem('token')
+  await fnlogout()
+  window.location.reload()
+  router.push('/login')
+}
+function go(e) {
+  router.push(e)
+}
+function go2(val1, val2) {
+  console.log(val1, val2)
+  router.push({ path: '/article', query: { id: val2.id } })
+  // router.push(e)
+}
+async function copy() {
+  try {
+    const title = '网页'
+    const url = window.location.href
+    const summary = '网页'
+    const shareUrl = `https://connect.qq.com/widget/shareqq/index.html?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}&summary=${encodeURIComponent(summary)}`
+
+    window.open(shareUrl, '_blank')
+  } catch (err) {
+    _notice('复制失败')
+
+    console.error('复制失败:', err)
+  }
+}
+function goDownload() {
+  try {
+    // state.loading.app = true
+
+    // const { VITE_APP_URL } = import.meta.env
+    // 跳转下载
+    window.location.href = `https://dlm.nsmicrowave.com/download`
+  } catch (e) {
+    _notice('下载失败')
+    // state.loading.app = false
+    // proxy.$refs['notify'].error('下载失败，请稍后再试！')
+  }
+}
+const service = ref(false)
+const loading = ref(false)
+
+const getNewUserInfo = () => {
+  loading.value = true
+  reqUserInfo({ id: userInfo.value.id }).then((res) => {
+    loading.value = false
+    userInfo.value = res.data
+    window.localStorage.setItem('userInfo', JSON.stringify(res.data))
+  })
+}
+const getUserIncome = () => {
+  loading.value = true
+  reqUserIncome().then((res) => {
+    userIncomeInfo.value = res.data
+  })
+}
+onActivated(() => {
+  userInfo.value = JSON.parse(window.localStorage.getItem('userInfo'))
+  getData()
+  getNewUserInfo()
+  getUserIncome()
+})
 
 function getData() {
-	articleall().then((e) => {
-		Caidan.value = e.data.data
-		console.log(Caidan.value,"123")
-		
-	}).finally(() => {
-		
-	})
-
+  articleall()
+    .then((e) => {
+      Caidan.value = e.data.data
+      console.log(Caidan.value, '123')
+    })
+    .finally(() => {})
 }
 </script>
 
 <template>
-	<div class="flex-col justify-start items-center relative page">
-		<modzz v-model="service"></modzz>
+  <div class="flex-col justify-start items-center relative page">
+    <modzz v-model="service"></modzz>
+    <Loading v-if="loading" is-full-screen></Loading>
+    <div class="flex-col justify-start section pos">
+      <div class="flex-row justify-center items-center section_2">
+        <van-image class="image_3" :src="userInfo?.avatar" round @click="go('me/edit-userinfo')" />
+        <div class="flex-col items-start group ml-22">
+          <span class="text">{{ userInfo.phone }}</span>
+          <div class="group_2 mt-8-5" style="margin-top: 10rem">
+            <span class="font">
+              我的ID: {{ userInfo?.id }}
+              <br />
+            </span>
+            <span class="font text_2">
+              我的邀请码： {{ userInfo?.result?.invite?.code }}
+              <br />
+            </span>
+            <span class="font">当前等级: {{ getSerialName(userInfo?.result?.staff?.serial) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-col section_3 pos_3" style="background: #161616">
+      <div class="partner-info">
+        <div class="partner-banner">
+          <img class="partner-icon" src="./images/red-envelope.png" alt="" />
+          <div class="partner-text">
+            <img src="./images/partner.png" alt="" />
+            <div class="subtext">开通合伙人，每天领分红</div>
+          </div>
+        </div>
+        <div class="open-btn" @click="zzz">立即开通</div>
+      </div>
+      <div class="flex-col group_3">
+        <div class="flex-col justify-start items-center self-end relative text-wrapper">
+          <span class="font_2 text_3">提现</span>
+        </div>
+        <div class="flex-row justify-between equal-division group_4">
+          <div class="flex-col items-start equal-division-item" @click="go('/dep')">
+            <span class="font_3">{{ userInfo.result?.wallet?.money || 0 }}</span>
+            <span class="font_4 text_1 mt-12">当前余额</span>
+          </div>
+          <div class="horiz-divider section_4"></div>
 
-		<div class="flex-col justify-start section pos">
-			<div class="flex-row justify-center items-center section_2">
-				<van-image class="image_3" :src="userInfo?.avatar" round @click="go('me/edit-userinfo')"/>
-				<div class="flex-col items-start group ml-22">
-					<span class="text">{{ userInfo.nickname }}</span>
-					<div class="group_2 mt-8-5" style="margin-top: 10rem;">
-						<span class="font">
-							我的ID: {{ userInfo?.id }}
-							<br />
-						</span>
-						<span class="font text_2">
-							我的邀请码： {{ userInfo?.result?.invite?.code }}
-							<br />
-						</span>
-						<span class="font">当前等级:  {{ GetName(userInfo?.result?.staff?.serial) }}</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="flex-col section_3 pos_3" style="background: #161616 ;">
-			<div class="partner-info">
-				<div class="partner-banner">
-					<img class="partner-icon" src="./images/红包.png" alt="">
-					<div class="partner-text">
-						<img src="./images/橙市合伙人.png" alt="">
-						<div class="subtext">开通合伙人，每天领分红</div>
-					</div>
-				</div>
-				<div class="open-btn" @click="zzz">立即开通</div>
+          <div class="flex-col items-start equal-division-item_2" @click="go('/dep')">
+            <span class="font_3">{{ userIncomeInfo.total || 0 }}</span>
+            <span class="font_4 text_1 mt-12">历史收益</span>
+          </div>
+          <div class="horiz-divider section_4"></div>
+          <div class="flex-col items-start equal-division-item_2" @click="go('/dep')">
+            <span class="font_3">{{ userInfo.result?.wallet?.money || 0 }}</span>
+            <span class="font_4 text_1 mt-12">可提现</span>
+          </div>
+        </div>
+      </div>
 
-			</div>
-			<div class="flex-col group_3">
-				<div class="flex-col justify-start items-center self-end relative text-wrapper">
-					<span class="font_2 text_3">提现</span>
-				</div>
-				<div class="flex-row justify-between equal-division group_4">
-					<div class="flex-col items-start equal-division-item" @click="go('/dep')">
-						<span class="font_3">{{ userInfo.result?.wallet?.money || 0 }}</span>
-						<span class="font_4 text_1 mt-12">当前余额</span>
-					</div>
-					<div class="horiz-divider section_4"></div>
+      <div class="flex-col">
+        <div class="flex-row items-center section_5">
+          <div class="flex-col justify-start items-start flex-1 image-wrapper">
+            <img class="image_4" src="./images/e62b209b1fc33d5b3ca0c4a35e43028e.png" />
+          </div>
+          <span class="text_5 ml-20">当前信用分：XX</span>
+          <div class="text" @click="go('/nofinish')">详情</div>
+        </div>
 
-					<div class="flex-col items-start equal-division-item_2" @click="go('/dep')">
-						<span class="font_3">{{ userInfo.result?.income?.today || 0 }}</span>
-						<span class="font_4 text_1 mt-12">历史收益</span>
-					</div>
-					<div class="horiz-divider section_4"></div>
-					<div class="flex-col items-start equal-division-item_2" @click="go('/dep')">
-						<span class="font_3">{{ userInfo.result?.wallet?.money || 0 }}</span>
-						<span class="font_4 text_1 mt-12">可提现</span>
-					</div>
-				</div>
-			</div>
+        <van-cell
+          v-for="(item, index) in Caidan"
+          Key="index"
+          style="margin-top: 10px"
+          :title="item.title"
+          is-link
+          class="vv"
+          @click="go2('/article', item)"
+        />
 
-			<div class="flex-col">
+        <div class="flex-col justify-start section_6 mt-18-5">
+          <div class="grid">
+            <div class="flex-col items-center grid-item" @click="go('/invest')">
+              <img class="image_5" src="./images/f4b019b601d0df00071c19a8d8635f75.png" />
+              <span class="font_5 mt-3-5">橙市合伙人</span>
+            </div>
+            <div class="flex-col items-center grid-item_2" @click="go('/myteam')">
+              <img class="image_5" src="./images/ca1c51d7746b93a23920b6e81a01305b.png" />
+              <span class="font_5 mt-2-5">我的团队</span>
+            </div>
+            <div class="flex-col items-center grid-item_3" @click="service = true">
+              <img class="image_5" src="./images/77e8e78de6f80bbf915afe8f5bc9b778.png" />
+              <span class="font_5 mt-2-5">甜橙客服</span>
+            </div>
+            <!-- @click="copy" -->
+            <div class="flex-col items-center relative grid-item_4" @click="go('/fenxiang')">
+              <img class="image_5" src="./images/1572f8bbdb28d0a2a78c51d8bf232edb.png" />
+              <span class="font_5 mt-3-5">每日分享</span>
+            </div>
+            <div class="flex-col items-center relative grid-item_4" @click="goDownload">
+              <img class="image_5" src="./images/457fa5ff1e743276c8813696db760ffb.png" />
+              <span class="font_5 mt-3-5">APP下载</span>
+            </div>
+            <div class="flex-col items-center grid-item_5" @click="go('/wallet')">
+              <img class="image_5" src="./images/27bc4dd691fde94921cf9524f29d0a98.png" />
+              <span class="font_2 mt-3-5">收支明细</span>
+            </div>
+            <div class="flex-col items-center relative grid-item_6" @click="go('/demo')">
+              <img class="image_5" src="./images/7e51e7b4f4d139f9390fa23d75432efb.png" />
+              <span class="font_2 mt-5-5">股东等级</span>
+            </div>
+            <div class="flex-col items-center relative grid-item_7" @click="go('/nofinish')">
+              <img class="image_5" src="./images/702e90f7f1ebc87641055bbff962f5b5.png" />
+              <span class="font_2 text_7 mt-5">大逃杀游戏</span>
+            </div>
+          </div>
+        </div>
 
-				<div class="flex-row items-center section_5">
-					<div class="flex-col justify-start items-start flex-1 image-wrapper">
-						<img class="image_4" src="./images/e62b209b1fc33d5b3ca0c4a35e43028e.png" />
-					</div>
-					<span class="text_5 ml-20">当前信用分：XX</span>
-					<div class="text" @click="go('/nofinish')">详情</div>
-				</div>
-
-				<van-cell v-for="(item,index) in Caidan" Key='index' style="margin-top: 10px;" :title="item.title" is-link class="vv" @click="go2('/article',item)" />
-
-				
-				<div class="flex-col justify-start section_6 mt-18-5">
-					<div class="grid">
-						<div class="flex-col items-center grid-item" @click="go('/invest')">
-							<img class="image_5" src="./images/f4b019b601d0df00071c19a8d8635f75.png" />
-							<span class="font_5 mt-3-5">橙市合伙人</span>
-						</div>
-						<div class="flex-col items-center grid-item_2" @click="go('/myteam')">
-							<img class="image_5" src="./images/ca1c51d7746b93a23920b6e81a01305b.png" />
-							<span class="font_5 mt-2-5">我的团队</span>
-						</div>
-						<div class="flex-col items-center grid-item_3" @click="service = true">
-							<img class="image_5" src="./images/77e8e78de6f80bbf915afe8f5bc9b778.png" />
-							<span class="font_5 mt-2-5">甜橙客服</span>
-						</div>
-						<!-- @click="copy" -->
-						<div class="flex-col items-center relative grid-item_4" @click="go('/fenxiang')">
-							<img class="image_5" src="./images/1572f8bbdb28d0a2a78c51d8bf232edb.png" />
-							<span class="font_5 mt-3-5">每日分享</span>
-						</div>
-						<div class="flex-col items-center relative grid-item_4" @click="goDownload">
-							<img class="image_5" src="./images/457fa5ff1e743276c8813696db760ffb.png" />
-							<span class="font_5 mt-3-5">APP下载</span>
-						</div>
-						<div class="flex-col items-center grid-item_5" @click="go('/wallet')">
-							<img class="image_5" src="./images/27bc4dd691fde94921cf9524f29d0a98.png" />
-							<span class="font_2 mt-3-5">收支明细</span>
-						</div>
-						<div class="flex-col items-center relative grid-item_6" @click="go('/demo')">
-							<img class="image_5" src="./images/7e51e7b4f4d139f9390fa23d75432efb.png" />
-							<span class="font_2 mt-5-5">股东等级</span>
-						</div>
-						<div class="flex-col items-center relative grid-item_7" @click="go('/nofinish')">
-							<img class="image_5" src="./images/702e90f7f1ebc87641055bbff962f5b5.png" />
-							<span class="font_2 text_7 mt-5">大逃杀游戏</span>
-						</div>
-
-					</div>
-				</div>
-
-
-				<div class="logout" @click="logout">
-					<img class="image_5" src="./images/3c6dff12198f8d467dc89f898839efcd.png" />
-					<span class="font_2 mt-5-5">退出APP</span>
-				</div>
-
-			</div>
-		</div>
-		<BaseFooter v-bind:init-tab="5" />
-
-	</div>
+        <div class="logout" @click="logout">
+          <img class="image_5" src="./images/3c6dff12198f8d467dc89f898839efcd.png" />
+          <span class="font_2 mt-5-5">退出APP</span>
+        </div>
+      </div>
+    </div>
+    <BaseFooter v-bind:init-tab="5" />
+  </div>
 </template>
 
 <style scoped lang="less">
 .mt-18-5 {
-	margin-top: 14.57rem;
+  margin-top: 14.57rem;
 }
 
 .mt-3-5 {
-	margin-top: 3.62rem;
+  margin-top: 3.62rem;
 }
 
 .mt-2-5 {
-	margin-top: 2.72rem;
+  margin-top: 2.72rem;
 }
 
 .mt-5-5 {
-	margin-top: 5.43rem;
+  margin-top: 5.43rem;
 }
 
 .mt-5 {
-	margin-top: 4.98rem;
+  margin-top: 4.98rem;
 }
 
 .page {
-	padding-bottom: 131.7rem;
-	width: 100%;
-	overflow-y: auto;
-	overflow-x: hidden;
-	height: 100%;
+  padding-bottom: 131.7rem;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
 
-	.section {
+  .section {
+    .section_2 {
+      padding: 52.17rem 17.17rem 11.29rem 27.17rem;
+      background-image: url('./images/2c757d7e9de442d6159ae953d60359a1.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
 
-		.section_2 {
-			padding: 52.17rem 17.17rem 11.29rem 27.17rem;
-			background-image: url('./images/2c757d7e9de442d6159ae953d60359a1.png');
-			background-size: 100% 100%;
-			background-repeat: no-repeat;
+      .image_3 {
+        width: 84.24rem;
+        height: 84.24rem;
+      }
 
-			.image_3 {
-				width: 84.24rem;
-				height: 84.24rem;
-			}
+      .group {
+        width: 214.22rem;
 
-			.group {
-				width: 214.22rem;
+        .text {
+          color: #fffdfd;
+          font-size: 21.74rem;
+          font-family: PingFang;
+          font-weight: 700;
+          line-height: 16.76rem;
+        }
 
-				.text {
-					color: #fffdfd;
-					font-size: 21.74rem;
-					font-family: PingFang;
-					font-weight: 700;
-					line-height: 16.76rem;
-				}
+        .group_2 {
+          line-height: 16.3rem;
 
-				.group_2 {
-					line-height: 16.3rem;
+          .font {
+            font-size: 12.96rem;
+            font-family: Adobe Heiti Std;
+            line-height: 20.3rem;
+            font-weight: 700;
+            color: #fffdfd;
+          }
 
-					.font {
-						font-size: 12.96rem;
-						font-family: Adobe Heiti Std;
-						line-height: 20.3rem;
-						font-weight: 700;
-						color: #fffdfd;
-					}
+          .text_2 {
+            color: #ffffff;
+            font-weight: unset;
+          }
+        }
+      }
+    }
+  }
 
-					.text_2 {
-						color: #ffffff;
-						font-weight: unset;
-					}
-				}
-			}
-		}
-	}
+  .pos {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
 
-	.pos {
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 0;
-	}
+  .section_3 {
+    padding: 0 17.66rem 215.58rem 18.12rem;
+    background-image: url('./images/d4d3a341f07d0f248de2ca5c542a877d.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 
-	.section_3 {
-		padding: 0 17.66rem 215.58rem 18.12rem;
-		background-image: url('./images/d4d3a341f07d0f248de2ca5c542a877d.png');
-		background-size: 100% 100%;
-		background-repeat: no-repeat;
+    .group_3 {
+      padding: 1.85rem 21.29rem 10rem 21.37rem;
 
-		.group_3 {
-			padding: 1.85rem 21.29rem 10rem 21.37rem;
+      .text-wrapper {
+        padding: 3.17rem 0 4.08rem;
+        background-color: #fc4869;
+        box-shadow: 0rem 0rem 7.25rem #19000114;
+        border-radius: 9.06rem;
+        width: 37.14rem;
 
-			.text-wrapper {
-				padding: 3.17rem 0 4.08rem;
-				background-color: #fc4869;
-				box-shadow: 0rem 0rem 7.25rem #19000114;
-				border-radius: 9.06rem;
-				width: 37.14rem;
+        .text_3 {
+          line-height: 10.87rem;
+          letter-spacing: 2.36rem;
+        }
+      }
 
-				.text_3 {
-					line-height: 10.87rem;
-					letter-spacing: 2.36rem;
-				}
-			}
+      .equal-division {
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        text-align: center;
 
-			.equal-division {
-				align-self: stretch;
-				display: flex;
-				align-items: center;
-				text-align: center;
+        .equal-division-item {
+          padding: 5rem 0;
+        }
 
-				.equal-division-item {
-					padding: 5rem 0;
+        .section_4 {
+          background-color: #c1c3d0;
+          width: 1.36rem;
+          height: 23.1rem;
+        }
 
+        .equal-division-item_2 {
+          padding: 5.45rem 0 5.91rem;
+          text-align: center;
 
-				}
+          .text_1 {
+            line-height: 10.87rem;
+            text-align: center;
+          }
+        }
 
+        .font_3 {
+          font-size: 16.3rem;
+          font-family: Adobe Heiti Std;
+          line-height: 12.68rem;
+          color: #ffffff;
+        }
 
-				.section_4 {
-					background-color: #c1c3d0;
-					width: 1.36rem;
-					height: 23.1rem;
-				}
+        .font_4 {
+          font-size: 11.78rem;
+          font-family: Adobe Heiti Std;
+          line-height: 11.32rem;
+          color: #c1c3d0;
+        }
+      }
 
-				.equal-division-item_2 {
-					padding: 5.45rem 0 5.91rem;
-					text-align: center;
+      // .group_4 {
+      // 	padding-bottom: 19rem;
+      // }
+    }
 
-					.text_1 {
-						line-height: 10.87rem;
-						text-align: center;
-					}
-				}
+    .section_5 {
+      padding: 11.32rem 12.61rem 11.32rem 9.96rem;
+      background-color: #393939;
+      border-radius: 9.06rem;
 
-				.font_3 {
-					font-size: 16.3rem;
-					font-family: Adobe Heiti Std;
-					line-height: 12.68rem;
-					color: #ffffff;
-				}
+      .text {
+        margin-left: 10px;
+        height: 22rem;
+        text-align: center;
+        line-height: 22rem;
+        font-weight: 900;
+        width: 45rem;
+        color: #6244be;
+        background-color: #e5e0f6;
+        border-radius: 13px;
+      }
 
-				.font_4 {
-					font-size: 11.78rem;
-					font-family: Adobe Heiti Std;
-					line-height: 11.32rem;
-					color: #c1c3d0;
-				}
-			}
+      .image-wrapper {
+        background-image: url('./images/c12e99ca200be4dc4eeb76eb2c969c91.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        height: 4.08rem;
 
-			// .group_4 {
-			// 	padding-bottom: 19rem;
-			// }
-		}
+        .image_4 {
+          width: 164.86rem;
+          height: 4.08rem;
+        }
+      }
 
-		.section_5 {
-			padding: 11.32rem 12.61rem 11.32rem 9.96rem;
-			background-color: #393939;
-			border-radius: 9.06rem;
+      .text_5 {
+        color: #ffffff;
+        font-size: 9.06rem;
+        font-family: Adobe Heiti Std;
+        line-height: 9.06rem;
+        letter-spacing: 0.91rem;
+      }
+    }
 
-			.text {
-				margin-left: 10px;
-				height: 22rem;
-				text-align: center;
-				line-height: 22rem;
-				font-weight: 900;
-				width: 45rem;
-				color: #6244BE;
-				background-color: #E5E0F6;
-				border-radius: 13px;
+    .section_6 {
+      background-color: #393939;
+      border-radius: 9.06rem;
 
-			}
+      .grid {
+        height: 237.32rem;
+        display: grid;
+        grid-template-rows: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        row-gap: 0;
+        column-gap: 0;
 
-			.image-wrapper {
-				background-image: url('./images/c12e99ca200be4dc4eeb76eb2c969c91.png');
-				background-size: 100% 100%;
-				background-repeat: no-repeat;
-				height: 4.08rem;
+        .grid-item {
+          padding: 15.02rem 0 17.06rem;
+        }
 
+        .grid-item_2 {
+          padding: 10.02rem 0 13.42rem;
+        }
 
+        .image_5 {
+          width: 32rem;
+          height: 32rem;
+        }
 
-				.image_4 {
-					width: 164.86rem;
-					height: 4.08rem;
-				}
-			}
+        .font_5 {
+          font-size: 11.78rem;
+          font-family: PingFang;
+          line-height: 11.32rem;
+          color: #ffffff;
+        }
 
-			.text_5 {
-				color: #ffffff;
-				font-size: 9.06rem;
-				font-family: Adobe Heiti Std;
-				line-height: 9.06rem;
-				letter-spacing: 0.91rem;
-			}
-		}
+        .grid-item_3 {
+          padding: 15.03rem 0 18.42rem;
+          width: 113.08rem;
+        }
 
-		.section_6 {
-			background-color: #393939;
-			border-radius: 9.06rem;
+        .grid-item_4 {
+          padding: 14.27rem 0 17.82rem;
+        }
 
-			.grid {
-				height: 237.32rem;
-				display: grid;
-				grid-template-rows: repeat(3, minmax(0, 1fr));
-				grid-template-columns: repeat(3, minmax(0, 1fr));
-				row-gap: 0;
-				column-gap: 0;
+        .grid-item_5 {
+          padding: 14.27rem 0 17.82rem;
+          width: 113.08rem;
+        }
 
-				.grid-item {
-					padding: 15.02rem 0 17.06rem;
-				}
+        .grid-item_6 {
+          padding: 11.48rem 0 19.02rem;
+        }
 
-				.grid-item_2 {
-					padding: 10.02rem 0 13.42rem;
-				}
+        .grid-item_7 {
+          padding: 11.48rem 0 19.02rem;
 
-				.image_5 {
-					width: 32rem;
-					height: 32rem;
-				}
+          .text_7 {
+            line-height: 11.78rem;
+          }
+        }
 
-				.font_5 {
-					font-size: 11.78rem;
-					font-family: PingFang;
-					line-height: 11.32rem;
-					color: #ffffff;
-				}
+        .grid-item_8 {
+          padding: 11.47rem 0 18.57rem;
+          width: 113.08rem;
+        }
+      }
+    }
 
-				.grid-item_3 {
-					padding: 15.03rem 0 18.42rem;
-					width: 113.08rem;
-				}
+    .font_2 {
+      font-size: 11.78rem;
+      font-family: Adobe Heiti Std;
+      letter-spacing: 1.18rem;
+      line-height: 11.32rem;
+      color: #ffffff;
+    }
+  }
 
-				.grid-item_4 {
-					padding: 14.27rem 0 17.82rem;
-				}
+  .pos_3 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 155.69rem;
+    border-radius: 20px;
+  }
 
-				.grid-item_5 {
-					padding: 14.27rem 0 17.82rem;
-					width: 113.08rem;
-				}
+  .image_2 {
+    width: 98.5507vw;
+  }
 
-				.grid-item_6 {
-					padding: 11.48rem 0 19.02rem;
-				}
-
-				.grid-item_7 {
-					padding: 11.48rem 0 19.02rem;
-
-					.text_7 {
-						line-height: 11.78rem;
-					}
-				}
-
-				.grid-item_8 {
-					padding: 11.47rem 0 18.57rem;
-					width: 113.08rem;
-				}
-			}
-		}
-
-		.font_2 {
-			font-size: 11.78rem;
-			font-family: Adobe Heiti Std;
-			letter-spacing: 1.18rem;
-			line-height: 11.32rem;
-			color: #ffffff;
-		}
-	}
-
-	.pos_3 {
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 155.69rem;
-		border-radius: 20px;
-	}
-
-	.image_2 {
-		width: 98.5507vw;
-	}
-
-	.pos_2 {
-		position: absolute;
-		left: 5.43rem;
-		right: 0;
-		bottom: 0;
-	}
+  .pos_2 {
+    position: absolute;
+    left: 5.43rem;
+    right: 0;
+    bottom: 0;
+  }
 }
 
-
 .flex-row {
-	display: flex;
-	flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .flex-col {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .justify-start {
-	justify-content: flex-start;
+  justify-content: flex-start;
 }
 
 .justify-end {
-	justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .justify-center {
-	justify-content: center;
+  justify-content: center;
 }
 
 .justify-between {
-	justify-content: space-between;
+  justify-content: space-between;
 }
 
 .justify-around {
-	justify-content: space-around;
+  justify-content: space-around;
 }
 
 .justify-evenly {
-	justify-content: space-evenly;
+  justify-content: space-evenly;
 }
 
 .items-start {
-	align-items: flex-start;
+  align-items: flex-start;
 }
 
 .items-end {
-	align-items: flex-end;
+  align-items: flex-end;
 }
 
 .items-center {
-	align-items: center;
+  align-items: center;
 }
 
 .items-baseline {
-	align-items: baseline;
+  align-items: baseline;
 }
-
-
-
 
 .self-end {
-	align-self: flex-end;
+  align-self: flex-end;
 }
-
 
 .flex-1 {
-	flex: 1 1 0%;
+  flex: 1 1 0%;
 }
-
 
 .relative {
-	position: relative;
+  position: relative;
 }
-
-
-
-
-
 
 .mt-12 {
-	margin-top: 12rem;
+  margin-top: 12rem;
 }
 
-
-
 .ml-20 {
-	margin-left: 20rem;
+  margin-left: 20rem;
 }
 
 .mt-20 {
-	margin-top: 20rem;
+  margin-top: 20rem;
 }
 
 .ml-22 {
-	margin-left: 22rem;
+  margin-left: 22rem;
 }
 
 .partner-info {
-	background-image: url('./images/矩形 2.png');
-	margin: 10px 0;
-	height: 32rem;
-	padding: 10px;
-	border-radius: 13px;
-	display: flex;
-	justify-content: space-between;
-
+  background-image: url('./images/rect.png');
+  margin: 10px 0;
+  height: 32rem;
+  padding: 10px;
+  border-radius: 13px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .partner-banner {
-	// position: absolute;
-	padding: 5rem;
-	// top: 32rem;
-	width: 222rem;
-	height: 38rem;
-	background-color: #E5E0F6;
-	border-radius: 13px;
-	display: flex;
-	align-items: center;
+  // position: absolute;
+  padding: 5rem;
+  // top: 32rem;
+  width: 222rem;
+  height: 38rem;
+  background-color: #e5e0f6;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
 }
 
 .partner-icon {
-	width: 40px;
-	height: 25px;
-	margin-right: 10px;
+  width: 40px;
+  height: 25px;
+  margin-right: 10px;
 }
 
 .partner-text {
-	display: flex;
-	flex-direction: column;
-	color: #6244BE;
+  display: flex;
+  flex-direction: column;
+  color: #6244be;
 
-	img {
-		width: 60rem;
-		height: 12rem;
-	}
+  img {
+    width: 60rem;
+    height: 12rem;
+  }
 
-	.subtext {
-		padding-top: 5px;
-		font-size: 10rem;
-		color: #9598a5
-	}
+  .subtext {
+    padding-top: 5px;
+    font-size: 10rem;
+    color: #9598a5;
+  }
 }
 
 .open-btn {
-	margin-left: 10px;
-	height: 22rem;
-	text-align: center;
-	line-height: 22rem;
-	font-weight: 900;
-	width: 110rem;
-	color: #6244BE;
-	background-color: #E5E0F6;
-	border-radius: 13px;
-
+  margin-left: 10px;
+  height: 22rem;
+  text-align: center;
+  line-height: 22rem;
+  font-weight: 900;
+  width: 110rem;
+  color: #6244be;
+  background-color: #e5e0f6;
+  border-radius: 13px;
 }
 
 .logout {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 90%;
-	height: 35px;
-	line-height: 35px;
-	padding: 0 18.12rem;
-	margin: 20px auto;
-	border-radius: 13px;
-	background-color: #393939;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 18.12rem;
+  margin: 20px auto;
+  border-radius: 13px;
+  background-color: #393939;
 
-	img {
-		width: 30px;
-		height: 30px;
-	}
+  img {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .vv {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .van-cell {
-	border-radius: 10px;
-	background-color: #393939;
-	color: #fff;
-	border: none;
-
+  border-radius: 10px;
+  background-color: #393939;
+  color: #fff;
+  border: none;
 }
 
 .van-cell-group:after {
-	border: none;
+  border: none;
 }
 
 .van-cell:after {
-	border: none;
+  border: none;
 }
 </style>

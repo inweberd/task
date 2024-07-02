@@ -1,5 +1,6 @@
 <template>
   <div class="edit">
+    <Loading v-if="loading"></Loading>
     <BaseHeader>
       <template v-slot:center>
         <div class="title">
@@ -9,67 +10,72 @@
       </template>
     </BaseHeader>
     <div class="userinfo">
-      <div class="change-avatar">
-        <div class="avatar-ctn" @click="showAvatarDialog">
-          <img class="avatar" :src="_checkImgUrl(store.userinfo.cover_url[0].url_list[0])" alt="" />
+      <van-uploader ref="uploaderRef" class="change-avatar" :after-read="afterRead">
+        <!--          <div class="avatar-ctn" @click="showAvatarDialog">-->
+        <div class="avatar-ctn" @click="uploaderRef.chooseFile">
+          <img
+            class="avatar"
+            :src="userInfo.avatar || _checkImgUrl(store.userinfo.cover_url[0].url_list[0])"
+            alt=""
+          />
           <img class="change" src="../../../assets/img/icon/me/camera-light.png" alt="" />
         </div>
         <span>点击更换头像</span>
-      </div>
-      <div class="row" @click="nav('/me/edit-userinfo-item', { type: 1 })">
-        <div class="left">名字</div>
-        <div class="right">
-          <span>{{ isEmpty(store.userinfo.nickname) }}</span>
-          <dy-back scale=".8" direction="right"></dy-back>
-        </div>
-      </div>
-      <div class="row" @click="nav('/me/edit-userinfo-item', { type: 2 })">
-        <div class="left">抖音号</div>
-        <div class="right">
-          <span>{{ isEmpty(_getUserDouyinId({ author: store.userinfo })) }}</span>
-          <dy-back scale=".8" direction="right"></dy-back>
-        </div>
-      </div>
-      <div class="row" @click="nav('/me/edit-userinfo-item', { type: 3 })">
-        <div class="left">简介</div>
-        <div class="right">
-          <span>{{ isEmpty(store.userinfo.signature) }}</span>
-          <dy-back scale=".8" direction="right"></dy-back>
-        </div>
-      </div>
-      <div class="row" @click="showSexDialog">
-        <div class="left">性别</div>
-        <div class="right">
-          <span>{{ sex }}</span>
-          <dy-back scale=".8" direction="right"></dy-back>
-        </div>
-      </div>
-      <div class="row" @click="showBirthdayDialog">
-        <div class="left">生日</div>
-        <div class="right">
-          <span>{{ isEmpty(store.userinfo.user_age) }}</span>
-          <div v-show="false" id="trigger1"></div>
-          <dy-back scale=".8" direction="right"></dy-back>
-        </div>
-      </div>
-      <div class="row" @click="nav('/me/choose-location')">
-        <div class="left">所在地</div>
-        <div class="right">
-          <span v-if="store.userinfo.province || store.userinfo.city">
-            {{ store.userinfo.province }}
-            <template v-if="store.userinfo.province && store.userinfo.city"> - </template>
-            {{ store.userinfo.city }}
-          </span>
-          <dy-back scale=".8" direction="right"></dy-back>
-        </div>
-      </div>
-      <div class="row" @click="nav('/me/add-school')">
-        <div class="left">学校</div>
-        <div class="right">
-          <span>{{ isEmpty(store.userinfo.school?.name) }}</span>
-          <dy-back scale=".8" direction="right"></dy-back>
-        </div>
-      </div>
+      </van-uploader>
+      <!--      <div class="row" @click="nav('/me/edit-userinfo-item', { type: 1 })">-->
+      <!--        <div class="left">名字</div>-->
+      <!--        <div class="right">-->
+      <!--          <span>{{ isEmpty(store.userinfo.nickname) }}</span>-->
+      <!--          <dy-back scale=".8" direction="right"></dy-back>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--      <div class="row" @click="nav('/me/edit-userinfo-item', { type: 2 })">-->
+      <!--        <div class="left">抖音号</div>-->
+      <!--        <div class="right">-->
+      <!--          <span>{{ isEmpty(_getUserDouyinId({ author: store.userinfo })) }}</span>-->
+      <!--          <dy-back scale=".8" direction="right"></dy-back>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--      <div class="row" @click="nav('/me/edit-userinfo-item', { type: 3 })">-->
+      <!--        <div class="left">简介</div>-->
+      <!--        <div class="right">-->
+      <!--          <span>{{ isEmpty(store.userinfo.signature) }}</span>-->
+      <!--          <dy-back scale=".8" direction="right"></dy-back>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--      <div class="row" @click="showSexDialog">-->
+      <!--        <div class="left">性别</div>-->
+      <!--        <div class="right">-->
+      <!--          <span>{{ sex }}</span>-->
+      <!--          <dy-back scale=".8" direction="right"></dy-back>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--      <div class="row" @click="showBirthdayDialog">-->
+      <!--        <div class="left">生日</div>-->
+      <!--        <div class="right">-->
+      <!--          <span>{{ isEmpty(store.userinfo.user_age) }}</span>-->
+      <!--          <div v-show="false" id="trigger1"></div>-->
+      <!--          <dy-back scale=".8" direction="right"></dy-back>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--      <div class="row" @click="nav('/me/choose-location')">-->
+      <!--        <div class="left">所在地</div>-->
+      <!--        <div class="right">-->
+      <!--          <span v-if="store.userinfo.province || store.userinfo.city">-->
+      <!--            {{ store.userinfo.province }}-->
+      <!--            <template v-if="store.userinfo.province && store.userinfo.city"> - </template>-->
+      <!--            {{ store.userinfo.city }}-->
+      <!--          </span>-->
+      <!--          <dy-back scale=".8" direction="right"></dy-back>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--      <div class="row" @click="nav('/me/add-school')">-->
+      <!--        <div class="left">学校</div>-->
+      <!--        <div class="right">-->
+      <!--          <span>{{ isEmpty(store.userinfo.school?.name) }}</span>-->
+      <!--          <dy-back scale=".8" direction="right"></dy-back>-->
+      <!--        </div>-->
+      <!--      </div>-->
     </div>
     <transition name="fade">
       <div class="preview-img" v-if="data.previewImg" @click="data.previewImg = ''">
@@ -93,16 +99,20 @@ import {
   _getUserDouyinId,
   _hideLoading,
   _no,
+  _notice,
   _showLoading,
   _showSelectDialog,
   _sleep
 } from '@/utils'
-import { computed, reactive } from 'vue'
+import { computed, onActivated, reactive, ref } from 'vue'
 import { useNav } from '@/utils/hooks/useNav'
-
+import { reqUpdateUserInfo, reqUpload } from '@/api/myApi'
+import { userinfo } from '@/api/user'
+import Loading from '@/components/Loading.vue'
 defineOptions({
   name: 'EditUserInfo'
 })
+const loading = ref(false)
 const store = useBaseStore()
 const nav = useNav()
 const data = reactive({
@@ -119,7 +129,8 @@ const data = reactive({
   ],
   previewImg: ''
 })
-
+const userInfo = ref({})
+const uploaderRef = ref()
 const sex = computed(() => {
   switch (Number(store.userinfo.gender)) {
     case 1:
@@ -185,6 +196,33 @@ function showBirthdayDialog() {
     }
   }).show()
 }
+
+const afterRead = (fileInfo) => {
+  loading.value = true
+  loading.value = true
+  reqUpload(fileInfo.file).then((res: any) => {
+    console.log('reqUpload', res)
+    if (res.code !== 200) {
+      loading.value = false
+      return _notice('头像上传失败！')
+    }
+    const info = JSON.parse(window.localStorage.getItem('userInfo'))
+    reqUpdateUserInfo({
+      id: info.id,
+      avatar: res.data.path
+    }).then((sub_res) => {
+      loading.value = false
+      if (sub_res.code !== 200) return _notice('头像修改失败！')
+
+      userInfo.value.avatar = res.data.path
+      window.localStorage.setItem('userInfo', JSON.stringify(userInfo.value))
+    })
+  })
+}
+
+onActivated(() => {
+  userInfo.value = JSON.parse(window.localStorage.getItem('userInfo'))
+})
 </script>
 
 <style scoped lang="less">
@@ -270,7 +308,6 @@ function showBirthdayDialog() {
       .change {
         width: 28rem;
         z-index: 9;
-        position: relative;
       }
     }
   }

@@ -36,3 +36,52 @@ export function articleall(data) {
 export function jsapi(data) {
   return axiosInstance({ url: 'api/we-chat/jsapi', method: 'post', data })
 }
+
+// 获取全部会员
+export function reqAllStaff(data) {
+  return axiosInstance({ url: 'api/staff/all', method: 'get', params: data })
+}
+
+// 创建订单
+export function reqCreateOrder(data) {
+  return axiosInstance({ url: 'api/order/create', method: 'post', data })
+}
+
+// 获取钱包信息
+export function reqWalletInfo() {
+  return axiosInstance({ url: 'api/wallet/query', method: 'get' })
+}
+
+// 获取用户信息 返回值和登录时返回值相同
+export function reqUserInfo(data) {
+  return axiosInstance({ url: 'api/users/one', method: 'get', params: data })
+}
+
+// 更新用户信息
+export function reqUpdateUserInfo(data) {
+  return axiosInstance({ url: 'api/users/update', method: 'put', data })
+}
+
+// 获取个人收益
+export function reqUserIncome() {
+  return axiosInstance({ url: 'api/users/income', method: 'get' })
+}
+
+// 购买会员
+export function reqEnterStaff(data) {
+  return axiosInstance({ url: 'api/staff-entry/ok', method: 'post', data })
+}
+
+// 上传
+export function reqUpload(file) {
+  const formdata = new FormData()
+  formdata.append('file', file)
+  return axiosInstance({
+    url: 'api/file/upload',
+    method: 'post',
+    data: formdata,
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+}

@@ -72,6 +72,21 @@ export function reqEnterStaff(data) {
   return axiosInstance({ url: 'api/staff-entry/ok', method: 'post', data })
 }
 
+// 记录任务
+export function reqRecordTask() {
+  return axiosInstance({ url: 'api/staff-entry/task', method: 'post' })
+}
+
+// 查询下级分销
+export function reqUserDistribution(data) {
+  return axiosInstance({ url: 'api/users/distribution', method: 'get', data })
+}
+
+// 获取成员信息
+export function reqUserMemberInfo(params) {
+  return axiosInstance({ url: 'api/users/member', method: 'get', params })
+}
+
 // 上传
 export function reqUpload(file) {
   const formdata = new FormData()

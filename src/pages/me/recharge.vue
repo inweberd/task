@@ -4,7 +4,7 @@
       title="充值"
       left-arrow
       @click-left="$router.back()"
-      style="background-color: #fbe327"
+      style="background-color: transparent"
     />
     <Loading v-if="loading"></Loading>
     <div class="container">
@@ -251,20 +251,28 @@ onMounted(() => method.init())
   border-bottom: none;
 }
 :deep(.van-nav-bar__arrow) {
-  color: #000 !important;
+  color: #fff !important;
 }
+:deep(.van-nav-bar__title) {
+  color: #fff !important;
+}
+
 .rechargeClass {
   width: 100%;
   height: 100%;
   background-color: #fff;
+  background-image: url('./images/2c757d7e9de442d6159ae953d60359a1.png');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+
   .container {
     margin-top: -1px;
     .recharge-info {
-      background-color: #fbe327;
+      background-color: transparent;
       font-size: 16px;
       display: flex;
       padding: 23px 0;
-      color: #212529;
+      color: #fff;
 
       &-left {
         margin: 0 25px;
@@ -282,7 +290,7 @@ onMounted(() => method.init())
         }
         &-b {
           margin-top: 6px;
-          color: rgba(33, 37, 41, 0.75);
+          color: #fff;
         }
       }
       &-right {

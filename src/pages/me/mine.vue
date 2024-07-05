@@ -16,8 +16,8 @@ const data = reactive({
   userId: 'XXX',
   code: '1234555'
 })
-
 const router = useRouter()
+
 function zzz() {
   // closeShare()
   router.push('/invest')
@@ -31,6 +31,9 @@ async function logout() {
 }
 function go(e) {
   router.push(e)
+}
+function jumpToQQ() {
+  window.location.href = decodeURIComponent('https://qm.qq.com/q/nOyounYxCS')
 }
 function go2(val1, val2) {
   console.log(val1, val2)
@@ -137,17 +140,22 @@ function getData() {
           <span class="font_2 text_3">提现</span>
         </div>
         <div class="flex-row justify-between equal-division group_4">
+          <div class="flex-col items-start equal-division-item_2" @click="go('/dep')">
+            <span class="font_3">{{ userIncomeInfo.today || 0 }}</span>
+            <span class="font_4 text_1 mt-12">今日收益</span>
+          </div>
+          <div class="horiz-divider section_4"></div>
+          <div class="flex-col items-start equal-division-item_2" @click="go('/dep')">
+            <span class="font_3">{{ userIncomeInfo.total || 0 }}</span>
+            <span class="font_4 text_1 mt-12">历史收益</span>
+          </div>
+          <div class="horiz-divider section_4"></div>
           <div class="flex-col items-start equal-division-item" @click="go('/dep')">
             <span class="font_3">{{ userInfo.result?.wallet?.money || 0 }}</span>
             <span class="font_4 text_1 mt-12">当前余额</span>
           </div>
           <div class="horiz-divider section_4"></div>
 
-          <div class="flex-col items-start equal-division-item_2" @click="go('/dep')">
-            <span class="font_3">{{ userIncomeInfo.total || 0 }}</span>
-            <span class="font_4 text_1 mt-12">历史收益</span>
-          </div>
-          <div class="horiz-divider section_4"></div>
           <div class="flex-col items-start equal-division-item_2" @click="go('/dep')">
             <span class="font_3">{{ userInfo.result?.wallet?.money || 0 }}</span>
             <span class="font_4 text_1 mt-12">可提现</span>
@@ -184,7 +192,8 @@ function getData() {
               <img class="image_5" src="./images/ca1c51d7746b93a23920b6e81a01305b.png" />
               <span class="font_5 mt-2-5">我的团队</span>
             </div>
-            <div class="flex-col items-center grid-item_3" @click="service = true">
+            <!--            <div class="flex-col items-center grid-item_3" @click="service = true">-->
+            <div class="flex-col items-center grid-item_3" @click="jumpToQQ">
               <img class="image_5" src="./images/77e8e78de6f80bbf915afe8f5bc9b778.png" />
               <span class="font_5 mt-2-5">甜橙客服</span>
             </div>

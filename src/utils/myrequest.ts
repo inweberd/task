@@ -56,7 +56,7 @@ axiosInstance.interceptors.response.use(
           data.success = true
         }
         if (resCode !== 200) {
-          _notice(response.data.msg || '请求失败，请稍后重试！')
+          // _notice(response.data.msg || '请求失败，请稍后重试！')
         } else {
           data.success = true
         }

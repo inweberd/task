@@ -28,23 +28,20 @@
         :list="state.list"
       />
     </div>
-    <div class="footer">
-      <div class="comment">
-        <div class="left">
-          <img
-            :src="_checkImgUrl(baseStore.userinfo.avatar_168x168.url_list[0])"
-            class="avatar"
-            alt=""
-          />
-          <span>善语结善缘，恶言伤人心</span>
-        </div>
-        <div class="right">
-          <Icon icon="tabler:photo" />
-          <Icon icon="ion:at-sharp" />
-          <Icon icon="fa-regular:laugh" />
-        </div>
-      </div>
-    </div>
+    <SelectVideo v-model="state.list[state.index]"></SelectVideo>
+    <!-- <div class="footer">
+			<div class="comment">
+				<div class="left">
+					<img :src="_checkImgUrl(baseStore.userinfo.avatar_168x168.url_list[0])" class="avatar" alt="" />
+					<span>善语结善缘，恶言伤人心</span>
+				</div>
+				<div class="right">
+					<Icon icon="tabler:photo" />
+					<Icon icon="ion:at-sharp" />
+					<Icon icon="fa-regular:laugh" />
+				</div>
+			</div>
+		</div> -->
 
     <Comment
       page-id="video-detail"
@@ -153,10 +150,11 @@ import liu from '@/assets/img/liu.png'
 import qi from '@/assets/img/qi.png'
 import ba from '@/assets/img/ba.png'
 import jiu from '@/assets/img/jiu.png'
+import SelectVideo from '@/components/slide/SelectVideo.vue'
 import Loading from '@/components/Loading.vue'
 import { reqRecordTask } from '@/api/myApi'
 defineOptions({
-  name: 'VideoDetail'
+  name: 'ShortPlayVideoDetail'
 })
 const nav = useNav()
 const router = useRouter()

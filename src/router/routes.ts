@@ -252,6 +252,11 @@ const routes: RouteRecordRaw[] = [
     name: 'video-detail',
     component: () => import('@/pages/other/VideoDetail.vue')
   },
+  {
+    path: '/shortPlayDetail',
+    name: 'shortPlayDetail',
+    component: () => import('@/pages/other/ShortPlayDetail.vue')
+  },
   // {path: '/album-detail', component: () => import('@/pages/other/AlbumDetail.vue')},
 
   {

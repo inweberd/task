@@ -225,8 +225,13 @@ defineExpose({ dislike })
  * @param play
  */
 function getInsEl(item, index, play = false) {
+  console.log('getInsEl', item, index)
   // console.log('index', cloneDeep(item), index, play)
   let slideVNode = props.render(item, index, play, props.uniqueId)
+  // setTimeout(() => {
+  //   item.video.play_addr.url_list[0] =
+  //     'https://www.douyin.com/aweme/v1/play/?video_id=v0d00fg10000ckvoc03c77u6kchehqhg&line=0&file_id=8e6beec8376d44379c8e1c07edfde8fd&sign=be07da27aece6115bb08874089acd485&is_play_url=1&source=PackSourceEnum_PUBLISH'
+  // }, 2000)
   const parent = document.createElement('div')
   //TODO 打包到线上时用这个，这个在开发时任何修改都会刷新页面
   if (import.meta.env.PROD) {

@@ -13,8 +13,23 @@ export function recommendedVideo(params?: any, data?: any) {
 }
 
 export function recommendedLongVideo(params?: any, data?: any) {
-  console.log(params,"data")
-  return request({ url: '/video/long/recommended/', method: 'get', params:{pageNo: 0, pageSize: 30}, data })
+  console.log(params, 'data')
+  return request({
+    url: '/video/long/recommended/',
+    method: 'get',
+    params: { pageNo: 0, pageSize: 30 },
+    data
+  })
+}
+
+export function shortPlayVideo(params?: any, data?: any) {
+  console.log(params, 'data')
+  return request({
+    url: '/video/short/play/',
+    method: 'get',
+    params: { pageNo: 0, pageSize: 30 },
+    data
+  })
 }
 
 export function myVideo(params?: any, data?: any) {

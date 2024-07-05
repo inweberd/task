@@ -115,6 +115,7 @@ export default defineConfig((): Promise<UserConfig> => {
           extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
         },
         build: {
+          outDir: 'task',
           sourcemap: false,
           rollupOptions: {
             // https://rollupjs.org/guide/en/#outputmanualchunks

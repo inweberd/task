@@ -5,21 +5,18 @@
       safe-area-inset-top
       fixed
       placeholder
-      @click-left="router.back()"
+      @click-left="$router.back()"
       left-text="返回"
       left-arrow
     ></van-nav-bar>
-    <van-image
-      :src="shareholder"
-      width="94%"
-      height="100%"
-      style="margin-left: 3%; position: absolute"
-    ></van-image>
+    <van-image :src="shareholder" width="94%" height="100%" style="margin-left: 3%"></van-image>
+    <van-image :src="rule" width="94%" height="100%" style="margin-left: 3%"></van-image>
   </div>
 </template>
 
 <script lang="ts" setup>
 import shareholder from '@/assets/img/shareholder2.png'
+import rule from '@/assets/img/rule.jpg'
 </script>
 <style scoped>
 html {

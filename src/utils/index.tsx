@@ -8,6 +8,7 @@ import NoticeDialog from '../components/dialog/NoticeDialog.vue'
 import { ArchiveReader, libarchiveWasm } from 'libarchive-wasm'
 import SlideUser from '@/components/slide/SlideUser.vue'
 import BaseVideo from '@/components/slide/BaseVideo.vue'
+import ShortPlayBaseVideo from '@/components/slide/ShortPlayBaseVideo.vue'
 
 export function _storageSet(key, value) {
   localStorage.setItem(key, JSON.stringify(value))
@@ -422,6 +423,17 @@ export function slideItemRender(props) {
         break
       case 'send-video':
         node = <video src={item.src} style="height:100%;" />
+        break
+      case 'shortPlayVideo':
+        node = (
+          <ShortPlayBaseVideo
+            isPlay={play}
+            item={item}
+            index={index}
+            position={{ uniqueId, index }}
+            {...props}
+          />
+        )
         break
       default:
         node = (

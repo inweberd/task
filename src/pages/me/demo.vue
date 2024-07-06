@@ -10,7 +10,12 @@
       left-arrow
     ></van-nav-bar>
     <van-image :src="shareholder" width="94%" height="100%" style="margin-left: 3%"></van-image>
-    <van-image :src="rule" width="94%" height="100%" style="margin-left: 3%"></van-image>
+    <van-image
+      :src="rule"
+      width="94%"
+      height="100%"
+      style="margin-left: 3%; margin-top: -140px"
+    ></van-image>
   </div>
 </template>
 

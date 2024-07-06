@@ -102,13 +102,13 @@ const vClick = useClick()
       <Icon v-else icon="ic:round-star" class="icon" style="color: white" />
       <span>{{ _formatNumber(item.statistics.comment_count) }}</span>
     </div>
-    <div v-if="!props.isMy" class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">
-      <img src="../../assets/img/icon/share-white-full.png" alt="" class="share-image" />
-      <span>{{ _formatNumber(item.statistics.share_count) }}</span>
-    </div>
-    <div v-else class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">
-      <img src="../../assets/img/icon/menu-white.png" alt="" class="share-image" />
-    </div>
+    <!--    <div v-if="!props.isMy" class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">-->
+    <!--      <img src="../../assets/img/icon/share-white-full.png" alt="" class="share-image" />-->
+    <!--      <span>{{ _formatNumber(item.statistics.share_count) }}</span>-->
+    <!--    </div>-->
+    <!--    <div v-else class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">-->
+    <!--      <img src="../../assets/img/icon/menu-white.png" alt="" class="share-image" />-->
+    <!--    </div>-->
     <!--    <BaseMusic-->
     <!--        :cover="item.music.cover"-->
     <!--        v-click="$router.push('/home/music')"-->

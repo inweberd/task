@@ -19,8 +19,16 @@
               src="@/assets/img/recharge/wechat.png"
             />
             <img
-              src="@/assets/img/recharge/bank.png"
+              src="@/assets/img/recharge/bank2.png"
               v-else-if="state.item.pay?.data?.type == 'bank'"
+            />
+            <img
+              src="@/assets/img/recharge/jd.jpg"
+              v-else-if="state.item.pay?.data?.type == 'jd'"
+            />
+            <img
+              src="@/assets/img/recharge/kd.jpg"
+              v-else-if="state.item.pay?.data?.type == 'kd'"
             />
             <img src="@/assets/img/recharge/alipay.png" v-else />
             <span>{{ state.item.pay?.data?.name }}</span>
@@ -105,8 +113,10 @@ import { _notice } from '@/utils'
 import Loading from '@/components/Loading.vue'
 // const user = useUserStore()
 import alipayLarge from '@/assets/img/recharge/alipayLarge.png'
-import bankLarge from '@/assets/img/recharge/bankLarge.png'
+import bankLarge from '@/assets/img/recharge/bank2.png'
 import wechatLarge from '@/assets/img/recharge/wechatLarge.png'
+import jd from '@/assets/img/recharge/jd.jpg'
+import kd from '@/assets/img/recharge/kd.jpg'
 
 const loading = ref(false)
 const getIcon = (iconUrl: string) => {
@@ -162,6 +172,26 @@ const state = reactive({
         max: 2000,
         code: 827,
         icon: wechatLarge
+      },
+      {
+        id: 4,
+        key: 'ltzf',
+        type: 'jd',
+        name: ' JD钱包',
+        min: 100,
+        max: 2000,
+        code: 827,
+        icon: jd
+      },
+      {
+        id: 5,
+        key: 'ltzf',
+        type: 'kd',
+        name: ' K豆钱包（支持USDT）',
+        min: 100,
+        max: 2000,
+        code: 827,
+        icon: kd
       }
     ]
   }

@@ -20,6 +20,10 @@ let routeDeep = ['/signUp', '/forget']
 router.beforeEach((to, from) => {
   // console.log()
   let token = window.localStorage.getItem('token')
+  if (routeDeep.some((e) => to.fullPath.includes(e))) {
+    return true
+  }
+
   if (!token && to.fullPath !== '/login' && !routeDeep.some((e) => e === to.fullPath)) {
     return '/login'
   }

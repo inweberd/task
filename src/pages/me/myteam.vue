@@ -29,36 +29,32 @@
       <div class="stats">
         <div class="stat-item">
           <div class="number">
-            {{
-              (memberInfo.uids?.one?.length || 0) +
-              (memberInfo.uids?.two?.length || 0) +
-              (memberInfo.uids?.three?.length || 0)
-            }}
+            {{ memberInfo.team?.total || 0 }}
           </div>
           <div class="label">团队总人数</div>
         </div>
         <div class="stat-item">
-          <div class="number">{{ memberInfo?.uids?.one?.length || 0 }}</div>
+          <div class="number">{{ memberInfo.team?.vip || 0 }}</div>
           <div class="label">团队有效人数</div>
         </div>
         <div class="stat-item">
-          <div class="number">{{ memberInfo?.wallet?.deposit?.count || 0 }}</div>
+          <div class="number">{{ memberInfo.first?.total || 0 }}</div>
           <div class="label">直推总人数</div>
         </div>
         <div class="stat-item">
-          <div class="number">{{ memberInfo?.uids?.today_new_user?.length || 0 }}</div>
+          <div class="number">{{ memberInfo.first?.vip || 0 }}</div>
           <div class="label">直推有效人数</div>
         </div>
         <div class="stat-item">
-          <div class="number">{{ memberInfo?.uids?.today_new_user?.length || 0 }}</div>
+          <div class="number">{{ memberInfo.first?.rebate || 0 }}</div>
           <div class="label">直推总收益</div>
         </div>
         <div class="stat-item">
-          <div class="number">{{ memberInfo?.uids?.today_new_user?.length || 0 }}</div>
+          <div class="number">{{ memberInfo.team?.rebate || 0 }}</div>
           <div class="label">团队总收益</div>
         </div>
         <div class="stat-item" style="width: 100%">
-          <div class="number">{{ memberInfo?.uids?.today_new_user?.length || 0 }}</div>
+          <div class="number">{{ 0 }}</div>
           <div class="label">股东晋级奖励</div>
         </div>
       </div>
@@ -79,17 +75,17 @@
                 <div class="d-flex flex-row align-items-center">
                   <div class="font-15 me-2">
                     {{ item.phone || item.nickname }}
-                    <span class="ms-2"> LV. {{ item?.result?.staff?.serial || 0 }} </span>
+                    <span class="ms-2" style="font-size: 14px">
+                      {{ getSerialName(item?.staff?.serial) }}
+                    </span>
                   </div>
                 </div>
-                <div class="mt-1 text-muted font-13">
-                  {{ utils.timeToDate(item.create_time, 'Y-M-D H:i:s') }}
-                </div>
+                <!--                <div class="mt-1 text-muted font-13">-->
+                <!--                  {{ utils.timeToDate(item.create_time, 'Y-M-D H:i:s') }}-->
+                <!--                </div>-->
               </div>
             </div>
-            <div class="text-warning">
-              ￥{{ parseFloat(item?.result?.wallet?.income || 0).toFixed(2) }}
-            </div>
+            <div class="text-warning">￥{{ parseFloat(item?.staff?.money || 0).toFixed(2) }}</div>
           </div>
         </div>
       </van-list>
@@ -107,6 +103,7 @@ import { useRouter } from 'vue-router'
 import { onMounted, ref, reactive } from 'vue'
 import { reqUserDistribution, reqUserIncome, reqUserMemberInfo } from '@/api/myApi'
 import { _notice } from '@/utils'
+import { getSerialName } from '../../utils/getSerialName'
 const router = useRouter()
 let user
 const loading = ref(true)
@@ -122,7 +119,7 @@ const getMemberInfo = async () => {
   reqUserMemberInfo({
     uid: user.id
   }).then((res) => {
-    memberInfo.value = item
+    memberInfo.value = res.data
   })
 }
 

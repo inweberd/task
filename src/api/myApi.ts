@@ -87,6 +87,16 @@ export function reqUserMemberInfo(params) {
   return axiosInstance({ url: 'api/users/member', method: 'get', params })
 }
 
+// 查询我的会员信息
+export function reqUserStaff() {
+  return axiosInstance({ url: 'api/users/staff', method: 'get' })
+}
+
+// 查询我的会员信息
+export function reqResetPwd(data) {
+  return axiosInstance({ url: 'api/comm/reset-password', method: 'post', data })
+}
+
 // 上传
 export function reqUpload(file) {
   const formdata = new FormData()

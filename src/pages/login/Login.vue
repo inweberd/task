@@ -136,6 +136,9 @@ const onSubmit = async (values) => {
   })
     .then((result) => {
       console.log(result)
+      if (result.code !== 200) {
+        return _notice(result.msg)
+      }
       window.localStorage.setItem('token', result.data.token)
       window.localStorage.setItem('userInfo', JSON.stringify(result.data.user))
 

@@ -47,7 +47,7 @@
           </template>
         </van-field>
         <van-field
-          v-model="data.password1"
+          v-model="data.password"
           type="password"
           name="密码"
           label=""
@@ -55,13 +55,20 @@
           :rules="[{ required: true, message: '(必填) 确认密码' }]"
         />
         <van-field
+          type="password"
           v-model="data.password2"
           label=""
           name="重复密码"
           placeholder="(必填) 确认密码"
           :rules="[{ required: true, message: '(必填) 确认密码' }]"
         />
-        <van-field v-model="data.invite" label="" name="邀请码" placeholder="(选填) 邀请码" />
+        <van-field
+          v-model="data.invite"
+          label=""
+          name="邀请码"
+          placeholder="(必填) 邀请码"
+          :rules="[{ required: true, message: '请填写邀请码' }]"
+        />
         <van-divider />
 
         <div style="margin: 16px">
@@ -104,29 +111,35 @@ const time = ref()
 const data = reactive({
   social: '',
   code: '',
-  password1: '',
+  password: '',
   password2: '',
-  invite: '',
-  fingerprint: ''
+  invite: ''
+  // fingerprint: ''
 })
-const fprint = () => {
-  FingerprintJS.load().then((FP) => {
-    FP.get().then(({ visitorId }) => (data.fingerprint = visitorId))
-  })
-}
-fprint()
+// const fprint = () => {
+//   FingerprintJS.load().then((FP) => {
+//     FP.get().then(({ visitorId }) => (data.fingerprint = visitorId))
+//   })
+// }
+// fprint()
 const router = useRouter()
 function go(path) {
   router.push(path)
 }
 function getCode() {
-  if (data.social == '' || data.invite == '' || data.password1 == '' || data.password2 == '') {
-    return _notice('www')
+  if (data.social == '' || data.invite == '') {
+    return _notice(
+      '请输入手机号码、密码、邀请码等信息' || data.password1 == '' || data.password2 == ''
+    )
   }
-  register(data).then((e) => {})
+  register(data).then((e) => {
+    _notice(e.msg)
+  })
 }
 function onSubmit() {
-  register(data).then((e) => {})
+  register(data).then((e) => {
+    _notice(e.msg)
+  })
 }
 </script>
 

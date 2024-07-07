@@ -2,80 +2,53 @@
   <div>
     <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />
     <!-- <canvas ref="canvas"></canvas> -->
-    <van-image :src="imageSrc" width="100%" height="100%" fit="cover"></van-image>
+    <van-image
+      :src="share"
+      width="100%"
+      height="100%"
+      fit="fill"
+      style="position: absolute"
+    ></van-image>
+    <VueQrcode class="code" :value="qrCodeValue" :size="500"></VueQrcode>
+
+    <div>
+      <div class="btns">
+        <van-image :src="weixin" width="100" height="100" fit="fill"></van-image>
+        <van-image :src="pengyouquan" width="100" height="100" fit="fill"></van-image>
+        <van-image :src="xiazai" width="100" height="100" fit="fill"></van-image>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import QRCode from 'qrcode'
-import imageSrc from '@/assets/img/share.jpg'
+import imageSrc from '@/assets/img/1.png'
+import weixin from '@/assets/img/2.png'
+import pengyouquan from '@/assets/img/3.png'
+import xiazai from '@/assets/img/4.png'
+import share from '@/assets/img/share.jpg'
+import VueQrcode from 'vue-qrcode'
 export default {
+  components: { VueQrcode },
   data() {
     return {
-      canvasWidth: window.innerWidth,
-      canvasHeight: window.innerHeight,
+      qrCodeValue: 'http://tc.izakq.com/#/signUp?invite=',
       imageSrc: imageSrc,
-      qrCodeText: JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
+      weixin: weixin,
+      pengyouquan: pengyouquan,
+      xiazai: xiazai,
+      share: share
     }
   },
   mounted() {
-    this.generatePoster()
-    window.addEventListener('resize', this.updateCanvasSize)
-  },
-  beforeUnmount() {
-    window.removeEventListener('resize', this.updateCanvasSize)
-  },
-  methods: {
-    updateCanvasSize() {
-      this.canvasWidth = window.innerWidth
-      this.canvasHeight = window.innerHeight
-      this.generatePoster()
-    },
-    async generatePoster() {
-      const canvas = this.$refs.canvas
-      canvas.width = this.canvasWidth
-      canvas.height = this.canvasHeight
-      const ctx = canvas.getContext('2d')
-
-      // 绘制背景图片
-      const image = new Image()
-      image.src = this.imageSrc
-      image.onload = async () => {
-        ctx.drawImage(image, 0, 0, this.canvasWidth, this.canvasHeight)
-
-        const qrCodeSize = 120 // 调整二维码的大小
-        const qrCodeMarginBottom = 100 // 调整二维码距离底部的距离
-        const qrCodeDataURL = await QRCode.toDataURL(this.qrCodeText, {
-          width: qrCodeSize,
-          height: qrCodeSize,
-
-          margin: 1
-        })
-        const qrCodeImage = new Image()
-        qrCodeImage.src = qrCodeDataURL
-        qrCodeImage.onload = () => {
-          // 在海报上绘制二维码，位置在正中心下方
-          const qrCodeX = (this.canvasWidth - qrCodeSize) / 2
-          const qrCodeY = this.canvasHeight - qrCodeSize - qrCodeMarginBottom
-          ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
-        }
-      }
-    }
+    const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+    this.qrCodeValue += userInfo.result.invite.code
   }
 }
 </script>
 
 <style scoped lang="less">
-html,
-body,
-#app {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
 .fixed-back {
   position: fixed;
   left: 10rem;
@@ -84,4 +57,21 @@ body,
 }
 
 /* 你的样式 */
+.btns {
+  width: 90%;
+  display: flex;
+  height: 50px;
+  position: fixed;
+  bottom: 20%;
+  margin-left: 5%;
+  justify-content: space-around;
+}
+.code {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 250px;
+  height: 250px;
+  transform: translate(-50%, -50%);
+}
 </style>

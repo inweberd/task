@@ -104,7 +104,7 @@
           <!-- <van-image :src="imageSrc" width="100%" height="100%;" style='position:fixed;top:10%'></van-image> -->
           <div class="hongbao">
             <div class="num">
-              68
+              {{ price }}
               <span style="font-size: 20px; margin-left: 5px; margin-top: 10px">元</span>
             </div>
           </div>
@@ -124,7 +124,7 @@
 <script setup lang="jsx">
 import Comment from '../../components/Comment.vue'
 import Share from '../../components/Share.vue'
-import { onActivated, onDeactivated, onMounted, onUnmounted, reactive } from 'vue'
+import { onActivated, onDeactivated, onMounted, onUnmounted, reactive, ref } from 'vue'
 import bus, { EVENT_KEY } from '../../utils/bus'
 import { useNav } from '@/utils/hooks/useNav'
 import PlayFeedback from '@/pages/home/components/PlayFeedback.vue'
@@ -154,7 +154,7 @@ import qi from '@/assets/img/qi.png'
 import ba from '@/assets/img/ba.png'
 import jiu from '@/assets/img/jiu.png'
 import Loading from '@/components/Loading.vue'
-import { reqRecordTask } from '@/api/myApi'
+import { reqRecordTask, reqUserStaff } from '@/api/myApi'
 defineOptions({
   name: 'VideoDetail'
 })
@@ -163,6 +163,7 @@ const router = useRouter()
 const show = ref(false)
 const baseStore = useBaseStore()
 const loading = ref(false)
+const price = ref(0)
 
 const state = reactive({
   baseIndex: 1,
@@ -263,7 +264,12 @@ onMounted(() => {
   })
   bus.on(EVENT_KEY.NAV, ({ path, query }) => nav(path, query))
   bus.on(EVENT_KEY.GO_USERINFO, () => {
-    show.value = true
+    loading.value = true
+    reqUserStaff().then((res) => {
+      loading.value = false
+      price.value = res.data?.result?.staff?.unit_price
+      show.value = true
+    })
   })
   bus.on(EVENT_KEY.CURRENT_ITEM, setCurrentItem)
 })

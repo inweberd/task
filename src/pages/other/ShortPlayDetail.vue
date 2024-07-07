@@ -101,7 +101,7 @@
           <!-- <van-image :src="imageSrc" width="100%" height="100%;" style='position:fixed;top:10%'></van-image> -->
           <div class="hongbao">
             <div class="num">
-              68
+              {{ price }}
               <span style="font-size: 20px; margin-left: 5px; margin-top: 10px">元</span>
             </div>
           </div>
@@ -152,7 +152,7 @@ import ba from '@/assets/img/ba.png'
 import jiu from '@/assets/img/jiu.png'
 import SelectVideo from '@/components/slide/SelectVideo.vue'
 import Loading from '@/components/Loading.vue'
-import { reqRecordTask } from '@/api/myApi'
+import { reqRecordTask, reqUserStaff } from '@/api/myApi'
 defineOptions({
   name: 'ShortPlayVideoDetail'
 })
@@ -161,6 +161,7 @@ const router = useRouter()
 const show = ref(false)
 const baseStore = useBaseStore()
 const loading = ref(false)
+const price = ref(0)
 
 const state = reactive({
   baseIndex: 1,
@@ -261,7 +262,12 @@ onMounted(() => {
   })
   bus.on(EVENT_KEY.NAV, ({ path, query }) => nav(path, query))
   bus.on(EVENT_KEY.GO_USERINFO, () => {
-    show.value = true
+    loading.value = true
+    reqUserStaff().then((res) => {
+      loading.value = false
+      price.value = res.data?.result?.staff?.unit_price
+      show.value = true
+    })
   })
   bus.on(EVENT_KEY.CURRENT_ITEM, setCurrentItem)
 })

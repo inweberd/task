@@ -11,18 +11,20 @@
     >
     </van-nav-bar>
     <Loading v-if="loading" />
-    <van-image :src="certificate1" width="94%" height="100%" style="margin-left: 3%"></van-image>
-    <van-image :src="certificate2" width="94%" height="100%" style="margin-left: 3%"></van-image>
-    <van-image :src="certificate3" width="94%" height="100%" style="margin-left: 3%"></van-image>
-    <van-image :src="certificate4" width="94%" height="100%" style="margin-left: 3%"></van-image>
+    <template v-if="route.query.id == 4">
+      <van-image :src="certificate1" width="94%" height="100%" style="margin-left: 3%"></van-image>
+      <van-image :src="certificate2" width="94%" height="100%" style="margin-left: 3%"></van-image>
+      <van-image :src="certificate3" width="94%" height="100%" style="margin-left: 3%"></van-image>
+      <van-image :src="certificate4" width="94%" height="100%" style="margin-left: 3%"></van-image>
+    </template>
 
-    <!--    <div v-else style="color: #fff">-->
-    <!--      <div style="width: 100%; text-align: center; margin-top: 20px; margin-top: 10px">-->
-    <!--        {{ desc.title }}-->
-    <!--      </div>-->
+    <div style="color: #fff">
+      <div style="width: 100%; text-align: center; margin-top: 20px; margin-top: 10px">
+        {{ desc.title }}
+      </div>
 
-    <!--      <div v-html="desc.content" style="margin-top: 10px; width: 93%; margin-left: 2%"></div>-->
-    <!--    </div>-->
+      <div v-html="desc.content" style="margin-top: 10px; width: 93%; margin-left: 2%"></div>
+    </div>
   </div>
 </template>
 
@@ -42,6 +44,7 @@ const router = useRouter()
 const route = useRoute()
 const id = ref('')
 const desc = ref('')
+const loading = ref(true)
 onActivated(() => {
   // id.value = router.currentRoute.value.query.id
   const params = { id: router.currentRoute.value.query.id }
@@ -58,8 +61,12 @@ onActivated(() => {
   // console.log(data,"123123")
 })
 async function getData(val) {
+  if (route.query.id == 4) return
+
   desc.value = ''
+  loading.value = true
   const data = await axios.get('api/article/one?id=' + val.id)
+  loading.value = false
   desc.value = data.data
 }
 </script>

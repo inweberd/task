@@ -47,7 +47,7 @@
           </template>
         </van-field>
         <van-field
-          v-model="data.password1"
+          v-model="data.password"
           type="password"
           name="密码"
           label=""
@@ -98,7 +98,7 @@
 
 <script lang="ts" setup>
 import imgg from './logo1.png'
-import { register, sociallogin } from '@/api/myApi'
+import { register, reqResetPwd, sociallogin } from '@/api/myApi'
 import { _no, _sleep, _notice } from '@/utils'
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
 
@@ -106,30 +106,34 @@ const time = ref()
 const data = reactive({
   social: '',
   code: '',
-  password1: '',
-  password2: '',
+  password: '',
+  password2: ''
   // invite: '490814',
-  fingerprint: ''
+  // fingerprint: ''
 })
 const router = useRouter()
-const fprint = () => {
-  FingerprintJS.load().then((FP) => {
-    FP.get().then(({ visitorId }) => (data.fingerprint = visitorId))
-  })
-  console.log(data)
-}
-fprint()
+// const fprint = () => {
+//   FingerprintJS.load().then((FP) => {
+//     FP.get().then(({ visitorId }) => (data.fingerprint = visitorId))
+//   })
+//   console.log(data)
+// }
+// fprint()
 function getCode() {
   if (data.social == '') {
-    return _notice('www')
+    return _notice('请输入手机号码')
   }
-  register(data).then((e) => {})
+  reqResetPwd(data).then((e) => {
+    _notice(e.msg)
+  })
 }
 function go(path) {
   router.push(path)
 }
 function onSubmit() {
-  register(data).then((e) => {})
+  reqResetPwd(data).then((e) => {
+    _notice(e.msg)
+  })
 }
 </script>
 

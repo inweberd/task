@@ -187,7 +187,8 @@ export default defineConfig((): Promise<UserConfig> => {
           proxy: {
             '/api/': {
               // target: 'http://111.180.196.127:8642/api',
-              target: 'https://wwc.gengshangpin.com/api',
+              // target: 'https://wwc.gengshangpin.com/api',
+              target: 'https://tc.q18m.cc/api',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/api/'), '')
             }

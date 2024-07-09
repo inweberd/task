@@ -60,7 +60,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://dlm.nsmicrowave.com/download`
+    window.location.href = `https://tc.ijylmwy.com/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false
@@ -81,6 +81,7 @@ const getNewUserInfo = () => {
 const getUserIncome = () => {
   loading.value = true
   reqUserIncome().then((res) => {
+    loading.value = false
     userIncomeInfo.value = res.data
   })
 }
@@ -107,7 +108,13 @@ function getData() {
     <Loading v-if="loading" is-full-screen></Loading>
     <div class="flex-col justify-start section pos">
       <div class="flex-row justify-center items-center section_2">
-        <van-image class="image_3" :src="userInfo?.avatar" round @click="go('me/edit-userinfo')" />
+        <van-image
+          class="image_3"
+          :src="userInfo?.avatar"
+          style="border: 1px solid #ccc"
+          round
+          @click="go('me/edit-userinfo')"
+        />
         <div class="flex-col items-start group ml-22">
           <span class="text">{{ userInfo.phone }}</span>
           <div class="group_2 mt-8-5" style="margin-top: 10rem">
@@ -168,8 +175,8 @@ function getData() {
           <div class="flex-col justify-start items-start flex-1 image-wrapper">
             <img class="image_4" src="./images/e62b209b1fc33d5b3ca0c4a35e43028e.png" />
           </div>
-          <span class="text_5 ml-20">当前信用分：XX</span>
-          <div class="text" @click="go('/nofinish')">详情</div>
+          <span class="text_5 ml-20">当前信用分：60分</span>
+          <div class="text" @click="go('/CreditScoreDetail')">详情</div>
         </div>
 
         <van-cell
@@ -378,7 +385,7 @@ function getData() {
     }
 
     .section_5 {
-      padding: 11.32rem 12.61rem 11.32rem 9.96rem;
+      padding: 11.32rem 10rem 11.32rem 9.96rem;
       background-color: #393939;
       border-radius: 9.06rem;
 
@@ -388,7 +395,9 @@ function getData() {
         text-align: center;
         line-height: 22rem;
         font-weight: 900;
-        width: 45rem;
+        width: fit-content;
+        white-space: nowrap;
+        padding: 2px 6px;
         color: #6244be;
         background-color: #e5e0f6;
         border-radius: 13px;
@@ -401,15 +410,15 @@ function getData() {
         height: 4.08rem;
 
         .image_4 {
-          width: 164.86rem;
+          width: 100rem;
           height: 4.08rem;
         }
       }
 
       .text_5 {
         color: #ffffff;
-        font-size: 9.06rem;
-        font-family: Adobe Heiti Std;
+        font-size: 14px;
+        white-space: nowrap;
         line-height: 9.06rem;
         letter-spacing: 0.91rem;
       }

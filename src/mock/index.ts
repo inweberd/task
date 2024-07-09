@@ -1,11 +1,13 @@
 import resource from '../assets/data/resource.js'
 import posts6 from '@/assets/data/posts6.json'
+import posts7 from '@/assets/data/posts7.json'
 import { _fetch, cloneDeep, random } from '@/utils'
 import { BASE_URL, FILE_URL } from '@/config'
 import { useBaseStore } from '@/store/pinia'
 import { axiosInstance } from '@/utils/request'
 import MockAdapter from 'axios-mock-adapter'
-
+console.log('posts6', posts6)
+posts7.sort((item) => Math.random() - 0.5)
 const mock = new MockAdapter(axiosInstance)
 function getPage2(params: any): { limit: number; offset: number; pageNo: number } {
   const offset = params.pageNo * params.pageSize
@@ -15,7 +17,7 @@ function getPage2(params: any): { limit: number; offset: number; pageNo: number 
 
 let allRecommendPosts = []
 let userVideos = []
-let allRecommendVideos = posts6.map((v: any) => {
+let allRecommendVideos = posts7.map((v: any) => {
   v = JSON.parse(JSON.stringify(v))
   v.type = 'recommend-video'
   return v

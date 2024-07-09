@@ -9,15 +9,20 @@
       fit="fill"
       style="position: absolute"
     ></van-image>
-    <VueQrcode class="code" :value="qrCodeValue" :size="500"></VueQrcode>
+    <VueQrcode
+      class="code"
+      :value="qrCodeValue"
+      :size="500"
+      style="background-color: red"
+    ></VueQrcode>
 
-    <div>
-      <div class="btns">
-        <van-image :src="weixin" width="100" height="100" fit="fill"></van-image>
-        <van-image :src="pengyouquan" width="100" height="100" fit="fill"></van-image>
-        <van-image :src="xiazai" width="100" height="100" fit="fill"></van-image>
-      </div>
-    </div>
+    <!--    <div>-->
+    <!--      <div class="btns">-->
+    <!--        <van-image :src="weixin" width="100" height="100" fit="fill"></van-image>-->
+    <!--        <van-image :src="pengyouquan" width="100" height="100" fit="fill"></van-image>-->
+    <!--        <van-image :src="xiazai" width="100" height="100" fit="fill"></van-image>-->
+    <!--      </div>-->
+    <!--    </div>-->
   </div>
 </template>
 
@@ -27,13 +32,13 @@ import imageSrc from '@/assets/img/1.png'
 import weixin from '@/assets/img/2.png'
 import pengyouquan from '@/assets/img/3.png'
 import xiazai from '@/assets/img/4.png'
-import share from '@/assets/img/share.jpg'
+import share from '@/assets/img/share2.jpg'
 import VueQrcode from 'vue-qrcode'
 export default {
   components: { VueQrcode },
   data() {
     return {
-      qrCodeValue: 'http://tc.izakq.com/#/signUp?invite=',
+      qrCodeValue: 'http://tc.ijylmwy.com/#/signUp?invite=',
       imageSrc: imageSrc,
       weixin: weixin,
       pengyouquan: pengyouquan,
@@ -42,6 +47,12 @@ export default {
     }
   },
   mounted() {
+    this.qrCodeValue = 'http://tc.ijylmwy.com/#/signUp?invite='
+    const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+    this.qrCodeValue += userInfo.result.invite.code
+  },
+  activated() {
+    this.qrCodeValue = 'http://tc.ijylmwy.com/#/signUp?invite='
     const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
     this.qrCodeValue += userInfo.result.invite.code
   }
@@ -69,9 +80,9 @@ export default {
 .code {
   position: absolute;
   left: 50%;
-  top: 50%;
-  width: 250px;
-  height: 250px;
+  top: 60%;
+  width: 300px;
+  height: 300px;
   transform: translate(-50%, -50%);
 }
 </style>

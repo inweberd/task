@@ -141,11 +141,13 @@ import imageSrc from '@/assets/img/hehuoren.png'
 import imageSrc2 from '@/assets/img/hehuoren2.png'
 import imageSrc3 from '@/assets/img/goumai.png'
 import { ref, reactive, onMounted } from 'vue'
-import { reqAllStaff, reqEnterStaff, reqWalletInfo } from '@/api/myApi.js'
+import { reqAllStaff, reqEnterStaff, reqUserStaff, reqWalletInfo } from '@/api/myApi.js'
 import { showFailToast, showNotify, showToast } from 'vant'
 import { _notice } from '@/utils'
 import { useRouter } from 'vue-router'
 import { getSerialName } from '@/utils/getSerialName'
+import { userinfo } from '@/api/user'
+let userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
 
 const loading = ref(true)
 const staffList = ref([])
@@ -181,6 +183,15 @@ const buy = (item) => {
       }).then((sub_res) => {
         loading.value = false
         _notice(sub_res.msg)
+        if (res.code === 200) {
+          reqUserStaff().then((userRes) => {
+            if (userRes.code !== 200) return _notice(userRes.msg)
+            console.log('reqUserStaff', userRes)
+          })
+
+          userInfo.result.staff = userRes.data.result.staff
+          window.localStorage.setItem('userInfo', JSON.stringify(userInfo))
+        }
       })
     }
   })

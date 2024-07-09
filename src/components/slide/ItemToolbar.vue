@@ -4,7 +4,7 @@ import { _formatNumber, cloneDeep } from '@/utils'
 import bus, { EVENT_KEY } from '@/utils/bus'
 import { Icon } from '@iconify/vue'
 import { useClick } from '@/utils/hooks/useClick'
-import { inject } from 'vue'
+import { inject, onMounted, onUnmounted, ref } from 'vue'
 
 const props = defineProps({
   isMy: {
@@ -47,30 +47,54 @@ function showComments() {
 }
 
 const vClick = useClick()
+
+const currentRate = ref(0)
+let timer
+onMounted(() => {
+  timer = setInterval(() => {
+    if (currentRate.value === 100) currentRate.value = 0
+    currentRate.value++
+  }, 1000)
+})
+onUnmounted(() => {
+  clearInterval(timer)
+})
 </script>
 
 <template>
   <div class="toolbar mb1r">
     <div class="avatar-ctn mb2r">
       <div class="fnn">
-        <img
-          v-click="
-            () =>
-              bus.emit(EVENT_KEY.GO_USERINFO, {
-                data: 1
-              })
-          "
-          src="../../assets/earned-cash.png"
-          style="width: 40rem; height: 60rem; padding-bottom: 20rem"
-        />
+        <van-circle
+          v-model:current-rate="currentRate"
+          :rate="0"
+          :speed="100"
+          style="width: auto; height: auto; padding: 10px"
+          color="#E3C569"
+          layer-color="rgba(0,0,0,.3)"
+          :stroke-width="80"
+        >
+          <img
+            v-click="
+              () =>
+                bus.emit(EVENT_KEY.GO_USERINFO, {
+                  data: 1
+                })
+            "
+            src="../../assets/earned-cash.png"
+            style="
+              width: 60rem;
+              padding-bottom: 25rem;
+              position: relative;
+              z-index: 999;
+              transform: translateY(5px);
+            "
+          />
+        </van-circle>
+
         <!-- <img src="../../assets/赏.png" class="myicon" /> -->
       </div>
-      <img
-        class="avatar"
-        :src="item.author.avatar_168x168.url_list[0]"
-        alt=""
-        v-click="() => bus.emit(EVENT_KEY.GO_USERINFO)"
-      />
+      <img class="avatar" :src="item.author.avatar_168x168.url_list[0]" alt="" />
 
       <transition name="fade">
         <div v-if="!item.isAttention" v-click="attention" class="options">
@@ -102,17 +126,14 @@ const vClick = useClick()
       <Icon v-else icon="ic:round-star" class="icon" style="color: white" />
       <span>{{ _formatNumber(item.statistics.comment_count) }}</span>
     </div>
-    <!--    <div v-if="!props.isMy" class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">-->
-    <!--      <img src="../../assets/img/icon/share-white-full.png" alt="" class="share-image" />-->
-    <!--      <span>{{ _formatNumber(item.statistics.share_count) }}</span>-->
-    <!--    </div>-->
-    <!--    <div v-else class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">-->
-    <!--      <img src="../../assets/img/icon/menu-white.png" alt="" class="share-image" />-->
-    <!--    </div>-->
-    <!--    <BaseMusic-->
-    <!--        :cover="item.music.cover"-->
-    <!--        v-click="$router.push('/home/music')"-->
-    <!--    /> -->
+    <div v-if="!props.isMy" class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">
+      <img src="../../assets/img/icon/share-white-full.png" alt="" class="share-image" />
+      <span>{{ _formatNumber(item.statistics.share_count) }}</span>
+    </div>
+    <div v-else class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">
+      <img src="../../assets/img/icon/menu-white.png" alt="" class="share-image" />
+    </div>
+    <!--    <BaseMusic :cover="item.music.cover" v-click="$router.push('/home/music')" />-->
     <BaseMusic />
   </div>
 </template>

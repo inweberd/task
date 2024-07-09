@@ -53,6 +53,14 @@
           <div class="number">{{ memberInfo.team?.rebate || 0 }}</div>
           <div class="label">团队总收益</div>
         </div>
+        <div class="stat-item">
+          <div class="number">{{ userIncomeInfo.today || 0 }}</div>
+          <div class="label">今日收益</div>
+        </div>
+        <div class="stat-item">
+          <div class="number">{{ userIncomeInfo.total || 0 }}</div>
+          <div class="label">历史收益</div>
+        </div>
         <div class="stat-item" style="width: 100%">
           <div class="number">{{ 0 }}</div>
           <div class="label">股东晋级奖励</div>
@@ -100,7 +108,7 @@ import modzz from '../login/model.vue'
 import utils from '@/utils/utils.js'
 import { axiosInstance as axios } from '@/utils/myrequest'
 import { useRouter } from 'vue-router'
-import { onMounted, ref, reactive } from 'vue'
+import { onMounted, ref, reactive, onActivated } from 'vue'
 import { reqUserDistribution, reqUserIncome, reqUserMemberInfo } from '@/api/myApi'
 import { _notice } from '@/utils'
 import { getSerialName } from '../../utils/getSerialName'
@@ -111,6 +119,8 @@ const finished = ref(false)
 const service = ref(false)
 const memberInfo = ref({})
 const dataList = ref([])
+const userIncomeInfo = ref({})
+
 const format = (price = 0) => {
   let result = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   return result === '0' ? '0.00' : result
@@ -122,7 +132,13 @@ const getMemberInfo = async () => {
     memberInfo.value = res.data
   })
 }
-
+const getUserIncome = () => {
+  // loading.value = true
+  reqUserIncome().then((res) => {
+    // loading.value = false
+    userIncomeInfo.value = res.data
+  })
+}
 const searchInfo = reactive({
   page: 0,
   limit: 10,
@@ -131,6 +147,7 @@ const searchInfo = reactive({
 const getDataList = async (index = 'one') => {
   searchInfo.page++
 
+  loading.value = true
   const { code, msg, data } = await reqUserDistribution({
     page: searchInfo.page,
     limit: searchInfo.limit
@@ -143,6 +160,7 @@ const getDataList = async (index = 'one') => {
   // 数据全部加载完成
   dataList.value.push(...data.data)
   console.log('data.data ', data.data)
+  console.log('data.data ', dataList.value.length, data.count)
   if ((data.data || []).length === 0 || dataList.value.length >= data.count) {
     finished.value = true
   }
@@ -151,10 +169,20 @@ const init = async () => {
   getMemberInfo()
   getDataList()
 }
+onActivated(() => {
+  dataList.value = []
+  finished.value = false
+  searchInfo.page = 0
+
+  init()
+  getUserIncome()
+})
 
 onMounted(() => {
   user = JSON.parse(window.localStorage.getItem('userInfo'))
-  init()
+})
+onActivated(() => {
+  user = JSON.parse(window.localStorage.getItem('userInfo'))
 })
 </script>
 

@@ -162,6 +162,7 @@ const show = ref(false)
 const baseStore = useBaseStore()
 const loading = ref(false)
 const price = ref(0)
+let userInfo = {}
 
 const state = reactive({
   baseIndex: 1,
@@ -243,8 +244,12 @@ function setCurrentItem(item) {
   }
   // console.log('item', item)
 }
-
+onActivated(() => {
+  userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+})
 onMounted(() => {
+  userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+
   show.value = false
   bus.on(EVENT_KEY.SINGLE_CLICK, click)
   bus.on(EVENT_KEY.ENTER_FULLSCREEN, () => (state.fullScreen = true))
@@ -262,6 +267,12 @@ onMounted(() => {
   })
   bus.on(EVENT_KEY.NAV, ({ path, query }) => nav(path, query))
   bus.on(EVENT_KEY.GO_USERINFO, () => {
+    if (!userInfo?.result?.staff?.serial) {
+      return showDialog({
+        message: '请先开通橙市合伙人！',
+        theme: 'round-button'
+      })
+    }
     loading.value = true
     reqUserStaff().then((res) => {
       loading.value = false

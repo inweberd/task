@@ -1,21 +1,21 @@
 <template>
   <view class="card-body box-shadow radius-10 mx-3 mb-5">
-    <!--    <div v-if="state.data.length">-->
-    <!--      <view v-for="(item, index) in state.data" :key="item.id">-->
-    <!--        <view class="d-flex justify-content-between font-15">-->
-    <!--          <text>{{ item.content }}</text>-->
-    <!--          <text class="text-warning">+ {{ parseFloat(item.money || 0).toFixed(2) }}</text>-->
-    <!--        </view>-->
-    <!--        <view class="d-flex justify-content-between font-13 text-muted">-->
-    <!--          <text>{{ item.remark }}</text>-->
-    <!--          &lt;!&ndash;          <text>{{ method.toDate(item.create_time) }}</text>&ndash;&gt;-->
-    <!--        </view>-->
-    <!--        <view v-if="index != state.data.length - 1" class="h-2px bg-light d-block my-2"></view>-->
-    <!--      </view>-->
-    <!--    </div>-->
-    <!--    <div v-else>-->
-    <!--      <div class="no-data">再怎么找也没有查啦~</div>-->
-    <!--    </div>-->
+    <div v-if="state.data.length">
+      <div v-for="(item, index) in state.data" :key="item.id" class="card">
+        <div class="d-flex justify-content-between font-15">
+          <span>{{ item.content }}</span>
+          <span class="text-warning">+ {{ parseFloat(item.money || 0).toFixed(2) }}</span>
+        </div>
+        <div class="d-flex justify-content-between font-13 text-muted">
+          <span>{{ item.remark }}</span>
+          <!--          <text>{{ method.toDate(item.create_time) }}</text>-->
+        </div>
+        <span v-if="index != state.data.length - 1" class="h-2px bg-light d-block my-2"></span>
+      </div>
+    </div>
+    <div v-else>
+      <div class="no-data">暂无数据~</div>
+    </div>
     <!-- <up-loadmore :status="state.loadmore.status" :loading-text="state.loadmore.load" dashed line
 			:nomore-text="state.loadmore.nomore" :loadmoreText="state.loadmore.text" class="py-3">
 		</up-loadmore> -->
@@ -68,16 +68,16 @@ const method = {
       }
     })
 
-    // state.load.init = false
-    //
-    // if (utils.is.empty(item.data)) return state.loadmore.status = 'nomore'
-    //
-    // state.data.push(...item.data)
-    // state.count = item.count
-    // state.page.total = item.page
-    // state.page.code = page
-    //
-    // state.loadmore.status = 'nomore'
+    state.load.init = false
+
+    if (utils.is.empty(item.data)) return (state.loadmore.status = 'nomore')
+
+    state.data.push(...item.data)
+    state.count = item.count
+    state.page.total = item.page
+    state.page.code = page
+
+    state.loadmore.status = 'nomore'
   },
   // 人性化时间
   nature: (value, type = 1) => utils.time.nature(value, type),
@@ -102,10 +102,16 @@ onMounted(() => {
 })
 </script>
 
-<style>
+<style scoped>
 .no-data {
   text-align: center;
   color: #999;
+  margin-top: 20px;
+}
+.card {
+  padding: 15px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
   margin-top: 20px;
 }
 </style>

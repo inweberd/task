@@ -39,8 +39,10 @@
               type="primary"
               @click="getCode"
               style="background: #f46d16; border: none"
-              >发送验证码</van-button
+              :disabled="countdown"
             >
+              {{ countdown ? countdown + 's重新发送' : '发送验证码' }}
+            </van-button>
             <div v-else>
               {{ time }}
             </div>
@@ -111,6 +113,8 @@ const data = reactive({
   // invite: '490814',
   // fingerprint: ''
 })
+const countdown = ref(0)
+
 const router = useRouter()
 // const fprint = () => {
 //   FingerprintJS.load().then((FP) => {
@@ -119,12 +123,29 @@ const router = useRouter()
 //   console.log(data)
 // }
 // fprint()
+
+let timer = null
+
+// 更新倒计时显示
+function updateCountdown() {
+  if (!countdown.value) return clearInterval(timer)
+
+  countdown.value--
+}
+
 function getCode() {
   if (data.social == '') {
     return _notice('请输入手机号码')
   }
+  if (data.password !== data.password2) {
+    return _notice('两次密码输入不一致')
+  }
   reqResetPwd(data).then((e) => {
     _notice(e.msg)
+    if (e.code === 201) {
+      countdown.value = 60
+      timer = setInterval(updateCountdown, 1000)
+    }
   })
 }
 function go(path) {
@@ -133,6 +154,13 @@ function go(path) {
 function onSubmit() {
   reqResetPwd(data).then((e) => {
     _notice(e.msg)
+    if (e.code === 200) {
+      data.social = ''
+      data.code = ''
+      data.password = ''
+      data.password2 = ''
+      router.replace('/login')
+    }
   })
 }
 </script>

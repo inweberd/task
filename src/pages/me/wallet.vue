@@ -29,11 +29,11 @@
         ></van-image>
         <!-- <van-button type="primary" plain icon="plus" class="action-button">充值</van-button> -->
         <van-button
-          type="info"
-          plain
+          type="primary"
           icon="balance-list-o"
           class="action-button"
           @click="go('/dep')"
+          color="#F56D17"
           >提现</van-button
         >
         <!-- <van-image :src="imageSrc" width="100" height="100%"   fit="fill" class="action-button"></van-image> -->
@@ -126,6 +126,7 @@ onMounted(() => method.init())
   padding: 16px;
   background-color: #f7f8fa;
   height: 100%;
+  overflow-y: auto;
 }
 
 .balance-info {

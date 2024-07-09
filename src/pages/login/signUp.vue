@@ -39,8 +39,10 @@
               type="primary"
               @click="getCode"
               style="background: #f46d16; border: none"
-              >发送验证码</van-button
+              :disabled="countdown"
             >
+              {{ countdown ? countdown + 's重新发送' : '发送验证码' }}
+            </van-button>
             <div v-else>
               {{ time }}
             </div>
@@ -107,38 +109,66 @@ import imgg from './logo1.png'
 import { register, sociallogin } from '@/api/myApi'
 import { _no, _sleep, _notice } from '@/utils'
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 const time = ref()
 const data = reactive({
   social: '',
   code: '',
   password: '',
   password2: '',
-  invite: ''
+  invite: route.query.invite || ''
   // fingerprint: ''
 })
+const countdown = ref(0)
+
 // const fprint = () => {
 //   FingerprintJS.load().then((FP) => {
 //     FP.get().then(({ visitorId }) => (data.fingerprint = visitorId))
 //   })
 // }
 // fprint()
+
+let timer = null
+
+// 更新倒计时显示
+function updateCountdown() {
+  if (!countdown.value) return clearInterval(timer)
+
+  countdown.value--
+}
+
 const router = useRouter()
 function go(path) {
   router.push(path)
 }
 function getCode() {
-  if (data.social == '' || data.invite == '') {
-    return _notice(
-      '请输入手机号码、密码、邀请码等信息' || data.password1 == '' || data.password2 == ''
-    )
+  if (data.social == '' || data.invite == '' || data.password == '' || data.password2 == '') {
+    return _notice('请输入手机号码、密码、邀请码等信息')
+  }
+  if (data.password !== data.password2) {
+    return _notice('两次密码输入不一致')
   }
   register(data).then((e) => {
     _notice(e.msg)
+    if (e.code === 201) {
+      countdown.value = 60
+      timer = setInterval(updateCountdown, 1000)
+    }
   })
 }
 function onSubmit() {
   register(data).then((e) => {
     _notice(e.msg)
+    if (e.code === 200) {
+      data.social = ''
+      data.code = ''
+      data.password = ''
+      data.password2 = ''
+      data.invite = ''
+      router.replace('/login')
+    }
   })
 }
 </script>

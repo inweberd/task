@@ -144,17 +144,23 @@
           style="position: absolute"
         />
       </SlideItem>
-      <SlideItem>
-        <UserPanel
-          ref="uploader"
-          v-model:currentItem="state.currentItem"
-          :active="state.baseIndex === 2"
-          @toggleCanMove="(e) => (state.canMove = e)"
-          @back="state.baseIndex = 1"
-          @showFollowSetting="state.showFollowSetting = true"
-          @showFollowSetting2="state.showFollowSetting2 = true"
-        />
-      </SlideItem>
+      <!--      <SlideItem>-->
+      <!--        <MusicRankList-->
+      <!--          :zzz="false"-->
+      <!--          style="position: relative; height: 90vh; overflow: auto"-->
+      <!--          :active="state.navIndex === 1 && state.baseIndex === 1"-->
+      <!--        >-->
+      <!--        </MusicRankList>-->
+      <!--        <UserPanel-->
+      <!--          ref="uploader"-->
+      <!--          v-model:currentItem="state.currentItem"-->
+      <!--          :active="state.baseIndex === 2"-->
+      <!--          @toggleCanMove="(e) => (state.canMove = e)"-->
+      <!--          @back="state.baseIndex = 1"-->
+      <!--          @showFollowSetting="state.showFollowSetting = true"-->
+      <!--          @showFollowSetting2="state.showFollowSetting2 = true"-->
+      <!--        />-->
+      <!--      </SlideItem>-->
     </SlideHorizontal>
 
     <Comment
@@ -371,17 +377,10 @@ function setCurrentItem(item) {
 const router = useRouter()
 let userInfo = {}
 onActivated(() => {
+  userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
   show.value = false
-  if (!userInfo?.result?.staff?.serial) {
-    showDialog({
-      message: '请先开通橙市合伙人！',
-      theme: 'round-button'
-    })
-  }
 })
 onMounted(() => {
-  userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
-
   show.value = false
   bus.on(EVENT_KEY.ENTER_FULLSCREEN, () => {
     if (!state.active) return
@@ -410,6 +409,12 @@ onMounted(() => {
     nav(path, query)
   })
   bus.on(EVENT_KEY.GO_USERINFO, async (e) => {
+    if (!userInfo?.result?.staff?.serial) {
+      return showDialog({
+        message: '请先开通橙市合伙人！',
+        theme: 'round-button'
+      })
+    }
     loading.value = true
     reqUserStaff().then((res) => {
       loading.value = false

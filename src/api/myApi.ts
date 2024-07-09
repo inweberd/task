@@ -79,7 +79,7 @@ export function reqRecordTask() {
 
 // 查询下级分销
 export function reqUserDistribution(data) {
-  return axiosInstance({ url: 'api/users/distribution', method: 'get', data })
+  return axiosInstance({ url: 'api/users/distribution', method: 'get', params: data })
 }
 
 // 获取成员信息

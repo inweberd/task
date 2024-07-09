@@ -30,6 +30,7 @@ const routes: RouteRecordRaw[] = [
 
   { path: '/me', component: () => import('@/pages/me/mine.vue') },
   { path: '/nofinish', component: () => import('@/pages/me/nofinish.vue') },
+  { path: '/CreditScoreDetail', component: () => import('@/pages/me/CreditScoreDetail.vue') },
   {
     path: '/me/edit-userinfo',
     component: () => import('@/pages/me/userinfo/EditUserInfo.vue')

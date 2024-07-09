@@ -133,7 +133,7 @@ const state = reactive({
   },
   item: {
     pay: {
-      id: 2,
+      id: 4,
       data: {}
     }
   },
@@ -143,36 +143,36 @@ const state = reactive({
   },
   select: {
     pay: [
-      {
-        id: 2,
-        key: 'ltzf',
-        type: 'alipay',
-        name: '支付宝(支持花呗)',
-        min: 100,
-        max: 10000,
-        code: 828,
-        icon: alipayLarge
-      },
-      {
-        id: 3,
-        key: 'ltzf',
-        type: 'bank',
-        name: '手机银行',
-        min: 100,
-        max: 5000,
-        code: 805,
-        icon: bankLarge
-      },
-      {
-        id: 1,
-        key: 'ltzf',
-        type: 'wechat',
-        name: ' 微信',
-        min: 100,
-        max: 2000,
-        code: 827,
-        icon: wechatLarge
-      },
+      // {
+      //   id: 2,
+      //   key: 'ltzf',
+      //   type: 'alipay',
+      //   name: '支付宝(支持花呗)',
+      //   min: 100,
+      //   max: 10000,
+      //   code: 828,
+      //   icon: alipayLarge
+      // },
+      // {
+      //   id: 3,
+      //   key: 'ltzf',
+      //   type: 'bank',
+      //   name: '手机银行',
+      //   min: 100,
+      //   max: 5000,
+      //   code: 805,
+      //   icon: bankLarge
+      // },
+      // {
+      //   id: 1,
+      //   key: 'ltzf',
+      //   type: 'wechat',
+      //   name: ' 微信',
+      //   min: 100,
+      //   max: 2000,
+      //   code: 827,
+      //   icon: wechatLarge
+      // },
       {
         id: 4,
         key: 'ltzf',
@@ -209,6 +209,7 @@ const method = {
     method.sheet.close()
   },
   emit: async () => {
+    return
     if (state.struct.amount < state.item.pay?.data?.min) {
       return _notice('最小金额为' + state.item.pay?.data?.min)
     } else if (state.struct.amount > state.item.pay?.data?.max) {

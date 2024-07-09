@@ -245,8 +245,13 @@ function setCurrentItem(item) {
   }
   // console.log('item', item)
 }
-
+let userInfo = {}
+onActivated(() => {
+  userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+})
 onMounted(() => {
+  userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+
   show.value = false
   bus.on(EVENT_KEY.SINGLE_CLICK, click)
   bus.on(EVENT_KEY.ENTER_FULLSCREEN, () => (state.fullScreen = true))
@@ -264,6 +269,12 @@ onMounted(() => {
   })
   bus.on(EVENT_KEY.NAV, ({ path, query }) => nav(path, query))
   bus.on(EVENT_KEY.GO_USERINFO, () => {
+    if (!userInfo?.result?.staff?.serial) {
+      return showDialog({
+        message: '请先开通橙市合伙人！',
+        theme: 'round-button'
+      })
+    }
     loading.value = true
     reqUserStaff().then((res) => {
       loading.value = false

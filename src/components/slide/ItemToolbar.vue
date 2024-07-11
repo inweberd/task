@@ -69,7 +69,7 @@ onUnmounted(() => {
           v-model:current-rate="currentRate"
           :rate="0"
           :speed="100"
-          style="width: auto; height: auto; padding: 10px"
+          style="width: auto; height: auto; padding: 10px; margin-bottom: 30rem"
           color="#E3C569"
           layer-color="rgba(0,0,0,.3)"
           :stroke-width="80"
@@ -84,7 +84,7 @@ onUnmounted(() => {
             src="../../assets/earned-cash.png"
             style="
               width: 50rem;
-              padding-bottom: 50rem;
+              padding-bottom: 25rem;
               position: relative;
               z-index: 999;
               transform: translateY(5px);

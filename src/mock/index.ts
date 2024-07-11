@@ -6,8 +6,13 @@ import { BASE_URL, FILE_URL } from '@/config'
 import { useBaseStore } from '@/store/pinia'
 import { axiosInstance } from '@/utils/request'
 import MockAdapter from 'axios-mock-adapter'
+import { getInitVideo } from '@/utils/getInitVideo'
 console.log('posts6', posts6)
+const initVideo = getInitVideo()
+console.log('initVideo', JSON.parse(JSON.stringify(initVideo)))
 posts7.sort((item) => Math.random() - 0.5)
+initVideo.sort((item) => Math.random() - 0.5)
+console.log('initVideo', initVideo)
 const mock = new MockAdapter(axiosInstance)
 function getPage2(params: any): { limit: number; offset: number; pageNo: number } {
   const offset = params.pageNo * params.pageSize
@@ -17,12 +22,12 @@ function getPage2(params: any): { limit: number; offset: number; pageNo: number 
 
 let allRecommendPosts = []
 let userVideos = []
-let allRecommendVideos = posts7.map((v: any) => {
+let allRecommendVideos = initVideo.map((v: any) => {
   v = JSON.parse(JSON.stringify(v))
   v.type = 'recommend-video'
   return v
 })
-
+console.log('allRecommendVideos', allRecommendVideos)
 let allShorPlayVideos = posts6.map((v: any) => {
   v = JSON.parse(JSON.stringify(v))
   v.type = 'shortPlayVideo'
@@ -82,7 +87,6 @@ let allShorPlayVideos = posts6.map((v: any) => {
   return v
 })
 
-// console.log('allRecommendVideos', allRecommendVideos)
 // eslint-disable-next-line
 const t = [
   {
@@ -156,26 +160,16 @@ const t = [
   // }
 ]
 
-// allRecommendVideos.unshift(...t)
-// {
-//   type: 'user-imgs',
-//   src: `http://douyin.ttentau.top/0.mp4?vframe/jpg/offset/0/w/${document.body.clientWidth}`,
-//   author: {
-//     unique_id: uniqueId('list_')
-//   }
-// },
-// {
-//   type: 'user',
-//   src: `http://douyin.ttentau.top/0.mp4?vframe/jpg/offset/0/w/${document.body.clientWidth}`,
-//   author: {
-//     unique_id: uniqueId('list_')
-//   }
-// },
-
 async function fetchData() {
   const baseStore = useBaseStore()
-  _fetch(BASE_URL + '/data/videos.md').then((r) => {
+  console.log('BASE_URL', BASE_URL)
+  // _fetch(BASE_URL + '/data/videos.md').then((r) => {
+  const num = Math.floor(Math.random() * 7)
+  console.log('num', num)
+  const url = `/json/${num}.md`
+  _fetch(url).then((r) => {
     r.json().then(async (v) => {
+      console.log('------------v', v)
       let userList = cloneDeep(baseStore.users)
       if (!userList.length) {
         await baseStore.init()
@@ -270,7 +264,6 @@ async function fetchShortPlayData() {
 export async function startMock() {
   mock.onGet(/video\/recommended/).reply(async (config) => {
     const { start, pageSize } = config.params
-    // console.log('allRecommendVideos', cloneDeep(allRecommendVideos.length), config.params)
     return [
       200,
       {

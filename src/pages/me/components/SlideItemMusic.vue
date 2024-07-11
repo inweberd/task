@@ -41,10 +41,10 @@
             />
             <span>收藏</span>
           </div>
-          <div class="btn" @click="$emit('showShare')">
-            <img src="@/assets/img/icon/share-white-full.png" alt="" />
-            <span>分享</span>
-          </div>
+          <!--          <div class="btn" @click="$emit('showShare')">-->
+          <!--            <img src="@/assets/img/icon/share-white-full.png" alt="" />-->
+          <!--            <span>分享</span>-->
+          <!--          </div>-->
         </div>
       </div>
       <div class="progress">

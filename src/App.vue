@@ -1,7 +1,7 @@
 <template>
   <router-view v-slot="{ Component }">
     <transition :name="transitionName">
-      <keep-alive :exclude="store.excludeNames">
+      <keep-alive :exclude="[...store.excludeNames, ...keepAliveBlackList]">
         <component :is="Component" />
       </keep-alive>
     </transition>
@@ -39,7 +39,7 @@ import { useRoute } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import BaseMask from '@/components/BaseMask.vue'
 import { BASE_URL } from '@/config'
-
+const keepAliveBlackList = ['wallet']
 const store = useBaseStore()
 const route = useRoute()
 const transitionName = ref('go')

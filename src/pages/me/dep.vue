@@ -31,7 +31,7 @@
 
         <van-field v-model="money" label="选择提现" placeholder="请输入提现金额" />
         <van-button
-          style="margin-top: 100rem; margin: 100px auto; width: 80vw"
+          style="margin-top: 100rem; margin: 50px auto 30px; width: 80vw"
           round
           block
           type="primary"
@@ -39,6 +39,18 @@
           @click="goPay"
           >申请提现</van-button
         >
+        <div class="desc">
+          <div class="desc-title">提现流程</div>
+          <p><span class="index">1</span> . 0玩用户无需充值，无任何要求，有收益就可以直接提现</p>
+          <p><span class="index">2</span> . 银行卡提现15起提，每天提现次数3次</p>
+          <p><span class="index">3</span> . K豆钱包5元起提，每天提现次数3次</p>
+          <p><span class="index">4</span> . JD钱包5元起提，每天提现次数3次</p>
+          <p><span class="index">5</span> . 提现时间早上11.00--晚上21.00</p>
+          <p>
+            <span class="index">6</span>.
+            推荐优先使用K豆钱包和JD钱包充提，永不风控，钱包里面内置支付宝，微信，银行卡，USDT等多种到账方式，自由转换，安全，方便快捷
+          </p>
+        </div>
       </van-tab>
       <van-tab title="绑定提现">
         <van-tabs v-model:active="active_">
@@ -77,17 +89,33 @@
           <!--          </van-tab>-->
           <van-tab title="K豆钱包" style="padding: 0px 20px">
             <van-field v-model="ali_value.name" label="姓名" placeholder="姓名" />
-            <van-field v-model="ali_value.card_no" label="账号" placeholder="账号" />
-
-            <van-button type="primary" style="margin-top: 30rem" block @click="save('ali')"
+            <van-field v-model="ali_value.card_no" label="钱包地址" placeholder="钱包地址" />
+            <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">
+              钱包地址为钱包主页界面的34位字母+数字组合。
+            </p>
+            <van-button
+              color="#F56D17"
+              type="primary"
+              style="margin-top: 30rem"
+              block
+              @click="save('ali')"
               >保存</van-button
             >
           </van-tab>
           <van-tab title="JD钱包" style="padding: 0px 20px">
             <van-field v-model="ali_value.name" label="姓名" placeholder="姓名" />
-            <van-field v-model="ali_value.card_no" label="账号" placeholder="账号" />
+            <van-field v-model="ali_value.card_no" label="钱包地址" placeholder="钱包地址" />
+            <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">
+              钱包地址为钱包主页界面的34位字母+数字组合。
+            </p>
 
-            <van-button type="primary" style="margin-top: 30rem" block @click="save('ali')"
+            <van-button
+              color="#F56D17"
+              ty
+              pe="primary"
+              style="margin-top: 30rem"
+              block
+              @click="save('ali')"
               >保存</van-button
             >
           </van-tab>
@@ -170,6 +198,25 @@ const bank = async () => {
   for (let key in item) {
     list.push({ label: item[key], value: key })
   }
+  list = list.filter((it) => {
+    return [
+      '农业银行',
+      '中国银行',
+      '建设银行',
+      '光大银行',
+      '兴业银行',
+      '中信银行',
+      '招商银行',
+      '民生银行',
+      '交通银行',
+      '广东发展银行',
+      '平安银行',
+      '邮政储蓄银行',
+      '渣打银行',
+      '浦东发展银行',
+      '新疆银行'
+    ].includes(it.label)
+  })
 
   state.select.bank = list
 
@@ -185,13 +232,17 @@ const card = async () => {
   loading.value = true
   // state.card.load = true
   // console.log(user)
-  const { data: item } = await payCard({
+  const {
+    data: item,
+    code,
+    msg
+  } = await payCard({
     where: `uid = ${user.id}`
   })
   loading.value = false
-  if (utils.is.empty(item)) return (state.modal.card = true)
-  state.select.card = item
-
+  if (code !== 200) return
+  state.select.card = item || []
+  console.log('state.select.card', state.select.card)
   setPay()
 }
 async function goPay() {
@@ -243,6 +294,16 @@ const save = async (e) => {
     await card()
     setPay()
   } else {
+    // console.log('bank_value', bank_value)
+    // console.log("areaText.value.split(',')[1]", areaText.value.split(',')[1])
+    // console.log(' state.select.card', state.select.card)
+    // const flag = state.select.card.some((item) => item.card_type === areaText.value.split(',')[1])
+    // if (flag) {
+    //   return _notice('同一银行只能绑定一张银行卡！')
+    // }
+    if (!bank_value.card_no || !bank_value.name) {
+      return _notice('请输入完整信息！')
+    }
     const { code, msg } = await axios.post('/api/pay-card/save', {
       ...bank_value,
       mode: 'bank',
@@ -278,5 +339,19 @@ const onAreaConfirm = (values) => {
 
 .content {
   padding: 16px 16px 160px;
+}
+
+.desc {
+  padding: 0 10px;
+  .desc-title {
+    font-size: 16px;
+    font-weight: bolder;
+  }
+  p {
+    line-height: 22px;
+    .index {
+      font-weight: bolder;
+    }
+  }
 }
 </style>

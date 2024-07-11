@@ -1,7 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { reactive, onMounted } from 'vue'
-import { logout as fnlogout, reqUserIncome, reqUserInfo } from '@/api/myApi'
+import { logout as fnlogout, reqUserIncome, reqUserInfo, reqUserStaff } from '@/api/myApi'
 import modzz from '../login/model.vue'
 import { _no, _sleep, _notice } from '@/utils'
 import { articleall } from '@/api/myApi'
@@ -9,6 +9,7 @@ import { getSerialName } from '../../utils/getSerialName'
 import Loading from '@/components/Loading.vue'
 const props = defineProps({})
 let userInfo = ref({})
+const star = ref(0)
 const userIncomeInfo = ref({})
 const Caidan = ref([])
 const data = reactive({
@@ -74,8 +75,21 @@ const getNewUserInfo = () => {
   loading.value = true
   reqUserInfo({ id: userInfo.value.id }).then((res) => {
     loading.value = false
+    if (res.code !== 200) {
+      return _notice(res.msg)
+    }
     userInfo.value = res.data
     window.localStorage.setItem('userInfo', JSON.stringify(res.data))
+
+    // 如果是会员 查询股东星级
+    if (userInfo.value?.result?.staff?.serial) {
+      reqUserStaff().then((res) => {
+        if (res.code !== 200) {
+          return _notice(res.msg)
+        }
+        star.value = res.data.star
+      })
+    }
   })
 }
 const getUserIncome = () => {
@@ -127,6 +141,8 @@ function getData() {
               <br />
             </span>
             <span class="font">当前等级: {{ getSerialName(userInfo?.result?.staff?.serial) }}</span>
+            <br />
+            <span class="font">无限代星级：{{ star }}星股东</span>
           </div>
         </div>
       </div>
@@ -179,16 +195,6 @@ function getData() {
           <div class="text" @click="go('/CreditScoreDetail')">详情</div>
         </div>
 
-        <van-cell
-          v-for="(item, index) in Caidan"
-          Key="index"
-          style="margin-top: 10px"
-          :title="item.title"
-          is-link
-          class="vv"
-          @click="go2('/article', item)"
-        />
-
         <div class="flex-col justify-start section_6 mt-18-5">
           <div class="grid">
             <div class="flex-col items-center grid-item" @click="go('/invest')">
@@ -219,7 +225,7 @@ function getData() {
             </div>
             <div class="flex-col items-center relative grid-item_6" @click="go('/demo')">
               <img class="image_5" src="./images/7e51e7b4f4d139f9390fa23d75432efb.png" />
-              <span class="font_2 mt-5-5">股东等级</span>
+              <span class="font_2 mt-5-5">无限代星级</span>
             </div>
             <div class="flex-col items-center relative grid-item_7" @click="go('/nofinish')">
               <img class="image_5" src="./images/702e90f7f1ebc87641055bbff962f5b5.png" />
@@ -227,7 +233,15 @@ function getData() {
             </div>
           </div>
         </div>
-
+        <van-cell
+          v-for="(item, index) in Caidan"
+          Key="index"
+          style="margin-top: 10px"
+          :title="item.title"
+          is-link
+          class="vv"
+          @click="go2('/article', item)"
+        />
         <div class="logout" @click="logout">
           <img class="image_5" src="./images/3c6dff12198f8d467dc89f898839efcd.png" />
           <span class="font_2 mt-5-5">退出APP</span>

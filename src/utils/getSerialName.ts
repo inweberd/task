@@ -5,7 +5,9 @@ const serialNameMap = {
   '4': '四级合伙人',
   '5': '五级合伙人',
   '6': '六级合伙人',
-  '7': '七级合伙人'
+  '7': '七级合伙人',
+  '8': '八级合伙人',
+  '9': '九级合伙人'
 }
 export const getSerialName = (val) => {
   return serialNameMap[val] || '--'

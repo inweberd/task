@@ -150,6 +150,7 @@ const changeVideo = (item) => {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+        flex: 1;
         &-t {
           font-size: 20px;
           color: #000;

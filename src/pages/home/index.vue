@@ -234,7 +234,7 @@
           <!-- <van-image :src="imageSrc" width="100%" height="100%;" style='position:fixed;top:10%'></van-image> -->
           <div class="hongbao">
             <div class="num">
-              {{ price }}
+              {{ redPackageInfo.unit_price }}
               <span style="font-size: 20px; margin-left: 5px; margin-top: 10px">元</span>
             </div>
           </div>
@@ -296,7 +296,7 @@ import BaseMask from '@/components/BaseMask.vue'
 import { axiosInstance as axios } from '@/utils/myrequest'
 import { _checkImgUrl, _notice, cloneDeep } from '@/utils'
 import Loading from '@/components/Loading.vue'
-import { reqRecordTask, reqUserStaff } from '@/api/myApi'
+import { reqRecordTask, reqTaskMoney, reqUserStaff } from '@/api/myApi'
 import TipBtn from '@/components/TipBtn.vue'
 
 const nav = useNav()
@@ -305,7 +305,7 @@ const uploader = ref()
 const isMobile = ref(/Mobi|Android|iPhone/i.test(navigator.userAgent))
 const show = ref(false)
 const loading = ref(false)
-const price = ref(0)
+const redPackageInfo = ref({})
 const showTip = ref(false)
 const tipContent = ref('')
 const state = reactive({
@@ -345,7 +345,9 @@ function delayShowDialog(cb: Function) {
 function close() {
   show.value = false
   loading.value = true
-  reqRecordTask().then((res) => {
+  reqRecordTask({
+    staff_id: redPackageInfo.value.id
+  }).then((res) => {
     loading.value = false
     let msg = ''
     if (res.code === 200) {
@@ -416,9 +418,17 @@ onMounted(() => {
       })
     }
     loading.value = true
-    reqUserStaff().then((res) => {
+    reqTaskMoney().then((res) => {
       loading.value = false
-      price.value = res.data?.result?.staff?.unit_price
+      if (res.code !== 200) return _notice(res.msg)
+
+      if (!res.data.length) {
+        return showDialog({
+          message: '今日红包已领取完，请明日再来！',
+          theme: 'round-button'
+        })
+      }
+      redPackageInfo.value = res.data[0]
       show.value = true
     })
     // if (e?.data) {

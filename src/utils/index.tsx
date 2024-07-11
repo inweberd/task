@@ -376,8 +376,10 @@ export function _no() {
  * @privateF
  */
 export async function _fetch(url: string): Promise<{ json(): Promise<any> } | Response> {
-  if (IS_DEV || !IS_GITEE_PAGES) {
+  // if (IS_DEV || !IS_GITEE_PAGES) {
+  if (false) {
     url = url.replace('.md', '.json')
+    console.log(222)
     return fetch(url)
   } else {
     // eslint-disable-next-line no-async-promise-executor

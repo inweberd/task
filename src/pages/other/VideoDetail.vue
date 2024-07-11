@@ -104,7 +104,7 @@
           <!-- <van-image :src="imageSrc" width="100%" height="100%;" style='position:fixed;top:10%'></van-image> -->
           <div class="hongbao">
             <div class="num">
-              {{ price }}
+              {{ redPackageInfo.unit_price }}
               <span style="font-size: 20px; margin-left: 5px; margin-top: 10px">元</span>
             </div>
           </div>
@@ -137,7 +137,7 @@ import ConfirmDialog from '../../components/dialog/ConfirmDialog.vue'
 import FollowSetting2 from '@/pages/home/components/FollowSetting2.vue'
 import ShareToFriend from '@/pages/home/components/ShareToFriend.vue'
 import { DefaultUser } from '@/utils/const_var'
-import { _checkImgUrl, slideItemRender } from '@/utils'
+import { _checkImgUrl, _notice, slideItemRender } from '@/utils'
 import { useBaseStore } from '@/store/pinia'
 import SlideVerticalInfinite from '@/components/slide/SlideVerticalInfinite.vue'
 import { useRouter } from 'vue-router'
@@ -154,7 +154,7 @@ import qi from '@/assets/img/qi.png'
 import ba from '@/assets/img/ba.png'
 import jiu from '@/assets/img/jiu.png'
 import Loading from '@/components/Loading.vue'
-import { reqRecordTask, reqUserStaff } from '@/api/myApi'
+import { reqRecordTask, reqTaskMoney, reqUserStaff } from '@/api/myApi'
 defineOptions({
   name: 'VideoDetail'
 })
@@ -163,7 +163,7 @@ const router = useRouter()
 const show = ref(false)
 const baseStore = useBaseStore()
 const loading = ref(false)
-const price = ref(0)
+const redPackageInfo = ref({})
 
 const state = reactive({
   baseIndex: 1,
@@ -219,7 +219,9 @@ function delayShowDialog(cb) {
 function close() {
   show.value = false
   loading.value = true
-  reqRecordTask().then((res) => {
+  reqRecordTask({
+    staff_id: redPackageInfo.value.id
+  }).then((res) => {
     loading.value = false
     let msg = ''
     if (res.code === 200) {
@@ -275,10 +277,17 @@ onMounted(() => {
         theme: 'round-button'
       })
     }
-    loading.value = true
-    reqUserStaff().then((res) => {
+    reqTaskMoney().then((res) => {
       loading.value = false
-      price.value = res.data?.result?.staff?.unit_price
+      if (res.code !== 200) return _notice(res.msg)
+
+      if (!res.data.length) {
+        return showDialog({
+          message: '今日红包已领取完，请明日再来！',
+          theme: 'round-button'
+        })
+      }
+      redPackageInfo.value = res.data[0]
       show.value = true
     })
   })

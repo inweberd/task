@@ -6,6 +6,8 @@
       @click-left="$router.back()"
       style="background-color: transparent"
     />
+    <van-image :src="pay1" width="100%" height="100%;"></van-image>
+
     <Loading v-if="loading"></Loading>
     <div class="container">
       <div class="recharge-info" @click="method.sheet.open()">
@@ -41,7 +43,7 @@
           </div>
         </div>
         <div class="recharge-info-right">
-          <van-icon name="arrow" size="12" />
+          <van-icon name="arrow" size="20" />
         </div>
       </div>
       <div class="recharge-money">
@@ -70,6 +72,7 @@
           <span>确认</span>
         </button>
       </div>
+      <!--      <van-image :src="pay2" width="100%" height="100%;"></van-image>-->
       <van-popup v-model:show="state.sheet.show" position="bottom" closeable round>
         <div class="select-wrap">
           <div class="title">{{ state.sheet.title }}</div>
@@ -117,6 +120,9 @@ import bankLarge from '@/assets/img/recharge/bank2.png'
 import wechatLarge from '@/assets/img/recharge/wechatLarge.png'
 import jd from '@/assets/img/recharge/jd.jpg'
 import kd from '@/assets/img/recharge/kd.jpg'
+import pay1 from '@/assets/img/recharge/pay1.jpg'
+import pay2 from '@/assets/img/recharge/pay2.jpg'
+import shouxia from '@/assets/img/shouxia.png'
 
 const loading = ref(false)
 const getIcon = (iconUrl: string) => {
@@ -133,7 +139,7 @@ const state = reactive({
   },
   item: {
     pay: {
-      id: 4,
+      id: 5,
       data: {}
     }
   },
@@ -143,56 +149,56 @@ const state = reactive({
   },
   select: {
     pay: [
+      {
+        id: 5,
+        key: 'kdpay',
+        type: 'kd',
+        name: 'K豆钱包（支持USDT）',
+        min: 10,
+        max: 30000,
+        code: 8277,
+        icon: kd
+      },
+      {
+        id: 2,
+        key: 'ltzf',
+        type: 'alipay',
+        name: '支付宝(支持花呗)',
+        min: 100,
+        max: 5000,
+        code: 828,
+        icon: alipayLarge
+      },
+      {
+        id: 3,
+        key: 'ltzf',
+        type: 'bank',
+        name: '手机银行',
+        min: 100,
+        max: 2000,
+        code: 805,
+        icon: bankLarge
+      },
+      {
+        id: 1,
+        key: 'ltzf',
+        type: 'wechat',
+        name: ' 微信',
+        min: 100,
+        max: 2000,
+        code: 827,
+        icon: wechatLarge
+      }
       // {
-      //   id: 2,
+      //   id: 4,
       //   key: 'ltzf',
-      //   type: 'alipay',
-      //   name: '支付宝(支持花呗)',
-      //   min: 100,
-      //   max: 10000,
-      //   code: 828,
-      //   icon: alipayLarge
-      // },
-      // {
-      //   id: 3,
-      //   key: 'ltzf',
-      //   type: 'bank',
-      //   name: '手机银行',
-      //   min: 100,
-      //   max: 5000,
-      //   code: 805,
-      //   icon: bankLarge
-      // },
-      // {
-      //   id: 1,
-      //   key: 'ltzf',
-      //   type: 'wechat',
-      //   name: ' 微信',
+      //   type: 'jd',
+      //   name: 'JD钱包',
       //   min: 100,
       //   max: 2000,
       //   code: 827,
-      //   icon: wechatLarge
+      //   icon: jd
       // },
-      {
-        id: 4,
-        key: 'ltzf',
-        type: 'jd',
-        name: ' JD钱包',
-        min: 100,
-        max: 2000,
-        code: 827,
-        icon: jd
-      },
-      {
-        id: 5,
-        key: 'ltzf',
-        type: 'kd',
-        name: ' K豆钱包（支持USDT）',
-        min: 100,
-        max: 2000,
-        code: 827,
-        icon: kd
-      }
     ]
   }
 })
@@ -209,7 +215,10 @@ const method = {
     method.sheet.close()
   },
   emit: async () => {
-    return
+    if (!state.struct.amount) {
+      return _notice('请输入充值金额！')
+    }
+
     if (state.struct.amount < state.item.pay?.data?.min) {
       return _notice('最小金额为' + state.item.pay?.data?.min)
     } else if (state.struct.amount > state.item.pay?.data?.max) {
@@ -223,7 +232,7 @@ const method = {
       return: `${method.domain()}/#/me`
     }).then((res: any) => {
       loading.value = false
-      if (res.code !== 200) return _notice(res.msg)
+      if (res.code !== 200) return
       window.location.href = decodeURIComponent(res.data.url)
     })
     // axios.post('/api/order/create', {
@@ -282,28 +291,29 @@ onMounted(() => method.init())
   border-bottom: none;
 }
 :deep(.van-nav-bar__arrow) {
-  color: #fff !important;
+  //color: #fff !important;
 }
 :deep(.van-nav-bar__title) {
-  color: #fff !important;
+  //color: #fff !important;
 }
 
 .rechargeClass {
   width: 100%;
   height: 100%;
   background-color: #fff;
-  background-image: url('./images/2c757d7e9de442d6159ae953d60359a1.png');
-  background-size: 100% auto;
-  background-repeat: no-repeat;
 
   .container {
     margin-top: -1px;
     .recharge-info {
-      background-color: transparent;
+      //background-image: url('./images/2c757d7e9de442d6159ae953d60359a1.png');
+      //background-size: 100% auto;
+      //background-repeat: no-repeat;
+      //background-color: transparent;
       font-size: 16px;
       display: flex;
       padding: 23px 0;
-      color: #fff;
+      border-bottom: 1px solid #ccc;
+      //color: #fff;
 
       &-left {
         margin: 0 25px;
@@ -321,7 +331,7 @@ onMounted(() => method.init())
         }
         &-b {
           margin-top: 6px;
-          color: #fff;
+          //color: #fff;
         }
       }
       &-right {

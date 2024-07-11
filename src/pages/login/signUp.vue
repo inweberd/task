@@ -143,6 +143,7 @@ const router = useRouter()
 function go(path) {
   router.push(path)
 }
+
 function getCode() {
   if (data.social == '' || data.invite == '' || data.password == '' || data.password2 == '') {
     return _notice('请输入手机号码、密码、邀请码等信息')
@@ -159,6 +160,7 @@ function getCode() {
   })
 }
 function onSubmit() {
+  alert(code)
   register(data).then((e) => {
     _notice(e.msg)
     if (e.code === 200) {
@@ -167,7 +169,8 @@ function onSubmit() {
       data.password = ''
       data.password2 = ''
       data.invite = ''
-      router.replace('/login')
+      // router.replace('/login')
+      window.location.href = `https://tc.ijylmwy.com/download`
     }
   })
 }

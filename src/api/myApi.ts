@@ -73,8 +73,13 @@ export function reqEnterStaff(data) {
 }
 
 // 记录任务
-export function reqRecordTask() {
-  return axiosInstance({ url: 'api/staff-entry/task', method: 'post' })
+export function reqRecordTask(data) {
+  return axiosInstance({ url: 'api/staff-entry/task', method: 'post', data })
+}
+
+// 记录任务
+export function reqTaskMoney() {
+  return axiosInstance({ url: 'api/staff-entry/task', method: 'get' })
 }
 
 // 查询下级分销
@@ -95,6 +100,16 @@ export function reqUserStaff() {
 // 查询我的会员信息
 export function reqResetPwd(data) {
   return axiosInstance({ url: 'api/comm/reset-password', method: 'post', data })
+}
+
+// 收入支出日志
+export function reqWalletLog(params) {
+  return axiosInstance({ url: 'api/wallet-log/all', method: 'get', params })
+}
+
+// 提现日志
+export function reqWalletFetch(params) {
+  return axiosInstance({ url: 'api/wallet-fetch/all', method: 'get', params })
 }
 
 // 上传

@@ -2,7 +2,7 @@
   <div>
     <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />
     <!-- <canvas ref="canvas"></canvas> -->
-    <van-image :src="imageSrc" width="100%" height="150" fit="fill"></van-image>
+    <van-image :src="imageSrc1" width="100%" height="150" fit="fill"></van-image>
     <!-- <van-image :src="imageSrc2" width="100%" height="85%"   fit="fill" style='position:absolute;margin-top:150px'></van-image> -->
     <Loading v-if="loading" />
 
@@ -119,16 +119,18 @@
 
           <div
             style="
-              margin-top: 10px;
               background: #fff;
               color: #6344bb;
               width: 65px;
               margin: 10px auto;
               font-weight: bold;
             "
+            :style="{
+              background: getBuyBtnBg(item)
+            }"
             @click="buy(item)"
           >
-            点击购买
+            点我开通
           </div>
         </div>
       </div>
@@ -138,6 +140,7 @@
 <script setup lang="ts">
 import QRCode from 'qrcode'
 import imageSrc from '@/assets/img/hehuoren.png'
+import imageSrc1 from '@/assets/img/hehuoren.jpg'
 import imageSrc2 from '@/assets/img/hehuoren2.png'
 import imageSrc3 from '@/assets/img/goumai.png'
 import { ref, reactive, onMounted } from 'vue'
@@ -147,8 +150,8 @@ import { _notice } from '@/utils'
 import { useRouter } from 'vue-router'
 import { getSerialName } from '@/utils/getSerialName'
 import { userinfo } from '@/api/user'
-let userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
-
+const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
+userInfo.value.result.staff.serial = userInfo.value.result.staff.serial || null
 const loading = ref(true)
 const staffList = ref([])
 const searchInfo = reactive({
@@ -166,6 +169,9 @@ const getAllStaff = () => {
 }
 
 const buy = (item) => {
+  if (userInfo.value.result.staff.serial + 1 !== item.serial) {
+    return _notice('请逐级开通！')
+  }
   loading.value = true
   console.log('item', item)
   loading.value = true
@@ -187,14 +193,18 @@ const buy = (item) => {
           reqUserStaff().then((userRes) => {
             if (userRes.code !== 200) return _notice(userRes.msg)
             console.log('reqUserStaff', userRes)
-          })
 
-          userInfo.result.staff = userRes.data.result.staff
-          window.localStorage.setItem('userInfo', JSON.stringify(userInfo))
+            userInfo.value.result.staff = userRes.data.result.staff
+            window.localStorage.setItem('userInfo', JSON.stringify(userInfo.value))
+          })
         }
       })
     }
   })
+}
+
+const getBuyBtnBg = (item) => {
+  return userInfo.value.result.staff.serial + 1 === item.serial ? '#fff' : '#ccc'
 }
 
 onMounted(() => {

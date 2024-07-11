@@ -210,7 +210,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/myteam', component: () => import('@/pages/me/myteam.vue') },
   { path: '/fenxiang', component: () => import('@/pages/me/fenxiang.vue') },
   { path: '/demo', component: () => import('@/pages/me/demo.vue') },
-  { path: '/wallet', component: () => import('@/pages/me/wallet.vue') },
+  { path: '/wallet', name: 'wallet', component: () => import('@/pages/me/wallet.vue') },
 
   {
     path: '/login/other',

@@ -191,6 +191,13 @@ export default defineConfig((): Promise<UserConfig> => {
               target: 'https://tc.q18m.cc/api',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/api/'), '')
+            },
+            '/json/': {
+              // target: 'http://111.180.196.127:8642/api',
+              // target: 'https://wwc.gengshangpin.com/api',
+              target: 'https://tc.ijylmwy.com/json',
+              changeOrigin: true,
+              rewrite: (path) => path.replace(new RegExp('^' + '/json/'), '')
             }
           }
         },

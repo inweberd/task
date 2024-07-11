@@ -45,23 +45,31 @@
           <div class="number">{{ memberInfo.first?.vip || 0 }}</div>
           <div class="label">直推有效人数</div>
         </div>
+        <!--        <div class="stat-item">-->
+        <!--          <div class="number">{{ memberInfo.first?.rebate || 0 }}</div>-->
+        <!--          <div class="label">直推总收益</div>-->
+        <!--        </div>-->
+        <!--        <div class="stat-item">-->
+        <!--          <div class="number">{{ memberInfo.team?.rebate || 0 }}</div>-->
+        <!--          <div class="label">团队总收益</div>-->
+        <!--        </div>-->
         <div class="stat-item">
-          <div class="number">{{ memberInfo.first?.rebate || 0 }}</div>
-          <div class="label">直推总收益</div>
+          <div class="number">{{ memberInfo.team?.deposit || 0 }}</div>
+          <div class="label">团队总充值</div>
         </div>
         <div class="stat-item">
-          <div class="number">{{ memberInfo.team?.rebate || 0 }}</div>
-          <div class="label">团队总收益</div>
+          <div class="number">{{ memberInfo.team?.withdraw || 0 }}</div>
+          <div class="label">团队总提现</div>
         </div>
         <div class="stat-item">
           <div class="number">{{ userIncomeInfo.today || 0 }}</div>
           <div class="label">今日收益</div>
         </div>
+        <!--        <div class="stat-item">-->
+        <!--          <div class="number">{{ userIncomeInfo.total || 0 }}</div>-->
+        <!--          <div class="label">历史收益</div>-->
+        <!--        </div>-->
         <div class="stat-item">
-          <div class="number">{{ userIncomeInfo.total || 0 }}</div>
-          <div class="label">历史收益</div>
-        </div>
-        <div class="stat-item" style="width: 100%">
           <div class="number">{{ 0 }}</div>
           <div class="label">股东晋级奖励</div>
         </div>

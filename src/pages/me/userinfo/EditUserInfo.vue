@@ -13,11 +13,8 @@
       <van-uploader ref="uploaderRef" class="change-avatar" :after-read="afterRead">
         <!--          <div class="avatar-ctn" @click="showAvatarDialog">-->
         <div class="avatar-ctn" @click="uploaderRef.chooseFile">
-          <img
-            class="avatar"
-            :src="userInfo.avatar || _checkImgUrl(store.userinfo.cover_url[0].url_list[0])"
-            alt=""
-          />
+          <!--          <img class="avatar" :src="userInfo.avatar" alt="" />-->
+          <van-image class="avatar" :src="userInfo?.avatar" style="border: 1px solid #ccc" round />
           <img class="change" src="../../../assets/img/icon/me/camera-light.png" alt="" />
         </div>
         <span>点击更换头像</span>

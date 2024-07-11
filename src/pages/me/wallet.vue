@@ -36,6 +36,7 @@
           color="#F56D17"
           >提现</van-button
         >
+
         <!-- <van-image :src="imageSrc" width="100" height="100%"   fit="fill" class="action-button"></van-image> -->
       </div>
     </div>
@@ -61,6 +62,7 @@ import WalletWithdraw from './wallet/withdraw.vue'
 import modzz from '../login/model.vue'
 import imageSrc from '@/assets/img/chongzhi.png'
 import { axiosInstance as axios } from '@/utils/myrequest'
+import { test } from '@/api/myApi'
 
 const router = useRouter()
 const service = ref(false)

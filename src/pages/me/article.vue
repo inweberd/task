@@ -1,7 +1,7 @@
 <template>
   <div style="">
     <van-nav-bar
-      title="平台资质"
+      :title="desc.title"
       safe-area-inset-top
       fixed
       placeholder
@@ -17,14 +17,18 @@
       <van-image :src="certificate3" width="94%" height="100%" style="margin-left: 3%"></van-image>
       <van-image :src="certificate4" width="94%" height="100%" style="margin-left: 3%"></van-image>
     </template>
+    <template v-else-if="route.query.id == 10">
+      <van-image :src="playMethod" width="94%" height="100%" style="margin-left: 3%"></van-image>
+    </template>
+    <template v-else>
+      <div style="color: #fff">
+        <div style="width: 100%; text-align: center; margin-top: 20px; margin-top: 10px">
+          {{ desc.title }}
+        </div>
 
-    <div style="color: #fff">
-      <div style="width: 100%; text-align: center; margin-top: 20px; margin-top: 10px">
-        {{ desc.title }}
+        <div v-html="desc.content" style="margin-top: 10px; width: 93%; margin-left: 2%"></div>
       </div>
-
-      <div v-html="desc.content" style="margin-top: 10px; width: 93%; margin-left: 2%"></div>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -40,6 +44,7 @@ import certificate1 from '@/assets/img/certificate/1.jpg'
 import certificate2 from '@/assets/img/certificate/2.jpg'
 import certificate3 from '@/assets/img/certificate/3.jpg'
 import certificate4 from '@/assets/img/certificate/4.jpg'
+import playMethod from '@/assets/img/playMethod.jpg'
 const router = useRouter()
 const route = useRoute()
 const id = ref('')
@@ -61,8 +66,6 @@ onActivated(() => {
   // console.log(data,"123123")
 })
 async function getData(val) {
-  if (route.query.id == 4) return
-
   desc.value = ''
   loading.value = true
   const data = await axios.get('api/article/one?id=' + val.id)

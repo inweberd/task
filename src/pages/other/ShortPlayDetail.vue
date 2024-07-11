@@ -101,7 +101,7 @@
           <!-- <van-image :src="imageSrc" width="100%" height="100%;" style='position:fixed;top:10%'></van-image> -->
           <div class="hongbao">
             <div class="num">
-              {{ price }}
+              {{ redPackageInfo.unit_price }}
               <span style="font-size: 20px; margin-left: 5px; margin-top: 10px">元</span>
             </div>
           </div>
@@ -121,7 +121,7 @@
 <script setup lang="jsx">
 import Comment from '../../components/Comment.vue'
 import Share from '../../components/Share.vue'
-import { onActivated, onDeactivated, onMounted, onUnmounted, reactive } from 'vue'
+import { onActivated, onDeactivated, onMounted, onUnmounted, reactive, ref } from 'vue'
 import bus, { EVENT_KEY } from '../../utils/bus'
 import { useNav } from '@/utils/hooks/useNav'
 import PlayFeedback from '@/pages/home/components/PlayFeedback.vue'
@@ -134,7 +134,7 @@ import ConfirmDialog from '../../components/dialog/ConfirmDialog.vue'
 import FollowSetting2 from '@/pages/home/components/FollowSetting2.vue'
 import ShareToFriend from '@/pages/home/components/ShareToFriend.vue'
 import { DefaultUser } from '@/utils/const_var'
-import { _checkImgUrl, slideItemRender } from '@/utils'
+import { _checkImgUrl, _notice, slideItemRender } from '@/utils'
 import { useBaseStore } from '@/store/pinia'
 import SlideVerticalInfinite from '@/components/slide/SlideVerticalInfinite.vue'
 import { useRouter } from 'vue-router'
@@ -152,7 +152,7 @@ import ba from '@/assets/img/ba.png'
 import jiu from '@/assets/img/jiu.png'
 import SelectVideo from '@/components/slide/SelectVideo.vue'
 import Loading from '@/components/Loading.vue'
-import { reqRecordTask, reqUserStaff } from '@/api/myApi'
+import { reqRecordTask, reqTaskMoney, reqUserStaff } from '@/api/myApi'
 defineOptions({
   name: 'ShortPlayVideoDetail'
 })
@@ -161,7 +161,7 @@ const router = useRouter()
 const show = ref(false)
 const baseStore = useBaseStore()
 const loading = ref(false)
-const price = ref(0)
+const redPackageInfo = ref({})
 let userInfo = {}
 
 const state = reactive({
@@ -218,7 +218,9 @@ function delayShowDialog(cb) {
 function close() {
   show.value = false
   loading.value = true
-  reqRecordTask().then((res) => {
+  reqRecordTask({
+    staff_id: redPackageInfo.value.id
+  }).then((res) => {
     loading.value = false
     let msg = ''
     if (res.code === 200) {
@@ -274,9 +276,17 @@ onMounted(() => {
       })
     }
     loading.value = true
-    reqUserStaff().then((res) => {
+    reqTaskMoney().then((res) => {
       loading.value = false
-      price.value = res.data?.result?.staff?.unit_price
+      if (res.code !== 200) return _notice(res.msg)
+
+      if (!res.data.length) {
+        return showDialog({
+          message: '今日红包已领取完，请明日再来！',
+          theme: 'round-button'
+        })
+      }
+      redPackageInfo.value = res.data[0]
       show.value = true
     })
   })

@@ -83,8 +83,8 @@ onUnmounted(() => {
             "
             src="../../assets/earned-cash.png"
             style="
-              width: 60rem;
-              padding-bottom: 25rem;
+              width: 50rem;
+              padding-bottom: 50rem;
               position: relative;
               z-index: 999;
               transform: translateY(5px);

@@ -41,15 +41,15 @@
         >
         <div class="desc">
           <div class="desc-title">提现流程</div>
-          <p><span class="index">1</span> . 0玩用户无需充值，无任何要求，有收益就可以直接提现</p>
-          <p><span class="index">2</span> . 银行卡提现15起提，每天提现次数3次</p>
-          <p><span class="index">3</span> . K豆钱包5元起提，每天提现次数3次</p>
-          <p><span class="index">4</span> . JD钱包5元起提，每天提现次数3次</p>
-          <p><span class="index">5</span> . 提现时间早上11.00--晚上21.00</p>
-          <p>
-            <span class="index">6</span>.
-            推荐优先使用K豆钱包和JD钱包充提，永不风控，钱包里面内置支付宝，微信，银行卡，USDT等多种到账方式，自由转换，安全，方便快捷
-          </p>
+          <p><span class="index">1.</span> 0玩用户无需充值，无要求，有收益就可以直接提现</p>
+          <p><span class="index">2.</span> 提现手续费5%，使用K豆钱包提现手续费0%（无手续费）</p>
+          <p><span class="index">3.</span> 银行卡提现15起提，每天提现次数3次</p>
+          <p><span class="index">4.</span> K豆钱包5元起提，（无手续费）</p>
+          <p><span class="index">5.</span> 提现时间早上11.00--晚上21.00</p>
+          <!--          <p>-->
+          <!--            <span class="index">6.</span>-->
+          <!--            推荐优先使用K豆钱包和JD钱包充提，永不风控，钱包里面内置支付宝，微信，银行卡，USDT等多种到账方式，自由转换，安全，方便快捷-->
+          <!--          </p>-->
         </div>
       </van-tab>
       <van-tab title="绑定提现">

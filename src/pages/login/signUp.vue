@@ -145,12 +145,10 @@ function go(path) {
 }
 
 function getCode() {
-  if (data.social == '' || data.invite == '' || data.password == '' || data.password2 == '') {
-    return _notice('请输入手机号码、密码、邀请码等信息')
+  if (!data.social || !data.invite) {
+    return _notice('请输入手机号码、邀请码等信息')
   }
-  if (data.password !== data.password2) {
-    return _notice('两次密码输入不一致')
-  }
+
   register(data).then((e) => {
     _notice(e.msg)
     if (e.code === 201) {
@@ -160,6 +158,10 @@ function getCode() {
   })
 }
 function onSubmit() {
+  if (data.password !== data.password2) {
+    return _notice('两次密码输入不一致')
+  }
+
   register(data).then((e) => {
     _notice(e.msg)
     if (e.code === 200) {

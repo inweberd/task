@@ -52,13 +52,26 @@
           <div class="input-content">
             <div class="input-content-icon">￥</div>
             <div class="input-field">
-              <input
+              <!--              <input-->
+              <!--                type="number"-->
+              <!--                :value="state.struct.amount"-->
+              <!--                @input="-->
+              <!--                  (e) => {-->
+              <!--                    console.log('e.data', e)-->
+              <!--                    state.struct.amount = parseInt(e.target.value)-->
+              <!--                  }-->
+              <!--                "-->
+              <!--              />-->
+              <van-field
+                v-model="state.struct.amount"
+                class="unp"
+                label=""
+                style="font-size: 26px; font-weight: bolder; padding-bottom: 0; margin-bottom: 10px"
                 type="number"
-                :value="state.struct.amount"
+                name="aa"
                 @input="
-                  (e) => {
-                    console.log('e.data', e)
-                    state.struct.amount = parseInt(e.target.value)
+                  () => {
+                    state.struct.amount = parseInt(state.struct.amount)
                   }
                 "
               />
@@ -377,7 +390,8 @@ onMounted(() => method.init())
           margin: 0;
           flex: 1;
           line-height: 26px;
-          input {
+          input,
+          .inp {
             height: 100%;
             opacity: 1;
             font: inherit;

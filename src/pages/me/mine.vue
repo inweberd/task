@@ -231,6 +231,10 @@ function getData() {
               <img class="image_5" src="./images/702e90f7f1ebc87641055bbff962f5b5.png" />
               <span class="font_2 text_7 mt-5">大逃杀游戏</span>
             </div>
+            <div class="flex-col items-center relative grid-item_7" @click="go('/nofinish')">
+              <img class="image_5" src="./images/money.png" />
+              <span class="font_2 text_7 mt-5">佣金互转</span>
+            </div>
           </div>
         </div>
         <van-cell

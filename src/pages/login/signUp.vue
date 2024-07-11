@@ -160,7 +160,6 @@ function getCode() {
   })
 }
 function onSubmit() {
-  alert(code)
   register(data).then((e) => {
     _notice(e.msg)
     if (e.code === 200) {

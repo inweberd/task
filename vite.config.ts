@@ -9,6 +9,7 @@ import VueMacros from 'unplugin-vue-macros/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VantResolver } from '@vant/auto-import-resolver'
+import legacy from '@vitejs/plugin-legacy'
 
 const lifecycle = process.env.npm_lifecycle_event
 
@@ -24,6 +25,38 @@ export default defineConfig((): Promise<UserConfig> => {
         base: './',
         envDir: 'env',
         plugins: [
+          legacy({
+            targets: [
+              'last 2 versions',
+              'iOS >= 10',
+              'Android >= 6',
+              'Chrome >= 49',
+              'Safari >= 10',
+              'Samsung >= 5',
+              'OperaMobile >= 46'
+            ],
+            // 其他特定版本或者范围
+            additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
+            renderLegacyChunks: true,
+            polyfills: [
+              'es.symbol',
+              'es.array.filter',
+              'es.promise',
+              'es.promise.finally',
+              'es/map',
+              'es/set',
+              'es.array.for-each',
+              'es.object.define-properties',
+              'es.object.define-property',
+              'es.object.get-own-property-descriptor',
+              'es.object.get-own-property-descriptors',
+              'es.object.keys',
+              'es.object.to-string',
+              'web.dom-collections.for-each',
+              'esnext.global-this',
+              'esnext.string.match-all'
+            ]
+          }),
           AutoImport({
             imports: ['vue', 'vue-router', 'pinia'],
             resolvers: [VantResolver()]

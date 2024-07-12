@@ -101,7 +101,9 @@
                   <img :src="item.icon" />
                 </div>
                 <div class="info">
-                  <div>{{ item.name }}</div>
+                  <div>
+                    {{ item.name }}
+                  </div>
                   <div>单笔支付限额 {{ item.min }} - {{ item.max }} ￥</div>
                 </div>
               </div>
@@ -166,7 +168,7 @@ const state = reactive({
         id: 5,
         key: 'kdpay',
         type: 'kd',
-        name: 'K豆钱包（支持USDT）',
+        name: 'K豆钱包（支持USDT，提现免手续费）',
         min: 10,
         max: 30000,
         code: 8277,

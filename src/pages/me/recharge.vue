@@ -187,7 +187,7 @@ const state = reactive({
         id: 5,
         key: 'kdpay',
         type: 'kd',
-        name: 'K豆钱包（支持USDT，提现免手续费）',
+        name: 'K豆钱包（提现免手续费）',
         min: 10,
         max: 30000,
         code: 8277,

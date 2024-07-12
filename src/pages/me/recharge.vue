@@ -85,6 +85,12 @@
           <span>确认</span>
         </button>
       </div>
+      <van-cell
+        v-for="item of downloadList"
+        :title="item.label"
+        is-link
+        @click="openDownload(item.url)"
+      />
       <!--      <van-image :src="pay2" width="100%" height="100%;"></van-image>-->
       <van-popup v-model:show="state.sheet.show" position="bottom" closeable round>
         <div class="select-wrap">
@@ -142,6 +148,19 @@ import shouxia from '@/assets/img/shouxia.png'
 const loading = ref(false)
 const getIcon = (iconUrl: string) => {
   return new URL(`../../assets/img/recharge/` + iconUrl, import.meta.url).href
+}
+const downloadList = [
+  {
+    label: 'K豆钱包安卓下载地址',
+    url: 'https://kdv3.com'
+  },
+  {
+    label: 'K豆钱包苹果下载地址',
+    url: 'https://kdv3.com'
+  }
+]
+const openDownload = (url) => {
+  location.href = url
 }
 const payItemClick = (id) => {
   state.item.pay.id = id
@@ -316,6 +335,7 @@ onMounted(() => method.init())
   width: 100%;
   height: 100%;
   background-color: #fff;
+  overflow-y: auto;
 
   .container {
     margin-top: -1px;

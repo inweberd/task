@@ -17,7 +17,6 @@
           background: #6344bb;
           width: 92%;
           margin-left: 4%;
-          height: 85px;
           border-radius: 10px;
         "
       >
@@ -204,7 +203,7 @@ const buy = (item) => {
 }
 
 const getBuyBtnBg = (item) => {
-  return userInfo.value.result.staff.serial + 1 === item.serial ? '#fff' : '#ccc'
+  return userInfo.value.result.staff.serial + 1 === item.serial ? '#d97171' : '#fff'
 }
 
 onMounted(() => {

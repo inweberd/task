@@ -191,17 +191,17 @@ const state = reactive({
         max: 2000,
         code: 805,
         icon: bankLarge
-      },
-      {
-        id: 1,
-        key: 'ltzf',
-        type: 'wechat',
-        name: ' 微信',
-        min: 100,
-        max: 2000,
-        code: 827,
-        icon: wechatLarge
       }
+      // {
+      //   id: 1,
+      //   key: 'ltzf',
+      //   type: 'wechat',
+      //   name: ' 微信',
+      //   min: 100,
+      //   max: 2000,
+      //   code: 827,
+      //   icon: wechatLarge
+      // }
       // {
       //   id: 4,
       //   key: 'ltzf',

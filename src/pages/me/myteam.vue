@@ -61,7 +61,7 @@
           <div class="number">{{ memberInfo.team?.withdraw || 0 }}</div>
           <div class="label">团队总提现</div>
         </div>
-        <div class="stat-item">
+        <div class="stat-item" style="width: 100%">
           <div class="number">{{ userIncomeInfo.today || 0 }}</div>
           <div class="label">今日收益</div>
         </div>
@@ -69,10 +69,10 @@
         <!--          <div class="number">{{ userIncomeInfo.total || 0 }}</div>-->
         <!--          <div class="label">历史收益</div>-->
         <!--        </div>-->
-        <div class="stat-item">
-          <div class="number">{{ 0 }}</div>
-          <div class="label">股东晋级奖励</div>
-        </div>
+        <!--        <div class="stat-item">-->
+        <!--          <div class="number">{{ 0 }}</div>-->
+        <!--          <div class="label">股东晋级奖励</div>-->
+        <!--        </div>-->
       </div>
       <van-search v-model="searchInfo.phone" placeholder="请输入要查询的手机号码" />
       <van-list

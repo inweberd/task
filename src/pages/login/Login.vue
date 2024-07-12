@@ -117,7 +117,7 @@ function go(path) {
   router.push(path)
 }
 function jumpToQQ() {
-  window.location.href = decodeURIComponent('https://qm.qq.com/q/nOyounYxCS')
+  window.location.href = decodeURIComponent('https://qm.qq.com/q/HKBjmj6IkW')
 }
 async function getPhone() {
   // data.loading.getPhone = true
@@ -151,6 +151,10 @@ const onSubmit = async (values) => {
       data.loading.getPhone = false
     })
 }
+onMounted(() => {
+  window.localStorage.removeItem('userInfo')
+  window.localStorage.removeItem('token')
+})
 </script>
 
 <style scoped lang="less">

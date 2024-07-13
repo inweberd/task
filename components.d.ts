@@ -55,9 +55,7 @@ declare module 'vue' {
     VanCellGroup: typeof import('vant/es')['CellGroup']
     VanCircle: typeof import('vant/es')['Circle']
     VanDialog: typeof import('vant/es')['Dialog']
-    VanDivider: typeof import('vant/es')['Divider']
     VanField: typeof import('vant/es')['Field']
-    VanForm: typeof import('vant/es')['Form']
     VanIcon: typeof import('vant/es')['Icon']
     VanImage: typeof import('vant/es')['Image']
     VanList: typeof import('vant/es')['List']
@@ -66,10 +64,8 @@ declare module 'vue' {
     VanPopup: typeof import('vant/es')['Popup']
     VanRadio: typeof import('vant/es')['Radio']
     VanRadioGroup: typeof import('vant/es')['RadioGroup']
-    VanSearch: typeof import('vant/es')['Search']
     VanTab: typeof import('vant/es')['Tab']
     VanTabs: typeof import('vant/es')['Tabs']
-    VanUploader: typeof import('vant/es')['Uploader']
     WaterfallList: typeof import('./src/components/WaterfallList.vue')['default']
   }
 }

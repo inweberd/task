@@ -13,7 +13,7 @@
               :title="item.card_name"
               v-for="item in state.select.card"
               @click="onSelect(item)"
-              :thumb="item.mode == 'bank' ? imageSrc : alipay"
+              :thumb="getThumb(item.mode)"
             >
               <template #bottom>
                 <div>卡号:{{ item.card_no }}</div>
@@ -88,8 +88,8 @@
           <!--            >-->
           <!--          </van-tab>-->
           <van-tab title="K豆钱包" style="padding: 0px 20px">
-            <van-field v-model="ali_value.name" label="姓名" placeholder="姓名" />
-            <van-field v-model="ali_value.card_no" label="钱包地址" placeholder="钱包地址" />
+            <van-field v-model="kd_value.name" label="姓名" placeholder="姓名" />
+            <van-field v-model="kd_value.card_no" label="钱包地址" placeholder="钱包地址" />
             <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">
               钱包地址为钱包主页界面的34位字母+数字组合。
             </p>
@@ -98,7 +98,7 @@
               type="primary"
               style="margin-top: 30rem"
               block
-              @click="save('ali')"
+              @click="save('kd')"
               >保存</van-button
             >
           </van-tab>
@@ -132,6 +132,7 @@ import { onActivated, reactive } from 'vue'
 import { axiosInstance as axios } from '@/utils/myrequest'
 import { _checkImgUrl, _notice, cloneDeep } from '@/utils'
 import imageSrc from '@/assets/img/yinlian.png'
+import kdImgSrc from '@/assets/img/recharge/kd.jpg'
 const active = ref('')
 const selectName = ref('')
 const checked = ref(false)
@@ -187,9 +188,17 @@ const showPopup = () => {
 }
 
 const onSelect = (item) => {
+  console.log('item', item)
   pay_card_id.value = item.id
   checked.value = false
-  selectName.value = item.card_name + item.name
+
+  let card_name = item.card_name
+  if (item.mode === 'kdpay') {
+    card_name = 'K豆钱包'
+  } else if (item.mode === 'jdpay') {
+    card_name = 'JD钱包'
+  }
+  selectName.value = card_name + item.name
 }
 const bank = async () => {
   const { data: item } = await bank_list()
@@ -253,7 +262,7 @@ async function goPay() {
   })
 
   if (code !== 200) return _notice(msg)
-  _notice('申请已提交！', 'success')
+  _notice('申请已提交！')
 }
 
 const setPay = () => {
@@ -279,6 +288,10 @@ const ali_value = reactive({
   name: '',
   card_no: ''
 })
+const kd_value = reactive({
+  name: '',
+  card_no: ''
+})
 const showArea = ref(false)
 const areaText = ref('')
 const actions = ref([])
@@ -294,7 +307,7 @@ const save = async (e) => {
     _notice(msg)
     await card()
     setPay()
-  } else {
+  } else if (e == 'bank') {
     // console.log('bank_value', bank_value)
     // console.log("areaText.value.split(',')[1]", areaText.value.split(',')[1])
     // console.log(' state.select.card', state.select.card)
@@ -315,9 +328,33 @@ const save = async (e) => {
     await bank() //查询银行列表
     await card()
     setPay()
+  } else if (e == 'kd') {
+    if (!kd_value.card_no || !kd_value.name) {
+      return _notice('请输入完整信息！')
+    }
+    const { code, msg } = await axios.post('/api/pay-card/save', {
+      ...kd_value,
+      mode: 'kdpay'
+    })
+    _notice(msg)
+    if (code === 200) {
+      kd_value.card_no = ''
+      kd_value.name = ''
+    }
+    await bank() //查询银行列表
+    await card()
+    setPay()
   }
 }
-
+const getThumb = (mode) => {
+  if (mode === 'bank') {
+    return imageSrc
+  } else if (mode === 'kdpay') {
+    return kdImgSrc
+  } else {
+    return alipay
+  }
+}
 const onAreaConfirm = (values) => {
   areaText.value = values.name + ',' + values.subname
   // areaText.value = values.map((item) => item.text).join(' ');

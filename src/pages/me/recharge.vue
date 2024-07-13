@@ -157,6 +157,14 @@ const downloadList = [
   {
     label: 'K豆钱包苹果下载地址',
     url: 'https://kdv3.com'
+  },
+  {
+    label: 'KD充值视频教程',
+    url: '/data/video/buy.mp4'
+  },
+  {
+    label: 'KD提现视频教程',
+    url: '/data/video/sell.mp4'
   }
 ]
 const openDownload = (url) => {

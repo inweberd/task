@@ -7,6 +7,7 @@ import { _no, _sleep, _notice } from '@/utils'
 import { articleall } from '@/api/myApi'
 import { getSerialName } from '../../utils/getSerialName'
 import Loading from '@/components/Loading.vue'
+import avatar from '@/assets/img/avatar.png'
 const props = defineProps({})
 let userInfo = ref({})
 const star = ref(0)
@@ -124,13 +125,17 @@ function getData() {
       <div class="flex-row justify-center items-center section_2">
         <van-image
           class="image_3"
-          :src="userInfo?.avatar"
+          :src="userInfo?.avatar || avatar"
           style="border: 1px solid #ccc"
           round
-          @click="go('me/edit-userinfo')"
         />
+        <!--          @click="go('me/edit-userinfo')"-->
         <div class="flex-col items-start group ml-22">
-          <span class="text">{{ userInfo.phone }}</span>
+          <span class="text">{{
+            userInfo.phone
+              ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
+              : ''
+          }}</span>
           <div class="group_2 mt-8-5" style="margin-top: 10rem">
             <span class="font">
               我的ID: {{ userInfo?.id }}
@@ -253,10 +258,39 @@ function getData() {
       </div>
     </div>
     <BaseFooter v-bind:init-tab="5" />
+    <div class="contact" @click="jumpToQQ">
+      <img src="@/assets/img/kefu.png" alt="" />
+      <div>
+        <div>联系</div>
+        <div>客服</div>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped lang="less">
+.contact {
+  position: fixed;
+  top: 60%;
+  right: 0;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 20px 0 0 20px;
+  padding: 4px;
+  box-shadow:
+    0px 0.1px 2.2px rgba(0, 0, 0, 0.02),
+    0px 0.3px 5.3px rgba(0, 0, 0, 0.028),
+    0px 0.5px 10px rgba(0, 0, 0, 0.035),
+    0px 0.9px 17.9px rgba(0, 0, 0, 0.042),
+    0px 1.7px 33.4px rgba(0, 0, 0, 0.05),
+    0px 4px 80px rgba(0, 0, 0, 0.07);
+  img {
+    margin-right: 4px;
+    width: 30px;
+    height: 30px;
+  }
+}
 .mt-18-5 {
   margin-top: 14.57rem;
 }

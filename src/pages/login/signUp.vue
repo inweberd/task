@@ -106,10 +106,11 @@
 
 <script lang="ts" setup>
 import imgg from './logo1.png'
-import { register, sociallogin } from '@/api/myApi'
+import { logout as fnlogout, register, sociallogin } from '@/api/myApi'
 import { _no, _sleep, _notice } from '@/utils'
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
 import { useRoute } from 'vue-router'
+import { onMounted } from 'vue'
 
 const route = useRoute()
 const time = ref()
@@ -175,6 +176,11 @@ function onSubmit() {
     }
   })
 }
+
+onMounted(() => {
+  window.localStorage.removeItem('userInfo')
+  window.localStorage.removeItem('token')
+})
 </script>
 
 <style lang="less" scoped>

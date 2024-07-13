@@ -1,12 +1,13 @@
 <script setup>
 import { reactive, ref, watch } from 'vue'
-import { _checkImgUrl, _duration, _formatNumber, _stopPropagation } from '@/utils'
+import { _checkImgUrl, _duration, _formatNumber, _stopPropagation, cloneDeep } from '@/utils'
 import { recommendedLongVideo, shortPlayVideo } from '@/api/videos'
 import ScrollList from '@/components/ScrollList.vue'
 import { useNav } from '@/utils/hooks/useNav'
 import SlideItem from '@/components/slide/SlideItem.vue'
-const activeTab = ref(2)
+import { useBaseStore } from '@/store/pinia'
 
+const router = useRouter()
 const tab = ref([
   // { name: '关注', id: 1 },
   { name: '推荐', id: 2 },
@@ -18,9 +19,36 @@ const tab = ref([
 
 const nav = useNav()
 const key = ref(0)
+const activeTab = ref(2)
 const tabClick = (value) => {
   activeTab.value = value
   key.value++
+}
+const store = useBaseStore()
+
+const toShortDetail = (path, query, data) => {
+  console.log('data', data)
+  data.dateInfo.videoList = data.dateInfo.videoList.map((item, index) => {
+    const { id, title, total, playCount, cover } = data.dateInfo
+    return {
+      id,
+      title,
+      total,
+      playCount,
+      cover,
+      currentPlayUrl: item,
+      no: index,
+      type: 'shortPlayVideo'
+    }
+  })
+  // console.log('dataList', dataList)
+  // store.routeData = cloneDeep({ list: dataList, index: 0 })
+  store.playVideoData = cloneDeep(data.dateInfo)
+  router.push({ path, query })
+
+  // if (data) {
+  // }
+  // router.push({ path, query })
 }
 </script>
 
@@ -45,50 +73,19 @@ const tabClick = (value) => {
               class="item"
               :key="i"
               v-for="(item, i) in list"
-              @click="nav('/shortPlayDetail', {}, { list, index: i })"
+              @click="toShortDetail('/shortPlayDetail', {}, { dateInfo: item, index: i })"
             >
-              <!-- <div class="video-wrapper" v-if="i % 9 === 0">
-								<video muted preload loop x5-video-player-type="h5-page" :x5-video-player-fullscreen="false"
-									:webkit-playsinline="true" :x5-playsinline="true" :playsinline="true" :fullscreen="false"
-									v-is-can-play :poster="_checkImgUrl(item.video.cover.url_list[0])"
-									:src="item.video.play_addr.url_list[0]"></video>
-								<div class="options">
-									<div class="left"></div>
-									<div class="right">
-										<div class="option" @click.stop="state.danmu = !state.danmu">
-											<img v-if="state.danmu" src="@/assets/img/icon/danmu-open.svg" />
-											<img v-else src="@/assets/img/icon/danmu-close.svg" />
-										</div>
-										<div class="option" @click.stop="state.muted = !state.muted">
-											<Icon v-if="state.muted" icon="charm:sound-mute" />
-											<Icon v-else icon="akar-icons:sound-on" />
-										</div>
-										<div class="option">
-											<img src="@/assets/img/icon/rotate.svg" />
-										</div>
-									</div>
-								</div>
-							</div> -->
-              <img v-lazy="_checkImgUrl(item.video.cover.url_list[0])" alt="" class="poster" />
-              <!--              <div class="duration">{{ _duration(item.duration / 1000) }}</div>-->
-              <div class="duration">共{{ item.shortPlayNum || 0 }}集</div>
+              <img v-lazy="item.cover" alt="" class="poster" />
+              <div class="duration">
+                <van-icon name="play" />
+                {{ item.playCount }}万
+              </div>
               <div class="title">
-                {{ item.desc }}
+                {{ item.title }}
               </div>
               <div class="bottom">
                 <div class="l">
-                  <img
-                    v-lazy="_checkImgUrl(item.author.avatar_168x168.url_list[0])"
-                    alt=""
-                    class="avatar"
-                  />
-                  <div class="name">{{ item.author.nickname }}</div>
-                </div>
-                <div class="r">
-                  <Icon icon="icon-park-outline:like" />
-                  <div class="num">
-                    {{ _formatNumber(item.statistics.digg_count) }}
-                  </div>
+                  <div class="name">共{{ item.total || 0 }}集</div>
                 </div>
               </div>
             </div>
@@ -101,6 +98,26 @@ const tabClick = (value) => {
 </template>
 
 <style scoped lang="less">
+.navs {
+  width: 90%;
+  margin-left: 5%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .navItem {
+    display: flex;
+    margin-right: 10px;
+    color: #fff;
+    &.activeIndex {
+      font-weight: bold;
+      color: rgb(11, 87, 208);
+    }
+  }
+}
+
 .long-video {
   font-size: 14rem;
   color: white;
@@ -120,7 +137,7 @@ const tabClick = (value) => {
   .item {
     position: relative;
     width: 32%;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     .poster {
       border-radius: 12rem;
       width: 100%;
@@ -128,52 +145,12 @@ const tabClick = (value) => {
       object-fit: cover;
     }
 
-    .video-wrapper {
-      height: 220rem;
-      position: relative;
-
-      video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .options {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 0 12rem;
-        display: flex;
-        position: absolute;
-        bottom: 8rem;
-        justify-content: space-between;
-        align-items: center;
-        color: white;
-
-        .right {
-          display: flex;
-          align-items: center;
-          gap: 10rem;
-        }
-
-        img {
-          width: 20rem;
-        }
-
-        svg {
-          font-size: 20rem;
-        }
-      }
-    }
-
     .title {
-      height: 36rem;
       color: white;
       font-size: 14rem;
       overflow: hidden;
       text-overflow: ellipsis;
-      display: -webkit-box; //作为弹性伸缩盒子模型显示。
-      -webkit-box-orient: vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
-      -webkit-line-clamp: 2; //显示的行
+      margin: 2px 0;
     }
 
     .f {
@@ -186,16 +163,15 @@ const tabClick = (value) => {
     .duration {
       color: white;
       position: absolute;
-      bottom: 75rem;
+      bottom: 45rem;
       left: 5rem;
-      font-size: 13rem;
+      font-size: 12rem;
     }
 
     .bottom {
       color: gray;
       .f;
       font-size: 13rem;
-      margin-top: 10px;
       .l {
         .f;
         justify-content: flex-start;
@@ -214,15 +190,6 @@ const tabClick = (value) => {
           height: @w;
           object-fit: cover;
           border-radius: 50%;
-        }
-      }
-
-      .r {
-        word-break: keep-all;
-        .f;
-
-        svg {
-          font-size: 16rem;
         }
       }
     }
@@ -266,25 +233,5 @@ const tabClick = (value) => {
       margin-left: 5rem;
     }
   }
-}
-
-.navs {
-  width: 90%;
-  margin-left: 5%;
-  display: flex; /* 设定为Flex容器 */
-  justify-content: flex-start; /* 水平居中 */
-  align-items: center; /* 垂直居中 */
-  font-size: 16px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.navItem {
-  display: flex;
-  margin-right: 10px;
-  color: #fff;
-}
-.activeIndex {
-  font-weight: bold;
-  color: rgb(11, 87, 208);
 }
 </style>

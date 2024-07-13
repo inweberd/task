@@ -2,13 +2,13 @@
   <div class="video-wrapper" ref="videoWrapper" :class="positionName">
     <Loading v-if="state.loading" style="position: absolute" />
     <!--    <video :src="item.video + '?v=123'"-->
+
     <video
-      :src="item.video.play_addr.url_list[0]"
+      :src="item.currentPlayUrl"
       :poster="poster"
       ref="videoEl"
       :muted="state.isMuted"
       preload="true"
-      loop
       x5-video-player-type="h5-page"
       :x5-video-player-fullscreen="false"
       :webkit-playsinline="true"
@@ -21,72 +21,40 @@
     </video>
     <Icon icon="fluent:play-28-filled" class="pause-icon" v-if="!isPlaying" />
     <div class="float">
-      <template v-if="isLive">
-        <div class="living">点击进入直播间</div>
-        <ItemDesc :is-live="true" v-model:item="state.localItem" :position="position" />
-      </template>
-      <template v-else>
-        <div :style="{ opacity: state.isMove ? 0 : 1 }" class="normal">
-          <template v-if="!state.commentVisible">
-            <ItemToolbar v-model:item="state.localItem" />
-            <ItemDesc v-model:item="state.localItem" />
-          </template>
-          <div v-if="isMy" class="comment-status">
-            <div class="comment">
-              <div class="type-comment">
-                <img src="../../assets/img/icon/head-image.jpeg" alt="" class="avatar" />
-                <div class="right">
-                  <p>
-                    <span class="name">zzzzz</span>
-                    <span class="time">2020-01-20</span>
-                  </p>
-                  <p class="text">北京</p>
-                </div>
-              </div>
-              <transition-group name="comment-status" tag="div" class="loveds">
-                <div class="type-loved" :key="i" v-for="i in state.test">
-                  <img src="../../assets/img/icon/head-image.jpeg" alt="" class="avatar" />
-                  <img src="../../assets/img/icon/love.svg" alt="" class="loved" />
-                </div>
-              </transition-group>
-            </div>
-          </div>
+      <div
+        class="progress"
+        :class="progressClass"
+        ref="progressEl"
+        @click="null"
+        @touchstart="touchstart"
+        @touchmove="touchmove"
+        @touchend="touchend"
+      >
+        <div class="time" v-if="state.isMove">
+          <span class="currentTime">{{ _duration(state.currentTime) }}</span>
+          <span class="duration"> / {{ _duration(state.duration) }}</span>
         </div>
-        <div
-          class="progress"
-          :class="progressClass"
-          ref="progressEl"
-          @click="null"
-          @touchstart="touchstart"
-          @touchmove="touchmove"
-          @touchend="touchend"
-        >
-          <div class="time" v-if="state.isMove">
-            <span class="currentTime">{{ _duration(state.currentTime) }}</span>
-            <span class="duration"> / {{ _duration(state.duration) }}</span>
-          </div>
-          <template v-if="state.duration > 15 || state.isMove || !isPlaying">
-            <div class="bg"></div>
-            <div class="progress-line" :style="durationStyle"></div>
-            <div class="point"></div>
-          </template>
-        </div>
-      </template>
+        <template v-if="state.duration > 15 || state.isMove || !isPlaying">
+          <div class="bg"></div>
+          <div class="progress-line" :style="durationStyle"></div>
+          <div class="point"></div>
+        </template>
+      </div>
     </div>
+    <ShortBaseMusic style="position: fixed; right: 30px; bottom: 100px"></ShortBaseMusic>
   </div>
 </template>
 
 <script setup lang="ts">
 import { _checkImgUrl, _duration, _stopPropagation } from '@/utils'
 import Loading from '../Loading.vue'
-import ItemToolbar from './ItemToolbar.vue'
-import ItemDesc from './ItemDesc.vue'
 import bus, { EVENT_KEY } from '../../utils/bus'
 import { SlideItemPlayStatus } from '@/utils/const_var'
 import { computed, onMounted, onUnmounted, provide, reactive, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { _css } from '@/utils/dom'
 import SelectVideo from '@/components/slide/SelectVideo.vue'
+import ShortBaseMusic from '@/components/ShortBaseMusic.vue'
 
 defineOptions({
   name: 'ShortPlayBaseVideo'
@@ -170,7 +138,7 @@ let state = reactive({
   commentVisible: false
 })
 const poster = $computed(() => {
-  return _checkImgUrl(props.item.video.poster ?? props.item.video.cover.url_list[0])
+  return _checkImgUrl(props.item.poster)
 })
 const durationStyle = $computed(() => {
   return { width: state.playX + 'px' }
@@ -217,10 +185,9 @@ function handleIntersection(entries) {
     }
   })
 }
-onMounted(() => {
-  // console.log('video', this.localItem.aweme_id)
-  // console.log(this.commentVisible)
 
+onMounted(() => {
+  window.test = 2
   state.height = document.body.clientHeight
   state.width = document.body.clientWidth
   videoEl.currentTime = 0
@@ -235,26 +202,19 @@ onMounted(() => {
     state.step = state.progressBarRect.width / Math.floor(state.duration)
     videoEl.addEventListener('timeupdate', fun)
   })
+  bus.on(EVENT_KEY.REMOVE_MUTED, removeMuted)
 
   let eventTester = (e, t: string) => {
     videoEl.addEventListener(
       e,
       () => {
         console.log(e)
-        // console.log('eventTester', e, state.item.aweme_id)
         if (e === 'playing') {
           state.loading = false
-          // if (window.test !== 1) {
-          // 	state.isMuted = false
-          // }
           console.log(videoEl.muted)
           if (!videoEl.muted && window.test !== 1) {
             console.log(88)
             removeMuted()
-            // videoEl.muted = false
-            // videoEl.muted = false
-
-            // removeMuted()
           }
         }
         if (e === 'waiting') {
@@ -279,32 +239,10 @@ onMounted(() => {
       false
     )
   }
-  // eventTester("loadstart", '客户端开始请求数据'); //客户端开始请求数据
-  // eventTester("abort", '客户端主动终止下载（不是因为错误引起）'); //客户端主动终止下载（不是因为错误引起）
-  // eventTester("loadstart", '客户端开始请求数据'); //客户端开始请求数据
-  // eventTester("progress", '客户端正在请求数据'); //客户端正在请求数据
-  // // eventTester("suspend", '延迟下载'); //延迟下载
-  // eventTester("abort", '客户端主动终止下载（不是因为错误引起），'); //客户端主动终止下载（不是因为错误引起），
-  // eventTester("error", '请求数据时遇到错误'); //请求数据时遇到错误
-  // eventTester("stalled", '网速失速'); //网速失速
-  // eventTester("play", 'play()和autoplay开始播放时触发'); //play()和autoplay开始播放时触发
-  // eventTester("pause", 'pause()触发'); //pause()触发
-  // eventTester("loadedmetadata", '成功获取资源长度'); //成功获取资源长度
-  // eventTester("loadeddata"); //
+
   eventTester('waiting', '等待数据，并非错误') //等待数据，并非错误
   eventTester('playing', '开始回放') //开始回放
-  // eventTester("canplay", '/可以播放，但中途可能因为加载而暂停'); //可以播放，但中途可能因为加载而暂停
-  // eventTester("canplaythrough", '可以播放，歌曲全部加载完毕'); //可以播放，歌曲全部加载完毕
-  // eventTester("seeking", '寻找中'); //寻找中
-  // eventTester("seeked", '寻找完毕'); //寻找完毕
-  // // eventTester("timeupdate",'播放时间改变'); //播放时间改变
-  // eventTester("ended", '播放结束'); //播放结束
-  // eventTester("ratechange", '播放速率改变'); //播放速率改变
-  // eventTester("durationchange", '资源长度改变'); //资源长度改变
-  // eventTester("volumechange", '音量改变'); //音量改变
 
-  // console.log('mounted')
-  // bus.off('singleClickBroadcast')
   bus.on(EVENT_KEY.SINGLE_CLICK_BROADCAST, click)
   bus.on(EVENT_KEY.DIALOG_MOVE, onDialogMove)
   bus.on(EVENT_KEY.DIALOG_END, onDialogEnd)
@@ -315,10 +253,8 @@ onMounted(() => {
 
   bus.on(EVENT_KEY.REMOVE_MUTED, removeMuted)
 
-  // setTimeout(() => {
   initObserver()
 
-  // }, 1000);
   //
 })
 
@@ -338,6 +274,7 @@ onUnmounted(() => {
 })
 
 function removeMuted() {
+  console.log(111111)
   state.isMuted = false
   // console.log(videoEl)
   if (window.test == 1) {

@@ -117,23 +117,23 @@
           <!-- <SlideItem>
 						<LongVideo :active="state.navIndex === 1 && state.baseIndex === 1" />
 					</SlideItem> -->
-          <SlideItem>
-            <MusicRankList
-              :zzz="false"
-              style="position: relative; height: 90vh; overflow: auto"
-              :active="state.navIndex === 1 && state.baseIndex === 1"
-            >
-            </MusicRankList>
-            <!-- <MusicRankList :zzz="false" style="position: relative;
+          <!--          <SlideItem>-->
+          <!--            <MusicRankList-->
+          <!--              :zzz="false"-->
+          <!--              style="position: relative; height: 90vh; overflow: auto"-->
+          <!--              :active="state.navIndex === 1 && state.baseIndex === 1"-->
+          <!--            >-->
+          <!--            </MusicRankList>-->
+          <!-- <MusicRankList :zzz="false" style="position: relative;
 						height:90vh;
 						overflow: auto;" :active="state.navIndex === 2 && state.baseIndex === 1">
 						</MusicRankList> -->
-          </SlideItem>
+          <!--          </SlideItem>-->
           <!-- <Slide2 :active="state.navIndex === 2 && state.baseIndex === 1" /> -->
           <SlideItem>
-            <Community :active="state.navIndex === 2 && state.baseIndex === 1" />
+            <Community :active="state.navIndex === 1 && state.baseIndex === 1" />
           </SlideItem>
-          <Slide4 :active="state.navIndex === 3" />
+          <Slide4 :active="state.navIndex === 2" />
         </SlideHorizontal>
         <!-- <Slide4 :active="state.navIndex === 3" /> -->
         <BaseFooter v-bind:init-tab="1" />
@@ -311,7 +311,7 @@ const tipContent = ref('')
 const state = reactive({
   active: true,
   baseIndex: 1,
-  navIndex: 3,
+  navIndex: 2,
   itemIndex: 0,
   test: '',
   recommendList: [],

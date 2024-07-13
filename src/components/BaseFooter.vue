@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="l-button" @click="tab(4)">
-      <span :class="{ active: currentTab === 4 }">合集</span>
+      <span :class="{ active: currentTab === 4 }">短剧</span>
       <!-- <div class="badge">2</div> -->
     </div>
     <div class="l-button" @click="tab(5)">

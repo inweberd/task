@@ -1,5 +1,6 @@
 import resource from '../assets/data/resource.js'
 import posts6 from '@/assets/data/posts6.json'
+import shortPlay from '@/assets/data/shortPlay.json'
 import posts7 from '@/assets/data/posts7.json'
 import { _fetch, cloneDeep, random } from '@/utils'
 import { BASE_URL, FILE_URL } from '@/config'
@@ -27,8 +28,8 @@ let allRecommendVideos = initVideo.map((v: any) => {
   v.type = 'recommend-video'
   return v
 })
-console.log('allRecommendVideos', allRecommendVideos)
-let allShorPlayVideos = posts6.map((v: any) => {
+
+let allShorPlayVideos = shortPlay.map((v: any) => {
   v = JSON.parse(JSON.stringify(v))
   v.type = 'shortPlayVideo'
   v.shortPlayList = [
@@ -169,7 +170,6 @@ async function fetchData() {
   const url = `/json/${num}.md`
   _fetch(url).then((r) => {
     r.json().then(async (v) => {
-      console.log('------------v', v)
       let userList = cloneDeep(baseStore.users)
       if (!userList.length) {
         await baseStore.init()
@@ -264,6 +264,7 @@ async function fetchShortPlayData() {
 export async function startMock() {
   mock.onGet(/video\/recommended/).reply(async (config) => {
     const { start, pageSize } = config.params
+    // console.log('allRecommendVideos', cloneDeep(allRecommendVideos.length), config.params)
     return [
       200,
       {
@@ -520,5 +521,5 @@ export async function startMock() {
   })
 
   setTimeout(fetchData, 1000)
-  setTimeout(fetchShortPlayData, 1000)
+  // setTimeout(fetchShortPlayData, 1000)
 }

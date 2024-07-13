@@ -13,6 +13,7 @@
         </div>
         <div class="d-flex justify-content-between font-13 text-muted">
           <span>{{ item.remark }}</span>
+          <span>{{ method.toDate(item.create_time) }}</span>
         </div>
         <span v-if="index != dataList.length - 1" class="h-2px bg-light d-block my-2"></span>
       </div>
@@ -24,6 +25,8 @@
 import { reactive, onMounted, ref } from 'vue'
 import { reqWalletLog } from '@/api/myApi'
 import { _notice } from '@/utils/index'
+import { axiosInstance as axios } from '@/utils/myrequest'
+import utils from '@/utils/utils.js'
 const loading = ref(true)
 const finished = ref(false)
 
@@ -35,6 +38,9 @@ const searchInfo = reactive({
   limit: 10,
   phone: ''
 })
+const method = {
+  toDate: (value) => utils.timeToDate(value)
+}
 const getDataList = () => {
   searchInfo.page++
   loading.value = true

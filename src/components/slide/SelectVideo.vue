@@ -4,7 +4,7 @@
       <div class="info">
         <span>选集</span>
         <span> · </span>
-        <span>全{{ dataInfo?.shortPlayNum || 0 }}集</span>
+        <span>全{{ dataInfo?.total || 0 }}集</span>
         <span> · </span>
         <span>永久免费</span>
       </div>
@@ -22,17 +22,13 @@
             <!--              src="https://img1.baidu.com/it/u=3518673092,2032183538&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1720026000&t=303e5dcea62618c83e137f06be50ef71"-->
             <!--              alt=""-->
             <!--            />-->
-            <img
-              v-lazy="_checkImgUrl(dataInfo.video?.cover?.url_list?.[0])"
-              alt=""
-              class="poster"
-            />
+            <img v-lazy="dataInfo.cover" alt="" class="poster" />
           </div>
           <div class="title">
-            <div class="title-t">{{ dataInfo.desc }}</div>
+            <div class="title-t">{{ dataInfo.title }}</div>
             <div class="title-b">
               <div class="tag">永久免费</div>
-              <div class="total">已完结 共{{ dataInfo?.shortPlayNum || 0 }}集</div>
+              <div class="total">已完结 共{{ dataInfo?.total || 0 }}集</div>
             </div>
           </div>
         </div>
@@ -60,9 +56,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, defineProps, defineEmits } from 'vue'
+import { computed, ref, defineProps, defineEmits, watch } from 'vue'
 import { _checkImgUrl } from '@/utils'
-const props = defineProps(['modelValue'])
+const props = defineProps(['modelValue', 'index'])
 const emits = defineEmits(['update:modelValue', 'change', 'reset'])
 const dataInfo = computed({
   get: () => {
@@ -81,7 +77,7 @@ const activeNum = ref(1)
 const activeTab = ref(0)
 const tabArr = computed(() => {
   const arr = []
-  for (let i = 0; i < dataInfo.value?.shortPlayNum || 0; i++) {
+  for (let i = 0; i < dataInfo.value?.total || 0; i++) {
     if (!(i % 30)) {
       arr.push([])
     }
@@ -89,6 +85,9 @@ const tabArr = computed(() => {
   }
   return arr
 })
+// const activeTab = computed(() => {
+//   return tabArr.value.findIndex((item) => item.includes(activeNum.value))
+// })
 
 const numArr = computed(() => {
   return tabArr.value[activeTab.value]
@@ -99,9 +98,19 @@ const showSelect = () => {
 }
 
 const changeVideo = (item) => {
+  console.log('item', item)
+  console.log('dataInfo', dataInfo)
+  emits('change', item - 1)
   activeNum.value = item
-  dataInfo.value.video.play_addr.url_list[0] = dataInfo.value.shortPlayList[item - 1]
+  // dataInfo.value.currentPlayUrl = dataInfo.value.videoList[item - 1]
 }
+watch(
+  () => props.index,
+  (val) => {
+    activeNum.value = val + 1
+    activeTab.value = tabArr.value.findIndex((item) => item.includes(activeNum.value))
+  }
+)
 </script>
 
 <style scoped lang="less">

@@ -24,10 +24,10 @@
           <!-- <div class="tab" :class="{ active: index === 1 }" @click.stop="change(1)">
 						<span>视频</span>
 					</div> -->
-          <div class="tab" :class="{ active: index === 1 }" @click.stop="change(1)">
-            <span>关注</span>
-            <!-- <img src="../../../assets/img/icon/live.webp" class="tab2-img" /> -->
-          </div>
+          <!--          <div class="tab" :class="{ active: index === 1 }" @click.stop="change(1)">-->
+          <!--            <span>关注</span>-->
+          <!--            &lt;!&ndash; <img src="../../../assets/img/icon/live.webp" class="tab2-img" /> &ndash;&gt;-->
+          <!--          </div>-->
           <!--					<div class="tab" :class="{ active: index === 2 }" @click.stop="change(2)">-->
           <!--						<span>经验</span>-->
           <!--					</div>-->

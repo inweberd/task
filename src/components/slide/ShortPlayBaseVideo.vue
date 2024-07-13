@@ -93,7 +93,7 @@ const props = defineProps({
     }
   }
 })
-
+console.log('sadasdsa', JSON.parse(JSON.stringify(props.item)))
 provide(
   'isPlaying',
   computed(() => isPlaying)
@@ -171,6 +171,7 @@ function handleIntersection(entries) {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       // console.log(videoEl.muted)
+      console.log('videoEl', videoEl)
       videoEl.play()
       // console.log('state.isMuted', state.isMuted)
       if (!state.isMuted) {

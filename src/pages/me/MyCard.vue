@@ -16,21 +16,18 @@
       style="background-color: red"
     ></VueQrcode>
 
-    <!--    <div>-->
-    <!--      <div class="btns">-->
-    <!--        <van-image :src="weixin" width="100" height="100" fit="fill"></van-image>-->
-    <!--        <van-image :src="pengyouquan" width="100" height="100" fit="fill"></van-image>-->
-    <!--        <van-image :src="xiazai" width="100" height="100" fit="fill"></van-image>-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <div class="btns">
+      <van-image :src="weixin" width="60" height="60" fit="fill"></van-image>
+      <van-image :src="pengyouquan" width="50" height="50" fit="fill"></van-image>
+    </div>
   </div>
 </template>
 
 <script>
 import QRCode from 'qrcode'
 import imageSrc from '@/assets/img/1.png'
-import weixin from '@/assets/img/2.png'
-import pengyouquan from '@/assets/img/3.png'
+import weixin from '@/assets/img/weixin.png'
+import pengyouquan from '@/assets/img/friend.png'
 import xiazai from '@/assets/img/4.png'
 import share from '@/assets/img/share2.jpg'
 import VueQrcode from 'vue-qrcode'
@@ -73,9 +70,10 @@ export default {
   display: flex;
   height: 50px;
   position: fixed;
-  bottom: 20%;
+  bottom: 10%;
   margin-left: 5%;
   justify-content: space-around;
+  align-items: center;
 }
 .code {
   position: absolute;

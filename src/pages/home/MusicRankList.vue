@@ -28,6 +28,7 @@ const store = useBaseStore()
 
 const toShortDetail = (path, query, data) => {
   console.log('data', data)
+  data = JSON.parse(JSON.stringify(data))
   data.dateInfo.videoList = data.dateInfo.videoList.map((item, index) => {
     const { id, title, total, playCount, cover } = data.dateInfo
     return {

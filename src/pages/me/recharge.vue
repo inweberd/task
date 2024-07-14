@@ -202,6 +202,16 @@ const state = reactive({
         icon: kd
       },
       {
+        id: 4,
+        key: 'jdpay',
+        type: 'jd',
+        name: 'JD钱包',
+        min: 10,
+        max: 30000,
+        code: 827,
+        icon: jd
+      },
+      {
         id: 2,
         key: 'ltzf',
         type: 'alipay',
@@ -231,16 +241,6 @@ const state = reactive({
       //   code: 827,
       //   icon: wechatLarge
       // }
-      // {
-      //   id: 4,
-      //   key: 'ltzf',
-      //   type: 'jd',
-      //   name: 'JD钱包',
-      //   min: 100,
-      //   max: 2000,
-      //   code: 827,
-      //   icon: jd
-      // },
     ]
   }
 })

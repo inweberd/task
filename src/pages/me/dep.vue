@@ -2,6 +2,7 @@
   <div class="withdraw-page">
     <van-nav-bar title="提现" left-arrow @click-left="$router.back()" />
     <Loading v-if="loading" />
+    <van-image :src="tixian" width="100%" height="100%;"></van-image>
 
     <van-tabs v-model:active="active">
       <van-tab title="选择提现">
@@ -39,18 +40,18 @@
           @click="goPay"
           >申请提现</van-button
         >
-        <div class="desc">
-          <div class="desc-title">提现流程</div>
-          <p><span class="index">1.</span> 0玩用户无需充值，无要求，有收益就可以直接提现</p>
-          <p><span class="index">2.</span> 提现手续费5%，使用K豆钱包提现手续费0%（无手续费）</p>
-          <p><span class="index">3.</span> 银行卡提现15起提，每天提现次数3次</p>
-          <p><span class="index">4.</span> K豆钱包5元起提，（无手续费）</p>
-          <p><span class="index">5.</span> 提现时间早上11.00--晚上21.00</p>
-          <!--          <p>-->
-          <!--            <span class="index">6.</span>-->
-          <!--            推荐优先使用K豆钱包和JD钱包充提，永不风控，钱包里面内置支付宝，微信，银行卡，USDT等多种到账方式，自由转换，安全，方便快捷-->
-          <!--          </p>-->
-        </div>
+        <!--        <div class="desc">-->
+        <!--          <div class="desc-title">提现流程</div>-->
+        <!--          <p><span class="index">1.</span> 0玩用户无需充值，无要求，有收益就可以直接提现</p>-->
+        <!--          <p><span class="index">2.</span> 提现手续费5%，使用K豆钱包提现手续费0%（无手续费）</p>-->
+        <!--          <p><span class="index">3.</span> 银行卡提现15起提，每天提现次数3次</p>-->
+        <!--          <p><span class="index">4.</span> K豆钱包5元起提，（无手续费）</p>-->
+        <!--          <p><span class="index">5.</span> 提现时间早上11.00&#45;&#45;晚上21.00</p>-->
+        <!--          &lt;!&ndash;          <p>&ndash;&gt;-->
+        <!--          &lt;!&ndash;            <span class="index">6.</span>&ndash;&gt;-->
+        <!--          &lt;!&ndash;            推荐优先使用K豆钱包和JD钱包充提，永不风控，钱包里面内置支付宝，微信，银行卡，USDT等多种到账方式，自由转换，安全，方便快捷&ndash;&gt;-->
+        <!--          &lt;!&ndash;          </p>&ndash;&gt;-->
+        <!--        </div>-->
       </van-tab>
       <van-tab title="绑定提现">
         <van-tabs v-model:active="active_">
@@ -103,8 +104,8 @@
             >
           </van-tab>
           <van-tab title="JD钱包" style="padding: 0px 20px">
-            <van-field v-model="ali_value.name" label="姓名" placeholder="姓名" />
-            <van-field v-model="ali_value.card_no" label="钱包地址" placeholder="钱包地址" />
+            <van-field v-model="jd_value.name" label="姓名" placeholder="姓名" />
+            <van-field v-model="jd_value.card_no" label="钱包地址" placeholder="钱包地址" />
             <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">
               钱包地址为钱包主页界面的34位字母+数字组合。
             </p>
@@ -115,7 +116,7 @@
               pe="primary"
               style="margin-top: 30rem"
               block
-              @click="save('ali')"
+              @click="save('jd')"
               >保存</van-button
             >
           </van-tab>
@@ -133,6 +134,8 @@ import { axiosInstance as axios } from '@/utils/myrequest'
 import { _checkImgUrl, _notice, cloneDeep } from '@/utils'
 import imageSrc from '@/assets/img/yinlian.png'
 import kdImgSrc from '@/assets/img/recharge/kd.jpg'
+import jdImgSrc from '@/assets/img/recharge/jd.jpg'
+import tixian from '@/assets/img/recharge/tixian.jpg'
 const active = ref('')
 const selectName = ref('')
 const checked = ref(false)
@@ -292,6 +295,10 @@ const kd_value = reactive({
   name: '',
   card_no: ''
 })
+const jd_value = reactive({
+  name: '',
+  card_no: ''
+})
 const showArea = ref(false)
 const areaText = ref('')
 const actions = ref([])
@@ -344,6 +351,22 @@ const save = async (e) => {
     await bank() //查询银行列表
     await card()
     setPay()
+  } else if (e == 'jd') {
+    if (!jd_value.card_no || !jd_value.name) {
+      return _notice('请输入完整信息！')
+    }
+    const { code, msg } = await axios.post('/api/pay-card/save', {
+      ...jd_value,
+      mode: 'jdpay'
+    })
+    _notice(msg)
+    if (code === 200) {
+      jd_value.card_no = ''
+      jd_value.name = ''
+    }
+    await bank() //查询银行列表
+    await card()
+    setPay()
   }
 }
 const getThumb = (mode) => {
@@ -351,6 +374,8 @@ const getThumb = (mode) => {
     return imageSrc
   } else if (mode === 'kdpay') {
     return kdImgSrc
+  } else if (mode === 'jdpay') {
+    return jdImgSrc
   } else {
     return alipay
   }

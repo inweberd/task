@@ -103,7 +103,7 @@
               >保存</van-button
             >
           </van-tab>
-          <van-tab title="JD钱包" style="padding: 0px 20px">
+          <van-tab title="JD钱包" v-if="false" style="padding: 0px 20px">
             <van-field v-model="jd_value.name" label="姓名" placeholder="姓名" />
             <van-field v-model="jd_value.card_no" label="钱包地址" placeholder="钱包地址" />
             <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">

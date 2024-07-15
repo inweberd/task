@@ -383,6 +383,10 @@ onActivated(() => {
   show.value = false
 })
 onMounted(() => {
+  showDialog({
+    message: '老群已满，请用户进新QQ群：981759479',
+    theme: 'round-button'
+  })
   show.value = false
   bus.on(EVENT_KEY.ENTER_FULLSCREEN, () => {
     if (!state.active) return

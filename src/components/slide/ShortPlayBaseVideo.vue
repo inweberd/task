@@ -138,7 +138,7 @@ let state = reactive({
   commentVisible: false
 })
 const poster = $computed(() => {
-  return _checkImgUrl(props.item.poster)
+  return _checkImgUrl(props.item.cover)
 })
 const durationStyle = $computed(() => {
   return { width: state.playX + 'px' }

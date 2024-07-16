@@ -201,16 +201,16 @@ const state = reactive({
         code: 8277,
         icon: kd
       },
-      {
-        id: 4,
-        key: 'jdpay',
-        type: 'jd',
-        name: 'JD钱包',
-        min: 10,
-        max: 30000,
-        code: 827,
-        icon: jd
-      },
+      // {
+      //   id: 4,
+      //   key: 'jdpay',
+      //   type: 'jd',
+      //   name: 'JD钱包',
+      //   min: 10,
+      //   max: 30000,
+      //   code: 827,
+      //   icon: jd
+      // },
       {
         id: 2,
         key: 'ltzf',

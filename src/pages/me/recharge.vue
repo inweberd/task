@@ -26,11 +26,11 @@
             />
             <img
               src="@/assets/img/recharge/jd.jpg"
-              v-else-if="state.item.pay?.data?.type == 'jd'"
+              v-else-if="state.item.pay?.data?.key == 'jdpay'"
             />
             <img
               src="@/assets/img/recharge/kd.jpg"
-              v-else-if="state.item.pay?.data?.type == 'kd'"
+              v-else-if="state.item.pay?.data?.key == 'kdpay'"
             />
             <img src="@/assets/img/recharge/alipay.png" v-else />
             <span>{{ state.item.pay?.data?.name }}</span>
@@ -78,11 +78,12 @@
             </div>
           </div>
         </div>
-        <button class="btn" v-on:click="method.emit">
+        <button class="btn" v-on:click="method.emit" :disabled="loading">
           <div class="img-box">
             <img src="@/assets/img/recharge/recharge.png" />
           </div>
-          <span>确认</span>
+          <span>确认 </span>
+          <van-loading size="20" v-if="loading" />
         </button>
       </div>
       <van-cell
@@ -104,7 +105,7 @@
               <div class="method-list-item-l">
                 <div class="icon-box">
                   <!--                  <img :src="getIcon(item.icon)" />-->
-                  <img :src="item.icon" />
+                  <img :src="getIcon(item)" />
                 </div>
                 <div class="info">
                   <div>
@@ -131,7 +132,7 @@
 // import { useUserStore }   from '@/store/user'
 // import { onLoad } from '@dcloudio/uni-app'
 import { reactive, onMounted, watch, getCurrentInstance, ref } from 'vue'
-import { reqCreateOrder } from '@/api/myApi'
+import { reqCreateOrder, reqRechargeColumn } from '@/api/myApi'
 import { showFailToast } from 'vant'
 import { _notice } from '@/utils'
 import Loading from '@/components/Loading.vue'
@@ -144,11 +145,10 @@ import kd from '@/assets/img/recharge/kd.jpg'
 import pay1 from '@/assets/img/recharge/pay1.jpg'
 import pay2 from '@/assets/img/recharge/pay2.jpg'
 import shouxia from '@/assets/img/shouxia.png'
+import { load } from '@fingerprintjs/fingerprintjs'
 
 const loading = ref(false)
-const getIcon = (iconUrl: string) => {
-  return new URL(`../../assets/img/recharge/` + iconUrl, import.meta.url).href
-}
+
 const downloadList = [
   {
     label: 'K豆钱包安卓下载地址',
@@ -174,6 +174,22 @@ const payItemClick = (id) => {
   state.item.pay.id = id
   method.sheet.close()
 }
+
+const getIcon = (item) => {
+  if (item.type === 'alipay') {
+    return alipayLarge
+  } else if (item.type === 'bank') {
+    return bankLarge
+  } else if (item.type === 'wechat') {
+    return wechatLarge
+  } else if (item.type === 'custom') {
+    if (item.key === 'jdpay') {
+      return jd
+    } else if (item.key === 'kdpay') {
+      return kd
+    }
+  }
+}
 const state = reactive({
   sheet: {
     show: false,
@@ -181,7 +197,7 @@ const state = reactive({
   },
   item: {
     pay: {
-      id: 5,
+      id: 1,
       data: {}
     }
   },
@@ -191,16 +207,16 @@ const state = reactive({
   },
   select: {
     pay: [
-      {
-        id: 5,
-        key: 'kdpay',
-        type: 'kd',
-        name: 'K豆钱包（提现免手续费）',
-        min: 10,
-        max: 30000,
-        code: 8277,
-        icon: kd
-      },
+      // {
+      //   id: 5,
+      //   key: 'kdpay',
+      //   type: 'kd',
+      //   name: 'K豆钱包（提现免手续费）',
+      //   min: 10,
+      //   max: 30000,
+      //   code: 8277,
+      //   icon: kd
+      // },
       // {
       //   id: 4,
       //   key: 'jdpay',
@@ -211,26 +227,26 @@ const state = reactive({
       //   code: 827,
       //   icon: jd
       // },
-      {
-        id: 2,
-        key: 'ltzf',
-        type: 'alipay',
-        name: '支付宝(支持花呗)',
-        min: 100,
-        max: 5000,
-        code: 828,
-        icon: alipayLarge
-      },
-      {
-        id: 3,
-        key: 'ltzf',
-        type: 'bank',
-        name: '手机银行',
-        min: 100,
-        max: 2000,
-        code: 805,
-        icon: bankLarge
-      }
+      // {
+      //   id: 2,
+      //   key: 'ltzf',
+      //   type: 'alipay',
+      //   name: '支付宝(支持花呗)',
+      //   min: 100,
+      //   max: 5000,
+      //   code: 828,
+      //   icon: alipayLarge
+      // },
+      // {
+      //   id: 3,
+      //   key: 'ltzf',
+      //   type: 'bank',
+      //   name: '手机银行',
+      //   min: 100,
+      //   max: 2000,
+      //   code: 805,
+      //   icon: bankLarge
+      // }
       // {
       //   id: 1,
       //   key: 'ltzf',
@@ -248,7 +264,12 @@ const state = reactive({
 //
 const method = {
   init: async () => {
-    method.setPay()
+    reqRechargeColumn().then((res) => {
+      console.log('reqRechargeColumn', res)
+      if (res.code !== 200) _notice('获取充值方式失败，请联系客服')
+      state.select.pay = res.data.filter((item) => item.status === 1)
+      method.setPay()
+    })
   },
   // 选择支付方式
   setPay: () => {

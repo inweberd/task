@@ -145,3 +145,8 @@ export function reqWalletTransfer(data) {
 export function reqDeleteCard(params) {
   return axiosInstance({ url: 'api/pay-card/delete', method: 'delete', params })
 }
+
+// 获取充值方式
+export function reqRechargeColumn() {
+  return axiosInstance({ url: 'api/payment/column', method: 'get' })
+}

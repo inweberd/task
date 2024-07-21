@@ -41,20 +41,10 @@
           type="primary"
           color="#F56D17"
           @click="goPay"
+          :loading="tixianLoading"
+          loading-text="加载中..."
           >申请提现</van-button
         >
-        <!--        <div class="desc">-->
-        <!--          <div class="desc-title">提现流程</div>-->
-        <!--          <p><span class="index">1.</span> 0玩用户无需充值，无要求，有收益就可以直接提现</p>-->
-        <!--          <p><span class="index">2.</span> 提现手续费5%，使用K豆钱包提现手续费0%（无手续费）</p>-->
-        <!--          <p><span class="index">3.</span> 银行卡提现15起提，每天提现次数3次</p>-->
-        <!--          <p><span class="index">4.</span> K豆钱包5元起提，（无手续费）</p>-->
-        <!--          <p><span class="index">5.</span> 提现时间早上11.00&#45;&#45;晚上21.00</p>-->
-        <!--          &lt;!&ndash;          <p>&ndash;&gt;-->
-        <!--          &lt;!&ndash;            <span class="index">6.</span>&ndash;&gt;-->
-        <!--          &lt;!&ndash;            推荐优先使用K豆钱包和JD钱包充提，永不风控，钱包里面内置支付宝，微信，银行卡，USDT等多种到账方式，自由转换，安全，方便快捷&ndash;&gt;-->
-        <!--          &lt;!&ndash;          </p>&ndash;&gt;-->
-        <!--        </div>-->
       </van-tab>
       <van-tab title="绑定提现">
         <van-tabs v-model:active="active_">
@@ -75,6 +65,8 @@
               color="#F56D17"
               block
               @click="save('bank')"
+              :loading="bindLoading"
+              loading-text="提交中..."
               >保存</van-button
             >
 
@@ -103,6 +95,8 @@
               style="margin-top: 30rem"
               block
               @click="save('kd')"
+              :loading="bindLoading"
+              loading-text="提交中..."
               >保存</van-button
             >
           </van-tab>
@@ -132,7 +126,7 @@
 <script lang="ts" setup>
 import { payCard, bank_list, create, reqDeleteCard } from '@/api/myApi'
 import utils from '@/utils/utils.js'
-import { onActivated, reactive } from 'vue'
+import { onActivated, reactive, ref } from 'vue'
 import { axiosInstance as axios } from '@/utils/myrequest'
 import { _checkImgUrl, _notice, _showConfirmDialog, cloneDeep } from '@/utils'
 import imageSrc from '@/assets/img/yinlian.png'
@@ -245,6 +239,8 @@ const bank = async () => {
   })
 }
 const loading = ref(false)
+const bindLoading = ref(false)
+const tixianLoading = ref(false)
 const card = async () => {
   loading.value = true
   // state.card.load = true
@@ -263,11 +259,13 @@ const card = async () => {
   setPay()
 }
 async function goPay() {
+  tixianLoading.value = true
   const { code, msg } = await axios.post('/api/wallet-fetch/create', {
     money: money.value,
     pay_card_id: pay_card_id.value
   })
 
+  tixianLoading.value = false
   if (code !== 200) return _notice(msg)
   _notice('申请已提交！')
 }
@@ -326,16 +324,28 @@ const save = async (e) => {
     // if (flag) {
     //   return _notice('同一银行只能绑定一张银行卡！')
     // }
-    if (!bank_value.card_no || !bank_value.name) {
+    if (!bank_value.card_no || !bank_value.name || !areaText.value) {
       return _notice('请输入完整信息！')
     }
+    const flag = state.select.card.some((item) => item.card_no === bank_value.card_no)
+    if (flag) {
+      return _notice('已绑定过此卡号！')
+    }
+    bindLoading.value = true
+
     const { code, msg } = await axios.post('/api/pay-card/save', {
       ...bank_value,
       mode: 'bank',
       // ...state.struct, mode: 'bank',
       card_type: areaText.value.split(',')[1]
     })
+    bindLoading.value = false
+
     _notice(msg)
+    if (code === 200) {
+      bank_value.card_no = ''
+      bank_value.name = ''
+    }
     await bank() //查询银行列表
     await card()
     setPay()
@@ -343,10 +353,17 @@ const save = async (e) => {
     if (!kd_value.card_no || !kd_value.name) {
       return _notice('请输入完整信息！')
     }
+    const flag = state.select.card.some((item) => item.card_no === bank_value.card_no)
+    if (flag) {
+      return _notice('已绑定过此卡号！')
+    }
+    bindLoading.value = true
     const { code, msg } = await axios.post('/api/pay-card/save', {
       ...kd_value,
       mode: 'kdpay'
     })
+    bindLoading.value = false
+
     _notice(msg)
     if (code === 200) {
       kd_value.card_no = ''
@@ -359,10 +376,13 @@ const save = async (e) => {
     if (!jd_value.card_no || !jd_value.name) {
       return _notice('请输入完整信息！')
     }
+    bindLoading.value = true
     const { code, msg } = await axios.post('/api/pay-card/save', {
       ...jd_value,
       mode: 'jdpay'
     })
+    bindLoading.value = false
+
     _notice(msg)
     if (code === 200) {
       jd_value.card_no = ''

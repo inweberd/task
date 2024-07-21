@@ -117,7 +117,7 @@ function go(path) {
   router.push(path)
 }
 function jumpToQQ() {
-  window.location.href = decodeURIComponent('https://qm.qq.com/q/38NWoeXWsU')
+  window.location.href = decodeURIComponent('https://qm.qq.com/q/HwEt37p2wM')
 }
 async function getPhone() {
   // data.loading.getPhone = true

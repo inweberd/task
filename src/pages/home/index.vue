@@ -302,7 +302,8 @@ import TipBtn from '@/components/TipBtn.vue'
 const nav = useNav()
 const baseStore = useBaseStore()
 const uploader = ref()
-const isMobile = ref(/Mobi|Android|iPhone/i.test(navigator.userAgent))
+// const isMobile = ref(/Mobi|Android|iPhone/i.test(navigator.userAgent))
+const isMobile = ref(true)
 const show = ref(false)
 const loading = ref(false)
 const redPackageInfo = ref({})
@@ -383,10 +384,10 @@ onActivated(() => {
   show.value = false
 })
 onMounted(() => {
-  showDialog({
-    message: '老群已满，请用户进新QQ群：981759479',
-    theme: 'round-button'
-  })
+  // showDialog({
+  //   message: '老群已满，请用户进新QQ群：633433855',
+  //   theme: 'round-button'
+  // })
   show.value = false
   bus.on(EVENT_KEY.ENTER_FULLSCREEN, () => {
     if (!state.active) return

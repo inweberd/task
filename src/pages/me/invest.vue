@@ -178,7 +178,7 @@ const buy = (item) => {
     console.log('reqWalletInfo', res)
     loading.value = false
 
-    if (item.price > res.data.money) {
+    if (item.price > res.data.amount + res.data.money) {
       loading.value = false
       _notice('账户余额不足,请充值!')
       router.push('/recharge')

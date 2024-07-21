@@ -1,25 +1,34 @@
 <template>
-  <div>
-    <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />
+  <div class="wrap">
+    <dy-back
+      mode="light"
+      v-if="userInfo"
+      img="back"
+      @click="$router.back()"
+      class="fixed-back"
+      direction="left"
+    />
     <!-- <canvas ref="canvas"></canvas> -->
-    <van-image
-      :src="share"
-      width="100%"
-      height="100%"
-      fit="fill"
-      style="position: absolute"
-    ></van-image>
-    <VueQrcode
-      class="code"
-      :value="qrCodeValue"
-      :size="500"
-      style="background-color: red"
-    ></VueQrcode>
+    <template v-if="qrCodeValue">
+      <van-image
+        :src="share"
+        width="100%"
+        height="100%"
+        fit="fill"
+        style="position: absolute"
+      ></van-image>
+      <VueQrcode
+        class="code"
+        :value="qrCodeValue"
+        :size="500"
+        style="background-color: red"
+      ></VueQrcode>
 
-    <div class="btns">
-      <van-image :src="weixin" width="60" height="60" fit="fill"></van-image>
-      <van-image :src="pengyouquan" width="50" height="50" fit="fill"></van-image>
-    </div>
+      <div class="btns">
+        <van-image :src="weixin" width="60" height="60" fit="fill"></van-image>
+        <van-image :src="pengyouquan" width="50" height="50" fit="fill"></van-image>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -31,11 +40,17 @@ import pengyouquan from '@/assets/img/friend.png'
 import xiazai from '@/assets/img/4.png'
 import share from '@/assets/img/share2.jpg'
 import VueQrcode from 'vue-qrcode'
+
+// 检测用户使用的是微信浏览器或者qq浏览器
+const isWeChatBrowser =
+  navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1 ||
+  navigator.userAgent.toLowerCase().indexOf('qqbrowser') !== -1 ||
+  navigator.userAgent.toLowerCase().indexOf('qq') !== -1
 export default {
   components: { VueQrcode },
   data() {
     return {
-      qrCodeValue: 'http://tc.ijylmwy.com/#/signUp?invite=',
+      qrCodeValue: '',
       imageSrc: imageSrc,
       weixin: weixin,
       pengyouquan: pengyouquan,
@@ -46,17 +61,31 @@ export default {
   mounted() {
     this.qrCodeValue = 'http://tc.ijylmwy.com/#/signUp?invite='
     const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
-    this.qrCodeValue += userInfo.result.invite.code
+    if (this.$route.query.invite && this.$route.query.uid && isWeChatBrowser) {
+      this.qrCodeValue += this.$route.query.invite + '&uid=' + this.$route.query.uid
+    } else {
+      this.qrCodeValue += userInfo.result.invite.code + '&uid=' + userInfo.id
+    }
   },
   activated() {
     this.qrCodeValue = 'http://tc.ijylmwy.com/#/signUp?invite='
+    // this.qrCodeValue = 'http://192.168.10.87:3000/#/signUp?invite='
     const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
-    this.qrCodeValue += userInfo.result.invite.code
+    if (this.$route.query.invite && this.$route.query.uid && isWeChatBrowser) {
+      this.qrCodeValue +=
+        this.$route.query.invite + '&uid=' + this.$route.query.uid + '&injectWeixin=' + true
+    } else {
+      this.qrCodeValue += userInfo.result.invite.code + '&uid=' + userInfo.id
+    }
   }
 }
 </script>
 
 <style scoped lang="less">
+.wrap {
+  width: 100vw;
+  height: 100vh;
+}
 .fixed-back {
   position: fixed;
   left: 10rem;
@@ -76,7 +105,7 @@ export default {
   align-items: center;
 }
 .code {
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 60%;
   width: 300px;

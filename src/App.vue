@@ -39,6 +39,8 @@ import { useRoute } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import BaseMask from '@/components/BaseMask.vue'
 import { BASE_URL } from '@/config'
+import { loadWx } from '@/utils/loadWx'
+import wx from 'weixin-js-sdk'
 const keepAliveBlackList = ['wallet', 'shortPlayDetail']
 const store = useBaseStore()
 const route = useRoute()
@@ -85,6 +87,36 @@ function resetVhAndPx() {
 }
 
 onMounted(() => {
+  if (isWeChatBrowser) {
+    loadWx(() => {
+      wx.onMenuShareTimeline({
+        title: '甜橙视频',
+        // link: 'http://movie.douban.com/subject/25785114asd/',
+        imgUrl: 'http://tc.izakq.com/media/logo2.png',
+        trigger: function (res) {
+          // 涓嶈灏濊瘯鍦╰rigger涓娇鐢╝jax寮傛璇锋眰淇敼鏈鍒嗕韩鐨勫唴瀹癸紝鍥犱负瀹㈡埛绔垎浜搷浣滄槸涓€涓悓姝ユ搷浣滐紝杩欐椂鍊欎娇鐢╝jax鐨勫洖鍖呬細杩樻病鏈夎繑鍥�
+          // alert('您点击分享啦！')
+          console.log('trigger', res)
+        },
+        success: function (res) {
+          setTimeout(function () {
+            //回调要执行的代码
+            // alert('分享成功啦！')
+            console.log('success', res)
+          }, 500)
+        },
+        cancel: function (res) {
+          alert('取消分享')
+          console.log('cancel', res)
+        },
+        fail: function (res) {
+          alert('分享失败')
+          // alert(JSON.stringify(res))
+          console.log('fail', res)
+        }
+      })
+    })
+  }
   window.my = 2
   window.test = 1
   store.init()

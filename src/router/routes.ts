@@ -196,6 +196,7 @@ const routes: RouteRecordRaw[] = [
   // {path: '/login', component: Login},
   { path: '/login', component: () => import('@/pages/login/Login.vue') },
   { path: '/signUp', component: () => import('@/pages/login/signUp.vue') },
+  { path: '/conversion', component: () => import('@/pages/me/conversion.vue') },
   { path: '/forget', component: () => import('@/pages/login/forget.vue') },
   { path: '/invest', component: () => import('@/pages/me/invest.vue') },
   { path: '/dep', component: () => import('@/pages/me/dep.vue') },

@@ -12,12 +12,15 @@
             <van-card
               :desc="item.name"
               :title="item.card_name"
-              v-for="item in state.select.card"
+              v-for="(item, index) in state.select.card"
               @click="onSelect(item)"
               :thumb="getThumb(item.mode)"
             >
               <template #bottom>
                 <div>卡号:{{ item.card_no }}</div>
+              </template>
+              <template #tags>
+                <van-tag plain type="danger" @click.stop="deleteCard(item, index)">删除</van-tag>
               </template>
               <template #footer>
                 <van-radio
@@ -127,15 +130,16 @@
 </template>
 
 <script lang="ts" setup>
-import { payCard, bank_list, create } from '@/api/myApi'
+import { payCard, bank_list, create, reqDeleteCard } from '@/api/myApi'
 import utils from '@/utils/utils.js'
 import { onActivated, reactive } from 'vue'
 import { axiosInstance as axios } from '@/utils/myrequest'
-import { _checkImgUrl, _notice, cloneDeep } from '@/utils'
+import { _checkImgUrl, _notice, _showConfirmDialog, cloneDeep } from '@/utils'
 import imageSrc from '@/assets/img/yinlian.png'
 import kdImgSrc from '@/assets/img/recharge/kd.jpg'
 import jdImgSrc from '@/assets/img/recharge/jd.jpg'
 import tixian from '@/assets/img/recharge/tixian.jpg'
+import { showConfirmDialog } from 'vant'
 const active = ref('')
 const selectName = ref('')
 const checked = ref(false)
@@ -384,6 +388,30 @@ const onAreaConfirm = (values) => {
   areaText.value = values.name + ',' + values.subname
   // areaText.value = values.map((item) => item.text).join(' ');
   showArea.value = false
+}
+
+const deleteCard = (item, index) => {
+  console.log('item', item)
+  checked.value = false
+  _showConfirmDialog(
+    '提示',
+    '确认删除？',
+    '',
+    () => {
+      reqDeleteCard({
+        ids: item.id
+      }).then(async (res) => {
+        if (res.code !== 200) _notice(res.msg)
+
+        _notice('删除成功')
+        state.select.card.splice(index, 1)
+      })
+    },
+    null,
+    '确认',
+    '返回',
+    ''
+  )
 }
 </script>
 

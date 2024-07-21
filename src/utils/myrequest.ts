@@ -151,6 +151,16 @@ axiosInstance.interceptors.response.use(
       }
       let resCode = data.code
       if (resCode) {
+        if (resCode === 401) {
+          _notice('登录过期，请重新登录！')
+          setTimeout(() => {
+            window.localStorage.removeItem('userInfo')
+            window.localStorage.removeItem('token')
+            window.location.reload()
+          }, 2000)
+          return
+        }
+
         try {
           resCode = Number(resCode)
         } catch (e) {

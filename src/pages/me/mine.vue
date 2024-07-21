@@ -1,7 +1,13 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { reactive, onMounted } from 'vue'
-import { logout as fnlogout, reqUserIncome, reqUserInfo, reqUserStaff } from '@/api/myApi'
+import {
+  logout as fnlogout,
+  reqUserIncome,
+  reqUserInfo,
+  reqUserStaff,
+  reqWalletInfo
+} from '@/api/myApi'
 import modzz from '../login/model.vue'
 import { _no, _sleep, _notice } from '@/utils'
 import { articleall } from '@/api/myApi'
@@ -9,7 +15,8 @@ import { getSerialName } from '../../utils/getSerialName'
 import Loading from '@/components/Loading.vue'
 import avatar from '@/assets/img/avatar.png'
 const props = defineProps({})
-let userInfo = ref({})
+const userInfo = ref({})
+const walletInfo = ref({})
 const star = ref(0)
 const userIncomeInfo = ref({})
 const Caidan = ref([])
@@ -35,7 +42,7 @@ function go(e) {
   router.push(e)
 }
 function jumpToQQ() {
-  window.location.href = decodeURIComponent('https://qm.qq.com/q/38NWoeXWsU')
+  window.location.href = decodeURIComponent('https://qm.qq.com/q/HwEt37p2wM')
 }
 function go2(val1, val2) {
   console.log(val1, val2)
@@ -72,8 +79,13 @@ function goDownload() {
 const service = ref(false)
 const loading = ref(false)
 
+const format = (price = 0) => {
+  let result = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return result === '0' ? '0.00' : result
+}
 const getNewUserInfo = () => {
   loading.value = true
+
   reqUserInfo({ id: userInfo.value.id }).then((res) => {
     loading.value = false
     if (res.code !== 200) {
@@ -91,6 +103,11 @@ const getNewUserInfo = () => {
         star.value = res.data.star
       })
     }
+  })
+
+  reqWalletInfo().then((res) => {
+    if (res.code !== 200) return
+    walletInfo.value = res.data
   })
 }
 const getUserIncome = () => {
@@ -179,13 +196,13 @@ function getData() {
           </div>
           <div class="horiz-divider section_4"></div>
           <div class="flex-col items-start equal-division-item" @click="go('/dep')">
-            <span class="font_3">{{ userInfo.result?.wallet?.money || 0 }}</span>
-            <span class="font_4 text_1 mt-12">当前余额</span>
+            <span class="font_3">{{ format(walletInfo?.amount || 0) }}</span>
+            <span class="font_4 text_1 mt-12">充值余额</span>
           </div>
           <div class="horiz-divider section_4"></div>
 
           <div class="flex-col items-start equal-division-item_2" @click="go('/dep')">
-            <span class="font_3">{{ userInfo.result?.wallet?.money || 0 }}</span>
+            <span class="font_3">{{ format(walletInfo?.money || 0) }}</span>
             <span class="font_4 text_1 mt-12">可提现</span>
           </div>
         </div>
@@ -236,7 +253,7 @@ function getData() {
               <img class="image_5" src="./images/702e90f7f1ebc87641055bbff962f5b5.png" />
               <span class="font_2 text_7 mt-5">大逃杀游戏</span>
             </div>
-            <div class="flex-col items-center relative grid-item_7" @click="go('/nofinish')">
+            <div class="flex-col items-center relative grid-item_7" @click="go('/conversion')">
               <img class="image_5" src="./images/money.png" />
               <span class="font_2 text_7 mt-5">佣金互转</span>
             </div>

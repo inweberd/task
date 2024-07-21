@@ -125,3 +125,23 @@ export function reqUpload(file) {
     }
   })
 }
+
+// 微信jssdk签名
+export function reqSignature(data) {
+  return axiosInstance({ url: 'api/we-chat/jsapi', method: 'post', data })
+}
+
+// 添加一条分享记录
+export function reqCreateShareLog(data) {
+  return axiosInstance({ url: 'api/share-log/create', method: 'post', data })
+}
+
+// 添加一条分享记录
+export function reqWalletTransfer(data) {
+  return axiosInstance({ url: 'api/wallet/transfer', method: 'post', data })
+}
+
+// 删除提现方式
+export function reqDeleteCard(params) {
+  return axiosInstance({ url: 'api/pay-card/delete', method: 'delete', params })
+}

@@ -16,8 +16,16 @@
     <Loading v-if="loading" />
 
     <div class="balance-info" v-else>
-      <div class="balance-text">当前钱包余额</div>
-      <div class="balance-amount">￥{{ method.format(state.wallet?.money || 0) }}</div>
+      <div style="display: flex; justify-content: space-evenly">
+        <div>
+          <div class="balance-text">充值余额</div>
+          <div class="balance-amount">￥{{ method.format(state.wallet?.amount || 0) }}</div>
+        </div>
+        <div>
+          <div class="balance-text">当前佣金</div>
+          <div class="balance-amount">￥{{ method.format(state.wallet?.money || 0) }}</div>
+        </div>
+      </div>
       <div class="balance-actions">
         <van-image
           :src="imageSrc"
@@ -34,7 +42,7 @@
           class="action-button"
           @click="go('/dep')"
           color="#F56D17"
-          >提现</van-button
+          >佣金提现</van-button
         >
 
         <!-- <van-image :src="imageSrc" width="100" height="100%"   fit="fill" class="action-button"></van-image> -->
@@ -160,7 +168,7 @@ onMounted(() => method.init())
 }
 
 .action-button {
-  width: 100px;
+  width: 120rem;
   height: 50px;
   border: none;
 }

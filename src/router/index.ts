@@ -21,7 +21,7 @@ const isWeChatBrowser =
   navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1 ||
   navigator.userAgent.toLowerCase().indexOf('qqbrowser') !== -1 ||
   navigator.userAgent.toLowerCase().indexOf('qq') !== -1
-let routeDeep = ['/signUp', '/forget', 'fenxiang']
+let routeDeep = ['/signUp', '/forget', 'fenxiang', 'test']
 router.beforeEach((to, from) => {
   // console.log()
 

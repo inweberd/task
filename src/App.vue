@@ -7,6 +7,8 @@
     </transition>
   </router-view>
   <Call />
+  <!--  v-if=" (isWeChatBrowser && ['fenxiang', '/me/my-card'].includes(route.path)) ||-->
+  <!--  route.query.injectWeixin "-->
   <div
     style="
       width: 100vw;

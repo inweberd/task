@@ -23,8 +23,8 @@
         </div>
         <div class="d-flex justify-content-between font-13 text-muted">
           <span>
-            {{ state.bank.list.find(({ value }) => value === item.result.card.card_type)?.label }}
-            ( {{ item.result.card.name }} )
+            <!--            {{ state.bank.list.find(({ value }) => value === item.result.card.card_type)?.label }}-->
+            <!--            ( {{ item.result.card.name }} )-->
           </span>
           <span>{{ method.toDate(item.create_time) }}</span>
         </div>

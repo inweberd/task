@@ -143,6 +143,7 @@ import wechatLarge from '@/assets/img/recharge/wechatLarge.png'
 import jd from '@/assets/img/recharge/jd.jpg'
 import kd from '@/assets/img/recharge/kd.jpg'
 import pay1 from '@/assets/img/recharge/pay1.jpg'
+import ysf from '@/assets/img/recharge/ysf.png'
 import pay2 from '@/assets/img/recharge/pay2.jpg'
 import shouxia from '@/assets/img/shouxia.png'
 import { load } from '@fingerprintjs/fingerprintjs'
@@ -181,7 +182,8 @@ const getIcon = (item) => {
   } else if (item.type === 'bank') {
     return bankLarge
   } else if (item.type === 'wechat') {
-    return wechatLarge
+    // return wechatLarge
+    return ysf
   } else if (item.type === 'custom') {
     if (item.key === 'jdpay') {
       return jd

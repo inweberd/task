@@ -1,4 +1,5 @@
-const isIos = false
+const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+
 const iosConfig = {
   appId: '1812124465782341638-2',
   splash: '1812125317590958151',
@@ -15,7 +16,7 @@ const androidConfig = {
   banner: '1812125086669357132',
   feed: '1812125206366404642'
 }
-const adIdMap = isIos ? androidConfig : androidConfig
+const adIdMap = isIos ? iosConfig : androidConfig
 export const loadSplash = () => {
   window.splashCb = function (params) {
     if (params.code == 1) {
@@ -56,8 +57,10 @@ export const loadInteraction = () => {
   }
 }
 export const loadPlayRewardVideo = () => {
-  const userId = JSON.parse(window.localStorage.getItem('userInfo'))?.id
-  const token = window.localStorage.getItem('token')
+  const userId = JSON.parse(window.localStorage.getItem('userInfo'))?.id || '193461'
+  const token =
+    window.localStorage.getItem('token') ||
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Imhhc2giOiI0MjY0Mjc4MzY5IiwidWlkIjoyOTY3fSwiaXNzIjoidGFzay5jb20iLCJzdWIiOiJ0YXNrIiwiZXhwIjoxNzIyMzMzNzc5LCJpYXQiOjE3MjE3Mjg5Nzl9.YEBoH0rEMXwYbKcAV4N3byL46p7Xj6aLwuwNaGLrs8w'
   window.rewardVideoCb = function (params) {
     if (params.code == 1) {
       //展现
@@ -119,6 +122,7 @@ export const loadFeed = () => {
     window.android.loadFeed(adIdMap.feed, 'feedCb')
   }
 }
-export const wechatShare = () => {
+export const wechatShare = (str) => {
   window.android.share('http://tc.izakq.com/#/signUp?invite=6666aasdsd66')
+  // window.android.share(str)
 }

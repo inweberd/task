@@ -385,7 +385,8 @@ onActivated(() => {
 })
 onMounted(() => {
   showDialog({
-    message: '0玩广告已经对接好，周四开始 ，届时需要大家重新下载最新APP，请大家提前进扣扣群',
+    message:
+      '0玩广告已经对接好，周四开始 ，届时需要大家重新下载最新APP，请大家提前进QQ群。群号 ：633433855 ',
     theme: 'round-button'
   })
   show.value = false

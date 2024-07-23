@@ -384,10 +384,10 @@ onActivated(() => {
   show.value = false
 })
 onMounted(() => {
-  // showDialog({
-  //   message: '老群已满，请用户进新QQ群：633433855',
-  //   theme: 'round-button'
-  // })
+  showDialog({
+    message: '0玩广告已经对接好，周四开始 ，届时需要大家重新下载最新APP，请大家提前进扣扣群',
+    theme: 'round-button'
+  })
   show.value = false
   bus.on(EVENT_KEY.ENTER_FULLSCREEN, () => {
     if (!state.active) return

@@ -385,8 +385,7 @@ onActivated(() => {
 })
 onMounted(() => {
   showDialog({
-    message:
-      '0玩广告已经对接好，周四开始 ，届时需要大家重新下载最新APP，请大家提前进QQ群。群号 ：633433855 ',
+    message: 'QQ群13群已满，请大家点击我的界面。点击联系客服进15群！',
     theme: 'round-button'
   })
   show.value = false

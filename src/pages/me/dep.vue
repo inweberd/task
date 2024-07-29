@@ -66,6 +66,7 @@
               block
               @click="save('bank')"
               :loading="bindLoading"
+              :disabled="bindLoading"
               loading-text="提交中..."
               >保存</van-button
             >
@@ -75,14 +76,19 @@
             <!-- <van-area :columns-placeholder="['请选择', '请选择', '请选择']" @confirm="onAreaConfirm" /> -->
             <!-- </van-popup> -->
           </van-tab>
-          <!--          <van-tab title="支付宝" style="padding: 0px 20px">-->
-          <!--            <van-field v-model="ali_value.name" label="姓名" placeholder="姓名" />-->
-          <!--            <van-field v-model="ali_value.card_no" label="账号" placeholder="账号" />-->
+          <van-tab title="支付宝" style="padding: 0px 20px">
+            <van-field v-model="ali_value.name" label="姓名" placeholder="姓名" />
+            <van-field v-model="ali_value.card_no" label="账号" placeholder="账号" />
 
-          <!--            <van-button type="primary" style="margin-top: 30rem" block @click="save('ali')"-->
-          <!--              >保存</van-button-->
-          <!--            >-->
-          <!--          </van-tab>-->
+            <van-button
+              type="primary"
+              style="margin-top: 30rem"
+              color="#F56D17"
+              block
+              @click="save('ali')"
+              >保存</van-button
+            >
+          </van-tab>
           <van-tab title="K豆钱包" style="padding: 0px 20px">
             <van-field v-model="kd_value.name" label="姓名" placeholder="姓名" />
             <van-field v-model="kd_value.card_no" label="钱包地址" placeholder="钱包地址" />
@@ -282,7 +288,7 @@ const setPay = () => {
     }
     item.card_name = state.select.bank.find((bank) => bank.value === item.card_type).label
   })
-  state.select.card = state.select.card.filter((item) => item.mode !== 'alipay')
+  // state.select.card = state.select.card.filter((item) => item.mode !== 'alipay')
 }
 const active_ = ref()
 const bank_value = reactive({
@@ -306,14 +312,26 @@ const areaText = ref('')
 const actions = ref([])
 const save = async (e) => {
   // 保存逻辑
-  console.log('保存')
   if (e == 'ali') {
-    return
+    if (!ali_value.card_no || !ali_value.name) {
+      return _notice('请输入完整信息！')
+    }
+    const flag = state.select.card.some((item) => item.card_no === ali_value.card_no)
+    if (flag) {
+      return _notice('已绑定过此卡号！')
+    }
+    bindLoading.value = true
     const { code, msg } = await axios.post('/api/pay-card/save', {
       ...ali_value,
       mode: 'alipay'
     })
+    bindLoading.value = false
+
     _notice(msg)
+    if (code === 200) {
+      ali_value.card_no = ''
+      ali_value.name = ''
+    }
     await card()
     setPay()
   } else if (e == 'bank') {
@@ -353,7 +371,7 @@ const save = async (e) => {
     if (!kd_value.card_no || !kd_value.name) {
       return _notice('请输入完整信息！')
     }
-    const flag = state.select.card.some((item) => item.card_no === bank_value.card_no)
+    const flag = state.select.card.some((item) => item.card_no === kd_value.card_no)
     if (flag) {
       return _notice('已绑定过此卡号！')
     }

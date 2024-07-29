@@ -385,7 +385,7 @@ onActivated(() => {
 })
 onMounted(() => {
   showDialog({
-    message: 'QQ群13群已满，请大家点击我的界面。点击联系客服进15群！',
+    message: 'QQ群15群已满，请大家点击我的界面。点击联系客服进16群！',
     theme: 'round-button'
   })
   show.value = false

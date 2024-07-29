@@ -42,7 +42,7 @@ function go(e) {
   router.push(e)
 }
 function jumpToQQ() {
-  window.location.href = decodeURIComponent('https://qm.qq.com/q/3bOaP1U1Yc')
+  window.location.href = decodeURIComponent('https://qm.qq.com/q/rfYONthKYq')
 }
 function go2(val1, val2) {
   console.log(val1, val2)

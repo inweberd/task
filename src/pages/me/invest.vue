@@ -150,7 +150,8 @@ import { useRouter } from 'vue-router'
 import { getSerialName } from '@/utils/getSerialName'
 import { userinfo } from '@/api/user'
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
-userInfo.value.result.staff.serial = userInfo.value.result.staff.serial || null
+userInfo.value.result.staff.serial = userInfo.value.result.staff.serial || 1
+
 const loading = ref(true)
 const staffList = ref([])
 const searchInfo = reactive({

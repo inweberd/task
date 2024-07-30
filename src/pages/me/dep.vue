@@ -43,6 +43,7 @@
           @click="goPay"
           :loading="tixianLoading"
           loading-text="加载中..."
+          :disabled="tixianLoading"
           >申请提现</van-button
         >
       </van-tab>
@@ -101,8 +102,8 @@
               style="margin-top: 30rem"
               block
               @click="save('kd')"
-              :loading="bindLoading"
               loading-text="提交中..."
+              :loading="bindLoading"
               >保存</van-button
             >
           </van-tab>

@@ -182,8 +182,8 @@ const getIcon = (item) => {
   } else if (item.type === 'bank') {
     return bankLarge
   } else if (item.type === 'wechat') {
-    // return wechatLarge
-    return ysf
+    return wechatLarge
+    // return ysf
   } else if (item.type === 'custom') {
     if (item.key === 'jdpay') {
       return jd
@@ -266,7 +266,9 @@ const state = reactive({
 //
 const method = {
   init: async () => {
-    reqRechargeColumn().then((res) => {
+    reqRechargeColumn({
+      order: 'indexes desc'
+    }).then((res) => {
       console.log('reqRechargeColumn', res)
       if (res.code !== 200) _notice('获取充值方式失败，请联系客服')
       state.select.pay = res.data.filter((item) => item.status === 1)

@@ -147,6 +147,6 @@ export function reqDeleteCard(params) {
 }
 
 // 获取充值方式
-export function reqRechargeColumn() {
-  return axiosInstance({ url: 'api/payment/column', method: 'get' })
+export function reqRechargeColumn(params) {
+  return axiosInstance({ url: 'api/payment/column', method: 'get', params })
 }

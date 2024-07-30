@@ -131,6 +131,11 @@
 // import CustomerService    from '@/comps/atom/customer-service.vue'
 // import { useUserStore }   from '@/store/user'
 // import { onLoad } from '@dcloudio/uni-app'
+
+defineOptions({
+  name: 'recharge'
+})
+
 import { reactive, onMounted, watch, getCurrentInstance, ref } from 'vue'
 import { reqCreateOrder, reqRechargeColumn } from '@/api/myApi'
 import { showFailToast } from 'vant'

@@ -43,7 +43,7 @@ import BaseMask from '@/components/BaseMask.vue'
 import { BASE_URL } from '@/config'
 import { loadWx } from '@/utils/loadWx'
 import wx from 'weixin-js-sdk'
-const keepAliveBlackList = ['wallet', 'shortPlayDetail']
+const keepAliveBlackList = ['wallet', 'shortPlayDetail', 'recharge']
 const store = useBaseStore()
 const route = useRoute()
 const transitionName = ref('go')

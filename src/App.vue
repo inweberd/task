@@ -44,6 +44,8 @@ import { BASE_URL } from '@/config'
 import { loadWx } from '@/utils/loadWx'
 import wx from 'weixin-js-sdk'
 const keepAliveBlackList = ['wallet', 'shortPlayDetail', 'recharge']
+import { loadInteraction, loadSplash, testCallback } from '@/utils/ad'
+import { reqCreateShareLog } from '@/api/myApi'
 const store = useBaseStore()
 const route = useRoute()
 const transitionName = ref('go')
@@ -128,6 +130,28 @@ onMounted(() => {
     // location.href = BASE_URL + '/'
     resetVhAndPx()
   })
+  let init = true
+  function handleVisibilityChange() {
+    if (document.hidden) {
+      // 页面隐藏时执行的操作，例如暂停视频播放
+      // alert('hide')
+    } else {
+      !init && loadSplash()
+    }
+    init = false
+  }
+  // testCb
+  window.createShareLog = function () {
+    // console.log(11331)
+    reqCreateShareLog().then((res) => {
+      console.log('reqCreateShareLog', res)
+    })
+    // alert(13311)
+  }
+  // window.android?.closeLoadMsk?.()
+
+  // 监听 visibilitychange 事件
+  // document.addEventListener('visibilitychange', handleVisibilityChange)
 })
 </script>
 
@@ -144,6 +168,7 @@ onMounted(() => {
   position: relative;
   font-size: 14rem;
   overflow: scroll;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .go-enter-from {

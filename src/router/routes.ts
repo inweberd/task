@@ -209,7 +209,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/yonghu', component: () => import('@/pages/me/yonghu.vue') },
   { path: '/yinsi', component: () => import('@/pages/me/yinsi.vue') },
   { path: '/myteam', component: () => import('@/pages/me/myteam.vue') },
-  { path: '/fenxiang', component: () => import('@/pages/me/fenxiang.vue') },
+  { path: '/fenxiang', component: () => import('@/pages/me/MyCard.vue') },
   { path: '/demo', component: () => import('@/pages/me/demo.vue') },
   { path: '/wallet', name: 'wallet', component: () => import('@/pages/me/wallet.vue') },
 

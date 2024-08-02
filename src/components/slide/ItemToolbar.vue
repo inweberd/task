@@ -47,55 +47,12 @@ function showComments() {
 }
 
 const vClick = useClick()
-
-const currentRate = ref(0)
-let timer
-onMounted(() => {
-  timer = setInterval(() => {
-    if (currentRate.value === 100) currentRate.value = 0
-    currentRate.value++
-  }, 1000)
-})
-onUnmounted(() => {
-  clearInterval(timer)
-})
 </script>
 
 <template>
   <div class="toolbar mb1r">
     <div class="avatar-ctn mb2r">
-      <div class="fnn">
-        <van-circle
-          v-model:current-rate="currentRate"
-          :rate="0"
-          :speed="100"
-          style="width: auto; height: auto; padding: 10px; margin-bottom: 30rem"
-          color="#E3C569"
-          layer-color="rgba(0,0,0,.3)"
-          :stroke-width="80"
-        >
-          <img
-            v-click="
-              () =>
-                bus.emit(EVENT_KEY.GO_USERINFO, {
-                  data: 1
-                })
-            "
-            src="../../assets/earned-cash.png"
-            style="
-              width: 50rem;
-              padding-bottom: 25rem;
-              position: relative;
-              z-index: 999;
-              transform: translateY(5px);
-            "
-          />
-        </van-circle>
-
-        <!-- <img src="../../assets/赏.png" class="myicon" /> -->
-      </div>
       <img class="avatar" :src="item.author.avatar_168x168.url_list[0]" alt="" />
-
       <transition name="fade">
         <div v-if="!item.isAttention" v-click="attention" class="options">
           <img class="no" src="../../assets/img/icon/add-light.png" alt="" />
@@ -232,11 +189,6 @@ onUnmounted(() => {
   .loved {
     background: red;
   }
-}
-
-.fnn {
-  display: flex;
-  flex-direction: column;
 }
 
 .myicon {

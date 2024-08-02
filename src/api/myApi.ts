@@ -132,7 +132,7 @@ export function reqSignature(data) {
 }
 
 // 添加一条分享记录
-export function reqCreateShareLog(data) {
+export function reqCreateShareLog(data = {}) {
   return axiosInstance({ url: 'api/share-log/create', method: 'post', data })
 }
 

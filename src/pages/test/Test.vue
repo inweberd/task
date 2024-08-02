@@ -4,11 +4,15 @@
 
     <input type="button" @click="loadInteraction" value="插屏" />
 
-    <input type="button" @click="loadPlayRewardVideo" value="激励视频" />
+    <input type="button" @click="loadPlayRewardVideo" value="激励视频1" />
     <input type="button" @click="loadVideo" value="加载视频" />
     <input type="button" @click="loadBanner" value="loadBanner" />
     <input type="button" @click="loadFeed" value="loadFeed" />
-    <input type="button" @click="wechatShare" value="分享" />
+    <input type="button" @click="wechatShareLink('a', 0)" value="分享链接给朋友" />
+    <input type="button" @click="wechatShareLink('a', 1)" value="分享链接到朋友圈" />
+    <input type="button" @click="wechatShareImg(null, 0)" value="分享图给朋友片" />
+    <input type="button" @click="wechatShareImg(null, 1)" value="分享图片到朋友圈" />
+    <input type="button" @click="testCallback()" value="测试反调用" />
   </div>
 </template>
 <script setup lang="ts">
@@ -18,8 +22,11 @@ import {
   loadInteraction,
   loadPlayRewardVideo,
   loadSplash,
-  wechatShare
+  testCallback,
+  wechatShareImg,
+  wechatShareLink
 } from '@/utils/ad'
+import { onMounted } from 'vue'
 
 defineOptions({
   name: 'Test'

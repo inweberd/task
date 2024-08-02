@@ -35,15 +35,9 @@ export const loadSplash = () => {
       callBack: 'splashCb'
     })
   } else {
-    // window.android.loadSplash(adIdMap.splash, 'splashCb')
-    window.android.loadSplash('splashCb')
+    window.android.loadSplash(adIdMap.splash, 'splashCb')
   }
 }
-
-export const testCallback = () => {
-  window.android.testCallback()
-}
-
 export const loadInteraction = () => {
   window.interactionCb = function (params) {
     if (params.code == 1) {
@@ -61,8 +55,7 @@ export const loadInteraction = () => {
       callBack: 'interactionCb'
     })
   } else {
-    // window.android.loadInteraction(adIdMap.interaction, 'interactionCb')
-    window.android.loadInteraction('interactionCb')
+    window.android.loadInteraction(adIdMap.interaction, 'interactionCb')
   }
 }
 export const loadPlayRewardVideo = (cb?) => {
@@ -99,17 +92,8 @@ export const loadPlayRewardVideo = (cb?) => {
     //   extraData: 'TestData'
     // })
   } else {
-    // window.android.loadPlayRewardVideo(
-    //   adIdMap.rewardVideo,
-    //   userId,
-    //   encodeURIComponent(
-    //     JSON.stringify({
-    //       token
-    //     })
-    //   ),
-    //   'rewardVideoCb'
-    // )
     window.android.loadPlayRewardVideo(
+      adIdMap.rewardVideo,
       userId,
       encodeURIComponent(
         JSON.stringify({
@@ -158,13 +142,6 @@ export const loadFeed = () => {
     window.android.loadFeed(adIdMap.feed, 'feedCb')
   }
 }
-export const loadShortVideo = () => {
-  window.android.openContentPage('1223', 'test')
-}
-export const loadShortPlayVideo = () => {
-  window.android.openTubePage('1223', 'test')
-}
-
 export const wechatShareLink = (str, scene) => {
   if (isIos) {
     window.webkit.messageHandlers.weiXinShare.postMessage({

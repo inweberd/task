@@ -270,28 +270,6 @@ onMounted(() => {
     state.isSharing = true
   })
   bus.on(EVENT_KEY.NAV, ({ path, query }) => nav(path, query))
-  bus.on(EVENT_KEY.GO_USERINFO, () => {
-    if (!userInfo?.result?.staff?.serial) {
-      return showDialog({
-        message: '请先开通橙市合伙人！',
-        theme: 'round-button'
-      })
-    }
-    reqTaskMoney().then((res) => {
-      loading.value = false
-      if (res.code !== 200) return _notice(res.msg)
-
-      if (!res.data.length) {
-        return showDialog({
-          message: '今日红包已领取完，请明日再来！',
-          theme: 'round-button'
-        })
-      }
-      redPackageInfo.value = res.data[0]
-      show.value = true
-    })
-  })
-  bus.on(EVENT_KEY.CURRENT_ITEM, setCurrentItem)
 })
 
 onUnmounted(() => {

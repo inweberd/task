@@ -4,7 +4,8 @@
       <span v-if="!isRefresh1" :class="{ active: currentTab === 1 }">首页</span>
       <img v-if="isRefresh1" src="../assets/img/icon/refresh1.png" alt="" class="refresh" />
     </div>
-    <div class="l-button" @click="refresh(2)">
+    <!--    <div class="l-button" @click="refresh(2)">-->
+    <div class="l-button" @click="loadShort(1)">
       <span v-if="!isRefresh2" :class="{ active: currentTab === 2 }">视频</span>
       <img v-if="isRefresh2" src="../assets/img/icon/refresh1.png" alt="" class="refresh" />
     </div>
@@ -13,7 +14,8 @@
         <img src="../assets/img/icon/add-light.png" alt="" class="add" />
       </div>
     </div>
-    <div class="l-button" @click="tab(4)">
+    <!--    <div class="l-button" @click="tab(4)">-->
+    <div class="l-button" @click="loadShort(2)">
       <span :class="{ active: currentTab === 4 }">短剧</span>
       <!-- <div class="badge">2</div> -->
     </div>
@@ -25,6 +27,7 @@
 
 <script>
 import bus, { EVENT_KEY } from '../utils/bus'
+import { loadShortPlayVideo, loadShortVideo } from '@/utils/ad'
 
 export default {
   name: 'BaseFooter',
@@ -47,6 +50,13 @@ export default {
     bus.off(EVENT_KEY.EXIT_FULLSCREEN)
   },
   methods: {
+    loadShort(type) {
+      if (type === 1) {
+        loadShortVideo()
+      } else if (type === 2) {
+        loadShortPlayVideo()
+      }
+    },
     $nav(path) {
       this.$router.push(path)
     },

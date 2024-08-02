@@ -9,11 +9,11 @@
     <!--  <van-image :src="pengyouquan" width="50" height="50" fit="fill" @click="share"></van-image>-->
     <!--</div>-->
     <div class="contact" @click="share">
-      <img src="@/assets/img/share.png" alt="" />
-      <div>
-        <div>点我</div>
-        <div>分享</div>
-      </div>
+      <img src="@/assets/img/friend.png" alt="" />
+      <!--      <div>-->
+      <!--        <div>点我</div>-->
+      <!--        <div>分享</div>-->
+      <!--      </div>-->
     </div>
     <!--<van-image :src="imageSrc" width="100%" height="100%" fit="cover"></van-image>-->
   </div>
@@ -31,7 +31,7 @@ const canvas = ref()
 const canvasWidth = ref(window.innerHeight / (2336 / 1080))
 const canvasHeight = ref(window.innerHeight)
 const qrCodeText = ref(
-  'https://share.nzsvj.cn/#/signUp?invite=' +
+  'https://onze.nzsvj.cn/#/signUp?invite=' +
     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
 )
 const updateCanvasSize = () => {

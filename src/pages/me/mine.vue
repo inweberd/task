@@ -69,7 +69,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://share.nzsvj.cn/download`
+    window.location.href = `https://onze.nzsvj.cn/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false

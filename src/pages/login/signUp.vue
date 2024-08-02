@@ -172,7 +172,7 @@ function onSubmit() {
       data.password2 = ''
       data.invite = ''
       // router.replace('/login')
-      window.location.href = `https://tc.ijylmwy.com/download`
+      window.location.href = `http://ssn.rgrma.cn/download`
     }
   })
 }

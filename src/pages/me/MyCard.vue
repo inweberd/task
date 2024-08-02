@@ -31,7 +31,7 @@ const canvas = ref()
 const canvasWidth = ref(window.innerHeight / (2336 / 1080))
 const canvasHeight = ref(window.innerHeight)
 const qrCodeText = ref(
-  'https://share.rgrma.cn/#/signUp?invite=' +
+  'https://share.nzsvj.cn/#/signUp?invite=' +
     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
 )
 const updateCanvasSize = () => {

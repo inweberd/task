@@ -104,7 +104,7 @@ const appList = ref([
 ])
 function goDownload() {
   try {
-    window.location.href = `https://share.rgrma.cn/download`
+    window.location.href = `https://share.nzsvj.cn/download`
   } catch (e) {
     _notice('下载失败')
   }

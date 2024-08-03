@@ -69,6 +69,7 @@
           label=""
           name="邀请码"
           placeholder="(必填) 邀请码"
+          :disabled="$route.query.invite"
           :rules="[{ required: true, message: '请填写邀请码' }]"
         />
         <van-divider />

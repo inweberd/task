@@ -67,8 +67,8 @@ const generatePoster = async () => {
   image.onload = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
 
-    const qrCodeSize = 100 // 调整二维码的大小
-    const qrCodeMarginBottom = 100 // 调整二维码距离底部的距离
+    const qrCodeSize = 140 // 调整二维码的大小
+    const qrCodeMarginBottom = 40 // 调整二维码距离底部的距离
     const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
       width: qrCodeSize,
       height: qrCodeSize,

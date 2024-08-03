@@ -50,10 +50,21 @@ const store = useBaseStore()
 const route = useRoute()
 const transitionName = ref('go')
 // 检测用户使用的是微信浏览器或者qq浏览器
-const isWeChatBrowser =
-  navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1 ||
-  navigator.userAgent.toLowerCase().indexOf('qqbrowser') !== -1 ||
-  navigator.userAgent.toLowerCase().indexOf('qq') !== -1
+let isWeChatBrowser
+
+if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+  isWeChatBrowser =
+    navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1 ||
+    navigator.userAgent.toLowerCase().indexOf('qqbrowser') !== -1 ||
+    navigator.userAgent.toLowerCase().indexOf('qq') !== -1
+} else {
+  isWeChatBrowser =
+    (navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1 ||
+      navigator.userAgent.toLowerCase().indexOf('qqbrowser') !== -1 ||
+      navigator.userAgent.toLowerCase().indexOf('qq') !== -1) &&
+    !window.android
+}
+
 // watch $route 决定使用哪种过渡
 watch(
   () => route.path,

@@ -104,7 +104,7 @@ const appList = ref([
 ])
 function goDownload() {
   try {
-    window.location.href = `https://onze.nzsvj.cn/download`
+    window.location.href = `https://tcc.ebayser.com/download`
   } catch (e) {
     _notice('下载失败')
   }

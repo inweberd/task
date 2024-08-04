@@ -107,12 +107,12 @@
               >保存</van-button
             >
           </van-tab>
-          <van-tab title="JD钱包" v-if="false" style="padding: 0px 20px">
+          <van-tab title="JD钱包" style="padding: 0px 20px">
             <van-field v-model="jd_value.name" label="姓名" placeholder="姓名" />
             <van-field v-model="jd_value.card_no" label="钱包地址" placeholder="钱包地址" />
-            <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">
-              钱包地址为钱包主页界面的34位字母+数字组合。
-            </p>
+            <!--            <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">-->
+            <!--              钱包地址为钱包主页界面的34位字母+数字组合。-->
+            <!--            </p>-->
 
             <van-button
               color="#F56D17"
@@ -408,6 +408,10 @@ const save = async (e) => {
   } else if (e == 'jd') {
     if (!jd_value.card_no || !jd_value.name) {
       return _notice('请输入完整信息！')
+    }
+    const flag = state.select.card.some((item) => item.card_no === jd_value.card_no)
+    if (flag) {
+      return _notice('已绑定过此卡号！')
     }
     bindLoading.value = true
     const { code, msg } = await axios.post('/api/pay-card/save', {

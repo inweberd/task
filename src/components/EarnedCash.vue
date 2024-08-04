@@ -14,7 +14,7 @@
     <!--    >-->
     <img
       v-click="getEarnedCash"
-      src="@/assets/earned-cash.png"
+      src="@/assets/earned-cash2.png"
       style="
         width: 50rem;
         padding-bottom: 25rem;

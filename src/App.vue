@@ -154,6 +154,7 @@ onMounted(() => {
   // testCb
   window.createShareLog = function () {
     // console.log(11331)
+    sessionStorage.isShare = true
     reqCreateShareLog().then((res) => {
       console.log('reqCreateShareLog', res)
     })

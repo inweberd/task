@@ -267,18 +267,18 @@ const card = async () => {
   setPay()
 }
 async function goPay() {
-  // if (!sessionStorage.seeVideoWithdrawal) {
-  //   showDialog({
-  //     message: '观看激励视频进行提现！遇到问题请及时联系客服！',
-  //     theme: 'round-button'
-  //   }).then(() => {
-  //     // on close
-  //     loadPlayRewardVideo(() => {
-  //       sessionStorage.seeVideoWithdrawal = true
-  //     })
-  //   })
-  //   return
-  // }
+  if (!sessionStorage.seeVideoWithdrawal) {
+    showDialog({
+      message: '观看激励视频进行提现！遇到问题请及时联系客服！',
+      theme: 'round-button'
+    }).then(() => {
+      // on close
+      loadPlayRewardVideo(() => {
+        sessionStorage.seeVideoWithdrawal = true
+      })
+    })
+    return
+  }
   tixianLoading.value = true
   const { code, msg } = await axios.post('/api/wallet-fetch/create', {
     money: money.value,
@@ -286,7 +286,7 @@ async function goPay() {
   })
 
   tixianLoading.value = false
-  // sessionStorage.seeVideoWithdrawal = ''
+  sessionStorage.seeVideoWithdrawal = ''
   if (code !== 200) return _notice(msg)
   _notice('申请已提交！')
 }

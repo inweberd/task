@@ -14,6 +14,7 @@ import { articleall } from '@/api/myApi'
 import { getSerialName } from '../../utils/getSerialName'
 import Loading from '@/components/Loading.vue'
 import avatar from '@/assets/img/avatar.png'
+import { loadInteraction } from '@/utils/ad'
 const props = defineProps({})
 const userInfo = ref({})
 const walletInfo = ref({})
@@ -38,7 +39,8 @@ async function logout() {
   window.location.reload()
   router.push('/login')
 }
-function go(e) {
+function go(e, interaction = false) {
+  interaction && loadInteraction()
   router.push(e)
 }
 function jumpToQQ() {
@@ -223,7 +225,7 @@ function getData() {
               <img class="image_5" src="./images/f4b019b601d0df00071c19a8d8635f75.png" />
               <span class="font_5 mt-3-5">橙市合伙人</span>
             </div>
-            <div class="flex-col items-center grid-item_2" @click="go('/myteam')">
+            <div class="flex-col items-center grid-item_2" @click="go('/myteam', true)">
               <img class="image_5" src="./images/ca1c51d7746b93a23920b6e81a01305b.png" />
               <span class="font_5 mt-2-5">我的团队</span>
             </div>
@@ -245,7 +247,7 @@ function getData() {
               <img class="image_5" src="./images/27bc4dd691fde94921cf9524f29d0a98.png" />
               <span class="font_2 mt-3-5">收支明细</span>
             </div>
-            <div class="flex-col items-center relative grid-item_6" @click="go('/demo')">
+            <div class="flex-col items-center relative grid-item_6" @click="go('/demo', true)">
               <img class="image_5" src="./images/7e51e7b4f4d139f9390fa23d75432efb.png" />
               <span class="font_2 mt-5-5">无限代星级</span>
             </div>
@@ -253,7 +255,10 @@ function getData() {
               <img class="image_5" src="./images/702e90f7f1ebc87641055bbff962f5b5.png" />
               <span class="font_2 text_7 mt-5">大逃杀游戏</span>
             </div>
-            <div class="flex-col items-center relative grid-item_7" @click="go('/conversion')">
+            <div
+              class="flex-col items-center relative grid-item_7"
+              @click="go('/conversion', true)"
+            >
               <img class="image_5" src="./images/money.png" />
               <span class="font_2 text_7 mt-5">佣金互转</span>
             </div>

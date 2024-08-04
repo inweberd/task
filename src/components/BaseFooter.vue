@@ -10,8 +10,18 @@
       <img v-if="isRefresh2" src="../assets/img/icon/refresh1.png" alt="" class="refresh" />
     </div>
     <div class="l-button" @click="tab(3)">
-      <div class="add-ctn">
-        <img src="../assets/img/icon/add-light.png" alt="" class="add" />
+      <!--      <div class="add-ctn">-->
+      <!--        <img src="../assets/img/icon/add-light.png" alt="" class="add" />-->
+      <!--      </div>-->
+      <div
+        style="
+          padding: 2rem 4rem;
+          border-radius: 10rem;
+          background-image: linear-gradient(135deg, #97abff 10%, #123597 100%);
+        "
+      >
+        <div style="white-space: nowrap">全民分享</div>
+        <div style="white-space: nowrap">月入过万</div>
       </div>
     </div>
     <!--    <div class="l-button" @click="tab(4)">-->

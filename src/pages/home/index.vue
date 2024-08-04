@@ -28,39 +28,10 @@
         </van-notice-bar>
       </div>
       <div v-show="activeTab === 0" class="app-list">
-        <div class="app-list-item">
-          <div class="l">
-            <div class="logo">
-              <img src="@/assets/img/appLogo/logo2.png" alt="" />
-            </div>
-            <div class="info">
-              <div class="name">甜橙视频</div>
-              <div class="desc">这款APP真的可以免费提现!</div>
-            </div>
-          </div>
-          <div class="r">
-            <div class="download" @click="goDownload">下载</div>
-          </div>
-        </div>
-        <div class="app-list-item">
-          <div class="l">
-            <div class="logo">
-              <img src="@/assets/img/appLogo/qq.png" alt="" />
-            </div>
-            <div class="info">
-              <div class="name">加入我们</div>
-              <div class="desc">有问题咨询客服！</div>
-            </div>
-          </div>
-          <div class="r">
-            <div class="download" @click="jumpToQQ">加入</div>
-          </div>
-        </div>
-        <p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>
         <div class="app-list-item" v-for="item of appList">
           <div class="l">
             <div class="logo">
-              <img :src="item.logo" alt="" />
+              <img :src="convertImgUrl(item.logo)" alt="" />
             </div>
             <div class="info">
               <div class="name">{{ item.name }}</div>
@@ -68,10 +39,12 @@
             </div>
           </div>
           <div class="r">
-            <div class="download">敬请期待</div>
+            <div class="download" @click="item.btnCb">{{ item.btnLabel }}</div>
           </div>
         </div>
+        <p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>
       </div>
+
       <div class="playing" v-show="activeTab === 1">
         <van-empty :image="empty" image-size="120" description="未搜索到应用" />
       </div>
@@ -85,22 +58,67 @@ import { onActivated, onMounted, ref } from 'vue'
 
 import Loading from '@/components/Loading.vue'
 import BaseFooter from '@/components/BaseFooter.vue'
-import appLogo from '@/assets/img/appLogo/logo.png'
-import appLogo2 from '@/assets/img/appLogo/logo2.png'
+import appLogo2 from '@/assets/img/appLogo/tcsp.png'
 import EarnedCash from '@/components/EarnedCash.vue'
 import empty from '@/assets/img/custom-empty-image.png'
 import { _notice } from '@/utils'
 import { loadInteraction, loadPlayRewardVideo, loadSplash } from '@/utils/ad'
+import { useRouter } from 'vue-router'
 
 const show = ref(false)
 const loading = ref(false)
+const router = useRouter()
 const activeTab = ref(0)
 const appList = ref([
-  // {
-  //   name: '甜橙视频',
-  //   desc: '这款app真的免费提现!',
-  //   logo: appLogo
-  // }
+  {
+    name: '甜橙视频',
+    desc: '这款APP真的可以免费提现!',
+    logo: 'tcsp',
+    btnLabel: '下载',
+    btnCb() {
+      try {
+        window.location.href = `https://tcc.ebayser.com/download`
+      } catch (e) {
+        _notice('下载失败')
+      }
+    }
+  },
+  {
+    name: '官方QQ群',
+    desc: '有问题咨询客服!',
+    logo: 'qq',
+    btnLabel: '联系客服',
+    btnCb() {
+      window.location.href = decodeURIComponent('https://qm.qq.com/q/rfYONthKYq')
+    }
+  },
+  {
+    name: '甜橙斗猿场',
+    desc: '甜橙斗猿场，一夜暴富',
+    logo: 'dyc',
+    btnLabel: '一夜暴富',
+    btnCb() {
+      router.push('/noFinish')
+    }
+  },
+  {
+    name: '甜橙大逃杀',
+    desc: '甜橙大逃杀，一夜暴富',
+    logo: 'dts',
+    btnLabel: '一夜暴富',
+    btnCb() {
+      router.push('/noFinish')
+    }
+  },
+  {
+    name: '甜橙夹娃娃',
+    desc: '甜橙夹娃娃，一夜暴富',
+    logo: 'jww',
+    btnLabel: '一夜暴富',
+    btnCb() {
+      router.push('/noFinish')
+    }
+  }
 ])
 function goDownload() {
   try {
@@ -116,6 +134,11 @@ function jumpToQQ() {
   // loadPlayRewardVideo(() => {
   //   alert(111)
   // })
+}
+
+const convertImgUrl = (iconUrl: string) => {
+  // return new URL(`./images/${iconUrl}.png`, import.meta.url).href
+  return new URL(`../../assets/img/appLogo/${iconUrl}.png`, import.meta.url).href
 }
 onActivated(() => {
   show.value = false

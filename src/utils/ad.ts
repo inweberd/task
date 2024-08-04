@@ -30,13 +30,14 @@ export const loadSplash = () => {
     }
   }
   if (isIos) {
-    window.webkit.messageHandlers.loadSplash.postMessage({
-      positionID: adIdMap.splash,
-      callBack: 'splashCb'
-    })
+    window.webkit?.messageHandlers &&
+      window.webkit.messageHandlers.loadSplash.postMessage({
+        positionID: adIdMap.splash,
+        callBack: 'splashCb'
+      })
   } else {
     // window.android.loadSplash(adIdMap.splash, 'splashCb')
-    window.android.loadSplash('splashCb')
+    window.android && window.android.loadSplash('splashCb')
   }
 }
 
@@ -56,13 +57,14 @@ export const loadInteraction = () => {
   }
 
   if (isIos) {
-    window.webkit.messageHandlers.loadInteraction.postMessage({
-      positionID: adIdMap.interaction,
-      callBack: 'interactionCb'
-    })
+    window.webkit?.messageHandlers &&
+      window.webkit.messageHandlers.loadInteraction.postMessage({
+        positionID: adIdMap.interaction,
+        callBack: 'interactionCb'
+      })
   } else {
     // window.android.loadInteraction(adIdMap.interaction, 'interactionCb')
-    window.android.loadInteraction('interactionCb')
+    window.android && window.android.loadInteraction('interactionCb')
   }
 }
 export const loadPlayRewardVideo = (cb?) => {
@@ -82,16 +84,17 @@ export const loadPlayRewardVideo = (cb?) => {
     }
   }
   if (isIos) {
-    window.webkit.messageHandlers.loadPlayRewardVideo.postMessage({
-      positionID: adIdMap.rewardVideo,
-      userID: userId,
-      callBack: 'rewardVideoCb',
-      extraData: encodeURIComponent(
-        JSON.stringify({
-          token
-        })
-      )
-    })
+    window.webkit?.messageHandlers &&
+      window.webkit.messageHandlers.loadPlayRewardVideo.postMessage({
+        positionID: adIdMap.rewardVideo,
+        userID: userId,
+        callBack: 'rewardVideoCb',
+        extraData: encodeURIComponent(
+          JSON.stringify({
+            token
+          })
+        )
+      })
     // window.webkit.messageHandlers.loadPlayRewardVideo.postMessage({
     //   positionID: adIdMap.rewardVideo,
     //   userID: '123456',
@@ -109,15 +112,16 @@ export const loadPlayRewardVideo = (cb?) => {
     //   ),
     //   'rewardVideoCb'
     // )
-    window.android.loadPlayRewardVideo(
-      userId,
-      encodeURIComponent(
-        JSON.stringify({
-          token
-        })
-      ),
-      'rewardVideoCb'
-    )
+    window.android &&
+      window.android.loadPlayRewardVideo(
+        userId,
+        encodeURIComponent(
+          JSON.stringify({
+            token
+          })
+        ),
+        'rewardVideoCb'
+      )
   }
 }
 export const loadBanner = () => {

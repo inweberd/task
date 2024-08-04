@@ -17,7 +17,7 @@ import avatar from '@/assets/img/avatar.png'
 import { loadInteraction } from '@/utils/ad'
 const props = defineProps({})
 const userInfo = ref({})
-const walletInfo = ref({})
+const walletInfo = ref({ credit: 0 })
 const star = ref(0)
 const userIncomeInfo = ref({})
 const Caidan = ref([])

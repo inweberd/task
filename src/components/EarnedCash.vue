@@ -58,6 +58,7 @@ import { loadPlayRewardVideo, wechatShareImg } from '@/utils/ad'
 import shouxia from '@/assets/img/shouxia.png'
 import imageSrc from '@/assets/img/share2.jpg'
 import QRCode from 'qrcode/lib'
+import dayjs from 'dayjs'
 const currentRate = ref(0)
 const loading = ref(false)
 const redPackageInfo = ref({})
@@ -117,7 +118,7 @@ const getEarnedCash = () => {
   //   })
   //   return
   // }
-  if (!sessionStorage.isShare) {
+  if (localStorage.isShare !== dayjs().format('YYYY-MM-DD')) {
     showConfirmDialog({
       message: '分享朋友圈后可领取红包！遇到问题请及时联系客服！',
       confirmButtonText: '去分享',

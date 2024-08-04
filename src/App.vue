@@ -57,6 +57,7 @@ import wx from 'weixin-js-sdk'
 const keepAliveBlackList = ['wallet', 'shortPlayDetail', 'recharge']
 import { loadInteraction, loadSplash, testCallback } from '@/utils/ad'
 import { reqCreateShareLog } from '@/api/myApi'
+import dayjs from 'dayjs'
 const store = useBaseStore()
 const route = useRoute()
 const transitionName = ref('go')
@@ -179,7 +180,7 @@ onMounted(() => {
   // testCb
   window.createShareLog = function () {
     // console.log(11331)
-    sessionStorage.isShare = true
+    localStorage.isShare = dayjs().format('YYYY-MM-DD')
     reqCreateShareLog().then((res) => {
       console.log('reqCreateShareLog', res)
     })

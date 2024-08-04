@@ -102,7 +102,7 @@ const getEarnedCash = () => {
 
   if (!userInfo?.result?.staff?.serial) {
     return showDialog({
-      message: '请先开通橙市合伙人！',
+      message: '请先开通橙市合伙人！开通合伙人红包收益合同持续365天！',
       theme: 'round-button'
     })
   }
@@ -146,7 +146,7 @@ const getEarnedCash = () => {
 
     if (!res.data.length) {
       return showDialog({
-        message: '今日红包已领取完，请明日再来！',
+        message: '今日红包已领取完，请明日再来！开通合伙人红包收益合同持续365天！',
         theme: 'round-button'
       })
     }

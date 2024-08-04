@@ -214,9 +214,13 @@ function getData() {
       <div class="flex-col">
         <div class="flex-row items-center section_5">
           <div class="flex-col justify-start items-start flex-1 image-wrapper">
-            <img class="image_4" src="./images/e62b209b1fc33d5b3ca0c4a35e43028e.png" />
+            <img
+              class="image_4"
+              :style="{ width: Math.min(walletInfo.credit, 100) + '%' }"
+              src="./images/e62b209b1fc33d5b3ca0c4a35e43028e.png"
+            />
           </div>
-          <span class="text_5 ml-20">当前信用分：60分</span>
+          <span class="text_5 ml-20">当前信用分：{{ walletInfo.credit || '--' }}分</span>
           <div class="text" @click="go('/CreditScoreDetail', true)">详情</div>
         </div>
 
@@ -485,7 +489,6 @@ function getData() {
         height: 4.08rem;
 
         .image_4 {
-          width: 100rem;
           height: 4.08rem;
         }
       }

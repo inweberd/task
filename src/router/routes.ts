@@ -30,6 +30,7 @@ const routes: RouteRecordRaw[] = [
 
   { path: '/me', component: () => import('@/pages/me/mine.vue') },
   { path: '/nofinish', component: () => import('@/pages/me/nofinish.vue') },
+  { path: '/gameNofinish', component: () => import('@/pages/me/gameNofinish.vue') },
   { path: '/CreditScoreDetail', component: () => import('@/pages/me/CreditScoreDetail.vue') },
   {
     path: '/me/edit-userinfo',

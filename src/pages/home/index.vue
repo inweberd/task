@@ -98,7 +98,7 @@ const appList = ref([
     logo: 'dyc',
     btnLabel: '一夜暴富',
     btnCb() {
-      router.push('/noFinish')
+      router.push('/gameNoFinish?type=dyc')
     }
   },
   {
@@ -107,7 +107,7 @@ const appList = ref([
     logo: 'dts',
     btnLabel: '一夜暴富',
     btnCb() {
-      router.push('/noFinish')
+      router.push('/gameNoFinish?type=dts')
     }
   },
   {
@@ -116,7 +116,7 @@ const appList = ref([
     logo: 'jww',
     btnLabel: '一夜暴富',
     btnCb() {
-      router.push('/noFinish')
+      router.push('/gameNoFinish?type=jww')
     }
   }
 ])

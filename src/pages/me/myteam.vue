@@ -4,6 +4,7 @@
       title="团队收益"
       safe-area-inset-top
       fixed
+      :class="{ inApp: getIsInApp() }"
       placeholder
       @click-left="router.back()"
       left-text="返回"
@@ -120,6 +121,7 @@ import { onMounted, ref, reactive, onActivated } from 'vue'
 import { reqUserDistribution, reqUserIncome, reqUserMemberInfo } from '@/api/myApi'
 import { _notice } from '@/utils'
 import { getSerialName } from '../../utils/getSerialName'
+import { getIsInApp } from '@/utils/getTopPadding'
 const router = useRouter()
 let user
 const loading = ref(true)

@@ -3,7 +3,6 @@
     <van-nav-bar
       title="开发中"
       safe-area-inset-top
-      fixed
       placeholder
       @click-left="$router.back()"
       left-text="返回"
@@ -21,4 +20,5 @@
 
 <script lang="ts" setup>
 import shareholder from '@/assets/img/kaifa.png'
+import { getIsInApp, getTopPadding } from '@/utils/getTopPadding'
 </script>

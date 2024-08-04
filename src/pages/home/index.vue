@@ -158,6 +158,9 @@ onMounted(() => {
   height: 100%;
   background: black;
   overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
 
   .container {
     //width: 90vw;

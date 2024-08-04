@@ -5,6 +5,7 @@
     <van-nav-bar
       title="佣金互转"
       safe-area-inset-top
+      :class="{ inApp: getIsInApp() }"
       fixed
       placeholder
       left-text="返回"
@@ -81,6 +82,7 @@ import { _no, _sleep, _notice } from '@/utils'
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
 import { useRoute } from 'vue-router'
 import { onMounted } from 'vue'
+import { getIsInApp } from '@/utils/getTopPadding'
 
 const route = useRoute()
 const time = ref()

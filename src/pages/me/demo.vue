@@ -4,6 +4,7 @@
       title="股东等级"
       safe-area-inset-top
       fixed
+      :class="{ inApp: getIsInApp() }"
       placeholder
       @click-left="$router.back()"
       left-text="返回"
@@ -22,6 +23,7 @@
 <script lang="ts" setup>
 import shareholder from '@/assets/img/shareholder2.png'
 import rule from '@/assets/img/rule.jpg'
+import { getIsInApp } from '@/utils/getTopPadding'
 </script>
 <style scoped>
 html {

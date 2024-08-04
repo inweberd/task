@@ -1,11 +1,22 @@
 <template>
-  <router-view v-slot="{ Component }">
-    <transition :name="transitionName">
-      <keep-alive :exclude="[...store.excludeNames, ...keepAliveBlackList]">
-        <component :is="Component" />
-      </keep-alive>
-    </transition>
-  </router-view>
+  <div
+    :style="{ height: topPadding }"
+    style="width: 100%; background-color: #fff; position: fixed; top: 0; left: 0; z-index: 999"
+  ></div>
+  <div
+    style="width: 100%; height: 100vh; box-sizing: border-box"
+    :style="{
+      paddingTop: topPadding
+    }"
+  >
+    <router-view v-slot="{ Component }">
+      <transition :name="transitionName">
+        <keep-alive :exclude="[...store.excludeNames, ...keepAliveBlackList]">
+          <component :is="Component" />
+        </keep-alive>
+      </transition>
+    </router-view>
+  </div>
   <Call />
   <!--  v-if=" (isWeChatBrowser && ['fenxiang', '/me/my-card'].includes(route.path)) ||-->
   <!--  route.query.injectWeixin "-->
@@ -36,7 +47,7 @@ try {navigator.control.longpressMenu(false);} catch (e) {} //关闭长按弹出�
 import routes from './router/routes'
 import Call from './components/Call.vue'
 import { useBaseStore } from '@/store/pinia.js'
-import { onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import BaseMask from '@/components/BaseMask.vue'
@@ -49,6 +60,20 @@ import { reqCreateShareLog } from '@/api/myApi'
 const store = useBaseStore()
 const route = useRoute()
 const transitionName = ref('go')
+
+const topPadding = computed(() => {
+  // window.webkit?.messageHandlers
+  if (window.android) {
+    if (!['/home', '/me', '/invest'].includes(route.path)) {
+      return '40rem !important'
+    } else {
+      return 0 + 'rem !important'
+    }
+  }
+
+  return '0rem !important'
+})
+
 // 检测用户使用的是微信浏览器或者qq浏览器
 let isWeChatBrowser
 

@@ -3,6 +3,7 @@
     <van-nav-bar
       :title="desc.title"
       safe-area-inset-top
+      :class="{ inApp: getIsInApp() }"
       fixed
       placeholder
       @click-left="router.back()"
@@ -45,6 +46,7 @@ import certificate2 from '@/assets/img/certificate/2.jpg'
 import certificate3 from '@/assets/img/certificate/3.jpg'
 import certificate4 from '@/assets/img/certificate/4.jpg'
 import playMethod from '@/assets/img/playMethod.jpg'
+import { getIsInApp } from '@/utils/getTopPadding'
 const router = useRouter()
 const route = useRoute()
 const id = ref('')

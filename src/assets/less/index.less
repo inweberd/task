@@ -35,6 +35,8 @@
   --mask-lightgray: rgba(0, 0, 0, 0.25);
   //消息页面
   --msg-subpage-card-bg: rgb(28, 30, 43); //二级页面，卡片背景
+
+  --inAppPdddingTop: 40rem !important;
 }
 
 html,
@@ -48,4 +50,12 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+}
+
+.van-nav-bar__placeholder.inApp {
+  position: relative;
+  z-index:2;
+  .van-nav-bar--fixed {
+    top: var(--inAppPdddingTop);
+  }
 }

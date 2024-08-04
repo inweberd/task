@@ -5,6 +5,7 @@
       safe-area-inset-top
       fixed
       placeholder
+      :class="{ inApp: getIsInApp() }"
       @click-left="router.back()"
       left-text="返回"
       left-arrow
@@ -71,6 +72,7 @@ import modzz from '../login/model.vue'
 import imageSrc from '@/assets/img/chongzhi.png'
 import { axiosInstance as axios } from '@/utils/myrequest'
 import { test } from '@/api/myApi'
+import { getIsInApp } from '@/utils/getTopPadding'
 
 const router = useRouter()
 const service = ref(false)

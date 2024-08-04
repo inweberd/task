@@ -9,7 +9,7 @@
       left-text="返回"
       left-arrow
     ></van-nav-bar>
-    <van-image :src="my" width="94%" height="100%" style="margin-left: 3%" fit="cover"></van-image>
+    <van-image :src="my" width="100%" height="100%" fit="cover"></van-image>
   </div>
 </template>
 

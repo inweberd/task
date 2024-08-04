@@ -47,6 +47,7 @@ function jumpToQQ() {
   window.location.href = decodeURIComponent('https://qm.qq.com/q/rfYONthKYq')
 }
 function go2(val1, val2) {
+  loadInteraction()
   console.log(val1, val2)
   router.push({ path: '/article', query: { id: val2.id } })
   // router.push(e)
@@ -187,23 +188,23 @@ function getData() {
           <span class="font_2 text_3">提现</span>
         </div>
         <div class="flex-row justify-between equal-division group_4">
-          <div class="flex-col items-start equal-division-item_2" @click="go('/dep')">
+          <div class="flex-col items-start equal-division-item_2" @click="go('/dep', true)">
             <span class="font_3">{{ userIncomeInfo.today || 0 }}</span>
             <span class="font_4 text_1 mt-12">今日收益</span>
           </div>
           <div class="horiz-divider section_4"></div>
-          <div class="flex-col items-start equal-division-item_2" @click="go('/dep')">
+          <div class="flex-col items-start equal-division-item_2" @click="go('/dep', true)">
             <span class="font_3">{{ userIncomeInfo.total || 0 }}</span>
             <span class="font_4 text_1 mt-12">历史收益</span>
           </div>
           <div class="horiz-divider section_4"></div>
-          <div class="flex-col items-start equal-division-item" @click="go('/dep')">
+          <div class="flex-col items-start equal-division-item" @click="go('/dep', true)">
             <span class="font_3">{{ format(walletInfo?.amount || 0) }}</span>
             <span class="font_4 text_1 mt-12">充值余额</span>
           </div>
           <div class="horiz-divider section_4"></div>
 
-          <div class="flex-col items-start equal-division-item_2" @click="go('/dep')">
+          <div class="flex-col items-start equal-division-item_2" @click="go('/dep', true)">
             <span class="font_3">{{ format(walletInfo?.money || 0) }}</span>
             <span class="font_4 text_1 mt-12">可提现</span>
           </div>
@@ -216,7 +217,7 @@ function getData() {
             <img class="image_4" src="./images/e62b209b1fc33d5b3ca0c4a35e43028e.png" />
           </div>
           <span class="text_5 ml-20">当前信用分：60分</span>
-          <div class="text" @click="go('/CreditScoreDetail')">详情</div>
+          <div class="text" @click="go('/CreditScoreDetail', true)">详情</div>
         </div>
 
         <div class="flex-col justify-start section_6 mt-18-5">
@@ -251,10 +252,10 @@ function getData() {
               <img class="image_5" src="./images/7e51e7b4f4d139f9390fa23d75432efb.png" />
               <span class="font_2 mt-5-5">无限代星级</span>
             </div>
-            <div class="flex-col items-center relative grid-item_7" @click="go('/nofinish')">
-              <img class="image_5" src="./images/702e90f7f1ebc87641055bbff962f5b5.png" />
-              <span class="font_2 text_7 mt-5">大逃杀游戏</span>
-            </div>
+            <!--            <div class="flex-col items-center relative grid-item_7" @click="go('/nofinish')">-->
+            <!--              <img class="image_5" src="./images/702e90f7f1ebc87641055bbff962f5b5.png" />-->
+            <!--              <span class="font_2 text_7 mt-5">大逃杀游戏</span>-->
+            <!--            </div>-->
             <div
               class="flex-col items-center relative grid-item_7"
               @click="go('/conversion', true)"

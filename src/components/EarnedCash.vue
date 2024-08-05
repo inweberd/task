@@ -118,20 +118,20 @@ const getEarnedCash = () => {
   //   })
   //   return
   // }
-  // if (localStorage.isShare !== dayjs().format('YYYY-MM-DD')) {
-  //   showConfirmDialog({
-  //     message: '分享朋友圈后可领取红包！遇到问题请及时联系客服！',
-  //     confirmButtonText: '去分享',
-  //     theme: 'round-button'
-  //   }).then(() => {
-  //     share()
-  //     // on close
-  //     // loadPlayRewardVideo(() => {
-  //     //   sessionStorage.seeVideoGetEarnedCash = true
-  //     // })
-  //   })
-  //   return
-  // }
+  if (localStorage.isShare !== dayjs().format('YYYY-MM-DD')) {
+    showConfirmDialog({
+      message: '分享朋友圈后可领取红包！遇到问题请及时联系客服！',
+      confirmButtonText: '去分享',
+      theme: 'round-button'
+    }).then(() => {
+      share()
+      // on close
+      // loadPlayRewardVideo(() => {
+      //   sessionStorage.seeVideoGetEarnedCash = true
+      // })
+    })
+    return
+  }
   loading.value = true
   reqTaskMoney().then((res) => {
     loading.value = false

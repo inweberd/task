@@ -1,4 +1,5 @@
 <template>
+  <canvas ref="canvas" v-show="false"></canvas>
   <div
     :style="{ height: topPadding }"
     style="width: 100%; background-color: #fff; position: fixed; top: 0; left: 0; z-index: 999"
@@ -55,9 +56,12 @@ import { BASE_URL } from '@/config'
 import { loadWx } from '@/utils/loadWx'
 import wx from 'weixin-js-sdk'
 const keepAliveBlackList = ['wallet', 'shortPlayDetail', 'recharge']
-import { loadInteraction, loadSplash, testCallback } from '@/utils/ad'
+import { loadInteraction, loadSplash, testCallback, wechatShareImg } from '@/utils/ad'
 import { reqCreateShareLog } from '@/api/myApi'
 import dayjs from 'dayjs'
+import { outsideFn } from '@/utils/outsideFn'
+import imageSrc from '@/assets/img/share2.jpg'
+import QRCode from 'qrcode/lib'
 const store = useBaseStore()
 const route = useRoute()
 const transitionName = ref('go')
@@ -126,7 +130,49 @@ function resetVhAndPx() {
   document.documentElement.style.setProperty('--vh', `${vh}px`)
   //document.documentElement.style.fontSize = document.documentElement.clientWidth / 375 + 'px'
 }
+const canvas = ref()
+const canvasWidth = ref(window.innerHeight / (2336 / 1080))
+const canvasHeight = ref(window.innerHeight)
+const qrCodeText = ref('')
 
+const generatePoster = async () => {
+  canvas.value.width = canvasWidth.value
+  canvas.value.height = canvasHeight.value
+  const ctx = canvas.value.getContext('2d')
+
+  const dpr = window.devicePixelRatio
+  // 重新设置 canvas 自身宽高大小和 css 大小。放大 canvas；css 保持不变，因为我们需要那么多的点
+  canvas.value.width = Math.round(canvasWidth.value * dpr)
+  canvas.value.height = Math.round(canvasHeight.value * dpr)
+  canvas.value.style.width = canvasWidth.value + 'px'
+  canvas.value.style.height = canvasHeight.value + 'px'
+  // 直接用 scale 放大整个坐标系，相对来说就是放大了每个绘制操作
+  ctx.scale(dpr, dpr)
+
+  // 绘制背景图片
+  const image = new Image()
+  image.src = imageSrc
+  image.onload = async () => {
+    ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
+
+    const qrCodeSize = 140 // 调整二维码的大小
+    const qrCodeMarginBottom = 40 // 调整二维码距离底部的距离
+    const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
+      width: qrCodeSize,
+      height: qrCodeSize,
+
+      margin: 2
+    })
+    const qrCodeImage = new Image()
+    qrCodeImage.src = qrCodeDataURL
+    qrCodeImage.onload = () => {
+      // 在海报上绘制二维码，位置在正中心下方
+      const qrCodeX = (canvasWidth.value - qrCodeSize) / 2
+      const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
+      ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
+    }
+  }
+}
 onMounted(() => {
   if (isWeChatBrowser) {
     loadWx(() => {
@@ -178,6 +224,17 @@ onMounted(() => {
     init = false
   }
   // testCb
+
+  let timer = setInterval(() => {
+    if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
+      clearInterval(timer)
+      qrCodeText.value =
+        'https://tcc.ebayser.com/#/signUp?invite=' +
+        JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code
+      generatePoster()
+    }
+  }, 1000)
+  outsideFn()
   window.createShareLog = function () {
     // console.log(11331)
     localStorage.isShare = dayjs().format('YYYY-MM-DD')
@@ -185,6 +242,10 @@ onMounted(() => {
       console.log('reqCreateShareLog', res)
     })
     // alert(13311)
+  }
+
+  window.shareFriend = function () {
+    wechatShareImg(canvas.value.toDataURL('image/png'), 1)
   }
   // window.android?.closeLoadMsk?.()
 

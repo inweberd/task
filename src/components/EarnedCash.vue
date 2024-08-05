@@ -1,6 +1,5 @@
 <template>
   <Loading v-if="loading"></Loading>
-  <canvas ref="canvas" v-show="false"></canvas>
 
   <div class="earnedCash">
     <!--    <van-circle-->
@@ -66,8 +65,6 @@ const show = ref(false)
 
 let timer
 onMounted(() => {
-  generatePoster()
-
   timer = setInterval(() => {
     if (currentRate.value === 100) currentRate.value = 0
     currentRate.value++
@@ -155,54 +152,8 @@ const getEarnedCash = () => {
   })
 }
 
-const canvas = ref()
-const canvasWidth = ref(window.innerHeight / (2336 / 1080))
-const canvasHeight = ref(window.innerHeight)
-const qrCodeText = ref(
-  'https://tcc.ebayser.com/#/signUp?invite=' +
-    JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
-)
-
-const generatePoster = async () => {
-  canvas.value.width = canvasWidth.value
-  canvas.value.height = canvasHeight.value
-  const ctx = canvas.value.getContext('2d')
-
-  const dpr = window.devicePixelRatio
-  // 重新设置 canvas 自身宽高大小和 css 大小。放大 canvas；css 保持不变，因为我们需要那么多的点
-  canvas.value.width = Math.round(canvasWidth.value * dpr)
-  canvas.value.height = Math.round(canvasHeight.value * dpr)
-  canvas.value.style.width = canvasWidth.value + 'px'
-  canvas.value.style.height = canvasHeight.value + 'px'
-  // 直接用 scale 放大整个坐标系，相对来说就是放大了每个绘制操作
-  ctx.scale(dpr, dpr)
-
-  // 绘制背景图片
-  const image = new Image()
-  image.src = imageSrc
-  image.onload = async () => {
-    ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
-
-    const qrCodeSize = 140 // 调整二维码的大小
-    const qrCodeMarginBottom = 40 // 调整二维码距离底部的距离
-    const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
-      width: qrCodeSize,
-      height: qrCodeSize,
-
-      margin: 2
-    })
-    const qrCodeImage = new Image()
-    qrCodeImage.src = qrCodeDataURL
-    qrCodeImage.onload = () => {
-      // 在海报上绘制二维码，位置在正中心下方
-      const qrCodeX = (canvasWidth.value - qrCodeSize) / 2
-      const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
-      ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
-    }
-  }
-}
 const share = () => {
-  wechatShareImg(canvas.value.toDataURL('image/png'), 1)
+  window.shareFriend()
 }
 </script>
 

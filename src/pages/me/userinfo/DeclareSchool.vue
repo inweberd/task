@@ -72,7 +72,7 @@ function submit() {
   left: 0;
 
   .content {
-    padding: 70rem 20rem 0 20rem;
+    padding: 70px 20px 0 20px;
 
     .row {
       display: flex;
@@ -80,13 +80,13 @@ function submit() {
 
       .label {
         color: white;
-        font-size: 16rem;
-        margin-right: 30rem;
+        font-size: 16px;
+        margin-right: 30px;
       }
 
       input {
         flex: 1;
-        height: 40rem;
+        height: 40px;
         background: transparent;
         outline: none;
         border-top: none;
@@ -104,38 +104,38 @@ function submit() {
 
       .label {
         color: white;
-        font-size: 16rem;
-        margin-right: 30rem;
+        font-size: 16px;
+        margin-right: 30px;
       }
 
       .right {
-        padding: 12rem 0;
+        padding: 12px 0;
         display: flex;
         align-items: center;
         color: var(--second-text-color);
 
         img {
           margin-left: 5px;
-          width: 12rem;
+          width: 12px;
         }
       }
     }
 
     .notice {
-      margin-top: 20rem;
+      margin-top: 20px;
       color: var(--second-text-color);
     }
 
     .btn {
       position: fixed;
-      bottom: 20rem;
-      left: 20rem;
-      right: 20rem;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
       color: white;
-      font-size: 16rem;
+      font-size: 16px;
       background: var(--primary-btn-color);
       text-align: center;
-      padding: 10rem 0;
+      padding: 10px 0;
       border-radius: 2px;
     }
   }

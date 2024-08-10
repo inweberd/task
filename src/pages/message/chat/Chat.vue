@@ -582,7 +582,7 @@ function showTooltip(e) {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
   background: var(--color-message);
 
   .chat-content {
@@ -591,15 +591,15 @@ function showTooltip(e) {
       width: 100%;
       box-sizing: border-box;
       height: var(--common-header-height);
-      padding: 0 10rem;
+      padding: 0 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid var(--line-color);
 
       img {
-        height: 20rem;
-        margin: 0 10rem;
+        height: 20px;
+        margin: 0 10px;
       }
 
       .left {
@@ -609,8 +609,8 @@ function showTooltip(e) {
         align-items: center;
 
         .badge {
-          margin-right: 10rem;
-          font-size: 12rem;
+          margin-right: 10px;
+          font-size: 12px;
           display: block;
           padding: 1px 6px;
           border-radius: 10px;
@@ -625,33 +625,33 @@ function showTooltip(e) {
     }
 
     .message-wrapper {
-      height: calc(var(--vh, 1vh) * 100 - 125rem);
+      height: calc(var(--vh, 1vh) * 100 - 125px);
       overflow: auto;
 
       &.expand {
-        height: calc(var(--vh, 1vh) * 100 - (125rem + var(--vh, 1vh) * 30));
+        height: calc(var(--vh, 1vh) * 100 - (125px + var(--vh, 1vh) * 30));
       }
     }
 
     .footer {
       @chat-bg-color: rgb(105, 143, 244);
       @normal-bg-color: rgb(57, 57, 57);
-      padding: 10rem 0;
+      padding: 10px 0;
 
       .toolbar {
         box-sizing: border-box;
-        height: 44rem;
-        margin: 0 10rem;
-        padding: 5rem;
+        height: 44px;
+        margin: 0 10px;
+        padding: 5px;
         background: @normal-bg-color;
-        border-radius: 20rem;
+        border-radius: 20px;
         display: flex;
         align-items: center;
 
         img {
-          width: 24rem;
+          width: 24px;
           border-radius: 50%;
-          margin-left: 15rem;
+          margin-left: 15px;
         }
 
         input {
@@ -663,9 +663,9 @@ function showTooltip(e) {
 
         .camera {
           margin-left: 0;
-          margin-right: 5rem;
-          width: 14rem;
-          padding: 5rem;
+          margin-right: 5px;
+          width: 14px;
+          padding: 5px;
           border-radius: 50%;
           background: @chat-bg-color;
         }
@@ -673,35 +673,35 @@ function showTooltip(e) {
 
       .record {
         box-sizing: border-box;
-        height: 44rem;
-        margin: 0 10rem;
-        padding: 10rem 5rem;
+        height: 44px;
+        margin: 0 10px;
+        padding: 10px 5px;
         background: @normal-bg-color;
-        border-radius: 20rem;
+        border-radius: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
 
         img {
-          right: 5rem;
+          right: 5px;
           position: absolute;
-          width: 24rem;
+          width: 24px;
           border-radius: 50%;
-          margin-left: 15rem;
+          margin-left: 15px;
         }
       }
 
       .options {
-        font-size: 14rem;
+        font-size: 14px;
         width: 100vw;
-        padding: 15rem;
+        padding: 15px;
         height: calc(var(--vh, 1vh) * 30);
         box-sizing: border-box;
 
         .option-wrapper {
           box-sizing: border-box;
-          @grid-width: calc((100vw - 30rem) / 4);
+          @grid-width: calc((100vw - 30px) / 4);
           color: gray;
           display: grid;
           grid-template-columns: @grid-width @grid-width @grid-width @grid-width;
@@ -711,14 +711,14 @@ function showTooltip(e) {
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            margin-bottom: 10rem;
+            margin-bottom: 10px;
 
             img {
-              border-radius: 4rem;
+              border-radius: 4px;
               background: @normal-bg-color;
-              padding: 10rem;
-              width: 30rem;
-              margin-bottom: 10rem;
+              padding: 10px;
+              width: 30px;
+              margin-bottom: 10px;
             }
           }
         }
@@ -743,7 +743,7 @@ function showTooltip(e) {
       justify-content: space-between;
 
       img {
-        width: 22rem;
+        width: 22px;
       }
     }
   }
@@ -753,23 +753,23 @@ function showTooltip(e) {
     left: 50%;
     margin-left: -33%;
     position: fixed;
-    font-size: 12rem;
-    border-radius: 6rem;
-    //padding: 1rem;
+    font-size: 12px;
+    border-radius: 6px;
+    //padding: 1px;
     background: rgb(55, 58, 67);
     display: flex;
 
     .options {
-      width: 45rem;
-      height: 60rem;
+      width: 45px;
+      height: 60px;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
 
       img {
-        margin-bottom: 4rem;
-        width: 18rem;
+        margin-bottom: 4px;
+        width: 18px;
       }
     }
 
@@ -781,15 +781,15 @@ function showTooltip(e) {
       transform: translateX(-50%);
 
       &.bottom {
-        top: -14rem;
-        border: 7rem solid transparent;
-        border-bottom: 7rem solid var(--second-btn-color);
+        top: -14px;
+        border: 7px solid transparent;
+        border-bottom: 7px solid var(--second-btn-color);
       }
 
       &.top {
-        bottom: -14rem;
-        border: 7rem solid transparent;
-        border-top: 7rem solid var(--second-btn-color);
+        bottom: -14px;
+        border: 7px solid transparent;
+        border-top: 7px solid var(--second-btn-color);
       }
     }
   }
@@ -824,7 +824,7 @@ function showTooltip(e) {
         width: 100%;
         height: 100%;
         box-sizing: border-box;
-        padding: 20rem;
+        padding: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -840,40 +840,40 @@ function showTooltip(e) {
         }
 
         .avatar {
-          margin-top: 60rem;
-          width: 55rem;
-          height: 55rem;
+          margin-top: 60px;
+          width: 55px;
+          height: 55px;
           border-radius: 50%;
-          margin-bottom: 20rem;
+          margin-bottom: 20px;
         }
 
         .money {
           color: rgb(193, 135, 79);
-          font-size: 40rem;
+          font-size: 40px;
           font-weight: bold;
-          margin-top: 15rem;
-          margin-bottom: 65rem;
+          margin-top: 15px;
+          margin-bottom: 65px;
         }
 
         .belong {
-          font-size: 12rem;
-          margin-bottom: 30rem;
+          font-size: 12px;
+          margin-bottom: 30px;
         }
 
         .password {
-          font-size: 16rem;
+          font-size: 16px;
         }
 
         .notice {
-          margin-top: 150rem;
-          font-size: 12rem;
+          margin-top: 150px;
+          font-size: 12px;
         }
 
         .l-button {
-          font-size: 16rem;
-          border-radius: 0.5rem;
-          margin-bottom: 30rem;
-          padding: 12rem 0;
+          font-size: 16px;
+          border-radius: 0.5px;
+          margin-bottom: 30px;
+          padding: 12px 0;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -886,8 +886,8 @@ function showTooltip(e) {
             background: rgb(228, 77, 58);
 
             img {
-              width: 18rem;
-              margin-right: 10rem;
+              width: 18px;
+              margin-right: 10px;
               animation: animal 0.8s infinite linear;
 
               @keyframes animal {
@@ -906,7 +906,7 @@ function showTooltip(e) {
       .close {
         bottom: -8vh;
         position: absolute;
-        width: 30rem;
+        width: 30px;
       }
     }
   }

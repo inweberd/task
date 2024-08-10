@@ -8,7 +8,7 @@
         <div>
           <img
             src="../../assets/img/icon/people/add-user.png"
-            style="width: 2rem"
+            style="width: 2px"
             @click="nav('/people/find-acquaintance')"
           />
         </div>
@@ -25,7 +25,7 @@
       </div>
       <SlideHorizontal
         v-model:index="data.slideIndex"
-        style="height: calc(var(--vh, 1vh) * 100 - 111rem)"
+        style="height: calc(var(--vh, 1vh) * 100 - 111px)"
       >
         <SlideItem class="tab1">
           <Search
@@ -110,7 +110,7 @@ watch(
   bottom: 0;
   top: 0;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
     padding-top: var(--common-header-height);
@@ -126,7 +126,7 @@ watch(
       position: fixed;
       width: 100vw;
       box-sizing: border-box;
-      padding: 10rem var(--page-padding) 0 var(--page-padding);
+      padding: 10px var(--page-padding) 0 var(--page-padding);
     }
   }
 
@@ -141,17 +141,17 @@ watch(
     .title {
       display: flex;
       align-items: center;
-      margin-bottom: 10rem;
+      margin-bottom: 10px;
       color: var(--second-text-color);
-      font-size: 12rem;
+      font-size: 12px;
     }
 
     .no-search {
-      padding-top: 60rem;
+      padding-top: 60px;
     }
 
     .is-search {
-      padding-top: 50rem;
+      padding-top: 50px;
 
       .no-result {
         display: flex;
@@ -159,18 +159,18 @@ watch(
         align-items: center;
 
         img {
-          margin-top: 150rem;
-          height: 150rem;
+          margin-top: 150px;
+          height: 150px;
         }
 
         .n1 {
-          margin-top: 40rem;
-          font-size: 16rem;
+          margin-top: 40px;
+          font-size: 16px;
         }
 
         .n2 {
-          margin-top: 20rem;
-          font-size: 12rem;
+          margin-top: 20px;
+          font-size: 12px;
           color: var(--second-text-color);
         }
       }

@@ -1,8 +1,8 @@
 <template>
   <div class="Publish">
-    <video id="video" autoplay style="width: 100%; height: calc(100% - 60rem)"></video>
+    <video id="video" autoplay style="width: 100%; height: calc(100% - 60px)"></video>
     <div class="footer">
-      <SlideHorizontal style="height: 60rem" v-model:index="activeIndex">
+      <SlideHorizontal style="height: 60px" v-model:index="activeIndex">
         <SlideItem style="width: 20vw"></SlideItem>
         <SlideItem style="width: 20vw"></SlideItem>
         <SlideItem style="width: 25vw" @click="activeIndex = 0">
@@ -117,7 +117,7 @@ onMounted(() => {
   background: black;
 
   .footer {
-    font-size: 15rem;
+    font-size: 15px;
     font-weight: bold;
     color: var(--second-text-color);
 
@@ -139,43 +139,43 @@ onMounted(() => {
     height: calc(100% - 60px);
 
     .close {
-      font-size: 28rem;
+      font-size: 28px;
       position: absolute;
-      left: 20rem;
-      top: 20rem;
+      left: 20px;
+      top: 20px;
     }
 
     .choose-music {
       position: absolute;
       left: 50%;
-      top: 20rem;
+      top: 20px;
       transform: translateX(-50%);
-      border-radius: 20rem;
+      border-radius: 20px;
       background: #333333;
-      padding: 5rem 15rem;
+      padding: 5px 15px;
       display: flex;
       align-items: center;
-      font-size: 14rem;
+      font-size: 14px;
 
       svg {
-        font-size: 30rem;
-        margin-right: 5rem;
-        width: 12rem;
-        height: 12rem;
+        font-size: 30px;
+        margin-right: 5px;
+        width: 12px;
+        height: 12px;
       }
     }
 
     .toolbar {
       position: absolute;
-      top: 20rem;
-      right: 10rem;
+      top: 20px;
+      right: 10px;
 
       .tool {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-bottom: 20rem;
-        font-size: 26rem;
+        margin-bottom: 20px;
+        font-size: 26px;
       }
     }
   }

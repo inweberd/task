@@ -95,7 +95,7 @@ onUnmounted(() => {})
     width: 100%;
     position: absolute;
     top: 0;
-    font-size: 12rem;
+    font-size: 12px;
     color: white;
 
     &.top {
@@ -104,20 +104,20 @@ onUnmounted(() => {})
 
     .card {
       margin-top: var(--common-header-height);
-      padding: 20rem 5rem;
+      padding: 20px 5px;
       width: 100%;
       background: rgba(black, 0.4);
       box-sizing: border-box;
       display: flex;
       overflow: auto;
-      gap: 10rem;
-      padding-left: 20rem;
+      gap: 10px;
+      padding-left: 20px;
     }
 
     .nav-item {
-      @width: 50rem;
-      width: @width + 5rem;
-      margin: 0 5rem;
+      @width: 50px;
+      width: @width + 5px;
+      margin: 0 5px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -142,13 +142,13 @@ onUnmounted(() => {})
   .sub-type-notice {
     position: absolute;
     background: rgba(black, 0.4);
-    top: 100rem;
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 3rem 12rem;
-    border-radius: 10rem;
+    padding: 3px 12px;
+    border-radius: 10px;
     z-index: 3;
-    font-size: 12rem;
+    font-size: 12px;
     color: white;
   }
 }

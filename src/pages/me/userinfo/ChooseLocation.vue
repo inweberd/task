@@ -7,7 +7,7 @@
     </BaseHeader>
     <div class="content">
       <div class="row" @click="save">暂不设置</div>
-      <div class="line" style="width: calc(100% - 3rem); margin-left: 1.5rem"></div>
+      <div class="line" style="width: calc(100% - 3px); margin-left: 1.5px"></div>
       <div class="nearby">
         <div class="title">
           <img src="../../../assets/img/icon/location.svg" alt="" />
@@ -15,7 +15,7 @@
         </div>
         <div class="row">无法获取</div>
       </div>
-      <div class="line" style="width: calc(100% - 3rem); margin-left: 1.5rem"></div>
+      <div class="line" style="width: calc(100% - 3px); margin-left: 1.5px"></div>
       <div class="schools">
         <div class="title">
           <span>其他地区</span>
@@ -1211,20 +1211,20 @@ async function save() {
   overflow: auto;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
 
     .nearby {
     }
 
     .title {
-      font-size: 12rem;
-      padding: 10rem 15rem;
+      font-size: 12px;
+      padding: 10px 15px;
       color: var(--second-text-color);
 
       img {
-        width: 10rem;
-        height: 10rem;
-        margin-right: 2rem;
+        width: 10px;
+        height: 10px;
+        margin-right: 2px;
       }
     }
   }

@@ -107,34 +107,34 @@ export default {
   }
 
   .rightTextColor {
-    margin-left: 15rem;
-    font-size: 14rem;
+    margin-left: 15px;
+    font-size: 14px;
   }
 
   .search {
-    font-size: 14rem;
+    font-size: 14px;
     padding: 0;
     flex: 1;
     position: relative;
-    height: 36rem;
+    height: 36px;
     border-radius: 2px;
     display: flex;
     align-items: center;
 
     .search-icon {
-      height: 22rem;
-      width: 22rem;
-      margin-left: 7rem;
+      height: 22px;
+      width: 22px;
+      margin-left: 7px;
     }
 
     input {
-      //margin-top: .4rem;
+      //margin-top: .4px;
       color: white;
       height: 50%;
       width: 100%;
       outline: none;
       border: none;
-      padding: 0 0 0 7rem;
+      padding: 0 0 0 7px;
       background: transparent;
 
       &::-webkit-input-placeholder {
@@ -146,10 +146,10 @@ export default {
       display: flex;
       align-items: center;
       position: absolute;
-      right: 15rem;
+      right: 15px;
 
       img {
-        width: 15rem;
+        width: 15px;
       }
     }
   }

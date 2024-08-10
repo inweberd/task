@@ -116,15 +116,15 @@ function login() {
   top: 0;
   overflow: auto;
   color: black;
-  font-size: 14rem;
+  font-size: 14px;
   background: white;
 
   .options {
-    margin-top: 10rem;
+    margin-top: 10px;
   }
 
   .button {
-    margin-top: 20rem;
+    margin-top: 20px;
   }
 }
 </style>

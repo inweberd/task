@@ -306,7 +306,7 @@ onDeactivated(() => {
 <style scoped lang="less">
 #video-detail {
   position: fixed;
-  font-size: 14rem;
+  font-size: 14px;
   top: 0;
   bottom: 0;
   left: 0;
@@ -318,47 +318,47 @@ onDeactivated(() => {
   .search-wrapper {
     z-index: 9;
     position: fixed;
-    top: 8rem;
+    top: 8px;
     left: 0;
     width: 100vw;
-    padding: 0 15rem;
+    padding: 0 15px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    gap: 15rem;
+    gap: 15px;
 
     .back {
       color: white;
-      font-size: 30rem;
+      font-size: 30px;
     }
 
     .search {
       color: var(--second-btn-color);
       display: flex;
       background: rgba(171, 169, 169, 0.4);
-      border-radius: 8rem;
+      border-radius: 8px;
       flex: 1;
-      padding: 8rem;
+      padding: 8px;
       justify-content: space-between;
 
       .left {
-        font-size: 15rem;
+        font-size: 15px;
         display: flex;
         align-items: center;
         color: gainsboro;
-        gap: 5rem;
+        gap: 5px;
         line-height: 1;
 
         svg {
-          font-size: 14rem;
+          font-size: 14px;
         }
       }
 
       .right {
         display: flex;
         align-items: center;
-        gap: 10rem;
-        font-size: 16rem;
+        gap: 10px;
+        font-size: 16px;
 
         .gang {
           color: dimgrey;
@@ -396,7 +396,7 @@ onDeactivated(() => {
     justify-content: space-between;
     align-items: center;
     background: rgb(37, 37, 37);
-    border-radius: 50rem;
+    border-radius: 50px;
 
     .avatar {
       height: 70%;
@@ -407,13 +407,13 @@ onDeactivated(() => {
       height: 100%;
       display: flex;
       align-items: center;
-      gap: 10rem;
+      gap: 10px;
     }
 
     .right {
       .left;
-      gap: 15rem;
-      font-size: 24rem;
+      gap: 15px;
+      font-size: 24px;
     }
   }
 }

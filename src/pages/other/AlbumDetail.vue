@@ -140,7 +140,7 @@ function close() {
 .goods-detail {
   background: var(--color-message);
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
   height: 100%;
   @c: #a2a2a2;
   @c2: #c0c0c0;
@@ -156,13 +156,13 @@ function close() {
     z-index: 9;
     display: flex;
     justify-content: space-between;
-    padding: 15rem;
+    padding: 15px;
     box-sizing: border-box;
 
     svg {
-      font-size: 20rem;
+      font-size: 20px;
       background: rgba(176, 176, 176, 0.4);
-      padding: 5rem;
+      padding: 5px;
       color: white;
       border-radius: 50%;
     }
@@ -185,17 +185,17 @@ function close() {
 
     .indicator-bar {
       position: absolute;
-      bottom: 5rem;
+      bottom: 5px;
       left: 3vw;
       width: 94%;
       display: flex;
-      gap: 5rem;
+      gap: 5px;
 
       .indicator {
         background: rgba(162, 160, 160, 0.5);
-        height: 3rem;
+        height: 3px;
         flex: 1;
-        border-radius: 2rem;
+        border-radius: 2px;
       }
 
       .active {
@@ -204,57 +204,57 @@ function close() {
     }
 
     .index {
-      font-size: 12rem;
+      font-size: 12px;
       position: absolute;
-      padding: 3rem 10rem;
-      border-radius: 15rem;
+      padding: 3px 10px;
+      border-radius: 15px;
       background: rgba(91, 89, 89, 0.5);
-      right: 10rem;
-      bottom: 30rem;
+      right: 10px;
+      bottom: 30px;
       color: white;
     }
   }
 
   .card {
-    margin-top: 15rem;
-    border-radius: 10rem;
-    padding: 10rem 15rem;
+    margin-top: 15px;
+    border-radius: 10px;
+    padding: 10px 15px;
     background: black;
   }
 
   .arrow {
-    font-size: 16rem;
+    font-size: 16px;
   }
 
   .content {
-    padding: 15rem;
+    padding: 15px;
     padding-bottom: 10vh;
-    border-radius: 16rem 16rem 0 0;
+    border-radius: 16px 16px 0 0;
 
     .comments {
       & > header {
-        margin-bottom: 16rem;
+        margin-bottom: 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         .l {
-          font-size: 15rem;
+          font-size: 15px;
         }
 
         .r {
           color: gray;
-          font-size: 12rem;
+          font-size: 12px;
           display: flex;
           align-items: center;
         }
       }
 
       .comment {
-        margin-bottom: 16rem;
+        margin-bottom: 16px;
         display: flex;
         align-items: center;
-        gap: 5rem;
+        gap: 5px;
 
         span {
           display: inline-block;
@@ -267,8 +267,8 @@ function close() {
 
         img {
           border-radius: 50%;
-          width: 20rem;
-          height: 20rem;
+          width: 20px;
+          height: 20px;
         }
 
         &:last-child {
@@ -281,11 +281,11 @@ function close() {
       & > header {
         display: flex;
         align-items: center;
-        gap: 10rem;
+        gap: 10px;
 
         img {
-          width: 36rem;
-          height: 36rem;
+          width: 36px;
+          height: 36px;
           border-radius: 50%;
         }
 
@@ -296,26 +296,26 @@ function close() {
           align-items: center;
 
           .name {
-            font-size: 16rem;
+            font-size: 16px;
           }
 
           .r {
-            border-radius: 4rem;
-            padding: 6rem 16rem;
+            border-radius: 4px;
+            padding: 6px 16px;
             background: var(--primary-btn-color);
-            font-size: 12rem;
+            font-size: 12px;
             color: white;
           }
         }
       }
 
       .desc {
-        margin-top: 10rem;
+        margin-top: 10px;
       }
 
       .date {
-        font-size: 12rem;
-        margin-top: 10rem;
+        font-size: 12px;
+        margin-top: 10px;
         color: gray;
       }
     }
@@ -330,16 +330,16 @@ function close() {
     border-top: 1px solid rgba(white, 0.1);
     display: flex;
     align-items: center;
-    padding: 8rem 10rem;
+    padding: 8px 10px;
     padding-right: 0;
     box-sizing: border-box;
-    gap: 6rem;
+    gap: 6px;
 
     .input-wrap {
-      width: 110rem;
-      padding-left: 15rem;
-      height: 34rem;
-      border-radius: 30rem;
+      width: 110px;
+      padding-left: 15px;
+      height: 34px;
+      border-radius: 30px;
       background: var(--second-btn-color-tran);
       color: gray;
       display: flex;
@@ -356,11 +356,11 @@ function close() {
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        font-size: 13rem;
+        font-size: 13px;
         color: white;
 
         svg {
-          font-size: 24rem;
+          font-size: 24px;
         }
       }
     }

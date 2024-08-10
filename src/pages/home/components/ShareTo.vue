@@ -243,24 +243,24 @@ export default {
 
 .option-dialog {
   .buttons {
-    padding: 0 15rem;
+    padding: 0 15px;
 
     img {
-      height: 22rem;
-      margin-right: 5rem;
+      height: 22px;
+      margin-right: 5px;
     }
   }
 
   .dialog-friends {
     color: black;
-    margin: 10rem 10rem 0 10rem;
-    width: calc(100% - 20rem);
+    margin: 10px 10px 0 10px;
+    width: calc(100% - 20px);
     background: white;
     border-radius: 6px 6px 0 0;
 
     > .dialog-friend {
       box-sizing: border-box;
-      padding: 8rem;
+      padding: 8px;
       width: 100%;
       display: flex;
       align-items: center;
@@ -268,23 +268,23 @@ export default {
 
       img {
         border-radius: 50%;
-        width: 38rem;
-        height: 38rem;
+        width: 38px;
+        height: 38px;
       }
 
       .right {
-        margin: 0 5rem 0 15rem;
-        font-size: 14rem;
+        margin: 0 5px 0 15px;
+        font-size: 14px;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         .share-btn {
-          font-size: 13rem;
+          font-size: 13px;
           color: white;
-          height: 25rem;
-          width: 60rem;
+          height: 25px;
+          width: 60px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -301,19 +301,19 @@ export default {
 
     .more {
       box-sizing: border-box;
-      height: 55rem;
+      height: 55px;
       width: 100%;
       display: flex;
       align-items: center;
       border-bottom: 1px solid #efefef;
-      font-size: 14rem;
-      margin-bottom: 15rem;
+      font-size: 14px;
+      margin-bottom: 15px;
 
       img {
         border-radius: 50%;
-        width: 20rem;
-        height: 20rem;
-        margin: 0 22rem 0 15rem;
+        width: 20px;
+        height: 20px;
+        margin: 0 22px 0 15px;
       }
     }
   }

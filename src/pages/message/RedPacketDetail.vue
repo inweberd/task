@@ -45,11 +45,11 @@ const store = useBaseStore()
   bottom: 0;
   top: 0;
   overflow: auto;
-  font-size: 14rem;
+  font-size: 14px;
   background: white;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
 
     .wrapper {
       color: rgb(110, 87, 63);
@@ -58,33 +58,33 @@ const store = useBaseStore()
       align-items: center;
 
       .avatar {
-        margin-top: 55rem;
-        width: 55rem;
-        height: 55rem;
+        margin-top: 55px;
+        width: 55px;
+        height: 55px;
         border-radius: 50%;
-        margin-bottom: 20rem;
+        margin-bottom: 20px;
       }
 
       .money {
         color: rgb(193, 135, 79);
-        font-size: 40rem;
+        font-size: 40px;
         font-weight: bold;
-        margin-top: 25rem;
-        margin-bottom: 10rem;
+        margin-top: 25px;
+        margin-bottom: 10px;
       }
 
       .belong {
         font-weight: bold;
-        font-size: 13rem;
-        margin-bottom: 10rem;
+        font-size: 13px;
+        margin-bottom: 10px;
       }
 
       .notice {
-        font-size: 12rem;
+        font-size: 12px;
       }
 
       .password {
-        font-size: 12rem;
+        font-size: 12px;
         opacity: 0.6;
       }
     }

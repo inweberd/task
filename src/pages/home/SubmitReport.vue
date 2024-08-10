@@ -95,33 +95,33 @@ async function upload() {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
 
     .title {
-      font-size: 12rem;
-      padding: 10rem 15rem;
+      font-size: 12px;
+      padding: 10px 15px;
       color: var(--second-text-color);
       border-bottom: 1px solid #cccccc11;
 
       img {
-        width: 10rem;
-        height: 10rem;
-        margin-right: 2rem;
+        width: 10px;
+        height: 10px;
+        margin-right: 2px;
       }
     }
 
     .l-row {
-      padding: 0 15rem;
+      padding: 0 15px;
 
       .textarea-ctn {
         width: 100%;
         background: var(--active-main-bg);
-        padding: 15rem;
+        padding: 15px;
         box-sizing: border-box;
-        margin-top: 10rem;
+        margin-top: 10px;
         border-radius: 2px;
 
         textarea {
@@ -139,19 +139,19 @@ async function upload() {
       }
 
       .text-num {
-        margin-top: 5rem;
-        font-size: 10rem;
+        margin-top: 5px;
+        font-size: 10px;
         color: var(--second-text-color);
         text-align: right;
       }
     }
 
     .upload-photo {
-      margin-top: 5rem;
+      margin-top: 5px;
       display: flex;
-      padding: 0 15rem;
+      padding: 0 15px;
 
-      @width: calc((100vw - 3vw - 30rem) / 4);
+      @width: calc((100vw - 3vw - 30px) / 4);
 
       .photo-wrapper {
         width: @width;
@@ -171,9 +171,9 @@ async function upload() {
           right: 0;
           top: 0;
           background: var(--second-btn-color);
-          padding: 3rem;
-          width: 10rem;
-          height: 10rem;
+          padding: 3px;
+          width: 10px;
+          height: 10px;
         }
       }
 
@@ -184,13 +184,13 @@ async function upload() {
         flex-direction: column;
         justify-content: center;
         color: var(--second-text-color);
-        font-size: 12rem;
+        font-size: 12px;
         align-items: center;
         background: var(--second-btn-color-tran);
 
         img {
-          width: 35rem;
-          height: 35rem;
+          width: 35px;
+          height: 35px;
         }
       }
     }
@@ -198,9 +198,9 @@ async function upload() {
 
   .button {
     position: absolute;
-    left: 15rem;
-    right: 15rem;
-    bottom: 15rem;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
   }
 }
 </style>

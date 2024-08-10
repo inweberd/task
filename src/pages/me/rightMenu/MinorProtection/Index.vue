@@ -50,10 +50,10 @@ const nav = useNav()
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
   }
 }
 </style>

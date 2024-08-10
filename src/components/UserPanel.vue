@@ -414,7 +414,7 @@ function touchEnd() {
   height: 100%;
   width: 100%;
   overflow: auto;
-  font-size: 14rem;
+  font-size: 14px;
 
   .preview-img {
     z-index: 3;

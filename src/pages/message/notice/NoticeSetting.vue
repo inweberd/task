@@ -121,10 +121,10 @@ onMounted(() => {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
 
     .title {
       padding: var(--page-padding);
@@ -132,9 +132,9 @@ onMounted(() => {
 
     .sub-title {
       padding: 0 var(--page-padding);
-      margin-bottom: 10rem;
+      margin-bottom: 10px;
       color: var(--second-text-color);
-      font-size: 12rem;
+      font-size: 12px;
     }
   }
 }

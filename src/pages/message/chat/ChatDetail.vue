@@ -131,13 +131,13 @@ function unfollow(index) {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
 
     .peoples {
-      padding: 0 20rem;
+      padding: 0 20px;
 
       .People {
         border-bottom: 1px solid var(--second-btn-color-tran);
@@ -146,16 +146,16 @@ function unfollow(index) {
       .add-people {
         transition: all 0.3s ease;
         width: 100%;
-        height: 70rem;
+        height: 70px;
         display: flex;
         align-items: center;
         position: relative;
         border-bottom: 1px solid var(--second-btn-color-tran);
 
         .head-image {
-          margin-right: 15rem;
-          width: 45rem;
-          height: 45rem;
+          margin-right: 15px;
+          width: 45px;
+          height: 45px;
           border-radius: 50%;
         }
       }
@@ -163,16 +163,16 @@ function unfollow(index) {
 
     .setting {
       .row {
-        padding-left: 20rem;
-        padding-right: 20rem;
+        padding-left: 20px;
+        padding-right: 20px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 40rem;
+        height: 40px;
 
         .right {
           img {
-            height: 20rem;
+            height: 20px;
           }
         }
       }

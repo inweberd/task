@@ -6,7 +6,7 @@
     :show-heng-gang="false"
     maskMode="dark"
     @cancel="cancel()"
-    height="330rem"
+    height="330px"
     mode="light"
   >
     <div class="follow-setting-dialog">
@@ -92,12 +92,12 @@ export default {
 @import '../../../assets/less/index';
 
 .follow-setting-dialog {
-  padding: 15rem;
-  font-size: 14rem;
+  padding: 15px;
+  font-size: 14px;
 
   .dialog-header {
     color: rgb(81, 81, 89);
-    font-size: 14rem;
+    font-size: 14px;
     position: relative;
     display: flex;
     align-items: flex-start;
@@ -109,44 +109,44 @@ export default {
     }
 
     .title {
-      font-size: 18rem;
+      font-size: 18px;
     }
 
     .subtitle {
-      margin-top: 5rem;
+      margin-top: 5px;
       color: var(--second-text-color);
-      font-size: 13rem;
+      font-size: 13px;
     }
 
     img {
-      width: 14rem;
-      height: 14rem;
-      padding: 6rem;
+      width: 14px;
+      height: 14px;
+      padding: 6px;
       border-radius: 50%;
       background: rgba(187, 187, 194, 0.4);
     }
   }
 
   .options {
-    margin-top: 20rem;
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
 
     .option {
       box-sizing: border-box;
-      padding: 10rem;
+      padding: 10px;
       display: flex;
       background: white;
       flex-direction: column;
       align-items: center;
       width: 23%;
-      font-size: 12rem;
-      border-radius: 8rem;
+      font-size: 12px;
+      border-radius: 8px;
 
       img {
-        margin-top: 5rem;
-        margin-bottom: 10rem;
-        @width: 20rem;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        @width: 20px;
         width: @width;
         height: @width;
       }
@@ -154,11 +154,11 @@ export default {
   }
 
   .l-rows {
-    margin-top: 20rem;
+    margin-top: 20px;
 
     .l-row {
-      height: 45rem;
-      padding: 0 20rem;
+      height: 45px;
+      padding: 0 20px;
       background: white;
       display: flex;
       align-items: center;
@@ -166,17 +166,17 @@ export default {
       border-bottom: 1px solid rgba(222, 222, 222, 0.42);
 
       &:nth-child(1) {
-        border-radius: 10rem 10rem 0 0;
+        border-radius: 10px 10px 0 0;
       }
 
       &:nth-child(3) {
         border-bottom: none;
-        border-radius: 0 0 10rem 10rem;
+        border-radius: 0 0 10px 10px;
       }
 
       img {
-        width: 20rem;
-        height: 20rem;
+        width: 20px;
+        height: 20px;
       }
     }
   }

@@ -406,7 +406,7 @@ function touchend(e) {
 <style scoped lang="less">
 .video-wrapper {
   position: relative;
-  font-size: 14rem;
+  font-size: 14px;
   width: 100%;
   height: 100%;
   text-align: center;
@@ -515,13 +515,13 @@ function touchend(e) {
       z-index: 10;
       @w: 90%;
       position: absolute;
-      bottom: -1rem;
-      height: 10rem;
+      bottom: -1px;
+      height: 10px;
       left: calc((100% - @w) / 2);
       width: @w;
       display: flex;
       align-items: flex-end;
-      margin-bottom: 2rem;
+      margin-bottom: 2px;
 
       .time {
         position: absolute;
@@ -538,9 +538,9 @@ function touchend(e) {
         }
       }
 
-      @radius: 10rem;
+      @radius: 10px;
 
-      @h: 2rem;
+      @h: 2px;
       @tr: height 0.3s;
 
       .bg {
@@ -556,7 +556,7 @@ function touchend(e) {
 
       .progress-line {
         transition: @tr;
-        height: calc(@h + 0.5rem);
+        height: calc(@h + 0.5px);
         width: @p;
         border-radius: @radius 0 0 @radius;
         background: #777777;
@@ -570,12 +570,12 @@ function touchend(e) {
         border-radius: 50%;
         background: gray;
         z-index: 2;
-        transform: translate(-1rem, 1rem);
+        transform: translate(-1px, 1px);
       }
     }
 
     & .move {
-      @h: 10rem;
+      @h: 10px;
 
       .bg {
         height: @h;
@@ -595,7 +595,7 @@ function touchend(e) {
     }
 
     & .stop {
-      @h: 4rem;
+      @h: 4px;
 
       .bg {
         height: @h;
@@ -618,10 +618,10 @@ function touchend(e) {
 .living {
   position: absolute;
   left: 50%;
-  font-size: 18rem;
-  border-radius: 50rem;
+  font-size: 18px;
+  border-radius: 50px;
   border: 1px solid #e0e0e0;
-  padding: 15rem 20rem;
+  padding: 15px 20px;
   line-height: 1;
   color: white;
   top: 70%;

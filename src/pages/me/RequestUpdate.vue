@@ -8,7 +8,7 @@
         <div>
           <img
             src="../../assets/img/icon/menu-gray.png"
-            style="width: 20rem"
+            style="width: 20px"
             @click="data.isShowOption = true"
           />
         </div>
@@ -46,7 +46,7 @@
 
     <from-bottom-dialog
       page-id="RequestUpdate"
-      height="160rem"
+      height="160px"
       :show-heng-gang="false"
       mode="white"
       v-model="data.isShowOption"
@@ -111,14 +111,14 @@ function toggleRequestUpdate() {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
   display: flex;
   flex-direction: column;
 
   .content {
     flex: 1;
     overflow: auto;
-    padding: 15rem 15rem 60rem 15rem;
+    padding: 15px 15px 60px 15px;
 
     .none {
       display: flex;
@@ -126,8 +126,8 @@ function toggleRequestUpdate() {
       align-items: center;
 
       img {
-        margin-top: 100rem;
-        height: 120rem;
+        margin-top: 100px;
+        height: 120px;
       }
     }
 
@@ -136,7 +136,7 @@ function toggleRequestUpdate() {
         margin-top: var(--page-padding);
 
         .item {
-          padding: 10rem 0;
+          padding: 10px 0;
 
           display: flex;
           justify-content: space-between;
@@ -145,18 +145,18 @@ function toggleRequestUpdate() {
           .left {
             display: flex;
             align-items: center;
-            @width: 42rem;
+            @width: 42px;
 
             img {
               width: @width;
               height: @width;
               border-radius: 50%;
-              margin-right: 10rem;
+              margin-right: 10px;
             }
           }
 
           .time {
-            font-size: 12rem;
+            font-size: 12px;
             color: var(--second-text-color);
           }
         }
@@ -164,19 +164,19 @@ function toggleRequestUpdate() {
     }
 
     .title {
-      margin-top: 10rem;
-      font-size: 16rem;
+      margin-top: 10px;
+      font-size: 16px;
     }
 
     .subtitle {
-      margin-top: 10rem;
-      font-size: 14rem;
+      margin-top: 10px;
+      font-size: 14px;
       color: var(--second-text-color);
     }
   }
 
   .l-row {
-    padding: 15rem;
+    padding: 15px;
     color: black;
     text-align: center;
 
@@ -186,13 +186,13 @@ function toggleRequestUpdate() {
   }
 
   .space {
-    height: 10rem;
+    height: 10px;
     background: whitesmoke;
   }
 
   .buttons {
     position: fixed;
-    padding: 0 15rem 15rem 15rem;
+    padding: 0 15px 15px 15px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -204,11 +204,11 @@ function toggleRequestUpdate() {
       flex: 1;
 
       &:nth-child(1) {
-        margin-right: 5rem;
+        margin-right: 5px;
       }
 
       &:nth-child(2) {
-        margin-left: 5rem;
+        margin-left: 5px;
       }
     }
   }

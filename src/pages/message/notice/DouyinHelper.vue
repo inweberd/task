@@ -112,7 +112,7 @@ function goDetail(item) {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .scroll {
     height: calc(var(--vh, 1vh) * 100 - var(--common-header-height));
@@ -127,24 +127,24 @@ function goDetail(item) {
       .item {
         padding: var(--page-padding);
         background: var(--msg-subpage-card-bg);
-        border-radius: 5rem;
-        margin-bottom: 20rem;
+        border-radius: 5px;
+        margin-bottom: 20px;
 
         .title {
           display: flex;
           align-items: center;
-          font-size: 16rem;
-          margin-bottom: 10rem;
+          font-size: 16px;
+          margin-bottom: 10px;
         }
 
         .time {
-          font-size: 12rem;
+          font-size: 12px;
           color: var(--second-text-color);
-          margin-bottom: 20rem;
+          margin-bottom: 20px;
         }
 
         .content-text {
-          margin-bottom: 30rem;
+          margin-bottom: 30px;
         }
 
         .look-detail {

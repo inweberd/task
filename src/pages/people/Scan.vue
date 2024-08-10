@@ -46,14 +46,14 @@ defineOptions({
 
   .back {
     z-index: 3;
-    margin: 20rem 0 0 20rem;
+    margin: 20px 0 0 20px;
     position: fixed;
-    height: 20rem;
+    height: 20px;
   }
 
   .float {
     position: fixed;
-    bottom: 60rem;
+    bottom: 60px;
     display: flex;
     justify-content: space-between;
     width: 80%;
@@ -67,15 +67,15 @@ defineOptions({
       img {
         border-radius: 50%;
         background: var(--second-btn-color-tran);
-        padding: 16rem;
-        height: 24rem;
-        margin-bottom: 10rem;
+        padding: 16px;
+        height: 24px;
+        margin-bottom: 10px;
       }
     }
 
     .open-light {
       position: fixed;
-      bottom: 160rem;
+      bottom: 160px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -83,8 +83,8 @@ defineOptions({
       transform: translateX(-50%);
 
       img {
-        height: 24rem;
-        margin-bottom: 10rem;
+        height: 24px;
+        margin-bottom: 10px;
       }
     }
   }

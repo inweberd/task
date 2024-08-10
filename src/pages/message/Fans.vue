@@ -83,7 +83,7 @@ onMounted(getData)
   overflow: auto;
   background: var(--color-message);
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
     padding: 0 var(--page-padding);
@@ -98,15 +98,15 @@ onMounted(getData)
     }
 
     .title {
-      margin-top: 15rem;
-      margin-bottom: 10rem;
-      font-size: 12rem;
+      margin-top: 15px;
+      margin-bottom: 10px;
+      font-size: 12px;
       display: flex;
       align-items: center;
 
       img {
-        margin-left: 5rem;
-        width: 13rem;
+        margin-left: 5px;
+        width: 13px;
       }
     }
   }

@@ -170,14 +170,14 @@ function stopPlay() {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
 
     .list {
       .item {
-        padding: 20rem 15rem;
+        padding: 20px 15px;
         padding-bottom: 0;
         display: flex;
         align-items: center;
@@ -187,21 +187,21 @@ function stopPlay() {
           display: flex;
 
           .cover-wrapper {
-            margin-right: 10rem;
+            margin-right: 10px;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
 
             .play {
-              width: 30rem;
-              height: 30rem;
+              width: 30px;
+              height: 30px;
               position: absolute;
             }
 
             .cover {
-              border-radius: 2rem;
-              @width: 60rem;
+              border-radius: 2px;
+              @width: 60px;
               width: @width;
               object-fit: cover;
               height: @width;
@@ -222,7 +222,7 @@ function stopPlay() {
 
             .author,
             .desc-bottom {
-              font-size: 12rem;
+              font-size: 12px;
               color: var(--second-text-color);
             }
 
@@ -230,7 +230,7 @@ function stopPlay() {
               display: flex;
 
               .duration {
-                margin-right: 14rem;
+                margin-right: 14px;
                 position: relative;
               }
             }
@@ -239,9 +239,9 @@ function stopPlay() {
 
         .option {
           img {
-            width: 20rem;
-            height: 20rem;
-            margin-left: 20rem;
+            width: 20px;
+            height: 20px;
+            margin-left: 20px;
           }
         }
       }
@@ -269,7 +269,7 @@ function stopPlay() {
     .music-wrapper {
       width: 100%;
       border-top: 1px solid #414141;
-      padding: 10rem 15rem;
+      padding: 10px 15px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -278,22 +278,22 @@ function stopPlay() {
         display: flex;
 
         .cover-wrapper {
-          margin-right: 10rem;
+          margin-right: 10px;
           position: relative;
           display: flex;
           align-items: center;
           justify-content: center;
 
           .play {
-            width: 30rem;
-            height: 30rem;
+            width: 30px;
+            height: 30px;
             position: absolute;
           }
 
           .cover {
-            border-radius: 2rem;
+            border-radius: 2px;
             object-fit: cover;
-            @width: 50rem;
+            @width: 50px;
             width: @width;
             height: @width;
           }
@@ -313,7 +313,7 @@ function stopPlay() {
 
           .author,
           .desc-bottom {
-            font-size: 12rem;
+            font-size: 12px;
             color: var(--second-text-color);
           }
 
@@ -321,7 +321,7 @@ function stopPlay() {
             display: flex;
 
             .duration {
-              margin-right: 14rem;
+              margin-right: 14px;
               position: relative;
             }
           }

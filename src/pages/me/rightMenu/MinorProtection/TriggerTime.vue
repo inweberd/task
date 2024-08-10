@@ -70,7 +70,7 @@ function setTriggerTime(type) {
   color: white;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
   }
 }
 </style>

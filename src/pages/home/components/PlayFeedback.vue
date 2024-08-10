@@ -236,12 +236,12 @@ export default {
 @import '../../../assets/less/index';
 
 .play-feedback {
-  max-height: 490rem;
+  max-height: 490px;
   overflow: auto;
   background: #fff;
   color: black;
   position: fixed;
-  bottom: 50rem;
+  bottom: 50px;
   left: 0;
   right: 0;
 
@@ -250,35 +250,35 @@ export default {
     left: 0;
     right: 0;
     background: white;
-    height: 30rem;
-    padding: 15rem;
+    height: 30px;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     font-weight: bold;
-    font-size: 18rem;
+    font-size: 18px;
   }
 
   .content {
-    padding: 60rem 15rem 15rem 15rem;
+    padding: 60px 15px 15px 15px;
   }
 
   .notice {
-    font-size: 12rem;
+    font-size: 12px;
     color: var(--second-text-color);
   }
 
   .l-row {
     display: flex;
     align-items: center;
-    min-height: 50rem;
-    font-size: 14rem;
+    min-height: 50px;
+    font-size: 14px;
     border-bottom: 1px solid #f1f1f1;
 
     .check {
-      width: 20rem;
-      height: 20rem;
-      margin-right: 10rem;
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
     }
   }
 
@@ -290,9 +290,9 @@ export default {
     .textarea-ctn {
       width: 100%;
       background: #eae8e8;
-      padding: 15rem;
+      padding: 15px;
       box-sizing: border-box;
-      margin-top: 10rem;
+      margin-top: 10px;
       border-radius: 2px;
 
       textarea {
@@ -310,9 +310,9 @@ export default {
     }
 
     .text-num {
-      margin-top: 8rem;
-      margin-bottom: 8rem;
-      font-size: 10rem;
+      margin-top: 8px;
+      margin-bottom: 8px;
+      font-size: 10px;
       color: var(--second-text-color);
       text-align: right;
     }

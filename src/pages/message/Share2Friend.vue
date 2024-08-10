@@ -32,8 +32,8 @@
       :style="{
         height:
           data.selectFriends.length && data.searchResult.length
-            ? 'calc(100% - 272rem)'
-            : 'calc(100% - 112rem)'
+            ? 'calc(100% - 272px)'
+            : 'calc(100% - 112px)'
       }"
       v-show="data.searchKey"
     >
@@ -77,7 +77,7 @@
     </div>
     <div
       ref="list"
-      :style="{ paddingBottom: data.selectFriends.length ? '160rem' : 0 }"
+      :style="{ paddingBottom: data.selectFriends.length ? '160px' : 0 }"
       class="content"
       @scroll="scroll"
     >
@@ -380,14 +380,14 @@ function scroll(e) {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .search {
     border-bottom: 1px solid #cccccc11;
-    font-size: 14rem;
+    font-size: 14px;
     padding: 0;
     padding-left: var(--page-padding);
-    height: 50rem;
+    height: 50px;
     border-radius: 2px;
     display: flex;
     align-items: center;
@@ -399,22 +399,22 @@ function scroll(e) {
         overflow-x: auto;
 
         img {
-          height: 30rem;
-          width: 30rem;
-          margin-right: 10rem;
+          height: 30px;
+          width: 30px;
+          margin-right: 10px;
           border-radius: 50%;
         }
       }
     }
 
     .search-icon {
-      height: 20rem;
-      width: 20rem;
-      margin: 0 10rem;
+      height: 20px;
+      width: 20px;
+      margin: 0 10px;
     }
 
     input {
-      //margin-top: 4rem;
+      //margin-top: 4px;
       color: white;
       height: 50%;
       width: 100%;
@@ -429,26 +429,26 @@ function scroll(e) {
     }
 
     .clear {
-      height: 18rem;
-      width: 18rem;
-      margin-left: 10rem;
-      margin-right: 10rem;
+      height: 18px;
+      width: 18px;
+      margin-left: 10px;
+      margin-right: 10px;
     }
   }
 
   .indicator-ctn {
-    width: 25rem;
+    width: 25px;
     height: calc(var(--vh, 1vh) * 100);
     top: 0;
     position: fixed;
     z-index: 3;
-    right: 5rem;
+    right: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
 
     .indicator {
-      width: 25rem;
+      width: 25px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -457,23 +457,23 @@ function scroll(e) {
       div {
         color: var(--second-text-color);
         //transition: all .3s;
-        font-size: 10rem;
-        padding: 1rem;
+        font-size: 10px;
+        padding: 1px;
       }
 
       .arrow {
-        padding: 0 0 3rem 0;
+        padding: 0 0 3px 0;
         width: 0;
         height: 0;
-        border: 5rem solid transparent;
-        border-bottom: 10rem solid var(--second-text-color);
+        border: 5px solid transparent;
+        border-bottom: 10px solid var(--second-text-color);
       }
     }
   }
 
   .content {
-    height: calc(100% - 112rem);
-    margin-top: 112rem;
+    height: calc(100% - 112px);
+    margin-top: 112px;
     box-sizing: border-box;
     width: 100%;
     overflow-y: scroll;
@@ -484,14 +484,14 @@ function scroll(e) {
       bottom: 0;
       box-sizing: border-box;
       width: 100vw;
-      height: 160rem;
+      height: 160px;
       background: var(--main-bg);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
 
       .comment {
-        padding: 0 20rem;
+        padding: 0 20px;
         display: flex;
         flex: 1;
 
@@ -504,26 +504,26 @@ function scroll(e) {
         }
 
         .poster {
-          margin-left: 20rem;
-          height: 40rem;
-          width: 40rem;
+          margin-left: 20px;
+          height: 40px;
+          width: 40px;
         }
       }
 
       .wrapper {
-        padding: 10rem;
+        padding: 10px;
       }
 
       .create-chat {
-        margin: 10rem;
+        margin: 10px;
         display: flex;
         align-items: center;
         color: var(--second-text-color);
 
         .check {
-          margin-right: 10rem;
-          width: 16rem;
-          height: 16rem;
+          margin-right: 10px;
+          width: 16px;
+          height: 16px;
           //transform: scale(1.2);
         }
       }
@@ -535,20 +535,20 @@ function scroll(e) {
 
   .hover {
     position: absolute;
-    right: 40rem;
-    top: 200rem;
+    right: 40px;
+    top: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
 
     span {
       position: absolute;
-      margin-right: 10rem;
-      font-size: 18rem;
+      margin-right: 10px;
+      font-size: 18px;
     }
 
     img {
-      height: 50rem;
+      height: 50px;
     }
   }
 
@@ -557,8 +557,8 @@ function scroll(e) {
     position: fixed;
     z-index: 5;
     left: 0;
-    height: calc(100% - 112rem);
-    top: 112rem;
+    height: calc(100% - 112px);
+    top: 112px;
     box-sizing: border-box;
     width: 100%;
     overflow-y: scroll;
@@ -569,52 +569,52 @@ function scroll(e) {
       align-items: center;
 
       img {
-        margin-top: 150rem;
-        height: 150rem;
+        margin-top: 150px;
+        height: 150px;
       }
 
       .n1 {
-        margin-top: 40rem;
-        font-size: 16rem;
+        margin-top: 40px;
+        font-size: 16px;
       }
 
       .n2 {
-        margin-top: 20rem;
-        font-size: 12rem;
+        margin-top: 20px;
+        font-size: 12px;
         color: var(--second-text-color);
       }
     }
   }
 
   .list {
-    //padding-right: 25rem;
+    //padding-right: 25px;
 
     .title {
-      font-size: 12rem;
+      font-size: 12px;
       color: var(--second-text-color);
-      padding: 10rem 20rem;
+      padding: 10px 20px;
     }
 
     .local-row {
       display: flex;
       align-items: center;
-      padding: 10rem 20rem;
+      padding: 10px 20px;
 
       &:active {
         background: rgb(35, 41, 58);
       }
 
       .check {
-        height: 22rem;
-        width: 22rem;
-        margin-right: 15rem;
+        height: 22px;
+        width: 22px;
+        margin-right: 15px;
       }
 
       img {
-        height: 45rem;
-        width: 45rem;
+        height: 45px;
+        width: 45px;
         border-radius: 50%;
-        margin-right: 15rem;
+        margin-right: 15px;
       }
 
       .desc {
@@ -625,8 +625,8 @@ function scroll(e) {
         }
 
         .account {
-          margin-top: 5rem;
-          font-size: 12rem;
+          margin-top: 5px;
+          font-size: 12px;
           color: var(--second-text-color);
         }
       }

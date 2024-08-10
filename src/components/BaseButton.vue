@@ -2,7 +2,7 @@
   <div
     class="button"
     :class="class1"
-    :style="{ 'border-radius': radius + 'rem' }"
+    :style="{ 'border-radius': radius + 'px' }"
     @click.capture.stop="check"
   >
     <img v-show="loading" src="../assets/img/icon/loading-white.png" alt="" />
@@ -90,17 +90,17 @@ export default {
 
 .button {
   color: white;
-  height: 40rem;
-  line-height: 40rem;
+  height: 40px;
+  line-height: 40px;
   //width: 100%;
-  font-size: 14rem;
+  font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 
   .progress {
-    border-radius: 3rem;
+    border-radius: 3px;
     position: absolute;
     left: 0;
     top: 0;
@@ -110,8 +110,8 @@ export default {
   }
 
   img {
-    height: 16rem;
-    margin-right: 5rem;
+    height: 16px;
+    margin-right: 5px;
     animation: animal 0.8s infinite linear;
 
     @keyframes animal {
@@ -246,9 +246,9 @@ export default {
   }
 
   &.small {
-    font-size: 12rem;
-    width: 62rem;
-    height: 26rem;
+    font-size: 12px;
+    width: 62px;
+    height: 26px;
   }
 }
 </style>

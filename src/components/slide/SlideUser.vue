@@ -250,7 +250,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-@p: 15rem;
+@p: 15px;
 #SlideUser {
   width: 100%;
   height: 100%;
@@ -270,30 +270,30 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 15rem;
-    //box-shadow: 0 0 2rem 0 #b3b3b3;
-    padding: 15rem;
+    border-radius: 15px;
+    //box-shadow: 0 0 2px 0 #b3b3b3;
+    padding: 15px;
     color: black;
     position: relative;
 
     .close {
-      top: 15rem;
-      right: 15rem;
-      width: 25rem;
-      height: 25rem;
+      top: 15px;
+      right: 15px;
+      width: 25px;
+      height: 25px;
       position: absolute;
     }
 
     .avatar {
-      width: 120rem;
+      width: 120px;
       border-radius: 50%;
     }
 
     .name {
-      margin-top: 20rem;
-      margin-bottom: 20rem;
-      font-size: 20rem;
-      letter-spacing: 4rem;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      font-size: 20px;
+      letter-spacing: 4px;
       color: white;
     }
 
@@ -301,12 +301,12 @@ export default {
       display: flex;
 
       .tag {
-        margin: 0 3rem;
-        font-size: 10rem;
+        margin: 0 3px;
+        font-size: 10px;
         background: rgba(161, 158, 156, 0.3);
         color: gainsboro;
-        padding: 3rem 5rem;
-        border-radius: 4rem;
+        padding: 3px 5px;
+        border-radius: 4px;
       }
     }
 
@@ -315,10 +315,10 @@ export default {
       color: gainsboro;
       border-top: 1px solid #5e5a5a;
       border-bottom: 1px solid #5e5a5a;
-      padding: 10rem 0;
-      margin: 15rem 0;
-      font-size: 14rem;
-      letter-spacing: 1.5rem;
+      padding: 10px 0;
+      margin: 15px 0;
+      font-size: 14px;
+      letter-spacing: 1.5px;
       width: 90%;
     }
 
@@ -331,7 +331,7 @@ export default {
     }
 
     .poster-item {
-      border-radius: 8rem;
+      border-radius: 8px;
       overflow: hidden;
       position: relative;
 
@@ -344,16 +344,16 @@ export default {
       .num {
         color: white;
         position: absolute;
-        bottom: 5rem;
-        left: 5rem;
+        bottom: 5px;
+        left: 5px;
         display: flex;
         align-items: center;
-        font-size: 12rem;
+        font-size: 12px;
 
         .love {
-          width: 12rem;
-          height: 12rem;
-          margin-right: 5rem;
+          width: 12px;
+          height: 12px;
+          margin-right: 5px;
         }
       }
     }
@@ -361,7 +361,7 @@ export default {
 
   .options {
     position: absolute;
-    bottom: 20rem;
+    bottom: 20px;
     display: flex;
     justify-content: space-between;
     left: @p;

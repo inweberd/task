@@ -123,7 +123,7 @@ function toggleShowType(index) {
   background: var(--color-message);
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
   display: flex;
   flex-direction: column;
 
@@ -132,10 +132,10 @@ function toggleShowType(index) {
     align-items: center;
 
     img {
-      width: 15rem;
+      width: 15px;
       transform: rotate(180deg);
       transition: all 0.3s;
-      margin-left: 3rem;
+      margin-left: 3px;
     }
 
     .show {
@@ -151,12 +151,12 @@ function toggleShowType(index) {
     margin-top: var(--common-header-height);
 
     .dialog-content {
-      border-radius: 0 0 4rem 4rem;
+      border-radius: 0 0 4px 4px;
       background: var(--color-message);
       overflow: hidden;
 
       img {
-        width: 18rem;
+        width: 18px;
       }
     }
 
@@ -171,17 +171,17 @@ function toggleShowType(index) {
 
   .scroll {
     flex: 1;
-    padding: 0 10rem;
+    padding: 0 10px;
   }
 
   .messages {
     .message {
-      margin-bottom: 20rem;
+      margin-bottom: 20px;
       display: flex;
-      gap: 10rem;
+      gap: 10px;
 
       &:first-child {
-        margin-top: 20rem;
+        margin-top: 20px;
       }
 
       .left {
@@ -190,8 +190,8 @@ function toggleShowType(index) {
         position: relative;
 
         .avatar {
-          width: 58rem;
-          height: 58rem;
+          width: 58px;
+          height: 58px;
           border-radius: 50%;
         }
       }
@@ -205,46 +205,46 @@ function toggleShowType(index) {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          gap: 5rem;
+          gap: 5px;
           color: white;
-          font-size: 16rem;
+          font-size: 16px;
 
           .bottom {
             display: flex;
             align-items: center;
-            font-size: 13rem;
+            font-size: 13px;
             color: lightgrey;
 
             .time {
-              font-size: 12rem;
-              margin-left: 10rem;
+              font-size: 12px;
+              margin-left: 10px;
               color: var(--second-text-color);
             }
           }
         }
 
         .poster {
-          margin-left: 10rem;
-          width: 58rem;
-          height: 70rem;
+          margin-left: 10px;
+          width: 58px;
+          height: 70px;
           object-fit: cover;
-          border-radius: 3rem;
+          border-radius: 3px;
         }
       }
     }
 
     .look-all {
-      font-size: 12rem;
+      font-size: 12px;
       color: var(--second-text-color);
       display: flex;
       justify-content: center;
       align-items: center;
 
       .close {
-        margin-left: 10rem;
+        margin-left: 10px;
         transform: rotate(270deg) !important;
-        width: 12rem;
-        height: 12rem;
+        width: 12px;
+        height: 12px;
       }
     }
   }

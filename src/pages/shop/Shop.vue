@@ -44,7 +44,7 @@
               </div>
             </div>
           </div>
-          <div class="card" style="margin-bottom: 5rem">
+          <div class="card" style="margin-bottom: 5px">
             <div class="baiyibutie">
               <div class="item">
                 <img src="@/assets/img/icon/shop/baiyibutie.png" alt="" />
@@ -130,10 +130,10 @@ const nav = useNav()
 @fColor: #f1f1f1;
 
 #Shop {
-  font-size: 14rem;
+  font-size: 14px;
   position: relative;
   background: #f8f8f8;
-  padding: 10rem;
+  padding: 10px;
   color: black;
 
   .wrapper {
@@ -144,23 +144,23 @@ const nav = useNav()
     z-index: 2;
     display: flex;
     align-items: center;
-    height: 36rem;
+    height: 36px;
     box-sizing: border-box;
-    margin-bottom: 10rem;
+    margin-bottom: 10px;
 
     svg {
       color: gray;
-      font-size: 20rem;
+      font-size: 20px;
     }
 
     .search-input {
-      border: 2rem solid red;
-      border-radius: 12rem;
+      border: 2px solid red;
+      border-radius: 12px;
       height: 100%;
-      padding: 0 10rem;
-      padding-right: 3rem;
+      padding: 0 10px;
+      padding-right: 3px;
       flex: 1;
-      gap: 10rem;
+      gap: 10px;
       display: flex;
       align-items: center;
 
@@ -169,14 +169,14 @@ const nav = useNav()
       }
 
       img {
-        margin-right: 10rem;
+        margin-right: 10px;
       }
 
       .search-notice {
         background: rgb(242, 62, 92);
-        padding: 0 10rem;
+        padding: 0 10px;
         height: 85%;
-        border-radius: 10rem;
+        border-radius: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -185,20 +185,20 @@ const nav = useNav()
     }
 
     .more {
-      margin-left: 10rem;
+      margin-left: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      font-size: 12rem;
+      font-size: 12px;
     }
   }
 
   .card {
     background: white;
-    padding: 10rem 15rem;
-    margin-bottom: 10rem;
-    border-radius: 8rem;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
   }
 
   .options {
@@ -209,15 +209,15 @@ const nav = useNav()
     .option {
       width: 17vw;
       flex-shrink: 0;
-      font-size: 13rem;
+      font-size: 13px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
 
       svg {
-        font-size: 30rem;
-        margin-bottom: 3rem;
+        font-size: 30px;
+        margin-bottom: 3px;
       }
     }
   }
@@ -231,7 +231,7 @@ const nav = useNav()
       justify-content: center;
       align-items: center;
       width: 25%;
-      font-size: 12rem;
+      font-size: 12px;
       color: gray;
 
       img {
@@ -240,11 +240,11 @@ const nav = useNav()
 
       .price {
         color: red;
-        font-size: 16rem;
+        font-size: 16px;
         font-weight: bold;
 
         .m {
-          font-size: 10rem;
+          font-size: 10px;
         }
       }
     }
@@ -261,17 +261,17 @@ const nav = useNav()
   }
 
   .top-card {
-    margin-bottom: 10rem;
+    margin-bottom: 10px;
   }
 
-  @p: 5rem;
+  @p: 5px;
 
   .goods {
     box-sizing: border-box;
-    margin-bottom: 10rem;
+    margin-bottom: 10px;
 
     .item {
-      border-radius: 8rem;
+      border-radius: 8px;
       overflow: hidden;
       background: white;
 
@@ -280,13 +280,13 @@ const nav = useNav()
       }
 
       .bottom {
-        padding: 10rem;
+        padding: 10px;
 
         .desc {
           color: black;
-          font-size: 16rem;
-          margin-bottom: 8rem;
-          @lh: 18rem;
+          font-size: 16px;
+          margin-bottom: 8px;
+          @lh: 18px;
           line-height: @lh;
           height: @lh * 2;
           overflow: hidden;
@@ -295,11 +295,11 @@ const nav = useNav()
         .discounts {
           display: inline-block;
           @c: rgb(199, 89, 106);
-          border: 1rem solid @c;
-          padding: 0 4rem;
+          border: 1px solid @c;
+          padding: 0 4px;
           color: @c;
-          font-size: 12rem;
-          margin-bottom: 4rem;
+          font-size: 12px;
+          margin-bottom: 4px;
         }
 
         .info {
@@ -310,24 +310,24 @@ const nav = useNav()
             color: rgb(248, 38, 74);
             display: flex;
             align-items: flex-end;
-            font-size: 14rem;
-            margin-right: 5rem;
+            font-size: 14px;
+            margin-right: 5px;
 
             .big {
-              font-size: 22rem;
+              font-size: 22px;
               font-weight: bold;
-              transform: translateY(2rem);
+              transform: translateY(2px);
             }
           }
 
           .num {
             color: darkgray;
-            font-size: 12rem;
+            font-size: 12px;
           }
         }
 
         .low {
-          margin-top: 2rem;
+          margin-top: 2px;
           color: rgb(230, 153, 92);
         }
       }

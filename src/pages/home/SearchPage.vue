@@ -744,17 +744,17 @@ function toggle() {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .type {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 16rem;
-    width: 16rem;
-    font-size: 12rem;
-    margin-left: 5rem;
-    border-radius: 2rem;
+    height: 16px;
+    width: 16px;
+    font-size: 12px;
+    margin-left: 5px;
+    border-radius: 2px;
 
     &.hot {
       background: var(--primary-btn-color);
@@ -768,8 +768,8 @@ function toggle() {
   .header {
     z-index: 4;
     background: var(--main-bg);
-    height: 60rem;
-    font-size: 14rem;
+    height: 60px;
+    font-size: 14px;
     padding: 0 var(--page-padding);
     display: flex;
     justify-content: space-between;
@@ -786,22 +786,22 @@ function toggle() {
 
     .scan {
       transform: scale(2);
-      height: 10rem;
-      width: 10rem;
+      height: 10px;
+      width: 10px;
     }
   }
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
 
     .history {
       .row {
-        min-height: 40rem;
+        min-height: 40px;
       }
 
       .history-expand {
         text-align: center;
-        padding: 10rem;
+        padding: 10px;
         color: var(--second-text-color);
       }
     }
@@ -810,8 +810,8 @@ function toggle() {
       padding: 0 var(--page-padding);
 
       .title {
-        font-size: 14rem;
-        padding: 10rem 0;
+        font-size: 14px;
+        padding: 10px 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -822,21 +822,21 @@ function toggle() {
           align-items: center;
 
           img {
-            margin-right: 5rem;
-            width: 13rem;
-            height: 13rem;
+            margin-right: 5px;
+            width: 13px;
+            height: 13px;
           }
         }
       }
 
       .keys {
-        font-size: 16rem;
+        font-size: 16px;
         display: flex;
         flex-wrap: wrap;
 
         .key {
           box-sizing: border-box;
-          padding: 8rem 0;
+          padding: 8px 0;
           width: 49%;
           display: flex;
           align-items: center;
@@ -853,14 +853,14 @@ function toggle() {
 
     .rank-list {
       .indicator {
-        padding: 15rem;
+        padding: 15px;
         display: flex;
         align-items: center;
-        font-size: 14rem;
+        font-size: 14px;
 
         .tab {
           color: var(--second-text-color);
-          margin-right: 20rem;
+          margin-right: 20px;
 
           &.active {
             transform: scale(1.2);
@@ -880,15 +880,15 @@ function toggle() {
 
       .slide0 {
         box-sizing: border-box;
-        margin: 0 var(--page-padding) 50rem var(--page-padding);
+        margin: 0 var(--page-padding) 50px var(--page-padding);
         background: linear-gradient(to right, rgb(32, 29, 36), rgb(50, 29, 38));
         padding: var(--page-padding);
-        border-radius: 10rem;
+        border-radius: 10px;
 
         .l-row {
-          font-size: 14rem;
+          font-size: 14px;
           display: flex;
-          margin-bottom: 16rem;
+          margin-bottom: 16px;
           align-items: center;
           color: var(--second-text-color);
 
@@ -897,11 +897,11 @@ function toggle() {
             align-items: center;
 
             .rank {
-              width: 18rem;
-              height: 18rem;
-              line-height: 18rem;
+              width: 18px;
+              height: 18px;
+              line-height: 18px;
               text-align: center;
-              margin-right: 15rem;
+              margin-right: 15px;
             }
           }
 
@@ -913,18 +913,18 @@ function toggle() {
             min-width: 0;
 
             .center {
-              width: calc(100% - 140rem);
+              width: calc(100% - 140px);
               box-sizing: border-box;
-              //padding: 0 1rem;
+              //padding: 0 1px;
               //flex: 1;
               display: flex;
               align-items: center;
-              font-size: 14rem;
+              font-size: 14px;
               color: white;
 
               .desc {
                 max-width: 85%;
-                font-size: 14rem;
+                font-size: 14px;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow: hidden;
@@ -932,7 +932,7 @@ function toggle() {
             }
 
             .count {
-              font-size: 12rem;
+              font-size: 12px;
             }
           }
         }
@@ -940,16 +940,16 @@ function toggle() {
 
       .slide1 {
         box-sizing: border-box;
-        margin: 0 var(--page-padding) 50rem var(--page-padding);
+        margin: 0 var(--page-padding) 50px var(--page-padding);
         background: rgb(20, 22, 34);
         border: 1px solid rgba(31, 34, 52, 0.5);
         padding: var(--page-padding);
-        border-radius: 10rem;
+        border-radius: 10px;
 
         .l-row {
-          font-size: 14rem;
+          font-size: 14px;
           display: flex;
-          margin-bottom: 10rem;
+          margin-bottom: 10px;
           align-items: center;
           color: var(--second-text-color);
 
@@ -962,11 +962,11 @@ function toggle() {
             align-items: center;
 
             .rank {
-              width: 18rem;
-              height: 18rem;
-              line-height: 18rem;
+              width: 18px;
+              height: 18px;
+              line-height: 18px;
               text-align: center;
-              margin-right: 15rem;
+              margin-right: 15px;
 
               &.top {
                 color: yellow;
@@ -981,18 +981,18 @@ function toggle() {
             justify-content: space-between;
 
             .center {
-              width: calc(100% - 160rem);
+              width: calc(100% - 160px);
               box-sizing: border-box;
-              //padding: 0 1rem;
+              //padding: 0 1px;
               //flex: 1;
               display: flex;
               align-items: center;
-              font-size: 14rem;
+              font-size: 14px;
               color: white;
 
               .avatar-wrapper {
-                @width: 35rem;
-                margin-right: 10rem;
+                @width: 35px;
+                margin-right: 10px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -1004,48 +1004,48 @@ function toggle() {
                 .avatar {
                   width: @width - 0.3;
                   border-radius: 50%;
-                  padding: 1rem;
+                  padding: 1px;
                   background: black;
                 }
               }
 
               .desc {
                 max-width: 55%;
-                font-size: 14rem;
+                font-size: 14px;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow: hidden;
               }
 
               .live-type {
-                height: 22rem;
-                padding: 0 5rem;
+                height: 22px;
+                padding: 0 5px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 flex-shrink: 0;
-                font-size: 10rem;
+                font-size: 10px;
                 color: var(--second-text-color);
-                margin-left: 5rem;
-                border-radius: 2rem;
+                margin-left: 5px;
+                border-radius: 2px;
                 background: var(--second-btn-color-tran);
 
                 .type2 {
-                  margin-right: 2rem;
-                  width: 10rem;
-                  height: 10rem;
+                  margin-right: 2px;
+                  width: 10px;
+                  height: 10px;
                 }
 
                 .type1 {
-                  margin-right: 2rem;
-                  width: 15rem;
-                  height: 10rem;
+                  margin-right: 2px;
+                  width: 15px;
+                  height: 10px;
                 }
               }
             }
 
             .count {
-              font-size: 12rem;
+              font-size: 12px;
             }
           }
         }
@@ -1053,16 +1053,16 @@ function toggle() {
 
       .slide2 {
         box-sizing: border-box;
-        margin: 0 var(--page-padding) 50rem var(--page-padding);
+        margin: 0 var(--page-padding) 50px var(--page-padding);
         background: rgb(20, 22, 34);
         border: 1px solid rgba(31, 34, 52, 0.5);
         padding: var(--page-padding);
-        border-radius: 10rem;
+        border-radius: 10px;
 
         .l-row {
-          font-size: 14rem;
+          font-size: 14px;
           display: flex;
-          margin-bottom: 10rem;
+          margin-bottom: 10px;
           align-items: center;
           color: var(--second-text-color);
 
@@ -1075,11 +1075,11 @@ function toggle() {
             align-items: center;
 
             .rank {
-              width: 18rem;
-              height: 18rem;
-              line-height: 18rem;
+              width: 18px;
+              height: 18px;
+              line-height: 18px;
               text-align: center;
-              margin-right: 15rem;
+              margin-right: 15px;
 
               &.top {
                 color: yellow;
@@ -1094,28 +1094,28 @@ function toggle() {
             justify-content: space-between;
 
             .center {
-              width: calc(100% - 150rem);
+              width: calc(100% - 150px);
               box-sizing: border-box;
-              //padding: 0 1rem;
+              //padding: 0 1px;
               //flex: 1;
               display: flex;
               align-items: center;
-              font-size: 14rem;
+              font-size: 14px;
               color: white;
 
               .avatar-wrapper {
-                margin-right: 10rem;
+                margin-right: 10px;
 
                 .avatar {
-                  width: 30rem;
-                  height: 30rem;
-                  border-radius: 2rem;
+                  width: 30px;
+                  height: 30px;
+                  border-radius: 2px;
                 }
               }
 
               .desc {
                 max-width: 95%;
-                font-size: 14rem;
+                font-size: 14px;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow: hidden;
@@ -1125,12 +1125,12 @@ function toggle() {
             .count {
               display: flex;
               align-items: center;
-              font-size: 12rem;
+              font-size: 12px;
 
               img {
-                margin-right: 2rem;
-                width: 15rem;
-                height: 15rem;
+                margin-right: 2px;
+                width: 15px;
+                height: 15px;
               }
             }
           }
@@ -1139,22 +1139,22 @@ function toggle() {
 
       .slide3 {
         box-sizing: border-box;
-        margin: 0 var(--page-padding) 50rem var(--page-padding);
-        border-radius: 10rem;
+        margin: 0 var(--page-padding) 50px var(--page-padding);
+        border-radius: 10px;
 
         .slide4-wrapper {
-          padding: 5rem var(--page-padding);
+          padding: 5px var(--page-padding);
 
           .brands {
             color: var(--second-text-color);
-            font-size: 12rem;
-            margin-bottom: 15rem;
+            font-size: 12px;
+            margin-bottom: 15px;
             display: flex;
 
             .brand {
-              border-radius: 2rem;
-              margin-right: 10rem;
-              padding: 5rem 10rem;
+              border-radius: 2px;
+              margin-right: 10px;
+              padding: 5px 10px;
               background: var(--second-btn-color-tran);
 
               &.active {
@@ -1165,9 +1165,9 @@ function toggle() {
           }
 
           .l-row {
-            font-size: 14rem;
+            font-size: 14px;
             display: flex;
-            margin-bottom: 10rem;
+            margin-bottom: 10px;
             align-items: center;
             color: var(--second-text-color);
 
@@ -1180,11 +1180,11 @@ function toggle() {
               align-items: center;
 
               .rank {
-                width: 18rem;
-                height: 18rem;
-                line-height: 18rem;
+                width: 18px;
+                height: 18px;
+                line-height: 18px;
                 text-align: center;
-                margin-right: 15rem;
+                margin-right: 15px;
 
                 &.top {
                   color: yellow;
@@ -1199,18 +1199,18 @@ function toggle() {
               justify-content: space-between;
 
               .center {
-                width: calc(100% - 150rem);
+                width: calc(100% - 150px);
                 box-sizing: border-box;
-                //padding: 0 1rem;
+                //padding: 0 1px;
                 //flex: 1;
                 display: flex;
                 align-items: center;
-                font-size: 14rem;
+                font-size: 14px;
                 color: white;
 
                 .avatar-wrapper {
-                  @width: 35rem;
-                  margin-right: 10rem;
+                  @width: 35px;
+                  margin-right: 10px;
 
                   &.living {
                     position: relative;
@@ -1228,7 +1228,7 @@ function toggle() {
                       position: absolute;
                       background: transparent;
                       border-radius: 50%;
-                      border: 2rem solid var(--primary-btn-color);
+                      border: 2px solid var(--primary-btn-color);
                       animation: avatar-out-line 1s infinite;
 
                       @keyframes avatar-out-line {
@@ -1237,13 +1237,13 @@ function toggle() {
                         }
                         to {
                           opacity: 0;
-                          padding: 2rem;
+                          padding: 2px;
                         }
                       }
                     }
 
                     .avatar {
-                      padding: 1rem;
+                      padding: 1px;
                       animation: avatar 1s infinite alternate;
                     }
                   }
@@ -1259,10 +1259,10 @@ function toggle() {
 
                     @keyframes avatar {
                       from {
-                        padding: 1rem;
+                        padding: 1px;
                       }
                       to {
-                        padding: 2rem;
+                        padding: 2px;
                       }
                     }
                   }
@@ -1270,7 +1270,7 @@ function toggle() {
 
                 .desc {
                   max-width: 95%;
-                  font-size: 14rem;
+                  font-size: 14px;
                   white-space: nowrap;
                   text-overflow: ellipsis;
                   overflow: hidden;
@@ -1280,12 +1280,12 @@ function toggle() {
               .count {
                 display: flex;
                 align-items: center;
-                font-size: 12rem;
+                font-size: 12px;
 
                 img {
-                  margin-right: 2rem;
-                  width: 15rem;
-                  height: 15rem;
+                  margin-right: 2px;
+                  width: 15px;
+                  height: 15px;
                 }
               }
             }
@@ -1297,14 +1297,14 @@ function toggle() {
           display: flex;
           align-items: center;
           justify-content: center;
-          height: 100rem;
+          height: 100px;
         }
       }
 
       .more {
-        margin-bottom: 20rem;
-        font-size: 12rem;
-        padding: 10rem 10rem 0 10rem;
+        margin-bottom: 20px;
+        font-size: 12px;
+        padding: 10px 10px 0 10px;
         text-align: center;
         color: yellow;
       }

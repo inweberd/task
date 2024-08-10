@@ -64,12 +64,12 @@ function setDepartment(val) {
   overflow: auto;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
 
     .item {
-      padding: 0 20rem;
-      font-size: 14rem;
-      height: 50rem;
+      padding: 0 20px;
+      font-size: 14px;
+      height: 50px;
       display: flex;
       justify-content: space-between;
       align-items: center;

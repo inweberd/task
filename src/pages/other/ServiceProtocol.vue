@@ -3417,9 +3417,9 @@ export default {
   overflow: auto;
 
   .content {
-    padding: 60rem 10rem 100rem 20rem;
+    padding: 60px 10px 100px 20px;
     color: white;
-    font-size: 14rem;
+    font-size: 14px;
   }
 }
 </style>

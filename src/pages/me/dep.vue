@@ -25,7 +25,7 @@
               <template #footer>
                 <van-radio
                   checked-color="#ee0a24"
-                  style="position: absolute; right: 30rem; bottom: 20rem"
+                  style="position: absolute; right: 30px; bottom: 20px"
                   :name="item.id"
                 />
               </template>
@@ -35,7 +35,7 @@
 
         <van-field v-model="money" label="选择提现" placeholder="请输入提现金额" />
         <van-button
-          style="margin-top: 100rem; margin: 50px auto 30px; width: 80vw"
+          style="margin-top: 100px; margin: 50px auto 30px; width: 80vw"
           round
           block
           type="primary"
@@ -62,7 +62,7 @@
 
             <van-button
               type="primary"
-              style="margin-top: 30rem"
+              style="margin-top: 30px"
               color="#F56D17"
               block
               @click="save('bank')"
@@ -83,7 +83,7 @@
 
             <van-button
               type="primary"
-              style="margin-top: 30rem"
+              style="margin-top: 30px"
               color="#F56D17"
               block
               @click="save('ali')"
@@ -99,7 +99,7 @@
             <van-button
               color="#F56D17"
               type="primary"
-              style="margin-top: 30rem"
+              style="margin-top: 30px"
               block
               @click="save('kd')"
               loading-text="提交中..."
@@ -118,7 +118,7 @@
               color="#F56D17"
               ty
               pe="primary"
-              style="margin-top: 30rem"
+              style="margin-top: 30px"
               block
               @click="save('jd')"
               >保存</van-button
@@ -475,8 +475,8 @@ const deleteCard = (item, index) => {
 <style lang="less" scoped>
 .fixed-back {
   position: fixed;
-  left: 10rem;
-  top: 20rem;
+  left: 10px;
+  top: 20px;
   z-index: 3;
 }
 

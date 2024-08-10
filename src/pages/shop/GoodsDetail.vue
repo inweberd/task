@@ -103,7 +103,7 @@
         <div class="item">
           <div class="label">物流</div>
           <div class="desc" style="display: block">
-            <div style="display: flex; gap: 5rem">
+            <div style="display: flex; gap: 5px">
               <span>发货 四川成都</span>
               <span style="color: #dedede">|</span>
               <span>免运费</span>
@@ -420,7 +420,7 @@ onUnmounted(() => {
 .goods-detail {
   background: #f5f5f5;
   color: black;
-  font-size: 14rem;
+  font-size: 14px;
   @c: #a2a2a2;
   @c2: #c0c0c0;
   @red: rgb(248, 38, 74);
@@ -436,27 +436,27 @@ onUnmounted(() => {
       height: var(--common-header-height);
       display: flex;
       align-items: center;
-      padding: 0 10rem;
+      padding: 0 10px;
 
       svg {
-        font-size: 22rem;
+        font-size: 22px;
         background: rgba(176, 176, 176, 0.4);
-        padding: 5rem;
+        padding: 5px;
         color: white;
         border-radius: 50%;
       }
 
       .right {
-        margin-left: 10rem;
+        margin-left: 10px;
         flex: 1;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         .search {
-          font-size: 12rem;
-          border-radius: 20rem;
-          padding: 5rem 10rem;
+          font-size: 12px;
+          border-radius: 20px;
+          padding: 5px 10px;
           flex: 1;
           background: rgb(243, 243, 243);
           display: flex;
@@ -471,10 +471,10 @@ onUnmounted(() => {
         }
 
         .option {
-          margin-left: 15rem;
+          margin-left: 15px;
           display: flex;
           align-items: center;
-          gap: 8rem;
+          gap: 8px;
         }
       }
     }
@@ -491,8 +491,8 @@ onUnmounted(() => {
         color: #646464;
 
         .text {
-          padding: 10rem 0;
-          padding-bottom: 15rem;
+          padding: 10px 0;
+          padding-bottom: 15px;
         }
       }
 
@@ -500,7 +500,7 @@ onUnmounted(() => {
         color: black;
 
         .text {
-          border-bottom: 2.5rem solid black;
+          border-bottom: 2.5px solid black;
         }
       }
     }
@@ -540,19 +540,19 @@ onUnmounted(() => {
     }
 
     .index {
-      font-size: 12rem;
+      font-size: 12px;
       position: absolute;
-      padding: 3rem 10rem;
-      border-radius: 15rem;
+      padding: 3px 10px;
+      border-radius: 15px;
       background: rgba(91, 89, 89, 0.5);
-      right: 10rem;
-      bottom: 30rem;
+      right: 10px;
+      bottom: 30px;
       color: white;
     }
   }
 
   .p {
-    padding: 8rem;
+    padding: 8px;
   }
 
   .gray {
@@ -561,19 +561,19 @@ onUnmounted(() => {
 
   .c2 {
     color: @c2;
-    font-size: 13rem;
+    font-size: 13px;
   }
 
   .card {
-    margin: 5rem;
-    margin-bottom: 10rem;
+    margin: 5px;
+    margin-bottom: 10px;
     background: white;
-    border-radius: 10rem;
-    padding: 10rem 15rem;
+    border-radius: 10px;
+    padding: 10px 15px;
   }
 
   .arrow {
-    font-size: 18rem;
+    font-size: 18px;
     color: @c;
   }
 
@@ -581,71 +581,71 @@ onUnmounted(() => {
     //background: rgb(247, 247, 249);
     background: #f5f5f5;
     padding-bottom: 0;
-    border-radius: 16rem 16rem 0 0;
-    transform: translateY(-20rem);
+    border-radius: 16px 16px 0 0;
+    transform: translateY(-20px);
 
     .price {
       color: red;
       font-weight: 900;
 
       .symbol {
-        font-size: 16rem;
+        font-size: 16px;
       }
 
       .int {
-        font-size: 26rem;
+        font-size: 26px;
       }
 
       .decimal {
         letter-spacing: 2px;
-        font-size: 20rem;
+        font-size: 20px;
       }
     }
 
     .info {
-      padding: 0 8rem;
-      margin-bottom: 20rem;
+      padding: 0 8px;
+      margin-bottom: 20px;
 
       .price-wrap {
-        margin-bottom: 20rem;
+        margin-bottom: 20px;
         display: flex;
         align-items: flex-end;
 
         .discount {
-          margin-left: 10rem;
+          margin-left: 10px;
           //color: rgb(248, 38, 74);
           color: white !important;
           display: flex;
           align-items: flex-end;
-          padding: 2rem 15rem;
-          padding-bottom: 4rem;
+          padding: 2px 15px;
+          padding-bottom: 4px;
           //background: rgb(255 167 183 / 25%);
           background: rgb(248, 38, 74);
-          border-radius: 20rem;
+          border-radius: 20px;
 
           .text {
-            font-size: 13rem;
+            font-size: 13px;
           }
 
           .price {
             color: white !important;
-            margin-top: -6rem;
-            transform: translateY(4rem);
+            margin-top: -6px;
+            transform: translateY(4px);
           }
         }
       }
 
       .name {
         color: black;
-        font-size: 16rem;
-        margin-bottom: 8rem;
+        font-size: 16px;
+        margin-bottom: 8px;
         overflow: hidden;
         font-weight: 900;
-        letter-spacing: 1rem;
+        letter-spacing: 1px;
       }
 
       .num {
-        font-size: 12rem;
+        font-size: 12px;
         color: gray;
       }
     }
@@ -654,15 +654,15 @@ onUnmounted(() => {
       .item {
         display: flex;
         align-items: flex-start;
-        padding: 5rem 0;
-        margin-bottom: 22rem;
+        padding: 5px 0;
+        margin-bottom: 22px;
 
         .label {
           color: @c;
         }
 
         .desc {
-          padding-left: 15rem;
+          padding-left: 15px;
           flex: 1;
           display: flex;
           justify-content: space-between;
@@ -673,7 +673,7 @@ onUnmounted(() => {
             position: relative;
             display: flex;
             align-items: center;
-            font-size: 10rem;
+            font-size: 10px;
             overflow: hidden;
           }
         }
@@ -691,10 +691,10 @@ onUnmounted(() => {
           flex-shrink: 0;
 
           .option {
-            padding: 4rem 10rem;
+            padding: 4px 10px;
             background: #f5f5f5;
-            margin-right: 10rem;
-            border-radius: 3rem;
+            margin-right: 10px;
+            border-radius: 3px;
           }
         }
 
@@ -707,13 +707,13 @@ onUnmounted(() => {
           color: @c;
 
           .bg {
-            width: 60rem;
+            width: 60px;
             height: 100%;
             background: linear-gradient(to right, transparent, #f5f5f5);
           }
 
           .count {
-            padding-left: 4rem;
+            padding-left: 4px;
             display: flex;
             align-items: center;
             height: 100%;
@@ -725,60 +725,60 @@ onUnmounted(() => {
 
     .comments {
       & > header {
-        margin-bottom: 20rem;
+        margin-bottom: 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         span {
-          font-size: 16rem;
+          font-size: 16px;
           font-weight: 900;
         }
       }
 
       .tags {
         display: flex;
-        gap: 10rem;
-        margin-bottom: 20rem;
+        gap: 10px;
+        margin-bottom: 20px;
 
         .tag {
           display: flex;
-          gap: 5rem;
+          gap: 5px;
           background: rgb(255 167 183 / 15%);
-          padding: 6rem 8rem;
-          border-radius: 8rem;
-          font-size: 11rem;
+          padding: 6px 8px;
+          border-radius: 8px;
+          font-size: 11px;
         }
       }
 
       .comment {
-        margin-bottom: 20rem;
+        margin-bottom: 20px;
 
         & > header {
-          margin-bottom: 10rem;
+          margin-bottom: 10px;
           display: flex;
           align-items: center;
-          gap: 5rem;
+          gap: 5px;
 
           img {
             border-radius: 50%;
-            width: 25rem;
-            height: 25rem;
+            width: 25px;
+            height: 25px;
           }
         }
 
         .w {
           display: flex;
-          gap: 10rem;
+          gap: 10px;
 
           .d {
-            margin-bottom: 10rem;
+            margin-bottom: 10px;
           }
 
           img {
-            border-radius: 8rem;
-            height: 50rem;
-            width: 50rem;
+            border-radius: 8px;
+            height: 50px;
+            width: 50px;
           }
         }
       }
@@ -788,11 +788,11 @@ onUnmounted(() => {
       & > header {
         display: flex;
         align-items: center;
-        gap: 10rem;
+        gap: 10px;
 
         img {
-          width: 60rem;
-          height: 60rem;
+          width: 60px;
+          height: 60px;
           border-radius: 50%;
         }
 
@@ -806,34 +806,34 @@ onUnmounted(() => {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            gap: 4rem;
+            gap: 4px;
 
             .name {
-              font-size: 16rem;
+              font-size: 16px;
               font-weight: 900;
             }
 
             .tags {
               display: flex;
-              font-size: 10rem;
+              font-size: 10px;
               font-weight: 900;
-              gap: 10rem;
+              gap: 10px;
 
               .tag {
-                padding: 2rem 3rem;
+                padding: 2px 3px;
                 background: rgb(253, 245, 243);
                 color: rgb(217, 143, 80);
               }
             }
 
             .gray {
-              font-size: 12rem;
+              font-size: 12px;
             }
           }
 
           .r {
-            border-radius: 4rem;
-            padding: 5rem 14rem;
+            border-radius: 4px;
+            padding: 5px 14px;
             font-weight: 900;
             background: var(--primary-btn-color);
             color: white;
@@ -842,33 +842,33 @@ onUnmounted(() => {
       }
 
       .desc {
-        margin-top: 16rem;
+        margin-top: 16px;
         display: flex;
         align-items: center;
-        gap: 3rem;
+        gap: 3px;
 
         .grid {
           width: 33%;
           text-align: center;
-          font-size: 13rem;
+          font-size: 13px;
           font-weight: bold;
 
           .c2 {
             font-weight: normal;
-            font-size: 12rem;
-            margin-bottom: 6rem;
+            font-size: 12px;
+            margin-bottom: 6px;
           }
         }
 
         .line {
           width: 1px;
-          height: 30rem;
+          height: 30px;
           background: lightgrey;
         }
       }
 
       .recommend {
-        margin-top: 16rem;
+        margin-top: 16px;
 
         & > header {
           display: flex;
@@ -886,15 +886,15 @@ onUnmounted(() => {
         }
 
         .wrap {
-          margin-top: 16rem;
+          margin-top: 16px;
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           //grid-template-rows: repeat(3, 1fr);
-          gap: 10rem;
+          gap: 10px;
 
           .item {
             img {
-              border-radius: 12rem;
+              border-radius: 12px;
               object-fit: cover;
               height: 28vw;
               width: 100%;
@@ -910,16 +910,16 @@ onUnmounted(() => {
 
             .price {
               .symbol {
-                font-size: 14rem;
+                font-size: 14px;
               }
 
               .int {
-                font-size: 18rem;
+                font-size: 18px;
               }
 
               .decimal {
                 letter-spacing: 2px;
-                font-size: 14rem;
+                font-size: 14px;
               }
             }
           }
@@ -932,11 +932,11 @@ onUnmounted(() => {
     background: #f5f5f5;
 
     & > header {
-      font-size: 16rem;
-      padding-bottom: 20rem;
+      font-size: 16px;
+      padding-bottom: 20px;
       display: flex;
       justify-content: center;
-      gap: 10rem;
+      gap: 10px;
       align-items: center;
 
       .l {
@@ -965,7 +965,7 @@ onUnmounted(() => {
   .other-desc {
     .item {
       & > header {
-        padding: 15rem 0;
+        padding: 15px 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -983,25 +983,25 @@ onUnmounted(() => {
 
       &:last-child {
         & > header {
-          padding-bottom: 10rem;
+          padding-bottom: 10px;
         }
       }
 
       &:first-child {
         & > header {
-          padding-top: 10rem;
+          padding-top: 10px;
         }
       }
     }
   }
 
   .other-recommend {
-    margin-bottom: 60rem;
+    margin-bottom: 60px;
 
     & > header {
-      padding: 15rem;
+      padding: 15px;
       font-weight: 900;
-      font-size: 15rem;
+      font-size: 15px;
     }
 
     @fColor: #f1f1f1;
@@ -1010,18 +1010,18 @@ onUnmounted(() => {
       background: @fColor;
     }
 
-    @p: 5rem;
+    @p: 5px;
 
     .Scroll {
-      padding: 5rem;
+      padding: 5px;
     }
 
     .goods {
       box-sizing: border-box;
-      margin-bottom: 10rem;
+      margin-bottom: 10px;
 
       .item {
-        border-radius: 8rem;
+        border-radius: 8px;
         overflow: hidden;
         background: white;
 
@@ -1030,13 +1030,13 @@ onUnmounted(() => {
         }
 
         .bottom {
-          padding: 10rem;
+          padding: 10px;
 
           .desc {
             color: black;
-            font-size: 16rem;
-            margin-bottom: 8rem;
-            @lh: 18rem;
+            font-size: 16px;
+            margin-bottom: 8px;
+            @lh: 18px;
             line-height: @lh;
             height: @lh * 2;
             overflow: hidden;
@@ -1045,11 +1045,11 @@ onUnmounted(() => {
           .discounts {
             display: inline-block;
             @c: rgb(199, 89, 106);
-            border: 1rem solid @c;
-            padding: 0 4rem;
+            border: 1px solid @c;
+            padding: 0 4px;
             color: @c;
-            font-size: 12rem;
-            margin-bottom: 4rem;
+            font-size: 12px;
+            margin-bottom: 4px;
           }
 
           .info {
@@ -1060,24 +1060,24 @@ onUnmounted(() => {
               color: rgb(248, 38, 74);
               display: flex;
               align-items: flex-end;
-              font-size: 14rem;
-              margin-right: 5rem;
+              font-size: 14px;
+              margin-right: 5px;
 
               .big {
-                font-size: 22rem;
+                font-size: 22px;
                 font-weight: 900;
-                transform: translateY(2rem);
+                transform: translateY(2px);
               }
             }
 
             .num {
               color: darkgray;
-              font-size: 12rem;
+              font-size: 12px;
             }
           }
 
           .low {
-            margin-top: 2rem;
+            margin-top: 2px;
             color: rgb(230, 153, 92);
           }
         }
@@ -1092,9 +1092,9 @@ onUnmounted(() => {
     left: 0;
     background: white;
     display: flex;
-    padding: 10rem;
+    padding: 10px;
     box-sizing: border-box;
-    gap: 6rem;
+    gap: 6px;
 
     .options {
       flex: 1;
@@ -1106,11 +1106,11 @@ onUnmounted(() => {
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        font-size: 11rem;
+        font-size: 11px;
         color: #646464;
 
         svg {
-          font-size: 18rem;
+          font-size: 18px;
         }
 
         &:first-child {
@@ -1124,13 +1124,13 @@ onUnmounted(() => {
     .btns {
       width: 60%;
       display: flex;
-      font-size: 15rem;
+      font-size: 15px;
       font-weight: bold;
       background: @red;
       color: white;
-      border-radius: 12rem;
+      border-radius: 12px;
       overflow: hidden;
-      height: 45rem;
+      height: 45px;
 
       .btn {
         flex: 1;

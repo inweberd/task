@@ -79,7 +79,7 @@ const selectIndexChange = (index) => {
 
 <style scoped lang="less">
 .test-slide-wrapper {
-  font-size: 14rem;
+  font-size: 14px;
   width: 100%;
   height: calc(100% - 60px);
   background: black;

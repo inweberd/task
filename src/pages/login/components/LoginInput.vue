@@ -149,14 +149,14 @@ export default {
 .input-number {
   display: flex;
   background: whitesmoke;
-  padding: 15rem 10rem;
-  font-size: 14rem;
+  padding: 15px 10px;
+  font-size: 14px;
 
   .left {
     display: flex;
     align-items: center;
-    margin-right: 10rem;
-    padding-right: 10rem;
+    margin-right: 10px;
+    padding-right: 10px;
     position: relative;
 
     &.no-border {
@@ -175,25 +175,25 @@ export default {
     img {
       top: 50%;
       transform: translateY(-50%);
-      right: 10rem;
+      right: 10px;
       position: absolute;
-      height: 15rem;
+      height: 15px;
     }
 
     .arrow {
-      margin-top: 4rem;
-      margin-left: 5rem;
+      margin-top: 4px;
+      margin-left: 5px;
       width: 0;
       height: 0;
-      border: 4rem solid transparent;
-      border-top: 5rem solid black;
+      border: 4px solid transparent;
+      border-top: 5px solid black;
     }
 
     &::before {
       content: ' ';
       position: absolute;
       width: 1px;
-      height: 8rem;
+      height: 8px;
       top: 4px;
       right: 0;
       background: gainsboro;
@@ -211,9 +211,9 @@ export default {
     img {
       top: 50%;
       transform: translateY(-50%);
-      right: 10rem;
+      right: 10px;
       position: absolute;
-      height: 15rem;
+      height: 15px;
     }
 
     .disabled {
@@ -229,7 +229,7 @@ export default {
     caret-color: red;
 
     &[type='password'] {
-      //letter-spacing: 10rem;
+      //letter-spacing: 10px;
     }
   }
 }

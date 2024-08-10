@@ -129,8 +129,8 @@ onMounted(() => method.init())
 <style lang="less" scoped>
 .fixed-back {
   position: fixed;
-  left: 10rem;
-  top: 20rem;
+  left: 10px;
+  top: 20px;
   z-index: 3;
 }
 
@@ -159,18 +159,18 @@ onMounted(() => method.init())
 }
 
 .balance-actions {
-  margin: 30rem 0;
+  margin: 30px 0;
   display: flex;
   justify-content: center;
   gap: 10px;
 
   .van-button {
-    border-radius: 20rem;
+    border-radius: 20px;
   }
 }
 
 .action-button {
-  width: 120rem;
+  width: 120px;
   height: 50px;
   border: none;
 }

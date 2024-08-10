@@ -69,7 +69,7 @@ async function loadData(init = false) {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
     padding-top: var(--common-header-height);

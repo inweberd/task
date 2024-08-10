@@ -51,7 +51,7 @@ function loadVideo() {
 <style scoped lang="less">
 input {
   width: 100%;
-  height: 50rem;
+  height: 50px;
   font-size: 24px;
   margin-top: 10px;
 }

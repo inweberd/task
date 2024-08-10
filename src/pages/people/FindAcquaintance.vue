@@ -27,7 +27,7 @@
           >
             <img
               src="../../assets/img/icon/scan-gray.png"
-              style="width: 10rem; transform: scale(1.5)"
+              style="width: 10px; transform: scale(1.5)"
               @click.stop="nav('/scan')"
             />
           </Search>
@@ -53,10 +53,7 @@
           <div class="line"></div>
           <div class="title">
             朋友推荐
-            <img
-              src="../../assets/img/icon/about-gray.png"
-              style="width: 10rem; margin-left: 2rem"
-            />
+            <img src="../../assets/img/icon/about-gray.png" style="width: 10px; margin-left: 2px" />
           </div>
           <People
             :key="i"
@@ -67,7 +64,7 @@
         </div>
         <div class="is-search" v-else>
           <div class="tooltip" v-if="data.searchKey && !data.isSearch">
-            <img src="../../assets/img/icon/close.svg" style="width: 10rem" />
+            <img src="../../assets/img/icon/close.svg" style="width: 10px" />
             搜索用户名字/抖音号：<span class="searchKey">{{ data.searchKey }}</span>
           </div>
           <!--          TODO -->
@@ -127,7 +124,7 @@
       page-id="FindAcquaintance"
       v-model="data.moreOptionDialog"
       :show-heng-gang="false"
-      height="210rem"
+      height="210px"
       mode="white"
     >
       <div class="more-option-dialog">
@@ -273,31 +270,31 @@ function handleClick() {
   bottom: 0;
   top: 0;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .header {
-    height: 60rem;
-    font-size: 14rem;
-    padding: 0 20rem;
+    height: 60px;
+    font-size: 14px;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--line-color);
 
     img {
-      height: 20rem;
+      height: 20px;
     }
   }
 
   .tab2 {
     box-sizing: border-box;
-    padding: 20rem;
+    padding: 20px;
 
     .title {
       margin-top: var(--page-padding);
-      margin-bottom: 10rem;
+      margin-bottom: 10px;
       color: var(--second-text-color);
-      font-size: 12rem;
+      font-size: 12px;
     }
   }
 
@@ -305,21 +302,21 @@ function handleClick() {
     .title {
       display: flex;
       align-items: center;
-      margin-top: 20rem;
-      margin-bottom: 10rem;
+      margin-top: 20px;
+      margin-bottom: 10px;
       color: var(--second-text-color);
-      font-size: 12rem;
+      font-size: 12px;
 
       img {
-        width: 10rem;
+        width: 10px;
       }
     }
 
     .no-search {
-      padding: 20rem;
+      padding: 20px;
 
       .look-address-list {
-        margin: 0 0 20rem 0;
+        margin: 0 0 20px 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -327,9 +324,9 @@ function handleClick() {
         .left {
           background: var(--second-btn-color-tran);
           border-radius: 50%;
-          padding: 12rem;
-          width: 22rem;
-          margin-right: 15rem;
+          padding: 12px;
+          width: 22px;
+          margin-right: 15px;
         }
 
         .right {
@@ -339,17 +336,17 @@ function handleClick() {
           align-items: center;
 
           img {
-            width: 14rem;
+            width: 14px;
           }
 
           .notice {
             .text1 {
-              font-size: 14rem;
-              margin-bottom: 5rem;
+              font-size: 14px;
+              margin-bottom: 5px;
             }
 
             .text2 {
-              font-size: 12rem;
+              font-size: 12px;
               color: var(--second-text-color);
             }
           }
@@ -358,18 +355,18 @@ function handleClick() {
     }
 
     .is-search {
-      padding: 0 20rem 20rem 20rem;
+      padding: 0 20px 20px 20px;
 
       .tooltip {
-        font-size: 12rem;
-        margin-top: 20rem;
+        font-size: 12px;
+        margin-top: 20px;
         display: flex;
         align-items: center;
         color: var(--second-text-color);
 
         img {
-          margin-right: 10rem;
-          width: 15rem;
+          margin-right: 10px;
+          width: 15px;
         }
 
         .searchKey {
@@ -389,30 +386,30 @@ function handleClick() {
     color: black;
     background: white;
     box-sizing: border-box;
-    border-radius: 3rem;
+    border-radius: 3px;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     .body {
-      padding: 20rem;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
 
       img {
-        height: 60rem;
-        margin-bottom: 20rem;
+        height: 60px;
+        margin-bottom: 20px;
       }
 
       .title {
-        font-size: 16rem;
+        font-size: 16px;
         font-weight: bold;
-        margin-bottom: 10rem;
+        margin-bottom: 10px;
       }
 
       .desc {
-        font-size: 10rem;
+        font-size: 10px;
         color: gray;
       }
 
@@ -426,9 +423,9 @@ function handleClick() {
     .footer {
       width: 100%;
       display: flex;
-      height: 40rem;
+      height: 40px;
       border-top: 1px solid @footer-border-color;
-      font-size: 14rem;
+      font-size: 14px;
 
       div {
         display: flex;
@@ -448,15 +445,15 @@ function handleClick() {
   }
 
   .more-option-dialog {
-    font-size: 14rem;
+    font-size: 14px;
 
     .space {
-      height: 10rem;
+      height: 10px;
       background: whitesmoke;
     }
 
     .row {
-      height: 50rem;
+      height: 50px;
       color: black;
       background: white;
       box-sizing: border-box;
@@ -479,54 +476,54 @@ function handleClick() {
     color: black;
     background: white;
     box-sizing: border-box;
-    border-radius: 3rem;
+    border-radius: 3px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20rem;
+    padding: 20px;
 
     .img-account {
     }
 
     .close {
-      top: 10rem;
-      right: 10rem;
+      top: 10px;
+      right: 10px;
       position: absolute;
       background: var(--second-btn-color-tran);
-      padding: 4rem;
-      width: 10rem;
+      padding: 4px;
+      width: 10px;
       border-radius: 50%;
     }
 
     .desc {
-      margin-top: 20rem;
+      margin-top: 20px;
       text-align: center;
     }
 
     .notice {
-      margin-top: 20rem;
+      margin-top: 20px;
       display: flex;
       align-items: center;
       color: var(--second-text-color);
 
       img {
-        margin-right: 10rem;
-        width: 10rem;
+        margin-right: 10px;
+        width: 10px;
       }
     }
 
     .btn {
       width: 100%;
-      height: 40rem;
-      border-radius: 3rem;
-      margin-top: 20rem;
+      height: 40px;
+      border-radius: 3px;
+      margin-top: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
       color: white;
 
       &:nth-last-child(1) {
-        margin-top: 10rem;
+        margin-top: 10px;
       }
 
       &.wechat {
@@ -538,8 +535,8 @@ function handleClick() {
       }
 
       img {
-        margin-right: 10rem;
-        width: 10rem;
+        margin-right: 10px;
+        width: 10px;
       }
     }
   }

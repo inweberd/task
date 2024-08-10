@@ -132,7 +132,7 @@ onUnmounted(() => {})
 
     .local {
       transition: all 0.3s;
-      font-size: 14rem;
+      font-size: 14px;
       color: gray;
       //background: #f9f9f9;
       background: linear-gradient(to right, rgb(36, 34, 84), rgb(7, 5, 16));
@@ -142,10 +142,10 @@ onUnmounted(() => {})
       align-items: center;
 
       .card {
-        margin: 20rem;
+        margin: 20px;
         margin-top: var(--common-header-height);
-        padding: 20rem;
-        border-radius: 8rem;
+        padding: 20px;
+        border-radius: 8px;
         width: 100%;
         //background: white;
         background: linear-gradient(to right, rgb(53, 51, 110), rgb(29, 21, 66));
@@ -157,7 +157,7 @@ onUnmounted(() => {})
       }
 
       .nav-item {
-        @width: 35rem;
+        @width: 35px;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -167,7 +167,7 @@ onUnmounted(() => {})
         img {
           width: @width;
           height: @width;
-          margin-bottom: 5rem;
+          margin-bottom: 5px;
         }
       }
     }
@@ -176,13 +176,13 @@ onUnmounted(() => {})
   .sub-type-notice {
     position: absolute;
     background: rgba(black, 0.4);
-    top: 100rem;
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 3rem 12rem;
-    border-radius: 10rem;
+    padding: 3px 12px;
+    border-radius: 10px;
     z-index: 3;
-    font-size: 12rem;
+    font-size: 12px;
     color: white;
   }
 }

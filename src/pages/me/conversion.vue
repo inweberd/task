@@ -148,8 +148,8 @@ function onSubmit() {
 
 .fixed-back {
   position: fixed;
-  left: 10rem;
-  top: 20rem;
+  left: 10px;
+  top: 20px;
   z-index: 3;
 }
 
@@ -163,7 +163,7 @@ function onSubmit() {
 
 .van-cell {
   border-radius: 10px;
-  margin-bottom: 10rem;
+  margin-bottom: 10px;
 }
 
 .login {
@@ -180,11 +180,11 @@ function onSubmit() {
   }
 
   .content {
-    padding: 30rem 30rem;
+    padding: 30px 30px;
 
     .desc {
-      margin-top: 10rem;
-      margin-bottom: 30rem;
+      margin-top: 10px;
+      margin-bottom: 30px;
       display: flex;
       align-items: center;
       flex-direction: column;
@@ -192,7 +192,7 @@ function onSubmit() {
 
     .button {
       width: 100%;
-      margin-bottom: 5rem;
+      margin-bottom: 5px;
     }
   }
 }

@@ -104,10 +104,10 @@ async function getFriends() {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
   }
 
   .save-yes {
@@ -122,28 +122,28 @@ async function getFriends() {
     .local-row {
       display: flex;
       align-items: center;
-      padding: 10rem 20rem;
+      padding: 10px 20px;
 
       &:active {
         background: rgb(35, 41, 58);
       }
 
       .check {
-        height: 22rem;
-        width: 22rem;
-        margin-right: 15rem;
+        height: 22px;
+        width: 22px;
+        margin-right: 15px;
       }
 
       img {
-        height: 45rem;
-        width: 45rem;
+        height: 45px;
+        width: 45px;
         border-radius: 50%;
-        margin-right: 15rem;
+        margin-right: 15px;
       }
 
       .desc {
         .num {
-          margin-left: 5rem;
+          margin-left: 5px;
           color: var(--second-text-color);
         }
       }

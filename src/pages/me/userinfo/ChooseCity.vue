@@ -84,27 +84,27 @@ async function save() {
   overflow: auto;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
 
     .nearby {
       .title {
-        padding: 10rem 20rem;
+        padding: 10px 20px;
 
         img {
-          width: 10rem;
-          height: 10rem;
-          margin-right: 2rem;
+          width: 10px;
+          height: 10px;
+          margin-right: 2px;
         }
       }
     }
 
     .row {
-      padding: 0 15rem;
+      padding: 0 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 50rem;
-      font-size: 14rem;
+      height: 50px;
+      font-size: 14px;
       transition: all 0.1s;
       background: var(--main-bg);
 
@@ -115,7 +115,7 @@ async function save() {
         color: var(--second-text-color);
 
         img {
-          margin-left: 10rem;
+          margin-left: 10px;
           width: 15px;
         }
       }

@@ -23,7 +23,7 @@ const t = ref(false)
   bottom: 0;
   top: 0;
   overflow: auto;
-  font-size: 1.4rem;
+  font-size: 1.4px;
   color: white;
 }
 </style>

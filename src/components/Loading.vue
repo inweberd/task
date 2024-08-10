@@ -26,7 +26,7 @@ export default {
 .Loading {
   &.inline {
     width: 100%;
-    height: 40rem;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,8 +34,8 @@ export default {
 
   &.small {
     .circle {
-      width: 8rem;
-      height: 8rem;
+      width: 8px;
+      height: 8px;
     }
   }
 
@@ -47,12 +47,12 @@ export default {
     transform: translate(-50%, -50%);
     display: flex;
     justify-content: space-between;
-    width: 22rem;
+    width: 22px;
   }
 
   .circle {
-    width: 10rem;
-    height: 10rem;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
   }
 
@@ -71,7 +71,7 @@ export default {
       transform: translate3d(0, 0, 0) scale(1);
     }
     to {
-      transform: translate3d(10rem, 0, 0) scale(1.2);
+      transform: translate3d(10px, 0, 0) scale(1.2);
     }
   }
   @keyframes anim-red {
@@ -79,7 +79,7 @@ export default {
       transform: translate3d(0, 0, 0) scale(1);
     }
     to {
-      transform: translate3d(-10rem, 0, 0) scale(1.2);
+      transform: translate3d(-10px, 0, 0) scale(1.2);
     }
   }
 }

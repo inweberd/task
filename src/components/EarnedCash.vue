@@ -6,7 +6,7 @@
     <!--      v-model:current-rate="currentRate"-->
     <!--      :rate="0"-->
     <!--      :speed="100"-->
-    <!--      style="width: auto; height: auto; padding: 10px; margin-bottom: 30rem"-->
+    <!--      style="width: auto; height: auto; padding: 10px; margin-bottom: 30px"-->
     <!--      color="#E3C569"-->
     <!--      layer-color="rgba(0,0,0,.3)"-->
     <!--      :stroke-width="80"-->
@@ -15,8 +15,8 @@
       v-click="getEarnedCash"
       src="@/assets/earned-cash2.png"
       style="
-        width: 50rem;
-        padding-bottom: 25rem;
+        width: 50px;
+        padding-bottom: 25px;
         position: relative;
         z-index: 1;
         transform: translateY(5px);
@@ -160,8 +160,8 @@ const share = () => {
 <style scoped lang="less">
 .earnedCash {
   position: absolute;
-  top: 50rem;
-  right: 30rem;
+  top: 50px;
+  right: 30px;
   z-index: 6;
   animation: scale 1s linear alternate infinite;
 }

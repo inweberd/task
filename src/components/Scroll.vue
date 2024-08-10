@@ -127,7 +127,7 @@ export default {
   overflow: auto;
 
   .scroll-content {
-    padding-bottom: 30rem;
+    padding-bottom: 30px;
   }
 }
 </style>

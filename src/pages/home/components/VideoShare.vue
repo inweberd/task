@@ -299,19 +299,19 @@ export default {
 .video-share {
   height: 60vh;
   width: 100%;
-  border-radius: 10rem 10rem 0 0;
+  border-radius: 10px 10px 0 0;
   color: white;
   box-sizing: border-box;
 
   .friends {
-    border-radius: 10rem;
-    margin: 10rem;
+    border-radius: 10px;
+    margin: 10px;
     padding: 0 var(--page-padding);
-    @avatar-width: 38rem;
-    font-size: 14rem;
+    @avatar-width: 38px;
+    font-size: 14px;
     background: white;
 
-    @item-width: 55rem;
+    @item-width: 55px;
 
     .item {
       height: @item-width;
@@ -324,18 +324,18 @@ export default {
         width: @avatar-width;
         height: @avatar-width;
         border-radius: 50%;
-        margin-right: 15rem;
+        margin-right: 15px;
       }
 
       .right {
-        font-size: 14rem;
+        font-size: 14px;
         flex: 1;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         img {
-          height: 20rem;
+          height: 20px;
         }
       }
     }
@@ -349,19 +349,19 @@ export default {
       border-bottom: 1px solid #f3f3f3;
 
       .left {
-        width: 20rem;
-        height: 20rem;
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
-        margin-left: 10rem;
-        margin-right: 20rem;
+        margin-left: 10px;
+        margin-right: 20px;
       }
     }
   }
 
-  @icon-width: 58rem;
+  @icon-width: 58px;
 
   :deep(.shares) {
-    @space-width: 15rem;
+    @space-width: 15px;
 
     overflow-x: scroll;
     display: flex;
@@ -376,8 +376,8 @@ export default {
         background: white;
         width: @icon-width;
         height: @icon-width;
-        padding: 12rem;
-        border-radius: 15rem;
+        padding: 12px;
+        border-radius: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -389,9 +389,9 @@ export default {
       }
 
       span {
-        margin-top: 7rem;
+        margin-top: 7px;
         color: black;
-        font-size: 10rem;
+        font-size: 10px;
         display: block;
         text-align: center;
       }

@@ -447,7 +447,7 @@ function dislike() {
 
 <style scoped lang="less">
 .test-slide-wrapper {
-  font-size: 14rem;
+  font-size: 14px;
   width: 100%;
   height: 100%;
   background: black;
@@ -459,41 +459,41 @@ function dislike() {
     height: calc(var(--vh, 1vh) * 100);
     overflow: auto;
     background: rgb(22, 22, 22);
-    padding: 10rem;
-    padding-bottom: 20rem;
+    padding: 10px;
+    padding-bottom: 20px;
     box-sizing: border-box;
 
     & > .header {
-      font-size: 16rem;
+      font-size: 16px;
       display: flex;
       color: white;
       justify-content: space-between;
       align-items: center;
 
       .right {
-        border-radius: 20rem;
-        padding: 8rem 15rem;
+        border-radius: 20px;
+        padding: 8px 15px;
         background: rgb(36, 36, 36);
         display: flex;
         align-items: center;
-        font-size: 14rem;
-        gap: 10rem;
+        font-size: 14px;
+        gap: 10px;
 
         svg {
-          font-size: 18rem;
+          font-size: 18px;
         }
       }
     }
 
     .card {
-      margin-top: 10rem;
-      border-radius: 12rem;
-      padding: 15rem;
+      margin-top: 10px;
+      border-radius: 12px;
+      padding: 15px;
       background: rgb(29, 29, 29);
 
       .header {
-        margin-bottom: 8rem;
-        font-size: 14rem;
+        margin-bottom: 8px;
+        font-size: 14px;
         display: flex;
         color: white;
         justify-content: space-between;
@@ -502,12 +502,12 @@ function dislike() {
         .right {
           display: flex;
           align-items: center;
-          font-size: 12rem;
-          gap: 4rem;
+          font-size: 12px;
+          gap: 4px;
           color: gray;
 
           svg {
-            font-size: 16rem;
+            font-size: 16px;
           }
         }
       }
@@ -523,17 +523,17 @@ function dislike() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          font-size: 14rem;
-          gap: 8rem;
+          font-size: 14px;
+          gap: 8px;
 
           svg {
-            font-size: 28rem;
+            font-size: 28px;
           }
 
           .xcx {
-            border-radius: 12rem;
-            width: 50rem;
-            height: 50rem;
+            border-radius: 12px;
+            width: 50px;
+            height: 50px;
           }
         }
 
@@ -542,7 +542,7 @@ function dislike() {
 
           img {
             border-radius: 50%;
-            width: 50rem;
+            width: 50px;
           }
         }
       }
@@ -561,7 +561,7 @@ function dislike() {
   width: 100%;
   height: calc(var(--vh, 1vh) * 100 - var(--footer-height)) !important;
   overflow: hidden;
-  border-radius: 10rem;
+  border-radius: 10px;
 }
 
 .guide {
@@ -572,33 +572,33 @@ function dislike() {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 16rem;
+  border-radius: 16px;
   overflow: hidden;
   text-align: center;
 
   .danger {
-    margin-top: 10rem;
-    font-size: 40rem;
+    margin-top: 10px;
+    font-size: 40px;
     color: red;
   }
 
   .close {
     cursor: pointer;
-    font-size: 18rem;
+    font-size: 18px;
     color: white;
     position: absolute;
-    right: 15rem;
-    top: 15rem;
+    right: 15px;
+    top: 15px;
   }
 
   .txt {
     text-align: left;
-    padding: 0 24rem;
+    padding: 0 24px;
   }
 
   img {
     display: block;
-    width: 350rem;
+    width: 350px;
   }
 }
 .wrapper {

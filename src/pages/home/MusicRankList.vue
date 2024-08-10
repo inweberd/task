@@ -120,7 +120,7 @@ const toShortDetail = (path, query, data) => {
 }
 
 .long-video {
-  font-size: 14rem;
+  font-size: 14px;
   color: white;
   background: rgb(21, 23, 36);
 
@@ -140,15 +140,15 @@ const toShortDetail = (path, query, data) => {
     width: 32%;
     margin-bottom: 12px;
     .poster {
-      border-radius: 12rem;
+      border-radius: 12px;
       width: 100%;
-      height: 160rem;
+      height: 160px;
       object-fit: cover;
     }
 
     .title {
       color: white;
-      font-size: 14rem;
+      font-size: 14px;
       overflow: hidden;
       text-overflow: ellipsis;
       margin: 2px 0;
@@ -158,21 +158,21 @@ const toShortDetail = (path, query, data) => {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 5rem;
+      gap: 5px;
     }
 
     .duration {
       color: white;
       position: absolute;
-      bottom: 45rem;
-      left: 5rem;
-      font-size: 12rem;
+      bottom: 45px;
+      left: 5px;
+      font-size: 12px;
     }
 
     .bottom {
       color: gray;
       .f;
-      font-size: 13rem;
+      font-size: 13px;
       .l {
         .f;
         justify-content: flex-start;
@@ -186,7 +186,7 @@ const toShortDetail = (path, query, data) => {
         }
 
         .avatar {
-          @w: 20rem;
+          @w: 20px;
           width: @w;
           height: @w;
           object-fit: cover;
@@ -212,7 +212,7 @@ const toShortDetail = (path, query, data) => {
 
       .duration {
         display: none;
-        bottom: 67rem;
+        bottom: 67px;
       }
 
       .title {
@@ -222,16 +222,16 @@ const toShortDetail = (path, query, data) => {
 
       .title,
       .bottom {
-        padding: 0 10rem;
+        padding: 0 10px;
       }
     }
 
     &.l {
-      margin-right: 5rem;
+      margin-right: 5px;
     }
 
     &.r {
-      margin-left: 5rem;
+      margin-left: 5px;
     }
   }
 }

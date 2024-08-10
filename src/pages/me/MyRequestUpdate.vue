@@ -42,15 +42,15 @@ defineOptions({
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
-    padding: 60rem 15rem 60rem 15rem;
+    padding: 60px 15px 60px 15px;
 
     .request {
       .list {
         .item {
-          padding: 10rem 0;
+          padding: 10px 0;
 
           display: flex;
           justify-content: space-between;
@@ -59,18 +59,18 @@ defineOptions({
           .left {
             display: flex;
             align-items: center;
-            @width: 42rem;
+            @width: 42px;
 
             img {
               width: @width;
               height: @width;
               border-radius: 50%;
-              margin-right: 10rem;
+              margin-right: 10px;
             }
           }
 
           .time {
-            font-size: 12rem;
+            font-size: 12px;
             color: var(--second-text-color);
           }
         }

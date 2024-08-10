@@ -173,23 +173,23 @@ function touchend() {
 .call-float {
   transition-property: all;
   z-index: 9;
-  width: 70rem;
-  height: 90rem;
+  width: 70px;
+  height: 90px;
   position: fixed;
   top: 20vh;
   left: var(--page-padding);
   background: white;
   display: flex;
   align-items: center;
-  border-radius: 6rem;
+  border-radius: 6px;
   justify-content: center;
   flex-direction: column;
   color: #14bf5f;
-  font-size: 12rem;
+  font-size: 12px;
 
   img {
-    width: 30rem;
-    margin-bottom: 2rem;
+    width: 30px;
+    margin-bottom: 2px;
   }
 }
 
@@ -203,7 +203,7 @@ function touchend() {
   height: calc(var(--vh, 1vh) * 100);
   background: linear-gradient(to bottom, #262626, black);
   transition: all 0.3s;
-  font-size: 12rem;
+  font-size: 12px;
 
   .float {
     transition: all 0.3s;
@@ -235,8 +235,8 @@ function touchend() {
 
         img {
           width: 50%;
-          max-width: 24rem;
-          max-height: 24rem;
+          max-width: 24px;
+          max-height: 24px;
         }
       }
 
@@ -245,19 +245,19 @@ function touchend() {
         overflow: hidden;
         text-align: center;
         word-break: keep-all;
-        font-size: 14rem;
+        font-size: 14px;
       }
 
       .right {
         width: 12%;
-        max-width: 40rem;
+        max-width: 40px;
         display: flex;
         flex-direction: column;
 
         img {
           width: 50%;
-          max-width: 24rem;
-          max-height: 24rem;
+          max-width: 24px;
+          max-height: 24px;
         }
 
         .option {
@@ -270,7 +270,7 @@ function touchend() {
           span {
             word-break: keep-all;
             margin-top: 20%;
-            font-size: 12rem;
+            font-size: 12px;
           }
         }
 
@@ -286,7 +286,7 @@ function touchend() {
       top: 50%;
       transform: translate3d(-50%, -50%, 0);
       width: 25%;
-      max-width: 100rem;
+      max-width: 100px;
       border-radius: 50%;
     }
 
@@ -295,24 +295,24 @@ function touchend() {
       display: flex;
       flex-direction: column;
       align-items: center;
-      font-size: 12rem;
+      font-size: 12px;
       margin-bottom: 10%;
 
       img {
         width: 15%;
-        max-width: 50rem;
+        max-width: 50px;
         margin-bottom: 1%;
       }
     }
   }
 
   &.small {
-    width: 70rem;
-    height: 90rem;
+    width: 70px;
+    height: 90px;
     position: fixed;
     top: 20vh;
     left: var(--page-padding);
-    border-radius: 6rem;
+    border-radius: 6px;
 
     .float {
       > .header {

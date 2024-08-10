@@ -48,11 +48,11 @@ const data = reactive({
   color: white;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
 
     .recommend {
       .title {
-        padding: 20rem 20rem 10rem 20rem;
+        padding: 20px 20px 10px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -61,25 +61,25 @@ const data = reactive({
           color: var(--second-text-color);
 
           img {
-            width: 10rem;
-            height: 10rem;
+            width: 10px;
+            height: 10px;
           }
         }
 
         .right {
           border-radius: 50%;
           background: var(--second-text-color);
-          padding: 5rem;
-          width: 10rem;
-          height: 10rem;
+          padding: 5px;
+          width: 10px;
+          height: 10px;
         }
       }
     }
 
     .footer {
       text-align: center;
-      line-height: 60rem;
-      height: 60rem;
+      line-height: 60px;
+      height: 60px;
       color: var(--second-text-color);
     }
   }

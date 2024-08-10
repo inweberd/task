@@ -85,34 +85,34 @@ const state = reactive({
       display: flex;
 
       .location {
-        margin-bottom: 10rem;
+        margin-bottom: 10px;
 
         display: flex;
         align-items: center;
-        font-size: 12rem;
-        padding: 4rem;
-        border-radius: 3rem;
+        font-size: 12px;
+        padding: 4px;
+        border-radius: 3px;
         background: var(--second-btn-color-tran);
 
         .gang {
-          height: 8rem;
+          height: 8px;
           width: 1.5px;
-          margin: 0 5rem;
+          margin: 0 5px;
           background: gray;
         }
 
         img {
-          margin-right: 7rem;
-          width: 18rem;
+          margin-right: 7px;
+          width: 18px;
         }
       }
     }
 
     .live {
-      border-radius: 3rem;
-      margin-bottom: 10rem;
-      padding: 3rem 6rem;
-      font-size: 11rem;
+      border-radius: 3px;
+      margin-bottom: 10px;
+      padding: 3px 6px;
+      font-size: 11px;
       display: inline-flex;
       background: var(--primary-btn-color);
       color: white;

@@ -10,7 +10,7 @@
     </BaseHeader>
     <div class="content">
       <Indicator
-        style="width: calc(100vw - 2rem); margin-left: 1rem"
+        style="width: calc(100vw - 2px); margin-left: 1px"
         tabStyleWidth="50%"
         :tabTexts="['视频', '影视综']"
         v-model:active-index="data.currentSlideItemIndex"
@@ -145,10 +145,10 @@ function clear() {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
 
     .SlideHorizontal,
     .Scroll {
@@ -165,12 +165,12 @@ function clear() {
       flex-direction: column;
 
       img {
-        height: 120rem;
+        height: 120px;
       }
 
       .title {
-        font-size: 13rem;
-        margin-top: 10rem;
+        font-size: 13px;
+        margin-top: 10px;
         color: var(--second-text-color);
       }
     }

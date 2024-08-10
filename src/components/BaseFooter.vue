@@ -15,8 +15,8 @@
       <!--      </div>-->
       <div
         style="
-          padding: 2rem 4rem;
-          border-radius: 10rem;
+          padding: 2px 4px;
+          border-radius: 10px;
           background-image: linear-gradient(135deg, #97abff 10%, #123597 100%);
         "
       >
@@ -113,7 +113,7 @@ export default {
 @import '../assets/less/index';
 
 .footer {
-  font-size: 14rem;
+  font-size: 14px;
   position: fixed;
   width: 100%;
   height: var(--footer-height);
@@ -139,7 +139,7 @@ export default {
     justify-content: center;
     align-items: center;
     position: relative;
-    font-size: 16rem;
+    font-size: 16px;
 
     .refresh {
       width: 25%;
@@ -158,21 +158,21 @@ export default {
 
     .add-ctn {
       cursor: pointer;
-      @height: 27rem;
-      @width: 36rem;
+      @height: 27px;
+      @width: 36px;
       height: @height;
       width: @width;
-      border-radius: 6rem;
+      border-radius: 6px;
       box-sizing: border-box;
-      padding: 0 2rem;
-      border: 3rem solid white;
+      padding: 0 2px;
+      border: 3px solid white;
       background: black;
       display: flex;
       align-items: center;
       justify-content: center;
 
       img {
-        width: 20rem;
+        width: 20px;
       }
     }
 
@@ -188,8 +188,8 @@ export default {
     }
 
     .badge {
-      right: 14rem;
-      top: 12rem;
+      right: 14px;
+      top: 12px;
       position: absolute;
     }
   }

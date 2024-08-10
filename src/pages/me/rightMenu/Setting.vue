@@ -197,27 +197,27 @@ defineOptions({
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
 
     .title {
       color: var(--second-text-color);
-      font-size: 13rem;
-      margin: 20rem 0 0 20rem;
+      font-size: 13px;
+      margin: 20px 0 0 20px;
     }
 
     .version {
       color: var(--second-text-color);
-      font-size: 13rem;
-      margin: 40rem;
+      font-size: 13px;
+      margin: 40px;
       text-align: center;
     }
 
     .line {
-      width: calc(100% - 30rem);
-      margin-left: 15rem;
+      width: calc(100% - 30px);
+      margin-left: 15px;
       background: var(--line-color);
     }
   }

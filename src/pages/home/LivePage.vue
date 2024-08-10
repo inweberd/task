@@ -298,7 +298,7 @@ export default {
 .send-gift {
   position: fixed;
   top: 63vh;
-  left: 15rem;
+  left: 15px;
   display: flex;
   align-items: flex-end;
   animation: send-gift-anim 2s linear;
@@ -324,15 +324,15 @@ export default {
 
   .left {
     background: linear-gradient(to right, var(--primary-btn-color), rgba(252, 47, 86, 0.2));
-    padding: 5rem;
-    border-radius: 50rem;
+    padding: 5px;
+    border-radius: 50px;
     display: flex;
     align-items: center;
 
     .avatar {
-      margin-right: 5rem;
-      width: 40rem;
-      height: 40rem;
+      margin-right: 5px;
+      width: 40px;
+      height: 40px;
       object-fit: cover;
       border-radius: 50%;
     }
@@ -348,11 +348,11 @@ export default {
       }
 
       .name {
-        font-size: 14rem;
+        font-size: 14px;
       }
 
       .sendto {
-        font-size: 12rem;
+        font-size: 12px;
         color: yellow;
       }
 
@@ -362,12 +362,12 @@ export default {
     }
 
     .gift-icon {
-      width: 40rem;
+      width: 40px;
     }
   }
 
   .right {
-    font-size: 23rem;
+    font-size: 23px;
     font-weight: bold;
     font-style: oblique;
   }
@@ -379,7 +379,7 @@ export default {
   transform: translateX(100%);
   display: flex;
   align-items: center;
-  font-size: 12rem;
+  font-size: 12px;
   animation: anim 5s linear;
 
   @keyframes anim {
@@ -392,23 +392,23 @@ export default {
   }
 
   .type {
-    padding: 1rem 6rem;
+    padding: 1px 6px;
     border: 1px solid white;
-    border-radius: 20rem;
-    margin-right: 5rem;
+    border-radius: 20px;
+    margin-right: 5px;
   }
 }
 
 .user-joined {
   @tag-bg: rgba(58, 58, 70, 0.3);
-  font-size: 12rem;
+  font-size: 12px;
   position: absolute;
   top: 70vh;
-  left: 15rem;
-  padding: 4rem 8rem;
-  border-radius: 20rem;
+  left: 15px;
+  padding: 4px 8px;
+  border-radius: 20px;
   background: rgba(115, 114, 181, 0.7);
-  margin-bottom: 5rem;
+  margin-bottom: 5px;
   animation: user-joined-anim 3s linear;
 
   @keyframes user-joined-anim {
@@ -418,7 +418,7 @@ export default {
     }
     10% {
       opacity: 1;
-      transform: translateX(30rem);
+      transform: translateX(30px);
     }
     90% {
       opacity: 1;
@@ -439,22 +439,22 @@ export default {
       display: flex;
       @color: rgb(130, 133, 185);
       align-items: center;
-      font-size: 10rem;
-      border-radius: 10rem;
-      margin-right: 5rem;
-      padding: 0 6rem;
+      font-size: 10px;
+      border-radius: 10px;
+      margin-right: 5px;
+      padding: 0 6px;
       background: @color;
 
       img {
-        margin-right: 3rem;
-        width: 12rem;
+        margin-right: 3px;
+        width: 12px;
       }
     }
   }
 
   .name {
-    margin-right: 5rem;
-    font-size: 13rem;
+    margin-right: 5px;
+    font-size: 13px;
     color: @text-color;
   }
 
@@ -470,7 +470,7 @@ export default {
   width: 100%;
   height: calc(var(--vh, 1vh) * 100);
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
   position: relative;
 
   .live-wrapper {
@@ -504,7 +504,7 @@ export default {
     .top {
       display: flex;
       justify-content: space-between;
-      margin-top: 10rem;
+      margin-top: 10px;
 
       .left {
         margin-left: var(--page-padding);
@@ -513,15 +513,15 @@ export default {
           box-sizing: border-box;
           background: var(--second-btn-color-tran);
           display: flex;
-          padding: 3rem 4rem 3rem 2rem;
+          padding: 3px 4px 3px 2px;
           align-items: center;
-          border-radius: 20rem;
+          border-radius: 20px;
 
           .avatar {
             border-radius: 50%;
-            width: 30rem;
-            height: 30rem;
-            margin-right: 4rem;
+            width: 30px;
+            height: 30px;
+            margin-right: 4px;
           }
 
           .desc {
@@ -531,10 +531,10 @@ export default {
             justify-content: space-between;
 
             .desc-wrapper {
-              width: 80rem;
+              width: 80px;
 
               .name {
-                font-size: 12rem;
+                font-size: 12px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -542,19 +542,19 @@ export default {
 
               .count {
                 color: gainsboro;
-                font-size: 10rem;
+                font-size: 10px;
               }
             }
 
             .follow-btn {
-              height: 30rem;
-              width: 45rem;
+              height: 30px;
+              width: 45px;
               background: var(--primary-btn-color);
-              border-radius: 30rem;
+              border-radius: 30px;
               display: flex;
               align-items: center;
               justify-content: center;
-              font-size: 12rem;
+              font-size: 12px;
             }
           }
         }
@@ -562,43 +562,43 @@ export default {
         .left-bottom {
           margin-top: calc(var(--page-padding) / 2);
           display: flex;
-          font-size: 12rem;
+          font-size: 12px;
 
           .tag {
             display: flex;
             align-items: center;
-            padding: 4rem 10rem;
+            padding: 4px 10px;
             background: @tag-bg;
-            border-radius: 20rem;
-            margin-right: 10rem;
+            border-radius: 20px;
+            margin-right: 10px;
 
             img {
-              margin-right: 5rem;
-              width: 10rem;
-              height: 10rem;
+              margin-right: 5px;
+              width: 10px;
+              height: 10px;
             }
           }
         }
       }
 
       .right {
-        margin-top: 3rem;
+        margin-top: 3px;
         display: flex;
         flex-direction: column;
 
         .follower {
-          @width: 30rem;
+          @width: 30px;
           display: flex;
 
           .round {
             width: @width;
             height: @width;
             border-radius: 50%;
-            margin-right: 3rem;
+            margin-right: 3px;
           }
 
           .count {
-            font-size: 12rem;
+            font-size: 12px;
             background: var(--second-btn-color-tran);
             display: flex;
             align-items: center;
@@ -606,11 +606,11 @@ export default {
           }
 
           .close {
-            margin-right: 10rem;
-            margin-left: 5rem;
-            padding: 6rem;
-            width: calc(@width - 12rem);
-            height: calc(@width - 12rem);
+            margin-right: 10px;
+            margin-left: 5px;
+            padding: 6px;
+            width: calc(@width - 12px);
+            height: calc(@width - 12px);
           }
         }
 
@@ -619,13 +619,13 @@ export default {
           justify-content: flex-end;
 
           .wrapper {
-            border-radius: 13rem 0 0 13rem;
-            padding: 2rem 0 2rem 10rem;
-            margin-top: 15rem;
+            border-radius: 13px 0 0 13px;
+            padding: 2px 0 2px 10px;
+            margin-top: 15px;
             background: @tag-bg;
             display: flex;
             align-items: center;
-            font-size: 10rem;
+            font-size: 10px;
           }
         }
       }
@@ -637,14 +637,14 @@ export default {
       width: 100%;
       box-sizing: border-box;
       padding: var(--page-padding);
-      padding-bottom: 10rem;
+      padding-bottom: 10px;
       display: flex;
 
       .left {
         width: 87%;
 
         .comments {
-          margin-bottom: 10rem;
+          margin-bottom: 10px;
           overflow: auto;
           height: 20vh;
 
@@ -656,10 +656,10 @@ export default {
           }
 
           .comment {
-            padding: 4rem 5rem;
-            border-radius: 10rem;
+            padding: 4px 5px;
+            border-radius: 10px;
             background: @tag-bg;
-            margin-bottom: 5rem;
+            margin-bottom: 5px;
 
             @text-color: rgb(164, 234, 253);
 
@@ -676,22 +676,22 @@ export default {
                 display: flex;
                 @color: rgb(130, 133, 185);
                 align-items: center;
-                font-size: 10rem;
-                border-radius: 10rem;
-                margin-right: 5rem;
-                padding: 0 6rem;
+                font-size: 10px;
+                border-radius: 10px;
+                margin-right: 5px;
+                padding: 0 6px;
                 background: @color;
 
                 img {
-                  margin-right: 3rem;
-                  width: 12rem;
+                  margin-right: 3px;
+                  width: 12px;
                 }
               }
             }
 
             .name {
-              margin-right: 5rem;
-              font-size: 13rem;
+              margin-right: 5px;
+              font-size: 13px;
               color: @text-color;
             }
 
@@ -708,31 +708,31 @@ export default {
           .input {
             flex: 1;
             color: #a2a2a2;
-            font-size: 12rem;
-            border-radius: 15rem;
-            padding: 4rem 10rem;
+            font-size: 12px;
+            border-radius: 15px;
+            padding: 4px 10px;
             background: @tag-bg;
             display: flex;
             align-items: center;
             justify-content: space-between;
 
             img {
-              width: 20rem;
+              width: 20px;
             }
           }
 
           .more {
-            margin-left: 10rem;
-            width: 20rem;
-            height: 20rem;
-            padding: 5rem;
+            margin-left: 10px;
+            width: 20px;
+            height: 20px;
+            padding: 5px;
             background: @tag-bg;
             border-radius: 50%;
           }
 
           .gift {
-            margin-left: 10rem;
-            width: 31rem;
+            margin-left: 10px;
+            width: 31px;
           }
         }
       }
@@ -743,12 +743,12 @@ export default {
         justify-content: flex-end;
         align-items: flex-end;
 
-        @width: 35rem;
+        @width: 35px;
 
         .avatar-wrapper {
           background: linear-gradient(to bottom, #000000, var(--primary-btn-color));
-          border-radius: 20rem;
-          width: calc(@width + 2rem);
+          border-radius: 20px;
+          width: calc(@width + 2px);
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -762,27 +762,27 @@ export default {
             width: @width;
             border-radius: 50%;
             background: white;
-            padding: 1.5rem;
+            padding: 1.5px;
           }
 
           .follow {
-            width: 32rem;
-            margin-top: 5rem;
-            margin-bottom: 5rem;
+            width: 32px;
+            margin-top: 5px;
+            margin-bottom: 5px;
           }
 
           .options {
-            margin-top: 8rem;
-            margin-bottom: 5rem;
+            margin-top: 8px;
+            margin-bottom: 5px;
             display: flex;
-            width: 20rem;
-            height: 20rem;
+            width: 20px;
+            height: 20px;
             justify-content: center;
             align-items: center;
 
             img {
               position: absolute;
-              width: 18rem;
+              width: 18px;
               transition: all 0.8s;
             }
 

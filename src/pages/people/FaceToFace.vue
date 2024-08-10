@@ -32,7 +32,7 @@ const nav = useNav()
   color: white;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
   }
 }
 </style>

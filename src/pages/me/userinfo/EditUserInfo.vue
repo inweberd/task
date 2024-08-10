@@ -232,7 +232,7 @@ onActivated(() => {
   bottom: 0;
   top: 0;
   overflow: auto;
-  font-size: 14rem;
+  font-size: 14px;
 }
 
 .title {
@@ -264,16 +264,16 @@ onActivated(() => {
 
   .download {
     position: absolute;
-    bottom: 20rem;
-    right: 20rem;
-    padding: 3rem;
+    bottom: 20px;
+    right: 20px;
+    padding: 3px;
     background: var(--second-btn-color-tran);
-    width: 20rem;
+    width: 20px;
   }
 }
 
 .userinfo {
-  padding-top: 60rem;
+  padding-top: 60px;
   color: white;
 
   .change-avatar {
@@ -281,15 +281,15 @@ onActivated(() => {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 30rem 0;
-    @avatar-width: 80rem;
+    margin: 30px 0;
+    @avatar-width: 80px;
 
     .avatar-ctn {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 10rem;
+      margin-bottom: 10px;
 
       width: @avatar-width;
       height: @avatar-width;
@@ -303,7 +303,7 @@ onActivated(() => {
       }
 
       .change {
-        width: 28rem;
+        width: 28px;
         z-index: 9;
       }
     }
@@ -325,13 +325,13 @@ onActivated(() => {
   .content {
     background: white;
     width: 80%;
-    padding: 5rem 0;
+    padding: 5px 0;
     border-radius: 2px;
     box-sizing: border-box;
 
     .item {
-      font-size: 15rem;
-      padding: 15rem 20rem;
+      font-size: 15px;
+      padding: 15px 20px;
       transition: all 0.2s;
 
       &:active {

@@ -2447,22 +2447,22 @@ export default {
   bottom: 0;
   top: 0;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
   overflow: hidden;
 
   .indicator-ctn {
-    width: 25rem;
+    width: 25px;
     height: calc(var(--vh, 1vh) * 100);
     position: fixed;
     z-index: 3;
     top: 0;
-    right: 5rem;
+    right: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
 
     .indicator {
-      width: 25rem;
+      width: 25px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -2471,46 +2471,46 @@ export default {
       div {
         color: var(--second-text-color);
         //transition: all .3s;
-        font-size: 10rem;
-        padding: 1rem;
+        font-size: 10px;
+        padding: 1px;
       }
 
       .arrow {
-        padding: 0 0 3rem 0;
+        padding: 0 0 3px 0;
         width: 0;
         height: 0;
-        border: 5rem solid transparent;
-        border-bottom: 10rem solid var(--second-text-color);
+        border: 5px solid transparent;
+        border-bottom: 10px solid var(--second-text-color);
       }
     }
   }
 
   .fixed {
     position: fixed;
-    top: 110rem;
-    left: 20rem;
-    right: 20rem;
+    top: 110px;
+    left: 20px;
+    right: 20px;
   }
 
   .content {
-    height: calc(100% - 110rem);
-    margin-top: 110rem;
-    padding: 0 25rem 0 20rem;
+    height: calc(100% - 110px);
+    margin-top: 110px;
+    padding: 0 25px 0 20px;
     box-sizing: border-box;
     width: 100%;
     overflow-y: scroll;
 
     .top {
-      padding-bottom: 10rem;
+      padding-bottom: 10px;
       border-bottom: 1px solid var(--line-color);
 
       .cities {
         .city {
-          margin-right: 4rem;
-          margin-bottom: 4rem;
-          border-radius: 2rem;
-          height: 40rem;
-          line-height: 40rem;
+          margin-right: 4px;
+          margin-bottom: 4px;
+          border-radius: 2px;
+          height: 40px;
+          line-height: 40px;
           background: var(--second-btn-color-tran);
           display: inline-block;
           width: 32%;
@@ -2520,7 +2520,7 @@ export default {
     }
 
     .list {
-      //padding-right: 25rem;
+      //padding-right: 25px;
 
       .row {
         background: var(--main-bg);

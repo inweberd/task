@@ -31,7 +31,7 @@
         </template>
         <div v-else class="item">无法获取</div>
       </div>
-      <div class="line" style="width: calc(100% - 40rem); margin-left: 20rem"></div>
+      <div class="line" style="width: calc(100% - 40px); margin-left: 20px"></div>
       <div class="schools" v-if="!data.isSearch">
         <div class="item" :key="i" v-for="(item, i) in data.schools" @click="setSchool(item)">
           {{ item }}
@@ -117,24 +117,24 @@ function search() {
   overflow: auto;
 
   .content {
-    padding-top: 120rem;
+    padding-top: 120px;
 
     .nearby {
       .title {
-        padding: 10rem 20rem;
+        padding: 10px 20px;
 
         img {
-          width: 10rem;
-          height: 10rem;
-          margin-right: 2rem;
+          width: 10px;
+          height: 10px;
+          margin-right: 2px;
         }
       }
     }
 
     .item {
-      padding: 0 20rem;
-      font-size: 14rem;
-      height: 50rem;
+      padding: 0 20px;
+      font-size: 14px;
+      height: 50px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -151,27 +151,27 @@ function search() {
       text-align: center;
 
       .title {
-        margin-top: 60rem;
-        font-size: 18rem;
+        margin-top: 60px;
+        font-size: 18px;
       }
 
       .sub-title {
         color: var(--second-text-color);
-        margin-top: 20rem;
-        font-size: 14rem;
+        margin-top: 20px;
+        font-size: 14px;
       }
 
       img {
-        margin-top: 60rem;
-        height: 100rem;
+        margin-top: 60px;
+        height: 100px;
         border-radius: 50%;
       }
 
       .btn {
-        margin-top: 150rem;
+        margin-top: 150px;
         display: inline-block;
         background: var(--second-btn-color);
-        padding: 15rem 40rem;
+        padding: 15px 40px;
         border-radius: 2px;
       }
     }

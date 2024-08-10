@@ -30,11 +30,11 @@ defineOptions({
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
-    margin-top: 60rem;
-    height: calc(var(--vh, 1vh) * 100 - 60rem);
+    margin-top: 60px;
+    height: calc(var(--vh, 1vh) * 100 - 60px);
 
     iframe {
       padding: 0;

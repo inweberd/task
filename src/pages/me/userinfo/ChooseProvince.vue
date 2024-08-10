@@ -78,16 +78,16 @@ const list = ref([
   overflow: auto;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
 
     .nearby {
       .title {
-        padding: 10rem 20rem;
+        padding: 10px 20px;
 
         img {
-          width: 10rem;
-          height: 10rem;
-          margin-right: 2rem;
+          width: 10px;
+          height: 10px;
+          margin-right: 2px;
         }
       }
     }

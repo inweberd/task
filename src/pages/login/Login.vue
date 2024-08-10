@@ -199,11 +199,11 @@ onMounted(() => {
   // background: linear-gradient(45deg, #fdfbfb 10%, #FFFFFF 48%, #ebedee 100%) !important;
 
   .content {
-    padding: 50rem 30rem;
+    padding: 50px 30px;
 
     .desc {
-      margin-top: 70rem;
-      margin-bottom: 60rem;
+      margin-top: 70px;
+      margin-bottom: 60px;
       display: flex;
       align-items: center;
       flex-direction: column;
@@ -211,7 +211,7 @@ onMounted(() => {
 
     .button {
       width: 100%;
-      margin-bottom: 5rem;
+      margin-bottom: 5px;
     }
   }
 }

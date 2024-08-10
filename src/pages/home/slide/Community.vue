@@ -196,7 +196,7 @@ function showDetail(e, item) {
 
 <style scoped lang="less">
 #Community {
-  font-size: 14rem;
+  font-size: 14px;
   color: white;
   padding-top: var(--home-header-height);
   background: rgb(21, 23, 36);
@@ -207,29 +207,29 @@ function showDetail(e, item) {
     ) !important;
   }
 
-  @p: 1rem;
+  @p: 1px;
 
   .search {
     margin-left: 2%;
     width: 96%;
     box-sizing: border-box;
-    padding: 10rem;
+    padding: 10px;
     border: 1px solid #646464;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 16rem;
-    margin-bottom: 10rem;
-    border-radius: 8rem;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-radius: 8px;
 
     .left {
       display: flex;
       align-items: center;
-      gap: 5rem;
+      gap: 5px;
       color: gray;
 
       svg {
-        font-size: 16rem;
+        font-size: 16px;
       }
     }
   }
@@ -241,7 +241,7 @@ function showDetail(e, item) {
 }
 
 .card {
-  border-radius: 4rem;
+  border-radius: 4px;
   overflow: hidden;
   background: var(--main-bg);
 
@@ -254,12 +254,12 @@ function showDetail(e, item) {
 
   .bottom {
     color: gainsboro;
-    padding: 10rem;
-    padding-bottom: 15rem;
+    padding: 10px;
+    padding-bottom: 15px;
 
     .title {
-      font-size: 14rem;
-      margin-bottom: 8rem;
+      font-size: 14px;
+      margin-bottom: 8px;
     }
 
     .b2 {
@@ -269,26 +269,26 @@ function showDetail(e, item) {
 
       .user {
         display: flex;
-        font-size: 12rem;
+        font-size: 12px;
 
         img {
-          width: 15rem;
+          width: 15px;
           border-radius: 50%;
-          margin-right: 5rem;
+          margin-right: 5px;
         }
       }
 
       .star {
         display: flex;
         align-items: center;
-        gap: 3rem;
+        gap: 3px;
 
         svg {
-          font-size: 15rem;
+          font-size: 15px;
         }
 
         .num {
-          font-size: 12rem;
+          font-size: 12px;
         }
       }
     }

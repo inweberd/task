@@ -32,7 +32,7 @@ const rightList = computed(() => {
 <style scoped lang="less">
 .waterfall {
   display: flex;
-  gap: 10rem;
+  gap: 10px;
 
   .waterfall-row {
     width: 50%;

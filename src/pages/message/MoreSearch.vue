@@ -56,7 +56,7 @@ onMounted(() => {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
     padding: var(--page-padding);

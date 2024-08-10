@@ -90,22 +90,22 @@ export default {
   .content {
     background: white;
     width: @w;
-    margin-bottom: 40rem;
+    margin-bottom: 40px;
     position: relative;
-    border-radius: 10rem;
+    border-radius: 10px;
     overflow: hidden;
 
     .desc {
       display: flex;
-      gap: 20rem;
-      padding: 10rem;
+      gap: 20px;
+      padding: 10px;
 
       .left {
-        font-size: 18rem;
+        font-size: 18px;
 
         .title {
-          margin-top: 10rem;
-          font-size: 14rem;
+          margin-top: 10px;
+          font-size: 14px;
           color: var(--second-text-color);
           overflow: hidden;
           text-overflow: ellipsis;
@@ -116,7 +116,7 @@ export default {
       }
 
       .code {
-        width: 60rem;
+        width: 60px;
       }
     }
 
@@ -136,35 +136,35 @@ export default {
   .toolbar {
     width: 100vw;
     background: black;
-    border-radius: 10rem 10rem 0 0;
+    border-radius: 10px 10px 0 0;
     color: white;
 
     .title {
-      font-size: 12rem;
-      padding: 14rem;
+      font-size: 12px;
+      padding: 14px;
       text-align: center;
     }
 
-    @space-width: 18rem;
-    @icon-width: 45rem;
+    @space-width: 18px;
+    @icon-width: 45px;
 
     .shares {
       display: flex;
       margin-bottom: @space-width;
-      gap: 20rem;
-      padding-left: 20rem;
+      gap: 20px;
+      padding-left: 20px;
 
       .share-to {
         img {
           width: @icon-width;
           height: @icon-width;
           border-radius: 50%;
-          margin-bottom: 5rem;
+          margin-bottom: 5px;
         }
 
         span {
           color: var(--second-text-color);
-          font-size: 10rem;
+          font-size: 10px;
           display: block;
           text-align: center;
         }
@@ -172,10 +172,10 @@ export default {
     }
 
     .cancel {
-      font-size: 16rem;
+      font-size: 16px;
       background: rgb(38, 38, 38);
       color: rgba(white, 0.8);
-      padding: 15rem;
+      padding: 15px;
       text-align: center;
     }
   }

@@ -22,7 +22,7 @@
           color="#1989fa"
           background="#ecf9ff"
           left-icon="volume-o"
-          style="border-radius: 25rem; height: 30rem"
+          style="border-radius: 25px; height: 30px"
           text="甜橙视频--2024全新无限代火爆招商中……"
         >
         </van-notice-bar>
@@ -153,7 +153,7 @@ onMounted(() => {
 
 <style scoped lang="less">
 .test-slide-wrapper {
-  font-size: 14rem;
+  font-size: 14px;
   width: 100%;
   height: 100%;
   background: black;
@@ -172,13 +172,13 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     .top-wrap {
-      padding: 40rem 30rem 0;
+      padding: 40px 30px 0;
       //background-color: #fe5a1b;
       background-image: linear-gradient(135deg, #002661 30%, #5ca67b 100%);
       //background-image: linear-gradient(135deg, #5ca67b 10%, #002661 100%);
 
-      //height: 180rem;
-      border-radius: 0 0 30rem 30rem;
+      //height: 180px;
+      border-radius: 0 0 30px 30px;
       .title {
         .title-l {
           font-weight: bolder;
@@ -188,13 +188,13 @@ onMounted(() => {
         }
       }
       .tab {
-        margin-top: 20rem;
+        margin-top: 20px;
         display: flex;
         font-size: 20px;
-        margin-left: 20rem;
+        margin-left: 20px;
         color: #cec6c6;
         .tab-item {
-          margin-right: 30rem;
+          margin-right: 30px;
           height: 50px;
           position: relative;
           &.active {
@@ -205,7 +205,7 @@ onMounted(() => {
               position: absolute;
               content: '';
               display: block;
-              border: 8rem solid transparent;
+              border: 8px solid transparent;
               border-bottom-color: #fff;
               left: 50%;
               bottom: 0;
@@ -216,26 +216,26 @@ onMounted(() => {
       }
     }
     .notice {
-      padding: 15rem 30rem;
+      padding: 15px 30px;
     }
     .app-list {
       flex: 1;
       overflow-y: auto;
-      padding: 0rem 20rem 10rem;
+      padding: 0px 20px 10px;
       .app-list-item {
         background-color: #151724;
         display: flex;
-        margin-bottom: 10rem;
-        padding: 10rem 15rem;
+        margin-bottom: 10px;
+        padding: 10px 15px;
         justify-content: space-between;
         align-items: center;
-        border-radius: 10rem;
+        border-radius: 10px;
 
         .l {
           display: flex;
           .logo {
-            width: 55rem;
-            height: 55rem;
+            width: 55px;
+            height: 55px;
             overflow: hidden;
             border-radius: 10px;
 
@@ -245,8 +245,8 @@ onMounted(() => {
             }
           }
           .info {
-            margin-left: 6rem;
-            padding: 2rem;
+            margin-left: 6px;
+            padding: 2px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -261,10 +261,10 @@ onMounted(() => {
         }
         .r {
           .download {
-            padding: 8rem 18rem;
+            padding: 8px 18px;
             background-color: #ff3b32;
             color: #fff;
-            border-radius: 20rem;
+            border-radius: 20px;
             font-size: 12px;
           }
         }

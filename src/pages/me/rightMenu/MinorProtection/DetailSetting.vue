@@ -106,7 +106,7 @@ onMounted(() => {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
     padding-top: var(--common-header-height);
@@ -114,36 +114,36 @@ onMounted(() => {
 
   .footer {
     position: fixed;
-    bottom: 15rem;
-    left: 10rem;
-    right: 10rem;
+    bottom: 15px;
+    left: 10px;
+    right: 10px;
 
     .notice {
-      font-size: 13rem;
-      margin-bottom: 15rem;
+      font-size: 13px;
+      margin-bottom: 15px;
     }
   }
 
   .type1 {
     .notice {
-      margin: 60rem 0;
+      margin: 60px 0;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      font-size: 16rem;
+      font-size: 16px;
       color: var(--second-text-color);
 
       img {
-        width: 15rem;
-        margin-bottom: 15rem;
+        width: 15px;
+        margin-bottom: 15px;
       }
     }
   }
 
   .type2 {
     .desc {
-      margin-top: 40rem;
+      margin-top: 40px;
       width: 100%;
     }
   }

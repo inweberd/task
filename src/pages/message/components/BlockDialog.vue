@@ -4,7 +4,7 @@
     :modelValue="modelValue"
     @update:modelValue="(e) => $emit('update:modelValue', e)"
     :show-heng-gang="false"
-    height="20rem"
+    height="20px"
     @cancel="cancel"
     mode="white"
   >
@@ -54,15 +54,15 @@ export default {
 
   .notice {
     color: var(--second-text-color);
-    font-size: 12rem;
-    height: 40rem;
+    font-size: 12px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
   .row {
-    height: 50rem;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,7 +78,7 @@ export default {
   }
 
   .space {
-    height: 10rem;
+    height: 10px;
     background: whitesmoke;
   }
 }

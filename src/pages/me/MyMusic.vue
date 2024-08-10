@@ -253,14 +253,14 @@ async function getCollectMusic() {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .header {
     z-index: 9;
     position: fixed;
     width: 100%;
     top: 0;
-    height: 50rem;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -278,17 +278,17 @@ async function getCollectMusic() {
 
   .my-collect {
     touch-action: pan-y;
-    margin-top: 50rem;
+    margin-top: 50px;
     color: rgba(88, 88, 96);
     position: relative;
 
     .wrapper {
       padding: var(--page-padding);
-      padding-bottom: 80rem;
+      padding-bottom: 80px;
     }
 
     .play-all {
-      margin-bottom: 20rem;
+      margin-bottom: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -299,19 +299,19 @@ async function getCollectMusic() {
         align-items: center;
 
         img {
-          width: 30rem;
-          margin-right: 10rem;
+          width: 30px;
+          margin-right: 10px;
         }
 
         .num {
-          font-size: 13rem;
+          font-size: 13px;
           color: gray;
-          margin-left: 5rem;
+          margin-left: 5px;
         }
       }
 
       .menu {
-        height: 20rem;
+        height: 20px;
       }
     }
 
@@ -321,21 +321,21 @@ async function getCollectMusic() {
         color: white;
         display: flex;
         justify-content: space-between;
-        margin-bottom: 15rem;
+        margin-bottom: 15px;
 
         .left {
           display: flex;
 
           .cover-wrapper {
-            margin-right: 10rem;
+            margin-right: 10px;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
 
             .cover {
-              border-radius: 2rem;
-              @width: 60rem;
+              border-radius: 2px;
+              @width: 60px;
               width: @width;
               object-fit: cover;
               height: @width;
@@ -356,7 +356,7 @@ async function getCollectMusic() {
 
             .author,
             .desc-bottom {
-              font-size: 12rem;
+              font-size: 12px;
               color: var(--second-text-color);
             }
 
@@ -365,14 +365,14 @@ async function getCollectMusic() {
               align-items: center;
 
               .tag {
-                font-size: 10rem;
+                font-size: 10px;
                 background: var(--second-btn-color-tran);
-                padding: 2rem 5rem;
-                margin-right: 5rem;
+                padding: 2px 5px;
+                margin-right: 5px;
               }
 
               .duration {
-                margin-right: 14rem;
+                margin-right: 14px;
                 position: relative;
               }
             }
@@ -384,14 +384,14 @@ async function getCollectMusic() {
           align-items: center;
 
           .playing-icon {
-            width: 24rem;
+            width: 24px;
           }
 
           .collect-icon {
-            margin-left: 30rem;
+            margin-left: 30px;
 
             img {
-              width: 24rem;
+              width: 24px;
             }
           }
         }
@@ -400,7 +400,7 @@ async function getCollectMusic() {
 
     .recommend {
       color: white;
-      margin: 30rem 0;
+      margin: 30px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -411,9 +411,9 @@ async function getCollectMusic() {
         justify-content: space-between;
 
         .auto-play {
-          font-size: 13rem;
+          font-size: 13px;
           color: var(--second-text-color);
-          margin-right: 10rem;
+          margin-right: 10px;
         }
       }
     }
@@ -428,7 +428,7 @@ async function getCollectMusic() {
       background: rgba(56, 59, 68);
 
       .playing-wrapper {
-        transform: translateY(-10rem);
+        transform: translateY(-10px);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -436,13 +436,13 @@ async function getCollectMusic() {
 
       .cover-wrapper {
         background: rgba(56, 59, 68);
-        padding: 7rem;
+        padding: 7px;
         border-radius: 50%;
 
         .cover {
           background: rgba(97, 98, 103);
-          padding: 3rem;
-          @width: 50rem;
+          padding: 3px;
+          @width: 50px;
           height: @width;
           width: @width;
           object-fit: cover;
@@ -451,19 +451,19 @@ async function getCollectMusic() {
       }
 
       .name {
-        margin: 0 10rem;
+        margin: 0 10px;
         flex: 1;
       }
 
       .option {
-        width: 38rem;
-        height: 38rem;
-        margin-right: 20rem;
+        width: 38px;
+        height: 38px;
+        margin-right: 20px;
       }
 
       .menu-list {
-        width: 28rem;
-        height: 28rem;
+        width: 28px;
+        height: 28px;
       }
     }
   }
@@ -478,13 +478,13 @@ async function getCollectMusic() {
 
     .dialog-header {
       z-index: 9;
-      font-size: 16rem;
+      font-size: 16px;
       position: fixed;
       top: 0;
       width: 100%;
       padding: var(--page-padding);
       box-sizing: border-box;
-      height: 50rem;
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: space-between;

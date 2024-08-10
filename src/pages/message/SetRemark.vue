@@ -13,7 +13,7 @@
 
     <div class="content">
       <div class="notice">备注名</div>
-      <div class="input-ctn" style="margin-bottom: 1rem">
+      <div class="input-ctn" style="margin-bottom: 1px">
         <input type="text" v-model="data.remark" placeholder="请输入备注名" />
         <img
           v-if="data.remark.length"
@@ -84,12 +84,12 @@ async function save() {
   }
 
   .content {
-    padding: 20rem;
-    padding-top: 70rem;
+    padding: 20px;
+    padding-top: 70px;
 
     .notice,
     .num {
-      font-size: 12rem;
+      font-size: 12px;
       color: var(--second-text-color);
     }
 
@@ -100,9 +100,9 @@ async function save() {
       align-items: center;
 
       input {
-        margin: 5rem 0;
+        margin: 5px 0;
         color: white;
-        height: 30rem;
+        height: 30px;
         width: 100%;
         outline: none;
         border: none;
@@ -116,8 +116,8 @@ async function save() {
       .close {
         position: absolute;
         right: 0;
-        top: 15rem;
-        width: 10rem;
+        top: 15px;
+        width: 10px;
       }
     }
   }

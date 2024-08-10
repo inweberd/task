@@ -48,7 +48,7 @@
       v-model="data.isShowSetting"
       mode="white"
       mask-mode="dark"
-      height="270rem"
+      height="270px"
       :show-heng-gang="false"
     >
       <div class="setting-dialog">
@@ -149,7 +149,7 @@ function keepClose() {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
     padding: var(--page-padding);
@@ -160,7 +160,7 @@ function keepClose() {
     text-align: center;
 
     .header {
-      margin-top: 100rem;
+      margin-top: 100px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -171,37 +171,37 @@ function keepClose() {
       }
 
       .icon1 {
-        left: -20rem;
-        bottom: 20rem;
+        left: -20px;
+        bottom: 20px;
         position: absolute;
-        width: 30rem;
+        width: 30px;
       }
 
       .icon2 {
         z-index: 2;
         position: relative;
-        padding: 2.5rem;
+        padding: 2.5px;
         background: black;
         border-radius: 50%;
-        width: 80rem;
-        height: 80rem;
+        width: 80px;
+        height: 80px;
       }
 
       .icon3 {
-        bottom: 5rem;
-        right: -30rem;
+        bottom: 5px;
+        right: -30px;
         z-index: 3;
         position: absolute;
-        padding: 2rem;
+        padding: 2px;
         background: black;
         border-radius: 50%;
-        width: 40rem;
+        width: 40px;
       }
     }
 
     .title {
-      margin-top: 30rem;
-      font-size: 16rem;
+      margin-top: 30px;
+      font-size: 16px;
       font-weight: bold;
     }
 
@@ -236,8 +236,8 @@ function keepClose() {
 
     .header {
       padding: var(--page-padding);
-      padding-top: 30rem;
-      padding-bottom: 20rem;
+      padding-top: 30px;
+      padding-bottom: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -246,17 +246,17 @@ function keepClose() {
         position: relative;
 
         .icon {
-          width: 64rem;
+          width: 64px;
         }
 
         .remove {
           bottom: 0;
           right: 0;
           position: absolute;
-          padding: 2rem;
+          padding: 2px;
           border-radius: 50%;
           background: white;
-          width: 20rem;
+          width: 20px;
         }
       }
 
@@ -264,17 +264,17 @@ function keepClose() {
         top: var(--page-padding);
         right: var(--page-padding);
         position: absolute;
-        width: 20rem;
+        width: 20px;
       }
     }
 
     .title {
-      font-size: 16rem;
+      font-size: 16px;
     }
 
     .sub-title {
       padding: var(--page-padding);
-      font-size: 12rem;
+      font-size: 12px;
       color: var(--second-text-color);
     }
 
@@ -286,7 +286,7 @@ function keepClose() {
     }
 
     .row {
-      margin-bottom: 10rem;
+      margin-bottom: 10px;
 
       .left {
         color: black !important;

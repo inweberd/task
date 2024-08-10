@@ -21,7 +21,7 @@
     <from-bottom-dialog
       mask-mode="lightgray"
       page-id="GuessMusic"
-      border-radius="15rem 15rem 0 0"
+      border-radius="15px 15px 0 0"
       :show-heng-gang="false"
       height="70vh"
       v-model="isShowList"
@@ -160,7 +160,7 @@ export default {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 }
 
 .music-list-dialog {
@@ -177,34 +177,34 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50rem;
+    height: 50px;
     padding: 0 var(--page-padding);
-    border-radius: 15rem 15rem 0 0;
+    border-radius: 15px 15px 0 0;
     z-index: 9;
 
     .left {
-      font-size: 16rem;
+      font-size: 16px;
     }
 
     .right {
       display: flex;
       align-items: center;
-      font-size: 12rem;
+      font-size: 12px;
 
       img {
-        width: 20rem;
-        margin-right: 5rem;
+        width: 20px;
+        margin-right: 5px;
       }
     }
   }
 
   .wrapper {
-    padding-top: 50rem;
+    padding-top: 50px;
   }
 
   .l-row {
     background: @bg-color;
-    height: 50rem;
+    height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -219,38 +219,38 @@ export default {
       align-items: center;
 
       .author {
-        font-size: 12rem;
+        font-size: 12px;
         color: var(--second-text-color);
-        margin-left: 20rem;
+        margin-left: 20px;
         position: relative;
         display: flex;
         align-items: center;
 
         &:after {
           content: '';
-          width: 6rem;
+          width: 6px;
           height: 0.5px;
           background: var(--second-text-color);
           position: absolute;
-          left: -12rem;
+          left: -12px;
         }
       }
 
       .play-icon {
-        width: 15rem;
-        margin-right: 10rem;
+        width: 15px;
+        margin-right: 10px;
       }
     }
 
     .right {
-      width: 15rem;
+      width: 15px;
     }
   }
 
   .footer {
     background: @bg-color;
     border-top: 1px solid #2a2828;
-    height: 60rem;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;

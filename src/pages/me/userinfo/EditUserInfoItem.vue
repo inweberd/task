@@ -16,7 +16,7 @@
     <div class="content">
       <div v-if="data.type === 1">
         <div class="notice">我的名字</div>
-        <div class="input-ctn" style="margin-bottom: 1rem">
+        <div class="input-ctn" style="margin-bottom: 1px">
           <input type="text" v-model="data.localUserinfo.nickname" placeholder="记得填写名字哦" />
           <img
             v-if="data.localUserinfo.nickname"
@@ -31,7 +31,7 @@
       </div>
       <div class="l-row" v-if="data.type === 2">
         <div class="notice">我的抖音号</div>
-        <div class="input-ctn" style="margin-bottom: 10rem">
+        <div class="input-ctn" style="margin-bottom: 10px">
           <input type="text" v-model="data.localUserinfo.unique_id" />
           <img
             v-if="data.localUserinfo.unique_id"
@@ -145,12 +145,12 @@ async function save() {
   }
 
   .content {
-    padding: 20rem;
-    padding-top: 70rem;
+    padding: 20px;
+    padding-top: 70px;
 
     .notice,
     .num {
-      font-size: 12rem;
+      font-size: 12px;
       color: var(--second-text-color);
     }
 
@@ -161,9 +161,9 @@ async function save() {
       align-items: center;
 
       input {
-        margin: 5rem 0;
+        margin: 5px 0;
         color: white;
-        height: 30rem;
+        height: 30px;
         width: 100%;
         outline: none;
         border: none;
@@ -177,17 +177,17 @@ async function save() {
       .close {
         position: absolute;
         right: 0;
-        top: 15rem;
-        width: 10rem;
+        top: 15px;
+        width: 10px;
       }
     }
 
     .textarea-ctn {
       width: 100%;
       background: var(--active-main-bg);
-      padding: 15rem;
+      padding: 15px;
       box-sizing: border-box;
-      margin-top: 10rem;
+      margin-top: 10px;
       border-radius: 2px;
 
       textarea {

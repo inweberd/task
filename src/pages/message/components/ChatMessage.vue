@@ -177,8 +177,8 @@ export default {
 @import '../../../assets/less/index';
 
 .ChatMessage {
-  padding: 0 10rem;
-  margin-bottom: 20rem;
+  padding: 0 10px;
+  margin-bottom: 20px;
   display: flex;
   //@chat-bg-color: dodgerblue;
   @chat-bg-right-color: rgb(72, 116, 230);
@@ -188,13 +188,13 @@ export default {
     justify-content: flex-end;
 
     .avatar {
-      margin-left: 10rem;
-      height: 36rem;
+      margin-left: 10px;
+      height: 36px;
       border-radius: 50%;
     }
 
     .audio-icon {
-      margin-left: 50rem;
+      margin-left: 50px;
     }
 
     .chat-text,
@@ -208,13 +208,13 @@ export default {
     justify-content: flex-start;
 
     .avatar {
-      margin-right: 10rem;
-      height: 36rem;
+      margin-right: 10px;
+      height: 36px;
       border-radius: 50%;
     }
 
     .audio-icon {
-      margin-right: 50rem;
+      margin-right: 50px;
     }
 
     .chat-text,
@@ -224,7 +224,7 @@ export default {
     }
   }
 
-  @border-radius: 10rem;
+  @border-radius: 10px;
 
   .chat-wrapper {
   }
@@ -233,9 +233,9 @@ export default {
     width: 100%;
     color: var(--second-text-color);
     text-align: center;
-    height: 40rem;
-    line-height: 40rem;
-    font-size: 12rem;
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
   }
 
   .red_packet {
@@ -253,30 +253,30 @@ export default {
     }
 
     .top {
-      padding: 10rem;
+      padding: 10px;
       display: flex;
       align-items: center;
       border-bottom: 1px solid rgb(253, 124, 81);
 
       img {
-        border-radius: 3rem;
-        height: 38rem;
-        margin-right: 10rem;
+        border-radius: 3px;
+        height: 38px;
+        margin-right: 10px;
       }
 
       .title {
-        font-size: 14rem;
+        font-size: 14px;
       }
 
       .state {
-        font-size: 12rem;
+        font-size: 12px;
         color: rgba(255, 231, 206, 0.8);
       }
     }
 
     .bottom {
-      font-size: 12rem;
-      padding: 5rem 10rem 10rem 10rem;
+      font-size: 12px;
+      padding: 5px 10px 10px 10px;
     }
   }
 
@@ -297,19 +297,19 @@ export default {
   }
 
   .call {
-    padding: 10rem;
+    padding: 10px;
     border-radius: @border-radius;
     display: flex;
     align-items: center;
-    font-size: 14rem;
+    font-size: 14px;
 
     .resolve {
       display: flex;
       align-items: center;
 
       .icon {
-        margin-right: 10rem;
-        width: 20rem;
+        margin-right: 10px;
+        width: 20px;
       }
     }
 
@@ -318,22 +318,22 @@ export default {
       align-items: center;
 
       .icon {
-        padding: 6rem;
+        padding: 6px;
         border-radius: 50%;
         background: rgba(27, 100, 172, 0.8);
-        margin-right: 10rem;
-        width: 18rem;
+        margin-right: 10px;
+        width: 18px;
       }
 
       .notice {
-        font-size: 13rem;
+        font-size: 13px;
         display: flex;
         flex-direction: column;
         color: #dedede;
 
         .state {
-          margin-bottom: 2rem;
-          font-size: 15rem;
+          margin-bottom: 2px;
+          font-size: 15px;
           color: white;
         }
       }
@@ -342,17 +342,17 @@ export default {
 
   .audio {
     max-width: 60vw;
-    padding: 10rem;
-    padding-right: 15rem;
+    padding: 10px;
+    padding-right: 15px;
     border-radius: @border-radius;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 14rem;
+    font-size: 14px;
 
     .audio-icon {
-      width: 15rem;
-      height: 15rem;
+      width: 15px;
+      height: 15px;
     }
   }
 
@@ -364,21 +364,21 @@ export default {
       top: 50%;
       left: 50%;
       transform: translateY(-50%) translateX(-50%);
-      width: 24rem;
+      width: 24px;
     }
 
     .title {
       position: absolute;
-      font-size: 16rem;
-      bottom: 35rem;
-      width: calc(100% - 20rem);
+      font-size: 16px;
+      bottom: 35px;
+      width: calc(100% - 20px);
       word-break: break-word;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-      left: 10rem;
+      left: 10px;
     }
 
     .poster {
@@ -388,16 +388,16 @@ export default {
     }
 
     .author {
-      width: calc(100% - 20rem);
-      left: 10rem;
+      width: calc(100% - 20px);
+      left: 10px;
       position: absolute;
-      bottom: 10rem;
+      bottom: 10px;
       display: flex;
       align-items: center;
 
       .video-avatar {
-        margin-right: 5rem;
-        height: 16rem;
+        margin-right: 5px;
+        height: 16px;
         border-radius: 50%;
       }
 
@@ -412,20 +412,20 @@ export default {
   .chat-text {
     border-radius: @border-radius;
     max-width: 60vw;
-    padding: 10rem;
+    padding: 10px;
     display: flex;
     align-items: center;
-    font-size: 14rem;
+    font-size: 14px;
   }
 
   .loves {
-    margin-top: 10rem;
+    margin-top: 10px;
 
     img {
-      width: 16rem;
-      height: 16rem;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
-      margin-right: 5rem;
+      margin-right: 5px;
     }
   }
 }

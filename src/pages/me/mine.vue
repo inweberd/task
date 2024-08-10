@@ -14,7 +14,7 @@ import { articleall } from '@/api/myApi'
 import { getSerialName } from '../../utils/getSerialName'
 import Loading from '@/components/Loading.vue'
 import avatar from '@/assets/img/avatar.png'
-import { loadInteraction } from '@/utils/ad'
+import { loadInteraction, loadSplash } from '@/utils/ad'
 const props = defineProps({})
 const userInfo = ref({})
 const walletInfo = ref({ credit: 0 })
@@ -156,7 +156,7 @@ function getData() {
               ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
               : ''
           }}</span>
-          <div class="group_2 mt-8-5" style="margin-top: 10rem">
+          <div class="group_2 mt-8-5" style="margin-top: 10px">
             <span class="font">
               我的ID: {{ userInfo?.id }}
               <br />
@@ -319,27 +319,27 @@ function getData() {
   }
 }
 .mt-18-5 {
-  margin-top: 14.57rem;
+  margin-top: 14.57px;
 }
 
 .mt-3-5 {
-  margin-top: 3.62rem;
+  margin-top: 3.62px;
 }
 
 .mt-2-5 {
-  margin-top: 2.72rem;
+  margin-top: 2.72px;
 }
 
 .mt-5-5 {
-  margin-top: 5.43rem;
+  margin-top: 5.43px;
 }
 
 .mt-5 {
-  margin-top: 4.98rem;
+  margin-top: 4.98px;
 }
 
 .page {
-  padding-bottom: 131.7rem;
+  padding-bottom: 131.7px;
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
@@ -347,34 +347,34 @@ function getData() {
 
   .section {
     .section_2 {
-      padding: 52.17rem 17.17rem 11.29rem 27.17rem;
+      padding: 52.17px 17.17px 11.29px 27.17px;
       background-image: url('./images/2c757d7e9de442d6159ae953d60359a1.png');
       background-size: 100% 100%;
       background-repeat: no-repeat;
 
       .image_3 {
-        width: 84.24rem;
-        height: 84.24rem;
+        width: 84.24px;
+        height: 84.24px;
       }
 
       .group {
-        width: 214.22rem;
+        width: 214.22px;
 
         .text {
           color: #fffdfd;
-          font-size: 21.74rem;
+          font-size: 21.74px;
           font-family: PingFang;
           font-weight: 700;
-          line-height: 16.76rem;
+          line-height: 16.76px;
         }
 
         .group_2 {
-          line-height: 16.3rem;
+          line-height: 16.3px;
 
           .font {
-            font-size: 12.96rem;
+            font-size: 12.96px;
             font-family: Adobe Heiti Std;
-            line-height: 20.3rem;
+            line-height: 20.3px;
             font-weight: 700;
             color: #fffdfd;
           }
@@ -396,24 +396,24 @@ function getData() {
   }
 
   .section_3 {
-    padding: 0 17.66rem 215.58rem 18.12rem;
+    padding: 0 17.66px 215.58px 18.12px;
     background-image: url('./images/d4d3a341f07d0f248de2ca5c542a877d.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
 
     .group_3 {
-      padding: 1.85rem 21.29rem 10rem 21.37rem;
+      padding: 1.85px 21.29px 10px 21.37px;
 
       .text-wrapper {
-        padding: 3.17rem 0 4.08rem;
+        padding: 3.17px 0 4.08px;
         background-color: #fc4869;
-        box-shadow: 0rem 0rem 7.25rem #19000114;
-        border-radius: 9.06rem;
-        width: 37.14rem;
+        box-shadow: 0px 0px 7.25px #19000114;
+        border-radius: 9.06px;
+        width: 37.14px;
 
         .text_3 {
-          line-height: 10.87rem;
-          letter-spacing: 2.36rem;
+          line-height: 10.87px;
+          letter-spacing: 2.36px;
         }
       }
 
@@ -424,55 +424,55 @@ function getData() {
         text-align: center;
 
         .equal-division-item {
-          padding: 5rem 0;
+          padding: 5px 0;
         }
 
         .section_4 {
           background-color: #c1c3d0;
-          width: 1.36rem;
-          height: 23.1rem;
+          width: 1.36px;
+          height: 23.1px;
         }
 
         .equal-division-item_2 {
-          padding: 5.45rem 0 5.91rem;
+          padding: 5.45px 0 5.91px;
           text-align: center;
 
           .text_1 {
-            line-height: 10.87rem;
+            line-height: 10.87px;
             text-align: center;
           }
         }
 
         .font_3 {
-          font-size: 16.3rem;
+          font-size: 16.3px;
           font-family: Adobe Heiti Std;
-          line-height: 12.68rem;
+          line-height: 12.68px;
           color: #ffffff;
         }
 
         .font_4 {
-          font-size: 11.78rem;
+          font-size: 11.78px;
           font-family: Adobe Heiti Std;
-          line-height: 11.32rem;
+          line-height: 11.32px;
           color: #c1c3d0;
         }
       }
 
       // .group_4 {
-      // 	padding-bottom: 19rem;
+      // 	padding-bottom: 19px;
       // }
     }
 
     .section_5 {
-      padding: 11.32rem 10rem 11.32rem 9.96rem;
+      padding: 11.32px 10px 11.32px 9.96px;
       background-color: #393939;
-      border-radius: 9.06rem;
+      border-radius: 9.06px;
 
       .text {
         margin-left: 10px;
-        height: 22rem;
+        height: 22px;
         text-align: center;
-        line-height: 22rem;
+        line-height: 22px;
         font-weight: 900;
         width: fit-content;
         white-space: nowrap;
@@ -486,10 +486,10 @@ function getData() {
         background-image: url('./images/c12e99ca200be4dc4eeb76eb2c969c91.png');
         background-size: 100% 100%;
         background-repeat: no-repeat;
-        height: 4.08rem;
+        height: 4.08px;
 
         .image_4 {
-          height: 4.08rem;
+          height: 4.08px;
         }
       }
 
@@ -497,17 +497,17 @@ function getData() {
         color: #ffffff;
         font-size: 14px;
         white-space: nowrap;
-        line-height: 9.06rem;
-        letter-spacing: 0.91rem;
+        line-height: 9.06px;
+        letter-spacing: 0.91px;
       }
     }
 
     .section_6 {
       background-color: #393939;
-      border-radius: 9.06rem;
+      border-radius: 9.06px;
 
       .grid {
-        height: 237.32rem;
+        height: 237.32px;
         display: grid;
         grid-template-rows: repeat(3, minmax(0, 1fr));
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -515,63 +515,63 @@ function getData() {
         column-gap: 0;
 
         .grid-item {
-          padding: 15.02rem 0 17.06rem;
+          padding: 15.02px 0 17.06px;
         }
 
         .grid-item_2 {
-          padding: 10.02rem 0 13.42rem;
+          padding: 10.02px 0 13.42px;
         }
 
         .image_5 {
-          width: 32rem;
-          height: 32rem;
+          width: 32px;
+          height: 32px;
         }
 
         .font_5 {
-          font-size: 11.78rem;
+          font-size: 11.78px;
           font-family: PingFang;
-          line-height: 11.32rem;
+          line-height: 11.32px;
           color: #ffffff;
         }
 
         .grid-item_3 {
-          padding: 15.03rem 0 18.42rem;
-          width: 113.08rem;
+          padding: 15.03px 0 18.42px;
+          width: 113.08px;
         }
 
         .grid-item_4 {
-          padding: 14.27rem 0 17.82rem;
+          padding: 14.27px 0 17.82px;
         }
 
         .grid-item_5 {
-          padding: 14.27rem 0 17.82rem;
-          width: 113.08rem;
+          padding: 14.27px 0 17.82px;
+          width: 113.08px;
         }
 
         .grid-item_6 {
-          padding: 11.48rem 0 19.02rem;
+          padding: 11.48px 0 19.02px;
         }
 
         .grid-item_7 {
-          padding: 11.48rem 0 19.02rem;
+          padding: 11.48px 0 19.02px;
 
           .text_7 {
-            line-height: 11.78rem;
+            line-height: 11.78px;
           }
         }
 
         .grid-item_8 {
-          padding: 11.47rem 0 18.57rem;
-          width: 113.08rem;
+          padding: 11.47px 0 18.57px;
+          width: 113.08px;
         }
       }
     }
 
     .font_2 {
-      font-size: 11.78rem;
+      font-size: 11.78px;
       font-family: Adobe Heiti Std;
-      letter-spacing: 1.18rem;
-      line-height: 11.32rem;
+      letter-spacing: 1.18px;
+      line-height: 11.32px;
       color: #ffffff;
     }
   }
@@ -580,7 +580,7 @@ function getData() {
     position: absolute;
     left: 0;
     right: 0;
-    top: 155.69rem;
+    top: 155.69px;
     border-radius: 20px;
   }
 
@@ -590,7 +590,7 @@ function getData() {
 
   .pos_2 {
     position: absolute;
-    left: 5.43rem;
+    left: 5.43px;
     right: 0;
     bottom: 0;
   }
@@ -659,25 +659,25 @@ function getData() {
 }
 
 .mt-12 {
-  margin-top: 12rem;
+  margin-top: 12px;
 }
 
 .ml-20 {
-  margin-left: 20rem;
+  margin-left: 20px;
 }
 
 .mt-20 {
-  margin-top: 20rem;
+  margin-top: 20px;
 }
 
 .ml-22 {
-  margin-left: 22rem;
+  margin-left: 22px;
 }
 
 .partner-info {
   background-image: url('./images/rect.png');
   margin: 10px 0;
-  height: 32rem;
+  height: 32px;
   padding: 10px;
   border-radius: 13px;
   display: flex;
@@ -686,10 +686,10 @@ function getData() {
 
 .partner-banner {
   // position: absolute;
-  padding: 5rem;
-  // top: 32rem;
-  width: 222rem;
-  height: 38rem;
+  padding: 5px;
+  // top: 32px;
+  width: 222px;
+  height: 38px;
   background-color: #e5e0f6;
   border-radius: 13px;
   display: flex;
@@ -708,24 +708,24 @@ function getData() {
   color: #6244be;
 
   img {
-    width: 60rem;
-    height: 12rem;
+    width: 60px;
+    height: 12px;
   }
 
   .subtext {
     padding-top: 5px;
-    font-size: 10rem;
+    font-size: 10px;
     color: #9598a5;
   }
 }
 
 .open-btn {
   margin-left: 10px;
-  height: 22rem;
+  height: 22px;
   text-align: center;
-  line-height: 22rem;
+  line-height: 22px;
   font-weight: 900;
-  width: 110rem;
+  width: 110px;
   color: #6244be;
   background-color: #e5e0f6;
   border-radius: 13px;
@@ -738,7 +738,7 @@ function getData() {
   width: 90%;
   height: 35px;
   line-height: 35px;
-  padding: 0 18.12rem;
+  padding: 0 18.12px;
   margin: 20px auto;
   border-radius: 13px;
   background-color: #393939;

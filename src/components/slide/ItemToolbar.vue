@@ -100,7 +100,7 @@ const vClick = useClick()
   //width: 40px;
   position: absolute;
   bottom: 0;
-  right: 10rem;
+  right: 10px;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -109,12 +109,12 @@ const vClick = useClick()
   .avatar-ctn {
     position: relative;
 
-    @w: 45rem;
+    @w: 45px;
 
     .avatar {
       width: @w;
       height: @w;
-      border: 3rem solid white;
+      border: 3px solid white;
       border-radius: 50%;
     }
 
@@ -127,8 +127,8 @@ const vClick = useClick()
       bottom: -5px;
       background: red;
       //background: black;
-      width: 18rem;
-      height: 18rem;
+      width: 18px;
+      height: 18px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -136,8 +136,8 @@ const vClick = useClick()
 
       img {
         position: absolute;
-        width: 14rem;
-        height: 14rem;
+        width: 14px;
+        height: 14px;
         transition: all 1s;
       }
 
@@ -170,7 +170,7 @@ const vClick = useClick()
     justify-content: center;
     align-items: center;
 
-    @width: 35rem;
+    @width: 35px;
 
     img {
       width: @width;
@@ -178,12 +178,12 @@ const vClick = useClick()
     }
 
     span {
-      font-size: 12rem;
+      font-size: 12px;
     }
   }
 
   .icon {
-    font-size: 40rem;
+    font-size: 40px;
   }
 
   .loved {
@@ -192,8 +192,8 @@ const vClick = useClick()
 }
 
 .myicon {
-  padding-bottom: 20rem;
-  width: 40rem;
-  height: 40rem;
+  padding-bottom: 20px;
+  width: 40px;
+  height: 40px;
 }
 </style>

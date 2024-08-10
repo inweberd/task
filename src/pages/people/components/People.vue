@@ -95,11 +95,11 @@
           <div class="detail">可能认识的人</div>
         </div>
         <div class="right">
-          <template v-if="people.type === RELATE_ENUM.RECOMMEND_NO_REMOVE">
+          <template v-if="people.type === RELATE_ENUM.RECOMMEND_NO_pxOVE">
             <div class="l-button red" @click.stop="$emit('follow')">关注</div>
           </template>
           <template v-if="people.type === RELATE_ENUM.RECOMMEND">
-            <div class="l-button" @click.stop="$emit('remove')">移除</div>
+            <div class="l-button" @click.stop="$emit('pxove')">移除</div>
             <div class="l-button red" @click.stop="$emit('follow')">关注</div>
           </template>
           <!--   我关注他   -->
@@ -209,7 +209,7 @@ export default {
 .People {
   transition: all 0.3s ease;
   width: 100%;
-  height: 70rem;
+  height: 70px;
   display: flex;
   align-items: center;
   position: relative;
@@ -219,18 +219,18 @@ export default {
   }
 
   .head-image {
-    margin-right: 15rem;
-    width: 45rem;
-    height: 45rem;
+    margin-right: 15px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
   }
 
   .add {
     background: var(--second-btn-color-tran);
-    margin-right: 15rem;
-    padding: 15rem;
-    width: 18rem;
-    height: 18rem;
+    margin-right: 15px;
+    padding: 15px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
   }
 
@@ -242,14 +242,14 @@ export default {
 
     .left {
       .name {
-        font-size: 14rem;
-        margin-bottom: 2rem;
+        font-size: 14px;
+        margin-bottom: 2px;
         color: white;
       }
 
       .detail {
         color: var(--second-text-color);
-        font-size: 12rem;
+        font-size: 12px;
         margin-top: 4px;
       }
     }
@@ -259,18 +259,18 @@ export default {
       align-items: center;
 
       .l-button {
-        margin-left: 8rem;
-        border-radius: 2rem;
+        margin-left: 8px;
+        border-radius: 2px;
         background: rgb(58, 58, 67);
-        font-size: 12rem;
-        padding: 5rem 0;
+        font-size: 12px;
+        padding: 5px 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 58rem;
+        width: 58px;
 
         &:only-child {
-          width: 70rem;
+          width: 70px;
         }
 
         &.red {
@@ -279,8 +279,8 @@ export default {
       }
 
       img {
-        height: 18rem;
-        margin-left: 20rem;
+        height: 18px;
+        margin-left: 20px;
       }
     }
   }
@@ -289,15 +289,15 @@ export default {
     z-index: 9;
     position: absolute;
     bottom: -100%;
-    right: 10rem;
-    border-radius: 8rem;
+    right: 10px;
+    border-radius: 8px;
     background: var(--second-btn-color);
 
     .item {
-      font-size: 14rem;
-      padding: 0 40rem 0 10rem;
+      font-size: 14px;
+      padding: 0 40px 0 10px;
       display: flex;
-      height: 40rem;
+      height: 40px;
       align-items: center;
       border-bottom: 1px solid var(--line-color);
 
@@ -307,19 +307,19 @@ export default {
       }
 
       img {
-        margin-right: 10rem;
-        height: 20rem;
+        margin-right: 10px;
+        height: 20px;
       }
     }
 
     .arrow {
       width: 0;
       height: 0;
-      border: 7rem solid transparent;
-      border-bottom: 7rem solid var(--second-btn-color);
+      border: 7px solid transparent;
+      border-bottom: 7px solid var(--second-btn-color);
       position: absolute;
-      right: 10rem;
-      top: -14rem;
+      right: 10px;
+      top: -14px;
     }
   }
 }

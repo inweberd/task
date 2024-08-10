@@ -76,7 +76,7 @@ function back() {
 
     .left {
       position: absolute;
-      left: 10rem;
+      left: 10px;
     }
 
     & > :nth-last-child(1) {

@@ -192,48 +192,48 @@ export default {
 @import '../../../assets/less/index';
 
 .button {
-  width: 64rem;
-  height: 26rem !important;
+  width: 64px;
+  height: 26px !important;
 }
 
-@avatar-width: 38rem;
+@avatar-width: 38px;
 
 .friend-list {
-  padding: 0 15rem;
+  padding: 0 15px;
 
   .index {
     color: var(--second-text-color);
-    height: 60rem;
-    line-height: 60rem;
-    font-size: 13rem;
+    height: 60px;
+    line-height: 60px;
+    font-size: 13px;
   }
 
   .friend-item {
-    margin-bottom: 20rem;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     //background: #fff;
 
     &:nth-child(1) {
-      margin-top: 10rem;
+      margin-top: 10px;
     }
 
     .left {
       width: @avatar-width;
       height: @avatar-width;
       border-radius: 50%;
-      margin-right: 15rem;
+      margin-right: 15px;
     }
 
     .right {
-      font-size: 14rem;
+      font-size: 14px;
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: space-between;
 
       img {
-        height: 20rem;
+        height: 20px;
       }
     }
   }
@@ -243,28 +243,28 @@ export default {
   color: white;
 
   .create-chat {
-    padding-bottom: 40rem;
+    padding-bottom: 40px;
     background: var(--main-bg);
 
     .search-ctn {
-      padding: 0 15rem;
+      padding: 0 15px;
     }
 
     .joined-chat-group-nav {
       border-bottom: 1px solid var(--line-color);
-      height: 50rem;
-      padding: 0 15rem;
+      height: 50px;
+      padding: 0 15px;
       display: flex;
       align-items: center;
 
       .left {
-        width: 22rem;
-        height: 22rem;
-        margin-right: 10rem;
+        width: 22px;
+        height: 22px;
+        margin-right: 10px;
       }
 
       .right {
-        font-size: 14rem;
+        font-size: 14px;
         flex: 1;
         display: flex;
         align-items: center;
@@ -284,15 +284,15 @@ export default {
       justify-content: center;
 
       .btn {
-        margin-bottom: 20rem;
-        width: calc(100% - 40rem);
-        height: 40rem;
+        margin-bottom: 20px;
+        width: calc(100% - 40px);
+        height: 40px;
         display: flex;
         align-items: center;
-        font-size: 14rem;
+        font-size: 14px;
         justify-content: center;
         background: #3f445c;
-        border-radius: 2rem;
+        border-radius: 2px;
 
         &.primary {
           background: var(--primary-btn-color);
@@ -308,12 +308,12 @@ export default {
       flex-direction: column;
 
       .notice-h1 {
-        font-size: 16rem;
+        font-size: 16px;
       }
 
       .notice-h2 {
-        margin-top: 10rem;
-        font-size: 14rem;
+        margin-top: 10px;
+        font-size: 14px;
         color: var(--second-text-color);
       }
     }
@@ -323,17 +323,17 @@ export default {
     background: var(--main-bg);
 
     .nav {
-      font-size: 16rem;
-      padding: 15rem;
+      font-size: 16px;
+      padding: 15px;
       display: flex;
       justify-content: space-between;
     }
 
     .chat-list {
-      padding: 0 15rem;
+      padding: 0 15px;
 
       .chat-item {
-        margin-bottom: 20rem;
+        margin-bottom: 20px;
         display: flex;
         align-items: center;
         position: relative;
@@ -344,18 +344,18 @@ export default {
         }
 
         &:nth-child(1) {
-          margin-top: 10rem;
+          margin-top: 10px;
         }
 
         .left {
           width: @avatar-width;
           height: @avatar-width;
           border-radius: 50%;
-          margin-right: 15rem;
+          margin-right: 15px;
         }
 
         .right {
-          font-size: 14rem;
+          font-size: 14px;
           flex: 1;
           display: flex;
           align-items: center;
@@ -375,13 +375,13 @@ export default {
             }
 
             .num {
-              margin-left: 5rem;
+              margin-left: 5px;
               color: var(--second-text-color);
             }
           }
 
           img {
-            height: 15rem;
+            height: 15px;
           }
         }
       }

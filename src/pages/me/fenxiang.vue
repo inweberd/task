@@ -88,8 +88,8 @@ export default {
 }
 .fixed-back {
   position: fixed;
-  left: 10rem;
-  top: 20rem;
+  left: 10px;
+  top: 20px;
   z-index: 3;
 }
 

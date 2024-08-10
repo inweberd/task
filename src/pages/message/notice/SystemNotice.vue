@@ -173,7 +173,7 @@ function goDetail(item) {
   bottom: 0;
   top: 0;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .scroll {
     height: calc(var(--vh, 1vh) * 100 - var(--common-header-height) - var(--common-header-height));
@@ -189,24 +189,24 @@ function goDetail(item) {
       .item {
         padding: var(--page-padding);
         background: var(--msg-subpage-card-bg);
-        border-radius: 5rem;
-        margin-bottom: 20rem;
+        border-radius: 5px;
+        margin-bottom: 20px;
 
         .title {
           display: flex;
           align-items: center;
-          font-size: 16rem;
-          margin-bottom: 10rem;
+          font-size: 16px;
+          margin-bottom: 10px;
         }
 
         .time {
-          font-size: 12rem;
+          font-size: 12px;
           color: var(--second-text-color);
-          margin-bottom: 20rem;
+          margin-bottom: 20px;
         }
 
         .content-text {
-          margin-bottom: 30rem;
+          margin-bottom: 30px;
         }
 
         .look-detail {
@@ -222,7 +222,7 @@ function goDetail(item) {
 
     .options {
       border-top: 1px solid var(--line-color);
-      height: 60rem;
+      height: 60px;
       display: flex;
       align-items: center;
 
@@ -238,9 +238,9 @@ function goDetail(item) {
         }
 
         img {
-          width: 10rem;
-          height: 15rem;
-          margin-right: 4rem;
+          width: 10px;
+          height: 15px;
+          margin-right: 4px;
         }
       }
     }
@@ -248,10 +248,10 @@ function goDetail(item) {
     .hover-dialog {
       z-index: 9;
       position: fixed;
-      bottom: 80rem;
-      border-radius: 6rem;
+      bottom: 80px;
+      border-radius: 6px;
       background: rgba(0, 0, 0, 0.9);
-      font-size: 12rem;
+      font-size: 12px;
 
       &.left {
         left: 0;
@@ -264,20 +264,20 @@ function goDetail(item) {
       .arrow {
         width: 0;
         height: 0;
-        border: 7rem solid transparent;
-        border-top: 7rem solid rgba(0, 0, 0, 0.9);
+        border: 7px solid transparent;
+        border-top: 7px solid rgba(0, 0, 0, 0.9);
         position: absolute;
-        right: 50rem;
-        bottom: -14rem;
+        right: 50px;
+        bottom: -14px;
       }
 
       .l-row {
-        width: 120rem;
-        height: 40rem;
+        width: 120px;
+        height: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
-        //padding: 10rem 22rem;
+        //padding: 10px 22px;
         border-top: 1px solid #2c2c2c;
         text-align: center;
 

@@ -7,7 +7,7 @@
     :show-heng-gang="false"
     :touch-moved="false"
     maskMode="light"
-    height="320rem"
+    height="320px"
     mode="dark"
   >
     <div class="share">
@@ -362,22 +362,22 @@ function shareOnWeChatFriend(name, title, url, logo) {
   display: flex;
   flex-direction: column;
 
-  @space-width: 26rem;
-  @avatar-width: 58rem;
-  @icon-width: 30rem;
+  @space-width: 26px;
+  @avatar-width: 58px;
+  @icon-width: 30px;
 
   .title {
-    font-size: 14rem;
-    padding: 10rem 20rem 30rem 20rem;
+    font-size: 14px;
+    padding: 10px 20px 30px 20px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     img {
-      width: 14rem;
-      height: 14rem;
-      padding: 6rem;
+      width: 14px;
+      height: 14px;
+      padding: 6px;
       border-radius: 50%;
       background: var(--second-btn-color-tran);
       //background: rgb(56, 58, 57);
@@ -388,7 +388,7 @@ function shareOnWeChatFriend(name, title, url, logo) {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 10rem;
+    gap: 10px;
 
     .bottom {
       flex: 1;
@@ -401,8 +401,8 @@ function shareOnWeChatFriend(name, title, url, logo) {
   .list {
     overflow-x: scroll;
     display: flex;
-    padding: 0 20rem;
-    gap: 22rem;
+    padding: 0 20px;
+    gap: 22px;
   }
 
   @c: rgb(51, 51, 51);
@@ -410,7 +410,7 @@ function shareOnWeChatFriend(name, title, url, logo) {
   .option {
     width: @avatar-width;
     position: relative;
-    font-size: 10rem;
+    font-size: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -425,13 +425,13 @@ function shareOnWeChatFriend(name, title, url, logo) {
       position: absolute;
       top: @avatar-width - 1.5;
       right: -2px;
-      width: 20rem;
-      height: 20rem;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
     }
 
     span {
-      margin-top: 8rem;
+      margin-top: 8px;
       text-align: center;
       width: @avatar-width;
       white-space: nowrap;
@@ -440,8 +440,8 @@ function shareOnWeChatFriend(name, title, url, logo) {
     }
 
     .more {
-      width: 20rem;
-      padding: 19rem;
+      width: 20px;
+      padding: 19px;
       border-radius: 50%;
       background: @c;
       //background: rgb(56, 58, 57);
@@ -450,22 +450,22 @@ function shareOnWeChatFriend(name, title, url, logo) {
     svg {
       .more;
       width: unset;
-      padding: 16rem;
-      font-size: 26rem;
+      padding: 16px;
+      font-size: 26px;
       color: rgb(205, 205, 205);
     }
 
     .small {
       width: @icon-width;
       height: @icon-width;
-      padding: 14rem;
+      padding: 14px;
       border-radius: 50%;
       background: @c;
     }
   }
 
   .share2friend {
-    padding: 20rem;
+    padding: 20px;
     padding-top: 0;
     box-sizing: border-box;
     width: 100%;
@@ -477,11 +477,11 @@ function shareOnWeChatFriend(name, title, url, logo) {
     .comment {
       display: flex;
       flex: 1;
-      margin-top: 15rem;
+      margin-top: 15px;
 
       textarea {
         flex: 1;
-        font-size: 14rem;
+        font-size: 14px;
         outline: none;
         border: none;
         background: transparent;
@@ -489,17 +489,17 @@ function shareOnWeChatFriend(name, title, url, logo) {
       }
 
       .poster {
-        margin-left: 20rem;
-        height: 60rem;
-        width: 60rem;
+        margin-left: 20px;
+        height: 60px;
+        width: 60px;
         object-fit: cover;
-        border-radius: 4rem;
+        border-radius: 4px;
       }
     }
 
     .btns {
       display: flex;
-      gap: 10rem;
+      gap: 10px;
       align-items: center;
       justify-content: space-between;
 

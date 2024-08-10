@@ -174,27 +174,27 @@ onMounted(() => {
   top: 0;
   overflow: auto;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .content {
-    padding-top: 60rem;
+    padding-top: 60px;
 
     .title {
-      font-size: 12rem;
-      padding: 10rem 15rem;
+      font-size: 12px;
+      padding: 10px 15px;
       color: var(--second-text-color);
 
       img {
-        width: 10rem;
-        height: 10rem;
-        margin-right: 2rem;
+        width: 10px;
+        height: 10px;
+        margin-right: 2px;
       }
     }
   }
 
   .line {
-    width: calc(100% - 30rem);
-    margin-left: 15rem;
+    width: calc(100% - 30px);
+    margin-left: 15px;
     background: var(--line-color);
   }
 }

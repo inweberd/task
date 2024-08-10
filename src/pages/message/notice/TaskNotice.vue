@@ -50,7 +50,7 @@
       mask-mode="dark"
       :show-heng-gang="false"
       v-model="data.isShowSetting"
-      height="160rem"
+      height="160px"
     >
       <div class="setting-dialog">
         <div class="row disabled">成长任务</div>
@@ -144,7 +144,7 @@ function goDetail(item: any) {
   bottom: 0;
   top: 0;
   color: white;
-  font-size: 14rem;
+  font-size: 14px;
 
   .scroll {
     height: calc(var(--vh, 1vh) * 100 - var(--common-header-height) - var(--common-header-height));
@@ -161,8 +161,8 @@ function goDetail(item: any) {
       .item {
         padding: var(--page-padding);
         background: var(--msg-subpage-card-bg);
-        border-radius: 5rem;
-        margin-bottom: 20rem;
+        border-radius: 5px;
+        margin-bottom: 20px;
 
         .header {
           display: flex;
@@ -176,19 +176,19 @@ function goDetail(item: any) {
             align-items: center;
 
             img {
-              width: 25rem;
+              width: 25px;
             }
           }
 
           .right {
-            margin-left: 10rem;
+            margin-left: 10px;
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: space-between;
 
             img {
-              width: 20rem;
+              width: 20px;
             }
           }
         }
@@ -196,18 +196,18 @@ function goDetail(item: any) {
         .title {
           display: flex;
           align-items: center;
-          font-size: 16rem;
-          margin-bottom: 10rem;
+          font-size: 16px;
+          margin-bottom: 10px;
         }
 
         .time {
-          font-size: 12rem;
+          font-size: 12px;
           color: var(--second-text-color);
-          margin-bottom: 20rem;
+          margin-bottom: 20px;
         }
 
         .content-text {
-          margin-bottom: 30rem;
+          margin-bottom: 30px;
         }
 
         .look-detail {
@@ -234,7 +234,7 @@ function goDetail(item: any) {
   .setting-dialog {
     .row {
       color: black !important;
-      height: 50rem;
+      height: 50px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -245,13 +245,13 @@ function goDetail(item: any) {
       }
 
       &.disabled {
-        font-size: 12rem;
+        font-size: 12px;
         opacity: 0.5;
       }
     }
 
     .space {
-      height: 10rem;
+      height: 10px;
       background: whitesmoke;
     }
   }

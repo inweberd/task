@@ -1,129 +1,35 @@
 <template>
-  <div>
+  <div style="background-color: #322c36; padding: 20px">
     <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />
-    <!-- <canvas ref="canvas"></canvas> -->
-    <van-image :src="imageSrc1" width="100%" height="150" fit="fill"></van-image>
-    <!-- <van-image :src="imageSrc2" width="100%" height="85%"   fit="fill" style='position:absolute;margin-top:150px'></van-image> -->
     <Loading v-if="loading" />
 
-    <div style="overflow: scroll">
-      <div
-        v-for="item of staffList"
-        style="
-          margin-top: 10px;
-          text-align: center;
-          color: #fff;
-          display: flex;
-          background: #6344bb;
-          width: 92%;
-          margin-left: 4%;
-          border-radius: 10px;
-        "
-      >
-        <div style="width: 100%; padding: 10px">
-          <div>
-            <div
-              style="
-                display: inline-block;
-                width: 20%;
-                white-space: nowrap;
-                text-align: center;
-                color: #fff;
-                font-weight: bold;
-              "
-            >
-              {{ getSerialName(item.serial) }}
-            </div>
-            <div
-              style="
-                display: inline-block;
-                width: 20%;
-                text-align: center;
-                color: #fff;
-                font-weight: bold;
-              "
-            >
-              日收益
-            </div>
-            <div
-              style="
-                display: inline-block;
-                width: 20%;
-                text-align: center;
-                color: #fff;
-                font-weight: bold;
-              "
-            >
-              月收益
-            </div>
-            <div
-              style="
-                display: inline-block;
-                width: 40%;
-                text-align: center;
-                color: #fff;
-                font-weight: bold;
-              "
-            >
-              年收益（365天）
-            </div>
-          </div>
-          <div>
-            <div
-              style="
-                display: inline-block;
-                width: 20%;
-                text-align: center;
-                color: #fff;
-                font-weight: bold;
-                font-size: 16px;
-              "
-            >
-              {{ item.price }}元
-            </div>
-            <div
-              style="
-                display: inline-block;
-                width: 20%;
-                text-align: center;
-                color: #fff;
-                font-weight: bold;
-              "
-            >
-              {{ item.task * item.unit_price }}元
-            </div>
-            <div
-              style="
-                display: inline-block;
-                width: 20%;
-                text-align: center;
-                color: #fff;
-                font-weight: bold;
-              "
-            >
-              {{ item.task * item.unit_price * 30 }}元
-            </div>
-            <div
-              style="
-                display: inline-block;
-                width: 40%;
-                text-align: center;
-                color: #fff;
-                font-weight: bold;
-              "
-            >
-              {{ item.task * item.unit_price * 365 }}元
-            </div>
-          </div>
+    <div class="title">服务器列表</div>
 
+    <div style="overflow: scroll; background-color: #332d37">
+      <div class="stat">
+        <div class="stat-header">
+          <div>任务累计收益: <span class="money">￥4484.27</span></div>
+          <div>服务消费:<span class="money">￥13000.27</span></div>
+        </div>
+      </div>
+      <div v-for="(item, index) of staffList" class="staff-list">
+        <div class="staff-item">
+          <div class="img">
+            <img :src="getIconPath((index % 5) + 1)" alt="" />
+          </div>
+          <div class="name">TK服务器-4核8G共享服务器</div>
+          <div class="price" @click="toDetail">
+            价格：<span class="money">￥{{ item.price }}</span>
+            <van-icon name="arrow" size="18" class="arrow" />
+          </div>
+          <div class="info">
+            <div class="info-item">设备状态：<span class="status">运行中</span></div>
+            <div class="info-item">有效期：30天</div>
+            <div class="info-item">账号数量：1567/2200</div>
+            <div class="info-item">预估收益：{{ item.unit_price }}/天</div>
+          </div>
           <div
-            style="
-              background: #fff;
-              color: #6344bb;
-              width: 65px;
-              margin: 10px auto;
-              font-weight: bold;
-            "
+            class="buy-btn"
             :style="{
               background: getBuyBtnBg(item)
             }"
@@ -204,9 +110,15 @@ const buy = (item) => {
 }
 
 const getBuyBtnBg = (item) => {
-  return userInfo.value.result.staff.serial + 1 === item.serial ? '#d97171' : '#fff'
+  return userInfo.value.result.staff.serial + 1 === item.serial ? '#e85858' : '#666CF8'
+}
+const toDetail = () => {
+  router.push('/serveInfo')
 }
 
+const getIconPath = (icon) => {
+  return new URL(`../../assets/img/serve/${icon}.png`, import.meta.url).href
+}
 onMounted(() => {
   getAllStaff()
 })
@@ -215,8 +127,8 @@ onMounted(() => {
 <style scoped lang="less">
 .fixed-back {
   position: fixed;
-  left: 10rem;
-  top: 20rem;
+  left: 10px;
+  top: 25px;
   z-index: 3;
 }
 
@@ -224,10 +136,123 @@ onMounted(() => {
   width: 100%;
   display: flex;
 }
+
 .item {
   display: block;
   font-size: 14px;
   font-weight: bold;
   color: #fff;
+}
+
+.title {
+  font-size: 26px;
+  color: #eee;
+  font-weight: bolder;
+  margin-left: 30px;
+  position: relative;
+  padding-left: 8px;
+  &:before {
+    position: absolute;
+    top: 2px;
+    left: -10px;
+    display: block;
+    content: '';
+    height: 30px;
+    width: 6px;
+    background-color: #666cf8;
+    border-radius: 10px;
+  }
+}
+
+.stat {
+  margin-top: 20px;
+  background-image: linear-gradient(180deg, #494052 10%, #322c36 100%);
+  border-radius: 10px 10px 0 0;
+  height: 70px;
+
+  .stat-header {
+    line-height: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    color: #ccc;
+    font-size: 12px;
+    border-bottom: 1px solid #666;
+    .money {
+      font-size: 16px;
+      font-weight: bolder;
+      color: #fff;
+    }
+  }
+}
+.staff-list {
+  color: #fff;
+}
+.staff-item {
+  font-size: 14px;
+  position: relative;
+  margin-bottom: 20px;
+  .img {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 10px;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .name {
+    text-indent: 100px;
+    font-weight: bolder;
+    font-size: 16px;
+    line-height: 40px;
+  }
+  .price {
+    position: relative;
+    text-indent: 100px;
+    border-radius: 10px 10px 0 0;
+    line-height: 50px;
+    background-image: linear-gradient(90deg, #82718b 10%, #6a586b 100%);
+    .money {
+      font-size: 18px;
+      font-weight: bolder;
+    }
+
+    .arrow {
+      position: absolute;
+      right: 10px;
+      top: 15px;
+    }
+  }
+  .info {
+    border-radius: 0 0 10px 10px;
+    padding: 10px;
+    background-image: linear-gradient(90deg, #514154 10%, #3d313f 100%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .info-item {
+      width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      line-height: 30px;
+      .status {
+        color: #7889ef;
+        font-weight: bolder;
+      }
+    }
+  }
+  .buy-btn {
+    text-align: center;
+    width: 20px;
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+  }
 }
 </style>

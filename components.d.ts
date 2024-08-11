@@ -75,7 +75,6 @@ declare module 'vue' {
     VanTab: typeof import('vant/es')['Tab']
     VanTabs: typeof import('vant/es')['Tabs']
     VanTag: typeof import('vant/es')['Tag']
-    VanUploader: typeof import('vant/es')['Uploader']
     WaterfallList: typeof import('./src/components/WaterfallList.vue')['default']
   }
 }

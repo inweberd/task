@@ -57,6 +57,15 @@ export const loadInteraction = () => {
   }
 
   if (isIos) {
+    // window.webkit.messageHandlers.loadInteraction.postMessage("callBack2")
+    // window.callBack2 = function(params){
+    //   if(params.code == 1){
+    //     showToast("广告加载成功");
+    //   } else if(params.code == 0){
+    //     showToast(params.msg);
+    //   }
+    // }
+
     window.webkit?.messageHandlers &&
       window.webkit.messageHandlers.loadInteraction.postMessage({
         positionID: adIdMap.interaction,
@@ -163,10 +172,22 @@ export const loadFeed = () => {
   }
 }
 export const loadShortVideo = () => {
-  window.android.openContentPage('1223', 'test')
+  if (isIos) {
+    window.webkit.messageHandlers.openContentPage.postMessage({ userId: '123', extraData: 'box' })
+  } else {
+    window.android.openContentPage('1223', 'test')
+  }
 }
 export const loadShortPlayVideo = () => {
-  window.android.openTubePage('1223', 'test')
+  if (isIos) {
+    window.webkit.messageHandlers.openTubePage.postMessage({
+      time: '30',
+      userId: '123',
+      extraData: 'box'
+    })
+  } else {
+    window.android.openTubePage('1223', 'test')
+  }
 }
 
 export const wechatShareLink = (str, scene) => {

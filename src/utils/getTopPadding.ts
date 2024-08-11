@@ -1,8 +1,8 @@
 export const getTopPadding = () => {
   if (window.android) {
-    return '40rem !important'
+    return '40px !important'
   } else {
-    return '0rem !important'
+    return '0px !important'
   }
 }
 export const getIsInApp = () => {

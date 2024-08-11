@@ -200,6 +200,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/conversion', component: () => import('@/pages/me/conversion.vue') },
   { path: '/forget', component: () => import('@/pages/login/forget.vue') },
   { path: '/invest', component: () => import('@/pages/me/invest.vue') },
+  { path: '/serveInfo', component: () => import('@/pages/me/serveInfo.vue') },
   { path: '/dep', component: () => import('@/pages/me/dep.vue') },
   { path: '/recharge', component: () => import('@/pages/me/recharge.vue') },
 

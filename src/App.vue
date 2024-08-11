@@ -70,13 +70,13 @@ const topPadding = computed(() => {
   // window.webkit?.messageHandlers
   if (window.android) {
     if (!['/home', '/me', '/invest'].includes(route.path)) {
-      return '40rem !important'
+      return '0px !important'
     } else {
-      return 0 + 'rem !important'
+      return 0 + 'px !important'
     }
   }
 
-  return '0rem !important'
+  return '0px !important'
 })
 
 // 检测用户使用的是微信浏览器或者qq浏览器
@@ -265,7 +265,7 @@ onMounted(() => {
   height: 100%;
   width: 100%;
   position: relative;
-  font-size: 14rem;
+  font-size: 14px;
   overflow: scroll;
   padding-bottom: env(safe-area-inset-bottom);
 }

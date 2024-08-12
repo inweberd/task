@@ -1,36 +1,74 @@
 <template>
   <div v-if="visible" class="footer" :class="{ isWhite }">
     <div class="l-button" @click="refresh(1)">
-      <span v-if="!isRefresh1" :class="{ active: currentTab === 1 }">首页</span>
-      <img v-if="isRefresh1" src="../assets/img/icon/refresh1.png" alt="" class="refresh" />
-    </div>
-    <!--    <div class="l-button" @click="refresh(2)">-->
-    <div class="l-button" @click="loadShort(1)">
-      <span v-if="!isRefresh2" :class="{ active: currentTab === 2 }">视频</span>
-      <img v-if="isRefresh2" src="../assets/img/icon/refresh1.png" alt="" class="refresh" />
-    </div>
-    <div class="l-button" @click="tab(3)">
-      <!--      <div class="add-ctn">-->
-      <!--        <img src="../assets/img/icon/add-light.png" alt="" class="add" />-->
-      <!--      </div>-->
-      <div
-        style="
-          padding: 2px 4px;
-          border-radius: 10px;
-          background-image: linear-gradient(135deg, #97abff 10%, #123597 100%);
-        "
-      >
-        <div style="white-space: nowrap">全民分享</div>
-        <div style="white-space: nowrap">月入过万</div>
+      <div class="add-ctn">
+        <img
+          src="@/assets/img/tabbar/home-active.webp"
+          alt=""
+          class="add"
+          v-if="currentTab === 1"
+        />
+        <img src="@/assets/img/tabbar/home.webp" alt="" class="add" v-else />
       </div>
     </div>
+
+    <!--    <div class="l-button" @click="refresh(2)">-->
+    <div class="l-button" @click="loadShort(1)">
+      <div class="add-ctn">
+        <img
+          src="../assets/img/tabbar/video-active.webp"
+          alt=""
+          class="add"
+          v-if="currentTab === 2"
+        />
+        <img src="../assets/img/tabbar/video.webp" alt="" class="add" v-else />
+      </div>
+    </div>
+    <!--<div class="l-button" @click="tab(3)">-->
+    <!--  <div class="add-ctn">-->
+    <!--    <img src="../assets/img/icon/add-light.png" alt="" class="add" />-->
+    <!--  </div>-->
+    <!--  &lt;!&ndash;<div&ndash;&gt;-->
+    <!--  &lt;!&ndash;  style="&ndash;&gt;-->
+    <!--  &lt;!&ndash;    padding: 2px 4px;&ndash;&gt;-->
+    <!--  &lt;!&ndash;    border-radius: 10px;&ndash;&gt;-->
+    <!--  &lt;!&ndash;    background-image: linear-gradient(135deg, #97abff 10%, #123597 100%);&ndash;&gt;-->
+    <!--  &lt;!&ndash;  "&ndash;&gt;-->
+    <!--  &lt;!&ndash;&gt;&ndash;&gt;-->
+    <!--  &lt;!&ndash;  <div style="white-space: nowrap">全民分享</div>&ndash;&gt;-->
+    <!--  &lt;!&ndash;  <div style="white-space: nowrap">月入过万</div>&ndash;&gt;-->
+    <!--  &lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</div>-->
     <!--    <div class="l-button" @click="tab(4)">-->
     <div class="l-button" @click="loadShort(2)">
-      <span :class="{ active: currentTab === 4 }">短剧</span>
+      <div class="add-ctn">
+        <img
+          src="../assets/img/tabbar/short-active.webp"
+          alt=""
+          class="add"
+          v-if="currentTab === 4"
+        />
+        <img src="../assets/img/tabbar/short.webp" alt="" class="add" v-else />
+      </div>
+      <!-- <div class="badge">2</div> -->
+    </div>
+    <div class="l-button" @click="tab(6)">
+      <div class="add-ctn">
+        <img
+          src="../assets/img/tabbar/invite-active.webp"
+          alt=""
+          class="add"
+          v-if="currentTab === 6"
+        />
+        <img src="../assets/img/tabbar/invite.webp" alt="" class="add" v-else />
+      </div>
       <!-- <div class="badge">2</div> -->
     </div>
     <div class="l-button" @click="tab(5)">
-      <span :class="{ active: currentTab === 5 }">我</span>
+      <div class="add-ctn">
+        <img src="../assets/img/tabbar/my-active.webp" alt="" class="add" v-if="currentTab === 5" />
+        <img src="../assets/img/tabbar/my.webp" alt="" class="add" v-else />
+      </div>
     </div>
   </div>
 </template>
@@ -92,6 +130,9 @@ export default {
           break
         case 5:
           this.$nav('/me')
+          break
+        case 6:
+          this.$nav('/myteam')
           break
       }
     },
@@ -166,13 +207,12 @@ export default {
       box-sizing: border-box;
       padding: 0 2px;
       border: 3px solid white;
-      background: black;
       display: flex;
       align-items: center;
       justify-content: center;
 
       img {
-        width: 20px;
+        width: 30px;
       }
     }
 

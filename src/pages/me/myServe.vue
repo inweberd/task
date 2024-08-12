@@ -3,7 +3,7 @@
     <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />
     <Loading v-if="loading" />
 
-    <div class="title">服务器列表</div>
+    <div class="title">我的服务器</div>
 
     <div style="overflow: scroll; background-color: #332d37">
       <div class="stat">
@@ -19,7 +19,7 @@
           </div>
           <div class="name">TK服务器-4核8G共享服务器</div>
           <div class="price" @click="toDetail">
-            价格：<span class="money">￥{{ item.price }}</span>
+            历史收益：<span class="money">￥{{ item.price }}</span>
             <van-icon name="arrow" size="18" class="arrow" />
           </div>
           <div class="info">
@@ -27,15 +27,6 @@
             <div class="info-item">有效期：30天</div>
             <div class="info-item">账号数量：1567/2200</div>
             <div class="info-item">预估收益：{{ item.unit_price }}/天</div>
-          </div>
-          <div
-            class="buy-btn"
-            :style="{
-              background: getBuyBtnBg(item)
-            }"
-            @click="buy(item)"
-          >
-            点我开通
           </div>
         </div>
       </div>

@@ -69,8 +69,8 @@ const transitionName = ref('go')
 const topPadding = computed(() => {
   // window.webkit?.messageHandlers
   if (window.android) {
-    if (!['/home', '/me', '/invest'].includes(route.path)) {
-      return '0px !important'
+    if (!['/home', '/me', '/invest', '/myteam', '/myServe'].includes(route.path)) {
+      return '40px !important'
     } else {
       return 0 + 'px !important'
     }
@@ -114,7 +114,8 @@ watch(
       'slide',
       '/test',
       '/longvideo',
-      '/login'
+      '/login',
+      '/myteam'
     ]
     if (noAnimation.indexOf(from) !== -1 && noAnimation.indexOf(to) !== -1) {
       return (transitionName.value = '')

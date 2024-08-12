@@ -284,7 +284,7 @@ function getData() {
         </div>
       </div>
     </div>
-    <BaseFooter v-bind:init-tab="5" />
+    <BaseFooter v-bind:init-tab="5" :is-white="true" />
     <div class="contact" @click="jumpToQQ">
       <img src="@/assets/img/kefu.png" alt="" />
       <div>

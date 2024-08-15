@@ -175,6 +175,9 @@ const getIconPath = (icon) => {
 }
 
 const getRedBag = () => {
+  // reqCreateShareLog().then((res) => {
+  //   console.log('reqCreateShareLog', res)
+  // })
   console.log('userInfo.value?.result?.staff?.serial', userInfo.value)
   if (!userInfo.value?.result?.staff?.serial) {
     return showDialog({

@@ -17,7 +17,9 @@
     <div class="serve-info">
       <div><van-tag color="#54AC90" style="padding: 3px 6px">浏览任务</van-tag></div>
       <div><span>运行周期:</span> <span>30天</span></div>
-      <div><span>运行状态:</span> <span>运行中</span></div>
+      <div>
+        <span>运行状态:</span> <span>{{ isReceive ? '运行中' : '未启用' }}</span>
+      </div>
     </div>
     <div class="log-info">
       <div class="log-info-title">
@@ -25,7 +27,12 @@
         <span>工作日志</span>
       </div>
       <div class="log-list" ref="logListRef">
-        <van-empty image-size="100" description="暂未开启" v-if="!logList.length" />
+        <van-empty
+          image-size="100"
+          description="请进入我的服务器页面点击赚钱，开始运行服务器！"
+          v-if="!logList.length"
+        />
+
         <div class="log-list-item" v-for="item of logList">
           {{ item }}
         </div>
@@ -35,7 +42,7 @@
 </template>
 <script setup lang="ts">
 import { ref, reactive, onMounted, nextTick } from 'vue'
-import { reqUserIncome, reqWalletInfo, reqWalletLog } from '@/api/myApi'
+import { reqRecordTask, reqUserIncome, reqWalletInfo, reqWalletLog } from '@/api/myApi'
 import dayjs from 'dayjs'
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
 userInfo.value.result.staff.serial = userInfo.value.result.staff.serial || 1
@@ -91,15 +98,11 @@ function createLog() {
   ]
   return arr[num % arr.length]
 }
-onMounted(() => {
-  getUserIncome()
-  reqWalletInfo().then((res) => {
-    if (res.code !== 200) return
-    walletInfo.value = res.data
-  })
-  // return
+let timer = null
+const isReceive = ref(false)
+const setLog = () => {
   logList.value.push('已开始运行!')
-  setInterval(() => {
+  timer = setInterval(() => {
     if (num > 30) {
       logList.value.shift()
     }
@@ -109,6 +112,21 @@ onMounted(() => {
       logListRef.value.scrollTop += logListRef.value.scrollHeight
     })
   }, 300)
+}
+
+onMounted(() => {
+  if (timer) return
+  reqRecordTask().then((res) => {
+    if (res.code === 400 && res.msg === '本日的红包已领完！') {
+      isReceive.value = true
+      setLog()
+    }
+  })
+  getUserIncome()
+  reqWalletInfo().then((res) => {
+    if (res.code !== 200) return
+    walletInfo.value = res.data
+  })
 })
 </script>
 

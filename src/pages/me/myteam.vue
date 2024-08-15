@@ -167,9 +167,9 @@ const getNewUserInfo = () => {
     if (userInfo.value?.result?.staff?.serial) {
     }
     reqUserStaff().then((res) => {
-      if (res.code !== 200) {
-        return _notice(res.msg)
-      }
+      // if (res.code !== 200) {
+      //   return _notice(res.msg)
+      // }
       star.value = res.data.star || 0
     })
   })

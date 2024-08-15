@@ -39,7 +39,11 @@
             <div class="my" @click="$router.push('/invest')">我的服务器</div>
           </div>
           <div class="log-list" ref="logListRef">
-            <van-empty image-size="100" description="暂未开启" v-if="!logList.length" />
+            <van-empty
+              image-size="100"
+              description="请进入我的服务器页面点击赚钱，开始运行服务器！"
+              v-if="!logList.length"
+            />
             <div class="log-list-item" v-for="item of logList">
               {{ item }}
             </div>
@@ -92,10 +96,9 @@ import empty from '@/assets/img/custom-empty-image.png'
 import { _notice } from '@/utils'
 import { loadInteraction, loadPlayRewardVideo, loadSplash } from '@/utils/ad'
 import { useRouter } from 'vue-router'
-import { reqWalletLog } from '@/api/myApi'
+import { reqRecordTask, reqWalletLog } from '@/api/myApi'
 import dayjs from 'dayjs'
 
-const show = ref(false)
 const loading = ref(false)
 const router = useRouter()
 const activeTab = ref(0)
@@ -179,9 +182,7 @@ const convertImgUrl = (iconUrl: string) => {
   // return new URL(`./images/${iconUrl}.png`, import.meta.url).href
   return new URL(`../../assets/img/appLogo/${iconUrl}.png`, import.meta.url).href
 }
-onActivated(() => {
-  show.value = false
-})
+
 const logListRef = ref()
 
 const logList = ref([])
@@ -214,10 +215,11 @@ function createLog() {
   ]
   return arr[num % arr.length]
 }
-onMounted(() => {
-  // return
+let timer = null
+const isReceive = ref(false)
+const setLog = () => {
   logList.value.push('已开始运行!')
-  setInterval(() => {
+  timer = setInterval(() => {
     if (num > 30) {
       logList.value.shift()
     }
@@ -227,7 +229,17 @@ onMounted(() => {
       logListRef.value.scrollTop += logListRef.value.scrollHeight
     })
   }, 300)
+}
+
+onActivated(() => {
+  if (timer) return
+  reqRecordTask().then((res) => {
+    if (res.code === 400 && res.msg === '本日的红包已领完！') {
+      setLog()
+    }
+  })
 })
+
 // onMounted(() => {
 //   showDialog({
 //     message: 'QQ群15群已满，请大家点击我的界面。点击联系客服进16群！',

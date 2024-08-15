@@ -6,7 +6,7 @@
       @click-left="$router.back()"
       style="background-color: transparent"
     />
-    <van-image :src="pay1" width="100%" height="100%;"></van-image>
+    <!--<van-image :src="pay1" width="100%" height="100%;"></van-image>-->
 
     <Loading v-if="loading"></Loading>
     <div class="container">

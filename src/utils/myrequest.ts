@@ -1,6 +1,8 @@
 import axios, { type AxiosError, type AxiosRequestConfig, type AxiosResponse } from 'axios'
 import config from '@/config'
 import { _notice } from './index'
+import { logout as fnlogout } from '@/api/myApi'
+import router from '@/router'
 class EventEmitter {
   constructor() {
     this.event = {}
@@ -153,10 +155,16 @@ axiosInstance.interceptors.response.use(
       if (resCode) {
         if (resCode === 401) {
           _notice('登录过期，请重新登录！')
-          setTimeout(() => {
+          setTimeout(async () => {
             window.localStorage.removeItem('userInfo')
             window.localStorage.removeItem('token')
             window.location.reload()
+
+            window.localStorage.removeItem('userInfo')
+            window.localStorage.removeItem('token')
+            await fnlogout()
+            // window.location.reload()
+            router.push('/common/sign-in')
           }, 2000)
           return
         }

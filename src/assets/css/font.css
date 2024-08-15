@@ -1,0 +1,33 @@
+.letter-spacing {
+    letter-spacing: 0.2em;
+}
+@font-face{
+     font-family: font-clock; src: url('@/assets/fonts/DS-DIGIT.TTF')
+ }
+ .font-clock{
+     font-family: font-clock, serif;
+ }
+
+ @font-face{
+     font-family: font-note-semi-bold; src: url('@/assets/fonts/Note-Script-SemiBold.ttf')
+ }
+.font-note-semi-bold{
+    font-family: font-note-semi-bold, serif;
+}
+
+ @font-face{
+     font-family: font-note-extra-bold; src: url('@/assets/fonts/Note-Script-ExtraBold.ttf')
+ }
+.font-note-extra-bold{
+    font-family: font-note-extra-bold, serif;
+}
+
+@font-face {
+    font-family: font-smiley-sans;
+    font-weight: 400;src: url("//at.alicdn.com/wf/webfont/OGkeCqvGYZkw/gl5ccyeqBYKR.woff2") format("woff2"), url("//at.alicdn.com/wf/webfont/OGkeCqvGYZkw/n2ZS665kMHiG.woff") format("woff");
+    font-display: swap;
+}
+.font-smiley-sans{
+    font-family: font-smiley-sans, serif;
+}
+

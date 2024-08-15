@@ -6,7 +6,7 @@
       <div class="top-wrap">
         <img src="./images/banner.jpg" alt="" />
         <!--<div class="title">-->
-        <!--  <div class="title-l">甜橙视频</div>-->
+        <!--  <div class="title-l">Kwai乐租</div>-->
         <!--  <div class="title-r"></div>-->
         <!--</div>-->
         <!--<div class="tab">-->
@@ -24,7 +24,7 @@
           background="#F76F31"
           left-icon="volume-o"
           style="border-radius: 25px; height: 30px"
-          text="乐租--2024全新无限代火爆招商中……"
+          text="kwai-乐租，精彩短视频。期待您的加入"
         >
         </van-notice-bar>
       </div>
@@ -35,9 +35,11 @@
               <van-icon name="clock" color="#666" style="margin-right: 6px" />
               <span style="color: #666">工作日志</span>
             </div>
-            <div class="my" @click="$router.push('myServe')">我的服务器</div>
+            <!--<div class="my" @click="$router.push('myServe')">我的服务器</div>-->
+            <div class="my" @click="$router.push('/invest')">我的服务器</div>
           </div>
           <div class="log-list" ref="logListRef">
+            <van-empty image-size="100" description="暂未开启" v-if="!logList.length" />
             <div class="log-list-item" v-for="item of logList">
               {{ item }}
             </div>
@@ -69,18 +71,18 @@
     </div>
     <BaseFooter v-bind:init-tab="1" :is-white="true" />
 
-    <div class="contact" @click="$router.push('/article?id=5')">
-      <img src="@/assets/img/paly-introduce.png" alt="" />
-      <div>
-        <div>玩法</div>
-        <div>介绍</div>
-      </div>
-    </div>
+    <!--<div class="contact" @click="$router.push('/article?id=5')">-->
+    <!--  <img src="@/assets/img/paly-introduce.png" alt="" />-->
+    <!--  <div>-->
+    <!--    <div>玩法</div>-->
+    <!--    <div>介绍</div>-->
+    <!--  </div>-->
+    <!--</div>-->
   </div>
 </template>
 
 <script setup lang="tsx">
-import { nextTick, onActivated, onMounted, ref } from 'vue'
+import { nextTick, onActivated, onMounted, reactive, ref } from 'vue'
 
 import Loading from '@/components/Loading.vue'
 import BaseFooter from '@/components/BaseFooter.vue'
@@ -90,32 +92,43 @@ import empty from '@/assets/img/custom-empty-image.png'
 import { _notice } from '@/utils'
 import { loadInteraction, loadPlayRewardVideo, loadSplash } from '@/utils/ad'
 import { useRouter } from 'vue-router'
+import { reqWalletLog } from '@/api/myApi'
+import dayjs from 'dayjs'
 
 const show = ref(false)
 const loading = ref(false)
 const router = useRouter()
 const activeTab = ref(0)
 const appList = ref([
+  // {
+  //   name: '乐租',
+  //   desc: '这款APP真的可以免费提现!',
+  //   logo: 'lz',
+  //   btnLabel: '下载',
+  //   btnCb() {
+  //     try {
+  //       window.location.href = `https://lzff.ddxsc.cn/download`
+  //     } catch (e) {
+  //       _notice('下载失败')
+  //     }
+  //   }
+  // },
   {
-    name: '乐租',
-    desc: '这款APP真的可以免费提现!',
+    name: '玩法介绍',
+    desc: 'kwai-乐租，精彩短视频。期待您的加入',
     logo: 'lz',
-    btnLabel: '下载',
+    btnLabel: '查看',
     btnCb() {
-      try {
-        window.location.href = `https://tcc.ebayser.com/download`
-      } catch (e) {
-        _notice('下载失败')
-      }
+      router.push('/article?id=5')
     }
   },
   {
-    name: '官方QQ群',
+    name: '专线客服',
     desc: '有问题咨询客服!',
-    logo: 'qq',
+    logo: 'lxkf',
     btnLabel: '联系客服',
     btnCb() {
-      window.location.href = decodeURIComponent('https://qm.qq.com/q/rfYONthKYq')
+      window.location.href = decodeURIComponent('http://kwai.sxlml.com/')
     }
   }
   // {
@@ -148,7 +161,7 @@ const appList = ref([
 ])
 function goDownload() {
   try {
-    window.location.href = `https://tcc.ebayser.com/download`
+    window.location.href = `https://lzff.ddxsc.cn/download`
   } catch (e) {
     _notice('下载失败')
   }
@@ -171,58 +184,53 @@ onActivated(() => {
 })
 const logListRef = ref()
 
-const logList = ref([
-  '已开始运行!',
-  '2023-9-19 14:35:42-正在请求代理IP',
-  '2023-9-19 14:35:46-获取代理IP:210.45.231.83',
-  '2023-9-19 14:35:49-浏览任务:EasiestSystemEver有史以来最简单的系统',
-  'www,easiestsystemever.com',
-  '2023-9-19 14:35:57-远程访问请求',
-  '2023-9-19 14:35:59-请求壳成',
-  '2023-9-19 14:36:5-浏览中',
-  '2023-9-19 14:36:35-任务完成',
-  '2023-9-19 14:36:43-等待发放佣金',
-  '2023-9-19 14:36:51-获得佣金：1.69558',
-  '************************',
-  '023-9-19 14:35:42-正在请求代理IP',
-  '2023-9-19 14:33:37获取代理IP:210.45.251.129',
-  '2023-9-1914:37:8.浏览任务:FreeDFYFunnel免要DFV漏斗/',
-  'faststart9,convertri.com',
-  '2023-9-1914:37:14-远程访问语求',
-  '2023-9-19 14:37:21-请求完成',
-  '2023-9-1914:37:26-浏览中',
-  '2023-9-19 14:37:56-任务完成',
-  '2023-9-19 14:36:43-等待发放佣金',
-  '2023-9-19 14:36:51-获得佣金：1.69558',
-  '************************',
-  '2023-9-19 14:35:42-正在请求代理IP',
-  '2023-9-19 14:35:46-获取代理IP:210.45.231.83',
-  '2023-9-19 14:35:49-浏览任务:EasiestSystemEver有史以来最简单的系统',
-  'www,easiestsystemever.com',
-  '2023-9-19 14:35:57-远程访问请求',
-  '2023-9-19 14:35:59-请求壳成',
-  '2023-9-19 14:36:5-浏览中',
-  '2023-9-19 14:36:35-任务完成',
-  '2023-9-19 14:36:43-等待发放佣金',
-  '2023-9-19 14:36:51-获得佣金：1.69558'
-])
+const logList = ref([])
+
+// 生产随机IP
+function randomIP() {
+  const getRandomOctet = () => Math.floor(Math.random() * 256)
+  return `${getRandomOctet()}.${getRandomOctet()}.${getRandomOctet()}.${getRandomOctet()}`
+}
+function getRandomNumber() {
+  // 生成一个0到1之间的随机数，并调整到0.01到1.00的范围
+  const randomNum = Math.random() * (1 - 0.01) + 0.01
+  // 保留小数点后四位
+  return parseFloat(randomNum.toFixed(4))
+}
 let num = 0
+
+function createLog() {
+  const arr = [
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-正在请求代理IP',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-获取代理IP:' + randomIP(),
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-正在加载浏览任务',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-远程访问请求',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-请求完成',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-浏览中',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-任务完成',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-等待发放佣金',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-获得佣金：' + getRandomNumber(),
+    '************************'
+  ]
+  return arr[num % arr.length]
+}
 onMounted(() => {
+  // return
+  logList.value.push('已开始运行!')
   setInterval(() => {
     if (num > 30) {
-      num = 0
-      logList.value.splice(30)
+      logList.value.shift()
     }
-    logList.value.push(logList.value[num++])
+    logList.value.push(createLog())
+    num++
     nextTick(() => {
       logListRef.value.scrollTop += logListRef.value.scrollHeight
     })
-  }, 1000)
+  }, 300)
 })
 // onMounted(() => {
 //   showDialog({
 //     message: 'QQ群15群已满，请大家点击我的界面。点击联系客服进16群！',
-//     theme: 'round-button'
 //   })
 // })
 </script>
@@ -367,6 +375,7 @@ onMounted(() => {
             }
           }
           .info {
+            flex: 1;
             margin-left: 6px;
             padding: 2px;
             display: flex;
@@ -388,6 +397,7 @@ onMounted(() => {
             color: #fff;
             border-radius: 20px;
             font-size: 12px;
+            white-space: nowrap;
           }
         }
       }

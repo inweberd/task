@@ -37,7 +37,7 @@
     v-if="isWeChatBrowser"
   >
     <!--请点击右上角选择在默认浏览器中打开-->
-    <img src="@/assets/img/openByOtherBrower.png" style="width: 100%" />
+    <img src="@/assets/img/openByOtherBrower.jpg" style="width: 100%" />
   </div>
 </template>
 <script setup lang="ts">
@@ -55,13 +55,15 @@ import BaseMask from '@/components/BaseMask.vue'
 import { BASE_URL } from '@/config'
 import { loadWx } from '@/utils/loadWx'
 import wx from 'weixin-js-sdk'
-const keepAliveBlackList = ['wallet', 'shortPlayDetail', 'recharge']
+const keepAliveBlackList = ['wallet', 'shortPlayDetail', 'recharge', 'serveInfo', 'invest']
 import { loadInteraction, loadSplash, testCallback, wechatShareImg } from '@/utils/ad'
 import { reqCreateShareLog } from '@/api/myApi'
 import dayjs from 'dayjs'
 import { outsideFn } from '@/utils/outsideFn'
 import imageSrc from '@/assets/img/share2.jpg'
 import QRCode from 'qrcode/lib'
+import avatar from '@/assets/img/avatar.png'
+import shareBtnBg from '@/assets/img/share-btn-bg.png'
 const store = useBaseStore()
 const route = useRoute()
 const transitionName = ref('go')
@@ -69,7 +71,7 @@ const transitionName = ref('go')
 const topPadding = computed(() => {
   // window.webkit?.messageHandlers
   if (window.android) {
-    if (!['/home', '/me', '/invest', '/myteam', '/myServe'].includes(route.path)) {
+    if (!['/home', '/me', '/invest', '/myteam', '/myServe', '/serveInfo'].includes(route.path)) {
       return '40px !important'
     } else {
       return 0 + 'px !important'
@@ -132,11 +134,13 @@ function resetVhAndPx() {
   //document.documentElement.style.fontSize = document.documentElement.clientWidth / 375 + 'px'
 }
 const canvas = ref()
-const canvasWidth = ref(window.innerHeight / (2336 / 1080))
-const canvasHeight = ref(window.innerHeight)
+const canvasWidth = ref(window.innerWidth)
+const canvasHeight = ref(window.innerWidth / (1242 / 2208))
 const qrCodeText = ref('')
 
 const generatePoster = async () => {
+  const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+
   canvas.value.width = canvasWidth.value
   canvas.value.height = canvasHeight.value
   const ctx = canvas.value.getContext('2d')
@@ -156,8 +160,8 @@ const generatePoster = async () => {
   image.onload = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
 
-    const qrCodeSize = 140 // 调整二维码的大小
-    const qrCodeMarginBottom = 40 // 调整二维码距离底部的距离
+    const qrCodeSize = 130 // 调整二维码的大小
+    const qrCodeMarginBottom = 25 // 调整二维码距离底部的距离
     const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
       width: qrCodeSize,
       height: qrCodeSize,
@@ -168,17 +172,53 @@ const generatePoster = async () => {
     qrCodeImage.src = qrCodeDataURL
     qrCodeImage.onload = () => {
       // 在海报上绘制二维码，位置在正中心下方
-      const qrCodeX = (canvasWidth.value - qrCodeSize) / 2
+      const qrCodeX = canvasWidth.value / 2 - qrCodeSize - 30
       const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
+      // var base64String = canvas.value.toDataURL('image/png')
+      // console.log(base64String)
+      // console.log()
+      // wechatShareImg(xbase64String)
     }
+    const avatarImage = new Image()
+    avatarImage.src = avatar
+    avatarImage.onload = () => {
+      const qrCodeX = canvasWidth.value / 2
+      const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
+
+      ctx.drawImage(avatarImage, qrCodeX - 20, qrCodeY, 50, 55)
+    }
+    const shareBtnBgImage = new Image()
+    shareBtnBgImage.src = shareBtnBg
+    shareBtnBgImage.onload = () => {
+      const qrCodeX = canvasWidth.value / 2
+      const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
+
+      ctx.drawImage(shareBtnBgImage, qrCodeX - 20, qrCodeY + 90, 150, 40)
+      ctx.fillStyle = 'white'
+
+      ctx.fillText('邀请码：' + userInfo?.result?.invite?.code, qrCodeX - 10, qrCodeY + 115)
+    }
+
+    ctx.font = '16px Arial'
+    // 设置填充颜色
+    ctx.fillStyle = 'black'
+    const qrCodeX = canvasWidth.value / 2
+    const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
+    // 绘制文本
+    ctx.fillText(
+      userInfo.phone ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7) : '',
+      qrCodeX + 40,
+      qrCodeY + 35
+    )
+    ctx.fillText('邀请你来体验乐租', qrCodeX - 20, qrCodeY + 78)
   }
 }
 onMounted(() => {
   if (isWeChatBrowser) {
     loadWx(() => {
       wx.onMenuShareTimeline({
-        title: '甜橙视频',
+        title: 'Kwai乐租',
         // link: 'http://movie.douban.com/subject/25785114asd/',
         imgUrl: 'http://tc.izakq.com/media/logo2.png',
         trigger: function (res) {
@@ -230,7 +270,7 @@ onMounted(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
       qrCodeText.value =
-        'https://tcc.ebayser.com/#/signUp?invite=' +
+        'https://lzff.ddxsc.cn/#/signUp?invite=' +
         JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code
       generatePoster()
     }

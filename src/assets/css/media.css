@@ -1,0 +1,98 @@
+.container-fluid{
+    max-width: var(--inis-container-width);
+}
+.search{width: 240px!important;}
+.el-drawer.box{width: 450px !important;}
+
+@media (min-width: 576px) {
+    .container-fluid {
+        --inis-container-width: 100%;
+    }
+}
+@media (min-width: 768px) {
+    .container-fluid {
+        --inis-container-width: 750px;
+    }
+}
+@media (min-width: 992px) {
+    .container-fluid {
+        --inis-container-width: 970px;
+    }
+}
+@media (min-width: 1200px) {
+    .container-fluid {
+        --inis-container-width: 1170px;
+    }
+}
+@media (min-width: 1400px) {
+    .container-fluid {
+        --inis-container-width: 1370px;
+    }
+}
+
+/* 手机尺寸 */
+@media screen and (max-width: 767px) {
+    #app .container-fluid{
+        margin-top: 0 !important;
+    }
+    .el-header.position-sticky {
+        top: 0 !important;
+    }
+    .el-footer.position-sticky{
+        bottom: 0 !important;
+    }
+    #sign .right.card{
+        width: 100% !important;
+    }
+    .el-dialog.custom{
+        --el-dialog-width: 96% !important;
+    }
+    .search{width: 200px!important;}
+    .el-drawer.box{width: calc(100vw - 40px) !important;}
+}
+
+/* 平板尺寸 */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    #app .container-fluid{
+        margin-top: 0 !important;
+    }
+    .el-header.position-sticky {
+        top: 0 !important;
+    }
+    .el-footer.position-sticky{
+        bottom: 0 !important;
+    }
+    #sign .right.card{
+        width: 100% !important;
+    }
+    .el-dialog.custom{
+        --el-dialog-width: 96% !important;
+    }
+}
+
+/* PC尺寸 */
+@media screen and (min-width: 1024px) {
+    .el-dialog.custom{
+        --el-dialog-width: 70%;
+    }
+}
+
+/* 通用 */
+@media (min-width: 768px) {
+    .el-dialog.custom{
+        --el-dialog-width: 35% !important;
+    }
+}
+
+@media (min-width: 1280px) {
+    .px-lg-16 {
+        padding-right: 64px !important;
+        padding-left: 64px !important;
+    }
+}
+@media (min-width: 600px) {
+    .px-sm-8 {
+        padding-right: 32px !important;
+        padding-left: 32px !important;
+    }
+}

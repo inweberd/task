@@ -3,6 +3,10 @@ import Test from '../pages/test/Test.vue'
 import Test4 from '../pages/test/Test4.vue'
 import type { RouteRecordRaw } from 'vue-router'
 
+import CommonSignIn from '@/views/common/pages/sign-in.vue'
+import CommonSignUp from '@/views/common/pages/sign-up.vue'
+import CommonSignForget from '@/views/common/pages/sign-forget.vue'
+
 const routes: RouteRecordRaw[] = [
   // {path: '/', redirect: '/attention'},
   { path: '/', redirect: '/home' },
@@ -28,7 +32,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/shop/GoodsDetail.vue')
   },
 
-  { path: '/me', component: () => import('@/pages/me/mine.vue') },
+  { path: '/me', component: () => import('@/pages/me/index.vue') },
   { path: '/nofinish', component: () => import('@/pages/me/nofinish.vue') },
   { path: '/gameNofinish', component: () => import('@/pages/me/gameNofinish.vue') },
   { path: '/CreditScoreDetail', component: () => import('@/pages/me/CreditScoreDetail.vue') },
@@ -195,10 +199,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/home/redpacket.vue')
   },
   // {path: '/login', component: Login},
-  { path: '/login', component: () => import('@/pages/login/Login.vue') },
-  { path: '/signUp', component: () => import('@/pages/login/signUp.vue') },
+  // { path: '/signUp', component: () => import('@/pages/login/signUp.vue') },
+  // { path: '/forget', component: () => import('@/pages/login/forget.vue') },
+  { path: '/login', redirect: '/common/sign-in' },
+  { path: '/signUp', redirect: '/common/sign-up' },
+  { path: '/forget', redirect: '/common/sign-forget' },
   { path: '/conversion', component: () => import('@/pages/me/conversion.vue') },
-  { path: '/forget', component: () => import('@/pages/login/forget.vue') },
   { path: '/invest', component: () => import('@/pages/me/invest.vue') },
   { path: '/myServe', component: () => import('@/pages/me/myServe.vue') },
   { path: '/serveInfo', component: () => import('@/pages/me/serveInfo.vue') },
@@ -212,6 +218,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/yonghu', component: () => import('@/pages/me/yonghu.vue') },
   { path: '/yinsi', component: () => import('@/pages/me/yinsi.vue') },
   { path: '/myteam', component: () => import('@/pages/me/myteam.vue') },
+  { path: '/mysub', component: () => import('@/pages/me/mysub.vue') },
   { path: '/fenxiang', component: () => import('@/pages/me/MyCard.vue') },
   { path: '/demo', component: () => import('@/pages/me/demo.vue') },
   { path: '/wallet', name: 'wallet', component: () => import('@/pages/me/wallet.vue') },
@@ -267,6 +274,31 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/home/search',
     component: () => import('@/pages/home/SearchPage.vue')
+  },
+  {
+    name: 'common',
+    path: '/common',
+    component: () => import('@/views/common/layout/base.vue'),
+    children: [
+      {
+        name: 'sign-in',
+        path: '/common/sign-in',
+        component: CommonSignIn,
+        meta: { title: '登录' }
+      },
+      {
+        name: 'sign-up',
+        path: '/common/sign-up',
+        component: CommonSignUp,
+        meta: { title: '注册' }
+      },
+      {
+        name: 'sign-forget',
+        path: 'sign-forget',
+        component: CommonSignForget,
+        meta: { title: '忘记密码' }
+      }
+    ]
   }
 ]
 

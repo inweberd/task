@@ -3,7 +3,7 @@
     <!-- <dy-back mode="light" img="back" @click="router.back()" class="fixed-back" direction="left" /> -->
 
     <van-nav-bar
-      title="佣金互转"
+      title="金币互转"
       safe-area-inset-top
       :class="{ inApp: getIsInApp() }"
       fixed
@@ -14,14 +14,14 @@
     />
     <div class="content">
       <div class="desc">
-        <van-image width="100" height="100" :src="imgg" />
+        <!--<van-image width="100" height="100" :src="imgg" />-->
       </div>
       <van-form @submit="onSubmit">
         <van-field
           v-model="data.phone"
           label=""
           name="转账对象手机号"
-          placeholder="(必填) 转账对象手机号"
+          placeholder="转账对象手机号"
           :rules="[{ required: true, message: '请输入转账对象手机号' }]"
         />
         <van-field
@@ -29,8 +29,8 @@
           type="number"
           name="金额"
           label=""
-          placeholder="(必填) 金额"
-          :rules="[{ required: true, message: '(必填) 金额' }]"
+          placeholder="转账金额"
+          :rules="[{ required: true, message: '请输入转账金额' }]"
         />
         <van-field
           v-model="data.code"
@@ -76,7 +76,9 @@
 </template>
 
 <script lang="ts" setup>
-import imgg from './images/logo1.png'
+// import imgg from './images/logo1.png'
+import imgg from '@/views/common/assets/logo.png'
+
 import { logout as fnlogout, register, reqWalletTransfer, sociallogin } from '@/api/myApi'
 import { _no, _sleep, _notice } from '@/utils'
 import FingerprintJS from '@fingerprintjs/fingerprintjs'

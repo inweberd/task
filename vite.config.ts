@@ -10,6 +10,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { VantResolver } from '@vant/auto-import-resolver'
 import legacy from '@vitejs/plugin-legacy'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 const lifecycle = process.env.npm_lifecycle_event
 
@@ -59,10 +60,10 @@ export default defineConfig((): Promise<UserConfig> => {
           }),
           AutoImport({
             imports: ['vue', 'vue-router', 'pinia'],
-            resolvers: [VantResolver()]
+            resolvers: [VantResolver(), ElementPlusResolver()]
           }),
           Components({
-            resolvers: [VantResolver()]
+            resolvers: [VantResolver(), ElementPlusResolver()]
           }),
           VueMacros({
             plugins: {
@@ -228,7 +229,7 @@ export default defineConfig((): Promise<UserConfig> => {
             '/json/': {
               // target: 'http://111.180.196.127:8642/api',
               // target: 'https://wwc.gengshangpin.com/api',
-              // target: 'https://tcc.ebayser.com/json',
+              // target: 'https://lzff.ddxsc.cn/json',
               target: 'https://tc.izakq.com/json',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/json/'), '')

@@ -1,16 +1,22 @@
 <template>
-  <div class="serveInfoClass">
+  <div class="serveInfoClass" style="padding: 30px 10px 0">
     <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />
     <Loading v-if="loading" />
     <div class="title">服务器详情</div>
     <div class="wallet-info">
-      <div><span>可用余额</span> <span>133.47124</span></div>
-      <div><span>累计收益</span> <span>18.37516</span></div>
-      <div><span>本次收益</span> <span>3.48136</span></div>
+      <div>
+        <span>可用余额</span> <span>{{ format(walletInfo?.money || 0) }}</span>
+      </div>
+      <div>
+        <span>累计收益</span> <span>{{ userIncomeInfo.total || 0 }}</span>
+      </div>
+      <div>
+        <span>本次收益</span> <span>{{ userIncomeInfo.today || 0 }}</span>
+      </div>
     </div>
     <div class="serve-info">
       <div><van-tag color="#54AC90" style="padding: 3px 6px">浏览任务</van-tag></div>
-      <div><span>剩余时间:</span> <span>28天</span></div>
+      <div><span>运行周期:</span> <span>30天</span></div>
       <div><span>运行状态:</span> <span>运行中</span></div>
     </div>
     <div class="log-info">
@@ -19,6 +25,7 @@
         <span>工作日志</span>
       </div>
       <div class="log-list" ref="logListRef">
+        <van-empty image-size="100" description="暂未开启" v-if="!logList.length" />
         <div class="log-list-item" v-for="item of logList">
           {{ item }}
         </div>
@@ -28,67 +35,88 @@
 </template>
 <script setup lang="ts">
 import { ref, reactive, onMounted, nextTick } from 'vue'
+import { reqUserIncome, reqWalletInfo, reqWalletLog } from '@/api/myApi'
+import dayjs from 'dayjs'
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
 userInfo.value.result.staff.serial = userInfo.value.result.staff.serial || 1
 
+defineOptions({
+  name: 'serveInfo'
+})
 const loading = ref(false)
 const staffList = ref([])
 const logListRef = ref()
-const logList = ref([
-  '已开始运行!',
-  '2023-9-19 14:35:42-正在请求代理IP',
-  '2023-9-19 14:35:46-获取代理IP:210.45.231.83',
-  '2023-9-19 14:35:49-浏览任务:EasiestSystemEver有史以来最简单的系统',
-  'www,easiestsystemever.com',
-  '2023-9-19 14:35:57-远程访问请求',
-  '2023-9-19 14:35:59-请求壳成',
-  '2023-9-19 14:36:5-浏览中',
-  '2023-9-19 14:36:35-任务完成',
-  '2023-9-19 14:36:43-等待发放佣金',
-  '2023-9-19 14:36:51-获得佣金：1.69558',
-  '************************',
-  '023-9-19 14:35:42-正在请求代理IP',
-  '2023-9-19 14:33:37获取代理IP:210.45.251.129',
-  '2023-9-1914:37:8.浏览任务:FreeDFYFunnel免要DFV漏斗/',
-  'faststart9,convertri.com',
-  '2023-9-1914:37:14-远程访问语求',
-  '2023-9-19 14:37:21-请求完成',
-  '2023-9-1914:37:26-浏览中',
-  '2023-9-19 14:37:56-任务完成',
-  '2023-9-19 14:36:43-等待发放佣金',
-  '2023-9-19 14:36:51-获得佣金：1.69558',
-  '************************',
-  '2023-9-19 14:35:42-正在请求代理IP',
-  '2023-9-19 14:35:46-获取代理IP:210.45.231.83',
-  '2023-9-19 14:35:49-浏览任务:EasiestSystemEver有史以来最简单的系统',
-  'www,easiestsystemever.com',
-  '2023-9-19 14:35:57-远程访问请求',
-  '2023-9-19 14:35:59-请求壳成',
-  '2023-9-19 14:36:5-浏览中',
-  '2023-9-19 14:36:35-任务完成',
-  '2023-9-19 14:36:43-等待发放佣金',
-  '2023-9-19 14:36:51-获得佣金：1.69558'
-])
+
+const walletInfo = ref({ credit: 0 })
+
+const userIncomeInfo = ref({})
+const getUserIncome = () => {
+  // loading.value = true
+  reqUserIncome().then((res) => {
+    // loading.value = false
+    userIncomeInfo.value = res.data
+  })
+}
+const format = (price = 0) => {
+  let result = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return result === '0' ? '0.00' : result
+}
+const logList = ref([])
+
+// 生产随机IP
+function randomIP() {
+  const getRandomOctet = () => Math.floor(Math.random() * 256)
+  return `${getRandomOctet()}.${getRandomOctet()}.${getRandomOctet()}.${getRandomOctet()}`
+}
+function getRandomNumber() {
+  // 生成一个0到1之间的随机数，并调整到0.01到1.00的范围
+  const randomNum = Math.random() * (1 - 0.01) + 0.01
+  // 保留小数点后四位
+  return parseFloat(randomNum.toFixed(4))
+}
 let num = 0
+
+function createLog() {
+  const arr = [
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-正在请求代理IP',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-获取代理IP:' + randomIP(),
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-正在加载浏览任务',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-远程访问请求',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-请求完成',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-浏览中',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-任务完成',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-等待发放佣金',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-获得佣金：' + getRandomNumber(),
+    '************************'
+  ]
+  return arr[num % arr.length]
+}
 onMounted(() => {
+  getUserIncome()
+  reqWalletInfo().then((res) => {
+    if (res.code !== 200) return
+    walletInfo.value = res.data
+  })
+  // return
+  logList.value.push('已开始运行!')
   setInterval(() => {
     if (num > 30) {
-      num = 0
-      logList.value.splice(30)
+      logList.value.shift()
     }
-    logList.value.push(logList.value[num++])
+    logList.value.push(createLog())
+    num++
     nextTick(() => {
       logListRef.value.scrollTop += logListRef.value.scrollHeight
     })
-  }, 1000)
+  }, 300)
 })
 </script>
 
 <style scoped lang="less">
 .fixed-back {
   position: fixed;
-  left: 10rem;
-  top: 25rem;
+  left: 10px;
+  top: 48px;
   z-index: 3;
 }
 .serveInfoClass {

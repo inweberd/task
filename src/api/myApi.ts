@@ -42,6 +42,11 @@ export function reqAllStaff(data) {
   return axiosInstance({ url: 'api/staff/all', method: 'get', params: data })
 }
 
+// 获取全部会员
+export function reqMyStaff() {
+  return axiosInstance({ url: 'api/staff-entry/mine', method: 'get' })
+}
+
 // 创建订单
 export function reqCreateOrder(data) {
   return axiosInstance({ url: 'api/order/create', method: 'post', data })
@@ -69,12 +74,13 @@ export function reqUserIncome() {
 
 // 购买会员
 export function reqEnterStaff(data) {
-  return axiosInstance({ url: 'api/staff-entry/ok', method: 'post', data })
+  // return axiosInstance({ url: 'api/staff-entry/ok', method: 'post', data })
+  return axiosInstance({ url: 'api/staff-entry/rent', method: 'post', data })
 }
 
 // 记录任务
-export function reqRecordTask(data) {
-  return axiosInstance({ url: 'api/staff-entry/task', method: 'post', data })
+export function reqRecordTask() {
+  return axiosInstance({ url: 'api/staff-entry/quick-task', method: 'post' })
 }
 
 // 记录任务

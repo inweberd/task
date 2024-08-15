@@ -49,6 +49,10 @@ app.use(router)
 app.mount('#app')
 app.directive('click', vClick)
 
+// 初始化状态管理器
+import { useUsers } from '@/store/users'
+useUsers().init()
+
 //放到最后才可以使用pinia
 // startMock()
 setTimeout(() => {

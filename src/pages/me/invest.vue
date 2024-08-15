@@ -1,15 +1,29 @@
 <template>
-  <div style="background-color: #322c36; padding: 40px 20px 0">
+  <div style="background-color: #322c36; padding: 40px 20px 50px; overflow-y: auto">
     <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />
     <Loading v-if="loading" />
 
     <div class="title">服务器列表</div>
 
-    <div style="overflow: scroll; background-color: #332d37">
+    <div style="background-color: #332d37">
       <div class="stat">
         <div class="stat-header">
-          <div>任务累计收益: <span class="money">￥4484.27</span></div>
-          <div>服务消费:<span class="money">￥13000.27</span></div>
+          <div>
+            个人收益: <span class="money">￥{{ userIncomeInfo.total || 0 }}</span>
+          </div>
+          <div>
+            购买消费:<span class="money">￥{{ totalSpend }}</span>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: center">
+          <van-button
+            style="width: 80%; margin: 10px"
+            color="#54AC90"
+            text="开始赚钱"
+            type="primary"
+            loading-text="加载中..."
+            @click="getRedBag"
+          />
         </div>
       </div>
       <div v-for="(item, index) of staffList" class="staff-list">
@@ -17,30 +31,41 @@
           <div class="img">
             <img :src="getIconPath((index % 5) + 1)" alt="" />
           </div>
-          <div class="name">TK服务器-4核8G共享服务器</div>
+          <div class="name">{{ item.name }}</div>
           <div class="price" @click="toDetail">
             价格：<span class="money">￥{{ item.price }}</span>
             <van-icon name="arrow" size="18" class="arrow" />
           </div>
           <div class="info">
-            <div class="info-item">设备状态：<span class="status">运行中</span></div>
+            <div class="info-item">
+              设备状态：
+              <span
+                class="status"
+                :style="{
+                  color: myStaffList.includes(item.serial) ? '#7889ef' : '#E85858'
+                }"
+              >
+                {{ myStaffList.includes(item.serial) ? '运行中' : '未启用' }}
+              </span>
+            </div>
             <div class="info-item">有效期：30天</div>
-            <div class="info-item">账号数量：1567/2200</div>
+            <!--<div class="info-item">账号数量：{{ getRandom() }}/3500</div>-->
+            <div class="info-item">账号数量：{{ numArr[index] }}</div>
             <div class="info-item">预估收益：{{ item.unit_price }}/天</div>
           </div>
           <div
+            v-if="!myStaffList.includes(item.serial)"
             class="buy-btn"
-            :style="{
-              background: getBuyBtnBg(item)
-            }"
+            style="background-color: #666cf8"
             @click="buy(item)"
           >
-            点我开通
+            <van-button type="primary" size="small">开通</van-button>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <BaseFooter v-bind:init-tab="5" :is-white="false" />
 </template>
 <script setup lang="ts">
 import QRCode from 'qrcode'
@@ -49,23 +74,45 @@ import imageSrc1 from '@/assets/img/hehuoren.jpg'
 import imageSrc2 from '@/assets/img/hehuoren2.png'
 import imageSrc3 from '@/assets/img/goumai.png'
 import { ref, reactive, onMounted } from 'vue'
-import { reqAllStaff, reqEnterStaff, reqUserStaff, reqWalletInfo } from '@/api/myApi.js'
+import {
+  reqAllStaff,
+  reqCreateShareLog,
+  reqEnterStaff,
+  reqMyStaff,
+  reqRecordTask,
+  reqTaskMoney,
+  reqUserIncome,
+  reqUserStaff,
+  reqWalletInfo
+} from '@/api/myApi.js'
 import { showFailToast, showNotify, showToast } from 'vant'
 import { _notice } from '@/utils'
 import { useRouter } from 'vue-router'
 import { getSerialName } from '@/utils/getSerialName'
 import { userinfo } from '@/api/user'
+import dayjs from 'dayjs'
+import BaseFooter from '@/components/BaseFooter.vue'
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
-userInfo.value.result.staff.serial = userInfo.value.result.staff.serial || 1
+
+defineOptions({
+  name: 'invest'
+})
+const numArr = [50, 250, 500, 1000, 2000, 4000]
+const userIncomeInfo = ref({})
+const totalSpend = ref(0)
 
 const loading = ref(true)
 const staffList = ref([])
+const myStaffList = ref([])
 const searchInfo = reactive({
   page: 1,
   limit: 20,
   order: 'serial asc'
 })
 const router = useRouter()
+const getRandom = () => {
+  return Math.floor(Math.random() * 300) + 1500
+}
 const getAllStaff = () => {
   loading.value = true
   reqAllStaff(searchInfo).then((res: any) => {
@@ -75,9 +122,9 @@ const getAllStaff = () => {
 }
 
 const buy = (item) => {
-  if (userInfo.value.result.staff.serial + 1 !== item.serial) {
-    return _notice('请逐级开通！')
-  }
+  // if (userInfo.value.result.staff.serial + 1 !== item.serial) {
+  //   return _notice('请逐级开通！')
+  // }
   loading.value = true
   console.log('item', item)
   loading.value = true
@@ -96,19 +143,26 @@ const buy = (item) => {
         loading.value = false
         _notice(sub_res.msg)
         if (res.code === 200) {
-          reqUserStaff().then((userRes) => {
-            if (userRes.code !== 200) return _notice(userRes.msg)
-            console.log('reqUserStaff', userRes)
-
-            userInfo.value.result.staff = userRes.data.result.staff
-            window.localStorage.setItem('userInfo', JSON.stringify(userInfo.value))
-          })
+          getMyStaff()
+          // reqUserStaff().then((userRes) => {
+          //   if (userRes.code !== 200) return _notice(userRes.msg)
+          //   console.log('reqUserStaff', userRes)
+          //
+          //   userInfo.value.result.staff = userRes.data.result.staff
+          //   window.localStorage.setItem('userInfo', JSON.stringify(userInfo.value))
+          // })
         }
       })
     }
   })
 }
-
+const getUserIncome = () => {
+  // loading.value = true
+  reqUserIncome().then((res) => {
+    // loading.value = false
+    userIncomeInfo.value = res.data
+  })
+}
 const getBuyBtnBg = (item) => {
   return userInfo.value.result.staff.serial + 1 === item.serial ? '#e85858' : '#666CF8'
 }
@@ -119,8 +173,88 @@ const toDetail = () => {
 const getIconPath = (icon) => {
   return new URL(`../../assets/img/serve/${icon}.png`, import.meta.url).href
 }
+
+const getRedBag = () => {
+  console.log('userInfo.value?.result?.staff?.serial', userInfo.value)
+  if (!userInfo.value?.result?.staff?.serial) {
+    return showDialog({
+      message: '请先购买服务器！'
+    })
+  }
+  // if (localStorage.isShare !== dayjs().format('YYYY-MM-DD')) {
+  //   showConfirmDialog({
+  //     message: '请先进行每日分享！',
+  //     confirmButtonText: '去分享'
+  //   }).then(() => {
+  //     if (window.webkit?.messageHandlers) {
+  //       localStorage.isShare = dayjs().format('YYYY-MM-DD')
+  //     }
+  //
+  //     window.shareFriend()
+  //     // on close
+  //     // loadPlayRewardVideo(() => {
+  //     //   sessionStorage.seeVideoGetEarnedCash = true
+  //     // })
+  //   })
+  //   return
+  // }
+  reqRecordTask().then((res) => {
+    if (res.code === 412) {
+      showConfirmDialog({
+        message: '请先进行每日分享！',
+        confirmButtonText: '去分享'
+      }).then(() => {
+        if (window.webkit?.messageHandlers) {
+          localStorage.isShare = dayjs().format('YYYY-MM-DD')
+          reqCreateShareLog().then((res) => {
+            console.log('reqCreateShareLog', res)
+          })
+        }
+
+        window.shareFriend()
+        // on close
+        // loadPlayRewardVideo(() => {
+        //   sessionStorage.seeVideoGetEarnedCash = true
+        // })
+      })
+      return
+    }
+
+    loading.value = false
+    if (res.code === 200) {
+      // _notice('')
+      getUserIncome()
+    }
+    router.push('/serveInfo')
+
+    // let msg = '已进入服务器队列！'
+    // showDialog({
+    //   message: msg,
+    //   theme: 'round-button'
+    // })
+    // tipContent.value = res.msg
+    // showTip.value = true
+  })
+}
+const getMyStaff = () => {
+  reqMyStaff().then((res) => {
+    myStaffList.value = res.data.map((item) => item.staff_id)
+    const sum = res.data.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.result.staff.price,
+      0
+    )
+    totalSpend.value = sum
+    if (res.data.length) {
+      res.data.sort((a, b) => a.result.staff.serial - b.result.staff.serial)
+      userInfo.value.result.staff.serial = res.data[res.data.length - 1].result.staff.serial
+      window.localStorage.setItem('userInfo', JSON.stringify(userInfo.value))
+    }
+  })
+}
 onMounted(() => {
   getAllStaff()
+  getUserIncome()
+  getMyStaff()
 })
 </script>
 
@@ -168,7 +302,7 @@ onMounted(() => {
   margin-top: 20px;
   background-image: linear-gradient(180deg, #494052 10%, #322c36 100%);
   border-radius: 10px 10px 0 0;
-  height: 70px;
+  height: auto;
 
   .stat-header {
     line-height: 40px;
@@ -249,10 +383,9 @@ onMounted(() => {
   }
   .buy-btn {
     text-align: center;
-    width: 20px;
     position: absolute;
     right: 0;
-    bottom: 0px;
+    bottom: 30px;
   }
 }
 </style>

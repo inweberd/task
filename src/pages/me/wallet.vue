@@ -23,40 +23,40 @@
           <div class="balance-amount">￥{{ method.format(state.wallet?.amount || 0) }}</div>
         </div>
         <div>
-          <div class="balance-text">当前佣金</div>
+          <div class="balance-text">可提现余额</div>
           <div class="balance-amount">￥{{ method.format(state.wallet?.money || 0) }}</div>
         </div>
       </div>
       <div class="balance-actions">
-        <van-image
-          :src="imageSrc"
-          width="100"
-          height="100%"
-          fit="fill"
-          class="action-button"
-          @click="go('recharge')"
-        ></van-image>
         <!-- <van-button type="primary" plain icon="plus" class="action-button">充值</van-button> -->
         <van-button
           type="primary"
           icon="balance-list-o"
           class="action-button"
+          @click="go('recharge')"
+          color="#1989FA"
+          >购买</van-button
+        >
+        <van-button
+          type="primary"
+          icon="balance-list-o"
+          class="action-button"
           @click="go('/dep')"
-          color="#F56D17"
-          >佣金提现</van-button
+          color="#1989FA"
+          >提现</van-button
         >
 
         <!-- <van-image :src="imageSrc" width="100" height="100%"   fit="fill" class="action-button"></van-image> -->
       </div>
     </div>
     <van-tabs v-model:active="activeTab" @change="change">
-      <van-tab title="收入" name="收入">
+      <van-tab title="收入明细" name="收入">
         <wallet-income v-if="activeTab === '收入'"></wallet-income>
       </van-tab>
-      <van-tab title="支出" name="支出">
+      <van-tab title="支出明细" name="支出">
         <wallet-expense v-if="activeTab === '支出'"></wallet-expense>
       </van-tab>
-      <van-tab title="提现" name="提现">
+      <van-tab title="提现记录" name="提现">
         <wallet-withdraw v-if="activeTab === '提现'"></wallet-withdraw>
       </van-tab>
     </van-tabs>

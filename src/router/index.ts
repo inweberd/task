@@ -2,6 +2,8 @@ import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router
 import routes from './routes'
 import { useBaseStore } from '@/store/pinia'
 import { IS_SUB_DOMAIN } from '@/config'
+import { useUsers } from '@/store/users'
+import { storeToRefs } from 'pinia'
 
 const router = createRouter({
   // history: IS_SUB_DOMAIN ? createWebHashHistory() : createWebHistory(),
@@ -21,8 +23,16 @@ const isWeChatBrowser =
   navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1 ||
   navigator.userAgent.toLowerCase().indexOf('qqbrowser') !== -1 ||
   navigator.userAgent.toLowerCase().indexOf('qq') !== -1
-let routeDeep = ['/signUp', '/forget', 'fenxiang', 'test']
-router.beforeEach((to, from) => {
+let routeDeep = [
+  '/signUp',
+  '/forget',
+  'fenxiang',
+  'test',
+  '/common/sign-in',
+  '/common/sign-up',
+  '/common/sign-forget'
+]
+router.beforeEach(async (to, from) => {
   // console.log()
 
   // if (
@@ -39,14 +49,23 @@ router.beforeEach((to, from) => {
   //   return
   // }
 
+  const user = useUsers()
+  const { status } = storeToRefs(user)
+
+  // 检查用户登录状态
+  await user.AsyncCheck().catch(() => {})
+
+  if (!status.value.check && !status.value.login) return '/common/sign-in'
+
   let token = window.localStorage.getItem('token')
   if (routeDeep.some((e) => to.fullPath.includes(e))) {
     return true
   }
 
-  if (!token && to.fullPath !== '/login' && !routeDeep.some((e) => e === to.fullPath)) {
-    return '/login'
+  if (!token && to.fullPath !== '/common/sign-in' && !routeDeep.some((e) => e === to.fullPath)) {
+    return '/common/sign-in'
   }
+
   const baseStore = useBaseStore()
   //footer下面的5个按钮，对跳不要用动画
   const noAnimation = ['/', '/home', '/me', '/shop', '/message', '/publish', '/home/live', '/test']

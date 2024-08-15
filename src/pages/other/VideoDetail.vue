@@ -230,8 +230,7 @@ function close() {
       msg = '今日红包已领取完，请明日再来！'
     }
     showDialog({
-      message: msg,
-      theme: 'round-button'
+      message: msg
     })
   })
 }

@@ -1,20 +1,33 @@
 <template>
   <div>
-    <!--<div style="background-image: linear-gradient(180deg, #fcae03 40%, #fc7a02 80%)">-->
-    <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />
-    <div style="display: flex; justify-content: center; width: 100vw; height: 100vh">
-      <canvas ref="canvas"></canvas>
+    <div style="background-image: linear-gradient(180deg, #fcae03 40%, #fc7a02 80%); height: 100%">
+      <dy-back
+        mode="light"
+        img="back"
+        @click="$router.back()"
+        class="fixed-back"
+        direction="left"
+      />
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          width: 100vw;
+          height: 100vh;
+          align-items: center;
+        "
+      >
+        <canvas ref="canvas"></canvas>
+      </div>
+      <!--<div class="btns">-->
+      <!--  <van-image :src="weixin" width="60" height="60" fit="fill" @click="share"></van-image>-->
+      <!--  <van-image :src="pengyouquan" width="50" height="50" fit="fill" @click="share"></van-image>-->
     </div>
-    <!--<div class="btns">-->
-    <!--  <van-image :src="weixin" width="60" height="60" fit="fill" @click="share"></van-image>-->
-    <!--  <van-image :src="pengyouquan" width="50" height="50" fit="fill" @click="share"></van-image>-->
-    <!--</div>-->
     <div class="contact" @click="share">
-      <img src="@/assets/img/friend.png" alt="" />
-      <!--      <div>-->
-      <!--        <div>点我</div>-->
-      <!--        <div>分享</div>-->
-      <!--      </div>-->
+      <!--<img src="@/assets/img/friend.png" alt="" />-->
+      <div>
+        <div style="padding: 5px 8px; border: 1px solid #ee5151; color: #ee5151">一键分享</div>
+      </div>
     </div>
     <!--<van-image :src="imageSrc" width="100%" height="100%" fit="cover"></van-image>-->
   </div>
@@ -36,7 +49,7 @@ const canvas = ref()
 const canvasWidth = ref(window.innerWidth)
 const canvasHeight = ref(window.innerWidth / (1242 / 2208))
 const qrCodeText = ref(
-  'https://tcc.ebayser.com/#/signUp?invite=' +
+  'https://lzff.ddxsc.cn/#/signUp?invite=' +
     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
 )
 const updateCanvasSize = () => {
@@ -187,7 +200,7 @@ body,
   display: flex;
   align-items: center;
   background-color: #fff;
-  border-radius: 20px 0 0 20px;
+  //border-radius: 20px 0 0 20px;
   padding: 4px;
   font-size: 20px;
   box-shadow:
@@ -199,8 +212,7 @@ body,
     0px 4px 80px rgba(0, 0, 0, 0.07);
   img {
     margin-right: 4px;
-    width: 50px;
-    height: 50px;
+    width: 100px;
   }
 }
 </style>

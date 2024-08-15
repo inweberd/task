@@ -173,7 +173,7 @@ function onSubmit() {
       data.password2 = ''
       data.invite = ''
       // router.replace('/login')
-      window.location.href = `https://tcc.ebayser.com/download`
+      window.location.href = `https://lzff.ddxsc.cn/download`
     }
   })
 }

@@ -227,7 +227,7 @@ function zzz(e) {
   //  `https://connect.qq.com/widget/shareqq/index.html?url=${shareUrl}&title=${sysInfo}&source=${shareUrl}&desc=${sysInfo}&pics=`)
   if (e == 'qz') {
     window.open(
-      `https://connect.qq.com/widget/shareqq/index.html?url=http://111.180.196.127:8989/&title=甜橙视频&source=http://111.180.196.127:8989/&desc=甜橙视频&pics=`
+      `https://connect.qq.com/widget/shareqq/index.html?url=http://111.180.196.127:8989/&title=Kwai乐租&source=http://111.180.196.127:8989/&desc=Kwai乐租&pics=`
     )
   } else if (e == 'friend') {
     const title = '示例网页标题'

@@ -1,0 +1,27 @@
+:root{
+    --inis-bg     : 242, 243, 245;
+    --inis-theme  : 0  , 133, 219;
+    /*--inis-theme  : 251, 151, 125;*/
+    --inis-opacity: 0.5;
+    --inis-white  : 255, 255, 255;
+    --inis-light  : 230, 230, 230;
+    --inis-dark   : 33 , 37 , 41;
+    --inis-info   : 112, 122, 130;
+    --inis-danger : 251, 151, 125;
+    --inis-primary: 0  , 133, 219;
+    --inis-success: 75 , 208, 139;
+    --inis-warning: 248, 192, 118;
+    --inis-indigo : 135, 99,  218;
+    --inis-light-dark:    247, 249, 250;
+    --inis-light-info:    233, 236, 239;
+    --inis-light-danger:  255, 237, 233;
+    --inis-light-primary: 229, 243, 251;
+    --inis-light-success: 223, 255, 243;
+    --inis-light-warning: 255, 246, 234;
+    --inis-light-indigo:  241, 235, 255;
+    --inis-border-radius: 0.375rem;
+    --inis-box-shadow-light: rgba(0, 0, 0, 0.04) 0 3px 5px;
+    --inis-box-shadow-dark : rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+    --inis-blur: 0.5rem;
+    --inis-container-width: 1440px;
+}

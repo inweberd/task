@@ -25,7 +25,7 @@
           <div class="info">
             <div class="info-item">设备状态：<span class="status">运行中</span></div>
             <div class="info-item">有效期：30天</div>
-            <div class="info-item">账号数量：1567/2200</div>
+            <div class="info-item">账号数量：{{ getRandom() }}/3500</div>
             <div class="info-item">预估收益：{{ item.unit_price }}/天</div>
           </div>
         </div>
@@ -48,7 +48,6 @@ import { getSerialName } from '@/utils/getSerialName'
 import { userinfo } from '@/api/user'
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
 userInfo.value.result.staff.serial = userInfo.value.result.staff.serial || 1
-
 const loading = ref(true)
 const staffList = ref([])
 const searchInfo = reactive({
@@ -64,7 +63,9 @@ const getAllStaff = () => {
     staffList.value = res.data.data
   })
 }
-
+const getRandom = () => {
+  return Math.floor(Math.random() * 300) + 1500
+}
 const buy = (item) => {
   if (userInfo.value.result.staff.serial + 1 !== item.serial) {
     return _notice('请逐级开通！')

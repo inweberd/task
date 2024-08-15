@@ -2,7 +2,7 @@
   <div class="withdraw-page">
     <van-nav-bar title="提现" left-arrow @click-left="$router.back()" />
     <Loading v-if="loading" />
-    <van-image :src="tixian" width="100%" height="100%;"></van-image>
+    <!--<van-image :src="tixian" width="100%" height="100%;"></van-image>-->
 
     <van-tabs v-model:active="active">
       <van-tab title="选择提现">
@@ -39,13 +39,23 @@
           round
           block
           type="primary"
-          color="#F56D17"
+          color="#1989FA"
           @click="goPay"
           :loading="tixianLoading"
           loading-text="加载中..."
           :disabled="tixianLoading"
           >申请提现</van-button
         >
+        <div class="desc">
+          <!--<div class="desc-title">提现流程</div>-->
+          <p><span class="index">1.</span> 提现时间早上11点-20点。</p>
+          <p><span class="index">2.</span> 提现手续费固定3%</p>
+          <p><span class="index">3.</span> 单笔最低15元起提，单笔最高5万元</p>
+          <!--          <p>-->
+          <!--            <span class="index">6.</span>-->
+          <!--            推荐优先使用K豆钱包和JD钱包充提，永不风控，钱包里面内置支付宝，微信，银行卡，USDT等多种到账方式，自由转换，安全，方便快捷-->
+          <!--          </p>-->
+        </div>
       </van-tab>
       <van-tab title="绑定提现">
         <van-tabs v-model:active="active_">
@@ -63,7 +73,7 @@
             <van-button
               type="primary"
               style="margin-top: 30px"
-              color="#F56D17"
+              color="#1989FA"
               block
               @click="save('bank')"
               :loading="bindLoading"
@@ -84,7 +94,7 @@
             <van-button
               type="primary"
               style="margin-top: 30px"
-              color="#F56D17"
+              color="#1989FA"
               block
               @click="save('ali')"
               >保存</van-button
@@ -97,7 +107,7 @@
               钱包地址为钱包主页界面的34位字母+数字组合。
             </p>
             <van-button
-              color="#F56D17"
+              color="#1989FA"
               type="primary"
               style="margin-top: 30px"
               block
@@ -115,7 +125,7 @@
             <!--            </p>-->
 
             <van-button
-              color="#F56D17"
+              color="#1989FA"
               ty
               pe="primary"
               style="margin-top: 30px"
@@ -267,18 +277,17 @@ const card = async () => {
   setPay()
 }
 async function goPay() {
-  if (!sessionStorage.seeVideoWithdrawal) {
-    showDialog({
-      message: '观看激励视频进行提现！遇到问题请及时联系客服！',
-      theme: 'round-button'
-    }).then(() => {
-      // on close
-      loadPlayRewardVideo(() => {
-        sessionStorage.seeVideoWithdrawal = true
-      })
-    })
-    return
-  }
+  // if (!sessionStorage.seeVideoWithdrawal) {
+  //   showDialog({
+  //     message: '观看激励视频进行提现！遇到问题请及时联系客服！'
+  //   }).then(() => {
+  //     // on close
+  //     loadPlayRewardVideo(() => {
+  //       sessionStorage.seeVideoWithdrawal = true
+  //     })
+  //   })
+  //   return
+  // }
   tixianLoading.value = true
   const { code, msg } = await axios.post('/api/wallet-fetch/create', {
     money: money.value,

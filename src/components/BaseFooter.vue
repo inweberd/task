@@ -129,7 +129,7 @@ export default {
           this.$nav('/home/music-rank-list')
           break
         case 5:
-          this.$nav('/me')
+          this.$nav('/invest')
           break
         case 6:
           this.$nav('/myteam')
@@ -206,7 +206,7 @@ export default {
       border-radius: 6px;
       box-sizing: border-box;
       padding: 0 2px;
-      border: 3px solid white;
+      //border: 3px solid white;
       display: flex;
       align-items: center;
       justify-content: center;

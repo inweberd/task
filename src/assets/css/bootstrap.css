@@ -1,0 +1,124 @@
+.card{
+    --bs-card-border-color: transparent;
+    box-shadow: var(--inis-box-shadow-light);
+}
+
+.bg-dark {
+    --bs-primary-rgb: var(--inis-dark);
+}
+.bg-info {
+    --bs-primary-rgb: var(--inis-info);
+}
+.bg-danger {
+    --bs-primary-rgb: var(--inis-danger);
+}
+.bg-primary {
+    --bs-primary-rgb: var(--inis-primary);
+}
+.bg-success {
+    --bs-primary-rgb: var(--inis-success);
+}
+.bg-warning {
+    --bs-primary-rgb: var(--inis-warning);
+}
+.bg-indigo {
+    --bs-primary-rgb: var(--inis-indigo);
+}
+.bs-bg-dark-hover:hover {
+    background: rgba(var(--inis-dark), var(--bs-bg-opacity));
+}
+.bs-bg-light-hover:hover {
+    background: rgba(var(--inis-light), var(--bs-bg-opacity));
+}
+.bs-bg-white-hover:hover {
+    background: rgba(var(--inis-white), var(--bs-bg-opacity));
+}
+.bs-bg-info-hover:hover {
+    background: rgba(var(--inis-info), var(--bs-bg-opacity));
+}
+.bs-bg-danger-hover:hover {
+    background: rgba(var(--inis-danger), var(--bs-bg-opacity));
+}
+.bs-bg-primary-hover:hover {
+    background: rgba(var(--inis-primary), var(--bs-bg-opacity));
+}
+.bs-bg-success-hover:hover {
+    background: rgba(var(--inis-success), var(--bs-bg-opacity));
+}
+.bs-bg-warning-hover:hover {
+    background: rgba(var(--inis-warning), var(--bs-bg-opacity));
+}
+.bs-bg-indigo-hover:hover {
+    background: rgba(var(--inis-indigo), var(--bs-bg-opacity));
+}
+.--bs-bg-opacity-1 {
+    --bs-bg-opacity: 0.1;
+}
+.--bs-bg-opacity-2{
+    --bs-bg-opacity: 0.2;
+}
+.--bs-bg-opacity-3{
+    --bs-bg-opacity: 0.3;
+}
+.--bs-bg-opacity-4{
+    --bs-bg-opacity: 0.4;
+}
+.--bs-bg-opacity-5{
+    --bs-bg-opacity: 0.5;
+}
+.--bs-bg-opacity-6{
+    --bs-bg-opacity: 0.6;
+}
+.--bs-bg-opacity-7{
+    --bs-bg-opacity: 0.7;
+}
+.--bs-bg-opacity-8{
+    --bs-bg-opacity: 0.8;
+}
+.--bs-bg-opacity-9{
+    --bs-bg-opacity: 0.9;
+}
+.--bs-bg-opacity-10{
+    --bs-bg-opacity: 1;
+}
+
+.card.ripple{
+    --bg: #f1f1f1;
+    --contrast: #f9f9f9;
+    --grey: #d9d9d9;
+    position: relative;
+    padding: 12px;
+    border-radius: 20px;
+    background-color: var(--contrast);
+}
+.card.ripple .card-body{
+    position: relative;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: var(--bs-body-bg);
+    transition: box-shadow 0.3s;
+}
+.card.ripple::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(45deg, var(--bg), var(--grey) 20px);
+    filter: opacity(10%);
+}
+
+.user-select-text {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    user-select: text !important;
+}
+
+.text-shadow{
+    text-shadow: 0 0 20px rgba(0, 0, 0, .8);
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.ms-n2 {
+    margin-left: -.75rem;
+}

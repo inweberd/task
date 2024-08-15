@@ -102,6 +102,13 @@
         </div>
       </div>
     </div>
+    <div class="contact" @click="$router.push('/article?id=5')">
+      <img src="@/assets/img/jieshao.png" />
+      <div>
+        <div>玩法</div>
+        <div>介绍</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -246,5 +253,27 @@ body {
 }
 .text-white {
   color: #fff !important;
+}
+.contact {
+  position: fixed;
+  top: 10%;
+  right: 0;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  color: #000;
+  border-radius: 20px 0 0 20px;
+  padding: 4px;
+  box-shadow:
+    0px 0.1px 2.2px rgba(0, 0, 0, 0.02),
+    0px 0.3px 5.3px rgba(0, 0, 0, 0.028),
+    0px 0.5px 10px rgba(0, 0, 0, 0.035),
+    0px 0.9px 17.9px rgba(0, 0, 0, 0.042),
+    0px 1.7px 33.4px rgba(0, 0, 0, 0.05),
+    0px 4px 80px rgba(0, 0, 0, 0.07);
+  img {
+    margin-right: 4px;
+    width: 25px;
+  }
 }
 </style>

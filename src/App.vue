@@ -117,7 +117,8 @@ watch(
       '/test',
       '/longvideo',
       '/login',
-      '/myteam'
+      '/myteam',
+      '/invest'
     ]
     if (noAnimation.indexOf(from) !== -1 && noAnimation.indexOf(to) !== -1) {
       return (transitionName.value = '')
@@ -186,7 +187,7 @@ const generatePoster = async () => {
       const qrCodeX = canvasWidth.value / 2
       const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
 
-      ctx.drawImage(avatarImage, qrCodeX - 20, qrCodeY, 50, 55)
+      ctx.drawImage(avatarImage, qrCodeX - 20, qrCodeY + 10, 50, 55)
     }
     const shareBtnBgImage = new Image()
     shareBtnBgImage.src = shareBtnBg
@@ -209,9 +210,9 @@ const generatePoster = async () => {
     ctx.fillText(
       userInfo.phone ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7) : '',
       qrCodeX + 40,
-      qrCodeY + 35
+      qrCodeY + 45
     )
-    ctx.fillText('邀请你来体验乐租', qrCodeX - 20, qrCodeY + 78)
+    // ctx.fillText('邀请你来体验乐租', qrCodeX - 20, qrCodeY + 78)
   }
 }
 onMounted(() => {
@@ -269,9 +270,11 @@ onMounted(() => {
   let timer = setInterval(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
-      qrCodeText.value =
-        'https://lzff.ddxsc.cn/#/signUp?invite=' +
-        JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code
+      'https://bbbwx815a11.s3.amazonaws.com/index.html?target=' +
+        encodeURIComponent(
+          'https://lzff.ddxsc.cn/#/signUp?invite=' +
+            JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
+        )
       generatePoster()
     }
   }, 1000)

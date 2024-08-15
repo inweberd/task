@@ -30,7 +30,8 @@ let routeDeep = [
   'test',
   '/common/sign-in',
   '/common/sign-up',
-  '/common/sign-forget'
+  '/common/sign-forget',
+  '/article'
 ]
 router.beforeEach(async (to, from) => {
   // console.log()

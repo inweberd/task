@@ -65,9 +65,9 @@
       <div class="invest-btn" @click="$router.push('/me/my-card')"></div>
     </div>
     <van-cell-group inset>
-      <van-cell title="我的服务器" is-link @click="go('/invest')" />
-      <van-cell title="收支明细" is-link @click="go('/wallet')" />
-      <van-cell title="每日分享" is-link @click="go('/fenxiang')" />
+      <!--<van-cell title="我的服务器" is-link @click="go('/invest')" />-->
+      <van-cell title="收支明细 （提现）" is-link @click="go('/wallet')" />
+      <!--<van-cell title="每日分享" is-link @click="go('/fenxiang')" />-->
       <van-cell title="金币互转" is-link @click="go('/conversion', true)" />
       <van-cell title="团队星级" is-link @click="go('/demo', true)" />
       <van-cell title="APP下载" is-link @click="goDownload" />

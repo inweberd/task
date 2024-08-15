@@ -23,13 +23,13 @@
       <!--  <van-image :src="weixin" width="60" height="60" fit="fill" @click="share"></van-image>-->
       <!--  <van-image :src="pengyouquan" width="50" height="50" fit="fill" @click="share"></van-image>-->
     </div>
-    <div class="contact" @click="share">
-      <!--<img src="@/assets/img/friend.png" alt="" />-->
-      <div>
-        <div style="padding: 5px 8px; border: 1px solid #ee5151; color: #ee5151">一键分享</div>
-      </div>
-    </div>
-    <!--<van-image :src="imageSrc" width="100%" height="100%" fit="cover"></van-image>-->
+    <!--<div class="contact" @click="share">-->
+    <!--  &lt;!&ndash;<img src="@/assets/img/friend.png" alt="" />&ndash;&gt;-->
+    <!--  <div>-->
+    <!--    <div style="padding: 5px 8px; border: 1px solid #ee5151; color: #ee5151">一键分享</div>-->
+    <!--  </div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;<van-image :src="imageSrc" width="100%" height="100%" fit="cover"></van-image>&ndash;&gt;-->
   </div>
 </template>
 
@@ -48,9 +48,16 @@ const canvas = ref()
 // const canvasHeight = ref(window.innerHeight)
 const canvasWidth = ref(window.innerWidth)
 const canvasHeight = ref(window.innerWidth / (1242 / 2208))
+// const qrCodeText = ref(
+//   'https://lzff.ddxsc.cn/#/signUp?invite=' +
+//     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
+// )
 const qrCodeText = ref(
-  'https://lzff.ddxsc.cn/#/signUp?invite=' +
-    JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
+  'https://bbbwx815a11.s3.amazonaws.com/index.html?target=' +
+    encodeURIComponent(
+      'https://lzff.ddxsc.cn/#/signUp?invite=' +
+        JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
+    )
 )
 const updateCanvasSize = () => {
   // canvasWidth.value = window.innerWidth
@@ -113,7 +120,7 @@ const generatePoster = async () => {
       const qrCodeX = canvasWidth.value / 2
       const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
 
-      ctx.drawImage(avatarImage, qrCodeX - 20, qrCodeY, 50, 55)
+      ctx.drawImage(avatarImage, qrCodeX - 20, qrCodeY + 10, 50, 55)
     }
     const shareBtnBgImage = new Image()
     shareBtnBgImage.src = shareBtnBg
@@ -136,9 +143,9 @@ const generatePoster = async () => {
     ctx.fillText(
       userInfo.phone ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7) : '',
       qrCodeX + 40,
-      qrCodeY + 35
+      qrCodeY + 45
     )
-    ctx.fillText('邀请你来体验乐租', qrCodeX - 20, qrCodeY + 78)
+    // ctx.fillText('邀请你来体验乐租', qrCodeX - 20, qrCodeY + 78)
   }
 }
 

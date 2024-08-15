@@ -1,6 +1,5 @@
 import dayjs from 'dayjs'
 import { reqRecordTask, reqTaskMoney } from '@/api/myApi'
-import shareToFriend from '@/pages/home/components/ShareToFriend.vue'
 
 /**
  * @description 获取是否是会员

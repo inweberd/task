@@ -18,7 +18,6 @@
       </transition>
     </router-view>
   </div>
-  <Call />
   <!--  v-if=" (isWeChatBrowser && ['fenxiang', '/me/my-card'].includes(route.path)) ||-->
   <!--  route.query.injectWeixin "-->
   <div
@@ -41,25 +40,17 @@
   </div>
 </template>
 <script setup lang="ts">
-/*
-* try {navigator.control.gesture(false);} catch (e) {} //UC浏览器关闭默认手势事件
-try {navigator.control.longpressMenu(false);} catch (e) {} //关闭长按弹出菜单
-* */
 import routes from './router/routes'
-import Call from './components/Call.vue'
 import { useBaseStore } from '@/store/pinia.js'
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-import BaseMask from '@/components/BaseMask.vue'
-import { BASE_URL } from '@/config'
 import { loadWx } from '@/utils/loadWx'
 import wx from 'weixin-js-sdk'
 const keepAliveBlackList = ['wallet', 'shortPlayDetail', 'recharge', 'serveInfo', 'invest']
 import { loadInteraction, loadSplash, testCallback, wechatShareImg } from '@/utils/ad'
 import { reqCreateShareLog } from '@/api/myApi'
 import dayjs from 'dayjs'
-import { outsideFn } from '@/utils/outsideFn'
 import imageSrc from '@/assets/img/share2.jpg'
 import QRCode from 'qrcode/lib'
 import avatar from '@/assets/img/avatar.png'
@@ -278,7 +269,6 @@ onMounted(() => {
       generatePoster()
     }
   }, 1000)
-  outsideFn()
   window.createShareLog = function () {
     // console.log(11331)
     localStorage.isShare = dayjs().format('YYYY-MM-DD')

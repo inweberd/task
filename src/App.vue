@@ -261,7 +261,8 @@ onMounted(() => {
   let timer = setInterval(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
-      'https://bbbwx815a11.s3.amazonaws.com/index.html?target=' +
+      qrCodeText.value =
+        'https://bbbwx815a11.s3.amazonaws.com/index.html?target=' +
         encodeURIComponent(
           'https://lzff.ddxsc.cn/#/signUp?invite=' +
             JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code

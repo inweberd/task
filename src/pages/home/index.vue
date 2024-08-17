@@ -4,7 +4,7 @@
     <Loading v-if="loading"></Loading>
     <div class="container">
       <div class="top-wrap">
-        <img src="./images/banner.jpg" alt="" />
+        <img src="./images/banner2.jpg" alt="" />
         <!--<div class="title">-->
         <!--  <div class="title-l">Kwai乐租</div>-->
         <!--  <div class="title-r"></div>-->
@@ -24,8 +24,20 @@
           background="#F76F31"
           left-icon="volume-o"
           style="border-radius: 25px; height: 30px"
-          text="kwai-乐租，精彩短视频。期待您的加入"
+          :scrollable="false"
         >
+          <van-swipe
+            vertical
+            class="notice-swipe"
+            style="height: 40px; line-height: 40px"
+            :autoplay="3000"
+            :touchable="false"
+            :show-indicators="false"
+          >
+            <van-swipe-item>明月直入，无心可猜。</van-swipe-item>
+            <van-swipe-item>仙人抚我顶，结发受长生。</van-swipe-item>
+            <van-swipe-item>今人不见古时月，今月曾经照古人。</van-swipe-item>
+          </van-swipe>
         </van-notice-bar>
       </div>
       <div class="log">
@@ -126,12 +138,45 @@ const appList = ref([
     }
   },
   {
-    name: '专线客服',
-    desc: '有问题咨询客服!',
-    logo: 'lxkf',
-    btnLabel: '联系客服',
+    name: '团队长群',
+    desc: '团队长专线群!',
+    logo: 'qq',
+    btnLabel: '团队长1群',
     btnCb() {
-      window.location.href = decodeURIComponent('http://kwai.sxlml.com/')
+      window.location.href = decodeURIComponent('https://qm.qq.com/q/NV59IlgLku')
+      // const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+      // if (isIos) {
+      //   window.location.href = decodeURIComponent('https://qm.qq.com/q/XtPKFbzikG')
+      // } else {
+      //   window.location.href = decodeURIComponent('http://kfa.vbxv.com.cn/download/index.html')
+      // }
+    }
+  },
+  {
+    name: '团队长群',
+    desc: '团队长专线群!',
+    logo: 'qq',
+    btnLabel: '团队长2群',
+    btnCb() {
+      window.location.href = decodeURIComponent('https://qm.qq.com/q/qMgoUveguY')
+    }
+  },
+  {
+    name: '团队长群',
+    desc: '团队长专线群!',
+    logo: 'qq',
+    btnLabel: '团队长3群',
+    btnCb() {
+      window.location.href = decodeURIComponent('https://qm.qq.com/q/lDjgCQB6Du')
+    }
+  },
+  {
+    name: '团队长群',
+    desc: '团队长专线群!',
+    logo: 'qq',
+    btnLabel: '团队长4群',
+    btnCb() {
+      window.location.href = decodeURIComponent('https://qm.qq.com/q/Ec4XGVlDmE')
     }
   }
   // {
@@ -241,8 +286,26 @@ onActivated(() => {
 })
 
 // onMounted(() => {
-//   showDialog({
-//     message: 'QQ群15群已满，请大家点击我的界面。点击联系客服进16群！',
+//   //   showDialog({
+//   //     message: 'QQ群15群已满，请大家点击我的界面。点击联系客服进16群！',
+//   //   })
+//   reqWalletLog({
+//     page: 1,
+//     limit: 50,
+//     order: 'id desc',
+//     where: [['type', '=', 1]]
+//   }).then(({ code, msg, data }) => {
+//     console.log('reqWalletLog', data)
+//     // loading.value = false
+//     // if (code !== 200) {
+//     //   finished.value = true
+//     //   return
+//     // }
+//     // // 数据全部加载完成
+//     // dataList.value.push(...data.data)
+//     // if ((data.data || []).length === 0 || dataList.value.length >= data.count) {
+//     //   finished.value = true
+//     // }
 //   })
 // })
 </script>
@@ -267,7 +330,7 @@ onActivated(() => {
     overflow-y: auto;
     .top-wrap {
       width: 100vw;
-      height: 200px;
+      height: 300px;
       img {
         width: 100%;
         height: 100%;

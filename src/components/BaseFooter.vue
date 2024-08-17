@@ -75,7 +75,7 @@
 
 <script>
 import bus, { EVENT_KEY } from '../utils/bus'
-import { loadShortPlayVideo, loadShortVideo } from '@/utils/ad'
+import { loadInteraction, loadShortPlayVideo, loadShortVideo } from '@/utils/ad'
 
 export default {
   name: 'BaseFooter',
@@ -99,6 +99,8 @@ export default {
   },
   methods: {
     loadShort(type) {
+      loadInteraction()
+
       if (type === 1) {
         loadShortVideo()
       } else if (type === 2) {
@@ -109,6 +111,7 @@ export default {
       this.$router.push(path)
     },
     tab(index) {
+      loadInteraction()
       switch (index) {
         case 1:
           this.$nav('/')
@@ -137,14 +140,14 @@ export default {
       }
     },
     refresh(index) {
-      if (this.currentTab === index) {
-        this['isRefresh' + index] = !this['isRefresh' + index]
-        setTimeout(() => {
-          this['isRefresh' + index] = !this['isRefresh' + index]
-        }, 2000)
-      } else {
-        this.tab(index)
-      }
+      // if (this.currentTab === index) {
+      //   this['isRefresh' + index] = !this['isRefresh' + index]
+      //   setTimeout(() => {
+      //     this['isRefresh' + index] = !this['isRefresh' + index]
+      //   }, 2000)
+      // } else {
+      this.tab(index)
+      // }
     }
   }
 }

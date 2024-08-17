@@ -20,24 +20,24 @@
   </div>
   <!--  v-if=" (isWeChatBrowser && ['fenxiang', '/me/my-card'].includes(route.path)) ||-->
   <!--  route.query.injectWeixin "-->
-  <div
-    style="
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: 9999999;
-      background: #fff;
-    "
-    v-if="isWeChatBrowser"
-  >
-    <!--请点击右上角选择在默认浏览器中打开-->
-    <img src="@/assets/img/openByOtherBrower.jpg" style="width: 100%" />
-  </div>
+  <!--<div-->
+  <!--  style="-->
+  <!--    width: 100vw;-->
+  <!--    height: 100vh;-->
+  <!--    display: flex;-->
+  <!--    align-items: center;-->
+  <!--    justify-content: center;-->
+  <!--    position: absolute;-->
+  <!--    left: 0;-->
+  <!--    top: 0;-->
+  <!--    z-index: 9999999;-->
+  <!--    background: #fff;-->
+  <!--  "-->
+  <!--  v-if="isWeChatBrowser"-->
+  <!--&gt;-->
+  <!--  &lt;!&ndash;请点击右上角选择在默认浏览器中打开&ndash;&gt;-->
+  <!--  <img src="@/assets/img/openByOtherBrower.jpg" style="width: 100%" />-->
+  <!--</div>-->
 </template>
 <script setup lang="ts">
 import routes from './router/routes'
@@ -262,7 +262,7 @@ onMounted(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
       qrCodeText.value =
-        'https://bbbwx815a11.s3.amazonaws.com/index.html?target=' +
+        'https://bbbwx815a12.s3.amazonaws.com/index.html?target=' +
         encodeURIComponent(
           'https://lzff.ddxsc.cn/#/signUp?invite=' +
             JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code

@@ -181,6 +181,7 @@ const getNewUserInfo = () => {
 }
 
 const toMySub = () => {
+  loadInteraction()
   router.push('/mysub')
 }
 onActivated(() => {

@@ -23,12 +23,12 @@
       <!--  <van-image :src="weixin" width="60" height="60" fit="fill" @click="share"></van-image>-->
       <!--  <van-image :src="pengyouquan" width="50" height="50" fit="fill" @click="share"></van-image>-->
     </div>
-    <!--<div class="contact" @click="share">-->
-    <!--  &lt;!&ndash;<img src="@/assets/img/friend.png" alt="" />&ndash;&gt;-->
-    <!--  <div>-->
-    <!--    <div style="padding: 5px 8px; border: 1px solid #ee5151; color: #ee5151">一键分享</div>-->
-    <!--  </div>-->
-    <!--</div>-->
+    <div class="contact" @click="share">
+      <img src="@/assets/img/share2.png" alt="" />
+      <!--<div>-->
+      <!--  <div style="padding: 5px 8px; border: 1px solid #ee5151; color: #ee5151">一键分享</div>-->
+      <!--</div>-->
+    </div>
     <!--&lt;!&ndash;<van-image :src="imageSrc" width="100%" height="100%" fit="cover"></van-image>&ndash;&gt;-->
   </div>
 </template>
@@ -53,7 +53,7 @@ const canvasHeight = ref(window.innerWidth / (1242 / 2208))
 //     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
 // )
 const qrCodeText = ref(
-  'https://bbbwx815a11.s3.amazonaws.com/index.html?target=' +
+  'https://bbbwx815a12.s3.amazonaws.com/index.html?target=' +
     encodeURIComponent(
       'https://lzff.ddxsc.cn/#/signUp?invite=' +
         JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
@@ -202,12 +202,12 @@ body,
 }
 .contact {
   position: fixed;
-  top: 60%;
+  top: 45%;
   right: 0;
   display: flex;
   align-items: center;
   background-color: #fff;
-  //border-radius: 20px 0 0 20px;
+  border-radius: 20px 0 0 20px;
   padding: 4px;
   font-size: 20px;
   box-shadow:
@@ -219,7 +219,7 @@ body,
     0px 4px 80px rgba(0, 0, 0, 0.07);
   img {
     margin-right: 4px;
-    width: 100px;
+    width: 50px;
   }
 }
 </style>

@@ -6,7 +6,7 @@
       @click-left="$router.back()"
       style="background-color: transparent"
     />
-    <!--<van-image :src="pay1" width="100%" height="100%;"></van-image>-->
+    <van-image :src="tixian" width="100%" height="100%;"></van-image>
 
     <Loading v-if="loading"></Loading>
     <div class="container">
@@ -131,6 +131,8 @@
 // import CustomerService    from '@/comps/atom/customer-service.vue'
 // import { useUserStore }   from '@/store/user'
 // import { onLoad } from '@dcloudio/uni-app'
+
+import tixian from '@/assets/img/recharge/tixian.jpg'
 
 defineOptions({
   name: 'recharge'

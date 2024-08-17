@@ -2,7 +2,7 @@
   <div class="withdraw-page">
     <van-nav-bar title="提现" left-arrow @click-left="$router.back()" />
     <Loading v-if="loading" />
-    <!--<van-image :src="tixian" width="100%" height="100%;"></van-image>-->
+    <van-image :src="tixian" width="100%" height="100%;"></van-image>
 
     <van-tabs v-model:active="active">
       <van-tab title="选择提现">
@@ -151,7 +151,7 @@ import kdImgSrc from '@/assets/img/recharge/kd.jpg'
 import jdImgSrc from '@/assets/img/recharge/jd.jpg'
 import tixian from '@/assets/img/recharge/tixian.jpg'
 import { showConfirmDialog } from 'vant'
-import { loadPlayRewardVideo } from '@/utils/ad'
+import { loadInteraction, loadPlayRewardVideo } from '@/utils/ad'
 const active = ref('')
 const selectName = ref('')
 const checked = ref(false)
@@ -277,6 +277,8 @@ const card = async () => {
   setPay()
 }
 async function goPay() {
+  loadInteraction()
+
   // if (!sessionStorage.seeVideoWithdrawal) {
   //   showDialog({
   //     message: '观看激励视频进行提现！遇到问题请及时联系客服！'

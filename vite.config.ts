@@ -12,6 +12,7 @@ import { VantResolver } from '@vant/auto-import-resolver'
 import legacy from '@vitejs/plugin-legacy'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
+import { visualizer } from 'rollup-plugin-visualizer'
 const lifecycle = process.env.npm_lifecycle_event
 
 export default defineConfig((): Promise<UserConfig> => {
@@ -65,6 +66,8 @@ export default defineConfig((): Promise<UserConfig> => {
           Components({
             resolvers: [VantResolver(), ElementPlusResolver()]
           }),
+          // visualizer({ open: true }),
+
           VueMacros({
             plugins: {
               vue: Vue(),

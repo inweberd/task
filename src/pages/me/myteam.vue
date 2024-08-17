@@ -27,14 +27,6 @@
     </div>
     <div class="my-invest">
       <div class="my-invest-col">
-        <div @click="toMySub">
-          <span>团队总人数</span>
-          <span>{{ memberInfo.team?.total || 0 }}</span>
-        </div>
-        <div @click="toMySub">
-          <span>团队有效人数</span>
-          <span>{{ memberInfo.team?.vip || 0 }}</span>
-        </div>
         <div>
           <span>今日收益</span>
           <span>{{ userIncomeInfo.today || 0 }}</span>
@@ -56,6 +48,16 @@
         <div>
           <span>团队总充值</span>
           <span>{{ memberInfo.team?.deposit || 0 }}</span>
+        </div>
+      </div>
+      <div class="my-invest-col">
+        <div @click="toMySub">
+          <span>团队总人数</span>
+          <span>{{ memberInfo.team?.total || 0 }}</span>
+        </div>
+        <div @click="toMySub">
+          <span>团队有效人数</span>
+          <span>{{ memberInfo.team?.vip || 0 }}</span>
         </div>
         <div>
           <span>团队总提现</span>
@@ -181,7 +183,7 @@ const getNewUserInfo = () => {
 }
 
 const toMySub = () => {
-  loadInteraction()
+  // loadInteraction()
   router.push('/mysub')
 }
 onActivated(() => {
@@ -243,7 +245,7 @@ onActivated(() => {
     width: 95%;
     margin: 20px auto;
     background: url('@/assets/img/invest/invest-bg2.webp') no-repeat;
-    background-size: 100% auto;
+    background-size: 100% 100%;
     //height: 400px;
     padding-top: 30px;
     color: #fff;
@@ -254,6 +256,7 @@ onActivated(() => {
 
       margin-top: 18px;
       & > div {
+        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -270,6 +273,16 @@ onActivated(() => {
         }
       }
       &:nth-child(2) {
+        & > div {
+          & > span:nth-child(1) {
+            font-size: 14px;
+          }
+          & > span:nth-child(2) {
+            font-size: 28px;
+          }
+        }
+      }
+      &:nth-child(3) {
         & > div {
           & > span:nth-child(1) {
             font-size: 14px;

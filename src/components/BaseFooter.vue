@@ -111,7 +111,6 @@ export default {
       this.$router.push(path)
     },
     tab(index) {
-      loadInteraction()
       switch (index) {
         case 1:
           this.$nav('/')

@@ -24,21 +24,29 @@
           background="#F76F31"
           left-icon="volume-o"
           style="border-radius: 25px; height: 30px"
-          :scrollable="false"
+          text="kwai-乐租，精彩短视频。期待您的加入"
         >
-          <van-swipe
-            vertical
-            class="notice-swipe"
-            style="height: 40px; line-height: 40px"
-            :autoplay="3000"
-            :touchable="false"
-            :show-indicators="false"
-          >
-            <van-swipe-item>明月直入，无心可猜。</van-swipe-item>
-            <van-swipe-item>仙人抚我顶，结发受长生。</van-swipe-item>
-            <van-swipe-item>今人不见古时月，今月曾经照古人。</van-swipe-item>
-          </van-swipe>
         </van-notice-bar>
+        <!--<van-notice-bar-->
+        <!--  color="#fff"-->
+        <!--  background="#F76F31"-->
+        <!--  left-icon="volume-o"-->
+        <!--  style="border-radius: 25px; height: 30px"-->
+        <!--  :scrollable="false"-->
+        <!--&gt;-->
+        <!--  <van-swipe-->
+        <!--    vertical-->
+        <!--    class="notice-swipe"-->
+        <!--    style="height: 40px; line-height: 40px"-->
+        <!--    :autoplay="3000"-->
+        <!--    :touchable="false"-->
+        <!--    :show-indicators="false"-->
+        <!--  >-->
+        <!--    <van-swipe-item>明月直入，无心可猜。</van-swipe-item>-->
+        <!--    <van-swipe-item>仙人抚我顶，结发受长生。</van-swipe-item>-->
+        <!--    <van-swipe-item>今人不见古时月，今月曾经照古人。</van-swipe-item>-->
+        <!--  </van-swipe>-->
+        <!--</van-notice-bar>-->
       </div>
       <div class="log">
         <div class="log-info">

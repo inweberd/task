@@ -156,3 +156,8 @@ export function reqDeleteCard(params) {
 export function reqRechargeColumn(params) {
   return axiosInstance({ url: 'api/payment/column', method: 'get', params })
 }
+
+// 钱包统计
+export function reqWalletStat() {
+  return axiosInstance({ url: 'api/wallet/chart', method: 'get' })
+}

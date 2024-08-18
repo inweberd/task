@@ -16,9 +16,10 @@
       <div class="fenhong">
         <div class="title">
           本次周期分红总金额 <br />
-          （每10天进行一轮分红）
+          （每10天进行一轮分红） <br />
+          <div style="margin-top: 10px">当前奖池金额</div>
         </div>
-        <div class="money">0</div>
+        <div class="money">{{ total }}(元)</div>
         <van-divider style="border-color: #bababa"></van-divider>
         <div class="mine">
           <span
@@ -42,6 +43,27 @@
 import shareholder from '@/assets/img/shareholder2.jpg'
 // import rule from '@/assets/img/rule.jpg'
 import { getIsInApp } from '@/utils/getTopPadding'
+import { onActivated, ref } from 'vue'
+import { reqWalletStat } from '@/api/myApi'
+
+const total = ref(0)
+
+onActivated(() => {
+  reqWalletStat().then((res) => {
+    console.log('reqWalletStat', res)
+    const date = new Date().getDate()
+    if (res.code !== 200) {
+      return
+    }
+    if (date >= 1 && date <= 10) {
+      total.value = res.data.deposit[0].total
+    } else if (date >= 11 && date <= 20) {
+      total.value = res.data.deposit[1].total
+    } else {
+      total.value = res.data.deposit[2].total
+    }
+  })
+})
 </script>
 <style scoped lang="scss">
 .content {

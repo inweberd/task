@@ -28,7 +28,7 @@
     <div class="my-invest">
       <div class="my-invest-col">
         <div>
-          <span>今日收益</span>
+          <span>今日预估收益</span>
           <span>{{ userIncomeInfo.today || 0 }}</span>
         </div>
         <div>
@@ -73,6 +73,8 @@
       <van-cell title="金币互转" is-link @click="go('/conversion', true)" />
       <van-cell title="团队星级" is-link @click="go('/demo', true)" />
       <van-cell title="APP下载" is-link @click="goDownload" />
+      <van-cell title="玩法介绍" is-link @click="$router.push('/article?id=5')" />
+      <van-cell title="全网分红（星级分红）" is-link @click="goFenHong" />
       <van-cell title="退出账号" is-link @click="logout" />
     </van-cell-group>
     <BaseFooter v-bind:init-tab="6" :is-white="true" />
@@ -156,6 +158,9 @@ function goDownload() {
     // state.loading.app = false
     // proxy.$refs['notify'].error('下载失败，请稍后再试！')
   }
+}
+const goFenHong = () => {
+  router.push('/fenhong')
 }
 const getNewUserInfo = () => {
   reqUserInfo({ id: userInfo.value.id }).then((res) => {

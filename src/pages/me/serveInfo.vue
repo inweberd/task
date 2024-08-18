@@ -11,11 +11,11 @@
         <span>累计收益</span> <span>{{ userIncomeInfo.total || 0 }}</span>
       </div>
       <div>
-        <span>本次收益</span> <span>{{ userIncomeInfo.today || 0 }}</span>
+        <span>今日预估收益</span> <span>{{ userIncomeInfo.today || 0 }}</span>
       </div>
     </div>
     <div class="serve-info">
-      <div><van-tag color="#54AC90" style="padding: 3px 6px">浏览任务</van-tag></div>
+      <div><van-tag color="#54AC90" style="padding: 3px 6px">观看广告</van-tag></div>
       <div><span>运行周期:</span> <span>30天</span></div>
       <div>
         <span>运行状态:</span> <span>{{ isReceive ? '运行中' : '未启用' }}</span>

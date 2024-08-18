@@ -9,17 +9,17 @@
       <div class="stat">
         <div class="stat-header">
           <div>
-            个人收益: <span class="money">￥{{ userIncomeInfo.total || 0 }}</span>
+            广告总收益: <span class="money">￥{{ userIncomeInfo.total || 0 }}</span>
           </div>
           <div>
-            购买消费:<span class="money">￥{{ totalSpend }}</span>
+            租赁费用:<span class="money">￥{{ totalSpend }}</span>
           </div>
         </div>
         <div style="display: flex; justify-content: center">
           <van-button
             style="width: 80%; margin: 10px"
             color="#54AC90"
-            text="开始赚钱"
+            text="开始赚钱（启动服务器）"
             type="primary"
             loading-text="加载中..."
             @click="getRedBag"

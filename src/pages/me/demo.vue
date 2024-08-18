@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 100%; overflow: auto">
     <van-nav-bar
       title="团队星级"
       safe-area-inset-top
@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import shareholder from '@/assets/img/shareholder2.jpg'
+import shareholder from '@/assets/img/shareholder3.jpg'
 // import rule from '@/assets/img/rule.jpg'
 import { getIsInApp } from '@/utils/getTopPadding'
 </script>

@@ -158,20 +158,28 @@ import { load } from '@fingerprintjs/fingerprintjs'
 const loading = ref(false)
 
 const downloadList = [
-  {
-    label: 'K豆钱包安卓下载地址',
-    url: 'https://kdv3.com'
-  },
-  {
-    label: 'K豆钱包苹果下载地址',
-    url: 'https://kdv3.com'
-  },
+  // {
+  //   label: 'K豆钱包安卓下载地址',
+  //   url: 'https://kdv3.com'
+  // },
+  // {
+  //   label: 'K豆钱包苹果下载地址',
+  //   url: 'https://kdv3.com'
+  // },
   {
     label: 'KD充值视频教程',
     url: '/data/video/buy.mp4'
   },
   {
     label: 'KD提现视频教程',
+    url: '/data/video/sell.mp4'
+  },
+  {
+    label: 'JD充值视频教程',
+    url: '/data/video/buy.mp4'
+  },
+  {
+    label: 'JD提现视频教程',
     url: '/data/video/sell.mp4'
   }
 ]

@@ -314,7 +314,7 @@ const method = {
       return: `${method.domain()}/#/me`
     }).then((res: any) => {
       loading.value = false
-      if (res.code !== 200) return
+      if (res.code !== 200) return _notice(res.msg)
       window.location.href = decodeURIComponent(res.data.url)
     })
     // axios.post('/api/order/create', {

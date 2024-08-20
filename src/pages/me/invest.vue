@@ -205,7 +205,7 @@ const getRedBag = () => {
     if (res.code === 412) {
       showConfirmDialog({
         message: '请先进行每日分享！',
-        confirmButtonText: '去分享'
+        confirmButtonText: '点我分享微信朋友圈'
       }).then(() => {
         if (window.webkit?.messageHandlers) {
           localStorage.isShare = dayjs().format('YYYY-MM-DD')

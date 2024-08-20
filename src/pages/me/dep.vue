@@ -134,6 +134,27 @@
               >保存</van-button
             >
           </van-tab>
+          <div class="desc" style="margin: 10px 0">
+            <p style="font-weight: bolder">《绑定使用JDPAY（JD钱包）提现，笔笔获得抽转盘大奖》</p>
+            <p><span class="index">1、</span>活动门槛</p>
+            <p style="padding-left: 20px">全体用户可参与，无门槛限制</p>
+            <p><span class="index">2、</span>获取方式</p>
+            <p style="padding-left: 20px">黄金转盘：下发达100即可获得一次</p>
+            <p style="padding-left: 20px">白金转盘：下发达1000即可获得一次</p>
+            <p style="padding-left: 20px">钻石转盘：下发达5000即可获得一次</p>
+            <p><span class="index">3、</span>限制条件</p>
+            <p style="padding-left: 20px">黄金转盘：每天最多获得5次机会，最多可抽奖5次</p>
+            <p style="padding-left: 20px">白金转盘：每天最多获得10次机会，最多可抽奖10次</p>
+            <p style="padding-left: 20px">钻石转盘：无限制</p>
+            <p><span class="index">4、</span>额外奖励</p>
+            <p style="padding-left: 20px">黄金转盘：累计抽奖10次即可获得一次白金转盘抽奖</p>
+            <p style="padding-left: 20px">白金转盘：累计抽奖10次即可获得一次钻石转盘抽奖</p>
+            <p style="padding-left: 20px">
+              钻石转盘：累计抽奖10次即可获得 黄金+白金 各一次转盘抽奖
+            </p>
+
+            注： 100积分=1币 1000积分起即可兑换 JD币
+          </div>
         </van-tabs>
       </van-tab>
     </van-tabs>

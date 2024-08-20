@@ -3,7 +3,7 @@
     <!-- <dy-back mode="light" img="back" @click="router.back()" class="fixed-back" direction="left" /> -->
 
     <van-nav-bar
-      title="金币互转"
+      title="余额互转"
       safe-area-inset-top
       :class="{ inApp: getIsInApp() }"
       fixed

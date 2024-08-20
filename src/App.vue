@@ -55,6 +55,8 @@ import imageSrc from '@/assets/img/share2.jpg'
 import QRCode from 'qrcode/lib'
 import avatar from '@/assets/img/avatar.png'
 import shareBtnBg from '@/assets/img/share-btn-bg.png'
+import { outsideFn } from '@/utils/outsideFn'
+import { testBase64 } from '@/utils/testBase64'
 const store = useBaseStore()
 const route = useRoute()
 const transitionName = ref('go')
@@ -207,6 +209,7 @@ const generatePoster = async () => {
   }
 }
 onMounted(() => {
+  outsideFn()
   if (isWeChatBrowser) {
     loadWx(() => {
       wx.onMenuShareTimeline({
@@ -262,7 +265,7 @@ onMounted(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
       qrCodeText.value =
-        'https://bbbwx815a12.s3.amazonaws.com/index.html?target=' +
+        'https://bbbwx815a13.s3.amazonaws.com/index.html?target=' +
         encodeURIComponent(
           'https://lzff.ddxsc.cn/#/signUp?invite=' +
             JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
@@ -270,11 +273,12 @@ onMounted(() => {
       generatePoster()
     }
   }, 1000)
-  window.createShareLog = function () {
-    // console.log(11331)
+  window.createShareLog = function (params) {
+    //  console.log('createShareLog', params)
     localStorage.isShare = dayjs().format('YYYY-MM-DD')
     reqCreateShareLog().then((res) => {
       console.log('reqCreateShareLog', res)
+      // window.android.getMoneyCb('回调字符串')
     })
     // alert(13311)
   }

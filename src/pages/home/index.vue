@@ -3,8 +3,8 @@
     <!--<EarnedCash></EarnedCash>-->
     <Loading v-if="loading"></Loading>
     <div class="container">
-      <div class="top-wrap">
-        <img src="./images/banner2.jpg" alt="" />
+      <div class="top-wrap" style="padding-top: 40px; background-color: #feab03">
+        <img src="./images/banner3.jpg" alt="" />
         <!--<div class="title">-->
         <!--  <div class="title-l">Kwai乐租</div>-->
         <!--  <div class="title-r"></div>-->
@@ -72,14 +72,16 @@
       </div>
 
       <div v-show="activeTab === 0" class="app-list">
-        <div class="app-list-item" v-for="item of appList">
+        <div class="app-list-item" v-for="(item, index) of appList">
           <div class="l">
             <div class="logo">
               <img :src="convertImgUrl(item.logo)" alt="" />
             </div>
             <div class="info">
               <div class="name">{{ item.name }}</div>
-              <div class="desc">{{ item.desc }}</div>
+              <div class="desc" :style="{ color: index === 0 ? '#9d9d9d' : 'red' }">
+                {{ item.desc }}
+              </div>
             </div>
           </div>
           <div class="r">
@@ -145,44 +147,44 @@ const appList = ref([
       router.push('/article?id=5')
     }
   },
+  // {
+  //   name: '团队长群',
+  //   desc: '团队长专线群!',
+  //   logo: 'qq',
+  //   btnLabel: '团队长1群',
+  //   btnCb() {
+  //     window.location.href = decodeURIComponent('https://qm.qq.com/q/NV59IlgLku')
+  //     // const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+  //     // if (isIos) {
+  //     //   window.location.href = decodeURIComponent('https://qm.qq.com/q/XtPKFbzikG')
+  //     // } else {
+  //     //   window.location.href = decodeURIComponent('http://kfa.vbxv.com.cn/download/index.html')
+  //     // }
+  //   }
+  // },
   {
     name: '团队长群',
-    desc: '团队长专线群!',
+    desc: '如遇老群被封禁，请移步新群！',
     logo: 'qq',
-    btnLabel: '团队长1群',
-    btnCb() {
-      window.location.href = decodeURIComponent('https://qm.qq.com/q/NV59IlgLku')
-      // const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
-      // if (isIos) {
-      //   window.location.href = decodeURIComponent('https://qm.qq.com/q/XtPKFbzikG')
-      // } else {
-      //   window.location.href = decodeURIComponent('http://kfa.vbxv.com.cn/download/index.html')
-      // }
-    }
-  },
-  {
-    name: '团队长群',
-    desc: '团队长专线群!',
-    logo: 'qq',
-    btnLabel: '团队长2群',
+    btnLabel: '官方2群',
     btnCb() {
       window.location.href = decodeURIComponent('https://qm.qq.com/q/qMgoUveguY')
     }
   },
   {
     name: '团队长群',
-    desc: '团队长专线群!',
+    desc: '如遇老群被封禁，请移步新群！',
     logo: 'qq',
-    btnLabel: '团队长3群',
+    btnLabel: '官方3群',
     btnCb() {
       window.location.href = decodeURIComponent('https://qm.qq.com/q/lDjgCQB6Du')
     }
   },
   {
     name: '团队长群',
-    desc: '团队长专线群!',
+    desc: '如遇老群被封禁，请移步新群！',
     logo: 'qq',
-    btnLabel: '团队长4群',
+    btnLabel: '官方4群',
     btnCb() {
       window.location.href = decodeURIComponent('https://qm.qq.com/q/Ec4XGVlDmE')
     }

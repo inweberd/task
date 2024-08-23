@@ -298,7 +298,7 @@ const card = async () => {
   setPay()
 }
 async function goPay() {
-  loadInteraction()
+  // loadInteraction()
 
   // if (!sessionStorage.seeVideoWithdrawal) {
   //   showDialog({
@@ -311,6 +311,17 @@ async function goPay() {
   //   })
   //   return
   // }
+  if (!sessionStorage.isShared) {
+    showDialog({
+      message: '请先分享微信朋友圈，再发起提现!'
+    }).then(() => {
+      // on close
+
+      sessionStorage.isShared = true
+      window.shareFriend()
+    })
+    return
+  }
   tixianLoading.value = true
   const { code, msg } = await axios.post('/api/wallet-fetch/create', {
     money: money.value,
@@ -319,6 +330,7 @@ async function goPay() {
 
   tixianLoading.value = false
   sessionStorage.seeVideoWithdrawal = ''
+  sessionStorage.isShared = ''
   if (code !== 200) return _notice(msg)
   _notice('申请已提交！')
 }

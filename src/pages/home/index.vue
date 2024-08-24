@@ -163,7 +163,7 @@ const appList = ref([
   //   }
   // },
   {
-    name: '团队长群',
+    name: '官方2群',
     desc: '如遇老群被封禁，请移步新群！',
     logo: 'qq',
     btnLabel: '官方2群',
@@ -172,7 +172,7 @@ const appList = ref([
     }
   },
   {
-    name: '团队长群',
+    name: '官方3群',
     desc: '如遇老群被封禁，请移步新群！',
     logo: 'qq',
     btnLabel: '官方3群',
@@ -181,12 +181,21 @@ const appList = ref([
     }
   },
   {
-    name: '团队长群',
+    name: '官方4群',
     desc: '如遇老群被封禁，请移步新群！',
     logo: 'qq',
     btnLabel: '官方4群',
     btnCb() {
       window.location.href = decodeURIComponent('https://qm.qq.com/q/Ec4XGVlDmE')
+    }
+  },
+  {
+    name: '官方5群',
+    desc: '如遇老群被封禁，请移步新群！',
+    logo: 'qq',
+    btnLabel: '官方5群',
+    btnCb() {
+      window.location.href = decodeURIComponent('https://qm.qq.com/q/eU1zhFLM8o')
     }
   }
   // {

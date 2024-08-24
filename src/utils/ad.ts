@@ -172,21 +172,50 @@ export const loadFeed = () => {
   }
 }
 export const loadShortVideo = () => {
+  const userId = JSON.parse(window.localStorage.getItem('userInfo'))?.id
+  const token = window.localStorage.getItem('token')
   if (isIos) {
-    window.webkit.messageHandlers.openContentPage.postMessage({ userId: '123', extraData: 'box' })
+    window.webkit.messageHandlers.openContentPage.postMessage({
+      userId,
+      extraData: encodeURIComponent(
+        JSON.stringify({
+          token
+        })
+      )
+    })
   } else {
-    window.android.openContentPage('1223', 'test')
+    window.android.openContentPage(
+      userId,
+      encodeURIComponent(
+        JSON.stringify({
+          token
+        })
+      )
+    )
   }
 }
 export const loadShortPlayVideo = () => {
+  const userId = JSON.parse(window.localStorage.getItem('userInfo'))?.id
+  const token = window.localStorage.getItem('token')
   if (isIos) {
     window.webkit.messageHandlers.openTubePage.postMessage({
       time: '30',
-      userId: '123',
-      extraData: 'box'
+      userId,
+      extraData: encodeURIComponent(
+        JSON.stringify({
+          token
+        })
+      )
     })
   } else {
-    window.android.openTubePage('1223', 'test')
+    window.android.openTubePage(
+      userId,
+      encodeURIComponent(
+        JSON.stringify({
+          token
+        })
+      )
+    )
   }
 }
 

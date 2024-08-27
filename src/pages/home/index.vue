@@ -79,7 +79,10 @@
             </div>
             <div class="info">
               <div class="name">{{ item.name }}</div>
-              <div class="desc" :style="{ color: index === 0 ? '#9d9d9d' : 'red' }">
+              <div
+                class="desc"
+                :style="{ color: index === appList?.length - 1 ? '#9d9d9d' : 'red' }"
+              >
                 {{ item.desc }}
               </div>
             </div>
@@ -138,15 +141,7 @@ const appList = ref([
   //     }
   //   }
   // },
-  {
-    name: '玩法介绍',
-    desc: 'kwai-乐租，精彩短视频。期待您的加入',
-    logo: 'lz',
-    btnLabel: '查看',
-    btnCb() {
-      router.push('/article?id=5')
-    }
-  },
+
   // {
   //   name: '团队长群',
   //   desc: '团队长专线群!',
@@ -162,15 +157,6 @@ const appList = ref([
   //     // }
   //   }
   // },
-  {
-    name: '官方2群',
-    desc: '如遇老群被封禁，请移步新群！',
-    logo: 'qq',
-    btnLabel: '官方2群',
-    btnCb() {
-      window.location.href = decodeURIComponent('https://qm.qq.com/q/qMgoUveguY')
-    }
-  },
   {
     name: '官方3群',
     desc: '如遇老群被封禁，请移步新群！',
@@ -196,6 +182,24 @@ const appList = ref([
     btnLabel: '官方5群',
     btnCb() {
       window.location.href = decodeURIComponent('https://qm.qq.com/q/eU1zhFLM8o')
+    }
+  },
+  {
+    name: '官方6群',
+    desc: '如遇老群被封禁，请移步新群！',
+    logo: 'qq',
+    btnLabel: '官方6群',
+    btnCb() {
+      window.location.href = decodeURIComponent('https://qm.qq.com/q/9DSckkLCeY')
+    }
+  },
+  {
+    name: '玩法介绍',
+    desc: 'kwai-乐租，精彩短视频。期待您的加入',
+    logo: 'lz',
+    btnLabel: '查看',
+    btnCb() {
+      router.push('/article?id=5')
     }
   }
   // {

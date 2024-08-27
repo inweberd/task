@@ -76,6 +76,7 @@
 <script>
 import bus, { EVENT_KEY } from '../utils/bus'
 import { loadInteraction, loadShortPlayVideo, loadShortVideo } from '@/utils/ad'
+import dayjs from 'dayjs'
 
 export default {
   name: 'BaseFooter',
@@ -99,11 +100,22 @@ export default {
   },
   methods: {
     loadShort(type) {
-      loadInteraction()
-
       if (type === 1) {
-        loadShortVideo()
+        console.log("dayjs().format('YYYY-MM-DD')", dayjs().format('YYYY-MM-DD'))
+        if (localStorage.isShortVideoShare === dayjs().format('YYYY-MM-DD')) {
+          loadInteraction()
+          loadShortVideo()
+        } else {
+          showConfirmDialog({
+            message: '请先进行每日分享朋友圈，再开启手动刷视频！',
+            confirmButtonText: '一键分享微信朋友圈'
+          }).then(() => {
+            localStorage.isShortVideoShare = dayjs().format('YYYY-MM-DD')
+            window.shareFriend()
+          })
+        }
       } else if (type === 2) {
+        loadInteraction()
         loadShortPlayVideo()
       }
     },

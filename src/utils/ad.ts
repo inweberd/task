@@ -190,7 +190,8 @@ export const loadShortVideo = () => {
         JSON.stringify({
           token
         })
-      )
+      ),
+      token
     )
   }
 }

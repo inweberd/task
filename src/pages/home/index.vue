@@ -135,7 +135,7 @@ const appList = ref([
   //   btnLabel: '下载',
   //   btnCb() {
   //     try {
-  //       window.location.href = `https://lzff.ddxsc.cn/download`
+  //       window.location.href = `https://lzff.kkwai.cn/download`
   //     } catch (e) {
   //       _notice('下载失败')
   //     }
@@ -157,15 +157,15 @@ const appList = ref([
   //     // }
   //   }
   // },
-  {
-    name: '官方3群',
-    desc: '如遇老群被封禁，请移步新群！',
-    logo: 'qq',
-    btnLabel: '官方3群',
-    btnCb() {
-      window.location.href = decodeURIComponent('https://qm.qq.com/q/lDjgCQB6Du')
-    }
-  },
+  // {
+  //   name: '官方3群',
+  //   desc: '如遇老群被封禁，请移步新群！',
+  //   logo: 'qq',
+  //   btnLabel: '官方3群',
+  //   btnCb() {
+  //     window.location.href = decodeURIComponent('https://qm.qq.com/q/lDjgCQB6Du')
+  //   }
+  // },
   {
     name: '官方4群',
     desc: '如遇老群被封禁，请移步新群！',
@@ -232,7 +232,7 @@ const appList = ref([
 ])
 function goDownload() {
   try {
-    window.location.href = `https://lzff.ddxsc.cn/download`
+    window.location.href = `https://lzff.kkwai.cn/download`
   } catch (e) {
     _notice('下载失败')
   }

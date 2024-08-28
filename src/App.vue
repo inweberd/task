@@ -267,7 +267,7 @@ onMounted(() => {
       qrCodeText.value =
         'https://bbbwx815a13.s3.amazonaws.com/index.html?target=' +
         encodeURIComponent(
-          'https://lzff.ddxsc.cn/#/signUp?invite=' +
+          'https://lzff.kkwai.cn/#/signUp?invite=' +
             JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
         )
       generatePoster()

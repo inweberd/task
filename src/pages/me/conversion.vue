@@ -131,6 +131,9 @@ function getCode() {
   })
 }
 function onSubmit() {
+  if (data.amount < 10) {
+    return _notice('小于十元不许转账！')
+  }
   if (!data.phone || !data.code) {
     return _notice('请输入验证码！')
   }

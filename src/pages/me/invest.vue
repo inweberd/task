@@ -21,6 +21,7 @@
             color="#54AC90"
             text="开始赚钱（启动服务器）"
             type="primary"
+            :loading="loadingBtn"
             loading-text="加载中..."
             @click="getRedBag"
           />
@@ -102,6 +103,7 @@ const userIncomeInfo = ref({})
 const totalSpend = ref(0)
 
 const loading = ref(true)
+const loadingBtn = ref(false)
 const staffList = ref([])
 const myStaffList = ref([])
 const searchInfo = reactive({
@@ -161,6 +163,7 @@ const getUserIncome = () => {
   reqUserIncome().then((res) => {
     // loading.value = false
     userIncomeInfo.value = res.data
+    loadingBtn.value = false
   })
 }
 const getBuyBtnBg = (item) => {
@@ -201,7 +204,9 @@ const getRedBag = () => {
   //   })
   //   return
   // }
+  loadingBtn.value = true
   reqRecordTask().then((res) => {
+    loadingBtn.value = false
     if (res.code === 412) {
       showConfirmDialog({
         message: '请先进行每日分享！',
@@ -223,7 +228,6 @@ const getRedBag = () => {
       return
     }
 
-    loading.value = false
     if (res.code === 200) {
       // _notice('')
       getUserIncome()

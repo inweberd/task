@@ -1,5 +1,17 @@
 <template>
-  <div class="forgetClass">
+  <div
+    style="
+      width: 100%;
+      height: 100vh;
+      background-color: rgb(21, 23, 36);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-y: scroll;
+
+      color: #fff;
+    "
+  >
     <div
       id="sign"
       class="d-flex justify-content-around user-select-none"
@@ -9,42 +21,37 @@
         class="right card backdrop-filter"
         style="width: 55%; box-shadow: unset; background: transparent"
       >
-        <div
-          class="card-body p-lg-4"
-          style="
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-          "
-        >
+        <div class="card-body p-lg-4">
+          <div class="d-flex align-items-center justify-content-center py-5">
+            <el-image :src="logo" style="width: 80px; height: 80px"></el-image>
+          </div>
+
+          <div class="flex-center divider-light my-3 font-12 text-white user-select-none">
+            重置您的密码
+          </div>
+
           <el-form label-position="top" label-width="auto" style="max-width: 800px">
             <el-form-item>
-              <el-input v-model="state.struct.social" size="large" placeholder="请输入手机号码">
-                <template #prepend>
-                  <el-icon><User /></el-icon>
-                </template>
-              </el-input>
+              <template #label>
+                <span class="text-white">手机</span>
+              </template>
+              <el-input v-model="state.struct.social" size="large"></el-input>
             </el-form-item>
             <el-form-item>
+              <template #label>
+                <span class="text-white">验证码</span>
+              </template>
               <div class="d-flex w-100">
                 <el-input
                   v-model="state.struct.code"
                   v-on:keyup.enter="SignUp()"
                   size="large"
-                  placeholder="请输入验证码"
-                >
-                  <template #prepend>
-                    <el-icon><DocumentCopy /></el-icon>
-                  </template>
-                </el-input>
+                ></el-input>
                 <el-button
                   v-on:click="SendCode()"
                   :disabled="state.status.code"
                   size="large"
                   class="ms-5"
-                  style="border-radius: 20px"
-                  color="#EA5514"
                 >
                   <span v-if="!state.status.code">发送验证码</span>
                   <span v-else>重新发送</span>
@@ -52,22 +59,16 @@
               </div>
             </el-form-item>
             <el-form-item>
-              <el-input v-model="state.struct.password" size="large" placeholder="请输入密码">
-                <template #prepend>
-                  <el-icon><Lock /></el-icon>
-                </template>
-              </el-input>
+              <template #label>
+                <span class="text-white">密码</span>
+              </template>
+              <el-input v-model="state.struct.password" size="large"></el-input>
             </el-form-item>
             <el-form-item>
-              <el-input
-                v-model="state.struct.AgainPassword"
-                size="large"
-                placeholder="请再次输入密码"
-              >
-                <template #prepend>
-                  <el-icon><Lock /></el-icon>
-                </template>
-              </el-input>
+              <template #label>
+                <span class="text-white">确认密码</span>
+              </template>
+              <el-input v-model="state.struct.AgainPassword" size="large"></el-input>
             </el-form-item>
           </el-form>
 
@@ -76,21 +77,11 @@
             :loading="state.status.wait"
             type="primary"
             size="large"
-            style="border-radius: 20px; color: #fff"
-            color="#B5A483"
             class="w-100 mt-3"
             >重置</el-button
           >
 
-          <div
-            style="
-              color: #b5a483;
-              display: flex;
-              justify-content: space-around;
-              margin-top: 30px;
-              width: 100%;
-            "
-          >
+          <div class="d-flex justify-content-between mt-5" style="color: #fff">
             <router-link to="/common/sign-in" class="text-decoration-none">
               <span class="text-light">前往登录</span>
             </router-link>
@@ -114,7 +105,6 @@ import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { useUsers } from '@/store/users'
 import { showToast } from 'vant'
-import { DocumentCopy, User, Lock } from '@element-plus/icons-vue'
 
 const user = useUsers()
 const router = useRouter()
@@ -233,23 +223,5 @@ body {
 }
 .text-white {
   color: #fff !important;
-}
-:deep(.el-input) {
-  overflow: hidden;
-  border-radius: 50px;
-  margin-bottom: 10px;
-}
-.forgetClass {
-  width: 100%;
-  height: 100vh;
-  background-color: #2e2e30;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-y: scroll;
-  color: #fff;
-  background: url(@/assets/img/bj.png);
-  background-repeat: no-repeat;
-  background-size: 100% auto;
 }
 </style>

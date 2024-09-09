@@ -2,7 +2,7 @@
   <div class="withdraw-page">
     <van-nav-bar title="提现" left-arrow @click-left="$router.back()" />
     <Loading v-if="loading" />
-    <van-image :src="tixian" width="100%" height="100%;"></van-image>
+    <!--    <van-image :src="tixian" width="100%" height="100%;"></van-image>-->
 
     <van-tabs v-model:active="active">
       <van-tab title="选择提现">
@@ -39,7 +39,7 @@
           round
           block
           type="primary"
-          color="#1989FA"
+          color="#EA5514"
           @click="goPay"
           :loading="tixianLoading"
           loading-text="加载中..."
@@ -73,7 +73,7 @@
             <van-button
               type="primary"
               style="margin-top: 30px"
-              color="#1989FA"
+              color="#EA5514"
               block
               @click="save('bank')"
               :loading="bindLoading"
@@ -94,7 +94,7 @@
             <van-button
               type="primary"
               style="margin-top: 30px"
-              color="#1989FA"
+              color="#EA5514"
               block
               @click="save('ali')"
               >保存</van-button
@@ -107,7 +107,7 @@
               钱包地址为钱包主页界面的34位字母+数字组合。
             </p>
             <van-button
-              color="#1989FA"
+              color="#EA5514"
               type="primary"
               style="margin-top: 30px"
               block
@@ -125,7 +125,7 @@
             <!--            </p>-->
 
             <van-button
-              color="#1989FA"
+              color="#EA5514"
               ty
               pe="primary"
               style="margin-top: 30px"
@@ -134,7 +134,7 @@
               >保存</van-button
             >
           </van-tab>
-          <div class="desc" style="margin: 10px 0">
+          <div v-if="false" class="desc" style="margin: 10px 0">
             <p style="font-weight: bolder">《绑定使用JDPAY（JD钱包）提现，笔笔获得抽转盘大奖》</p>
             <p><span class="index">1、</span>活动门槛</p>
             <p style="padding-left: 20px">全体用户可参与，无门槛限制</p>
@@ -526,7 +526,6 @@ const deleteCard = (item, index) => {
 
 .withdraw-page {
   height: 100%;
-  background-color: #fff;
 }
 
 .content {
@@ -535,6 +534,7 @@ const deleteCard = (item, index) => {
 
 .desc {
   padding: 0 10px;
+  color: #fff;
   .desc-title {
     font-size: 16px;
     font-weight: bolder;

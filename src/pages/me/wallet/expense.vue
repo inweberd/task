@@ -83,6 +83,7 @@ onMounted(() => {
   margin-top: 20px;
 }
 .card {
+  background-color: #a3a3a3;
   padding: 15px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;

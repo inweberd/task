@@ -353,4 +353,47 @@ onMounted(() => {
   font-size: 18px;
   font-weight: bold;
 }
+.van-nav-bar {
+  background-color: #2e2e30 !important;
+}
+.van-nav-bar__title {
+  color: #fff !important;
+}
+.van-nav-bar__content:after {
+  border: none !important;
+  display: none;
+}
+.van-hairline--bottom:after {
+  border-bottom-width: 0;
+}
+.van-tab {
+  color: #fff !important;
+}
+.van-tabs__line {
+  background-color: #ea5514 !important;
+}
+.van-tabs__nav {
+  background-color: #2e2e30 !important;
+}
+.van-cell {
+  background-color: #2e2e30 !important;
+  color: #fff !important;
+}
+.van-field__label {
+  color: #fff !important;
+}
+.van-field__control {
+  color: #fff !important;
+}
+.van-popup {
+  background-color: #2e2e30;
+  color: #fff !important;
+}
+.van-dialog__message {
+  color: #fff !important;
+}
+[class*='van-hairline']:after {
+  //border-left: none !important;
+  border-color: #666 !important;
+}
 </style>

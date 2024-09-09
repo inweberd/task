@@ -3,6 +3,7 @@
     <van-nav-bar
       title="收支明细"
       safe-area-inset-top
+      style="background-color: #2e2e30"
       fixed
       placeholder
       :class="{ inApp: getIsInApp() }"
@@ -16,7 +17,7 @@
     </van-nav-bar>
     <Loading v-if="loading" />
 
-    <div class="balance-info" v-else>
+    <div class="balance-info" v-if="false">
       <div style="display: flex; justify-content: space-evenly">
         <div>
           <div class="balance-text">充值余额</div>
@@ -49,17 +50,28 @@
         <!-- <van-image :src="imageSrc" width="100" height="100%"   fit="fill" class="action-button"></van-image> -->
       </div>
     </div>
-    <van-tabs v-model:active="activeTab" @change="change">
-      <van-tab title="收入明细" name="收入">
-        <wallet-income v-if="activeTab === '收入'"></wallet-income>
-      </van-tab>
-      <van-tab title="支出明细" name="支出">
-        <wallet-expense v-if="activeTab === '支出'"></wallet-expense>
-      </van-tab>
-      <van-tab title="提现记录" name="提现">
-        <wallet-withdraw v-if="activeTab === '提现'"></wallet-withdraw>
-      </van-tab>
-    </van-tabs>
+    <div class="tab">
+      <div class="tab-item" :class="{ active: activeTab === '收入' }" @click="activeTab = '收入'">
+        收入
+      </div>
+      <div class="tab-item" :class="{ active: activeTab === '支出' }" @click="activeTab = '支出'">
+        支出
+      </div>
+      <div class="tab-item" :class="{ active: activeTab === '提现' }" @click="activeTab = '提现'">
+        提现
+      </div>
+    </div>
+    <!--    <van-tabs v-model:active="activeTab" @change="change">-->
+    <!--      <van-tab title="收入明细" name="收入">-->
+    <wallet-income v-if="activeTab === '收入'"></wallet-income>
+    <!--      </van-tab>-->
+    <!--      <van-tab title="支出明细" name="支出">-->
+    <wallet-expense v-if="activeTab === '支出'"></wallet-expense>
+    <!--      </van-tab>-->
+    <!--      <van-tab title="提现记录" name="提现">-->
+    <wallet-withdraw v-if="activeTab === '提现'"></wallet-withdraw>
+    <!--      </van-tab>-->
+    <!--    </van-tabs>-->
     <modzz v-model="service"></modzz>
   </div>
 </template>
@@ -77,6 +89,7 @@ import { getIsInApp } from '@/utils/getTopPadding'
 const router = useRouter()
 const service = ref(false)
 const activeTab = ref('收入')
+
 const state = reactive({
   wallet: {},
   tabs: {
@@ -136,7 +149,7 @@ onMounted(() => method.init())
 
 .wallet-page {
   padding: 16px;
-  background-color: #f7f8fa;
+  background-color: #2e2e30;
   height: 100%;
   overflow-y: auto;
 }
@@ -173,5 +186,32 @@ onMounted(() => method.init())
   width: 120px;
   height: 50px;
   border: none;
+}
+.tab {
+  margin-left: 2%;
+  background-size: 100% 100%;
+  width: 96%;
+  height: 40px;
+  background-color: #5d5e5f;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  padding: 4px;
+  overflow: hidden;
+  box-sizing: border-box;
+  .tab-item {
+    height: 100%;
+    border-radius: 20px;
+    flex: 1;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    line-height: 32px;
+    color: rgb(180, 164, 130);
+
+    &.active {
+      background-color: #ea5514;
+    }
+  }
 }
 </style>

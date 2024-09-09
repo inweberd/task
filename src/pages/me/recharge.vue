@@ -6,7 +6,7 @@
       @click-left="$router.back()"
       style="background-color: transparent"
     />
-    <van-image :src="tixian" width="100%" height="100%;"></van-image>
+    <!--    <van-image :src="tixian" width="100%" height="100%;"></van-image>-->
 
     <Loading v-if="loading"></Loading>
     <div class="container">
@@ -66,7 +66,13 @@
                 v-model="state.struct.amount"
                 class="unp"
                 label=""
-                style="font-size: 26px; font-weight: bolder; padding-bottom: 0; margin-bottom: 10px"
+                style="
+                  font-size: 26px;
+                  font-weight: bolder;
+                  padding-bottom: 0;
+                  margin-bottom: 10px;
+                  color: #fff;
+                "
                 type="number"
                 name="aa"
                 @input="
@@ -166,22 +172,22 @@ const downloadList = [
   //   label: 'K豆钱包苹果下载地址',
   //   url: 'https://kdv3.com'
   // },
-  {
-    label: 'KD充值视频教程',
-    url: '/data/video/buy.mp4'
-  },
-  {
-    label: 'KD提现视频教程',
-    url: '/data/video/sell.mp4'
-  },
-  {
-    label: 'JD充值视频教程',
-    url: '/data/video/buy.mp4'
-  },
-  {
-    label: 'JD提现视频教程',
-    url: '/data/video/sell.mp4'
-  }
+  // {
+  //   label: 'KD充值视频教程',
+  //   url: '/data/video/buy.mp4'
+  // },
+  // {
+  //   label: 'KD提现视频教程',
+  //   url: '/data/video/sell.mp4'
+  // },
+  // {
+  //   label: 'JD充值视频教程',
+  //   url: '/data/video/buy.mp4'
+  // },
+  // {
+  //   label: 'JD提现视频教程',
+  //   url: '/data/video/sell.mp4'
+  // }
 ]
 const openDownload = (url) => {
   location.href = url
@@ -382,7 +388,7 @@ onMounted(() => method.init())
 .rechargeClass {
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: #2e2e30;
   overflow-y: auto;
 
   .container {
@@ -395,8 +401,9 @@ onMounted(() => method.init())
       font-size: 16px;
       display: flex;
       padding: 23px 0;
-      border-bottom: 1px solid #ccc;
-      //color: #fff;
+      border-bottom: 1px solid #534e4e;
+      background-color: #2e2e30;
+      color: #fff;
 
       &-left {
         margin: 0 25px;
@@ -427,11 +434,12 @@ onMounted(() => method.init())
       }
     }
     .recharge-money {
-      background-color: #fff;
+      background-color: #2e2e30;
+      color: #fff;
       padding: 30px 20px;
       .txt {
         font-size: 16px;
-        color: #212529;
+        color: #fff;
       }
       .money-box {
         display: flex;
@@ -439,7 +447,7 @@ onMounted(() => method.init())
         align-items: center;
         justify-content: space-between;
         flex: 1;
-        border-bottom: 1px solid #dadbde;
+        border-bottom: 1px solid #534e4e;
         height: 50px;
         .input-content {
           flex: 1;
@@ -541,13 +549,13 @@ onMounted(() => method.init())
             .info {
               div:nth-child(1) {
                 font-weight: 400;
-                color: #212529;
+                color: #fff;
                 font-size: 16px;
               }
               div:nth-child(2) {
                 margin-top: 8px;
                 font-size: 13px;
-                color: rgba(33, 37, 41, 0.75);
+                color: #ccc;
               }
             }
           }

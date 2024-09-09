@@ -45,6 +45,7 @@ const routes: RouteRecordRaw[] = [
 
   { path: '/article', component: () => import('@/pages/me/article.vue') },
   { path: '/myteam', component: () => import('@/pages/me/myteam.vue') },
+  { path: '/teamStat', component: () => import('@/pages/me/myteam-old.vue') },
   { path: '/mysub', component: () => import('@/pages/me/mysub.vue') },
   { path: '/fenxiang', component: () => import('@/pages/me/MyCard.vue') },
   { path: '/demo', component: () => import('@/pages/me/demo.vue') },

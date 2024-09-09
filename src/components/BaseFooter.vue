@@ -2,26 +2,18 @@
   <div v-if="visible" class="footer" :class="{ isWhite }">
     <div class="l-button" @click="refresh(1)">
       <div class="add-ctn">
-        <img
-          src="@/assets/img/tabbar/home-active.webp"
-          alt=""
-          class="add"
-          v-if="currentTab === 1"
-        />
-        <img src="@/assets/img/tabbar/home.webp" alt="" class="add" v-else />
+        <img src="@/assets/img/tabbar/1.png" alt="" class="add" v-if="currentTab === 1" />
+        <img src="@/assets/img/tabbar/1.png" alt="" class="add" v-else />
+        <div>首页</div>
       </div>
     </div>
 
     <!--    <div class="l-button" @click="refresh(2)">-->
     <div class="l-button" @click="loadShort(1)">
       <div class="add-ctn">
-        <img
-          src="../assets/img/tabbar/video-active.webp"
-          alt=""
-          class="add"
-          v-if="currentTab === 2"
-        />
-        <img src="../assets/img/tabbar/video.webp" alt="" class="add" v-else />
+        <img src="../assets/img/tabbar/2.png" alt="" class="add" v-if="currentTab === 2" />
+        <img src="../assets/img/tabbar/2.png" alt="" class="add" v-else />
+        <div>视频</div>
       </div>
     </div>
     <!--<div class="l-button" @click="tab(3)">-->
@@ -40,35 +32,32 @@
     <!--  &lt;!&ndash;</div>&ndash;&gt;-->
     <!--</div>-->
     <!--    <div class="l-button" @click="tab(4)">-->
-    <div class="l-button" @click="loadShort(2)">
+    <!--    <div class="l-button" @click="loadShort(2)">-->
+    <!--      <div class="add-ctn">-->
+    <!--        <img-->
+    <!--          src="../assets/img/tabbar/short-active.webp"-->
+    <!--          alt=""-->
+    <!--          class="add"-->
+    <!--          v-if="currentTab === 4"-->
+    <!--        />-->
+    <!--        <img src="../assets/img/tabbar/short.webp" alt="" class="add" v-else />-->
+    <!--      </div>-->
+    <!--      &lt;!&ndash; <div class="badge">2</div> &ndash;&gt;-->
+    <!--    </div>-->
+    <div class="l-button" @click="tab(5)">
       <div class="add-ctn">
-        <img
-          src="../assets/img/tabbar/short-active.webp"
-          alt=""
-          class="add"
-          v-if="currentTab === 4"
-        />
-        <img src="../assets/img/tabbar/short.webp" alt="" class="add" v-else />
+        <img src="../assets/img/tabbar/3.png" alt="" class="add" v-if="currentTab === 5" />
+        <img src="../assets/img/tabbar/3.png" alt="" class="add" v-else />
+        <div>会员</div>
       </div>
-      <!-- <div class="badge">2</div> -->
     </div>
     <div class="l-button" @click="tab(6)">
       <div class="add-ctn">
-        <img
-          src="../assets/img/tabbar/invite-active.webp"
-          alt=""
-          class="add"
-          v-if="currentTab === 6"
-        />
-        <img src="../assets/img/tabbar/invite.webp" alt="" class="add" v-else />
+        <img src="../assets/img/tabbar/5.png" alt="" class="add" v-if="currentTab === 6" />
+        <img src="../assets/img/tabbar/5.png" alt="" class="add" v-else />
+        <div>我的</div>
       </div>
       <!-- <div class="badge">2</div> -->
-    </div>
-    <div class="l-button" @click="tab(5)">
-      <div class="add-ctn">
-        <img src="../assets/img/tabbar/my-active.webp" alt="" class="add" v-if="currentTab === 5" />
-        <img src="../assets/img/tabbar/my.webp" alt="" class="add" v-else />
-      </div>
     </div>
   </div>
 </template>
@@ -189,7 +178,7 @@ export default {
   }
 
   .l-button {
-    width: 25%;
+    width: 33%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -222,11 +211,17 @@ export default {
       padding: 0 2px;
       //border: 3px solid white;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
 
       img {
         width: 30px;
+      }
+
+      & > div {
+        color: #9f8b8b;
+        font-size: 14px;
       }
     }
 

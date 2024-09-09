@@ -1,7 +1,7 @@
 <template>
-  <div style="background-color: aliceblue" class="team-benefits">
+  <div class="team-benefits">
     <van-nav-bar
-      title="团队收益"
+      title="团队报表"
       safe-area-inset-top
       fixed
       :class="{ inApp: getIsInApp() }"
@@ -29,22 +29,22 @@
 
       <div class="stats">
         <div class="stat-item">
+          <div class="label">团队总人数</div>
           <div class="number">
             {{ memberInfo.team?.total || 0 }}
           </div>
-          <div class="label">团队总人数</div>
         </div>
         <div class="stat-item">
-          <div class="number">{{ memberInfo.team?.vip || 0 }}</div>
           <div class="label">团队有效人数</div>
+          <div class="number">{{ memberInfo.team?.vip || 0 }}</div>
         </div>
         <div class="stat-item">
-          <div class="number">{{ memberInfo.first?.total || 0 }}</div>
           <div class="label">直推总人数</div>
+          <div class="number">{{ memberInfo.first?.total || 0 }}</div>
         </div>
         <div class="stat-item">
-          <div class="number">{{ memberInfo.first?.vip || 0 }}</div>
           <div class="label">直推有效人数</div>
+          <div class="number">{{ memberInfo.first?.vip || 0 }}</div>
         </div>
         <!--        <div class="stat-item">-->
         <!--          <div class="number">{{ memberInfo.first?.rebate || 0 }}</div>-->
@@ -55,16 +55,16 @@
         <!--          <div class="label">团队总收益</div>-->
         <!--        </div>-->
         <div class="stat-item">
-          <div class="number">{{ memberInfo.team?.deposit || 0 }}</div>
           <div class="label">团队总充值</div>
+          <div class="number">￥{{ memberInfo.team?.deposit || 0 }}</div>
         </div>
         <div class="stat-item">
-          <div class="number">{{ memberInfo.team?.withdraw || 0 }}</div>
           <div class="label">团队总提现</div>
+          <div class="number">￥{{ memberInfo.team?.withdraw || 0 }}</div>
         </div>
         <div class="stat-item" style="width: 100%">
-          <div class="number">{{ userIncomeInfo.today || 0 }}</div>
           <div class="label">今日收益</div>
+          <div class="number">￥{{ userIncomeInfo.today || 0 }}</div>
         </div>
         <!--        <div class="stat-item">-->
         <!--          <div class="number">{{ userIncomeInfo.total || 0 }}</div>-->
@@ -75,8 +75,10 @@
         <!--          <div class="label">股东晋级奖励</div>-->
         <!--        </div>-->
       </div>
-      <van-search v-model="searchInfo.phone" placeholder="请输入要查询的手机号码" />
+      <!--      <van-search v-model="searchInfo.phone" placeholder="请输入要查询的手机号码" />-->
+      <van-button color="#E95513" style="width: 100%; border-radius: 20px">直推人员列表</van-button>
       <van-list
+        style="margin-top: 20px"
         v-model:loading="loading"
         :finished="finished"
         finished-text="没有更多了"
@@ -86,14 +88,17 @@
           <div class="card-body d-flex justify-content-between flex-row align-items-center">
             <div class="d-flex flex-row">
               <div class="u-avatar u-avatar--circle avatar-shadow">
-                <van-image :src="item.avatar" width="50" height="50" />
+                <van-image :src="headImg" width="50" height="50" />
               </div>
               <div class="d-flex flex-column justify-content-center ms-2">
                 <div class="d-flex flex-row align-items-center">
-                  <div class="font-15 me-2">
-                    {{ item.phone || item.nickname }}
-                    <span class="ms-2" style="font-size: 14px">
-                      {{ getSerialName(item?.staff?.serial) }}
+                  <div
+                    class="font-15 me-2"
+                    style="display: flex; flex-direction: column; align-items: flex-start"
+                  >
+                    <span> 电话:{{ item.phone || item.nickname }}</span>
+                    <span style="font-size: 14px">
+                      等级：{{ getSerialName(item?.staff?.serial) }}
                     </span>
                   </div>
                 </div>
@@ -102,7 +107,7 @@
                 <!--                </div>-->
               </div>
             </div>
-            <div class="text-warning">￥{{ parseFloat(item?.staff?.money || 0).toFixed(2) }}</div>
+            <div class="money">￥{{ parseFloat(item?.staff?.money || 0).toFixed(2) }}</div>
           </div>
         </div>
       </van-list>
@@ -122,6 +127,7 @@ import { reqUserDistribution, reqUserIncome, reqUserMemberInfo } from '@/api/myA
 import { _notice } from '@/utils'
 import { getSerialName } from '../../utils/getSerialName'
 import { getIsInApp } from '@/utils/getTopPadding'
+import headImg from '@/assets/img/head.png'
 const router = useRouter()
 let user
 const loading = ref(true)
@@ -165,7 +171,8 @@ const getDataList = async (index = 'one') => {
   loading.value = false
   if (code !== 200) {
     finished.value = true
-    return _notice(msg)
+    // _notice(msg)
+    return
   }
   // 数据全部加载完成
   dataList.value.push(...data.data)
@@ -206,7 +213,7 @@ onActivated(() => {
 
 .team-benefits {
   padding: 16px;
-  background-color: #f7f8fa;
+  background-color: #2e2e30;
   height: 100%;
   overflow-y: auto;
 }
@@ -240,7 +247,8 @@ onActivated(() => {
 
 .label {
   margin-top: 5px;
-  color: #999;
+  color: #b5a483;
+  font-size: 12px;
 }
 
 .stats {
@@ -250,7 +258,7 @@ onActivated(() => {
 }
 
 .stat-item {
-  background-color: #fff;
+  background-color: #2e2e30;
   border-radius: 8px;
   padding: 10px;
   width: 40%;
@@ -259,9 +267,8 @@ onActivated(() => {
 }
 
 .number {
-  color: #000;
+  color: #e95513;
   font-size: 24px;
-  font-weight: bold;
 }
 
 .no-more {
@@ -273,8 +280,10 @@ onActivated(() => {
 .card {
   padding: 15px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  border-radius: 40px;
   margin-bottom: 20px;
+  background-color: #565151;
+  color: #b4a482;
 }
 
 .card-body {
@@ -287,6 +296,7 @@ onActivated(() => {
   width: 40px;
   height: 40px;
   background-color: transparent;
+  margin-right: 20px;
 }
 
 .u-avatar__image {

@@ -20,9 +20,9 @@
         <van-field
           v-model="data.phone"
           label=""
-          name="转账对象手机号"
-          placeholder="转账对象手机号"
-          :rules="[{ required: true, message: '请输入转账对象手机号' }]"
+          name="团队成员手机号"
+          placeholder="团队成员手机号"
+          :rules="[{ required: true, message: '请输入团队成员手机号' }]"
         />
         <van-field
           v-model="data.amount"
@@ -119,7 +119,7 @@ function go(path) {
 
 function getCode() {
   if (!data.phone) {
-    return _notice('请输入转账对象手机号')
+    return _notice('请输入团队成员手机号')
   }
 
   reqWalletTransfer(data).then((e) => {

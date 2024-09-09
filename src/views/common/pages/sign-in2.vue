@@ -1,5 +1,16 @@
 <template>
-  <div class="signinClass">
+  <div
+    style="
+      width: 100%;
+      height: 100vh;
+      background-color: #2e2e30;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-y: scroll;
+      color: #fff;
+    "
+  >
     <div
       id="sign"
       class="d-flex justify-content-around user-select-none"
@@ -9,47 +20,80 @@
         class="right card backdrop-filter"
         style="width: 55%; box-shadow: unset; background: transparent"
       >
-        <div
-          class="card-body p-lg-4"
-          style="
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-          "
-        >
-          <el-form label-position="top" label-width="auto" style="max-width: 800px">
+        <div class="card-body p-lg-4">
+          <div class="d-flex align-items-center justify-content-center py-5">
+            <el-image :src="logo" style="width: 80px; height: 80px"></el-image>
+          </div>
+
+          <div class="flex-center divider-light my-3 font-12 text-white user-select-none">
+            登录您的账户
+          </div>
+
+          <el-form
+            v-if="state.segmented.value === 'code'"
+            label-position="top"
+            label-width="auto"
+            style="max-width: 800px"
+          >
             <el-form-item>
-              <el-input v-model="state.struct.account" size="large" placeholder="请输入手机号码">
-                <template #prepend>
-                  <el-icon><User /></el-icon>
-                </template>
-              </el-input>
+              <template #label>
+                <span class="text-white">账户</span>
+              </template>
+              <el-input
+                v-model="state.struct.social"
+                size="large"
+                placeholder="手机号码或邮箱"
+              ></el-input>
             </el-form-item>
             <el-form-item>
+              <template #label>
+                <span class="text-white">验证码</span>
+              </template>
+              <div class="d-flex w-100">
+                <el-input
+                  v-model="state.struct.code"
+                  v-on:keyup.enter="SignIn()"
+                  size="large"
+                  placeholder="请输入验证码"
+                ></el-input>
+                <el-button
+                  v-on:click="SendCode()"
+                  :disabled="state.status.code"
+                  size="large"
+                  class="ms-2"
+                >
+                  <span v-if="!state.status.code">发送验证码</span>
+                  <span v-else>重新发送</span>
+                </el-button>
+              </div>
+            </el-form-item>
+          </el-form>
+          <el-form v-else label-position="top" label-width="auto" style="max-width: 800px">
+            <el-form-item>
+              <template #label>
+                <span class="text-white">账号</span>
+              </template>
+              <el-input v-model="state.struct.account" size="large"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <template #label>
+                <span class="text-white">密码</span>
+              </template>
               <el-input
                 v-model="state.struct.password"
                 v-on:keyup.enter="SignIn()"
                 type="password"
                 show-password
                 size="large"
-                placeholder="请输入密码"
-              >
-                <template #prepend>
-                  <el-icon><Lock /></el-icon>
-                </template>
-              </el-input>
+              ></el-input>
             </el-form-item>
             <el-form-item>
+              <template #label>
+                <span class="text-white">验证码</span>
+              </template>
               <div class="d-flex w-100">
-                <el-input v-model="state.struct.code" placeholder="请输入验证码">
-                  <template #prepend>
-                    <el-icon><DocumentCopy /></el-icon>
-                  </template>
-                  <template #append>
-                    <canvas ref="verifyRef" @click="draw" :width="120" height="40"></canvas>
-                  </template>
-                </el-input>
+                <el-input v-model="state.struct.code" size="large"></el-input>
+                <canvas ref="verifyRef" @click="draw" :width="150" height="50"></canvas>
                 <!--<el-button @click="getCode" size="large" class="ms-2" color="#409EFF">-->
                 <!--  <span style="color: #fff">{{ viewCode }}</span>-->
                 <!--</el-button>-->
@@ -61,40 +105,29 @@
             v-on:click="SignIn()"
             :loading="state.status.wait"
             type="primary"
-            style="border-radius: 20px; color: #fff"
-            color="#B5A483"
             size="large"
             class="w-100 mt-3"
             >登录</el-button
           >
 
-          <div
-            style="
-              color: #b5a483;
-              display: flex;
-              justify-content: space-around;
-              margin-top: 30px;
-              width: 100%;
-            "
-          >
+          <div class="d-flex justify-content-between mt-5" style="color: #fff">
             <router-link to="/common/sign-up" class="text-decoration-none">
-              <span>注册账户</span>
+              <span class="text-light">注册账户</span>
             </router-link>
             <router-link to="/common/sign-forget" class="text-decoration-none">
-              <span>忘记密码</span>
+              <span class="text-light">忘记密码</span>
             </router-link>
           </div>
-          <a style="margin-top: 10px; text-decoration: underline; font-size: 18px">下载app</a>
         </div>
       </div>
     </div>
-    <!--    <div class="contact" @click="$router.push('/article?id=5')">-->
-    <!--      <img src="@/assets/img/jieshao.png" />-->
-    <!--      <div>-->
-    <!--        <div>玩法</div>-->
-    <!--        <div>介绍</div>-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <div class="contact" @click="$router.push('/article?id=5')">
+      <img src="@/assets/img/jieshao.png" />
+      <div>
+        <div>玩法</div>
+        <div>介绍</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -109,7 +142,6 @@ import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { useUsers } from '@/store/users'
 import { showToast } from 'vant'
-import { User, Lock, DocumentCopy } from '@element-plus/icons-vue'
 
 const { info, token, status } = storeToRefs(useUsers())
 
@@ -143,7 +175,7 @@ const verifyRef = ref(null)
 const codeState = reactive({
   pool: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890',
   // 声明两个变量存验证码的宽高
-  width: 120,
+  width: 150,
   height: 50,
   // 验证码最终存储的位置
   imgCode: ''
@@ -180,16 +212,16 @@ const draw = () => {
   const ctx = verifyRef.value.getContext('2d')
   // ② 填充背景颜色
   ctx.fillStyle = randomColor(20, 256)
-  ctx.fillRect(0, 0, 120, 50) // ctx.fillRect(矩形起始点的x坐标，矩形起始点的y坐标,矩形的宽度，矩形的高度) fillRect()方法绘制一个填充了内容的矩形
+  ctx.fillRect(0, 0, 150, 50) // ctx.fillRect(矩形起始点的x坐标，矩形起始点的y坐标,矩形的宽度，矩形的高度) fillRect()方法绘制一个填充了内容的矩形
   // fillText()  指定的坐标上绘制文本字符串，并使用当前的 fillStyle 对其进行填充
   // ③ 生成随机数，随机数旋转
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 5; i++) {
     const text = codeState.pool[randomNum(0, codeState.pool.length)]
     codeState.imgCode += text
     console.log('state.imgCode', codeState.imgCode)
     const fontSize = randomNum(16, 30)
     ctx.font = fontSize + 'px Simhei'
-    ctx.fillStyle = randomColor(0, 120) // 设置文字颜色
+    ctx.fillStyle = randomColor(0, 150) // 设置文字颜色
     ctx.textBaseline = 'top' // 述绘制文本时，当前文本基线的属性
     const deg = randomNum(-15, 15) // 旋转的角度
     ctx.save() // 保存当前的绘图状态
@@ -200,12 +232,12 @@ const draw = () => {
     // 使用 save() 方法保存默认的状态，使用 restore() 进行恢复
   }
   // ④ 生成40个点和4条线形成干扰防止OCR
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 5; i++) {
     ctx.beginPath()
     ctx.strokeStyle = randomColor(30, 256)
     ctx.moveTo(randomNum(0, codeState.width), randomNum(0, codeState.height))
     ctx.lineTo(randomNum(0, codeState.width), randomNum(0, codeState.height))
-    ctx.fillStyle = randomColor(0, 120)
+    ctx.fillStyle = randomColor(0, 150)
     ctx.stroke() // 绘制线段
   }
   for (let x = 0; x < 40; x++) {
@@ -215,7 +247,7 @@ const draw = () => {
     ctx.closePath()
     // 笔点返回到当前子路径起始点的方法。它尝试从当前点到起始点绘制一条直线。如果图形已经是封闭的或者只有一个点，那么此方法不会做任何操作
     ctx.stroke()
-    ctx.fillStyle = randomColor(120, 200)
+    ctx.fillStyle = randomColor(150, 200)
     ctx.fill()
   }
   return codeState.imgCode
@@ -341,32 +373,5 @@ body {
     margin-right: 4px;
     width: 25px;
   }
-}
-
-:deep(.el-input-group__append) {
-  padding: 0;
-}
-:deep(.el-input-group__prepend) {
-  background-color: #fff;
-  box-shadow: none;
-}
-:deep(.el-input) {
-  overflow: hidden;
-  border-radius: 50px;
-  margin-bottom: 10px;
-}
-.signinClass {
-  width: 100%;
-  height: 100vh;
-  background-color: #2e2e30;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-y: scroll;
-  color: #fff;
-  padding: 0 20px;
-  background: url(@/assets/img/bj.png);
-  background-repeat: no-repeat;
-  background-size: 100% auto;
 }
 </style>

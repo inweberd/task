@@ -1,10 +1,12 @@
 <template>
   <div class="Loading" :class="[isFullScreen ? 'full' : 'inline', type]">
-    <div class="circle blue"></div>
-    <div class="circle red"></div>
+    <!--    <div class="circle blue"></div>-->
+    <!--    <div class="circle red"></div>-->
   </div>
 </template>
 <script>
+import { closeToast, showLoadingToast } from 'vant'
+
 export default {
   name: 'Loading',
   props: {
@@ -16,6 +18,15 @@ export default {
       type: String,
       default: 'normal'
     }
+  },
+  mounted() {
+    showLoadingToast({
+      duration: 0,
+      message: '加载中'
+    })
+  },
+  unmounted() {
+    closeToast()
   }
 }
 </script>

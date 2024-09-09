@@ -10,7 +10,7 @@
       left-text="返回"
       left-arrow
     ></van-nav-bar>
-    <van-image :src="shareholder" width="100%" height="100%"></van-image>
+    <van-image :src="shareholder" width="100%"></van-image>
     <!--<van-image-->
     <!--  :src="rule"-->
     <!--  width="94%"-->

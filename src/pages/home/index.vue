@@ -64,8 +64,9 @@
           style="margin-top: 10px; width: 93%; margin-left: 2%"
         ></div>
         <div v-else>
-          <van-image width="100%" height="200" :src="zhengshu1" />
-          <van-image width="100%" height="200" :src="zhengshu2" />
+          <van-image width="100%" height="200" :src="zhengshu3" @click="showImage(0)" />
+          <van-image width="100%" height="200" :src="zhengshu1" @click="showImage(1)" />
+          <van-image width="100%" height="200" :src="zhengshu2" @click="showImage(2)" />
         </div>
       </div>
     </div>
@@ -83,6 +84,7 @@ import { reqUserIncome } from '@/api/myApi'
 import { closeToast, showLoadingToast } from 'vant'
 import zhengshu1 from '@/assets/img/zhengshu1.jpg'
 import zhengshu2 from '@/assets/img/zhengshu2.jpg.jpg'
+import zhengshu3 from '@/assets/img/zhengshu3.jpg'
 import dayjs from 'dayjs'
 import imgg from '@/pages/login/logo1.png'
 const router = useRouter()
@@ -92,6 +94,8 @@ const articleInfo = ref({})
 const active = ref(4)
 const walletInfo = ref({})
 function go(e, interaction = false) {
+  window.shareFriend()
+  return
   // interaction && loadInteraction()
   router.push(e)
 }
@@ -128,6 +132,13 @@ function getData() {
 const handleActive = (num) => {
   active.value = num
   getData()
+}
+
+const showImage = (index) => {
+  showImagePreview({
+    images: [zhengshu3, zhengshu1, zhengshu2],
+    startPosition: index
+  })
 }
 onMounted(() => {
   getData()

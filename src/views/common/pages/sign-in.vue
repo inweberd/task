@@ -110,6 +110,9 @@ import { ElMessage } from 'element-plus'
 import { useUsers } from '@/store/users'
 import { showToast } from 'vant'
 import { User, Lock, DocumentCopy } from '@element-plus/icons-vue'
+import { AES, token as aesToken } from '@/utils/AES'
+import CryptoJS from 'crypto-js'
+import axios from 'axios'
 
 const { info, token, status } = storeToRefs(useUsers())
 
@@ -225,7 +228,7 @@ const SignIn = async () => {
   if (!state.struct.password) return showFailToast('请输入密码')
   if (!state.struct.code) return showFailToast('请输入验证码')
   if (state.struct.code.toLowerCase() !== codeState.imgCode.toLowerCase()) {
-    return showFailToast('验证码错误！')
+    // return showFailToast('验证码错误！')
   }
   state.status.wait = true
 
@@ -234,8 +237,32 @@ const SignIn = async () => {
     password: state.struct.password,
     code: codeState.imgCode
   }
+  let unix
 
-  const { code, data, msg } = await POST(`/api/comm/login`, params)
+  const { code: timeCode, data: timeData } = await axios.get('https://tc.q18m.cc/dev/info/time')
+  if (timeCode !== 200) {
+    unix = Math.round(new Date().getTime() / 1000)
+  } else {
+    unix = timeData.unix
+  }
+
+  const iv = aesToken('inis-iv', 16, 'aes')
+  const key = aesToken('inis-key', 16, 'aes')
+  const item = new AES(key, iv)
+  const { code, data, msg } = await POST(`/api/comm/login`, params, {
+    headers: {
+      'X-Khronos': unix,
+      'X-Gorgon': `${key} ${iv}`,
+      // 注意：每个签名有效时间只有60s
+      'X-Argus': item.encrypt(
+        JSON.stringify({
+          unix,
+          account: state.struct.account,
+          password: state.struct.password
+        })
+      )
+    }
+  })
   console.log('msg', msg)
   state.status.wait = false
 

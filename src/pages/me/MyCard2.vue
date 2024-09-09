@@ -1,8 +1,13 @@
 <template>
   <div>
-    <!--    <div style="background-image: linear-gradient(180deg, #fcae03 40%, #fc7a02 80%); height: 100%">-->
-    <div style="height: 100%; background-color: #fff">
-      <dy-back mode="dark" img="back" @click="$router.back()" class="fixed-back" direction="left" />
+    <div style="background-image: linear-gradient(180deg, #fcae03 40%, #fc7a02 80%); height: 100%">
+      <dy-back
+        mode="light"
+        img="back"
+        @click="$router.back()"
+        class="fixed-back"
+        direction="left"
+      />
       <div
         style="
           display: flex;
@@ -30,13 +35,23 @@
 
 <script setup>
 import QRCode from 'qrcode'
-import imageSrc from '@/assets/img/share-bg.jpg'
+import imageSrc from '@/assets/img/share2.jpg'
+import avatar from '@/assets/img/avatar.png'
+import shareBtnBg from '@/assets/img/share-btn-bg.png'
 
 import { wechatShareImg, wechatShareLink } from '@/utils/ad'
+import weixin from '@/assets/img/weixin.png'
+import pengyouquan from '@/assets/img/friend.png'
 
 const canvas = ref()
+// const canvasWidth = ref(window.innerHeight / (2336 / 1080))
+// const canvasHeight = ref(window.innerHeight)
 const canvasWidth = ref(window.innerWidth)
-const canvasHeight = ref(window.innerWidth / (1658 / 2480))
+const canvasHeight = ref(window.innerWidth / (1242 / 2208))
+// const qrCodeText = ref(
+//   'https://lzff.kkwai.cn/#/signUp?invite=' +
+//     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
+// )
 const qrCodeText = ref(
   'https://bbbwx815a13.s3.amazonaws.com/index.html?target=' +
     encodeURIComponent(
@@ -58,6 +73,8 @@ const updateCanvasSize = () => {
   generatePoster()
 }
 const generatePoster = async () => {
+  const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+
   canvas.value.width = canvasWidth.value
   canvas.value.height = canvasHeight.value
   const ctx = canvas.value.getContext('2d')
@@ -77,7 +94,8 @@ const generatePoster = async () => {
   image.onload = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
 
-    const qrCodeSize = canvasWidth.value * 0.3 // 调整二维码的大小
+    const qrCodeSize = 130 // 调整二维码的大小
+    const qrCodeMarginBottom = 25 // 调整二维码距离底部的距离
     const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
       width: qrCodeSize,
       height: qrCodeSize,
@@ -88,10 +106,46 @@ const generatePoster = async () => {
     qrCodeImage.src = qrCodeDataURL
     qrCodeImage.onload = () => {
       // 在海报上绘制二维码，位置在正中心下方
-      const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
-      const qrCodeY = canvasHeight.value - qrCodeSize - canvasWidth.value * 0.25
+      const qrCodeX = canvasWidth.value / 2 - qrCodeSize - 30
+      const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
+      // var base64String = canvas.value.toDataURL('image/png')
+      // console.log(base64String)
+      // console.log()
+      // wechatShareImg(xbase64String)
     }
+    const avatarImage = new Image()
+    avatarImage.src = avatar
+    avatarImage.onload = () => {
+      const qrCodeX = canvasWidth.value / 2
+      const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
+
+      ctx.drawImage(avatarImage, qrCodeX - 20, qrCodeY + 10, 50, 55)
+    }
+    const shareBtnBgImage = new Image()
+    shareBtnBgImage.src = shareBtnBg
+    shareBtnBgImage.onload = () => {
+      const qrCodeX = canvasWidth.value / 2
+      const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
+
+      ctx.drawImage(shareBtnBgImage, qrCodeX - 20, qrCodeY + 90, 150, 40)
+      ctx.fillStyle = 'white'
+
+      ctx.fillText('邀请码：' + userInfo?.result?.invite?.code, qrCodeX - 10, qrCodeY + 115)
+    }
+
+    ctx.font = '16px Arial'
+    // 设置填充颜色
+    ctx.fillStyle = 'black'
+    const qrCodeX = canvasWidth.value / 2
+    const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
+    // 绘制文本
+    ctx.fillText(
+      userInfo.phone ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7) : '',
+      qrCodeX + 40,
+      qrCodeY + 45
+    )
+    // ctx.fillText('邀请你来体验乐租', qrCodeX - 20, qrCodeY + 78)
   }
 }
 
@@ -148,7 +202,7 @@ body,
 }
 .contact {
   position: fixed;
-  top: 65%;
+  top: 45%;
   right: 0;
   display: flex;
   align-items: center;

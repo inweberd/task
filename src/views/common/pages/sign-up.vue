@@ -5,10 +5,12 @@
       class="d-flex justify-content-around user-select-none"
       style="max-height: 550px; max-width: 800px; width: 95%; height: 80%"
     >
-      <div
-        class="right card backdrop-filter"
-        style="width: 55%; box-shadow: unset; background: transparent"
-      >
+      <img
+        src="@/assets/img/logo.png"
+        style="position: absolute; width: 100px; top: 60px; left: 50%; transform: translateX(-50%)"
+        alt=""
+      />
+      <div class="right card backdrop-filter" style="box-shadow: unset; background: transparent">
         <div
           class="card-body p-lg-4"
           style="
@@ -18,7 +20,7 @@
             flex-direction: column;
           "
         >
-          <el-form label-position="top" label-width="auto" style="max-width: 800px">
+          <el-form label-position="top" label-width="auto" style="width: 100%">
             <el-form-item>
               <el-input v-model="state.struct.social" size="large" placeholder="请输入手机号码">
                 <template #prepend>
@@ -201,7 +203,7 @@ const SignUp = async () => {
   for (let i in state.struct) state.struct[i] = ''
 
   showToast('注册成功')
-  window.location.href = `https://lzff.kkwai.cn/download`
+  window.location.href = `https://ff.kkwai.cn/download`
   // 跳转到首页
   // await router.push({ path: '/' })
 }
@@ -295,6 +297,7 @@ body {
 }
 
 .signupClass {
+  position: absolute;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -304,6 +307,6 @@ body {
   color: #fff;
   background: url(@/assets/img/bj.png);
   background-repeat: no-repeat;
-  background-size: 100% auto;
+  background-size: 100% 100%;
 }
 </style>

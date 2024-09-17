@@ -64,9 +64,21 @@
           style="margin-top: 10px; width: 93%; margin-left: 2%"
         ></div>
         <div v-else>
-          <van-image width="100%" height="200" :src="zhengshu3" @click="showImage(0)" />
-          <van-image width="100%" height="200" :src="zhengshu1" @click="showImage(1)" />
-          <van-image width="100%" height="200" :src="zhengshu2" @click="showImage(2)" />
+          <van-image width="100%" lazy-load height="200" :src="zhengshu3" @click="showImage(0)">
+            <template v-slot:loading>
+              <van-loading type="spinner" size="20" />
+            </template>
+          </van-image>
+          <van-image width="100%" lazy-load height="200" :src="zhengshu1" @click="showImage(1)">
+            <template v-slot:loading>
+              <van-loading type="spinner" size="20" />
+            </template>
+          </van-image>
+          <van-image width="100%" lazy-load height="200" :src="zhengshu2" @click="showImage(2)">
+            <template v-slot:loading>
+              <van-loading type="spinner" size="20" />
+            </template>
+          </van-image>
         </div>
       </div>
     </div>
@@ -94,8 +106,6 @@ const articleInfo = ref({})
 const active = ref(4)
 const walletInfo = ref({})
 function go(e, interaction = false) {
-  window.shareFriend()
-  return
   // interaction && loadInteraction()
   router.push(e)
 }
@@ -151,6 +161,7 @@ onActivated(() => {
 
 <style scoped lang="less">
 .home {
+  position: relative;
   width: 100%;
   height: calc(100% - 56px);
   background-color: #2e2e30;

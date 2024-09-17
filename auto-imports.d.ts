@@ -59,6 +59,7 @@ declare global {
   const showConfirmDialog: typeof import('vant/es')['showConfirmDialog']
   const showDialog: typeof import('vant/es')['showDialog']
   const showFailToast: typeof import('vant/es')['showFailToast']
+  const showImagePreview: typeof import('vant/es')['showImagePreview']
   const showToast: typeof import('vant/es')['showToast']
   const storeToRefs: typeof import('pinia')['storeToRefs']
   const toRaw: typeof import('vue')['toRaw']

@@ -19,7 +19,7 @@
     <!--    </van-swipe>-->
     <div class="announcement">
       <div class="announcement-task flexS">
-        <div data-cid="1" class="a-t-items" v-for="item of shopList" @click="buy(item)">
+        <div data-cid="1" class="a-t-items" v-for="(item, index) of shopList" @click="buy(item)">
           <div class="a-t-text">
             <div class="a-t-t-3">
               <div class="a-t-title" style="width: 90%; left: 0; color: #b4a482; margin-left: 5%">
@@ -48,7 +48,8 @@
                 class="info"
                 style="position: absolute; left: 5px; bottom: 4px; color: #fff; font-size: 12px"
               >
-                会员周期:45天，预估收益：{{ item.unit_price }}元/天
+                <!--                会员周期:45天，预估总收益:：{{ item.unit_price }}元-->
+                会员周期:45天，预估总收益:：{{ shouyiArr[index] }}元
               </div>
               <img :src="getIconPath(item.icon)" alt="" style="height: 130px; width: 100%" />
               <div class="introduce" v-if="myStaffList.includes(item.serial)">
@@ -123,6 +124,7 @@ defineOptions({
 const numArr = [50, 250, 500, 1000, 2000, 4000]
 const userIncomeInfo = ref({})
 const totalSpend = ref(0)
+const shouyiArr = [270, 900, 1575, 3015, 4500, 8190, 15075]
 
 const shopList = ref([
   {

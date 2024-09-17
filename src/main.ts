@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import './assets/less/index.less'
+import { Lazyload } from 'vant'
 // import { startMock } from '@/mock'
 import router from './router'
 import mixin from './utils/mixin'
@@ -23,7 +24,7 @@ app.use(pinia)
 app.use(router)
 app.mount('#app')
 app.directive('click', vClick)
-
+app.use(Lazyload)
 // 初始化状态管理器
 import { useUsers } from '@/store/users'
 useUsers().init()

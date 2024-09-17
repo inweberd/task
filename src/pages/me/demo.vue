@@ -10,7 +10,7 @@
       left-text="返回"
       left-arrow
     ></van-nav-bar>
-    <van-image :src="shareholder" width="100%"></van-image>
+    <van-image :src="shareholder" width="100%" @click="showImage"></van-image>
     <!--<van-image-->
     <!--  :src="rule"-->
     <!--  width="94%"-->
@@ -24,6 +24,10 @@
 import shareholder from '@/assets/img/shareholder3.jpg'
 // import rule from '@/assets/img/rule.jpg'
 import { getIsInApp } from '@/utils/getTopPadding'
+import { showImagePreview } from 'vant'
+const showImage = () => {
+  showImagePreview([shareholder])
+}
 </script>
 <style scoped>
 html {

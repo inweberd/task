@@ -5,10 +5,12 @@
       class="d-flex justify-content-around user-select-none"
       style="max-height: 550px; max-width: 800px; width: 95%; height: 80%"
     >
-      <div
-        class="right card backdrop-filter"
-        style="width: 55%; box-shadow: unset; background: transparent"
-      >
+      <img
+        src="@/assets/img/logo.png"
+        style="position: absolute; width: 100px; top: 100px; left: 50%; transform: translateX(-50%)"
+        alt=""
+      />
+      <div class="right card backdrop-filter" style="box-shadow: unset; background: transparent">
         <div
           class="card-body p-lg-4"
           style="
@@ -18,7 +20,7 @@
             flex-direction: column;
           "
         >
-          <el-form label-position="top" label-width="auto" style="max-width: 800px">
+          <el-form label-position="top" label-width="auto" style="width: 100%">
             <el-form-item>
               <el-input v-model="state.struct.account" size="large" placeholder="请输入手机号码">
                 <template #prepend>
@@ -40,21 +42,21 @@
                 </template>
               </el-input>
             </el-form-item>
-            <el-form-item>
-              <div class="d-flex w-100">
-                <el-input v-model="state.struct.code" placeholder="请输入验证码">
-                  <template #prepend>
-                    <el-icon><DocumentCopy /></el-icon>
-                  </template>
-                  <template #append>
-                    <canvas ref="verifyRef" @click="draw" :width="120" height="40"></canvas>
-                  </template>
-                </el-input>
-                <!--<el-button @click="getCode" size="large" class="ms-2" color="#409EFF">-->
-                <!--  <span style="color: #fff">{{ viewCode }}</span>-->
-                <!--</el-button>-->
-              </div>
-            </el-form-item>
+            <!--            <el-form-item>-->
+            <!--              <div class="d-flex w-100">-->
+            <!--                <el-input v-model="state.struct.code" placeholder="请输入验证码">-->
+            <!--                  <template #prepend>-->
+            <!--                    <el-icon><DocumentCopy /></el-icon>-->
+            <!--                  </template>-->
+            <!--                  <template #append>-->
+            <!--                    <canvas ref="verifyRef" @click="draw" :width="120" height="40"></canvas>-->
+            <!--                  </template>-->
+            <!--                </el-input>-->
+            <!--                &lt;!&ndash;<el-button @click="getCode" size="large" class="ms-2" color="#409EFF">&ndash;&gt;-->
+            <!--                &lt;!&ndash;  <span style="color: #fff">{{ viewCode }}</span>&ndash;&gt;-->
+            <!--                &lt;!&ndash;</el-button>&ndash;&gt;-->
+            <!--              </div>-->
+            <!--            </el-form-item>-->
           </el-form>
 
           <el-button
@@ -84,7 +86,11 @@
               <span>忘记密码</span>
             </router-link>
           </div>
-          <a style="margin-top: 10px; text-decoration: underline; font-size: 18px">下载app</a>
+          <a
+            style="margin-top: 10px; text-decoration: underline; font-size: 18px"
+            @click="goDownload"
+            >下载app</a
+          >
         </div>
       </div>
     </div>
@@ -113,6 +119,7 @@ import { User, Lock, DocumentCopy } from '@element-plus/icons-vue'
 import { AES, token as aesToken } from '@/utils/AES'
 import CryptoJS from 'crypto-js'
 import axios from 'axios'
+import { _notice } from '@/utils'
 
 const { info, token, status } = storeToRefs(useUsers())
 
@@ -163,7 +170,19 @@ const getCode = () => {
   }
   viewCode.value = newCodeArray.join('')
 }
+function goDownload() {
+  try {
+    // state.loading.app = true
 
+    // const { VITE_APP_URL } = import.meta.env
+    // 跳转下载
+    window.location.href = `https://ff.kkwai.cn/download`
+  } catch (e) {
+    _notice('下载失败')
+    // state.loading.app = false
+    // proxy.$refs['notify'].error('下载失败，请稍后再试！')
+  }
+}
 const randomNum = (min, max) => {
   // parseInt(string, radix) 解析一个字符串并返回指定基数的十进制整数，radix 是 2-36 之间的整数，表示被解析字符串的基数
   return parseInt(Math.random() * (max - min) + min, 10)
@@ -226,10 +245,10 @@ const draw = () => {
 const SignIn = async () => {
   if (!state.struct.account) return showFailToast('请输入账号')
   if (!state.struct.password) return showFailToast('请输入密码')
-  if (!state.struct.code) return showFailToast('请输入验证码')
-  if (state.struct.code.toLowerCase() !== codeState.imgCode.toLowerCase()) {
-    // return showFailToast('验证码错误！')
-  }
+  // if (!state.struct.code) return showFailToast('请输入验证码')
+  // if (state.struct.code.toLowerCase() !== codeState.imgCode.toLowerCase()) {
+  //   return showFailToast('验证码错误！')
+  // }
   state.status.wait = true
 
   const params = {
@@ -249,20 +268,30 @@ const SignIn = async () => {
   const iv = aesToken('inis-iv', 16, 'aes')
   const key = aesToken('inis-key', 16, 'aes')
   const item = new AES(key, iv)
-  const { code, data, msg } = await POST(`/api/comm/login`, params, {
-    headers: {
-      'X-Khronos': unix,
-      'X-Gorgon': `${key} ${iv}`,
-      // 注意：每个签名有效时间只有60s
-      'X-Argus': item.encrypt(
-        JSON.stringify({
-          unix,
-          account: state.struct.account,
-          password: state.struct.password
-        })
-      )
+  const { code, data, msg } = await POST(
+    `/api/comm/login`,
+    {
+      account: state.struct.account,
+      password: CryptoJS.AES.encrypt(
+        state.struct.password,
+        'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxppwc6CNrcLJRLFIWtuABYIf1U/5Hpwzaj4f17sZwaUf4LlHQXto50RB6c4wRDU9MFcI3gwmu6OQrMu211XVoE/P6u4R1/hYdcNaPAM9UGEJg+bVOFxBp4BXFtq+3kAkMYnOCpYygK0J5pJe4KEhfB4VucidKmtYlgCGdfhcRUp9CiuUF1zwx6+UN1JzYY3piVG4uIV//KydKtFcF4ZtDt2OmBnGy96T/GA3A1+Kx2Zjl3u+PDNjzSHwYiJ46h8rcqV+86LL2y/G2kKeXMBeQPHPiwNP8p6SjZEEmBKCc4w3wBZiXKsTBk8dVfO77A5tLf6x3tm9eFqQLUJs4fxcowIDAQAB'
+      ).toString()
+    },
+    {
+      headers: {
+        'X-Khronos': unix,
+        'X-Gorgon': `${key} ${iv}`,
+        // 注意：每个签名有效时间只有60s
+        'X-Argus': item.encrypt(
+          JSON.stringify({
+            unix,
+            account: state.struct.account,
+            password: state.struct.password
+          })
+        )
+      }
     }
-  })
+  )
   console.log('msg', msg)
   state.status.wait = false
 
@@ -286,7 +315,7 @@ const SignIn = async () => {
 }
 onMounted(() => {
   getCode()
-  draw()
+  // draw()
   window.localStorage.removeItem('userInfo')
   window.localStorage.removeItem('token')
 })
@@ -394,6 +423,6 @@ body {
   padding: 0 20px;
   background: url(@/assets/img/bj.png);
   background-repeat: no-repeat;
-  background-size: 100% auto;
+  background-size: 100% 100%;
 }
 </style>

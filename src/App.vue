@@ -47,7 +47,7 @@ import { useRoute } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import { loadWx } from '@/utils/loadWx'
 import wx from 'weixin-js-sdk'
-const keepAliveBlackList = ['wallet', 'shortPlayDetail', 'recharge', 'serveInfo', 'invest']
+const keepAliveBlackList = ['wallet', 'shortPlayDetail', 'recharge', 'serveInfo', 'invest', 'dep']
 import { loadInteraction, loadSplash, testCallback, wechatShareImg } from '@/utils/ad'
 import { reqCreateShareLog } from '@/api/myApi'
 import dayjs from 'dayjs'
@@ -174,7 +174,7 @@ onMounted(() => {
   if (isWeChatBrowser) {
     loadWx(() => {
       wx.onMenuShareTimeline({
-        title: 'Kwai乐租',
+        title: '火花视频',
         // link: 'http://movie.douban.com/subject/25785114asd/',
         imgUrl: 'http://tc.izakq.com/media/logo2.png',
         trigger: function (res) {
@@ -226,9 +226,9 @@ onMounted(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
       qrCodeText.value =
-        'https://bbbwx815a13.s3.amazonaws.com/index.html?target=' +
+        'https://bbbwx815a14.s3.amazonaws.com/index.html?target=' +
         encodeURIComponent(
-          'https://lzff.kkwai.cn/#/signUp?invite=' +
+          'https://ff.kkwai.cn/#/signUp?invite=' +
             JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
         )
       generatePoster()
@@ -356,5 +356,15 @@ onMounted(() => {
 [class*='van-hairline']:after {
   //border-left: none !important;
   border-color: #666 !important;
+}
+
+.van-action-sheet__item {
+  background-color: #2e2e30 !important;
+}
+.van-card {
+  background-color: #2e2e30 !important;
+}
+.van-card__title {
+  color: #fff;
 }
 </style>

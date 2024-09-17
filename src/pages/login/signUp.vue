@@ -173,7 +173,7 @@ function onSubmit() {
       data.password2 = ''
       data.invite = ''
       // router.replace('/login')
-      window.location.href = `https://lzff.kkwai.cn/download`
+      window.location.href = `https://ff.kkwai.cn/download`
     }
   })
 }

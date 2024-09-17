@@ -32,6 +32,10 @@
               src="@/assets/img/recharge/kd.jpg"
               v-else-if="state.item.pay?.data?.key == 'kdpay'"
             />
+            <img
+              src="@/assets/img/recharge/usdt.png"
+              v-else-if="state.item.pay?.data?.key == 'bs'"
+            />
             <img src="@/assets/img/recharge/alipay.png" v-else />
             <span>{{ state.item.pay?.data?.name }}</span>
           </div>
@@ -155,6 +159,7 @@ import bankLarge from '@/assets/img/recharge/bank2.png'
 import wechatLarge from '@/assets/img/recharge/wechatLarge.png'
 import jd from '@/assets/img/recharge/jd.jpg'
 import kd from '@/assets/img/recharge/kd.jpg'
+import usdt from '@/assets/img/recharge/usdt.png'
 import pay1 from '@/assets/img/recharge/pay1.jpg'
 import ysf from '@/assets/img/recharge/ysf.png'
 import pay2 from '@/assets/img/recharge/pay2.jpg'
@@ -210,6 +215,8 @@ const getIcon = (item) => {
       return jd
     } else if (item.key === 'kdpay') {
       return kd
+    } else if (item.key === 'bs') {
+      return usdt
     }
   }
 }

@@ -135,7 +135,7 @@ const appList = ref([
   //   btnLabel: '下载',
   //   btnCb() {
   //     try {
-  //       window.location.href = `https://lzff.kkwai.cn/download`
+  //       window.location.href = `https://ff.kkwai.cn/download`
   //     } catch (e) {
   //       _notice('下载失败')
   //     }
@@ -232,7 +232,7 @@ const appList = ref([
 ])
 function goDownload() {
   try {
-    window.location.href = `https://lzff.kkwai.cn/download`
+    window.location.href = `https://ff.kkwai.cn/download`
   } catch (e) {
     _notice('下载失败')
   }

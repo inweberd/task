@@ -96,7 +96,13 @@
                     class="font-15 me-2"
                     style="display: flex; flex-direction: column; align-items: flex-start"
                   >
-                    <span> 电话:{{ item.phone || item.nickname }}</span>
+                    <span>
+                      电话:{{
+                        (item.phone
+                          ? item.phone.substring(0, 3) + '****' + item.phone.substring(7)
+                          : '') || item.nickname
+                      }}</span
+                    >
                     <span style="font-size: 14px">
                       等级：{{ getSerialName(item?.staff?.serial) }}
                     </span>

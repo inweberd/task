@@ -181,7 +181,8 @@ export const loadShortVideo = () => {
         JSON.stringify({
           token
         })
-      )
+      ),
+      token
     })
   } else {
     window.android.openContentPage(

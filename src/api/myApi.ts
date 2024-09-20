@@ -161,3 +161,8 @@ export function reqRechargeColumn(params) {
 export function reqWalletStat() {
   return axiosInstance({ url: 'api/wallet/chart', method: 'get' })
 }
+
+// 查询用户数量
+export function reqUserCount() {
+  return axiosInstance({ url: 'api/users/count', method: 'get' })
+}

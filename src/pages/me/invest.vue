@@ -49,7 +49,10 @@
                 style="position: absolute; left: 5px; bottom: 4px; color: #fff; font-size: 12px"
               >
                 <!--                会员周期:45天，预估总收益:：{{ item.unit_price }}元-->
-                会员周期:45天，预估总收益:：{{ shouyiArr[index] }}元
+                会员周期:45天，日收益：{{ shouyiArr[index] }}元<span
+                  v-if="myStaffList.includes(item.serial)"
+                  >，剩余{{ item.expireDays || 0 }}天</span
+                >
               </div>
               <img :src="getIconPath(item.icon)" alt="" style="height: 130px; width: 100%" />
               <div class="introduce" v-if="myStaffList.includes(item.serial)">
@@ -117,14 +120,11 @@ import { userinfo } from '@/api/user'
 import dayjs from 'dayjs'
 import BaseFooter from '@/components/BaseFooter.vue'
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
-
 defineOptions({
   name: 'invest'
 })
-const numArr = [50, 250, 500, 1000, 2000, 4000]
 const userIncomeInfo = ref({})
-const totalSpend = ref(0)
-const shouyiArr = [270, 900, 1575, 3015, 4500, 8190, 15075]
+const shouyiArr = [6, 19, 33, 66, 99, 180, 330]
 
 const shopList = ref([
   {
@@ -187,6 +187,8 @@ const getAllStaff = () => {
         shopList.value[index][itemKey] = item[itemKey]
       }
     })
+    console.log('staffList', staffList.value)
+    getMyStaff()
   })
 }
 const getIconPath = (icon) => {
@@ -219,13 +221,6 @@ const buy = (item) => {
         _notice(sub_res.msg)
         if (res.code === 200) {
           getMyStaff()
-          // reqUserStaff().then((userRes) => {
-          //   if (userRes.code !== 200) return _notice(userRes.msg)
-          //   console.log('reqUserStaff', userRes)
-          //
-          //   userInfo.value.result.staff = userRes.data.result.staff
-          //   window.localStorage.setItem('userInfo', JSON.stringify(userInfo.value))
-          // })
         }
       })
     }
@@ -296,11 +291,17 @@ const getRedBag = () => {
 const getMyStaff = () => {
   reqMyStaff().then((res) => {
     myStaffList.value = res.data.map((item) => item.staff_id)
-    const sum = res.data.reduce(
-      (accumulator, currentValue) => accumulator + currentValue.result.staff.price,
-      0
-    )
-    totalSpend.value = sum
+    ;(res.data || []).forEach((item) => {
+      shopList.value.forEach((sub_item, index) => {
+        if (item.staff_id === sub_item.serial) {
+          console.log()
+          sub_item.expireDays = Math.floor(
+            (new Date(item.expire_time * 1000) - new Date().getTime()) / 1000 / 60 / 60 / 24
+          )
+        }
+      })
+    })
+    console.log('staffList', staffList.value)
     if (res.data.length) {
       res.data.sort((a, b) => a.result.staff.serial - b.result.staff.serial)
       userInfo.value.result.staff.serial = res.data[res.data.length - 1].result.staff.serial
@@ -310,8 +311,7 @@ const getMyStaff = () => {
 }
 onMounted(() => {
   getAllStaff()
-  getUserIncome()
-  getMyStaff()
+  // getUserIncome()
 })
 
 const getMoble = () => {

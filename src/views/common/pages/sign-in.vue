@@ -86,11 +86,26 @@
               <span>忘记密码</span>
             </router-link>
           </div>
-          <a
-            style="margin-top: 10px; text-decoration: underline; font-size: 18px"
-            @click="goDownload"
-            >下载app</a
+          <div
+            style="
+              display: flex;
+              justify-content: space-evenly;
+              align-items: center;
+              width: 100%;
+              margin-top: 20px;
+            "
           >
+            <a
+              style="margin-top: 10px; text-decoration: underline; font-size: 18px"
+              @click="goDownload"
+              >下载app</a
+            >
+            <a
+              style="margin-top: 10px; text-decoration: underline; font-size: 18px; color: #1e83d3"
+              @click="jumpToQQ2"
+              >官方客服群
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -186,6 +201,9 @@ function goDownload() {
 const randomNum = (min, max) => {
   // parseInt(string, radix) 解析一个字符串并返回指定基数的十进制整数，radix 是 2-36 之间的整数，表示被解析字符串的基数
   return parseInt(Math.random() * (max - min) + min, 10)
+}
+function jumpToQQ2() {
+  window.location.href = decodeURIComponent('https://qm.qq.com/q/YAXWXyOXGU')
 }
 // 随机生成颜色
 const randomColor = (min, max) => {

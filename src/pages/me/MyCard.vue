@@ -38,7 +38,7 @@ const canvas = ref()
 const canvasWidth = ref(window.innerWidth)
 const canvasHeight = ref(window.innerWidth / (1658 / 2480))
 const qrCodeText = ref(
-  'https://bbbwx815a16.s3.amazonaws.com/index.html?target=' +
+  'https://bbbwx815a17.s3.amazonaws.com/index.html?target=' +
     encodeURIComponent(
       'https://ff.kkwai.cn/#/signUp?invite=' +
         JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
@@ -96,8 +96,8 @@ const generatePoster = async () => {
 }
 
 const share = () => {
-  wechatShareImg(canvas.value.toDataURL('image/png'), 1)
-
+  // wechatShareImg(canvas.value.toDataURL('image/png'), 1)
+  window.shareFriend()
   // 创建一个 a 标签，并设置 href 和 download 属性
   // const el = document.createElement('a')
   // // 设置 href 为图片经过 base64 编码后的字符串，默认为 png 格式

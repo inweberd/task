@@ -217,7 +217,7 @@ function getData() {
             <img
               class="image_4"
               :style="{ width: Math.min(walletInfo.credit, 100) + '%' }"
-              src="./images/e62b209b1fc33d5b3ca0c4a35e43028e.png"
+              src="./images/e62b209b1fc33d5b3ca0c 4a35e43028e.png"
             />
           </div>
           <span class="text_5 ml-20">当前信用分：{{ walletInfo.credit || '--' }}分</span>

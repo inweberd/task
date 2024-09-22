@@ -46,17 +46,33 @@
               </div>
               <div
                 class="info"
-                style="position: absolute; left: 5px; bottom: 4px; color: #fff; font-size: 12px"
+                style="
+                  position: absolute;
+                  left: 0px;
+                  bottom: 4px;
+                  color: #fff;
+                  font-size: 14px;
+                  display: flex;
+                  justify-content: space-around;
+                  width: 100%;
+                "
               >
                 <!--                会员周期:45天，预估总收益:：{{ item.unit_price }}元-->
-                会员周期:45天，日收益：{{ shouyiArr[index] }}元<span
-                  v-if="myStaffList.includes(item.serial)"
-                  >，剩余{{ item.expireDays || 0 }}天</span
-                >
+                <!--                会员周期:45天，日收益：{{ shouyiArrDay[index] }}元<span-->
+                <!--                  v-if="myStaffList.includes(item.serial)"-->
+                <!--                  >，剩余{{ item.expireDays || 0 }}天</span-->
+                <!--                >-->
+                <!--                会员有效期：永久，天收益{{ shouyiArrDay[index] }}元，年收益{{-->
+                <!--                  shouyiArrYear[index]-->
+                <!--                }}元-->
+                <span>会员有效期：永久</span>
+                <span>日收益：{{ shouyiArrDay[index] }}元 </span>
+                <span>年收益：{{ shouyiArrYear[index] }}元</span>
               </div>
               <img :src="getIconPath(item.icon)" alt="" style="height: 130px; width: 100%" />
-              <div class="introduce" v-if="myStaffList.includes(item.serial)">
-                <span style="font-size: 16px">已开通</span>
+              <div class="introduce">
+                <span style="font-size: 16px" v-if="myStaffList.includes(item.serial)">已开通</span>
+                <span style="font-size: 16px" v-else>点击开通</span>
               </div>
               <!--              <div class="a-t-t-3-1" v-if="!myStaffList.includes(item.serial)" @click="buy(item)">-->
               <!--                <img-->
@@ -124,7 +140,8 @@ defineOptions({
   name: 'invest'
 })
 const userIncomeInfo = ref({})
-const shouyiArr = [6, 19, 33, 66, 99, 180, 330]
+const shouyiArrDay = [5, 15, 30, 70, 140, 300, 600]
+const shouyiArrYear = [1825, 5475, 10950, 25550, 51100, 109500, 219000]
 
 const shopList = ref([
   {
@@ -593,7 +610,7 @@ onUnmounted(() => {
           }
           .introduce {
             position: absolute;
-            bottom: 5px;
+            bottom: 25px;
             right: 10px;
             color: #f60;
           }

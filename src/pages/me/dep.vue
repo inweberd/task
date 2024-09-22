@@ -48,8 +48,8 @@
         >
         <div class="desc">
           <!--<div class="desc-title">提现流程</div>-->
-          <p><span class="index">1.</span> 提现时间早上11点-20点。</p>
-          <p><span class="index">2.</span> 提现手续费固定3%</p>
+          <p><span class="index">1.</span> 提现时间早上11点-21点。</p>
+          <p><span class="index">2.</span> 提现手续费固定6%</p>
           <p><span class="index">3.</span> 单笔最低15元起提，单笔最高5万元</p>
           <!--          <p>-->
           <!--            <span class="index">6.</span>-->

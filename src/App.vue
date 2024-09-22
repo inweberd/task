@@ -57,6 +57,7 @@ import avatar from '@/assets/img/avatar.png'
 import shareBtnBg from '@/assets/img/share-btn-bg.png'
 import { outsideFn } from '@/utils/outsideFn'
 import { testBase64 } from '@/utils/testBase64'
+import { closeToast, showLoadingToast } from 'vant'
 const store = useBaseStore()
 const route = useRoute()
 const transitionName = ref('go')
@@ -149,6 +150,10 @@ const generatePoster = async () => {
   // 绘制背景图片
   const image = new Image()
   image.src = imageSrc
+  showLoadingToast({
+    duration: 0,
+    message: '加载中'
+  })
   image.onload = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
 
@@ -162,6 +167,7 @@ const generatePoster = async () => {
     const qrCodeImage = new Image()
     qrCodeImage.src = qrCodeDataURL
     qrCodeImage.onload = () => {
+      closeToast()
       // 在海报上绘制二维码，位置在正中心下方
       const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
       const qrCodeY = canvasHeight.value - qrCodeSize - canvasWidth.value * 0.25
@@ -226,7 +232,7 @@ onMounted(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
       qrCodeText.value =
-        'https://bbbwx815a16.s3.amazonaws.com/index.html?target=' +
+        'https://bbbwx815a17.s3.amazonaws.com/index.html?target=' +
         encodeURIComponent(
           'https://ff.kkwai.cn/#/signUp?invite=' +
             JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code

@@ -64,17 +64,32 @@
           style="margin-top: 10px; width: 93%; margin-left: 2%"
         ></div>
         <div v-else>
-          <van-image width="100%" lazy-load height="200" :src="zhengshu3" @click="showImage(0)">
+          <!--          <van-image width="100%" lazy-load height="200" :src="zhengshu3" @click="showImage(0)">-->
+          <!--            <template v-slot:loading>-->
+          <!--              <van-loading type="spinner" size="20" />-->
+          <!--            </template>-->
+          <!--          </van-image>-->
+          <van-image width="100%" lazy-load height="200" :src="zhengshu1" @click="showImage(0)">
             <template v-slot:loading>
               <van-loading type="spinner" size="20" />
             </template>
           </van-image>
-          <van-image width="100%" lazy-load height="200" :src="zhengshu1" @click="showImage(1)">
+          <van-image width="100%" lazy-load height="200" :src="zhengshu2" @click="showImage(1)">
             <template v-slot:loading>
               <van-loading type="spinner" size="20" />
             </template>
           </van-image>
-          <van-image width="100%" lazy-load height="200" :src="zhengshu2" @click="showImage(2)">
+          <van-image width="100%" lazy-load height="200" :src="zhengshu4" @click="showImage(2)">
+            <template v-slot:loading>
+              <van-loading type="spinner" size="20" />
+            </template>
+          </van-image>
+          <van-image width="100%" lazy-load height="200" :src="zhengshu5" @click="showImage(3)">
+            <template v-slot:loading>
+              <van-loading type="spinner" size="20" />
+            </template>
+          </van-image>
+          <van-image width="100%" lazy-load height="200" :src="zhengshu6" @click="showImage(4)">
             <template v-slot:loading>
               <van-loading type="spinner" size="20" />
             </template>
@@ -97,6 +112,9 @@ import { closeToast, showLoadingToast } from 'vant'
 import zhengshu1 from '@/assets/img/zhengshu1.jpg'
 import zhengshu2 from '@/assets/img/zhengshu2.jpg.jpg'
 import zhengshu3 from '@/assets/img/zhengshu3.jpg'
+import zhengshu4 from '@/assets/img/zhengshu4.jpg'
+import zhengshu5 from '@/assets/img/zhengshu5.png'
+import zhengshu6 from '@/assets/img/zhengshu6.png'
 import dayjs from 'dayjs'
 import imgg from '@/pages/login/logo1.png'
 const router = useRouter()
@@ -126,14 +144,15 @@ const format = (price = 0) => {
   let result = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   return result === '0' ? '0.00' : result
 }
-
+let firstRender = true
 function getData() {
   showLoadingToast({
     duration: 0,
     message: '加载中'
   })
   axios.get('api/article/one?id=' + active.value).then((res) => {
-    closeToast()
+    !firstRender && closeToast()
+    firstRender = false
     if (res.code === 200) {
       articleInfo.value = res.data
     }
@@ -146,7 +165,7 @@ const handleActive = (num) => {
 
 const showImage = (index) => {
   showImagePreview({
-    images: [zhengshu3, zhengshu1, zhengshu2],
+    images: [zhengshu1, zhengshu2, zhengshu3, zhengshu4, zhengshu5],
     startPosition: index
   })
 }

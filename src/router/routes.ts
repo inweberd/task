@@ -19,6 +19,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/nofinish', component: () => import('@/pages/me/nofinish.vue') },
   { path: '/gameNofinish', component: () => import('@/pages/me/gameNofinish.vue') },
   { path: '/CreditScoreDetail', component: () => import('@/pages/me/CreditScoreDetail.vue') },
+  { path: '/choujiangDetail', component: () => import('@/pages/me//choujiangDetail.vue') },
   {
     path: '/me/edit-userinfo',
     component: () => import('@/pages/me/userinfo/EditUserInfo.vue')

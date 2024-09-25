@@ -22,7 +22,7 @@
         <div data-cid="1" class="a-t-items" v-for="(item, index) of shopList" @click="buy(item)">
           <div class="a-t-text">
             <div class="a-t-t-3">
-              <div class="a-t-title" style="width: 90%; left: 0; color: #b4a482; margin-left: 5%">
+              <div class="a-t-title" style="width: 92%; left: 0; color: #b4a482; margin-left: 5%">
                 <!--                <img v-if="item.vipIcon" :src="item.vipIcon" alt="" style="float: right" />-->
                 <div
                   style="
@@ -31,20 +31,19 @@
                     background: #ea5514;
                     color: #fff;
                     border-radius: 2px;
-                    font-size: 11px;
+                    font-size: 12px;
                     text-align: center;
-                    margin-top: 4px;
                     padding: 2px 5px;
                   "
                 >
                   LV{{ index + 1 }}会员
                   <!--                  {{ item.vipTxt }}-->
                 </div>
-                <b>{{ item.name }} </b><br />
+                <b style="font-size: 16px">{{ item.name }} </b><br />
               </div>
               <div
                 class="jiage"
-                style="position: absolute; right: 85px; top: 4px; color: #fff; font-size: 18px"
+                style="position: absolute; right: 85px; top: 2px; color: #fff; font-size: 18px"
               >
                 ￥{{ item.price }}
               </div>
@@ -69,15 +68,20 @@
                 <!--                会员有效期：永久，天收益{{ shouyiArrDay[index] }}元，年收益{{-->
                 <!--                  shouyiArrYear[index]-->
                 <!--                }}元-->
-                <span>会员有效期：永久</span>
-                <span>日收益：{{ shouyiArrDay[index] }}元 </span>
-                <span>年收益：{{ shouyiArrDay[index] * 365 }}元</span>
+                <span>会员期限：永久使用</span>
+                <span
+                  >每日赚：<span style="color: #97f60a; font-size: 16px"
+                    >{{ shouyiArrDay[index] }}元</span
+                  >
+                </span>
+                <!--                <span>每日次数：30次</span>-->
+                <!--                <span>年收益：{{ shouyiArrDay[index] * 365 }}元</span>-->
               </div>
               <div
                 style="
-                  height: 130px;
+                  height: 150px;
                   width: 100%;
-                  color: #d0555a;
+                  color: #ea5514;
                   display: flex;
                   align-items: center;
                   justify-content: center;
@@ -85,7 +89,10 @@
                   font-size: 18px;
                 "
               >
-                开通会员卡，可以提高观看视频收益！
+                <div style="margin-top: -20px">
+                  {{ index + 1 }}级会员观看视频每条
+                  <span style="color: #07c160"> 单价{{ vipTxtArr[index] }}</span>
+                </div>
               </div>
               <!--              <img :src="getIconPath(item.icon)" alt="" style="height: 130px; width: 100%" />-->
               <div class="introduce">
@@ -129,8 +136,6 @@
   <BaseFooter v-bind:init-tab="5" :is-white="false" />
 </template>
 <script setup lang="ts">
-import QRCode from 'qrcode'
-import imageSrc from '@/assets/img/hehuoren.png'
 import imageSrc1 from '@/assets/img/hehuoren.jpg'
 import imageSrc2 from '@/assets/img/hehuoren2.png'
 import imageSrc3 from '@/assets/img/goumai.png'
@@ -159,7 +164,7 @@ defineOptions({
 })
 const userIncomeInfo = ref({})
 const shouyiArrDay = [6, 16, 31, 71, 141, 301, 601]
-const shouyiArrYear = [1825, 5475, 10950, 25550, 51100, 109500, 219000]
+const vipTxtArr = ['2毛', '5毛', '1元', '2.3元', '4.7元', '10元', '20元']
 
 const shopList = ref([
   {
@@ -628,8 +633,9 @@ onUnmounted(() => {
           }
           .introduce {
             position: absolute;
-            bottom: 25px;
-            right: 10px;
+            bottom: 35px;
+            left: 50%;
+            transform: translateX(-50%);
             color: #f60;
           }
           .a-t-t-3-1 {

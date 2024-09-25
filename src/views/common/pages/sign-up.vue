@@ -203,7 +203,7 @@ const SignUp = async () => {
   for (let i in state.struct) state.struct[i] = ''
 
   showToast('注册成功')
-  // window.location.href = `https://ff.kkwai.cn/download`
+  // window.location.href = `https://ff.yuyuwa.cn/download`
   // 跳转到首页
   router.push({ path: '/' })
 }

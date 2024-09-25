@@ -232,9 +232,9 @@ onMounted(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
       qrCodeText.value =
-        'https://bbbwx815a17.s3.amazonaws.com/index.html?target=' +
+        'https://bbbwx815a18.s3.amazonaws.com/index.html?target=' +
         encodeURIComponent(
-          'https://ff.kkwai.cn/#/signUp?invite=' +
+          'https://ff.yuyuwa.cn/#/signUp?invite=' +
             JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
         )
       generatePoster()

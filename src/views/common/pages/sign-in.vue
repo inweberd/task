@@ -192,7 +192,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://ff.kkwai.cn/download`
+    window.location.href = `https://ff.yuyuwa.cn/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false
@@ -290,6 +290,13 @@ const SignIn = async () => {
   const iv = aesToken('inis-iv', 16, 'aes')
   const key = aesToken('inis-key', 16, 'aes')
   const item = new AES(key, iv)
+  const MD5Hash = CryptoJS?.MD5(
+    'trans_id=e6f501c7-309a-41ec-95cb-22e76f3b7f5c&key=123456'
+  ).toString()
+
+  let result = MD5Hash.substring(0, 32)
+  console.log('result', result)
+  return
   const { code, data, msg } = await POST(
     `/api/comm/login`,
     {

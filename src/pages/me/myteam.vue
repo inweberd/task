@@ -108,6 +108,11 @@
         </div>
       </div>
     </div>
+    <div class="black-tip">
+      团队激励奖：直推会员 <span class="active">4人</span> ，免费领取<span class="active"
+        >200元永久会员</span
+      >！<van-tag type="success">领取</van-tag>
+    </div>
     <ul class="login_nav">
       <li>
         <a href="javascript:void(0)" @click="go('/demo', true)"
@@ -328,7 +333,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://ff.kkwai.cn/download`
+    window.location.href = `https://ff.yuyuwa.cn/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false
@@ -523,6 +528,22 @@ onActivated(() => {
           }
         }
       }
+    }
+  }
+  .black-tip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #302e2e;
+    font-weight: bold;
+    font-size: 14px;
+    white-space: nowrap;
+    width: 100%;
+    height: 50px;
+    background: url('@/assets/img/black-tip.png') no-repeat;
+    background-size: 100% 100%;
+    .active {
+      color: red;
     }
   }
   .login_nav {

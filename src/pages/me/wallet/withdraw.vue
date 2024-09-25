@@ -17,7 +17,8 @@
             <span v-else>{{ item.status }}</span>
           </span>
           <span>{{ item.remark }}</span>
-          <span class="text-warning">{{ parseFloat(item.money || 0).toFixed(2) }}</span>
+          <!--          <span class="text-warning">{{ parseFloat(item.money || 0).toFixed(2) }}</span>-->
+          <span class="text-warning">{{ item.money || 0 }}</span>
         </div>
         <div class="d-flex justify-content-between font-13 text-muted">
           <span>

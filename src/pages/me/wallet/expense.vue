@@ -9,7 +9,8 @@
       <div v-for="(item, index) in dataList" :key="item.id" class="card">
         <div class="d-flex justify-content-between font-15">
           <span>{{ item.content }}</span>
-          <span class="text-warning">- {{ parseFloat(item.money || 0).toFixed(2) }}</span>
+          <!--          <span class="text-warning">- {{ parseFloat(item.money || 0).toFixed(2) }}</span>-->
+          <span class="text-warning">- {{ item.money || 0 }}</span>
         </div>
         <div class="d-flex justify-content-between font-13 text-muted">
           <span>{{ item.remark }}</span>

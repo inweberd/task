@@ -103,7 +103,7 @@
             <a
               style="margin-top: 10px; text-decoration: underline; font-size: 18px; color: #1e83d3"
               @click="jumpToQQ2"
-              >官方客服群
+              >官方交流群（微脉圈）
             </a>
           </div>
         </div>
@@ -135,6 +135,7 @@ import { AES, token as aesToken } from '@/utils/AES'
 import CryptoJS from 'crypto-js'
 import axios from 'axios'
 import { _notice } from '@/utils'
+import weimaiquan from '@/assets/img/weimaiquan.jpg'
 
 const { info, token, status } = storeToRefs(useUsers())
 
@@ -203,7 +204,10 @@ const randomNum = (min, max) => {
   return parseInt(Math.random() * (max - min) + min, 10)
 }
 function jumpToQQ2() {
-  window.location.href = decodeURIComponent('https://qm.qq.com/q/YAXWXyOXGU')
+  showImagePreview({
+    images: [weimaiquan]
+  })
+  // window.location.href = decodeURIComponent('https://qm.qq.com/q/YAXWXyOXGU')
 }
 // 随机生成颜色
 const randomColor = (min, max) => {

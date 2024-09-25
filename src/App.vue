@@ -170,7 +170,7 @@ const generatePoster = async () => {
       closeToast()
       // 在海报上绘制二维码，位置在正中心下方
       const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
-      const qrCodeY = canvasHeight.value - qrCodeSize - canvasWidth.value * 0.25
+      const qrCodeY = canvasHeight.value - qrCodeSize + 10 - canvasWidth.value * 0.25
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }
   }

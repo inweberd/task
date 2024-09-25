@@ -23,18 +23,22 @@
           <div class="a-t-text">
             <div class="a-t-t-3">
               <div class="a-t-title" style="width: 90%; left: 0; color: #b4a482; margin-left: 5%">
-                <img v-if="item.vipIcon" :src="item.vipIcon" alt="" style="float: right" />
+                <!--                <img v-if="item.vipIcon" :src="item.vipIcon" alt="" style="float: right" />-->
                 <div
                   style="
                     float: right;
-                    background-color: #6f7594;
-                    border-radius: 10px;
-                    padding: 4px 6px;
+                    margin-left: 6px;
+                    background: #ea5514;
                     color: #fff;
+                    border-radius: 2px;
+                    font-size: 11px;
+                    text-align: center;
+                    margin-top: 4px;
+                    padding: 2px 5px;
                   "
-                  v-else
                 >
-                  {{ item.vipTxt }}
+                  LV{{ index + 1 }}会员
+                  <!--                  {{ item.vipTxt }}-->
                 </div>
                 <b>{{ item.name }} </b><br />
               </div>
@@ -67,9 +71,23 @@
                 <!--                }}元-->
                 <span>会员有效期：永久</span>
                 <span>日收益：{{ shouyiArrDay[index] }}元 </span>
-                <span>年收益：{{ shouyiArrYear[index] }}元</span>
+                <span>年收益：{{ shouyiArrDay[index] * 365 }}元</span>
               </div>
-              <img :src="getIconPath(item.icon)" alt="" style="height: 130px; width: 100%" />
+              <div
+                style="
+                  height: 130px;
+                  width: 100%;
+                  color: #d0555a;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: bold;
+                  font-size: 18px;
+                "
+              >
+                开通会员卡，可以提高观看视频收益！
+              </div>
+              <!--              <img :src="getIconPath(item.icon)" alt="" style="height: 130px; width: 100%" />-->
               <div class="introduce">
                 <span style="font-size: 16px" v-if="myStaffList.includes(item.serial)">已开通</span>
                 <span style="font-size: 16px" v-else>点击开通</span>
@@ -140,7 +158,7 @@ defineOptions({
   name: 'invest'
 })
 const userIncomeInfo = ref({})
-const shouyiArrDay = [5, 15, 30, 70, 140, 300, 600]
+const shouyiArrDay = [6, 16, 31, 71, 141, 301, 601]
 const shouyiArrYear = [1825, 5475, 10950, 25550, 51100, 109500, 219000]
 
 const shopList = ref([
@@ -354,7 +372,7 @@ const alarmList = ref([])
 for (let i = 0; i < 6; i++) {
   alarmList.value.push({
     phone: getMoble(),
-    money: (Math.random() * (50 - 20) + 20).toFixed(2),
+    money: (Math.random() * (2000 - 100) + 100).toFixed(2),
     datetime: getDatetime()
     // type: [
     //   '黑铁权益卡',
@@ -389,7 +407,7 @@ const autoRoll = (flag?) => {
       console.log("dayjs().format('HH:mm:ss')", datetime)
       alarmList.value.push({
         phone: getMoble(),
-        money: (Math.random() * (50 - 20) + 20).toFixed(2),
+        money: (Math.random() * (2000 - 100) + 100).toFixed(2),
         datetime: getDatetime()
       })
     }, 500)

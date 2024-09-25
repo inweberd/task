@@ -1,7 +1,7 @@
 <template>
   <div>
     <van-nav-bar
-      title="信用分"
+      title="微脉圈"
       safe-area-inset-top
       fixed
       placeholder
@@ -10,13 +10,24 @@
       left-text="返回"
       left-arrow
     ></van-nav-bar>
-    <van-image :src="my" width="100%" height="100%" fit="cover"></van-image>
+    <van-image
+      :src="weimaiquan"
+      width="100%"
+      height="100%"
+      fit="cover"
+      @click="showImage(0)"
+    ></van-image>
   </div>
 </template>
 
 <script lang="ts" setup>
-import shareholder from '@/assets/img/kaifa.png'
-// import my from '@/assets/img/my.jpg'
-import my from '@/assets/img/creadotInfo.jpg'
+import weimaiquan from '@/assets/img/weimaiquan.jpg'
 import { getIsInApp } from '@/utils/getTopPadding'
+
+const showImage = (index) => {
+  showImagePreview({
+    images: [weimaiquan],
+    startPosition: index
+  })
+}
 </script>

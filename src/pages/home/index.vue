@@ -170,10 +170,10 @@ const showImage = (index) => {
   })
 }
 onMounted(() => {
-  showDialog({
-    message:
-      ' QQ大群人满员！请用户在应用商店下载《微脉圈》聊天软件，点击我的--官方交流群--按钮，扫码进入官方群交流'
-  })
+  // showDialog({
+  //   message:
+  //     ' QQ大群人满员！请用户在应用商店下载《微脉圈》聊天软件，点击我的--官方交流群--按钮，扫码进入官方群交流'
+  // })
   getData()
 })
 onActivated(() => {

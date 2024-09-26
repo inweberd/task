@@ -69,10 +69,11 @@
                 <!--                  shouyiArrYear[index]-->
                 <!--                }}元-->
                 <span>会员期限：永久使用</span>
-                <span
-                  >每日赚：<span style="color: #97f60a; font-size: 16px"
-                    >{{ shouyiArrDay[index] }}元</span
-                  >
+                <span>
+                  每日观看次数：30次
+                  <!--                  <span style="color: #97f60a; font-size: 16px"-->
+                  <!--                    >{{ shouyiArrDay[index] }}元</span-->
+                  <!--                  >-->
                 </span>
                 <!--                <span>每日次数：30次</span>-->
                 <!--                <span>年收益：{{ shouyiArrDay[index] * 365 }}元</span>-->

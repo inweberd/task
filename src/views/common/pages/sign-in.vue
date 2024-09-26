@@ -103,7 +103,7 @@
             <a
               style="margin-top: 10px; text-decoration: underline; font-size: 18px; color: #1e83d3"
               @click="jumpToQQ2"
-              >官方交流群
+              >官方qq交流群
             </a>
           </div>
         </div>

@@ -53,7 +53,7 @@ const canvasHeight = ref(window.innerWidth / (1242 / 2208))
 //     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
 // )
 const qrCodeText = ref(
-  'https://bbbwx815a18.s3.amazonaws.com/index.html?target=' +
+  'https://bbbwx815a19.s3.amazonaws.com/index.html?target=' +
     encodeURIComponent(
       'https://ff.yuyuwa.cn/#/signUp?invite=' +
         JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code

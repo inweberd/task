@@ -50,10 +50,10 @@
           平台简介
         </div>
         <div class="tab-item" :class="{ active: active === 6 }" @click="handleActive(6)">
-          规则说明
+          操作说明
         </div>
         <div class="tab-item" :class="{ active: active === 7 }" @click="handleActive(7)">
-          代理合作
+          营业执照
         </div>
       </div>
 
@@ -79,17 +79,22 @@
               <van-loading type="spinner" size="20" />
             </template>
           </van-image>
-          <van-image width="100%" lazy-load height="200" :src="zhengshu4" @click="showImage(2)">
+          <van-image width="100%" lazy-load height="450" :src="zhengshu7" @click="showImage(2)">
             <template v-slot:loading>
               <van-loading type="spinner" size="20" />
             </template>
           </van-image>
-          <van-image width="100%" lazy-load height="200" :src="zhengshu5" @click="showImage(3)">
+          <van-image width="100%" lazy-load height="200" :src="zhengshu4" @click="showImage(3)">
             <template v-slot:loading>
               <van-loading type="spinner" size="20" />
             </template>
           </van-image>
-          <van-image width="100%" lazy-load height="200" :src="zhengshu6" @click="showImage(4)">
+          <van-image width="100%" lazy-load height="200" :src="zhengshu5" @click="showImage(4)">
+            <template v-slot:loading>
+              <van-loading type="spinner" size="20" />
+            </template>
+          </van-image>
+          <van-image width="100%" lazy-load height="200" :src="zhengshu6" @click="showImage(5)">
             <template v-slot:loading>
               <van-loading type="spinner" size="20" />
             </template>
@@ -115,6 +120,7 @@ import zhengshu3 from '@/assets/img/zhengshu3.jpg'
 import zhengshu4 from '@/assets/img/zhengshu4.jpg'
 import zhengshu5 from '@/assets/img/zhengshu5.png'
 import zhengshu6 from '@/assets/img/zhengshu6.png'
+import zhengshu7 from '@/assets/img/zhengshu7.jpg'
 import dayjs from 'dayjs'
 import imgg from '@/pages/login/logo1.png'
 const router = useRouter()
@@ -165,7 +171,7 @@ const handleActive = (num) => {
 
 const showImage = (index) => {
   showImagePreview({
-    images: [zhengshu1, zhengshu2, zhengshu3, zhengshu4, zhengshu5],
+    images: [zhengshu1, zhengshu2, zhengshu7, zhengshu4, zhengshu5, zhengshu6],
     startPosition: index
   })
 }

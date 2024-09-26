@@ -90,8 +90,13 @@
                 "
               >
                 <div style="margin-top: -20px">
-                  {{ index + 1 }}级会员观看视频每条
-                  <span style="color: #07c160"> 单价{{ vipTxtArr[index] }}</span>
+                  <!--                  {{ index + 1 }}级会员观看视频每条-->
+                  <div style="text-align: center; line-height: 30px">
+                    开通{{ daxieArr[index] }}级会员，永久提高看视频单价
+                  </div>
+                  <div style="text-align: center; line-height: 30px">
+                    <span style="color: #07c160"> 每条单价{{ vipTxtArr[index] }}</span>
+                  </div>
                 </div>
               </div>
               <!--              <img :src="getIconPath(item.icon)" alt="" style="height: 130px; width: 100%" />-->
@@ -165,6 +170,7 @@ defineOptions({
 const userIncomeInfo = ref({})
 const shouyiArrDay = [6, 16, 31, 71, 141, 301, 601]
 const vipTxtArr = ['2毛', '5毛', '1元', '2.3元', '4.7元', '10元', '20元']
+const daxieArr = ['一', '二', '三', '四', '五', '六', '七']
 
 const shopList = ref([
   {
@@ -634,7 +640,7 @@ onUnmounted(() => {
           .introduce {
             position: absolute;
             bottom: 35px;
-            left: 50%;
+            left: 80%;
             transform: translateX(-50%);
             color: #f60;
           }

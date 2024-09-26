@@ -16,6 +16,13 @@
         <div>视频</div>
       </div>
     </div>
+    <div class="l-button" @click="loadShort(2)" v-if="!isIos">
+      <div class="add-ctn">
+        <img src="../assets/img/tabbar/video.png" alt="" class="add" v-if="currentTab === 2" />
+        <img src="../assets/img/tabbar/video.png" alt="" class="add" v-else />
+        <div>短剧</div>
+      </div>
+    </div>
     <!--<div class="l-button" @click="tab(3)">-->
     <!--  <div class="add-ctn">-->
     <!--    <img src="../assets/img/icon/add-light.png" alt="" class="add" />-->
@@ -76,7 +83,8 @@ export default {
       isRefresh1: false,
       isRefresh2: false,
       currentTab: this.initTab,
-      visible: true
+      visible: true,
+      isIos: /iPhone|iPad|iPod/i.test(navigator.userAgent)
     }
   },
   created() {
@@ -105,7 +113,7 @@ export default {
           })
         }
       } else if (type === 2) {
-        loadInteraction()
+        // loadInteraction()
         loadShortPlayVideo()
       }
     },

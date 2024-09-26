@@ -171,7 +171,7 @@ import imageSrc from '@/assets/img/yinlian.png'
 import kdImgSrc from '@/assets/img/recharge/kd.jpg'
 import jdImgSrc from '@/assets/img/recharge/jd.jpg'
 import tixian from '@/assets/img/recharge/tixian.jpg'
-import { showConfirmDialog } from 'vant'
+import { showConfirmDialog, showDialog } from 'vant'
 import { loadInteraction, loadPlayRewardVideo } from '@/utils/ad'
 
 defineOptions({
@@ -336,8 +336,15 @@ async function goPay() {
   tixianLoading.value = false
   sessionStorage.seeVideoWithdrawal = ''
   sessionStorage.isShared = ''
-  if (code !== 200) return _notice(msg)
-  _notice('申请已提交！')
+  if (code !== 200) {
+    showDialog({
+      message: msg
+    })
+    return
+  }
+  showDialog({
+    message: '申请已提交！'
+  })
 }
 
 const setPay = () => {

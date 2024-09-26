@@ -10,7 +10,9 @@
         <div class="d-flex justify-content-between font-15">
           <span v-if="!item.remark">
             <span v-if="item.status === 'wait'" class="text-warning">等待审核</span>
-            <span v-else-if="item.status === 'finish'" class="text-success">火花视频今日提现 </span>
+            <span v-else-if="item.status === 'finish'" class="text-success"
+              >火花视频提现成功！
+            </span>
             <span v-else-if="item.status === 'paying'" class="text-dark">转账中</span>
             <span v-else-if="item.status === 'fail'" class="text-danger">转账失败（卡号有误）</span>
             <span v-else-if="item.status === 'cancel'" class="text-dark">拒绝，咨询QQ客服</span>
@@ -22,6 +24,7 @@
         </div>
         <div class="d-flex justify-content-between font-13 text-muted">
           <span>
+            邀请好友观看视频，奖励多多
             <!--            {{ state.bank.list.find(({ value }) => value === item.result.card.card_type)?.label }}-->
             <!--            ( {{ item.result.card.name }} )-->
           </span>

@@ -166,3 +166,8 @@ export function reqWalletStat() {
 export function reqUserCount() {
   return axiosInstance({ url: 'api/users/count', method: 'get' })
 }
+
+// 拉新领取奖励
+export function reqPullNew() {
+  return axiosInstance({ url: '/api/staff-entry/pull-new', method: 'post' })
+}

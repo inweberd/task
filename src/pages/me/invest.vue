@@ -17,6 +17,11 @@
     <!--      <van-swipe-item>3</van-swipe-item>-->
     <!--      <van-swipe-item>4</van-swipe-item>-->
     <!--    </van-swipe>-->
+    <div class="black-tip">
+      <div>
+        <div>开通不同等级会员， <span class="active"> 收益永久叠加</span> 生效 ！</div>
+      </div>
+    </div>
     <div class="announcement">
       <div class="announcement-task flexS">
         <div data-cid="1" class="a-t-items" v-for="(item, index) of shopList" @click="buy(item)">
@@ -245,9 +250,9 @@ const buy = (item) => {
   if (myStaffList.value.includes(item.serial)) {
     return _notice('您已开通该会员！')
   }
-  if (userInfo.value.result.staff.serial + 1 !== item.serial) {
-    return _notice('请逐级开通！')
-  }
+  // if (userInfo.value.result.staff.serial + 1 !== item.serial) {
+  //   return _notice('请逐级开通！')
+  // }
 
   loading.value = true
   console.log('item', item)
@@ -673,7 +678,7 @@ onUnmounted(() => {
 }
 .alarmList-child {
   margin-top: 20px;
-  height: 200px;
+  height: 120px;
   overflow: hidden;
   color: #ae9f7e;
   position: relative;
@@ -700,6 +705,26 @@ onUnmounted(() => {
     .datetime {
       width: 120px;
     }
+  }
+}
+.black-tip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #302e2e;
+  font-weight: bold;
+  font-size: 18px;
+  white-space: nowrap;
+  width: 100%;
+  height: 60px;
+  background: url('@/assets/img/black-tip.png') no-repeat;
+  background-size: 100% 100%;
+  .active {
+    color: red;
+  }
+  & > div {
+    text-align: center;
+    line-height: 25px;
   }
 }
 </style>

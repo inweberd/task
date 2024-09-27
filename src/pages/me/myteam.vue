@@ -111,10 +111,12 @@
     <div class="black-tip">
       <div>
         <div>
-          拉新奖：拉新 <span class="active">4人</span> 并且他们<span class="active">开通会员</span>
+          拉新奖：拉新 <span class="active">2人</span> 并且他们<span class="active"
+            >开通任意会员</span
+          >
         </div>
         <div>
-          奖励你永久使用<span class="active">200元会员</span>！<van-tag
+          奖励你永久使用<span class="active">69元体验卡</span>！<van-tag
             @click="getPullNew"
             type="success"
             style="padding: 6px 18px; font-size: 20px"
@@ -290,16 +292,19 @@ const showWeimaiquan = () => {
   })
 }
 const getPullNew = () => {
-  showLoadingToast({
-    duration: 0,
-    message: '加载中'
+  showDialog({
+    message: '完成任务后，进入官方qq群找客服领取奖励！'
   })
-  reqPullNew().then((res) => {
-    closeToast()
-    showDialog({
-      message: res.msg
-    })
-  })
+  // showLoadingToast({
+  //   duration: 0,
+  //   message: '加载中'
+  // })
+  // reqPullNew().then((res) => {
+  //   closeToast()
+  //   showDialog({
+  //     message: res.msg
+  //   })
+  // })
 }
 const getMemberInfo = async () => {
   reqUserMemberInfo({

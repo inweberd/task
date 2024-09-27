@@ -125,6 +125,23 @@
         </div>
       </div>
     </div>
+      <div class="black-tip">
+          <div>
+              <div>
+                  拉新奖：拉新 <span class="active">4人</span> 并且他们<span class="active"
+              >开通任意会员</span
+              >
+              </div>
+              <div>
+                  奖励你永久使用<span class="active">200元会员</span>！<van-tag
+                  @click="getPullNew2"
+                  type="success"
+                  style="padding: 6px 18px; font-size: 20px"
+              >领取</van-tag
+              >
+              </div>
+          </div>
+      </div>
     <ul class="login_nav">
       <li>
         <a href="javascript:void(0)" @click="jumpToQQ">
@@ -260,14 +277,14 @@
 import BaseFooter from '@/components/BaseFooter.vue'
 import { onActivated, onMounted, ref } from 'vue'
 import {
-  logout as fnlogout,
-  reqPullNew,
-  reqUserCount,
-  reqUserIncome,
-  reqUserInfo,
-  reqUserMemberInfo,
-  reqUserStaff,
-  reqWalletInfo
+    logout as fnlogout,
+    reqPullNew, reqPullNewLite,
+    reqUserCount,
+    reqUserIncome,
+    reqUserInfo,
+    reqUserMemberInfo,
+    reqUserStaff,
+    reqWalletInfo
 } from '@/api/myApi'
 import { loadInteraction } from '@/utils/ad'
 import { _notice } from '@/utils'
@@ -292,19 +309,31 @@ const showWeimaiquan = () => {
   })
 }
 const getPullNew = () => {
-  showDialog({
-    message: '完成任务后，进入官方qq群找客服领取奖励！'
+  // showDialog({
+  //   message: '完成任务后，进入官方qq群找客服领取奖励！'
+  // })
+  showLoadingToast({
+    duration: 0,
+    message: '加载中'
   })
-  // showLoadingToast({
-  //   duration: 0,
-  //   message: '加载中'
-  // })
-  // reqPullNew().then((res) => {
-  //   closeToast()
-  //   showDialog({
-  //     message: res.msg
-  //   })
-  // })
+  reqPullNewLite().then((res) => {
+    closeToast()
+    showDialog({
+      message: res.msg
+    })
+  })
+}
+const getPullNew2 = () => {
+    showLoadingToast({
+      duration: 0,
+      message: '加载中'
+    })
+    reqPullNew().then((res) => {
+      closeToast()
+      showDialog({
+        message: res.msg
+      })
+    })
 }
 const getMemberInfo = async () => {
   reqUserMemberInfo({

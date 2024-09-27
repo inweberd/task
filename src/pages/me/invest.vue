@@ -111,7 +111,7 @@
               </div>
               <!--              <img :src="getIconPath(item.icon)" alt="" style="height: 130px; width: 100%" />-->
               <div class="introduce">
-                <span style="font-size: 16px" v-if="myStaffList.includes(item.serial)">已开通</span>
+                <span style="font-size: 16px" v-if="myStaffList.includes(item.id)">已开通</span>
                 <span style="font-size: 16px" v-else>点击开通</span>
               </div>
               <!--              <div class="a-t-t-3-1" v-if="!myStaffList.includes(item.serial)" @click="buy(item)">-->

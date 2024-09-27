@@ -41,7 +41,8 @@
                     padding: 2px 5px;
                   "
                 >
-                  LV{{ index + 1 }}会员
+                  <template v-if="index === 0"> 会员体验卡 </template>
+                  <template v-else> LV{{ index + 1 }}会员 </template>
                   <!--                  {{ item.vipTxt }}-->
                 </div>
                 <b style="font-size: 16px">{{ item.name }} </b><br />
@@ -98,7 +99,10 @@
                 <div style="margin-top: -20px">
                   <!--                  {{ index + 1 }}级会员观看视频每条-->
                   <div style="text-align: center; line-height: 30px">
-                    开通{{ daxieArr[index] }}级会员，永久提高看视频单价
+                    <template v-if="index === 0"> 开通会员体验卡，永久提高看视频单价 </template>
+                    <template v-else>
+                      开通{{ daxieArr[index] }}级会员，永久提高看视频单价
+                    </template>
                   </div>
                   <div style="text-align: center; line-height: 30px">
                     <span style="color: #07c160"> 每条单价{{ vipTxtArr[index] }}</span>
@@ -175,10 +179,15 @@ defineOptions({
 })
 const userIncomeInfo = ref({})
 const shouyiArrDay = [6, 16, 31, 71, 141, 301, 601]
-const vipTxtArr = ['2毛', '5毛', '1元', '2.3元', '4.7元', '10元', '20元']
-const daxieArr = ['一', '二', '三', '四', '五', '六', '七']
+const vipTxtArr = ['1毛', '2毛', '5毛', '1元', '2.3元', '4.7元', '10元', '20元']
+const daxieArr = ['', '一', '二', '三', '四', '五', '六', '七']
 
 const shopList = ref([
+  {
+    icon: 'pdd',
+    vipIcon: '',
+    vipTxt: '黑铁会员'
+  },
   {
     icon: 'pdd',
     vipIcon: '',
@@ -231,14 +240,19 @@ const getRandom = () => {
 }
 const getAllStaff = () => {
   loading.value = true
+
   reqAllStaff(searchInfo).then((res: any) => {
     loading.value = false
     staffList.value = res.data.data
+    console.log(111)
+
     res.data.data.forEach((item, index) => {
       for (const itemKey in item) {
         shopList.value[index][itemKey] = item[itemKey]
       }
     })
+    console.log(222)
+
     console.log('staffList', staffList.value)
     getMyStaff()
   })
@@ -346,7 +360,6 @@ const getMyStaff = () => {
     ;(res.data || []).forEach((item) => {
       shopList.value.forEach((sub_item, index) => {
         if (item.staff_id === sub_item.serial) {
-          console.log()
           sub_item.expireDays = Math.floor(
             (new Date(item.expire_time * 1000) - new Date().getTime()) / 1000 / 60 / 60 / 24
           )
@@ -421,7 +434,6 @@ const autoRoll = (flag?) => {
     clearInterval(timer.value)
     timerfir2.value = setInterval(() => {
       const datetime = dayjs(new Date().getTime()).format('HH:mm:ss')
-      console.log("dayjs().format('HH:mm:ss')", datetime)
       alarmList.value.push({
         phone: getMoble(),
         money: (Math.random() * (2000 - 100) + 100).toFixed(2),

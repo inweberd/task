@@ -38,7 +38,7 @@ const canvas = ref()
 const canvasWidth = ref(window.innerWidth)
 const canvasHeight = ref(window.innerWidth / (1658 / 2480))
 const qrCodeText = ref(
-  'https://bbbwx815a110.s3.amazonaws.com/index.html?target=' +
+  'http://bbbwx926a14.s3-website-us-east-1.amazonaws.com/index.html?target=' +
     encodeURIComponent(
       'https://ff.yuyuwa.cn/#/signUp?invite=' +
         JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
@@ -89,7 +89,7 @@ const generatePoster = async () => {
     qrCodeImage.onload = () => {
       // 在海报上绘制二维码，位置在正中心下方
       const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
-      const qrCodeY = canvasHeight.value - qrCodeSize + 10 - canvasWidth.value * 0.25
+      const qrCodeY = canvasHeight.value - qrCodeSize - canvasWidth.value * 0.25
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }
   }

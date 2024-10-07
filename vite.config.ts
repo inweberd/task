@@ -211,11 +211,16 @@ export default defineConfig((): Promise<UserConfig> => {
           cors: true, // 允许跨域
           proxy: {
             '/api/': {
-              // target: 'http://111.180.196.127:8642/api',
-              // target: 'https://wwc.gengshangpin.com/api',
-              target: 'https://tc.q18m.cc/api',
+              // target: 'https://tc.q18m.cc/api',
+              target: 'https://yy.kkwai.cn/api',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/api/'), '')
+            },
+            '/dev/': {
+              // target: 'https://tc.q18m.cc/api',
+              target: 'https://yy.kkwai.cn/dev',
+              changeOrigin: true,
+              rewrite: (path) => path.replace(new RegExp('^' + '/dev/'), '')
             },
             '/json/': {
               // target: 'http://111.180.196.127:8642/api',

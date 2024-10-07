@@ -280,8 +280,8 @@ const SignIn = async () => {
   }
   let unix
 
-  const { code: timeCode, data: timeData } = await axios.get('https://tc.q18m.cc/dev/info/time')
-  if (timeCode !== 200) {
+    const { code: timeCode, data: timeData } = await axios.get('/dev/info/time')
+    if (timeCode !== 200) {
     unix = Math.round(new Date().getTime() / 1000)
   } else {
     unix = timeData.unix

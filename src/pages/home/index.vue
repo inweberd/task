@@ -53,7 +53,7 @@
           操作说明
         </div>
         <div class="tab-item" :class="{ active: active === 7 }" @click="handleActive(7)">
-          营业执照
+          合作单位
         </div>
       </div>
 
@@ -69,32 +69,32 @@
           <!--              <van-loading type="spinner" size="20" />-->
           <!--            </template>-->
           <!--          </van-image>-->
-          <van-image width="100%" lazy-load height="200" :src="zhengshu1" @click="showImage(0)">
+<!--          <van-image width="100%" lazy-load height="200" :src="zhengshu1" @click="showImage(0)">-->
+<!--            <template v-slot:loading>-->
+<!--              <van-loading type="spinner" size="20" />-->
+<!--            </template>-->
+<!--          </van-image>-->
+<!--          <van-image width="100%" lazy-load height="200" :src="zhengshu2" @click="showImage(1)">-->
+<!--            <template v-slot:loading>-->
+<!--              <van-loading type="spinner" size="20" />-->
+<!--            </template>-->
+<!--          </van-image>-->
+          <van-image width="100%" lazy-load height="450" :src="zhengshu7" @click="showImage(0)">
             <template v-slot:loading>
               <van-loading type="spinner" size="20" />
             </template>
           </van-image>
-          <van-image width="100%" lazy-load height="200" :src="zhengshu2" @click="showImage(1)">
+          <van-image width="100%" lazy-load height="200" :src="zhengshu4" @click="showImage(1)">
             <template v-slot:loading>
               <van-loading type="spinner" size="20" />
             </template>
           </van-image>
-          <van-image width="100%" lazy-load height="450" :src="zhengshu7" @click="showImage(2)">
+          <van-image width="100%" lazy-load height="200" :src="zhengshu5" @click="showImage(2)">
             <template v-slot:loading>
               <van-loading type="spinner" size="20" />
             </template>
           </van-image>
-          <van-image width="100%" lazy-load height="200" :src="zhengshu4" @click="showImage(3)">
-            <template v-slot:loading>
-              <van-loading type="spinner" size="20" />
-            </template>
-          </van-image>
-          <van-image width="100%" lazy-load height="200" :src="zhengshu5" @click="showImage(4)">
-            <template v-slot:loading>
-              <van-loading type="spinner" size="20" />
-            </template>
-          </van-image>
-          <van-image width="100%" lazy-load height="200" :src="zhengshu6" @click="showImage(5)">
+          <van-image width="100%" lazy-load height="200" :src="zhengshu6" @click="showImage(3)">
             <template v-slot:loading>
               <van-loading type="spinner" size="20" />
             </template>
@@ -171,7 +171,8 @@ const handleActive = (num) => {
 
 const showImage = (index) => {
   showImagePreview({
-    images: [zhengshu1, zhengshu2, zhengshu7, zhengshu4, zhengshu5, zhengshu6],
+    // images: [zhengshu1, zhengshu2, zhengshu7, zhengshu4, zhengshu5, zhengshu6],
+    images: [zhengshu7, zhengshu4, zhengshu5, zhengshu6],
     startPosition: index
   })
 }

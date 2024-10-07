@@ -20,8 +20,8 @@ const commonBase = {
   password: `${PRESET_PATH}/password.txt`, // 服务器登录密码路径，支持相对或绝对地址，优先使用密码。注意这里是密码文件！
   // privateKey: 'D:\\xxx\\xxx\\xxx.pem' // 密钥地址，与密码二选一均可
   isRemoveRemoteFile: false, // 是否删除远程文件，受 deleteWebDirList 参数影响 （默认true）
-  autoplayMusic: false // 项目上传成功后是否自动播放音乐（默认true）
-  // deleteWebDirList: ['/css', '/js', '/static'], // 要删除的远程目录（默认为css|js|static）
+  autoplayMusic: false, // 项目上传成功后是否自动播放音乐（默认true）
+  deleteWebDirList: [], // 要删除的远程目录（默认为css|js|static）
   // dataBackup: 'dataBackup', // 远程备份目录，如果出现/，则以带/的为主，否则会用 webDir+dataBackup进行拼接（默认dataBackup）
   // nameZip: 'dist', // 打成压缩包后的本地文件名，线上的会为dist{time}（默认dist）
   // zipSuffix: '.tar.gz', // 压缩包后缀（默认为：.tar.gz）

@@ -76,7 +76,7 @@
                 <!--                }}元-->
                 <span>会员期限：永久使用</span>
                 <span>
-<!--                  每日观看次数：30次-->
+                  <!--                  每日观看次数：30次-->
                   <!--                  <span style="color: #97f60a; font-size: 16px"-->
                   <!--                    >{{ shouyiArrDay[index] }}元</span-->
                   <!--                  >-->
@@ -99,24 +99,20 @@
                 <div style="margin-top: -20px">
                   <!--                  {{ index + 1 }}级会员观看视频每条-->
                   <div style="text-align: center; line-height: 30px">
-
-
-                      <template v-if="index === 0"> 开通会员体验卡 </template>
-                    <template v-else>
-                      开通{{ daxieArr[index] }}级会员
-                    </template>
+                    <template v-if="index === 0"> 开通会员体验卡 </template>
+                    <template v-else> 开通{{ daxieArr[index] }}级会员 </template>
                   </div>
                   <div style="text-align: center; line-height: 30px">
-<!--                    <span style="color: #07c160"> 每条单价{{ vipTxtArr[index] }}</span>-->
+                    <!--                    <span style="color: #07c160"> 每条单价{{ vipTxtArr[index] }}</span>-->
                     <span style="color: #07c160"> 每日保底收入{{ shouyiArrDay[index] }}元</span>
                   </div>
                 </div>
               </div>
               <!--              <img :src="getIconPath(item.icon)" alt="" style="height: 130px; width: 100%" />-->
-<!--            <div class="introduce-left">-->
-<!--               <span>每日收入：{{ shouyiArrDay[index] }}元</span>-->
-<!--            </div>-->
-            <div class="introduce">
+              <!--            <div class="introduce-left">-->
+              <!--               <span>每日收入：{{ shouyiArrDay[index] }}元</span>-->
+              <!--            </div>-->
+              <div class="introduce">
                 <span style="font-size: 16px" v-if="myStaffList.includes(item.id)">已开通</span>
                 <span style="font-size: 16px" v-else>点击开通</span>
               </div>
@@ -184,7 +180,7 @@ defineOptions({
   name: 'invest'
 })
 const userIncomeInfo = ref({})
-const shouyiArrDay = [3,6, 16, 31, 71, 141, 301, 601]
+const shouyiArrDay = [7, 9, 20, 35, 75, 145, 305, 601]
 const vipTxtArr = ['1毛', '2毛', '5毛', '1元', '2.3元', '4.7元', '10元', '20元']
 const daxieArr = ['', '一', '二', '三', '四', '五', '六', '七']
 
@@ -219,11 +215,11 @@ const shopList = ref([
     vipIcon:
       'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAAkCAMAAABBj89wAAAAQlBMVEWil8WXjbj///+Ogq+Wi7mNgauaj7yTh7aHe6zSzeD6+vu+t9Lf2+nv7fOxqciek7+Pg7OglsOQhK2kmsbIwtiBc6UBWpS4AAAAAnRSTlPiTGWxUe0AAAPvSURBVHhejZfZbuswEEPTGe2rt/7/r95ZpKjxDdowjmr4gQckG6R9fD16705kRJ61iZAUMEx9h2+S2fe+d74Lx9/6eoi/EIxbACHgpgAc/kI49t7PLqjjEz32/krwI4IiAl2o9pogdPY/2N8KAD8BrI6EoP6aYVsJhGA6aRa0HfhBgv19RwqgCOI/M6D4WwaoN35Q0Y2gCdbOTLATwfb7of70wk82uHV0W5nsf6zgV0FsjnTgJwl2NyO8R4QhuwrCN+6WL/smwT4StHP4n/l8GWFrWSCOAVoQ+py9EH7bYgFkhgSnAi4omkAZWABKGAW5IAVt/MyvFLbUp8oNsI8NMqScMzMiXDK0VISmQK1QEMldCwro9ZlfMxdIQ3AHTEQBVm4xkl2MsWmAs0J1jo7GQxmy/z7cfOZQEJYBTUknAewrQEc4E0RSizAUuSRKA8WEYCqkuHNB9GqJrY9Ozxo+E+RTlDmBfZMgQnEkcow5txwZYK4EVNemRUG6PC3gCzO5fn4WDY4EU5xAXy8JTiBjEg/AH7ZMAF/JFIbktgZkZrpUeu/R4pHjU1kA43qcTKDrLLqBY4BRwJZra5UEwGfOtYVOlLaorULqiLa9yA6EJpgd7REgxp8AHgFZAN2RMJDi5TE/dfjrOhCRkEvp2ZHVBPOjkGDnDUomRQUIYlOAYX8BHvxSsbtFm2BVBMnauQEDTk2QoyS4IqgEUJMIIIlqsOivmzxKAkeurXlrHQFWBAKoegFRoQRsUBjgF0ARATcHNzkKMAAAbgKEICPPjlrOADk33cDwBvOLx3FFxnNBmyaoUPlH5MMgWpvUGg4FsL8cWpEidAN3A8TqvQC2WngOPOjcAU5EjKkh+yAK4GhQ7UsCkiRQ/3cAvxXIjgG+QQ0biuhhxAMxQ+pEQDsSFLgGQMQETbAA51VeAezLAIdEwk0JEaqfN0YBMRp7AfRYcm9tLDASrN8j2TJCEjHgbK0l4HFa43fjYjwZUf2l1AQABdXI5UKPXQWAmv0IIAnUnxERoMbzJyDCTZELSqBKtVxJWrmElTKB+lXH3UywRjhj685dKTuuKBEgl6XIR+aO8pVzO7vn+lsxFm0jWGyHVbWSzPw1YoAi/v/rwtNFB0uq50O/pQ+ikJt+hqUiI2aqebsSzIr6IrDEX1nqre64pAxB8PlWssGMsBKILV8itp7vJXV/73xPcI9gZkkkZzx7i/BGsHr8CbhFWCWNgkT3hqwc6o8BfwesCE9/pwUJYAlxIcSWjTGwU/goAWslmFMvf2EsCSLYNcX/qIeOIIDbvwqqZX+LELT+FWL4hluCr0UQxH5bwZNuGywpIeDNe9Hs1z9uZImrYyEicgAAAABJRU5ErkJggg=='
   },
-  // {
-  //   icon: 'dd',
-  //   vipIcon:
-  //     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAAkCAMAAABBj89wAAAARVBMVEVocJBaYYZvdZRcY4hhaIxqcJBfZor///9mbI2ytcZ9gp++wc+prMDMztr5+frd3uZ0epdTWoGbn7VXXoTq6++PlK1PVn23O75tAAAAAXRSTlNMP4zV3QAABA9JREFUeF51lgeO60gMRN05B6W9/1GXZEeP/KtlQ/AA9VAsU57PR2otuljXNXV86T8U9yi8k6qLb6q7fCV/LfQi7IiDXtMeDriSPwMA6+50pj+eLo/ns/uLd4Ldn17kzzGAVVO8E+oWwTcGAH5H+I3YBqSHebv2BBvkBZj+bM5oL0GTvwDAZRUeQrQIi7Hsx4j+XfNBZybAqXpFA7KK/Cdi75nvCX5GuH5/kxT61wMHZL8JcN41UwKJgH9HOPYSNMbuAyIRYhHeU9o6AITnnfBE/zMB+dOApFUxUglDu/1ew0gA/iob3gDJnM37jLtcCK7SgIRVyZi0+fN0T6W9ho+Wo4PT5PM8VQO0BLf5o7tq2LbL8mTu2yS+MhSTu0z5GpHUo4VEFp4AUYLYFR3qNsWBAsjhgA5Zb0Dhm98ATyvhMWXVQICegGeDFpwApOciqWw8FGAr6oIA4szgb62/IfMgFBMfUkRAxasDRoRgkkARgPI2wBFMAX9GqTU0gOMv3IJqgSLqAAy9E5CqMe4BMUEdrGWr2TwAwPxVHYdwGfCui+45AmKYcg0wE0hiqFSoRbEAhGDFFFgEyVFwU6HpJ5uhE8bkAfCcu9bC7SXzACGiEIIAI4KDyGkIolzBWRmnLA8B1y2bTXluG6cEg2BNBvuSs6EOHG2C2RWPA8JKkt2kbDYpkFJIC8BbyUQQZ4AEITyzrQCAh0rr+QsAmFbujzgAIIFXiscTKvcE2EdEU5LBkFwxDwKdCYxFKMWZxOhBIIOJl9bc/JG3IAQQZgBG0Z85If/AOJ7HA4CBEICFqmgSLZM9ACB0S3ADGJR6AjusDf8GVAI0htSKOtgAVyj2AoBC4UI43SoApwdKCPmxCu17gtMUtQCV85FAarwWQHQAk/oaAH0QQBCimCBB0WRvUR0AH0/AYKwEWgBARbcDrosA0BUHv2Rc83emKIkK+MgghVSVgz5SiR73QA0CAXRbBuggm1La9/5GACPAUhQQwYKRcyGVG/et2CYfizHB3/hRrB1AJa8IATqNtgw31xI4k4daAjuWKpfk4DMAOGJlhw04YOTIhwjQt7lGTx24E5R6AhnvYCX+rDF3R4ERoovn46uV0sqz4Iwek+9w8v5kfVL2XC3AhtBgoLgEDLPcIkDQylIU0UQ9ozdJAwQI9ev3mVd8Vwuw/F//XiDcCvRnTAxEF/2tnaaJIHf1SkD69teEb/6doClD25z5UHoT3gnkjwSC1optgMEg/3eENacJsLJLzyEtQsvU/QdCdwLCX0/WZU8hXiWT+wQ0m2sBBNsSUOaRYethJyBgj7AgBKBC2QSsGiai6VfNM4GaEbr5akGQuv87A0muDPaVgTroBCpsBVj+FGCPwPYMGNvqV4Yp/vkf+t5wv24grt8AAAAASUVORK5CYII='
-  // },
+  {
+    icon: 'dd',
+    vipIcon:
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAAkCAMAAABBj89wAAAARVBMVEVocJBaYYZvdZRcY4hhaIxqcJBfZor///9mbI2ytcZ9gp++wc+prMDMztr5+frd3uZ0epdTWoGbn7VXXoTq6++PlK1PVn23O75tAAAAAXRSTlNMP4zV3QAABA9JREFUeF51lgeO60gMRN05B6W9/1GXZEeP/KtlQ/AA9VAsU57PR2otuljXNXV86T8U9yi8k6qLb6q7fCV/LfQi7IiDXtMeDriSPwMA6+50pj+eLo/ns/uLd4Ldn17kzzGAVVO8E+oWwTcGAH5H+I3YBqSHebv2BBvkBZj+bM5oL0GTvwDAZRUeQrQIi7Hsx4j+XfNBZybAqXpFA7KK/Cdi75nvCX5GuH5/kxT61wMHZL8JcN41UwKJgH9HOPYSNMbuAyIRYhHeU9o6AITnnfBE/zMB+dOApFUxUglDu/1ew0gA/iob3gDJnM37jLtcCK7SgIRVyZi0+fN0T6W9ho+Wo4PT5PM8VQO0BLf5o7tq2LbL8mTu2yS+MhSTu0z5GpHUo4VEFp4AUYLYFR3qNsWBAsjhgA5Zb0Dhm98ATyvhMWXVQICegGeDFpwApOciqWw8FGAr6oIA4szgb62/IfMgFBMfUkRAxasDRoRgkkARgPI2wBFMAX9GqTU0gOMv3IJqgSLqAAy9E5CqMe4BMUEdrGWr2TwAwPxVHYdwGfCui+45AmKYcg0wE0hiqFSoRbEAhGDFFFgEyVFwU6HpJ5uhE8bkAfCcu9bC7SXzACGiEIIAI4KDyGkIolzBWRmnLA8B1y2bTXluG6cEg2BNBvuSs6EOHG2C2RWPA8JKkt2kbDYpkFJIC8BbyUQQZ4AEITyzrQCAh0rr+QsAmFbujzgAIIFXiscTKvcE2EdEU5LBkFwxDwKdCYxFKMWZxOhBIIOJl9bc/JG3IAQQZgBG0Z85If/AOJ7HA4CBEICFqmgSLZM9ACB0S3ADGJR6AjusDf8GVAI0htSKOtgAVyj2AoBC4UI43SoApwdKCPmxCu17gtMUtQCV85FAarwWQHQAk/oaAH0QQBCimCBB0WRvUR0AH0/AYKwEWgBARbcDrosA0BUHv2Rc83emKIkK+MgghVSVgz5SiR73QA0CAXRbBuggm1La9/5GACPAUhQQwYKRcyGVG/et2CYfizHB3/hRrB1AJa8IATqNtgw31xI4k4daAjuWKpfk4DMAOGJlhw04YOTIhwjQt7lGTx24E5R6AhnvYCX+rDF3R4ERoovn46uV0sqz4Iwek+9w8v5kfVL2XC3AhtBgoLgEDLPcIkDQylIU0UQ9ozdJAwQI9ev3mVd8Vwuw/F//XiDcCvRnTAxEF/2tnaaJIHf1SkD69teEb/6doClD25z5UHoT3gnkjwSC1optgMEg/3eENacJsLJLzyEtQsvU/QdCdwLCX0/WZU8hXiWT+wQ0m2sBBNsSUOaRYethJyBgj7AgBKBC2QSsGiai6VfNM4GaEbr5akGQuv87A0muDPaVgTroBCpsBVj+FGCPwPYMGNvqV4Yp/vkf+t5wv24grt8AAAAASUVORK5CYII='
+  }
   // {
   //   icon: 'wph',
   //   vipIcon:
@@ -254,9 +250,9 @@ const getAllStaff = () => {
 
     res.data.data.forEach((item, index) => {
       for (const itemKey in item) {
-          if(shopList.value[index]){
-            shopList.value[index][itemKey] = item[itemKey]
-          }
+        if (shopList.value[index]) {
+          shopList.value[index][itemKey] = item[itemKey]
+        }
       }
     })
     console.log(222)
@@ -670,14 +666,14 @@ onUnmounted(() => {
             transform: translateX(-50%);
             color: #f60;
           }
-            .introduce-left {
-                position: absolute;
-                bottom: 35px;
-                font-size: 16px;
-                left: 20%;
-                transform: translateX(-50%);
-                color: #f60;
-            }
+          .introduce-left {
+            position: absolute;
+            bottom: 35px;
+            font-size: 16px;
+            left: 20%;
+            transform: translateX(-50%);
+            color: #f60;
+          }
           .a-t-t-3-1 {
             top: 30%;
             height: auto;

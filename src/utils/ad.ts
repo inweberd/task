@@ -172,7 +172,9 @@ export const loadFeed = () => {
   }
 }
 export const loadShortVideo = () => {
-  const userId = JSON.parse(window.localStorage.getItem('userInfo'))?.id
+  const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+  const userId = userInfo?.id
+  const serial = userInfo?.result?.staff?.serial
   const token = window.localStorage.getItem('token')
   if (isIos) {
     window.webkit.messageHandlers.openContentPage.postMessage({
@@ -189,7 +191,8 @@ export const loadShortVideo = () => {
       userId,
       encodeURIComponent(
         JSON.stringify({
-          token
+          token,
+          v: !!serial
         })
       ),
       token

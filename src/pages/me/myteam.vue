@@ -11,8 +11,8 @@
           }}</strong
         >
         <em class="txt2">
-            <template v-if="userInfo?.result?.staff?.id=='8'">体验卡</template>
-            <template v-else>LV{{ userInfo?.result?.staff?.serial }}</template>
+          <template v-if="userInfo?.result?.staff?.id == '8'">体验卡</template>
+          <template v-else>LV{{ userInfo?.result?.staff?.serial }}</template>
         </em>
         <small class="txt3">邀请码:{{ userInfo?.result?.invite?.code }} </small>
         <small class="txt4">会员ID：{{ userInfo?.id }} </small>
@@ -82,7 +82,7 @@
             <div class="price-2-item-1" style="color: #b5a483">
               {{ memberInfo.first?.vip || 0 }}
             </div>
-            <div class="price-1-title" style="color: #ea5514">直推会员人数 </div>
+            <div class="price-1-title" style="color: #ea5514">直推会员人数</div>
           </div>
           <div class="price-2-item">
             <div class="price-2-item-1" style="color: #b5a483">
@@ -111,40 +111,40 @@
         </div>
       </div>
     </div>
-<!--    <div class="black-tip">-->
-<!--      <div>-->
-<!--        <div>-->
-<!--          拉新奖：拉新 <span class="active">2人</span> 并且他们<span class="active"-->
-<!--            >开通任意会员</span-->
-<!--          >-->
-<!--        </div>-->
-<!--        <div>-->
-<!--          奖励你永久使用<span class="active">69元体验卡</span>！<van-tag-->
-<!--            @click="getPullNew"-->
-<!--            type="success"-->
-<!--            style="padding: 6px 18px; font-size: 20px"-->
-<!--            >领取</van-tag-->
-<!--          >-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-      <div class="black-tip">
-          <div>
-              <div>
-                  拉新奖：拉新 <span class="active">4人</span> 并且他们<span class="active"
-              >开通任意会员</span
-              >
-              </div>
-              <div>
-                  奖励你永久使用<span class="active">200元会员</span>！<van-tag
-                  @click="getPullNew2"
-                  type="success"
-                  style="padding: 6px 18px; font-size: 20px"
-              >领取</van-tag
-              >
-              </div>
-          </div>
+    <!--    <div class="black-tip">-->
+    <!--      <div>-->
+    <!--        <div>-->
+    <!--          拉新奖：拉新 <span class="active">2人</span> 并且他们<span class="active"-->
+    <!--            >开通任意会员</span-->
+    <!--          >-->
+    <!--        </div>-->
+    <!--        <div>-->
+    <!--          奖励你永久使用<span class="active">69元体验卡</span>！<van-tag-->
+    <!--            @click="getPullNew"-->
+    <!--            type="success"-->
+    <!--            style="padding: 6px 18px; font-size: 20px"-->
+    <!--            >领取</van-tag-->
+    <!--          >-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <div class="black-tip">
+      <div>
+        <div>
+          拉新奖：拉新 <span class="active">4人</span> 并且他们<span class="active"
+            >开通任意会员</span
+          >
+        </div>
+        <div>
+          奖励你永久使用<span class="active">200元会员</span>！<van-tag
+            @click="getPullNew2"
+            type="success"
+            style="padding: 6px 18px; font-size: 20px"
+            >领取</van-tag
+          >
+        </div>
       </div>
+    </div>
     <ul class="login_nav">
       <li>
         <a href="javascript:void(0)" @click="jumpToQQ">
@@ -220,15 +220,15 @@
           <p>APP下载</p></a
         >
       </li>
-<!--      <li>-->
-<!--        <a href="javascript:void(0)" @click="$router.push('/CreditScoreDetail')" class=""-->
-<!--          ><img-->
-<!--            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaEAAAGhCAYAAADIqAvCAAAACXBIWXMAAC4jAAAuIwF4pT92AAASAElEQVR4nO3dTXIbR5qA4XSH99REILAVfQJxTiD6BKY32Io+QbNPYOkG9A3Y21rRJzB5gqZOMOIWgYV4Ak6knRhjaFsmUT9fZuF5Ihi9agFE0XyZP1X51ePjYwKACP/wqQMQRYQACCNCAIQRIQDCiBAAYUQIgDAiBEAYEQIgjAgBEEaEAAgjQgCEESEAwogQAGFECIAwIgRAGBECIIwIARBGhAAII0IAhBEhAMKIEABhRAiAMCIEQBgRAiCMCAEQRoQACCNCAIQRIQDCiBAAYUQIgDAiBECYr330UK/1anGaUjouX099Tind5a9lt/nsMtKirx4fH104qMR6tcixOStfb1/wrj6mlG7y17LbXLuetEKEoAIlPu9TSu8GeDf3KaWrlNKlERK1EyEINHB8nnrIIRIjaiZCEGDk+DyVR0bny25z41pTGxGCCU0cn6d+WnabC9ebmogQTCA4Prtu86YH03PUQoRgRBXFZ1feSXcqRNRAhGAElcZnlxBRBTerwoAaiM/Wm7KN+6yOt8OhMhKCATQUn6c+LLvN+7reEodEhKCHhuOz67+X3eaunrfDITEdB3uYSXy28g2tp3W8FQ6NkRC8wMzis+tbN7MSwUgInmHG8dm6KA9AhUkZCcEXlKMU8i/o7w7gc/pm2W0+VfA+OCBGQvAnSnzev/A4hdbl7/fczwNTMhKCHQcan11GQ0zKSAjEZ9d5+RxgEkZCHDTx+YN8BtGxx/kwFSMhDpL4/KWjMhq6rPT9MTNGQhwU8XmW+2W3OW7gfTIDIsRBEJ8X+2HZba4ae880SISYNfHZm9EQkxAhZkl8BuFRPozOxgRmRXwG9d6DTRmbkRCzID6jccwDozISomniM7oLj/JhTEZCNEl8JuVRPozGSIimiM9kHsrRDvmrmacnrFeLkzJ6Oys33m59TCl9Kt/PtajWw0iIJojPJG53fklXvw60Xi1eldgclw0U+X9fP/P//rE8FeLaI4piiRBVE59RfdyOdpbd5rqFN1wOFzwrX0P8TOQR3/tlt/GYoiAiRJXEZxT3O1NszYwAyhTbeRntvBnpZXKQz+0EnJ4IURXxGdTDk+g0sw6yXi22o53TF0yx9ZU/rwuPK5qWCFEF8RlMU+s6WzvrO2cVHKX+L9Nz0xEhQolPb82t62ztrO+cjzjNtq8Py27jcL8JiBAhxGdvTa7rbJXrvh3xTDXNti9PEp+ACDEp8XmxZtd10u/TbLvhOXrG/60mHls0MhFiEuLzIk2u62yVabbTStZ3+sojzxP3Eo3HExMYlfg8S7PrOltlG/V2tFPb+k4fr8vP70W730LdjIQYhfh8UdPrOltlG/VpI+s7fZmWG4mREIMSnz/V9LrO1s5o5/QAr++ls5XGYSTEIMTnD5pe10m/R+d056u1TQVDc9LsCIyE6EV8/s8c1nV2NxSIzh+dl2vMgIyE2Iv4tL+usxOd04kfj9Oy/7JTblhGQrzIAcen+XWdnXt2DmUzwRjy5+YG1gGJEM9yoPFp/X6dV09GOnPaOh3lVISGJUJ80YHFZw7rOrvROfR1ujHYITcwa0L8qQOJzxzWdURnet84Hnw4RkL8PzOPzxzWdWybjmdKbkAixK9mHJ85PIftTHSqIkIDEqEDN8P4NL2uY9t0E6wLDcia0IGaUXxaP1/n1ZMbREWnDdaFBmIkdGBmEJ+5nK9j23TbTMkNRIQOROPxaX1dZ/cGUdGZBxEaiAjNXKPxaX1dx7bp+bMuNBBrQjPVWHxaX9exbfowWRcagJHQzDQSn9bXdWybJpmSG4YIzUQD8Wl2Xce2af6CCA1AhBpXcXyaXdexbZpnsi40AGtCjaowPs2u69g2TQ/WhXoyEmpMRfFpfV3HtmmGYEquJxFqRCXxaXldx7ZpxiBCPYlQ5YLj0/K6zu626e8qeEvMk3WhnqwJVSooPi2v67hXhyjWhXowEqrMxPFpdl3HtmkqYkquBxGqxITxaXJdp+xgOxMdKiRCPYhQsAni0+S6jm3TNMS6UA/WhIKMGJ+W13V2bxAVHVpiXWhPIhSg/JV/MsIrf2r1P4SyseBVBW8F9nHX2oN3ayFCAIT5h48egCgiBEAYEQIgjAgBEEaEAAgjQgCEESEAwogQAGFECIAwIgRAGBECIIwIARBGhAAIU/2hdk8ON8uP+z92qiZwYPI5YfmYlrvydTOX84uqPcqhHHB2nlJ6V8HbAahNPjX5srXDK5+qLkLlcLPLEY+7BpiTh/I787LFGFUVofVqkY+7/rGCtwLQmhyj82W3uW7pfVcRobLuc5NSehP+ZgDa9nOJUROjovAIlem3HKCj0DcCMB95I8PZstvc1f4dhUZIgABGk6fnTmsPUViE1qvFcdlqKEAA46g+RCE3q5Y1oGsBAhhV/h17U2adqhT1xIRLmxAAJpFDdFX++K/O5BFarxZuQAWYVv6j/32Nn/mka0KlxJ9MwwGE+HbZbW5q+uinHgmdCRBAmOpGQxERAiDG2/JczmpMHaHv/OABhLqo6eOfbE2o3Bf0P5O8GABf8k0tR0FMORIyFQdQh2qm5CaJUBkFVbk9EOAAHVaE7IoDqEo1T1CYKkJV7cYAOHDVPLFmqghV+bgIAGJFPTsOAEQIgDgiBEAYEQIgjAgBEEaEAAgjQgCEESEAwogQAGFECIAwIgRAGBECIIwIARBGhAAII0IAhBEhAMKIEABhRAiAMCIEQBgRAiCMCAEQRoQACCNCAIQRIQDCiBAAYUQIgDAiBEAYEQIgjAgBEEaEAAgjQgCEESEAwogQAGFECIAwIgRAGBECIIwIARBGhAAII0IAhBEhAMKIEABhRAiAMCIEQBgRAiCMCAEQRoQACCNCAIQRIQDCiBAAYUQIgDAiBEAYEQIgjAgBEEaEAAgjQgCEESEAwogQAGFECIAwIgRAmK999DBrH1NKn8s3eONSUxsRgvl4KKG5TindLbvNnWtL7UQI2nebUrpadpsr15LWiBC0K8fn/bLbmGajWSIE7blPKZ2LD3Ngdxy05d8ppRMBYi6MhKAdP1j3YW6MhKANAsQsiRDUT4CYLRGCugkQsyZCUK+fBIi5EyGoUw7QhWvD3NkdB/UxBcfBECGoyyQBWq8Wp647KaVPy27zKfKDECGox4cxArReLY5TSmcppdPydeSas7VeLe63D75ddpvrqT+Yrx4fH0d/kfVqkb/Bt6O/ELTr52W3ORvy3ZfRTl5X+s7PBS+wjdLFstt8HvuDszEB4v36LLih3sV6tTgpf/j9IkDs4XVK6V0+DmSKaVsRgnjnQ/3FuV4t3qeU/mPmgQHkGP2yXi2uypTuKEzHQazbZbfp/dfmerV4lc8UMvJhJPnAxMv8NfQUnZEQxOo9DVcCdCNAjChvZvkx76Yro+3BiBDE+Xff7bE7AXrjOjKBX2O0Xi0G20QjQhBniO3YlwJEgKvyB1BvIgQx7vseTLdeLS7KLiaYWh4RDTItJ0IQ47LPq5bdSoPOzcML/XOIXXMiBDH63pl+5ckHVKD3H0IiBNO777MhodxA6JYHavCu72hIhGB6vdaCyqN4oBa9fh5FCKZ3t+8rlr863Q9ETXrd6yZCML29I1Sehg01OVqvFnuHSIRgYj23Zg/2oFMY0N5/HIkQTOth31crNwe6MZUa7f38QxGCafWZijtxrajU0b7HPogQtMOR3NRsrz+SRAim1ecx+IM8qwtGstf9QiIE0zIdx1wZCQHQFhECIIwIARBGhAAII0IAhBEhAMKIEABhRAiAMCIEQBgRAiDM1z56YES3KaWrlNKnZ7zEq3IuTf46clEOgwgBY8jnJp3tcYDfdTk36TKl9M6VmT/TccDQPuYnKu97guyy23xedpt8guz3fQ4BpA0iBAzpQz73KIek77+57DbX5QwlIZoxEQKG8sOy27wfIkBby26Tj744d4XmS4SAIXxYdpurMT7JMiL64CrNkwgBfd3nEdCYn2L59+9dqfkRIaCvy4k+wVFDRwwRAvraaxfcS5XpPpsUZkaEgF7K5oGpXLta8yJCQB8fJ/70Jhl1MR0RAvoYbDv2Mz3n8T80RIQACCNCAIQRIQDCiBAAYUQIgDAiBEAYEQIgjAgBfZxM/Okdu1rzIkJAH0flOO6pnLpa8yJCQF9nU3yCJXaTvBbTESGgr6lOPr3IIy9Xa15ECOjr7Xq1GHWEsl4t8trTj67U/IgQMISrsdaGyr/rCIeZEiFgCHma7GboEK1Xi+NyfMNrV2meRAgYypt81MJ6tRhkB9t6tchrTXfl32WmvnZhgQHlEdEv69XiNqV0uew2L55GK/HJX29dmPkTIWAMb8uGhfxP377g3xeeAyNCwNiEhb9kTQiAMCIEQBgRAiCMCAEQRoQACCNCAIQRIQDCiBAAYUQIgDAiBNM67vFqn10r5kaEYFp9InTnWlGxm33emghBOz65VlRsr5G6CMG0Tnq8mpEQNdvr51OEYFpH+77astvk/8gfXC9qtOw2puOgBT1PHn3xIXEwgZ/3fQkRgun1mZITIWq098+lCMH09o5QOS773jWjIg8iBG3pMx2XXbneVORy2W32vodNhGB6r9erRZ/7hS5tUKASD+XncW8iBDHO9n3V8lfnhetGBXqNgpIIQZjzPi+87DZ5Su7W5SPQfd9RUBIhCPOm55RcKqMp03JEueg7CkoiBKF6TamVXwB9NznAPn4uOzV7EyGIc75eLV71efXyFIUfXEMmdN93OnmXCEGcoz4bFLbK+tD3puYYWY7PD8tuczzENNyWCEGs90O8epkaOXUjKyPIf9x8KPEZ/B41EYJY+Z6hoUJ0V57G8JNrykDyM+FyfAb5Gf0zXz0+Po5+sdarRX666tvRXwja9FD+Qx9simO9WpyUUdZ3fibYQ/6ZPB9q88GXGAlBvKOhH8WTR0XLbpPXm74pIyPTdPydPOr5V0rp2zyiniJAyUgIqvL9mP/hl/uSTnYeoGp792H7XA6iu5sqOH9GhKAeD+UvUMd4czBMx0E98rTcdd97h6AlIgR1eTPE87igFSIE9Xm3Xi2cGcRBECGokxBxEEQI6iVEzJ4IQd1yiG5sVmCuRAjql29vuCtPQYBZESFow+uU0n+Ges4c1EKEoC0/rleLT+vVwtMOmAURgvbkUdEvZa1IjGiaCEG73u7EqPfheBDha586NC/H6O16tchPys4Porxedpsbl5UWeIApzFN+GOpNeUryTXlS8mDnFcFQRAgOy63rTfrtzKkq1hNNx8Fh8ccgVbExAYAwIgRAGBECIIwIARBGhAAII0IAhBEhAMKIEABhRAiAMCIEQBgRAiCMCAEQRoQACCNCAIQRIQDCiBAAYUQIgDAiBEAYEQIgjAgBEEaEAAgjQgCEESEAwogQAGFECIAwIgRAGBECIIwIARBGhAAII0IAhBEhAMKIEABhRAiAMCIEQBgRAiCMCAEQRoQACCNCAIQRIQDCiBAAYUQIgDAiBEAYEQIgjAgBEEaEAAgjQgCEESEAwogQAGFECIAwIgRAGBECIIwIARBGhAAII0IAhBEhAMKIEABhRAiAMCIEQJipIvTJJQbgKRECODy3tXzHU0XobqLXAeDvVTMwECGAw1PN7+RJIrTsNrm691O8FgB/67qWj2jK3XHVfNMAB+xjGRhUYcoIXfqpBwhX1e/iySJUylvNjgyAA/RQ26zU1Dervp/49QD43eWy23yu6fOYNELLbnNjNAQQ4r7GZZGIx/aclyEhANM5r20UlCIiVNaGTMsBTOenMhNVna8eHx9D3tN6tbhKKb3zQwgwqttltzmt9SMOe4r2stvkabmPUa8PcADy79izmr/N6KMcToUIYBT5d+tpjetAu0IjVD6cUzvmAAb1cwsBSpFrQk+tV4u8dfCfVbwZgHZ9WHabZjZ/VROh9FuI8qgob1h4XcHbAWhJnlG6WHabpk4tqCpC6bcQvcofZPk6quAtAdTsY3kSwlWLV6m6CG2VGJ2Xrzd1vCuAKmyfAXdV6/0/z1VthHatV4vjsoHhpHwBHJq7ciLqTWtTbl/SRIQAmKfo+4QAOGAiBEAYEQIgjAgBEEaEAAgjQgCEESEAwogQAGFECIAwIgRAGBECIIwIARBGhAAII0IAhBEhAMKIEABhRAiAMCIEQBgRAiCMCAEQI6X0v+2kiIW8DmHRAAAAAElFTkSuQmCC"-->
-<!--            alt=""-->
-<!--          />-->
-<!--          <p>信用分</p></a-->
-<!--        >-->
-<!--      </li>-->
+      <!--      <li>-->
+      <!--        <a href="javascript:void(0)" @click="$router.push('/CreditScoreDetail')" class=""-->
+      <!--          ><img-->
+      <!--            src="data:image/png;base64,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"-->
+      <!--            alt=""-->
+      <!--          />-->
+      <!--          <p>信用分</p></a-->
+      <!--        >-->
+      <!--      </li>-->
       <!--      <li style="opacity: 0; pointer-events: none">-->
       <!--        <a href="javascript:void(0)" @click="jumpToQQ">-->
       <!--          <img src="./images/qq.png" alt="" />-->
@@ -262,12 +262,12 @@
           <p>抽奖盲盒</p></a
         >
       </li>
-<!--      <li>-->
-<!--        <a href="javascript:void(0)" @click="$router.push('/CreditScoreInfo')" class=""-->
-<!--          ><img src="./images/xinyongfenshuoming.png" alt="" />-->
-<!--          <p>信用分详细说明</p></a-->
-<!--        >-->
-<!--      </li>-->
+      <!--      <li>-->
+      <!--        <a href="javascript:void(0)" @click="$router.push('/CreditScoreInfo')" class=""-->
+      <!--          ><img src="./images/xinyongfenshuoming.png" alt="" />-->
+      <!--          <p>信用分详细说明</p></a-->
+      <!--        >-->
+      <!--      </li>-->
     </ul>
     <div class="LoginOut">
       <button class="tabs_btn1" @click="logout">退出登陆</button>
@@ -280,14 +280,15 @@
 import BaseFooter from '@/components/BaseFooter.vue'
 import { onActivated, onMounted, ref } from 'vue'
 import {
-    logout as fnlogout,
-    reqPullNew, reqPullNewLite,
-    reqUserCount,
-    reqUserIncome,
-    reqUserInfo,
-    reqUserMemberInfo,
-    reqUserStaff,
-    reqWalletInfo
+  logout as fnlogout,
+  reqPullNew,
+  reqPullNewLite,
+  reqUserCount,
+  reqUserIncome,
+  reqUserInfo,
+  reqUserMemberInfo,
+  reqUserStaff,
+  reqWalletInfo
 } from '@/api/myApi'
 import { loadInteraction } from '@/utils/ad'
 import { _notice } from '@/utils'
@@ -327,16 +328,16 @@ const getPullNew = () => {
   })
 }
 const getPullNew2 = () => {
-    showLoadingToast({
-      duration: 0,
-      message: '加载中'
+  showLoadingToast({
+    duration: 0,
+    message: '加载中'
+  })
+  reqPullNew().then((res) => {
+    closeToast()
+    showDialog({
+      message: res.msg
     })
-    reqPullNew().then((res) => {
-      closeToast()
-      showDialog({
-        message: res.msg
-      })
-    })
+  })
 }
 const getMemberInfo = async () => {
   reqUserMemberInfo({
@@ -395,7 +396,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://ff.yuyuwa.cn/download`
+    window.location.href = `https://pk.yuyuwa.cn/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false
@@ -476,7 +477,7 @@ onActivated(() => {
         display: block;
         float: left;
         margin-left: 6px;
-          padding: 0 4px;
+        padding: 0 4px;
         height: 16px;
         background: #ea5514;
         color: #fff;

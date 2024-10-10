@@ -40,7 +40,7 @@ const canvasHeight = ref(window.innerWidth / (1658 / 2480))
 const qrCodeText = ref(
   'http://bbbwx926a15.s3-website-us-east-1.amazonaws.com/index.html?target=' +
     encodeURIComponent(
-      'https://ff.yuyuwa.cn/#/signUp?invite=' +
+      'https://pk.yuyuwa.cn/#/signUp?invite=' +
         JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
     )
 )

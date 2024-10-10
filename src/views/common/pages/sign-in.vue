@@ -98,7 +98,7 @@
             <a
               style="margin-top: 10px; text-decoration: underline; font-size: 18px"
               @click="goDownload"
-              >下载app</a
+              >下载appasd</a
             >
             <a
               style="margin-top: 10px; text-decoration: underline; font-size: 18px; color: #1e83d3"
@@ -192,7 +192,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://ff.yuyuwa.cn/download`
+    window.location.href = `https://pk.yuyuwa.cn/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false
@@ -280,8 +280,8 @@ const SignIn = async () => {
   }
   let unix
 
-    const { code: timeCode, data: timeData } = await axios.get('/dev/info/time')
-    if (timeCode !== 200) {
+  const { code: timeCode, data: timeData } = await axios.get('/dev/info/time')
+  if (timeCode !== 200) {
     unix = Math.round(new Date().getTime() / 1000)
   } else {
     unix = timeData.unix

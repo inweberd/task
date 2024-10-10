@@ -175,6 +175,8 @@ export const loadShortVideo = () => {
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
   const userId = userInfo?.id
   const serial = userInfo?.result?.staff?.serial
+  const serialId = userInfo?.result?.staff?.id
+  console.log('serial', serial)
   const token = window.localStorage.getItem('token')
   if (isIos) {
     window.webkit.messageHandlers.openContentPage.postMessage({
@@ -192,7 +194,7 @@ export const loadShortVideo = () => {
       encodeURIComponent(
         JSON.stringify({
           token,
-          v: !!serial
+          v: !!serial || serialId == '8'
         })
       ),
       token

@@ -72,7 +72,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://ff.yuyuwa.cn/download`
+    window.location.href = `https://pk.yuyuwa.cn/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false

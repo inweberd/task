@@ -180,7 +180,7 @@ defineOptions({
   name: 'invest'
 })
 const userIncomeInfo = ref({})
-const shouyiArrDay = [7, 9, 20, 35, 75, 145, 305, 601]
+const shouyiArrDay = [6, 9, 18, 35, 75, 145, 305, 601]
 const vipTxtArr = ['1毛', '2毛', '5毛', '1元', '2.3元', '4.7元', '10元', '20元']
 const daxieArr = ['', '一', '二', '三', '四', '五', '六', '七']
 
@@ -244,7 +244,6 @@ const getAllStaff = () => {
   loading.value = true
 
   reqAllStaff(searchInfo).then((res: any) => {
-    loading.value = false
     staffList.value = res.data.data
     console.log(111)
 
@@ -360,6 +359,8 @@ const getRedBag = () => {
 }
 const getMyStaff = () => {
   reqMyStaff().then((res) => {
+    loading.value = false
+
     myStaffList.value = res.data.map((item) => item.staff_id)
     ;(res.data || []).forEach((item) => {
       shopList.value.forEach((sub_item, index) => {

@@ -176,3 +176,12 @@ export function reqPullNewLite() {
   return axiosInstance({ url: '/api/staff-entry/pull-new-lite', method: 'post' })
 }
 
+// 获取今日领取次数
+export function reqAdvertisingCount() {
+  return axiosInstance({ url: '/api/advertising-log/count', method: 'get' })
+}
+
+// 获取单价
+export function reqAdvertisingSinglePrice() {
+  return axiosInstance({ url: '/api/advertising-log/price', method: 'get' })
+}

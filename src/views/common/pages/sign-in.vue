@@ -98,7 +98,7 @@
             <a
               style="margin-top: 10px; text-decoration: underline; font-size: 18px"
               @click="goDownload"
-              >下载appasd</a
+              >下载app</a
             >
             <a
               style="margin-top: 10px; text-decoration: underline; font-size: 18px; color: #1e83d3"

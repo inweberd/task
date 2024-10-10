@@ -73,7 +73,8 @@
 import bus, { EVENT_KEY } from '../utils/bus'
 import { loadInteraction, loadShortPlayVideo, loadShortVideo } from '@/utils/ad'
 import dayjs from 'dayjs'
-import { showLoadingToast } from 'vant'
+import { closeToast, showLoadingToast } from 'vant'
+import { reqAdvertisingCount, reqAdvertisingSinglePrice } from '@/api/myApi'
 
 export default {
   name: 'BaseFooter',
@@ -97,12 +98,45 @@ export default {
     bus.off(EVENT_KEY.EXIT_FULLSCREEN)
   },
   methods: {
-    loadShort(type) {
+    async loadShort(type) {
       if (type === 1) {
         console.log("dayjs().format('YYYY-MM-DD')", dayjs().format('YYYY-MM-DD'))
         if (localStorage.isShortVideoShare === dayjs().format('YYYY-MM-DD')) {
           // loadInteraction()
-          loadShortVideo()
+          showLoadingToast({
+            duration: 0,
+            message: '加载中'
+          })
+          let arr = [reqAdvertisingCount(), reqAdvertisingSinglePrice()]
+          Promise.all(arr)
+            .then((res) => {
+              closeToast()
+
+              let todayCount = res[0]?.data?.ordinary
+              let price = res[1]?.data?.price
+              if (res[0].code !== 200) {
+                todayCount = -1
+              }
+              if (res[1].code !== 200) {
+                price = -1
+              }
+              nextTick(() => {
+                loadShortVideo({
+                  todayCount,
+                  price
+                })
+              })
+            })
+            .catch(() => {
+              closeToast()
+
+              nextTick(() => {
+                loadShortVideo({
+                  todayCount: -1,
+                  price: -1
+                })
+              })
+            })
         } else {
           showConfirmDialog({
             message: '先分享微信朋友圈，再进行看视频赚收益!',

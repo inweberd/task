@@ -45,6 +45,16 @@
           </div>
         </div>
       </div>
+      <div style="padding: 10px 10px 0">
+        <van-notice-bar
+          color="#fff"
+          background="#F76F31"
+          left-icon="volume-o"
+          style="border-radius: 25px; height: 35px"
+          text="严禁脚本、批量注册和刷子等恶意行为，一经发现封号处理！"
+        >
+        </van-notice-bar>
+      </div>
       <div class="tab">
         <div class="tab-item" :class="{ active: active === 4 }" @click="handleActive(4)">
           平台简介
@@ -69,16 +79,16 @@
           <!--              <van-loading type="spinner" size="20" />-->
           <!--            </template>-->
           <!--          </van-image>-->
-<!--          <van-image width="100%" lazy-load height="200" :src="zhengshu1" @click="showImage(0)">-->
-<!--            <template v-slot:loading>-->
-<!--              <van-loading type="spinner" size="20" />-->
-<!--            </template>-->
-<!--          </van-image>-->
-<!--          <van-image width="100%" lazy-load height="200" :src="zhengshu2" @click="showImage(1)">-->
-<!--            <template v-slot:loading>-->
-<!--              <van-loading type="spinner" size="20" />-->
-<!--            </template>-->
-<!--          </van-image>-->
+          <!--          <van-image width="100%" lazy-load height="200" :src="zhengshu1" @click="showImage(0)">-->
+          <!--            <template v-slot:loading>-->
+          <!--              <van-loading type="spinner" size="20" />-->
+          <!--            </template>-->
+          <!--          </van-image>-->
+          <!--          <van-image width="100%" lazy-load height="200" :src="zhengshu2" @click="showImage(1)">-->
+          <!--            <template v-slot:loading>-->
+          <!--              <van-loading type="spinner" size="20" />-->
+          <!--            </template>-->
+          <!--          </van-image>-->
           <van-image width="100%" lazy-load height="450" :src="zhengshu7" @click="showImage(0)">
             <template v-slot:loading>
               <van-loading type="spinner" size="20" />
@@ -277,7 +287,7 @@ onActivated(() => {
   }
 
   .tab {
-    margin-top: 30px;
+    margin-top: 10px;
     margin-left: 2%;
     background-size: 100% 100%;
     width: 96%;

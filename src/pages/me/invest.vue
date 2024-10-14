@@ -264,12 +264,20 @@ const getIconPath = (icon) => {
   return new URL(`../../assets/img/shop/${icon}.png`, import.meta.url).href
 }
 const buy = (item) => {
-  if (myStaffList.value.includes(item.serial)) {
+  if (myStaffList.value.includes(item.id)) {
     return _notice('您已开通该会员！')
   }
-  // if (userInfo.value.result.staff.serial + 1 !== item.serial) {
+
+  // if(){
+  //
+  // }
+
+  // if (userInfo.value.result.staff.id === 0 && item.id === 1) {
   //   return _notice('请逐级开通！')
   // }
+  if (userInfo.value.result.staff.id + 1 !== item.id) {
+    return _notice('请逐级开通！')
+  }
 
   loading.value = true
   console.log('item', item)
@@ -374,7 +382,7 @@ const getMyStaff = () => {
     console.log('staffList', staffList.value)
     if (res.data.length) {
       res.data.sort((a, b) => a.result.staff.serial - b.result.staff.serial)
-      userInfo.value.result.staff.serial = res.data[res.data.length - 1].result.staff.serial
+      userInfo.value.result.staff = res.data[res.data.length - 1].result.staff
       window.localStorage.setItem('userInfo', JSON.stringify(userInfo.value))
     }
   })
@@ -407,7 +415,7 @@ const alarmList = ref([])
 for (let i = 0; i < 6; i++) {
   alarmList.value.push({
     phone: getMoble(),
-    money: (Math.random() * (2000 - 100) + 100).toFixed(2),
+    money: (Math.random() * (500 - 15) + 15).toFixed(2),
     datetime: getDatetime()
     // type: [
     //   '黑铁权益卡',
@@ -441,7 +449,7 @@ const autoRoll = (flag?) => {
       const datetime = dayjs(new Date().getTime()).format('HH:mm:ss')
       alarmList.value.push({
         phone: getMoble(),
-        money: (Math.random() * (2000 - 100) + 100).toFixed(2),
+        money: (Math.random() * (500 - 15) + 15).toFixed(2),
         datetime: getDatetime()
       })
     }, 500)

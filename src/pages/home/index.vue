@@ -45,6 +45,13 @@
           </div>
         </div>
       </div>
+      <div style="padding: 0 10px; box-sizing: border-box">
+        <div class="black-tip" style="height: 70px" @click="getShouyi">
+          <van-button type="warning" color="#EA5514" block style="height: 25px; margin-top: 2px"
+            >尊贵的VIP用户，一键领取视频收入！</van-button
+          >
+        </div>
+      </div>
       <div style="padding: 10px 10px 0">
         <van-notice-bar
           color="#fff"
@@ -122,8 +129,8 @@ import BaseFooter from '@/components/BaseFooter.vue'
 import { onActivated, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { axiosInstance as axios } from '@/utils/myrequest'
-import { reqUserIncome } from '@/api/myApi'
-import { closeToast, showLoadingToast } from 'vant'
+import { reqQuickReceive, reqUserIncome } from '@/api/myApi'
+import { closeToast, showDialog, showLoadingToast } from 'vant'
 import zhengshu1 from '@/assets/img/zhengshu1.jpg'
 import zhengshu2 from '@/assets/img/zhengshu2.jpg.jpg'
 import zhengshu3 from '@/assets/img/zhengshu3.jpg'
@@ -133,12 +140,15 @@ import zhengshu6 from '@/assets/img/zhengshu6.png'
 import zhengshu7 from '@/assets/img/zhengshu7.jpg'
 import dayjs from 'dayjs'
 import imgg from '@/pages/login/logo1.png'
+import { _notice } from '@/utils'
 const router = useRouter()
 const userIncomeInfo = ref({})
 
 const articleInfo = ref({})
 const active = ref(4)
 const walletInfo = ref({})
+const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
+
 function go(e, interaction = false) {
   // interaction && loadInteraction()
   router.push(e)
@@ -186,6 +196,39 @@ const showImage = (index) => {
     startPosition: index
   })
 }
+const getShouyi = () => {
+  showLoadingToast({
+    duration: 0,
+    message: '加载中'
+  })
+  if (!userInfo.value?.result?.staff?.id) {
+    closeToast()
+    showDialog({
+      message: '开通会员即可一键获取收益！'
+    }).then(() => {
+      router.push('/invest')
+    })
+    return
+  }
+  reqQuickReceive().then((res) => {
+    closeToast()
+    if (res.code !== 200) {
+      return _notice(res.msg)
+    }
+    if (!res.data.price) {
+      showDialog({
+        message: '今日已领取过，明日再来吧！'
+      })
+      return
+    }
+    if (res.data.price) {
+      showDialog({
+        message: '今日权益卡生效：获得' + res.data.price + '元, 视频任务已自动进入机器人队列!'
+      })
+      return
+    }
+  })
+}
 onMounted(() => {
   // showDialog({
   //   message:
@@ -196,6 +239,7 @@ onMounted(() => {
 onActivated(() => {
   getWalletInfo()
   getUserIncome()
+  userInfo.value = JSON.parse(window.localStorage.getItem('userInfo'))
 })
 </script>
 
@@ -348,6 +392,26 @@ onActivated(() => {
     .datetime {
       width: 120px;
     }
+  }
+}
+.black-tip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #302e2e;
+  font-weight: bold;
+  font-size: 20px;
+  white-space: nowrap;
+  width: 100%;
+  height: 120px;
+  background: url('@/assets/img/black-tip.png') no-repeat;
+  background-size: 100% 100%;
+  .active {
+    color: red;
+  }
+  & > div {
+    text-align: center;
+    line-height: 25px;
   }
 }
 </style>

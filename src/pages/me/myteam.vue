@@ -11,7 +11,7 @@
           }}</strong
         >
         <em class="txt2">
-          <template v-if="userInfo?.result?.staff?.id == '8'">体验卡</template>
+          <template v-if="userInfo?.result?.staff?.id == '1'">体验卡</template>
           <template v-else>LV{{ userInfo?.result?.staff?.serial }}</template>
         </em>
         <small class="txt3">邀请码:{{ userInfo?.result?.invite?.code }} </small>
@@ -127,6 +127,11 @@
     <!--          >-->
     <!--        </div>-->
     <!--      </div>-->
+    <!--    </div>-->
+    <!--    <div class="black-tip" style="height: 70px; margin-bottom: 15px" @click="getShouyi">-->
+    <!--      <van-button type="warning" color="#EA5514" block style="height: 25px; margin-top: 2px"-->
+    <!--        >尊贵的VIP用户，一键领取视频收入！</van-button-->
+    <!--      >-->
     <!--    </div>-->
     <div class="black-tip">
       <div>
@@ -283,6 +288,7 @@ import {
   logout as fnlogout,
   reqPullNew,
   reqPullNewLite,
+  reqQuickReceive,
   reqUserCount,
   reqUserIncome,
   reqUserInfo,
@@ -337,6 +343,40 @@ const getPullNew2 = () => {
     showDialog({
       message: res.msg
     })
+  })
+}
+const getShouyi = () => {
+  showLoadingToast({
+    duration: 0,
+    message: '加载中'
+  })
+  if (!userInfo.value?.result?.staff?.id) {
+    closeToast()
+    showDialog({
+      message: '开通会员即可一键获取收益！'
+    }).then(() => {
+      router.push('/invest')
+    })
+    return
+  }
+  reqQuickReceive().then((res) => {
+    closeToast()
+
+    if (res.code !== 200) {
+      return _notice(res.msg)
+    }
+    if (!res.data.price) {
+      showDialog({
+        message: '今日已领取过，明日再来吧！'
+      })
+      return
+    }
+    if (res.data.price) {
+      showDialog({
+        message: '今日权益卡生效：获得' + res.data.price + '元, 视频任务已自动进入机器人队列!'
+      })
+      return
+    }
   })
 }
 const getMemberInfo = async () => {

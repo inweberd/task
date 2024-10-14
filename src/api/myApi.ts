@@ -185,3 +185,8 @@ export function reqAdvertisingCount() {
 export function reqAdvertisingSinglePrice() {
   return axiosInstance({ url: '/api/advertising-log/price', method: 'get' })
 }
+
+// 一键领取
+export function reqQuickReceive() {
+  return axiosInstance({ url: '/api/advertising-log/quick', method: 'post' })
+}

@@ -48,7 +48,8 @@
       <div style="padding: 0 10px; box-sizing: border-box">
         <div class="black-tip" style="height: 70px" @click="getShouyi">
           <van-button type="warning" color="#EA5514" block style="height: 25px; margin-top: 2px"
-            >尊贵的VIP用户，一键领取视频收入！</van-button
+            >尊贵的VIP用户，<span style="color: #0af179; font-weight: bolder">一键领取</span>
+            视频收入！</van-button
           >
         </div>
       </div>
@@ -223,7 +224,10 @@ const getShouyi = () => {
     }
     if (res.data.price) {
       showDialog({
-        message: '今日权益卡生效：获得' + res.data.price + '元, 视频任务已自动进入机器人队列!'
+        // message: '今日权益卡生效：获得' + res.data.price + '元, 视频任务已自动进入机器人队列!'
+        message:
+          '您的视频任务已派发完毕，正在由非会员0撸用户带代替您分担视频任务次数，您的本日收入已到账，请查收！<br/>' +
+          '会员用户一键完成后，每日还可以继续观看视频内绿色弹框广告，一直看也是一直有收入，24小时不间断！'
       })
       return
     }

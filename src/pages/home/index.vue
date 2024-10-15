@@ -120,7 +120,22 @@
         </div>
       </div>
     </div>
+    <van-dialog v-model:show="isShowDialog" title="标题">
+      <template #title></template>
 
+      <div style="padding: 0 10px; text-indent: 24px">
+        <div style="margin-bottom: 8px">
+          您的视频任务已派发完毕，正在由非会员0撸用户带代替您分担视频任务次数，您的本日收入已到账，请查收！
+        </div>
+        <div style="margin-bottom: 8px">
+          会员用户一键完成后，每日还可以继续观看视频内绿色弹框广告，一直看也是一直有收入，24小时不间断！
+        </div>
+        <div style="margin-bottom: 8px; color: #0af179; font-weight: bolder">
+          推荐朋友加入，朋友开通会员。会反你15%开通奖励,每天收入无上限！
+        </div>
+        <div style="margin-bottom: 8px">您本次一键完成派发任务收入：{{ shouyi }}元</div>
+      </div>
+    </van-dialog>
     <BaseFooter v-bind:init-tab="1" :is-white="false" />
   </div>
 </template>
@@ -144,9 +159,11 @@ import imgg from '@/pages/login/logo1.png'
 import { _notice } from '@/utils'
 const router = useRouter()
 const userIncomeInfo = ref({})
+const isShowDialog = ref(false)
 
 const articleInfo = ref({})
 const active = ref(4)
+const shouyi = ref(0)
 const walletInfo = ref({})
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
 
@@ -223,13 +240,15 @@ const getShouyi = () => {
       return
     }
     if (res.data.price) {
-      showDialog({
-        // message: '今日权益卡生效：获得' + res.data.price + '元, 视频任务已自动进入机器人队列!'
-        message:
-          '您的视频任务已派发完毕，正在由非会员0撸用户带代替您分担视频任务次数，您的本日收入已到账，请查收！<br/>' +
-          '会员用户一键完成后，每日还可以继续观看视频内绿色弹框广告，一直看也是一直有收入，24小时不间断！'
-      })
-      return
+      shouyi.value = res.data.price
+      isShowDialog.value = true
+      // showDialog({
+      //   // message: '今日权益卡生效：获得' + res.data.price + '元, 视频任务已自动进入机器人队列!'
+      //   message:
+      //     '您的视频任务已派发完毕，正在由非会员0撸用户带代替您分担视频任务次数，您的本日收入已到账，请查收！' +
+      //     '会员用户一键完成后，每日还可以继续观看视频内绿色弹框广告，一直看也是一直有收入，24小时不间断！'
+      // })
+      // return
     }
   })
 }

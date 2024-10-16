@@ -419,7 +419,7 @@ function go(e, interaction = false) {
   router.push(e)
 }
 function jumpToQQ() {
-  window.location.href = decodeURIComponent('https://qm.qq.com/q/BVPfMh7iog')
+  window.location.href = decodeURIComponent('https://qm.qq.com/q/PKi43AkbEy')
 }
 function jumpToQQ2() {
   window.location.href = decodeURIComponent('https://qm.qq.com/q/YAXWXyOXGU')

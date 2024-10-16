@@ -207,7 +207,7 @@ function jumpToQQ2() {
   // showImagePreview({
   //   images: [weimaiquan]
   // })
-  window.location.href = decodeURIComponent('https://qm.qq.com/q/BVPfMh7iog')
+  window.location.href = decodeURIComponent('https://qm.qq.com/q/PKi43AkbEy')
 }
 // 随机生成颜色
 const randomColor = (min, max) => {

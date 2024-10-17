@@ -136,6 +136,12 @@
         <div style="margin-bottom: 8px">您本次一键完成派发任务收入：{{ shouyi }}元</div>
       </div>
     </van-dialog>
+    <van-dialog v-model:show="isShowWeimaiquanDialog" title="标题">
+      <template #title></template>
+      <div style="padding: 0 10px; box-sizing: border-box">
+        <img src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
+      </div>
+    </van-dialog>
     <BaseFooter v-bind:init-tab="1" :is-white="false" />
   </div>
 </template>
@@ -160,6 +166,7 @@ import { _notice } from '@/utils'
 const router = useRouter()
 const userIncomeInfo = ref({})
 const isShowDialog = ref(false)
+const isShowWeimaiquanDialog = ref(true)
 
 const articleInfo = ref({})
 const active = ref(4)
@@ -254,8 +261,7 @@ const getShouyi = () => {
 }
 onMounted(() => {
   // showDialog({
-  //   message:
-  //     ' QQ大群人满员！请用户在应用商店下载《微脉圈》聊天软件，点击我的--官方交流群--按钮，扫码进入官方群交流'
+  //   message: '官方QQ群已更新 ，搜索群号：912180620 进入QQ群!'
   // })
   getData()
 })

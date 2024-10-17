@@ -251,3 +251,24 @@ export const wechatShareImg = (base64Str?, scene) => {
     window.android.shareImg(base64Str || testBase64, scene)
   }
 }
+
+//系统版本
+export function getVersionCode()
+{
+  try{
+    var versionCode = window.android.getVersionCode()
+   return versionCode
+  }catch(e){
+    return -1
+  }
+}
+
+//强制更新
+export function androidUpdate()
+{
+  try{
+    window.android.update('https://yy.kkwai.cn/download/app.apk','修改了一些已知问题！')
+  }catch(e){
+
+  }
+}

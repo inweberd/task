@@ -38,6 +38,11 @@
   <!--  &lt;!&ndash;请点击右上角选择在默认浏览器中打开&ndash;&gt;-->
   <!--  <img src="@/assets/img/openByOtherBrower.jpg" style="width: 100%" />-->
   <!--</div>-->
+    <van-overlay :show="showOverlay" :z-index="99999999" >
+        <div class="wrapper" style="font-size: 26px;font-weight: bolder;color: #fff;display: flex;width: 100%;height: 100vh;align-items: center;justify-content: center" @click.stop>
+            请更新或重新下载app
+        </div>
+    </van-overlay>
 </template>
 <script setup lang="ts">
 import routes from './router/routes'
@@ -48,7 +53,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import { loadWx } from '@/utils/loadWx'
 import wx from 'weixin-js-sdk'
 const keepAliveBlackList = ['wallet', 'shortPlayDetail', 'recharge', 'serveInfo', 'invest', 'dep']
-import { loadInteraction, loadSplash, testCallback, wechatShareImg } from '@/utils/ad'
+import {androidUpdate, getVersionCode, loadInteraction, loadSplash, testCallback, wechatShareImg} from '@/utils/ad'
 import { reqCreateShareLog } from '@/api/myApi'
 import dayjs from 'dayjs'
 import imageSrc from '@/assets/img/share-bg.jpg'
@@ -61,6 +66,7 @@ import { closeToast, showLoadingToast } from 'vant'
 const store = useBaseStore()
 const route = useRoute()
 const transitionName = ref('go')
+const showOverlay = ref(true)
 
 const topPadding = computed(() => {
   // window.webkit?.messageHandlers
@@ -257,6 +263,36 @@ onMounted(() => {
 
   // 监听 visibilitychange 事件
   // document.addEventListener('visibilitychange', handleVisibilityChange)
+    const updateTimer=
+        setInterval(() => {
+            if(!window.android){
+                clearInterval(updateTimer)
+                return
+            }
+            fetch('/c.json')
+                .then((res) => res.json())
+                .then((res) => {
+                    if(res.c>getVersionCode()){
+                        showOverlay.value=true
+                        clearInterval(updateTimer)
+                        androidUpdate()
+
+                    }
+                })
+        }, 5000)
+    if(window.android){
+        fetch('/c.json')
+            .then((res) => res.json())
+            .then((res) => {
+                if(res.c>getVersionCode()){
+                    showOverlay.value=true
+                    clearInterval(updateTimer)
+                    androidUpdate()
+
+                }
+            })
+    }
+
 })
 </script>
 

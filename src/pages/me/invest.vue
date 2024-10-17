@@ -275,9 +275,9 @@ const buy = (item) => {
   // if (userInfo.value.result.staff.id === 0 && item.id === 1) {
   //   return _notice('请逐级开通！')
   // }
-  if (userInfo.value.result.staff.id + 1 !== item.id) {
-    return _notice('请逐级开通！')
-  }
+  // if (userInfo.value.result.staff.id + 1 !== item.id) {
+  //   return _notice('请逐级开通！')
+  // }
 
   loading.value = true
   console.log('item', item)

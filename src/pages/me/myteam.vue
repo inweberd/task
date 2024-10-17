@@ -137,7 +137,7 @@
       <div>
         <div>
           拉新奖：拉新 <span class="active">4人</span> 并且他们<span class="active"
-            >开通任意会员</span
+            >开通LV:1级会员</span
           >
         </div>
         <div>

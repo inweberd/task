@@ -180,7 +180,7 @@ defineOptions({
   name: 'invest'
 })
 const userIncomeInfo = ref({})
-const shouyiArrDay = [6, 9, 18, 35, 75, 145, 305, 601]
+const shouyiArrDay = [4, 8, 20, 35, 75, 145, 305, 601]
 const vipTxtArr = ['1毛', '2毛', '5毛', '1元', '2.3元', '4.7元', '10元', '20元']
 const daxieArr = ['', '一', '二', '三', '四', '五', '六', '七']
 

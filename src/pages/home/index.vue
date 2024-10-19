@@ -235,29 +235,34 @@ const getShouyi = () => {
     })
     return
   }
-  reqQuickReceive().then((res) => {
+  if (localStorage.isGetshouyiShare === dayjs().format('YYYY-MM-DD')) {
+    reqQuickReceive().then((res) => {
+      closeToast()
+      if (res.code !== 200) {
+        return _notice(res.msg)
+      }
+      if (!res.data.price) {
+        showDialog({
+          message: '今日已领取过，明日再来吧！'
+        })
+        return
+      }
+      if (res.data.price) {
+        shouyi.value = res.data.price
+        isShowDialog.value = true
+        // return
+      }
+    })
+  } else {
     closeToast()
-    if (res.code !== 200) {
-      return _notice(res.msg)
-    }
-    if (!res.data.price) {
-      showDialog({
-        message: '今日已领取过，明日再来吧！'
-      })
-      return
-    }
-    if (res.data.price) {
-      shouyi.value = res.data.price
-      isShowDialog.value = true
-      // showDialog({
-      //   // message: '今日权益卡生效：获得' + res.data.price + '元, 视频任务已自动进入机器人队列!'
-      //   message:
-      //     '您的视频任务已派发完毕，正在由非会员0撸用户带代替您分担视频任务次数，您的本日收入已到账，请查收！' +
-      //     '会员用户一键完成后，每日还可以继续观看视频内绿色弹框广告，一直看也是一直有收入，24小时不间断！'
-      // })
-      // return
-    }
-  })
+    showConfirmDialog({
+      message: '先分享微信朋友圈，再进行一键领取视频收入!',
+      confirmButtonText: '一键分享微信朋友圈'
+    }).then(() => {
+      localStorage.isGetshouyiShare = dayjs().format('YYYY-MM-DD')
+      window.shareFriend()
+    })
+  }
 }
 onMounted(() => {
   // showDialog({

@@ -39,7 +39,7 @@
           round
           block
           type="primary"
-          color="#EA5514"
+          color="#4B6FFF"
           @click="goPay"
           :loading="tixianLoading"
           loading-text="加载中..."
@@ -73,7 +73,7 @@
             <van-button
               type="primary"
               style="margin-top: 30px"
-              color="#EA5514"
+              color="#4B6FFF"
               block
               @click="save('bank')"
               :loading="bindLoading"
@@ -94,7 +94,7 @@
             <van-button
               type="primary"
               style="margin-top: 30px"
-              color="#EA5514"
+              color="#4B6FFF"
               block
               @click="save('ali')"
               >保存</van-button
@@ -107,7 +107,7 @@
               钱包地址为钱包主页界面的34位字母+数字组合。
             </p>
             <van-button
-              color="#EA5514"
+              color="#4B6FFF"
               type="primary"
               style="margin-top: 30px"
               block
@@ -125,7 +125,7 @@
             <!--            </p>-->
 
             <van-button
-              color="#EA5514"
+              color="#4B6FFF"
               ty
               pe="primary"
               style="margin-top: 30px"
@@ -546,7 +546,7 @@ const deleteCard = (item, index) => {
 
 .desc {
   padding: 0 10px;
-  color: #fff;
+  color: #323233;
   .desc-title {
     font-size: 16px;
     font-weight: bolder;

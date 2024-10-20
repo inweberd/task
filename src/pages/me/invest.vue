@@ -33,7 +33,7 @@
                   style="
                     float: right;
                     margin-left: 6px;
-                    background: #ea5514;
+                    background: #4b6fff;
                     color: #fff;
                     border-radius: 2px;
                     font-size: 12px;
@@ -88,7 +88,7 @@
                 style="
                   height: 150px;
                   width: 100%;
-                  color: #ea5514;
+                  color: #4b6fff;
                   display: flex;
                   align-items: center;
                   justify-content: center;

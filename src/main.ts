@@ -9,11 +9,12 @@ import VueLazyload from '@jambonn/vue-lazyload'
 import { createPinia } from 'pinia'
 import { useClick } from '@/utils/hooks/useClick'
 import bus, { EVENT_KEY } from '@/utils/bus'
-
+import { setToastDefaultOptions, resetToastDefaultOptions } from 'vant'
 const vClick = useClick()
 const pinia = createPinia()
 const app = createApp(App)
 app.mixin(mixin)
+setToastDefaultOptions('loading', { forbidClick: true })
 const loadImage = new URL('./assets/img/icon/img-loading.png', import.meta.url).href
 app.use(VueLazyload, {
   preLoad: 1.3,

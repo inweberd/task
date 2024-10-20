@@ -76,6 +76,7 @@
                   padding-bottom: 0;
                   margin-bottom: 10px;
                   color: #fff;
+                  background-color: transparent;
                 "
                 type="number"
                 name="aa"
@@ -395,7 +396,6 @@ onMounted(() => method.init())
 .rechargeClass {
   width: 100%;
   height: 100%;
-  background-color: #2e2e30;
   overflow-y: auto;
 
   .container {
@@ -409,8 +409,8 @@ onMounted(() => method.init())
       display: flex;
       padding: 23px 0;
       border-bottom: 1px solid #534e4e;
-      background-color: #2e2e30;
-      color: #fff;
+      color: #323233;
+      background-color: #fff;
 
       &-left {
         margin: 0 25px;
@@ -441,12 +441,12 @@ onMounted(() => method.init())
       }
     }
     .recharge-money {
-      background-color: #2e2e30;
-      color: #fff;
+      color: #323233;
       padding: 30px 20px;
+      background-color: #fff;
       .txt {
         font-size: 16px;
-        color: #fff;
+        color: #323233;
       }
       .money-box {
         display: flex;

@@ -20,77 +20,63 @@
             flex-direction: column;
           "
         >
-          <el-form label-position="top" label-width="auto" style="width: 100%">
-            <el-form-item>
-              <el-input v-model="state.struct.social" size="large" placeholder="请输入手机号码">
-                <template #prepend>
-                  <el-icon><User /></el-icon>
-                </template>
-              </el-input>
-            </el-form-item>
-            <el-form-item>
-              <div class="d-flex w-100">
-                <el-input
-                  v-model="state.struct.code"
-                  v-on:keyup.enter="SignUp()"
-                  size="large"
-                  placeholder="请输入验证码"
-                >
-                  <template #prepend>
-                    <el-icon><DocumentCopy /></el-icon>
-                  </template>
-                </el-input>
-                <el-button
-                  v-on:click="SendCode()"
+          <van-cell-group>
+            <van-field
+              v-model="state.struct.social"
+              label="手机号码"
+              left-icon="user-o"
+              placeholder="请输入手机号码"
+            />
+            <van-field
+              v-model="state.struct.code"
+              center
+              left-icon="orders-o"
+              clearable
+              label="短信验证码"
+              placeholder="请输入短信验证码"
+            >
+              <template #button>
+                <van-button
+                  @click="SendCode"
                   :disabled="state.status.code"
-                  size="large"
-                  class="ms-5"
-                  style="border-radius: 20px"
-                  color="#EA5514"
+                  size="small"
+                  type="primary"
                 >
                   <span v-if="!state.status.code">发送验证码</span>
-                  <span v-else>重新发送</span>
-                </el-button>
-              </div>
-            </el-form-item>
-            <el-form-item>
-              <el-input v-model="state.struct.password" size="large" placeholder="请输入密码">
-                <template #prepend>
-                  <el-icon><Lock /></el-icon>
-                </template>
-              </el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-input
-                v-model="state.struct.AgainPassword"
-                size="large"
-                placeholder="请再次输入密码"
-              >
-                <template #prepend>
-                  <el-icon><Lock /></el-icon>
-                </template>
-              </el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-input
-                v-model="state.struct.invite"
-                size="large"
-                :disabled="$route.query.invite"
-                placeholder="请输入邀请码"
-              >
-                <template #prepend>
-                  <el-icon><Connection /></el-icon>
-                </template>
-              </el-input>
-            </el-form-item>
-          </el-form>
+                  <span v-else>{{ state.code.second }}秒重新发送</span>
+                </van-button>
+              </template>
+            </van-field>
+            <van-field
+              v-model="state.struct.password"
+              clearable
+              label="密码"
+              left-icon="newspaper-o"
+              placeholder="请输入密码"
+              type="password"
+            />
+            <van-field
+              v-model="state.struct.AgainPassword"
+              clearable
+              label="密码"
+              left-icon="notes-o"
+              placeholder="请再次输入密码"
+              type="password"
+            />
+            <van-field
+              v-model="state.struct.invite"
+              label="邀请码"
+              left-icon="records-o"
+              placeholder="请输入邀请码"
+            />
+          </van-cell-group>
 
           <el-button
             v-on:click="SignUp()"
             :loading="state.status.wait"
             type="primary"
-            style="border-radius: 20px; color: #fff"
-            color="#B5A483"
+            style="border-radius: 20px; margin-top: 20px !important"
+            color="#4B6FFF"
             size="large"
             class="w-100 mt-3"
             >注册</el-button
@@ -98,11 +84,13 @@
 
           <div
             style="
-              color: #b5a483;
+              color: #323233;
               display: flex;
               justify-content: space-around;
               margin-top: 30px;
               width: 100%;
+              font-size: 16px;
+              text-decoration: underline;
             "
           >
             <router-link to="/common/sign-in" class="text-decoration-none">
@@ -222,7 +210,6 @@ const SendCode = async () => {
   )
 
   if (code !== 201) return showFailToast(msg)
-  console.log(111)
   showToast('验证码已发送')
 
   state.code.second = 60
@@ -305,7 +292,7 @@ body {
   align-items: center;
   overflow-y: scroll;
   color: #fff;
-  background: url(@/assets/img/bj.png);
+  //background: url(@/assets/img/bj.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }

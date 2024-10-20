@@ -210,7 +210,7 @@ onMounted(() => method.init())
     color: rgb(180, 164, 130);
 
     &.active {
-      background-color: #ea5514;
+      background-color: #4b6fff;
     }
   }
 }

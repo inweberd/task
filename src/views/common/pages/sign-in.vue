@@ -20,51 +20,28 @@
             flex-direction: column;
           "
         >
-          <el-form label-position="top" label-width="auto" style="width: 100%">
-            <el-form-item>
-              <el-input v-model="state.struct.account" size="large" placeholder="请输入手机号码">
-                <template #prepend>
-                  <el-icon><User /></el-icon>
-                </template>
-              </el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-input
-                v-model="state.struct.password"
-                v-on:keyup.enter="SignIn()"
-                type="password"
-                show-password
-                size="large"
-                placeholder="请输入密码"
-              >
-                <template #prepend>
-                  <el-icon><Lock /></el-icon>
-                </template>
-              </el-input>
-            </el-form-item>
-            <!--            <el-form-item>-->
-            <!--              <div class="d-flex w-100">-->
-            <!--                <el-input v-model="state.struct.code" placeholder="请输入验证码">-->
-            <!--                  <template #prepend>-->
-            <!--                    <el-icon><DocumentCopy /></el-icon>-->
-            <!--                  </template>-->
-            <!--                  <template #append>-->
-            <!--                    <canvas ref="verifyRef" @click="draw" :width="120" height="40"></canvas>-->
-            <!--                  </template>-->
-            <!--                </el-input>-->
-            <!--                &lt;!&ndash;<el-button @click="getCode" size="large" class="ms-2" color="#409EFF">&ndash;&gt;-->
-            <!--                &lt;!&ndash;  <span style="color: #fff">{{ viewCode }}</span>&ndash;&gt;-->
-            <!--                &lt;!&ndash;</el-button>&ndash;&gt;-->
-            <!--              </div>-->
-            <!--            </el-form-item>-->
-          </el-form>
-
+          <van-cell-group>
+            <van-field
+              v-model="state.struct.account"
+              label="手机号码"
+              left-icon="user-o"
+              placeholder="请输入手机号码"
+            />
+            <van-field
+              v-model="state.struct.password"
+              clearable
+              label="密码"
+              left-icon="newspaper-o"
+              placeholder="请输入密码"
+              type="password"
+            />
+          </van-cell-group>
           <el-button
             v-on:click="SignIn()"
             :loading="state.status.wait"
             type="primary"
-            style="border-radius: 20px; color: #fff"
-            color="#B5A483"
+            style="border-radius: 20px; margin-top: 20px !important"
+            color="#4B6FFF"
             size="large"
             class="w-100 mt-3"
             >登录</el-button
@@ -72,11 +49,13 @@
 
           <div
             style="
-              color: #b5a483;
+              color: #323233;
               display: flex;
               justify-content: space-around;
               margin-top: 30px;
               width: 100%;
+              font-size: 16px;
+              text-decoration: underline;
             "
           >
             <router-link to="/common/sign-up" class="text-decoration-none">
@@ -96,7 +75,7 @@
             "
           >
             <a
-              style="margin-top: 10px; text-decoration: underline; font-size: 18px"
+              style="margin-top: 10px; text-decoration: underline; font-size: 18px; color: #323233"
               @click="goDownload"
               >下载app</a
             >
@@ -121,7 +100,6 @@
 
 <script setup lang="ts">
 import cache from '@/utils/cache.ts'
-import logo from '@/views/common/assets/logo.png'
 
 import { storeToRefs } from 'pinia'
 import { POST } from '@/utils/axios'
@@ -436,14 +414,14 @@ body {
 .signinClass {
   width: 100%;
   height: 100vh;
-  background-color: #2e2e30;
+  //background-color: #2e2e30;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow-y: scroll;
   color: #fff;
   padding: 0 20px;
-  background: url(@/assets/img/bj.png);
+  //background: url(@/assets/img/bj.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }

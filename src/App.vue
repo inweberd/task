@@ -11,11 +11,11 @@
     }"
   >
     <router-view v-slot="{ Component }">
-      <transition :name="transitionName">
-        <keep-alive :exclude="[...store.excludeNames, ...keepAliveBlackList]">
-          <component :is="Component" />
-        </keep-alive>
-      </transition>
+      <!--      <transition :name="transitionName">-->
+      <keep-alive :exclude="[...store.excludeNames, ...keepAliveBlackList]">
+        <component :is="Component" />
+      </keep-alive>
+      <!--      </transition>-->
     </router-view>
   </div>
   <!--  v-if=" (isWeChatBrowser && ['fenxiang', '/me/my-card'].includes(route.path)) ||-->
@@ -368,61 +368,61 @@ onMounted(() => {
 .fade-leave-to {
   opacity: 0;
 }
-.van-tab--active {
-  font-size: 18px;
-  font-weight: bold;
-}
-.van-nav-bar {
-  background-color: #2e2e30 !important;
-}
-.van-nav-bar__title {
-  color: #fff !important;
-}
-.van-nav-bar__content:after {
-  border: none !important;
-  display: none;
-}
-.van-hairline--bottom:after {
-  border-bottom-width: 0;
-}
-.van-tab {
-  color: #fff !important;
-}
-.van-tabs__line {
-  background-color: #ea5514 !important;
-}
-.van-tabs__nav {
-  background-color: #2e2e30 !important;
-}
-.van-cell {
-  background-color: #2e2e30 !important;
-  color: #fff !important;
-}
-.van-field__label {
-  color: #fff !important;
-}
-.van-field__control {
-  color: #fff !important;
-}
-.van-popup {
-  background-color: #2e2e30;
-  color: #fff !important;
-}
-.van-dialog__message {
-  color: #fff !important;
-}
-[class*='van-hairline']:after {
-  //border-left: none !important;
-  border-color: #666 !important;
-}
-
-.van-action-sheet__item {
-  background-color: #2e2e30 !important;
-}
-.van-card {
-  background-color: #2e2e30 !important;
-}
-.van-card__title {
-  color: #fff;
-}
+//.van-tab--active {
+//  font-size: 18px;
+//  font-weight: bold;
+//}
+//.van-nav-bar {
+//  background-color: #2e2e30 !important;
+//}
+//.van-nav-bar__title {
+//  color: #fff !important;
+//}
+//.van-nav-bar__content:after {
+//  border: none !important;
+//  display: none;
+//}
+//.van-hairline--bottom:after {
+//  border-bottom-width: 0;
+//}
+//.van-tab {
+//  color: #fff !important;
+//}
+//.van-tabs__line {
+//  background-color: #4B6FFF !important;
+//}
+//.van-tabs__nav {
+//  background-color: #2e2e30 !important;
+//}
+//.van-cell {
+//  background-color: #2e2e30 !important;
+//  color: #fff !important;
+//}
+//.van-field__label {
+//  color: #fff !important;
+//}
+//.van-field__control {
+//  color: #fff !important;
+//}
+//.van-popup {
+//  background-color: #2e2e30;
+//  color: #fff !important;
+//}
+//.van-dialog__message {
+//  color: #fff !important;
+//}
+//[class*='van-hairline']:after {
+//  //border-left: none !important;
+//  border-color: #666 !important;
+//}
+//
+//.van-action-sheet__item {
+//  background-color: #2e2e30 !important;
+//}
+//.van-card {
+//  background-color: #2e2e30 !important;
+//}
+//.van-card__title {
+//  color: #fff;
+//}
 </style>

@@ -2,67 +2,73 @@
   <div v-if="visible" class="footer" :class="{ isWhite }">
     <div class="l-button" @click="refresh(1)">
       <div class="add-ctn">
-        <img src="@/assets/img/tabbar/1.png" alt="" class="add" v-if="currentTab === 1" />
-        <img src="@/assets/img/tabbar/1.png" alt="" class="add" v-else />
-        <div>首页</div>
+        <div class="img-box">
+          <img
+            src="@/assets/img/tabbar/home-active.png"
+            alt=""
+            class="add"
+            v-if="currentTab === 1"
+          />
+          <img src="@/assets/img/tabbar/home.png" alt="" class="add" v-else />
+        </div>
+        <div :style="{ color: currentTab === 1 ? '#496DFE' : '' }">首页</div>
       </div>
     </div>
-
     <!--    <div class="l-button" @click="refresh(2)">-->
     <div class="l-button" @click="loadShort(1)">
       <div class="add-ctn">
-        <img src="../assets/img/tabbar/2.png" alt="" class="add" v-if="currentTab === 2" />
-        <img src="../assets/img/tabbar/2.png" alt="" class="add" v-else />
-        <div>视频</div>
+        <div class="img-box">
+          <img
+            src="../assets/img/tabbar/video-active.png"
+            alt=""
+            class="add"
+            v-if="currentTab === 2"
+          />
+          <img src="../assets/img/tabbar/video.png" alt="" class="add" v-else style="width: 25px" />
+        </div>
+        <div :style="{ color: currentTab === 2 ? '#496DFE' : '' }">视频</div>
       </div>
     </div>
-    <div class="l-button" @click="loadShort(2)" v-if="!isIos">
+    <div class="l-button" @click="loadShort(2)">
       <div class="add-ctn">
-        <img src="../assets/img/tabbar/video.png" alt="" class="add" v-if="currentTab === 2" />
-        <img src="../assets/img/tabbar/video.png" alt="" class="add" v-else />
-        <div>短剧</div>
+        <div class="img-box">
+          <img
+            src="../assets/img/tabbar/vipVideo-active.png"
+            alt=""
+            class="add"
+            v-if="currentTab === 2"
+          />
+          <img src="../assets/img/tabbar/vipVideo.png" alt="" class="add" v-else />
+        </div>
+        <div :style="{ color: currentTab === 2 ? '#496DFE' : '' }">短剧</div>
       </div>
     </div>
-    <!--<div class="l-button" @click="tab(3)">-->
-    <!--  <div class="add-ctn">-->
-    <!--    <img src="../assets/img/icon/add-light.png" alt="" class="add" />-->
-    <!--  </div>-->
-    <!--  &lt;!&ndash;<div&ndash;&gt;-->
-    <!--  &lt;!&ndash;  style="&ndash;&gt;-->
-    <!--  &lt;!&ndash;    padding: 2px 4px;&ndash;&gt;-->
-    <!--  &lt;!&ndash;    border-radius: 10px;&ndash;&gt;-->
-    <!--  &lt;!&ndash;    background-image: linear-gradient(135deg, #97abff 10%, #123597 100%);&ndash;&gt;-->
-    <!--  &lt;!&ndash;  "&ndash;&gt;-->
-    <!--  &lt;!&ndash;&gt;&ndash;&gt;-->
-    <!--  &lt;!&ndash;  <div style="white-space: nowrap">全民分享</div>&ndash;&gt;-->
-    <!--  &lt;!&ndash;  <div style="white-space: nowrap">月入过万</div>&ndash;&gt;-->
-    <!--  &lt;!&ndash;</div>&ndash;&gt;-->
-    <!--</div>-->
-    <!--    <div class="l-button" @click="tab(4)">-->
-    <!--    <div class="l-button" @click="loadShort(2)">-->
-    <!--      <div class="add-ctn">-->
-    <!--        <img-->
-    <!--          src="../assets/img/tabbar/short-active.webp"-->
-    <!--          alt=""-->
-    <!--          class="add"-->
-    <!--          v-if="currentTab === 4"-->
-    <!--        />-->
-    <!--        <img src="../assets/img/tabbar/short.webp" alt="" class="add" v-else />-->
-    <!--      </div>-->
-    <!--      &lt;!&ndash; <div class="badge">2</div> &ndash;&gt;-->
-    <!--    </div>-->
     <div class="l-button" @click="tab(5)">
       <div class="add-ctn">
-        <img src="../assets/img/tabbar/3.png" alt="" class="add" v-if="currentTab === 5" />
-        <img src="../assets/img/tabbar/3.png" alt="" class="add" v-else />
-        <div>会员</div>
+        <div class="img-box">
+          <img
+            src="../assets/img/tabbar/vip-active.png"
+            alt=""
+            class="add"
+            v-if="currentTab === 5"
+          />
+          <img src="../assets/img/tabbar/vip.png" alt="" class="add" v-else />
+        </div>
+        <div :style="{ color: currentTab === 5 ? '#496DFE' : '' }">会员</div>
       </div>
     </div>
     <div class="l-button" @click="tab(6)">
       <div class="add-ctn">
-        <img src="../assets/img/tabbar/5.png" alt="" class="add" v-if="currentTab === 6" />
-        <img src="../assets/img/tabbar/5.png" alt="" class="add" v-else />
-        <div>我的</div>
+        <div class="img-box">
+          <img
+            src="../assets/img/tabbar/my-active.png"
+            alt=""
+            class="add"
+            v-if="currentTab === 6"
+          />
+          <img src="../assets/img/tabbar/my.png" alt="" class="add" v-else />
+        </div>
+        <div :style="{ color: currentTab === 6 ? '#496DFE' : '' }">我的</div>
       </div>
       <!-- <div class="badge">2</div> -->
     </div>
@@ -258,13 +264,19 @@ export default {
       align-items: center;
       justify-content: center;
 
-      img {
-        width: 30px;
+      .img-box {
+        width: 20px;
+        height: 20px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
       }
 
       & > div {
+        margin-top: 6px;
         color: #9f8b8b;
-        font-size: 14px;
+        font-size: 12px;
       }
     }
 

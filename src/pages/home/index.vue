@@ -9,7 +9,7 @@
           position: absolute;
           top: 55px;
           left: 30px;
-          color: #b5a483;
+          color: #323233;
           font-size: 26px;
         "
         >火花视频</span
@@ -45,24 +45,24 @@
           </div>
         </div>
       </div>
-      <div style="padding: 0 10px; box-sizing: border-box">
-        <div class="black-tip" style="height: 70px" @click="getShouyi">
-          <van-button type="warning" color="#EA5514" block style="height: 25px; margin-top: 2px"
-            >尊贵的VIP用户，<span style="color: #0af179; font-weight: bolder">一键领取</span>
-            视频收入！</van-button
-          >
-        </div>
-      </div>
-      <div style="padding: 10px 10px 0">
-        <van-notice-bar
-          color="#fff"
-          background="#F76F31"
-          left-icon="volume-o"
-          style="border-radius: 25px; height: 35px"
-          text="严禁脚本、批量注册和刷子等恶意行为，一经发现封号处理！"
-        >
-        </van-notice-bar>
-      </div>
+      <!--      <div style="padding: 0 10px; box-sizing: border-box">-->
+      <!--        <div class="black-tip" style="height: 70px" @click="getShouyi">-->
+      <!--          <van-button type="warning" color="#3f86ff" block style="height: 25px; margin-top: 2px"-->
+      <!--            >尊贵的VIP用户，<span style="color: #0af179; font-weight: bolder">一键领取</span>-->
+      <!--            视频收入！</van-button-->
+      <!--          >-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--      <div style="padding: 10px 10px 0">-->
+      <!--        <van-notice-bar-->
+      <!--          color="#fff"-->
+      <!--          background="#F76F31"-->
+      <!--          left-icon="volume-o"-->
+      <!--          style="border-radius: 25px; height: 35px"-->
+      <!--          text="严禁脚本、批量注册和刷子等恶意行为，一经发现封号处理！"-->
+      <!--        >-->
+      <!--        </van-notice-bar>-->
+      <!--      </div>-->
       <div class="tab">
         <div class="tab-item" :class="{ active: active === 4 }" @click="handleActive(4)">
           平台简介
@@ -166,7 +166,7 @@ import { _notice } from '@/utils'
 const router = useRouter()
 const userIncomeInfo = ref({})
 const isShowDialog = ref(false)
-const isShowWeimaiquanDialog = ref(true)
+const isShowWeimaiquanDialog = ref(false)
 
 const articleInfo = ref({})
 const active = ref(4)
@@ -282,24 +282,25 @@ onActivated(() => {
   position: relative;
   width: 100%;
   height: calc(100% - 56px);
-  background-color: #2e2e30;
   overflow-y: auto;
 
   .user {
     margin: 50px 0 20px;
   }
   .price-box {
-    background: url(@/assets/img/usermp.png);
+    //background: url(@/assets/img/usermp.png);
+    background-color: #fff;
     margin-left: 2%;
     background-size: 100% 100%;
     width: 96%;
     padding: 12px 23px 50px;
     box-sizing: border-box;
+    border-radius: 15px;
 
     .price-1 {
       .price-1-title {
         font-weight: 400;
-        color: #b5a483;
+        color: #323233;
         height: 16.5px;
         line-height: 16.5px;
         font-size: 12px;
@@ -312,7 +313,7 @@ onActivated(() => {
           font-size: 27px;
           font-weight: 600;
           line-height: 40px;
-          color: #ea5514;
+          color: #3f86ff;
         }
         .p-1-c-3 {
           display: flex;
@@ -321,7 +322,7 @@ onActivated(() => {
           .p-1-c-3-btn {
             width: 50px;
             height: 27px;
-            background: #ea5514;
+            background: #3f86ff;
             border-radius: 14px;
             font-size: 13px;
             font-weight: 600;
@@ -351,12 +352,12 @@ onActivated(() => {
         flex: 1;
         text-align: center;
         .price-2-item-1 {
-          color: #ea5514;
+          color: #3f86ff;
           font-size: 16px;
           font-weight: 700;
         }
         .price-2-item-2 {
-          color: #b5a483;
+          color: #323233;
           opacity: 0.7;
           font-size: 12px;
         }
@@ -385,10 +386,10 @@ onActivated(() => {
       align-content: center;
       justify-content: center;
       line-height: 32px;
-      color: rgb(180, 164, 130);
+      color: #fff;
 
       &.active {
-        background-color: #ea5514;
+        background-color: #3f86ff;
       }
     }
   }

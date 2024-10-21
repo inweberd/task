@@ -1,166 +1,30 @@
 <template>
-  <div style="padding: 40px 0px 50px; overflow-y: auto">
+  <div style="background-color: #322c36; padding: 40px 0px 50px; overflow-y: auto">
     <!--    <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />-->
     <Loading v-if="loading" />
-    <!--    <div class="title" style="color: #b4a482; font-size: 22px">会员权益卡</div>-->
-    <van-image :src="imageSrc1" width="100%" height="150" fit="fill"></van-image>
-
-    <!--    <div class="alarmList-child">-->
-    <!--      <div class="alarm-item" v-for="(item, index) in alarmList" :key="index">-->
-    <!--        <div class="phone">{{ item.phone }}</div>-->
-    <!--        <div class="type">会员权益</div>-->
-    <!--        <div class="money">获取佣金{{ item.money }}元</div>-->
-    <!--        &lt;!&ndash;        <div class="datetime">{{ item.datetime }}</div>&ndash;&gt;-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <div class="title" style="color: #b4a482; font-size: 22px">会员权益卡</div>
+    <div class="alarmList-child">
+      <div class="alarm-item" v-for="(item, index) in alarmList" :key="index">
+        <div class="phone">{{ item.phone }}</div>
+        <div class="type">会员权益</div>
+        <div class="money">获取佣金{{ item.money }}元</div>
+        <!--        <div class="datetime">{{ item.datetime }}</div>-->
+      </div>
+    </div>
     <!--    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">-->
     <!--      <van-swipe-item>1</van-swipe-item>-->
     <!--      <van-swipe-item>2</van-swipe-item>-->
     <!--      <van-swipe-item>3</van-swipe-item>-->
     <!--      <van-swipe-item>4</van-swipe-item>-->
     <!--    </van-swipe>-->
-    <!--    <div class="black-tip">-->
-    <!--      <div>-->
-    <!--        <div>开通不同等级会员， <span class="active"> 收益永久叠加</span> 生效 ！</div>-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <div class="black-tip">
+      <div>
+        <div>开通不同等级会员， <span class="active"> 收益永久叠加</span> 生效 ！</div>
+      </div>
+    </div>
     <div class="announcement">
       <div class="announcement-task flexS">
-        <div style="overflow: scroll; width: 100%; box-sizing: border-box; padding: 0 10px">
-          <div
-            v-for="(item, index) of shopList"
-            style="
-              margin-top: 10px;
-              text-align: center;
-              color: #fff;
-              display: flex;
-              background: #6344bb;
-              width: 100%;
-              border-radius: 10px;
-            "
-          >
-            <div style="width: 100%; padding: 10px">
-              <div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 20%;
-                    white-space: nowrap;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                  "
-                >
-                  {{ getSerialName(item.serial) }}
-                </div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 20%;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                  "
-                >
-                  日收益
-                </div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 20%;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                  "
-                >
-                  月收益
-                </div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 40%;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                  "
-                >
-                  年收益（365天）
-                </div>
-              </div>
-              <div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 20%;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                    font-size: 16px;
-                  "
-                >
-                  {{ item.price }}元
-                </div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 20%;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                  "
-                >
-                  {{ shouyiArrDay[index] }}元
-                </div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 20%;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                  "
-                >
-                  {{ shouyiArrDay[index] * 30 }}元
-                </div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 40%;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                  "
-                >
-                  {{ shouyiArrDay[index] * 365 }}元
-                </div>
-              </div>
-
-              <div
-                style="
-                  background: #fff;
-                  color: #6344bb;
-                  width: 65px;
-                  margin: 10px auto;
-                  font-weight: bold;
-                "
-                :style="{
-                  background: myStaffList.includes(item.id) ? '#689CFC' : '#fff'
-                }"
-                @click="buy(item)"
-              >
-                <span style="font-size: 16px" v-if="myStaffList.includes(item.id)">已开通</span>
-                <span style="font-size: 16px" v-else>点击开通</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          v-if="false"
-          data-cid="1"
-          class="a-t-items"
-          v-for="(item, index) of shopList"
-          @click="buy(item)"
-        >
+        <div data-cid="1" class="a-t-items" v-for="(item, index) of shopList" @click="buy(item)">
           <div class="a-t-text">
             <div class="a-t-t-3">
               <div class="a-t-title" style="width: 92%; left: 0; color: #b4a482; margin-left: 5%">
@@ -202,8 +66,23 @@
                   width: 100%;
                 "
               >
+                <!--                会员周期:45天，预估总收益:：{{ item.unit_price }}元-->
+                <!--                会员周期:45天，日收益：{{ shouyiArrDay[index] }}元<span-->
+                <!--                  v-if="myStaffList.includes(item.serial)"-->
+                <!--                  >，剩余{{ item.expireDays || 0 }}天</span-->
+                <!--                >-->
+                <!--                会员有效期：永久，天收益{{ shouyiArrDay[index] }}元，年收益{{-->
+                <!--                  shouyiArrYear[index]-->
+                <!--                }}元-->
                 <span>会员期限：永久使用</span>
-                <span> </span>
+                <span>
+                  <!--                  每日观看次数：30次-->
+                  <!--                  <span style="color: #97f60a; font-size: 16px"-->
+                  <!--                    >{{ shouyiArrDay[index] }}元</span-->
+                  <!--                  >-->
+                </span>
+                <!--                <span>每日次数：30次</span>-->
+                <!--                <span>年收益：{{ shouyiArrDay[index] * 365 }}元</span>-->
               </div>
               <div
                 style="

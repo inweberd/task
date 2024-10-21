@@ -74,15 +74,11 @@
               margin-top: 20px;
             "
           >
-            <a
-              style="margin-top: 10px; text-decoration: underline; font-size: 18px; color: #323233"
-              @click="goDownload"
+            <a style="margin-top: 10px; font-size: 18px; color: #1e83d3" @click="goDownload"
               >下载app</a
             >
-            <a
-              style="margin-top: 10px; text-decoration: underline; font-size: 18px; color: #1e83d3"
-              @click="jumpToQQ2"
-              >官方qq交流群
+            <a style="margin-top: 10px; font-size: 18px; color: #1e83d3" @click="jumpToQQ2"
+              >官方交流群
             </a>
           </div>
         </div>

@@ -1,65 +1,77 @@
 <template>
   <div class="investClass">
-    <div class="info">
-      <img src="@/assets/img/2.8184534.png" class="headerImg" />
-      <div class="name">
-        <strong class="txt1">
-          {{
-            userInfo.phone
-              ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
-              : ''
-          }}</strong
-        >
-        <em class="txt2">
-          <template v-if="userInfo?.result?.staff?.id == '1'">体验卡</template>
-          <template v-else>LV{{ userInfo?.result?.staff?.serial }}</template>
-        </em>
-        <small class="txt3">邀请码:{{ userInfo?.result?.invite?.code }} </small>
-        <small class="txt4">会员ID：{{ userInfo?.id }} </small>
-        <small class="txt4">当前星级：{{ star }}星级 </small>
-      </div>
-    </div>
-    <!--    <div class="user-count" style="font-size: 14px">-->
-    <!--      新用户首次注册，默认赠送体验<span style="color: #3F86FF; font-size: 18px"-->
-    <!--        >1星级<br />享受团队下级无限代收益</span-->
-    <!--      >-->
-    <!--    </div>-->
-    <!--    <div class="user-count" style="font-size: 14px">-->
-    <!--      首次注册，默认赠送体验1星级，享受团队<span style="color: #3F86FF; font-size: 16px"-->
-    <!--        >无限代收益</span-->
-    <!--      >-->
-    <!--    </div>-->
-    <!--    <div class="user-count">平台总注册数：{{ userCount || 0 }}人</div>-->
     <div
-      class="flex-row items-center section_5"
-      style="padding: 10px 25px"
-      @click="$router.push('/CreditScoreDetail')"
+      style="
+        background-color: #fff;
+        margin: 20px;
+        border-radius: 15px;
+        padding: 10px 10px;
+        box-sizing: border-box;
+      "
     >
-      <div
-        class="flex-col justify-start items-start flex-1 image-wrapper"
-        style="border: 1px solid #555; border-radius: 10px; overflow: hidden"
-      >
-        <!--          :style="{ width: Math.min(walletInfo.credit, 100) + '%' }"-->
-        <img
-          class="image_4"
-          style="height: 9px"
-          :style="{ width: 60 + '%' }"
-          src="./images/e62b209b1fc33d5b3ca0c4a35e43028e.png"
-        />
+      <div class="info">
+        <img src="@/assets/img/2.8184534.png" class="headerImg" />
+        <div class="name">
+          <strong class="txt1">
+            {{
+              userInfo.phone
+                ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
+                : ''
+            }}</strong
+          >
+          <em class="txt2">
+            <template v-if="userInfo?.result?.staff?.id == '1'">体验卡</template>
+            <template v-else>LV{{ userInfo?.result?.staff?.serial }}</template>
+          </em>
+          <small class="txt3">邀请码:{{ userInfo?.result?.invite?.code }} </small>
+          <small class="txt4">会员ID：{{ userInfo?.id }} </small>
+          <small class="txt4">当前星级：{{ star }}星级 </small>
+        </div>
       </div>
-      <span class="text_5 ml-20" style="color: #323233">
-        <!--        当前信用分：{{ walletInfo.credit || '&#45;&#45;' }}分</span-->
-        当前信用分：<span style="color: #3f86ff; font-size: 20px">{{
-          walletInfo.credit || 0
-        }}</span>
-        分</span
+      <!--    <div class="user-count" style="font-size: 14px">-->
+      <!--      新用户首次注册，默认赠送体验<span style="color: #3F86FF; font-size: 18px"-->
+      <!--        >1星级<br />享受团队下级无限代收益</span-->
+      <!--      >-->
+      <!--    </div>-->
+      <!--    <div class="user-count" style="font-size: 14px">-->
+      <!--      首次注册，默认赠送体验1星级，享受团队<span style="color: #3F86FF; font-size: 16px"-->
+      <!--        >无限代收益</span-->
+      <!--      >-->
+      <!--    </div>-->
+      <!--    <div class="user-count">平台总注册数：{{ userCount || 0 }}人</div>-->
+      <div
+        class="flex-row items-center section_5"
+        style="padding: 10px 25px"
+        @click="$router.push('/CreditScoreDetail')"
       >
-      <!--      <div class="text" @click="go('/CreditScoreDetail', true)">详情</div>-->
+        <div
+          class="flex-col justify-start items-start flex-1 image-wrapper"
+          style="border: 1px solid #ccc; border-radius: 10px; overflow: hidden"
+        >
+          <!--          :style="{ width: Math.min(walletInfo.credit, 100) + '%' }"-->
+          <img
+            class="image_4"
+            style="height: 9px"
+            :style="{ width: 60 + '%' }"
+            src="./images/e62b209b1fc33d5b3ca0c4a35e43028e.png"
+          />
+        </div>
+        <span class="text_5 ml-20" style="color: #323233">
+          <!--        当前信用分：{{ walletInfo.credit || '&#45;&#45;' }}分</span-->
+          当前信用分：<span style="color: #3f86ff; font-size: 20px">{{
+            walletInfo.credit || 0
+          }}</span>
+          分</span
+        >
+        <!--      <div class="text" @click="go('/CreditScoreDetail', true)">详情</div>-->
+      </div>
     </div>
     <div class="balance">
       <div class="price-box">
         <div class="price-1">
-          <div class="price-1-title" style="color: #3f86ff">历史收益</div>
+          <div class="price-1-title" style="color: #3f86ff; font-size: 18px; font-weight: bolder">
+            历史收益
+          </div>
           <div class="price-1-content flexS">
             <div class="p-1-c-1" style="color: #323233">{{ userIncomeInfo.total || 0 }}</div>
             <div class="p-1-c-3 flexS">
@@ -73,40 +85,60 @@
         <div class="hr"></div>
         <div @click="$router.push('/teamStat')" class="price-2 flexS">
           <div class="price-2-item">
-            <div class="price-2-item-1" style="color: #323233">
-              {{ memberInfo.first?.total || 0 }}
+            <div class="price-2-item-1" style="color: #3f86ff">
+              {{ userIncomeInfo.today || 0 }}
             </div>
-            <div class="price-1-title" style="color: #3f86ff">直推总人数</div>
+            <div class="price-1-title" style="color: #323233">今日收益</div>
           </div>
           <div class="price-2-item">
-            <div class="price-2-item-1" style="color: #323233">
-              {{ memberInfo.first?.vip || 0 }}
+            <div class="price-2-item-1" style="color: #3f86ff">
+              {{ userIncomeInfo.total || 0 }}
             </div>
-            <div class="price-1-title" style="color: #3f86ff">直推会员人数</div>
+            <div class="price-1-title" style="color: #323233">累计收益(元)</div>
           </div>
           <div class="price-2-item">
-            <div class="price-2-item-1" style="color: #323233">
-              {{ memberInfo.team?.deposit || 0 }}
+            <div class="price-2-item-1" style="color: #3f86ff">
+              {{ walletInfo?.amount || 0 }}
             </div>
-            <div class="price-1-title" style="color: #3f86ff">团队业绩</div>
+            <div class="price-1-title" style="color: #323233">充值余额(元)</div>
           </div>
         </div>
         <div @click="$router.push('/teamStat')" class="price-2 flexS">
           <div class="price-2-item">
-            <div class="price-2-item-1" style="color: #323233">
+            <div class="price-2-item-1" style="color: #3f86ff">
+              {{ memberInfo.first?.total || 0 }}
+            </div>
+            <div class="price-1-title" style="color: #323233">直推总人数</div>
+          </div>
+          <div class="price-2-item">
+            <div class="price-2-item-1" style="color: #3f86ff">
+              {{ memberInfo.first?.vip || 0 }}
+            </div>
+            <div class="price-1-title" style="color: #323233">直推会员人数</div>
+          </div>
+          <div class="price-2-item">
+            <div class="price-2-item-1" style="color: #3f86ff">
+              {{ memberInfo.team?.deposit || 0 }}
+            </div>
+            <div class="price-1-title" style="color: #323233">团队业绩</div>
+          </div>
+        </div>
+        <div @click="$router.push('/teamStat')" class="price-2 flexS">
+          <div class="price-2-item">
+            <div class="price-2-item-1" style="color: #3f86ff">
               {{ memberInfo.team?.total || 0 }}
             </div>
-            <div class="price-1-title" style="color: #3f86ff">团队总人数</div>
+            <div class="price-1-title" style="color: #323233">团队总人数</div>
           </div>
           <div class="price-2-item">
-            <div class="price-2-item-1" style="color: #323233">{{ memberInfo.team?.vip || 0 }}</div>
-            <div class="price-1-title" style="color: #3f86ff">团队会员人数</div>
+            <div class="price-2-item-1" style="color: #3f86ff">{{ memberInfo.team?.vip || 0 }}</div>
+            <div class="price-1-title" style="color: #323233">团队会员人数</div>
           </div>
           <div class="price-2-item">
-            <div class="price-2-item-1" style="color: #323233">
+            <div class="price-2-item-1" style="color: #3f86ff">
               {{ memberInfo.team?.withdraw || 0 }}
             </div>
-            <div class="price-1-title" style="color: #3f86ff">团队总提现</div>
+            <div class="price-1-title" style="color: #323233">团队总提现</div>
           </div>
         </div>
       </div>
@@ -215,11 +247,30 @@
         >
       </li>
       <li>
+        <a href="javascript:void(0)" @click="$router.push('/pingtaijianjie')"
+          ><img src="./images/pingtaijianjie.png" />
+          <p>平台简介</p></a
+        >
+      </li>
+      <li>
+        <a href="javascript:void(0)" @click="$router.push('/caozuoshuoming')"
+          ><img src="./images/caozuoshuoming.png" />
+          <p>操作说明</p></a
+        >
+      </li>
+      <li>
+        <a href="javascript:void(0)" @click="$router.push('/hezuodanwei')"
+          ><img src="./images/hezuodanwei.png" />
+          <p>合作单位</p></a
+        >
+      </li>
+      <li>
         <a href="javascript:void(0)" @click="goDownload"
           ><img src="./images/download.png" />
           <p>APP下载</p></a
         >
       </li>
+
       <!--      <li>-->
       <!--        <a href="javascript:void(0)" @click="$router.push('/CreditScoreDetail')" class=""-->
       <!--          ><img-->
@@ -472,11 +523,12 @@ onActivated(() => {
 .investClass {
   width: 100vw;
   height: calc(100% - 56px);
+  padding-top: 40px;
 
   overflow-y: auto;
 
   .info {
-    margin: 50px auto 16px;
+    margin: 15px auto 16px;
     padding-left: 20px;
     overflow: hidden;
     .headerImg {
@@ -656,7 +708,7 @@ onActivated(() => {
         display: block;
         width: 100%;
         img {
-          height: 39px;
+          height: 33px;
         }
         p {
           font-size: 14px;

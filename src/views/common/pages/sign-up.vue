@@ -292,6 +292,7 @@ body {
   align-items: center;
   overflow-y: scroll;
   color: #fff;
+  padding: 0 20px;
   //background: url(@/assets/img/bj.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;

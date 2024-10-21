@@ -1,452 +1,470 @@
 <template>
-  <div class="home" id="home-index">
-    <div class="user">
-      <img src="@/assets/img/lalami.png" style="margin-left: 5%; width: 45%; opacity: 0" />
-      <span
-        style="
-          margin-left: 5%;
-          width: 45%;
-          position: absolute;
-          top: 55px;
-          left: 30px;
-          color: #323233;
-          font-size: 26px;
-        "
-        >火花视频</span
-      >
-      <img src="@/assets/img/2.8184534.png" style="width: 15%; margin-right: 5%; float: right" />
-    </div>
-    <div class="price" style="margin-left: 2%; background-size: 100% 100%; width: 96%">
-      <div class="price-box">
-        <div class="price-1">
-          <div class="price-1-title">我的钱包余额</div>
-          <div class="price-1-content flexS">
-            <!--            <div class="p-1-c-1">￥{{ format(walletInfo?.money || 0) }}</div>-->
-            <div class="p-1-c-1">￥{{ walletInfo?.money || 0 }}</div>
-            <div class="p-1-c-3 flexS">
-              <div class="p-1-c-3-btn" @click="go('/dep')">提现</div>
-              <div class="p-1-c-3-btn" @click="go('recharge')">充值</div>
+  <div class="test-slide-wrapper" id="home-index">
+    <!--<EarnedCash></EarnedCash>-->
+    <Loading v-if="loading"></Loading>
+    <div class="container">
+      <div class="top-wrap" style="padding-top: 40px; background-color: #feab03">
+        <img src="./images/banner3.jpg" alt="" />
+        <!--<div class="title">-->
+        <!--  <div class="title-l">Kwai乐租</div>-->
+        <!--  <div class="title-r"></div>-->
+        <!--</div>-->
+        <!--<div class="tab">-->
+        <!--  <div class="tab-item" :class="{ active: activeTab === 0 }" @click="activeTab = 0">-->
+        <!--    发现-->
+        <!--  </div>-->
+        <!--  <div class="tab-item" :class="{ active: activeTab === 1 }" @click="activeTab = 1">-->
+        <!--    我在玩-->
+        <!--  </div>-->
+        <!--</div>-->
+      </div>
+      <div class="notice">
+        <van-notice-bar
+          color="#fff"
+          background="#689CFC"
+          left-icon="volume-o"
+          style="border-radius: 25px; height: 30px"
+          text="kwai-乐租，精彩短视频。期待您的加入"
+        >
+        </van-notice-bar>
+      </div>
+
+      <div v-show="activeTab === 0" class="app-list">
+        <div class="app-list-item" v-for="(item, index) of appList">
+          <div class="l">
+            <div class="logo">
+              <img :src="convertImgUrl(item.logo)" alt="" />
+            </div>
+            <div class="info">
+              <div class="name">{{ item.name }}</div>
+              <div
+                class="desc"
+                :style="{ color: index === appList?.length - 1 ? '#9d9d9d' : 'red' }"
+              >
+                {{ item.desc }}
+              </div>
             </div>
           </div>
-        </div>
-        <div class="hr"></div>
-        <div class="price-2 flexS">
-          <div class="price-2-item">
-            <div class="price-2-item-1">{{ userIncomeInfo.today || 0 }}</div>
-            <div class="price-2-item-2">今日预估收益(元)</div>
-          </div>
-          <div class="price-2-item">
-            <div class="price-2-item-1">{{ userIncomeInfo.total || 0 }}</div>
-            <div class="price-2-item-2">累计收益(元)</div>
-          </div>
-          <div class="price-2-item">
-            <div class="price-2-item-1">{{ walletInfo?.amount || 0 }}</div>
-            <div class="price-2-item-2">充值余额(元)</div>
+          <div class="r">
+            <div class="download" @click="item.btnCb">{{ item.btnLabel }}</div>
           </div>
         </div>
-      </div>
-      <!--      <div style="padding: 0 10px; box-sizing: border-box">-->
-      <!--        <div class="black-tip" style="height: 70px" @click="getShouyi">-->
-      <!--          <van-button type="warning" color="#3f86ff" block style="height: 25px; margin-top: 2px"-->
-      <!--            >尊贵的VIP用户，<span style="color: #0af179; font-weight: bolder">一键领取</span>-->
-      <!--            视频收入！</van-button-->
-      <!--          >-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--      <div style="padding: 10px 10px 0">-->
-      <!--        <van-notice-bar-->
-      <!--          color="#fff"-->
-      <!--          background="#F76F31"-->
-      <!--          left-icon="volume-o"-->
-      <!--          style="border-radius: 25px; height: 35px"-->
-      <!--          text="严禁脚本、批量注册和刷子等恶意行为，一经发现封号处理！"-->
-      <!--        >-->
-      <!--        </van-notice-bar>-->
-      <!--      </div>-->
-      <div class="tab">
-        <div class="tab-item" :class="{ active: active === 4 }" @click="handleActive(4)">
-          平台简介
-        </div>
-        <div class="tab-item" :class="{ active: active === 6 }" @click="handleActive(6)">
-          操作说明
-        </div>
-        <div class="tab-item" :class="{ active: active === 7 }" @click="handleActive(7)">
-          合作单位
-        </div>
+        <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
 
-      <div class="content">
-        <div
-          v-if="active !== 7"
-          v-html="articleInfo.content"
-          style="margin-top: 10px; width: 93%; margin-left: 2%"
-        ></div>
-        <div v-else>
-          <!--          <van-image width="100%" lazy-load height="200" :src="zhengshu3" @click="showImage(0)">-->
-          <!--            <template v-slot:loading>-->
-          <!--              <van-loading type="spinner" size="20" />-->
-          <!--            </template>-->
-          <!--          </van-image>-->
-          <!--          <van-image width="100%" lazy-load height="200" :src="zhengshu1" @click="showImage(0)">-->
-          <!--            <template v-slot:loading>-->
-          <!--              <van-loading type="spinner" size="20" />-->
-          <!--            </template>-->
-          <!--          </van-image>-->
-          <!--          <van-image width="100%" lazy-load height="200" :src="zhengshu2" @click="showImage(1)">-->
-          <!--            <template v-slot:loading>-->
-          <!--              <van-loading type="spinner" size="20" />-->
-          <!--            </template>-->
-          <!--          </van-image>-->
-          <van-image width="100%" lazy-load height="450" :src="zhengshu7" @click="showImage(0)">
-            <template v-slot:loading>
-              <van-loading type="spinner" size="20" />
-            </template>
-          </van-image>
-          <van-image width="100%" lazy-load height="200" :src="zhengshu4" @click="showImage(1)">
-            <template v-slot:loading>
-              <van-loading type="spinner" size="20" />
-            </template>
-          </van-image>
-          <van-image width="100%" lazy-load height="200" :src="zhengshu5" @click="showImage(2)">
-            <template v-slot:loading>
-              <van-loading type="spinner" size="20" />
-            </template>
-          </van-image>
-          <van-image width="100%" lazy-load height="200" :src="zhengshu6" @click="showImage(3)">
-            <template v-slot:loading>
-              <van-loading type="spinner" size="20" />
-            </template>
-          </van-image>
-        </div>
+      <div class="playing" v-show="activeTab === 1">
+        <van-empty :image="empty" image-size="120" description="未搜索到应用" />
       </div>
     </div>
-    <van-dialog v-model:show="isShowDialog" title="标题">
-      <template #title></template>
+    <BaseFooter v-bind:init-tab="1" :is-white="true" />
 
-      <div style="padding: 0 10px; text-indent: 24px">
-        <div style="margin-bottom: 8px">
-          您的视频任务已派发完毕，正在由非会员0撸用户带代替您分担视频任务次数，您的本日收入已到账，请查收！
-        </div>
-        <div style="margin-bottom: 8px">
-          会员用户一键完成后，每日还可以继续观看视频内绿色弹框广告，一直看也是一直有收入，24小时不间断！
-        </div>
-        <div style="margin-bottom: 8px; color: #0af179; font-weight: bolder">
-          推荐朋友加入，朋友开通会员。会反你15%开通奖励,每天收入无上限！
-        </div>
-        <div style="margin-bottom: 8px">您本次一键完成派发任务收入：{{ shouyi }}元</div>
-      </div>
-    </van-dialog>
-    <van-dialog v-model:show="isShowWeimaiquanDialog" title="标题">
-      <template #title></template>
-      <div style="padding: 0 10px; box-sizing: border-box">
-        <img src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
-      </div>
-    </van-dialog>
-    <BaseFooter v-bind:init-tab="1" :is-white="false" />
+    <!--<div class="contact" @click="$router.push('/article?id=5')">-->
+    <!--  <img src="@/assets/img/paly-introduce.png" alt="" />-->
+    <!--  <div>-->
+    <!--    <div>玩法</div>-->
+    <!--    <div>介绍</div>-->
+    <!--  </div>-->
+    <!--</div>-->
   </div>
 </template>
 
 <script setup lang="tsx">
+import { nextTick, onActivated, onMounted, reactive, ref } from 'vue'
+
+import Loading from '@/components/Loading.vue'
 import BaseFooter from '@/components/BaseFooter.vue'
-import { onActivated, onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { axiosInstance as axios } from '@/utils/myrequest'
-import { reqQuickReceive, reqUserIncome } from '@/api/myApi'
-import { closeToast, showDialog, showLoadingToast } from 'vant'
-import zhengshu1 from '@/assets/img/zhengshu1.jpg'
-import zhengshu2 from '@/assets/img/zhengshu2.jpg.jpg'
-import zhengshu3 from '@/assets/img/zhengshu3.jpg'
-import zhengshu4 from '@/assets/img/zhengshu4.jpg'
-import zhengshu5 from '@/assets/img/zhengshu5.png'
-import zhengshu6 from '@/assets/img/zhengshu6.png'
-import zhengshu7 from '@/assets/img/zhengshu7.jpg'
-import dayjs from 'dayjs'
-import imgg from '@/pages/login/logo1.png'
+import appLogo2 from '@/assets/img/appLogo/tcsp.png'
+import EarnedCash from '@/components/EarnedCash.vue'
+import empty from '@/assets/img/custom-empty-image.png'
 import { _notice } from '@/utils'
+import { loadInteraction, loadPlayRewardVideo, loadSplash } from '@/utils/ad'
+import { useRouter } from 'vue-router'
+import { reqRecordTask, reqWalletLog } from '@/api/myApi'
+import dayjs from 'dayjs'
+
+const loading = ref(false)
 const router = useRouter()
-const userIncomeInfo = ref({})
-const isShowDialog = ref(false)
-const isShowWeimaiquanDialog = ref(false)
+const activeTab = ref(0)
+const appList = ref([
+  // {
+  //   name: '乐租',
+  //   desc: '这款APP真的可以免费提现!',
+  //   logo: 'lz',
+  //   btnLabel: '下载',
+  //   btnCb() {
+  //     try {
+  //       window.location.href = `https://pk.yuyuwa.cn/download`
+  //     } catch (e) {
+  //       _notice('下载失败')
+  //     }
+  //   }
+  // },
 
-const articleInfo = ref({})
-const active = ref(4)
-const shouyi = ref(0)
-const walletInfo = ref({})
-const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
-
-function go(e, interaction = false) {
-  // interaction && loadInteraction()
-  router.push(e)
-}
-const getWalletInfo = async () => {
-  const { code, data } = await axios.get('/api/wallet/query')
-  if (code !== 200) return
-
-  walletInfo.value = data
-}
-const getUserIncome = () => {
-  // loading.value = true
-  reqUserIncome().then((res) => {
-    // loading.value = false
-    userIncomeInfo.value = res.data
-  })
-}
-const format = (price = 0) => {
-  let result = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  return result === '0' ? '0.00' : result
-}
-let firstRender = true
-function getData() {
-  showLoadingToast({
-    duration: 0,
-    message: '加载中'
-  })
-  axios.get('api/article/one?id=' + active.value).then((res) => {
-    !firstRender && closeToast()
-    firstRender = false
-    if (res.code === 200) {
-      articleInfo.value = res.data
+  // {
+  //   name: '团队长群',
+  //   desc: '团队长专线群!',
+  //   logo: 'qq',
+  //   btnLabel: '团队长1群',
+  //   btnCb() {
+  //     window.location.href = decodeURIComponent('https://qm.qq.com/q/NV59IlgLku')
+  //     // const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+  //     // if (isIos) {
+  //     //   window.location.href = decodeURIComponent('https://qm.qq.com/q/XtPKFbzikG')
+  //     // } else {
+  //     //   window.location.href = decodeURIComponent('http://kfa.vbxv.com.cn/download/index.html')
+  //     // }
+  //   }
+  // },
+  // {
+  //   name: '官方3群',
+  //   desc: '如遇老群被封禁，请移步新群！',
+  //   logo: 'qq',
+  //   btnLabel: '官方3群',
+  //   btnCb() {
+  //     window.location.href = decodeURIComponent('https://qm.qq.com/q/lDjgCQB6Du')
+  //   }
+  // },
+  {
+    name: '官方4群',
+    desc: '如遇老群被封禁，请移步新群！',
+    logo: 'qq',
+    btnLabel: '官方4群',
+    btnCb() {
+      window.location.href = decodeURIComponent('https://qm.qq.com/q/Ec4XGVlDmE')
     }
-  })
+  },
+  {
+    name: '官方5群',
+    desc: '如遇老群被封禁，请移步新群！',
+    logo: 'qq',
+    btnLabel: '官方5群',
+    btnCb() {
+      window.location.href = decodeURIComponent('https://qm.qq.com/q/eU1zhFLM8o')
+    }
+  },
+  {
+    name: '官方6群',
+    desc: '如遇老群被封禁，请移步新群！',
+    logo: 'qq',
+    btnLabel: '官方6群',
+    btnCb() {
+      window.location.href = decodeURIComponent('https://qm.qq.com/q/9DSckkLCeY')
+    }
+  },
+  {
+    name: '玩法介绍',
+    desc: 'kwai-乐租，精彩短视频。期待您的加入',
+    logo: 'lz',
+    btnLabel: '查看',
+    btnCb() {
+      router.push('/article?id=5')
+    }
+  }
+  // {
+  //   name: '甜橙斗猿场',
+  //   desc: '甜橙斗猿场，一夜暴富',
+  //   logo: 'dyc',
+  //   btnLabel: '一夜暴富',
+  //   btnCb() {
+  //     router.push('/gameNoFinish?type=dyc')
+  //   }
+  // },
+  // {
+  //   name: '甜橙大逃杀',
+  //   desc: '甜橙大逃杀，一夜暴富',
+  //   logo: 'dts',
+  //   btnLabel: '一夜暴富',
+  //   btnCb() {
+  //     router.push('/gameNoFinish?type=dts')
+  //   }
+  // },
+  // {
+  //   name: '甜橙夹娃娃',
+  //   desc: '甜橙夹娃娃，一夜暴富',
+  //   logo: 'jww',
+  //   btnLabel: '一夜暴富',
+  //   btnCb() {
+  //     router.push('/gameNoFinish?type=jww')
+  //   }
+  // }
+])
+function goDownload() {
+  try {
+    window.location.href = `https://pk.yuyuwa.cn/download`
+  } catch (e) {
+    _notice('下载失败')
+  }
 }
-const handleActive = (num) => {
-  active.value = num
-  getData()
+function jumpToQQ() {
+  window.location.href = decodeURIComponent('https://qm.qq.com/q/rfYONthKYq')
+  // loadInteraction()
+  // loadSplash()
+  // loadPlayRewardVideo(() => {
+  //   alert(111)
+  // })
 }
 
-const showImage = (index) => {
-  showImagePreview({
-    // images: [zhengshu1, zhengshu2, zhengshu7, zhengshu4, zhengshu5, zhengshu6],
-    images: [zhengshu7, zhengshu4, zhengshu5, zhengshu6],
-    startPosition: index
-  })
+const convertImgUrl = (iconUrl: string) => {
+  // return new URL(`./images/${iconUrl}.png`, import.meta.url).href
+  return new URL(`../../assets/img/appLogo/${iconUrl}.png`, import.meta.url).href
 }
-const getShouyi = () => {
-  showLoadingToast({
-    duration: 0,
-    message: '加载中'
-  })
-  if (!userInfo.value?.result?.staff?.id) {
-    closeToast()
-    showDialog({
-      message: '开通会员即可一键获取收益！'
-    }).then(() => {
-      router.push('/invest')
-    })
-    return
-  }
-  if (localStorage.isGetshouyiShare === dayjs().format('YYYY-MM-DD')) {
-    reqQuickReceive().then((res) => {
-      closeToast()
-      if (res.code !== 200) {
-        return _notice(res.msg)
-      }
-      if (!res.data.price) {
-        showDialog({
-          message: '今日已领取过，明日再来吧！'
-        })
-        return
-      }
-      if (res.data.price) {
-        shouyi.value = res.data.price
-        isShowDialog.value = true
-        // return
-      }
-    })
-  } else {
-    closeToast()
-    showConfirmDialog({
-      message: '先分享微信朋友圈，再进行一键领取视频收入!',
-      confirmButtonText: '一键分享微信朋友圈'
-    }).then(() => {
-      localStorage.isGetshouyiShare = dayjs().format('YYYY-MM-DD')
-      window.shareFriend()
-    })
-  }
+
+// 生产随机IP
+function randomIP() {
+  const getRandomOctet = () => Math.floor(Math.random() * 256)
+  return `${getRandomOctet()}.${getRandomOctet()}.${getRandomOctet()}.${getRandomOctet()}`
 }
-onMounted(() => {
-  // showDialog({
-  //   message: '官方QQ群已更新 ，搜索群号：912180620 进入QQ群!'
-  // })
-  getData()
-})
+function getRandomNumber() {
+  // 生成一个0到1之间的随机数，并调整到0.01到1.00的范围
+  const randomNum = Math.random() * (1 - 0.01) + 0.01
+  // 保留小数点后四位
+  return parseFloat(randomNum.toFixed(4))
+}
+let num = 0
+
+function createLog() {
+  const arr = [
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-正在请求代理IP',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-获取代理IP:' + randomIP(),
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-正在加载浏览任务',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-远程访问请求',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-请求完成',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-浏览中',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-任务完成',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-等待发放佣金',
+    dayjs().format('YYYY-MM-DD HH:mm:ss') + '-获得佣金：' + getRandomNumber(),
+    '************************'
+  ]
+  return arr[num % arr.length]
+}
+let timer = null
+const isReceive = ref(false)
+
 onActivated(() => {
-  getWalletInfo()
-  getUserIncome()
-  userInfo.value = JSON.parse(window.localStorage.getItem('userInfo'))
+  if (timer) return
 })
+
+// onMounted(() => {
+//   //   showDialog({
+//   //     message: 'QQ群15群已满，请大家点击我的界面。点击联系客服进16群！',
+//   //   })
+//   reqWalletLog({
+//     page: 1,
+//     limit: 50,
+//     order: 'id desc',
+//     where: [['type', '=', 1]]
+//   }).then(({ code, msg, data }) => {
+//     console.log('reqWalletLog', data)
+//     // loading.value = false
+//     // if (code !== 200) {
+//     //   finished.value = true
+//     //   return
+//     // }
+//     // // 数据全部加载完成
+//     // dataList.value.push(...data.data)
+//     // if ((data.data || []).length === 0 || dataList.value.length >= data.count) {
+//     //   finished.value = true
+//     // }
+//   })
+// })
 </script>
 
 <style scoped lang="less">
-.home {
-  position: relative;
+.test-slide-wrapper {
+  font-size: 14px;
   width: 100%;
-  height: calc(100% - 56px);
-  overflow-y: auto;
+  height: 100%;
+  background: #f8f8f8;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
 
-  .user {
-    margin: 50px 0 20px;
-  }
-  .price-box {
-    //background: url(@/assets/img/usermp.png);
-    background-color: #fff;
-    margin-left: 2%;
-    background-size: 100% 100%;
-    width: 96%;
-    padding: 12px 23px 50px;
-    box-sizing: border-box;
-    border-radius: 15px;
-
-    .price-1 {
-      .price-1-title {
-        font-weight: 400;
-        color: #323233;
-        height: 16.5px;
-        line-height: 16.5px;
-        font-size: 12px;
+  .container {
+    //width: 90vw;
+    //height: 80vh;
+    width: 100%;
+    height: calc(var(--vh, 1vh) * 100 - var(--footer-height)) !important;
+    //background-color: #f8f8f8;
+    overflow-y: auto;
+    .top-wrap {
+      width: 100vw;
+      height: 300px;
+      img {
+        width: 100%;
+        height: 100%;
       }
-      .price-1-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .p-1-c-1 {
-          font-size: 27px;
-          font-weight: 600;
-          line-height: 40px;
-          color: #3f86ff;
+      //padding: 40px 30px 0;
+      //background-color: #fe5a1b;
+      //background-image: linear-gradient(135deg, #002661 30%, #5ca67b 100%);
+      //background-image: linear-gradient(135deg, #5ca67b 10%, #002661 100%);
+      //height: 180px;
+      //border-radius: 0 0 30px 30px;
+      .title {
+        .title-l {
+          font-weight: bolder;
+          font-size: 30px;
+          color: #ffffff;
+          transform: skewX(-15deg);
         }
-        .p-1-c-3 {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          .p-1-c-3-btn {
-            width: 50px;
-            height: 27px;
-            background: #3f86ff;
-            border-radius: 14px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #fff;
-            text-align: center;
-            line-height: 26px;
-            margin-left: 16px;
+      }
+      .tab {
+        margin-top: 20px;
+        display: flex;
+        font-size: 20px;
+        margin-left: 20px;
+        color: #cec6c6;
+        .tab-item {
+          margin-right: 30px;
+          height: 50px;
+          position: relative;
+          &.active {
+            font-size: 24px;
+            color: #eee;
+
+            &:after {
+              position: absolute;
+              content: '';
+              display: block;
+              border: 8px solid transparent;
+              border-bottom-color: #fff;
+              left: 50%;
+              bottom: 0;
+              transform: translateX(-50%);
+            }
           }
         }
       }
     }
-    .hr {
-      width: 325px;
-      height: 1px;
-      background: #434343;
-      opacity: 0.05;
-      top: 90px;
-      position: absolute;
+    .notice {
+      padding: 5px 15px;
     }
-    .price-2 {
-      display: flex;
-      align-content: center;
-      justify-content: space-between;
-      margin-top: 20px;
-      .price-2-item {
-        position: relative;
-        flex: 1;
-        text-align: center;
-        .price-2-item-1 {
-          color: #3f86ff;
-          font-size: 16px;
-          font-weight: 700;
+    .log {
+      padding: 0px 20px 10px;
+      height: 300px;
+      margin-bottom: 10px;
+
+      .log-info {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        margin-top: 10px;
+        border-radius: 10px;
+        padding: 15px 15px 0;
+        overflow: hidden;
+        color: #000;
+        .log-info-title {
+          display: flex;
+          justify-content: space-between;
+          font-size: 20px;
+          border-bottom: 2px solid #c2bcbc;
+          padding-bottom: 10px;
+          margin-bottom: 10px;
+          align-items: center;
+
+          .my {
+            font-size: 16px;
+            color: #1989fa;
+            text-decoration: underline;
+          }
         }
-        .price-2-item-2 {
-          color: #323233;
-          opacity: 0.7;
-          font-size: 12px;
+        .log-list {
+          flex: 1;
+          overflow-y: auto;
+          .log-list-item {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            line-height: 20px;
+          }
         }
       }
     }
-  }
+    .app-list {
+      //flex: 1;
+      //overflow-y: auto;
+      padding: 0px 20px 10px;
+      .app-list-item {
+        background-color: #ffffff;
+        display: flex;
+        margin-bottom: 10px;
+        padding: 10px 15px;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 10px;
 
-  .tab {
-    margin-top: 10px;
-    margin-left: 2%;
-    background-size: 100% 100%;
-    width: 96%;
-    height: 40px;
-    background-color: #5d5e5f;
-    display: flex;
-    align-items: center;
-    border-radius: 20px;
-    padding: 4px;
-    overflow: hidden;
-    box-sizing: border-box;
-    .tab-item {
-      height: 100%;
-      border-radius: 20px;
+        .l {
+          display: flex;
+          .logo {
+            width: 55px;
+            height: 55px;
+            overflow: hidden;
+            border-radius: 10px;
+
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .info {
+            flex: 1;
+            margin-left: 6px;
+            padding: 2px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .name {
+              font-size: 16px;
+              color: #000000;
+            }
+            .desc {
+              color: #9d9d9d;
+            }
+          }
+        }
+        .r {
+          .download {
+            padding: 8px 18px;
+            background-color: #689cfc;
+            color: #fff;
+            border-radius: 20px;
+            font-size: 12px;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+    .playing {
       flex: 1;
       display: flex;
-      align-content: center;
+      align-items: center;
       justify-content: center;
-      line-height: 32px;
-      color: #fff;
-
-      &.active {
-        background-color: #3f86ff;
-      }
-    }
-  }
-  .content {
-    margin-top: 20px;
-    margin-left: 4%;
-    width: 92%;
-    color: rgb(180, 164, 130);
-    font-size: 13px;
-    line-height: 20px;
-  }
-}
-</style>
-<style scoped lang="less">
-.alarmList-child {
-  height: 200px;
-  overflow: hidden;
-  color: #ae9f7e;
-  position: relative;
-  .alarm-item {
-    width: 100%;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    & > div {
-      text-align: center;
-    }
-    .phone {
-      width: 120px;
-    }
-    .money {
-      flex: 1;
-      color: #e2511d;
-    }
-    .datetime {
-      width: 120px;
     }
   }
 }
-.black-tip {
+.contact {
+  position: fixed;
+  top: 50%;
+  right: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #302e2e;
-  font-weight: bold;
-  font-size: 20px;
-  white-space: nowrap;
-  width: 100%;
-  height: 120px;
-  background: url('@/assets/img/black-tip.png') no-repeat;
-  background-size: 100% 100%;
-  .active {
-    color: red;
-  }
-  & > div {
-    text-align: center;
-    line-height: 25px;
+  background-color: #fc7a02;
+  border-radius: 20px 0 0 20px;
+  padding: 4px;
+  color: #fff;
+  box-shadow:
+    0px 0.1px 2.2px rgba(0, 0, 0, 0.02),
+    0px 0.3px 5.3px rgba(0, 0, 0, 0.028),
+    0px 0.5px 10px rgba(0, 0, 0, 0.035),
+    0px 0.9px 17.9px rgba(0, 0, 0, 0.042),
+    0px 1.7px 33.4px rgba(0, 0, 0, 0.05),
+    0px 4px 80px rgba(0, 0, 0, 0.07);
+  img {
+    margin-right: 4px;
+    width: 30px;
+    height: 30px;
   }
 }
 </style>

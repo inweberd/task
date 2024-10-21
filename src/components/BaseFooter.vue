@@ -29,7 +29,7 @@
         <div :style="{ color: currentTab === 2 ? '#496DFE' : '' }">视频</div>
       </div>
     </div>
-    <div class="l-button" @click="loadShort(2)">
+    <div class="l-button" @click="loadShort(1)">
       <div class="add-ctn">
         <div class="img-box">
           <img
@@ -40,7 +40,9 @@
           />
           <img src="../assets/img/tabbar/vipVideo.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 2 ? '#496DFE' : '' }">短剧</div>
+        <div style="white-space: nowrap" :style="{ color: currentTab === 2 ? '#496DFE' : '' }">
+          vip入口
+        </div>
       </div>
     </div>
     <div class="l-button" @click="tab(5)">
@@ -209,6 +211,7 @@ export default {
   font-size: 14px;
   position: fixed;
   width: 100%;
+  display: flex;
   height: var(--footer-height);
   //border-top: 1px solid #7b7878;
   z-index: 2;
@@ -227,7 +230,7 @@ export default {
   }
 
   .l-button {
-    width: 33%;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;

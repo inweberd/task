@@ -3,7 +3,7 @@
     <!--<EarnedCash></EarnedCash>-->
     <Loading v-if="loading"></Loading>
     <div class="container">
-      <div class="top-wrap" style="padding-top: 40px; background-color: #feab03">
+      <div class="top-wrap" style="padding-top: 40px; background-color: #ffffff">
         <img src="./images/banner3.jpg" alt="" />
         <!--<div class="title">-->
         <!--  <div class="title-l">Kwai乐租</div>-->
@@ -18,18 +18,18 @@
         <!--  </div>-->
         <!--</div>-->
       </div>
-      <div class="notice">
-        <van-notice-bar
-          color="#fff"
-          background="#689CFC"
-          left-icon="volume-o"
-          style="border-radius: 25px; height: 30px"
-          text="kwai-乐租，精彩短视频。期待您的加入"
-        >
-        </van-notice-bar>
-      </div>
+      <!--      <div class="notice">-->
+      <!--        <van-notice-bar-->
+      <!--          color="#fff"-->
+      <!--          background="#689CFC"-->
+      <!--          left-icon="volume-o"-->
+      <!--          style="border-radius: 25px; height: 30px"-->
+      <!--          text="kwai-乐租，精彩短视频。期待您的加入"-->
+      <!--        >-->
+      <!--        </van-notice-bar>-->
+      <!--      </div>-->
 
-      <div v-show="activeTab === 0" class="app-list">
+      <div v-show="activeTab === 0" class="app-list" style="margin-top: 20px">
         <div class="app-list-item" v-for="(item, index) of appList">
           <div class="l">
             <div class="logo">
@@ -37,10 +37,8 @@
             </div>
             <div class="info">
               <div class="name">{{ item.name }}</div>
-              <div
-                class="desc"
-                :style="{ color: index === appList?.length - 1 ? '#9d9d9d' : 'red' }"
-              >
+              <div class="desc">
+                <!--                :style="{ color: index === appList?.length - 1 ? '#9d9d9d' : 'red' }"-->
                 {{ item.desc }}
               </div>
             </div>
@@ -81,83 +79,49 @@ import { loadInteraction, loadPlayRewardVideo, loadSplash } from '@/utils/ad'
 import { useRouter } from 'vue-router'
 import { reqRecordTask, reqWalletLog } from '@/api/myApi'
 import dayjs from 'dayjs'
+import weimaiquan from '@/assets/img/weimaiquan.jpg'
 
 const loading = ref(false)
 const router = useRouter()
 const activeTab = ref(0)
 const appList = ref([
-  // {
-  //   name: '乐租',
-  //   desc: '这款APP真的可以免费提现!',
-  //   logo: 'lz',
-  //   btnLabel: '下载',
-  //   btnCb() {
-  //     try {
-  //       window.location.href = `https://pk.yuyuwa.cn/download`
-  //     } catch (e) {
-  //       _notice('下载失败')
-  //     }
-  //   }
-  // },
-
-  // {
-  //   name: '团队长群',
-  //   desc: '团队长专线群!',
-  //   logo: 'qq',
-  //   btnLabel: '团队长1群',
-  //   btnCb() {
-  //     window.location.href = decodeURIComponent('https://qm.qq.com/q/NV59IlgLku')
-  //     // const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
-  //     // if (isIos) {
-  //     //   window.location.href = decodeURIComponent('https://qm.qq.com/q/XtPKFbzikG')
-  //     // } else {
-  //     //   window.location.href = decodeURIComponent('http://kfa.vbxv.com.cn/download/index.html')
-  //     // }
-  //   }
-  // },
-  // {
-  //   name: '官方3群',
-  //   desc: '如遇老群被封禁，请移步新群！',
-  //   logo: 'qq',
-  //   btnLabel: '官方3群',
-  //   btnCb() {
-  //     window.location.href = decodeURIComponent('https://qm.qq.com/q/lDjgCQB6Du')
-  //   }
-  // },
   {
-    name: '官方4群',
-    desc: '如遇老群被封禁，请移步新群！',
-    logo: 'qq',
-    btnLabel: '官方4群',
-    btnCb() {
-      window.location.href = decodeURIComponent('https://qm.qq.com/q/Ec4XGVlDmE')
-    }
-  },
-  {
-    name: '官方5群',
-    desc: '如遇老群被封禁，请移步新群！',
-    logo: 'qq',
-    btnLabel: '官方5群',
-    btnCb() {
-      window.location.href = decodeURIComponent('https://qm.qq.com/q/eU1zhFLM8o')
-    }
-  },
-  {
-    name: '官方6群',
-    desc: '如遇老群被封禁，请移步新群！',
-    logo: 'qq',
-    btnLabel: '官方6群',
-    btnCb() {
-      window.location.href = decodeURIComponent('https://qm.qq.com/q/9DSckkLCeY')
-    }
-  },
-  {
-    name: '玩法介绍',
-    desc: 'kwai-乐租，精彩短视频。期待您的加入',
-    logo: 'lz',
+    name: '操作说明',
+    desc: '好看视频，精彩短视频。期待您的加入',
+    logo: 'hk',
     btnLabel: '查看',
     btnCb() {
-      router.push('/article?id=5')
+      router.push('/caozuoshuoming')
+    }
+  },
+  {
+    name: '平台简介',
+    desc: '点击查看平台简介！',
+    logo: 'pingtaijianjie',
+    btnLabel: '查看',
+    btnCb() {
+      router.push('/pingtaijianjie')
+    }
+  },
+  {
+    name: '合作单位',
+    desc: '如遇老群被封禁，请移步新群！',
+    logo: 'hezuodanwei',
+    btnLabel: '查看',
+    btnCb() {
+      router.push('/hezuodanwei')
+    }
+  },
+  {
+    name: '官方交流群',
+    desc: '点击加入官方交流群！',
+    logo: 'weimaiquan',
+    btnLabel: '加入',
+    btnCb() {
+      showImagePreview({
+        images: [weimaiquan]
+      })
+      // window.location.href = decodeURIComponent('https://qm.qq.com/q/lDjgCQB6Du')
     }
   }
   // {

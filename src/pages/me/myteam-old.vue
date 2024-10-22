@@ -252,7 +252,7 @@ onActivated(() => {
 
 .label {
   margin-top: 5px;
-  color: #b5a483;
+  color: #323233;
   font-size: 12px;
 }
 
@@ -287,8 +287,8 @@ onActivated(() => {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 40px;
   margin-bottom: 20px;
-  background-color: #565151;
-  color: #b4a482;
+  background-color: #fff;
+  color: #323233;
 }
 
 .card-body {

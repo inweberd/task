@@ -152,7 +152,7 @@ export default defineConfig((): Promise<UserConfig> => {
           extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
         },
         build: {
-          outDir: 'new',
+          outDir: 'hksp',
           sourcemap: false,
           rollupOptions: {
             // https://rollupjs.org/guide/en/#outputmanualchunks
@@ -212,13 +212,13 @@ export default defineConfig((): Promise<UserConfig> => {
           proxy: {
             '/api/': {
               // target: 'https://tc.q18m.cc/api',
-              target: 'https://yy.kkwai.cn/api',
+              target: 'https://ht.yuyuwa.cn/api',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/api/'), '')
             },
             '/dev/': {
               // target: 'https://tc.q18m.cc/api',
-              target: 'https://yy.kkwai.cn/dev',
+              target: 'https://ht.yuyuwa.cn/dev',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/dev/'), '')
             },

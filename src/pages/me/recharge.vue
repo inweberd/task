@@ -556,13 +556,12 @@ onMounted(() => method.init())
             .info {
               div:nth-child(1) {
                 font-weight: 400;
-                color: #fff;
                 font-size: 16px;
               }
               div:nth-child(2) {
                 margin-top: 8px;
                 font-size: 13px;
-                color: #ccc;
+                color: #aaa;
               }
             }
           }

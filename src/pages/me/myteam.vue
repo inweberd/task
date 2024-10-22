@@ -21,7 +21,8 @@
           >
           <em class="txt2">
             <template v-if="userInfo?.result?.staff?.id == '1'">体验卡</template>
-            <template v-else>LV{{ userInfo?.result?.staff?.serial }}</template>
+            <template v-else>{{ getSerialName(userInfo?.result?.staff?.serial) }}</template>
+            <!--            <template v-else>LV{{ userInfo?.result?.staff?.serial }}</template>-->
           </em>
           <small class="txt3">邀请码:{{ userInfo?.result?.invite?.code }} </small>
           <small class="txt4">会员ID：{{ userInfo?.id }} </small>
@@ -39,32 +40,32 @@
       <!--      >-->
       <!--    </div>-->
       <!--    <div class="user-count">平台总注册数：{{ userCount || 0 }}人</div>-->
-      <div
-        class="flex-row items-center section_5"
-        style="padding: 10px 25px"
-        @click="$router.push('/CreditScoreDetail')"
-      >
-        <div
-          class="flex-col justify-start items-start flex-1 image-wrapper"
-          style="border: 1px solid #ccc; border-radius: 10px; overflow: hidden"
-        >
-          <!--          :style="{ width: Math.min(walletInfo.credit, 100) + '%' }"-->
-          <img
-            class="image_4"
-            style="height: 9px"
-            :style="{ width: 60 + '%' }"
-            src="./images/e62b209b1fc33d5b3ca0c4a35e43028e.png"
-          />
-        </div>
-        <span class="text_5 ml-20" style="color: #323233">
-          <!--        当前信用分：{{ walletInfo.credit || '&#45;&#45;' }}分</span-->
-          当前信用分：<span style="color: #3f86ff; font-size: 20px">{{
-            walletInfo.credit || 0
-          }}</span>
-          分</span
-        >
-        <!--      <div class="text" @click="go('/CreditScoreDetail', true)">详情</div>-->
-      </div>
+      <!--      <div-->
+      <!--        class="flex-row items-center section_5"-->
+      <!--        style="padding: 10px 25px"-->
+      <!--        @click="$router.push('/CreditScoreDetail')"-->
+      <!--      >-->
+      <!--        <div-->
+      <!--          class="flex-col justify-start items-start flex-1 image-wrapper"-->
+      <!--          style="border: 1px solid #ccc; border-radius: 10px; overflow: hidden"-->
+      <!--        >-->
+      <!--          &lt;!&ndash;          :style="{ width: Math.min(walletInfo.credit, 100) + '%' }"&ndash;&gt;-->
+      <!--          <img-->
+      <!--            class="image_4"-->
+      <!--            style="height: 9px"-->
+      <!--            :style="{ width: 60 + '%' }"-->
+      <!--            src="./images/e62b209b1fc33d5b3ca0c4a35e43028e.png"-->
+      <!--          />-->
+      <!--        </div>-->
+      <!--        <span class="text_5 ml-20" style="color: #323233">-->
+      <!--          &lt;!&ndash;        当前信用分：{{ walletInfo.credit || '&#45;&#45;' }}分</span&ndash;&gt;-->
+      <!--          当前信用分：<span style="color: #3f86ff; font-size: 20px">{{-->
+      <!--            walletInfo.credit || 0-->
+      <!--          }}</span>-->
+      <!--          分</span-->
+      <!--        >-->
+      <!--        &lt;!&ndash;      <div class="text" @click="go('/CreditScoreDetail', true)">详情</div>&ndash;&gt;-->
+      <!--      </div>-->
     </div>
     <div class="balance">
       <div class="price-box">
@@ -338,6 +339,7 @@ import { _notice } from '@/utils'
 import { useRouter } from 'vue-router'
 import weimaiquan from '@/assets/img/weimaiquan.jpg'
 import { closeToast, showDialog, showLoadingToast } from 'vant'
+import { getSerialName } from '../../utils/getSerialName'
 
 const router = useRouter()
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
@@ -524,6 +526,7 @@ onActivated(() => {
   width: 100vw;
   height: calc(100% - 56px);
   padding-top: 40px;
+  box-sizing: border-box;
 
   overflow-y: auto;
 

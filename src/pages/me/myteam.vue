@@ -20,8 +20,7 @@
             }}</strong
           >
           <em class="txt2">
-            <template v-if="userInfo?.result?.staff?.id == '1'">体验卡</template>
-            <template v-else>{{ getSerialName(userInfo?.result?.staff?.serial) }}</template>
+              {{ getSerialName(userInfo?.result?.staff?.serial) }}
             <!--            <template v-else>LV{{ userInfo?.result?.staff?.serial }}</template>-->
           </em>
           <small class="txt3">邀请码:{{ userInfo?.result?.invite?.code }} </small>

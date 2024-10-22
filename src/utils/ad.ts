@@ -195,7 +195,7 @@ export const loadShortVideo = ({ todayCount, price }) => {
         JSON.stringify({
           token,
           m: '今日权益卡生效：获得',
-          v: !!serialId,
+          v: !!serial,
           t: todayCount,
           c: price
         })

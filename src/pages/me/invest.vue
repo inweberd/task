@@ -51,7 +51,8 @@
                     font-weight: bold;
                   "
                 >
-                  {{ getSerialName(item.serial) }}
+                    {{item.name}}
+<!--                  {{ getSerialName(item.serial) }}-->
                 </div>
                 <div
                   style="
@@ -154,87 +155,6 @@
             </div>
           </div>
         </div>
-        <div
-          v-if="false"
-          data-cid="1"
-          class="a-t-items"
-          v-for="(item, index) of shopList"
-          @click="buy(item)"
-        >
-          <div class="a-t-text">
-            <div class="a-t-t-3">
-              <div class="a-t-title" style="width: 92%; left: 0; color: #b4a482; margin-left: 5%">
-                <!--                <img v-if="item.vipIcon" :src="item.vipIcon" alt="" style="float: right" />-->
-                <div
-                  style="
-                    float: right;
-                    margin-left: 6px;
-                    background: #4b6fff;
-                    color: #fff;
-                    border-radius: 2px;
-                    font-size: 12px;
-                    text-align: center;
-                    padding: 2px 5px;
-                  "
-                >
-                  <template v-if="index === 0"> 会员体验卡 </template>
-                  <template v-else> LV{{ index + 1 }}会员 </template>
-                </div>
-                <b style="font-size: 16px">{{ item.name }} </b><br />
-              </div>
-              <div
-                class="jiage"
-                style="position: absolute; right: 85px; top: 2px; color: #fff; font-size: 18px"
-              >
-                ￥{{ item.price }}
-              </div>
-              <div
-                class="info"
-                style="
-                  position: absolute;
-                  left: 0px;
-                  bottom: 4px;
-                  color: #fff;
-                  font-size: 14px;
-                  display: flex;
-                  justify-content: space-around;
-                  width: 100%;
-                "
-              >
-                <span>会员期限：永久使用</span>
-                <span> </span>
-              </div>
-              <div
-                style="
-                  height: 150px;
-                  width: 100%;
-                  color: #4b6fff;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-weight: bold;
-                  font-size: 18px;
-                "
-              >
-                <div style="margin-top: -20px">
-                  <!--                  {{ index + 1 }}级会员观看视频每条-->
-                  <div style="text-align: center; line-height: 30px">
-                    <template v-if="index === 0"> 开通会员体验卡 </template>
-                    <template v-else> 开通{{ daxieArr[index] }}级会员 </template>
-                  </div>
-                  <div style="text-align: center; line-height: 30px">
-                    <span style="color: #07c160"> 每日保底收入{{ shouyiArrDay[index] }}元</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="introduce">
-                <span style="font-size: 16px" v-if="myStaffList.includes(item.id)">已开通</span>
-                <span style="font-size: 16px" v-else>点击开通</span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -268,7 +188,7 @@ defineOptions({
   name: 'invest'
 })
 const userIncomeInfo = ref({})
-const shouyiArrDay = [5, 15, 24, 70, 120, 160, 200, 400]
+const shouyiArrDay = [5, 15, 35, 70, 120, 160, 200, 400]
 const youxiaoArr = [55, 55, 49, 49, 45, 45, 45, 45]
 const daxieArr = ['', '一', '二', '三', '四', '五', '六', '七']
 
@@ -293,7 +213,10 @@ const shopList = ref([
   },
   {
     icon: 'dd'
-  }
+  },
+    {
+        icon: 'dd'
+    }
 ])
 
 const loading = ref(true)
@@ -314,7 +237,6 @@ const getAllStaff = () => {
 
   reqAllStaff(searchInfo).then((res: any) => {
     staffList.value = res.data.data
-    console.log(111)
 
     res.data.data.forEach((item, index) => {
       for (const itemKey in item) {
@@ -439,15 +361,6 @@ const getMyStaff = () => {
     loading.value = false
 
     myStaffList.value = res.data.map((item) => item.staff_id)
-    ;(res.data || []).forEach((item) => {
-      shopList.value.forEach((sub_item, index) => {
-        if (item.staff_id === sub_item.serial) {
-          sub_item.expireDays = Math.floor(
-            (new Date(item.expire_time * 1000) - new Date().getTime()) / 1000 / 60 / 60 / 24
-          )
-        }
-      })
-    })
     console.log('staffList', staffList.value)
     if (res.data.length) {
       res.data.sort((a, b) => a.result.staff.serial - b.result.staff.serial)
@@ -503,40 +416,7 @@ const timerfir2 = ref()
 const scrollY = ref(20) //滚动距离
 const speed = ref(0.5) //滚动速度
 
-const autoRoll = (flag?) => {
-  if (flag) {
-    clearInterval(timer.value)
-    clearTimeout(timerfir.value)
-    clearTimeout(timerfir2.value)
-    return
-  }
-  let table = document.querySelector('.alarmList-child')
-  console.log('table', table)
-  timerfir.value = window.setTimeout(() => {
-    clearInterval(timer.value)
-    timerfir2.value = setInterval(() => {
-      const datetime = dayjs(new Date().getTime()).format('HH:mm:ss')
-      alarmList.value.push({
-        phone: getMoble(),
-        money: (Math.random() * (500 - 15) + 15).toFixed(2),
-        datetime: getDatetime()
-      })
-    }, 500)
-    timer.value = setInterval(() => {
-      scrollY.value += speed.value
-      if (scrollY.value >= table.scrollHeight - table.offsetHeight) {
-        scrollY.value = 0
-      }
-      table.scrollTop = scrollY.value
-    }, 20)
-  }, 1000)
-}
-onMounted(() => {
-  autoRoll()
-})
-onUnmounted(() => {
-  autoRoll(1)
-})
+
 </script>
 
 <style scoped lang="less">

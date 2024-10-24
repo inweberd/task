@@ -239,6 +239,62 @@ const draw = () => {
   return codeState.imgCode
 }
 const SignIn = async () => {
+  // {
+  //   // 当前时间戳
+  //   const unix = Math.round(new Date().getTime() / 1000).toString()
+  //   const key = aesToken('mtehod=GET', 16)
+  //   const iv = aesToken(unix, 16)
+  //   const item = new AES(key, iv)
+  //   // Base64加密
+  //   const XHelios = btoa(`${key} ${iv}`)
+  //
+  //   // 根据ASCII排序
+  //   const ASCII = (params) => {
+  //     const keys = Object.keys(params).sort()
+  //
+  //     let item = ''
+  //     keys.forEach((key) => {
+  //       const val = params[key]
+  //       if (key.length > 0 && String(val).length > 0) {
+  //         item += `${key}=${val}&`
+  //       }
+  //     })
+  //
+  //     if (item.length > 0) item = item.slice(0, -1)
+  //
+  //     return item
+  //   }
+  //   // 请求参数
+  //   let parmas = { a: 10 }
+  //   // 获取 query 参数
+  //   // pm.request.url.query.each(({ key, value }) => (parmas[key] = value))
+  //   // // 获取 Body 参数
+  //   // pm.request.body.urlencoded.each(({ key, value }) => (parmas[key] = value))
+  //
+  //   console.log(parmas)
+  //
+  //   const XSsStub = CryptoJS.MD5(ASCII(parmas)).toString().toUpperCase()
+  //
+  //   axios
+  //     .post(
+  //       '/dev/info/sign',
+  //       { a: 10 },
+  //       {
+  //         headers: {
+  //           'X-Khronos': unix,
+  //           'X-Helios': XHelios,
+  //           'X-SS-STUB': XSsStub,
+  //           'X-Medusa': item.encrypt(JSON.stringify(parmas)),
+  //           authorization:
+  //             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVpZCI6MjI1LCJoYXNoIjoiMTc3OTQxODQwNiIsInN0YXR1cyI6MSwibG9naW5fdGltZSI6MTcyOTY1NDYyNn0sImlzcyI6InRhc2suY29tIiwic3ViIjoidGFzayIsImV4cCI6MTczMDI1OTQyNiwiaWF0IjoxNzI5NjU0NjI2fQ.QrqaNdHcjdgMQfFRAvenytz9yFaOJGuaCl196Mx-oY4'
+  //         }
+  //       }
+  //     )
+  //     .then((res) => {
+  //       console.log('res', res)
+  //     })
+  // }
+  // return
   if (!state.struct.account) return showFailToast('请输入账号')
   if (!state.struct.password) return showFailToast('请输入密码')
   // if (!state.struct.code) return showFailToast('请输入验证码')

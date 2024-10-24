@@ -28,8 +28,7 @@
       <!--        >-->
       <!--        </van-notice-bar>-->
       <!--      </div>-->
-
-      <div v-show="activeTab === 0" class="app-list" style="margin-top: 20px">
+      <div v-show="activeTab === 0" class="app-list" style="margin-top: 10px">
         <div class="app-list-item" v-for="(item, index) of appList">
           <div class="l">
             <div class="logo">
@@ -85,6 +84,15 @@ const loading = ref(false)
 const router = useRouter()
 const activeTab = ref(0)
 const appList = ref([
+  {
+    name: '公司收入来源',
+    desc: '广告联盟每日结算记录',
+    logo: 'mx',
+    btnLabel: '查看',
+    btnCb() {
+      router.push('/caozuoshuoming')
+    }
+  },
   {
     name: '操作说明',
     desc: '好看视频，精彩短视频。期待您的加入',

@@ -29,7 +29,7 @@
         <div :style="{ color: currentTab === 2 ? '#496DFE' : '' }">视频</div>
       </div>
     </div>
-    <div class="l-button" @click="loadShort(1)">
+    <div class="l-button" @click="loadShort(3)">
       <div class="add-ctn">
         <div class="img-box">
           <img
@@ -81,7 +81,7 @@
 import bus, { EVENT_KEY } from '../utils/bus'
 import { loadInteraction, loadShortPlayVideo, loadShortVideo } from '@/utils/ad'
 import dayjs from 'dayjs'
-import { closeToast, showLoadingToast } from 'vant'
+import { closeToast, showDialog, showLoadingToast } from 'vant'
 import { reqAdvertisingCount, reqAdvertisingSinglePrice } from '@/api/myApi'
 
 export default {
@@ -107,9 +107,21 @@ export default {
   },
   methods: {
     async loadShort(type) {
-      if (type === 1) {
+      if (type === 1 || type === 3) {
         console.log("dayjs().format('YYYY-MM-DD')", dayjs().format('YYYY-MM-DD'))
         if (localStorage.isShortVideoShare === dayjs().format('YYYY-MM-DD')) {
+          const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+          const userId = userInfo?.id
+          const serial = userInfo?.result?.staff?.serial
+          console.log(!serial)
+          if (!serial && type === 3) {
+            showDialog({
+              message: 'vip专属入口，开通vip领取更高收益!'
+            }).then(() => {
+              this.$router.push('/invest')
+            })
+            return
+          }
           // loadInteraction()
           showLoadingToast({
             duration: 0,

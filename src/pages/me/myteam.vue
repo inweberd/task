@@ -19,13 +19,16 @@
                 : ''
             }}</strong
           >
-          <em class="txt2">
-              {{ getSerialName(userInfo?.result?.staff?.serial) }}
-            <!--            <template v-else>LV{{ userInfo?.result?.staff?.serial }}</template>-->
-          </em>
+          <!--          <em class="txt2">-->
+          <!--            {{ getSerialName(userInfo?.result?.staff?.serial) }}-->
+          <!--            &lt;!&ndash;            <template v-else>LV{{ userInfo?.result?.staff?.serial }}</template>&ndash;&gt;-->
+          <!--          </em>-->
           <small class="txt3">邀请码:{{ userInfo?.result?.invite?.code }} </small>
           <small class="txt4">会员ID：{{ userInfo?.id }} </small>
           <small class="txt4">当前星级：{{ star }}星级 </small>
+          <small class="txt4"
+            >当前职位: {{ getSerialName(userInfo?.result?.staff?.serial) }}
+          </small>
         </div>
       </div>
       <!--    <div class="user-count" style="font-size: 14px">-->
@@ -92,9 +95,9 @@
           </div>
           <div class="price-2-item">
             <div class="price-2-item-1" style="color: #3f86ff">
-              {{ userIncomeInfo.total || 0 }}
+              {{ userIncomeInfo?.wallet?.money || 0 }}
             </div>
-            <div class="price-1-title" style="color: #323233">累计收益(元)</div>
+            <div class="price-1-title" style="color: #323233">账户余额(元)</div>
           </div>
           <div class="price-2-item">
             <div class="price-2-item-1" style="color: #3f86ff">
@@ -246,24 +249,24 @@
           <p>团队报表</p></a
         >
       </li>
-      <li>
-        <a href="javascript:void(0)" @click="$router.push('/pingtaijianjie')"
-          ><img src="./images/pingtaijianjie.png" />
-          <p>平台简介</p></a
-        >
-      </li>
-      <li>
-        <a href="javascript:void(0)" @click="$router.push('/caozuoshuoming')"
-          ><img src="./images/caozuoshuoming.png" />
-          <p>操作说明</p></a
-        >
-      </li>
-      <li>
-        <a href="javascript:void(0)" @click="$router.push('/hezuodanwei')"
-          ><img src="./images/hezuodanwei.png" />
-          <p>合作单位</p></a
-        >
-      </li>
+      <!--      <li>-->
+      <!--        <a href="javascript:void(0)" @click="$router.push('/pingtaijianjie')"-->
+      <!--          ><img src="./images/pingtaijianjie.png" />-->
+      <!--          <p>平台简介</p></a-->
+      <!--        >-->
+      <!--      </li>-->
+      <!--      <li>-->
+      <!--        <a href="javascript:void(0)" @click="$router.push('/caozuoshuoming')"-->
+      <!--          ><img src="./images/caozuoshuoming.png" />-->
+      <!--          <p>操作说明</p></a-->
+      <!--        >-->
+      <!--      </li>-->
+      <!--      <li>-->
+      <!--        <a href="javascript:void(0)" @click="$router.push('/hezuodanwei')"-->
+      <!--          ><img src="./images/hezuodanwei.png" />-->
+      <!--          <p>合作单位</p></a-->
+      <!--        >-->
+      <!--      </li>-->
       <li>
         <a href="javascript:void(0)" @click="goDownload"
           ><img src="./images/download.png" />

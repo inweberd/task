@@ -79,6 +79,8 @@ import { useRouter } from 'vue-router'
 import { reqRecordTask, reqWalletLog } from '@/api/myApi'
 import dayjs from 'dayjs'
 import weimaiquan from '@/assets/img/weimaiquan.jpg'
+import { axiosInstance as axios } from '@/utils/myrequest'
+import { closeToast } from 'vant'
 
 const loading = ref(false)
 const router = useRouter()
@@ -90,16 +92,7 @@ const appList = ref([
     logo: 'mx',
     btnLabel: '查看',
     btnCb() {
-      router.push('/caozuoshuoming')
-    }
-  },
-  {
-    name: '操作说明',
-    desc: '好看视频，精彩短视频。期待您的加入',
-    logo: 'hk',
-    btnLabel: '查看',
-    btnCb() {
-      router.push('/caozuoshuoming')
+      router.push('/shourulaiyuan')
     }
   },
   {
@@ -112,14 +105,23 @@ const appList = ref([
     }
   },
   {
-    name: '合作单位',
-    desc: '如遇老群被封禁，请移步新群！',
-    logo: 'hezuodanwei',
+    name: '操作说明',
+    desc: '好看视频，精彩短视频。期待您的加入',
+    logo: 'hk',
     btnLabel: '查看',
     btnCb() {
-      router.push('/hezuodanwei')
+      router.push('/caozuoshuoming')
     }
   },
+  // {
+  //   name: '合作单位',
+  //   desc: '如遇老群被封禁，请移步新群！',
+  //   logo: 'hezuodanwei',
+  //   btnLabel: '查看',
+  //   btnCb() {
+  //     router.push('/hezuodanwei')
+  //   }
+  // },
   {
     name: '官方交流群',
     desc: '点击加入官方交流群！',
@@ -130,6 +132,25 @@ const appList = ref([
         images: [weimaiquan]
       })
       // window.location.href = decodeURIComponent('https://qm.qq.com/q/lDjgCQB6Du')
+    }
+  },
+  {
+    name: '下载APP',
+    desc: '点击下载最新版本APP',
+    logo: 'hk',
+    btnLabel: '下载',
+    btnCb() {
+      try {
+        // state.loading.app = true
+
+        // const { VITE_APP_URL } = import.meta.env
+        // 跳转下载
+        window.location.href = `https://hh.yuyuwa.cn/download`
+      } catch (e) {
+        _notice('下载失败')
+        // state.loading.app = false
+        // proxy.$refs['notify'].error('下载失败，请稍后再试！')
+      }
     }
   }
   // {
@@ -162,7 +183,7 @@ const appList = ref([
 ])
 function goDownload() {
   try {
-    window.location.href = `https://pk.yuyuwa.cn/download`
+    window.location.href = `https://hh.yuyuwa.cn/download`
   } catch (e) {
     _notice('下载失败')
   }
@@ -213,6 +234,7 @@ let timer = null
 const isReceive = ref(false)
 
 onActivated(() => {
+  axios.get('api/article/one?id=6').then((res) => {})
   if (timer) return
 })
 

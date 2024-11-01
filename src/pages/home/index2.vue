@@ -135,7 +135,7 @@ const appList = ref([
   //   btnLabel: '下载',
   //   btnCb() {
   //     try {
-  //       window.location.href = `https://pk.yuyuwa.cn/download`
+  //       window.location.href = `https://hh.yuyuwa.cn/download`
   //     } catch (e) {
   //       _notice('下载失败')
   //     }
@@ -232,7 +232,7 @@ const appList = ref([
 ])
 function goDownload() {
   try {
-    window.location.href = `https://pk.yuyuwa.cn/download`
+    window.location.href = `https://hh.yuyuwa.cn/download`
   } catch (e) {
     _notice('下载失败')
   }

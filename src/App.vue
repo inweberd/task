@@ -65,7 +65,15 @@ import { useRoute } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import { loadWx } from '@/utils/loadWx'
 import wx from 'weixin-js-sdk'
-const keepAliveBlackList = ['wallet', 'shortPlayDetail', 'recharge', 'serveInfo', 'invest', 'dep']
+const keepAliveBlackList = [
+  'wallet',
+  'shortPlayDetail',
+  'recharge',
+  'serveInfo',
+  'invest',
+  'dep',
+  'shourulaiyuan'
+]
 import {
   androidUpdate,
   getVersionCode,
@@ -258,9 +266,9 @@ onMounted(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
       qrCodeText.value =
-        'http://bbbwx926a15.s3-website-us-east-1.amazonaws.com/index.html?target=' +
+        'http://bbbwx1028a11.s3-website-us-east-1.amazonaws.com/index.html?target=' +
         encodeURIComponent(
-          'https://pk.yuyuwa.cn/#/signUp?invite=' +
+          'https://hh.yuyuwa.cn/#/signUp?invite=' +
             JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
         )
       generatePoster()

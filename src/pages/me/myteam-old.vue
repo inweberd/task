@@ -84,11 +84,11 @@
         finished-text="没有更多了"
         @load="getDataList"
       >
-        <div class="card" v-for="item in dataList">
+        <div class="card" v-for="item in 1">
           <div class="card-body d-flex justify-content-between flex-row align-items-center">
             <div class="d-flex flex-row">
               <div class="u-avatar u-avatar--circle avatar-shadow">
-                <van-image :src="headImg" width="50" height="50" />
+                <van-image :src="headImg" width="40" height="40" />
               </div>
               <div class="d-flex flex-column justify-content-center ms-2">
                 <div class="d-flex flex-row align-items-center">
@@ -133,7 +133,8 @@ import { reqUserDistribution, reqUserIncome, reqUserMemberInfo } from '@/api/myA
 import { _notice } from '@/utils'
 import { getSerialName } from '../../utils/getSerialName'
 import { getIsInApp } from '@/utils/getTopPadding'
-import headImg from '@/assets/img/head.png'
+// import headImg from '@/assets/img/head.png'
+import headImg from '@/assets/img/logo.png'
 const router = useRouter()
 let user
 const loading = ref(true)

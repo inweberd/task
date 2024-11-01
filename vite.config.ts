@@ -27,38 +27,38 @@ export default defineConfig((): Promise<UserConfig> => {
         base: './',
         envDir: 'env',
         plugins: [
-          legacy({
-            targets: [
-              'last 2 versions',
-              'iOS >= 10',
-              'Android >= 6',
-              'Chrome >= 49',
-              'Safari >= 10',
-              'Samsung >= 5',
-              'OperaMobile >= 46'
-            ],
-            // 其他特定版本或者范围
-            additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
-            renderLegacyChunks: true,
-            polyfills: [
-              'es.symbol',
-              'es.array.filter',
-              'es.promise',
-              'es.promise.finally',
-              'es/map',
-              'es/set',
-              'es.array.for-each',
-              'es.object.define-properties',
-              'es.object.define-property',
-              'es.object.get-own-property-descriptor',
-              'es.object.get-own-property-descriptors',
-              'es.object.keys',
-              'es.object.to-string',
-              'web.dom-collections.for-each',
-              'esnext.global-this',
-              'esnext.string.match-all'
-            ]
-          }),
+          // legacy({
+          //   targets: [
+          //     'last 2 versions',
+          //     'iOS >= 10',
+          //     'Android >= 6',
+          //     'Chrome >= 49',
+          //     'Safari >= 10',
+          //     'Samsung >= 5',
+          //     'OperaMobile >= 46'
+          //   ],
+          //   // 其他特定版本或者范围
+          //   additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
+          //   renderLegacyChunks: true,
+          //   polyfills: [
+          //     'es.symbol',
+          //     'es.array.filter',
+          //     'es.promise',
+          //     'es.promise.finally',
+          //     'es/map',
+          //     'es/set',
+          //     'es.array.for-each',
+          //     'es.object.define-properties',
+          //     'es.object.define-property',
+          //     'es.object.get-own-property-descriptor',
+          //     'es.object.get-own-property-descriptors',
+          //     'es.object.keys',
+          //     'es.object.to-string',
+          //     'web.dom-collections.for-each',
+          //     'esnext.global-this',
+          //     'esnext.string.match-all'
+          //   ]
+          // }),
           AutoImport({
             imports: ['vue', 'vue-router', 'pinia'],
             resolvers: [VantResolver(), ElementPlusResolver()]
@@ -165,26 +165,6 @@ export default defineConfig((): Promise<UserConfig> => {
                   if (importersLen > 1) return 'common'
                 }
                 if (id.includes('node_modules')) return 'vendor'
-
-                if (id.includes('/src/pages/home/Publish.vue')) return 'other'
-
-                if (id.includes('/src/pages/home/Music.vue')) return 'other'
-                if (id.includes('/src/pages/home/MusicRankList.vue')) return 'other'
-                if (id.includes('/src/pages/home/SearchPage.vue')) return 'other'
-
-                if (id.includes('/src/pages/shop/Shop.vue')) return 'other'
-                if (id.includes('/src/pages/shop/GoodsDetail.vue')) return 'other'
-
-                if (id.includes('/src/pages/message/notice/DouyinHelper.vue')) return 'other'
-                if (id.includes('/src/pages/message/notice/SystemNotice.vue')) return 'other'
-                if (id.includes('/src/pages/message/notice/TaskNotice.vue')) return 'other'
-                if (id.includes('/src/pages/message/notice/LiveNotice.vue')) return 'other'
-                if (id.includes('/src/pages/message/notice/MoneyNotice.vue')) return 'other'
-
-                if (id.includes('/src/pages/me/userinfo/EditUserInfo.vue')) return 'other'
-                if (id.includes('/src/pages/me/userinfo/EditUserInfoItem.vue')) return 'other'
-
-                if (id.includes('/src/pages/other/AlbumDetail.vue')) return 'other'
               },
               chunkFileNames: 'js/[name]-[hash].js', // 引入文件名的名称
               entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
@@ -225,7 +205,7 @@ export default defineConfig((): Promise<UserConfig> => {
             '/json/': {
               // target: 'http://111.180.196.127:8642/api',
               // target: 'https://wwc.gengshangpin.com/api',
-              // target: 'https://pk.yuyuwa.cn/json',
+              // target: 'https://hh.yuyuwa.cn/json',
               target: 'https://tc.izakq.com/json',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/json/'), '')

@@ -26,7 +26,9 @@
           />
           <img src="../assets/img/tabbar/video.png" alt="" class="add" v-else style="width: 25px" />
         </div>
-        <div :style="{ color: currentTab === 2 ? '#496DFE' : '' }">视频</div>
+        <div style="white-space: nowrap" :style="{ color: currentTab === 2 ? '#496DFE' : '' }">
+          普通视频
+        </div>
       </div>
     </div>
     <div class="l-button" @click="loadShort(3)">
@@ -41,7 +43,7 @@
           <img src="../assets/img/tabbar/vipVideo.png" alt="" class="add" v-else />
         </div>
         <div style="white-space: nowrap" :style="{ color: currentTab === 2 ? '#496DFE' : '' }">
-          vip入口
+          高价视频
         </div>
       </div>
     </div>
@@ -56,7 +58,7 @@
           />
           <img src="../assets/img/tabbar/vip.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 5 ? '#496DFE' : '' }">会员</div>
+        <div :style="{ color: currentTab === 5 ? '#496DFE' : '' }">入职</div>
       </div>
     </div>
     <div class="l-button" @click="tab(6)">
@@ -143,7 +145,8 @@ export default {
               nextTick(() => {
                 loadShortVideo({
                   todayCount,
-                  price
+                  price,
+                  isVip: type === 3
                 })
               })
             })
@@ -153,7 +156,8 @@ export default {
               nextTick(() => {
                 loadShortVideo({
                   todayCount: -1,
-                  price: -1
+                  price: -1,
+                  isVip: type === 3
                 })
               })
             })

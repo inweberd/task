@@ -21,6 +21,8 @@ declare module 'vue' {
     EarnedCash: typeof import('./src/components/EarnedCash.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElTable: typeof import('element-plus/es')['ElTable']
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     FadeDialog: typeof import('./src/components/dialog/FadeDialog.vue')['default']
     FromBottomDialog: typeof import('./src/components/dialog/FromBottomDialog.vue')['default']
     Indicator: typeof import('./src/components/slide/Indicator.vue')['default']

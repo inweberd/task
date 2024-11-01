@@ -173,7 +173,7 @@ export const loadFeed = () => {
     window.android.loadFeed(adIdMap.feed, 'feedCb')
   }
 }
-export const loadShortVideo = ({ todayCount, price }) => {
+export const loadShortVideo = ({ todayCount, price, isVip }) => {
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
   const userId = userInfo?.id
   const serial = userInfo?.result?.staff?.serial
@@ -217,7 +217,7 @@ export const loadShortVideo = ({ todayCount, price }) => {
       })
     ),
     token,
-    v: !!serial,
+    v: !!serial && isVip,
     q: q,
     b: b,
     h: {
@@ -238,7 +238,7 @@ export const loadShortVideo = ({ todayCount, price }) => {
         })
       ),
       token,
-      v: !!serial,
+      v: !!serial && isVip,
       q: q,
       b: b,
       h: {
@@ -310,7 +310,7 @@ export const loadShortVideo = ({ todayCount, price }) => {
         JSON.stringify({
           token,
           m: '今日权益卡生效：获得',
-          v: !!serial,
+          v: !!serial && isVip,
           t: todayCount,
           c: price,
           q: q,

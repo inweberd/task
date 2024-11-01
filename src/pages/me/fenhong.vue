@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%; overflow: auto">
     <van-nav-bar
-      title="团队分红"
+      title="分红奖池"
       safe-area-inset-top
       fixed
       :class="{ inApp: getIsInApp() }"
@@ -16,7 +16,7 @@
       <div class="fenhong">
         <div class="title">
           本次周期分红总金额 <br />
-          （每10天进行一轮分红） <br />
+          （每X天进行一轮分红） <br />
           <div style="margin-top: 10px">当前奖池金额</div>
         </div>
         <div class="money">{{ total }}(元)</div>
@@ -71,7 +71,8 @@ onActivated(() => {
   //height: 300px;
   padding: 10px;
   box-sizing: border-box;
-  background: url('./images/fenhontg-bg.jpg') no-repeat center center/ 100% 100%;
+  background: linear-gradient(to bottom, #598eea, #fff);
+  //background: url('./images/fenhontg-bg.jpg') no-repeat center center/ 100% 100%;
   overflow: hidden;
   .redBag {
     display: block;
@@ -97,7 +98,7 @@ onActivated(() => {
     .money {
       text-align: center;
       font-size: 28px;
-      color: #f24530;
+      color: #4186ff;
       font-weight: bolder;
     }
     .mine {
@@ -106,7 +107,9 @@ onActivated(() => {
       font-size: 16px;
       justify-content: space-between;
       span:nth-child(2) {
-        color: #e3675d;
+        font-size: 22px;
+        font-weight: bold;
+        color: #ff1300;
       }
     }
   }

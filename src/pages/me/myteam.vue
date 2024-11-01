@@ -10,7 +10,8 @@
       "
     >
       <div class="info">
-        <img src="@/assets/img/2.8184534.png" class="headerImg" />
+        <!--        <img src="@/assets/img/2.8184534.png" class="headerImg" />-->
+        <img src="@/assets/img/logo.png" class="headerImg" />
         <div class="name">
           <strong class="txt1">
             {{
@@ -233,7 +234,7 @@
       <li>
         <a href="javascript:void(0)" @click="go('/demo', true)"
           ><img src="./images/tuiguang.png" alt="" />
-          <p>推广返利海报</p></a
+          <p>月入过万</p></a
         >
       </li>
       <li>
@@ -247,6 +248,12 @@
         <a href="javascript:void(0)" @click="$router.push('/teamStat')"
           ><img src="./images/team.png" alt="" />
           <p>团队报表</p></a
+        >
+      </li>
+      <li>
+        <a href="javascript:void(0)" @click="$router.push('/fenhong')"
+          ><img src="./images/fhjc.png" alt="" />
+          <p>分红奖池</p></a
         >
       </li>
       <!--      <li>-->
@@ -267,12 +274,12 @@
       <!--          <p>合作单位</p></a-->
       <!--        >-->
       <!--      </li>-->
-      <li>
-        <a href="javascript:void(0)" @click="goDownload"
-          ><img src="./images/download.png" />
-          <p>APP下载</p></a
-        >
-      </li>
+      <!--      <li>-->
+      <!--        <a href="javascript:void(0)" @click="goDownload"-->
+      <!--          ><img src="./images/download.png" />-->
+      <!--          <p>APP下载</p></a-->
+      <!--        >-->
+      <!--      </li>-->
 
       <!--      <li>-->
       <!--        <a href="javascript:void(0)" @click="$router.push('/CreditScoreDetail')" class=""-->
@@ -477,7 +484,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://pk.yuyuwa.cn/download`
+    window.location.href = `https://hh.yuyuwa.cn/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false
@@ -540,7 +547,7 @@ onActivated(() => {
       width: 50px;
       height: 50px;
       display: block;
-      border-radius: 50%;
+      border-radius: 5px;
       margin-top: 20px;
       float: left;
       border: 1px solid #fff;

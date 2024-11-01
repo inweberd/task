@@ -51,8 +51,8 @@
                     font-weight: bold;
                   "
                 >
-                    {{item.name}}
-<!--                  {{ getSerialName(item.serial) }}-->
+                  {{ item.name }}
+                  <!--                  {{ getSerialName(item.serial) }}-->
                 </div>
                 <div
                   style="
@@ -149,8 +149,8 @@
                 }"
                 @click="buy(item)"
               >
-                <span style="font-size: 16px" v-if="myStaffList.includes(item.id)">已开通</span>
-                <span style="font-size: 16px" v-else>点击开通</span>
+                <span style="font-size: 16px" v-if="myStaffList.includes(item.id)">入职成功 </span>
+                <span style="font-size: 16px" v-else>未入职</span>
               </div>
             </div>
           </div>
@@ -214,9 +214,9 @@ const shopList = ref([
   {
     icon: 'dd'
   },
-    {
-        icon: 'dd'
-    }
+  {
+    icon: 'dd'
+  }
 ])
 
 const loading = ref(true)
@@ -415,8 +415,6 @@ const timerfir = ref()
 const timerfir2 = ref()
 const scrollY = ref(20) //滚动距离
 const speed = ref(0.5) //滚动速度
-
-
 </script>
 
 <style scoped lang="less">

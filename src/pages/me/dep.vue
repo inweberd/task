@@ -48,9 +48,9 @@
         >
         <div class="desc">
           <!--<div class="desc-title">提现流程</div>-->
-          <p><span class="index">1.</span> 提现时间早上11点-21点。</p>
-          <p><span class="index">2.</span> 提现手续费固定6%</p>
-          <p><span class="index">3.</span> 单笔最低15元起提，单笔最高5万元</p>
+          <p><span class="index">1.</span> 提现时间为10--21点</p>
+          <p><span class="index">2.</span> 提现手续费固定5%</p>
+          <p><span class="index">3.</span> 单笔11元起提，最高单笔1万元</p>
           <!--          <p>-->
           <!--            <span class="index">6.</span>-->
           <!--            推荐优先使用K豆钱包和JD钱包充提，永不风控，钱包里面内置支付宝，微信，银行卡，USDT等多种到账方式，自由转换，安全，方便快捷-->
@@ -100,7 +100,7 @@
               >保存</van-button
             >
           </van-tab>
-          <van-tab title="K豆钱包" style="padding: 0px 20px">
+          <van-tab v-if="false" title="K豆钱包" style="padding: 0px 20px">
             <van-field v-model="kd_value.name" label="姓名" placeholder="姓名" />
             <van-field v-model="kd_value.card_no" label="钱包地址" placeholder="钱包地址" />
             <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">
@@ -117,7 +117,7 @@
               >保存</van-button
             >
           </van-tab>
-          <van-tab title="JD钱包" style="padding: 0px 20px">
+          <van-tab v-if="false" title="JD钱包" style="padding: 0px 20px">
             <van-field v-model="jd_value.name" label="姓名" placeholder="姓名" />
             <van-field v-model="jd_value.card_no" label="钱包地址" placeholder="钱包地址" />
             <!--            <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">-->

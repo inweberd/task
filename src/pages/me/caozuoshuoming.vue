@@ -10,7 +10,12 @@
       left-text="返回"
       left-arrow
     ></van-nav-bar>
-    <div v-html="articleInfo.content" style="padding: 10px"></div>
+      <van-image width="100%" lazy-load  :src="caozuoshuoming" >
+          <template v-slot:loading>
+              <van-loading type="spinner" size="20" />
+          </template>
+      </van-image>
+<!--    <div v-html="articleInfo.content" style="padding: 10px"></div>-->
   </div>
 </template>
 
@@ -18,6 +23,7 @@
 import { getIsInApp } from '@/utils/getTopPadding'
 import { axiosInstance as axios } from '@/utils/myrequest'
 import { closeToast, showLoadingToast } from 'vant'
+import caozuoshuoming from "./images/caozuoshuoming.jpg"
 
 const articleInfo = ref('')
 

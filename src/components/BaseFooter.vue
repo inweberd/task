@@ -163,8 +163,8 @@ export default {
             })
         } else {
           showConfirmDialog({
-            message: '先分享微信朋友圈，再进行看视频赚收益!',
-            confirmButtonText: '一键分享微信朋友圈'
+            message: '分享朋友圈，刷短视频赚收益!',
+            confirmButtonText: '一键分享'
           }).then(() => {
             localStorage.isShortVideoShare = dayjs().format('YYYY-MM-DD')
             window.shareFriend()

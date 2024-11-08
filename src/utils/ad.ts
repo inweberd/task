@@ -200,7 +200,7 @@ export const loadShortVideo = ({ todayCount, price, isVip }) => {
 
     return item
   }
-  const q = {}
+  const q = ''
   const b = { count: '1', video_id: 'qwer' }
   const params = Object.assign({}, q, b)
   console.log(params)

@@ -228,8 +228,8 @@ const state = reactive({
   },
   item: {
     pay: {
-      id: 1,
-      data: {}
+      id: null,
+      data: null
     }
   },
   struct: {},
@@ -313,6 +313,9 @@ const method = {
   emit: async () => {
     if (!state.struct.amount) {
       return _notice('请输入充值金额！')
+    }
+    if (!state.item.pay.data) {
+      return _notice('请选择充值方式！')
     }
 
     if (state.struct.amount < state.item.pay?.data?.min) {

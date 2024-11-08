@@ -68,6 +68,7 @@
               label="邀请码"
               left-icon="records-o"
               placeholder="请输入邀请码"
+              :disabled="route.query.invite"
             />
           </van-cell-group>
 

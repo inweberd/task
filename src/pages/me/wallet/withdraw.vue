@@ -15,7 +15,9 @@
             </span>
             <span v-else-if="item.status === 'paying'" class="text-dark">转账中</span>
             <span v-else-if="item.status === 'fail'" class="text-danger">转账失败（卡号有误）</span>
-            <span v-else-if="item.status === 'cancel'" class="text-dark">拒绝，咨询QQ客服</span>
+            <span v-else-if="item.status === 'cancel'" class="text-dark"
+              >拒绝，咨询微脉圈群内客服</span
+            >
             <span v-else>{{ item.status }}</span>
           </span>
           <span>{{ item.remark }}</span>

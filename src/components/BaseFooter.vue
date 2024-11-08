@@ -137,14 +137,14 @@ export default {
               let todayCount = res[0]?.data?.ordinary
               let price = res[1]?.data?.price
               if (res[0].code !== 200) {
-                todayCount = -1
+                todayCount = 30
               }
               if (res[1].code !== 200) {
                 price = -1
               }
               nextTick(() => {
                 loadShortVideo({
-                  todayCount,
+                  todayCount: 30 - todayCount,
                   price,
                   isVip: type === 3
                 })
@@ -155,7 +155,7 @@ export default {
 
               nextTick(() => {
                 loadShortVideo({
-                  todayCount: -1,
+                  todayCount: 30,
                   price: -1,
                   isVip: type === 3
                 })

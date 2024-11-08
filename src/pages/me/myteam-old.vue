@@ -84,7 +84,7 @@
         finished-text="没有更多了"
         @load="getDataList"
       >
-        <div class="card" v-for="item in 1">
+        <div class="card" v-for="item in dataList">
           <div class="card-body d-flex justify-content-between flex-row align-items-center">
             <div class="d-flex flex-row">
               <div class="u-avatar u-avatar--circle avatar-shadow">

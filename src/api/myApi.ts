@@ -159,7 +159,7 @@ export function reqRechargeColumn(params) {
 
 // 钱包统计
 export function reqWalletStat() {
-  return axiosInstance({ url: 'api/wallet/chart', method: 'get' })
+  return axiosInstance({ url: '/api/config/one?key=BONUS_POOL', method: 'get' })
 }
 
 // 查询用户数量

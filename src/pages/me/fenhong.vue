@@ -55,13 +55,14 @@ onActivated(() => {
     if (res.code !== 200) {
       return
     }
-    if (date >= 1 && date <= 10) {
-      total.value = res.data.deposit[0].total
-    } else if (date >= 11 && date <= 20) {
-      total.value = res.data.deposit[1].total
-    } else {
-      total.value = res.data.deposit[2].total
-    }
+    total.value = res.data.value
+    // if (date >= 1 && date <= 10) {
+    //   total.value = res.data.deposit[0].total
+    // } else if (date >= 11 && date <= 20) {
+    //   total.value = res.data.deposit[1].total
+    // } else {
+    //   total.value = res.data.deposit[2].total
+    // }
   })
 })
 </script>

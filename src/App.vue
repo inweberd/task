@@ -291,32 +291,32 @@ onMounted(() => {
 
   // 监听 visibilitychange 事件
   // document.addEventListener('visibilitychange', handleVisibilityChange)
-  // const updateTimer = setInterval(() => {
-  //   if (!window.android) {
-  //     clearInterval(updateTimer)
-  //     return
-  //   }
-  //   fetch('/c.json')
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       if (res.c > getVersionCode()) {
-  //         showOverlay.value = true
-  //         clearInterval(updateTimer)
-  //         androidUpdate()
-  //       }
-  //     })
-  // }, 5000)
-  // if (window.android) {
-  //   fetch('/c.json')
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       if (res.c > getVersionCode()) {
-  //         showOverlay.value = true
-  //         clearInterval(updateTimer)
-  //         androidUpdate()
-  //       }
-  //     })
-  // }
+  const updateTimer = setInterval(() => {
+    if (!window.android) {
+      clearInterval(updateTimer)
+      return
+    }
+    fetch('/c.json')
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.c > getVersionCode()) {
+          showOverlay.value = true
+          clearInterval(updateTimer)
+          androidUpdate()
+        }
+      })
+  }, 5000)
+  if (window.android) {
+    fetch('/c.json')
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.c > getVersionCode()) {
+          showOverlay.value = true
+          clearInterval(updateTimer)
+          androidUpdate()
+        }
+      })
+  }
 })
 </script>
 

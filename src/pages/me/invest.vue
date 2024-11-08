@@ -188,8 +188,8 @@ defineOptions({
   name: 'invest'
 })
 const userIncomeInfo = ref({})
-const shouyiArrDay = [5, 15, 35, 70, 120, 160, 200, 400]
-const youxiaoArr = [55, 55, 49, 49, 45, 45, 45, 45]
+const shouyiArrDay = [8, 20, 40, 80, 120, 160, 200, 400]
+const youxiaoArr = [35, 45, 45, 45, 45, 45, 45, 45]
 const daxieArr = ['', '一', '二', '三', '四', '五', '六', '七']
 
 const shopList = ref([

@@ -13,9 +13,8 @@
     <div ref="chart1Ref" class="chart1"></div>
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="date" label="日期" width="110" />
-      <el-table-column prop="name" label="广告位名称" width="120" />
-      <el-table-column prop="num" label="展现数" width="110" />
-      <el-table-column prop="ecpm" label="ecpm（元）" width="110" />
+      <el-table-column prop="name" label="广告名称" width="120" />
+      <el-table-column prop="num" label="展现数" width="100" />
       <el-table-column prop="price" label="收益（元）" width="110" />
     </el-table>
   </div>
@@ -27,115 +26,32 @@ import { axiosInstance as axios } from '@/utils/myrequest'
 import { closeToast, showLoadingToast } from 'vant'
 
 import * as echarts from 'echarts'
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 
 const chart1Ref = ref()
-
-const tableData = [
-  {
-    date: '2024-10-21',
-    name: '激励视频广告',
-    num: '209800',
-    ecpm: '11.53',
-    price: '2419.4'
-  },
-  {
-    date: '2024-10-21',
-    name: '开屏广告',
-    num: '84720',
-    ecpm: '3.6',
-    price: '304.7'
-  },
-  {
-    date: '2024-10-21',
-    name: '插屏广告',
-    num: '592700',
-    ecpm: '9.22',
-    price: '5462.7'
-  },
-  {
-    date: '2024-10-21',
-    name: '短视频内容',
-    num: '952760',
-    ecpm: '0.88',
-    price: '839.3'
-  },
-  {
-    date: '2024-10-22',
-    name: '激励视频广告',
-    num: '209800',
-    ecpm: '11.53',
-    price: '2419.4'
-  },
-  {
-    date: '2024-10-22',
-    name: '开屏广告',
-    num: '84720',
-    ecpm: '3.6',
-    price: '304.7'
-  },
-  {
-    date: '2024-10-22',
-    name: '插屏广告',
-    num: '592700',
-    ecpm: '9.22',
-    price: '5462.7'
-  },
-  {
-    date: '2024-10-22',
-    name: '短视频内容',
-    num: '952760',
-    ecpm: '0.88',
-    price: '839.3'
-  },
-  {
-    date: '2024-10-23',
-    name: '激励视频广告',
-    num: '209800',
-    ecpm: '11.53',
-    price: '2419.4'
-  },
-  {
-    date: '2024-10-23',
-    name: '开屏广告',
-    num: '84720',
-    ecpm: '3.6',
-    price: '304.7'
-  },
-  {
-    date: '2024-10-23',
-    name: '插屏广告',
-    num: '592700',
-    ecpm: '9.22',
-    price: '5462.7'
-  },
-  {
-    date: '2024-10-23',
-    name: '短视频内容',
-    num: '952760',
-    ecpm: '0.88',
-    price: '839.3'
-  }
-]
-const articleInfo = ref('')
-showLoadingToast({
-  duration: 0,
-  message: '加载中'
-})
-axios.get('api/article/one?id=6').then((res) => {
-  closeToast()
-  if (res.code === 200) {
-    articleInfo.value = res.data
-  }
+const data = ref([])
+const tableData = computed(() => {
+  return data.value.reduce((prev, next) => {
+    let arr = next.list.map((item) => {
+      item.date = next.date
+      return item
+    })
+    return prev.concat(arr)
+  }, [])
 })
 
-onMounted(() => {
+const initChart = () => {
   var myChart = echarts.init(chart1Ref.value)
-  let list = [
-    { name: '10-21', value: 20068.37 },
-    { name: '10-22', value: 23591.4698 },
-    { name: '10-23', value: 32258.13 }
-  ]
+  let max = 0
+  const list = data.value.map((item) => {
+    if (item.total > max) {
+      max = item.total
+    }
+    return {
+      name: item.date,
+      value: item.total
+    }
+  })
   const option1 = {
     title: {
       text: '总收益',
@@ -200,7 +116,7 @@ onMounted(() => {
           color: '#333333',
           padding: [0, 0, 0, 20]
         },
-        max: 40000,
+        max: parseInt(max / 10000) * 10000 + 10000,
         min: 0,
         splitNumber: (123 % 5).toFixed(0),
         show: true,
@@ -353,6 +269,17 @@ onMounted(() => {
     ]
   }
   myChart.setOption(option1)
+}
+onMounted(() => {
+  showLoadingToast({
+    duration: 0,
+    message: '加载中'
+  })
+  axios.get('/dev/info/chart').then((res) => {
+    closeToast()
+    data.value = res.data
+    initChart()
+  })
 })
 </script>
 <style scoped>

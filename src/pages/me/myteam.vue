@@ -250,12 +250,12 @@
           <p>团队报表</p></a
         >
       </li>
-      <li>
-        <a href="javascript:void(0)" @click="$router.push('/fenhong')"
-          ><img src="./images/fhjc.png" alt="" />
-          <p>分红奖池</p></a
-        >
-      </li>
+      <!--      <li>-->
+      <!--        <a href="javascript:void(0)" @click="$router.push('/fenhong')"-->
+      <!--          ><img src="./images/fhjc.png" alt="" />-->
+      <!--          <p>分红奖池</p></a-->
+      <!--        >-->
+      <!--      </li>-->
       <!--      <li>-->
       <!--        <a href="javascript:void(0)" @click="$router.push('/pingtaijianjie')"-->
       <!--          ><img src="./images/pingtaijianjie.png" />-->

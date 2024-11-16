@@ -313,23 +313,6 @@ const getRedBag = () => {
       message: '请先购买服务器！'
     })
   }
-  // if (localStorage.isShare !== dayjs().format('YYYY-MM-DD')) {
-  //   showConfirmDialog({
-  //     message: '请先进行每日分享！',
-  //     confirmButtonText: '去分享'
-  //   }).then(() => {
-  //     if (window.webkit?.messageHandlers) {
-  //       localStorage.isShare = dayjs().format('YYYY-MM-DD')
-  //     }
-  //
-  //     window.shareFriend()
-  //     // on close
-  //     // loadPlayRewardVideo(() => {
-  //     //   sessionStorage.seeVideoGetEarnedCash = true
-  //     // })
-  //   })
-  //   return
-  // }
   loadingBtn.value = true
   reqRecordTask().then((res) => {
     loadingBtn.value = false

@@ -262,24 +262,24 @@
       <!--          <p>平台简介</p></a-->
       <!--        >-->
       <!--      </li>-->
-      <!--      <li>-->
-      <!--        <a href="javascript:void(0)" @click="$router.push('/caozuoshuoming')"-->
-      <!--          ><img src="./images/caozuoshuoming.png" />-->
-      <!--          <p>操作说明</p></a-->
-      <!--        >-->
-      <!--      </li>-->
+      <li>
+        <a href="javascript:void(0)" @click="$router.push('/caozuoshuoming')"
+          ><img src="./images/caozuoshuoming.png" />
+          <p>操作说明</p></a
+        >
+      </li>
       <!--      <li>-->
       <!--        <a href="javascript:void(0)" @click="$router.push('/hezuodanwei')"-->
       <!--          ><img src="./images/hezuodanwei.png" />-->
       <!--          <p>合作单位</p></a-->
       <!--        >-->
       <!--      </li>-->
-      <!--      <li>-->
-      <!--        <a href="javascript:void(0)" @click="goDownload"-->
-      <!--          ><img src="./images/download.png" />-->
-      <!--          <p>APP下载</p></a-->
-      <!--        >-->
-      <!--      </li>-->
+      <li>
+        <a href="javascript:void(0)" @click="goDownload"
+          ><img src="./images/download.png" />
+          <p>APP下载</p></a
+        >
+      </li>
 
       <!--      <li>-->
       <!--        <a href="javascript:void(0)" @click="$router.push('/CreditScoreDetail')" class=""-->

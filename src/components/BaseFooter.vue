@@ -33,16 +33,20 @@
     </div>
     <div class="l-button" @click="loadShort(3)">
       <div class="add-ctn">
-        <div class="img-box">
-          <img
-            src="../assets/img/tabbar/vipVideo-active.png"
-            alt=""
-            class="add"
-            v-if="currentTab === 2"
-          />
-          <img src="../assets/img/tabbar/vipVideo.png" alt="" class="add" v-else />
-        </div>
-        <div style="white-space: nowrap" :style="{ color: currentTab === 2 ? '#496DFE' : '' }">
+        <!--        <div class="img-box">-->
+        <!--          <img-->
+        <!--            src="../assets/img/tabbar/vipVideo-active.png"-->
+        <!--            alt=""-->
+        <!--            class="add"-->
+        <!--            v-if="currentTab === 2"-->
+        <!--          />-->
+        <!--          <img src="../assets/img/tabbar/vipVideo.png" alt="" class="add" v-else />-->
+        <!--        </div>-->
+        <div
+          style="white-space: nowrap; text-align: center; font-size: 15px"
+          :style="{ color: currentTab === 2 ? '#496DFE' : '' }"
+        >
+          <p style="color: red">（免广告）</p>
           高价视频
         </div>
       </div>

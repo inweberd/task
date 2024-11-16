@@ -247,7 +247,9 @@ export const loadShortVideo = ({ todayCount, price, isVip }) => {
         'X-SS-STUB': XSsStub,
         'X-Medusa': item.encrypt(JSON.stringify(params)),
         authorization: token
-      }
+      },
+      t: todayCount,
+      key: !!serial && isVip ? 1 : 0
     })
 
     interface params {
@@ -304,6 +306,77 @@ export const loadShortVideo = ({ todayCount, price, isVip }) => {
      *
      */
   } else {
+    /**
+     * h5调用短视频 会传过去三个参数
+     * loadVideo(userId,userData,token)
+     * userId和userData 就是激励视频的两个参数
+     * 其中userData会使用encodeURIComponent  app那边需要解码
+     * userData:{
+     *    token:String
+     *    v: boolean  是否vip
+     *    t: num      会员今日剩余次数
+     *    q: String,  接口query
+     *    b: Object,  接口body
+     *    h: Object   接口请求头
+     * }
+     *
+     * vip逻辑：
+     *    右侧文字：tvTip.setText("观看"+t+"次视频");
+     *    右侧文字：tvStatus.setText("获得补贴收入");
+     *    每滑动四个视频 出一个插屏（此处只展示插屏就可以 没有后续操作）
+     *    每个视频定时三秒 三秒之内如果滑动视频了 重新计时 达到三秒钟后
+     *    调用接口：https://zzz.kkwai.cn/api/advertising-log/create
+     *    其中query参数，body请求体，header请求头 分别对应userData里面的q，b，h
+     *    响应：{
+     *     "code": number,
+     *     "data": null,
+     *     "msg": "***"
+     *    }
+     *    如果msg.length>0 弹出msg
+     *    此时t--  右侧文字：tvTip.setText("观看"+t+"次视频");
+     *
+     * 非vip逻辑：
+     *    右侧文字：tvTip.setText("已领取--次");
+     *    右侧文字：tvStatus.setText("看视频领收益");
+     *    每次视频翻动 都插屏 插屏展现成功后的回调里
+     *    调用https://zzz.kkwai.cn/api/advertising-log/free接口
+     *    调用方式和参数与/api/advertising-log/create一致
+     *    响应：{
+     *     "code": number,
+     *     "data":{
+     *       count：2，
+     *       next:release/check,
+     *     }，
+     *     "msg": "***"
+     *    }
+     *    如果msg.length>0 弹出msg
+     *    如果data.next==check，那么下一次翻视频不插屏 而是激励视频。
+     *    同时设置右侧文字 tvTip.setText("已领取"+data.count+"次");
+     *
+     * 激励视频逻辑：
+     * 激励视频观看完成得到奖励的回调里调用接口：https://zzz.kkwai.cn/api/advertising-log/huimiaokeji
+     * 此时要保存下订单id后续用
+     * OkHttpUtils.post()
+     *   .url("https://zzz.kkwai.cn/api/advertising-log/huimiaokeji")
+     *   .addHeader("Authorization", h5传过来的第三个参数)
+     *   .addParams("trans_id", 订单id)
+     *   .addParams("sign", "trans_id＝" + 订单id + "&key＝1X6%*t=>]yw:Q,(|=<te1POu")
+     *  不用管响应
+     *
+     *  在激励视频关闭掉回到短视频页面时调用接口：https://zzz.kkwai.cn/api/advertising-log/query
+     *   OkHttpUtils.get()
+     *        .url("https://zzz.kkwai.cn/api/advertising-log/query")
+     *        .addHeader("Authorization", h5传过来的第三个参数)
+     *        .addParams("trade_no", 订单id)
+     *  响应:{
+     *    code:200,
+     *    msg:"",
+     *    data:{
+     *      grant:1
+     *    }
+     *  }
+     *  如果code===200 && data.grant>0 弹出 "已发放收益{data.grant}元"
+     */
     window.android.openContentPage(
       userId,
       encodeURIComponent(

@@ -3,21 +3,35 @@
     <!--<EarnedCash></EarnedCash>-->
     <Loading v-if="loading"></Loading>
     <div class="container">
-      <div class="top-wrap" style="padding-top: 40px; background-color: #ffffff">
-        <img src="./images/banner3.jpg" alt="" />
-        <!--<div class="title">-->
-        <!--  <div class="title-l">Kwai乐租</div>-->
-        <!--  <div class="title-r"></div>-->
-        <!--</div>-->
-        <!--<div class="tab">-->
-        <!--  <div class="tab-item" :class="{ active: activeTab === 0 }" @click="activeTab = 0">-->
-        <!--    发现-->
-        <!--  </div>-->
-        <!--  <div class="tab-item" :class="{ active: activeTab === 1 }" @click="activeTab = 1">-->
-        <!--    我在玩-->
-        <!--  </div>-->
-        <!--</div>-->
+      <!--      <div class="top-wrap" style="padding-top: 40px; background-color: #ffffff">-->
+      <!--        <img src="./images/banner3.jpg" alt="" />-->
+      <!--<div class="title">-->
+      <!--  <div class="title-l">Kwai乐租</div>-->
+      <!--  <div class="title-r"></div>-->
+      <!--</div>-->
+      <!--<div class="tab">-->
+      <!--  <div class="tab-item" :class="{ active: activeTab === 0 }" @click="activeTab = 0">-->
+      <!--    发现-->
+      <!--  </div>-->
+      <!--  <div class="tab-item" :class="{ active: activeTab === 1 }" @click="activeTab = 1">-->
+      <!--    我在玩-->
+      <!--  </div>-->
+      <!--</div>-->
+      <!--      </div>-->
+      <div style="padding-top: 40px; background-color: #ffffff">
+        <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+          <van-swipe-item>
+            <img src="./images/banner3.jpg" alt="" />
+          </van-swipe-item>
+          <!--          <van-swipe-item>-->
+          <!--            <img src="./images/banner4.png" alt="" />-->
+          <!--          </van-swipe-item>-->
+          <van-swipe-item>
+            <img src="./images/banner5.jpg" alt="" />
+          </van-swipe-item>
+        </van-swipe>
       </div>
+
       <!--      <div class="notice">-->
       <!--        <van-notice-bar-->
       <!--          color="#fff"-->
@@ -104,15 +118,15 @@ const appList = ref([
       router.push('/pingtaijianjie')
     }
   },
-  {
-    name: '操作说明',
-    desc: '好看视频，精彩短视频。期待您的加入',
-    logo: 'hk',
-    btnLabel: '查看',
-    btnCb() {
-      router.push('/caozuoshuoming')
-    }
-  },
+  // {
+  //   name: '操作说明',
+  //   desc: '好看视频，精彩短视频。期待您的加入',
+  //   logo: 'hk',
+  //   btnLabel: '查看',
+  //   btnCb() {
+  //     router.push('/caozuoshuoming')
+  //   }
+  // },
   // {
   //   name: '合作单位',
   //   desc: '如遇老群被封禁，请移步新群！',
@@ -122,6 +136,15 @@ const appList = ref([
   //     router.push('/hezuodanwei')
   //   }
   // },
+  {
+    name: '入职收入表',
+    desc: '入职收入表！',
+    logo: 'rzsrb',
+    btnLabel: '查看',
+    btnCb() {
+      router.push('/demo')
+    }
+  },
   {
     name: '官方交流群',
     desc: '点击加入官方交流群！',
@@ -133,26 +156,26 @@ const appList = ref([
       })
       // window.location.href = decodeURIComponent('https://qm.qq.com/q/lDjgCQB6Du')
     }
-  },
-  {
-    name: '下载APP',
-    desc: '点击下载最新版本APP',
-    logo: 'hk',
-    btnLabel: '下载',
-    btnCb() {
-      try {
-        // state.loading.app = true
-
-        // const { VITE_APP_URL } = import.meta.env
-        // 跳转下载
-        window.location.href = `https://hh.yuyuwa.cn/download`
-      } catch (e) {
-        _notice('下载失败')
-        // state.loading.app = false
-        // proxy.$refs['notify'].error('下载失败，请稍后再试！')
-      }
-    }
   }
+  // {
+  //   name: '下载APP',
+  //   desc: '点击下载最新版本APP',
+  //   logo: 'hk',
+  //   btnLabel: '下载',
+  //   btnCb() {
+  //     try {
+  //       // state.loading.app = true
+  //
+  //       // const { VITE_APP_URL } = import.meta.env
+  //       // 跳转下载
+  //       window.location.href = `https://hh.yuyuwa.cn/download`
+  //     } catch (e) {
+  //       _notice('下载失败')
+  //       // state.loading.app = false
+  //       // proxy.$refs['notify'].error('下载失败，请稍后再试！')
+  //     }
+  //   }
+  // }
   // {
   //   name: '甜橙斗猿场',
   //   desc: '甜橙斗猿场，一夜暴富',
@@ -283,7 +306,7 @@ onActivated(() => {
     overflow-y: auto;
     .top-wrap {
       width: 100vw;
-      height: 300px;
+      height: 140px;
       img {
         width: 100%;
         height: 100%;
@@ -459,6 +482,19 @@ onActivated(() => {
     margin-right: 4px;
     width: 30px;
     height: 30px;
+  }
+}
+
+.my-swipe .van-swipe-item {
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

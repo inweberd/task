@@ -21,7 +21,7 @@
       <div style="padding-top: 40px; background-color: #ffffff">
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
           <van-swipe-item>
-            <img src="./images/banner3.jpg" alt="" />
+            <img src="./images/banner3.png" alt="" />
           </van-swipe-item>
           <!--          <van-swipe-item>-->
           <!--            <img src="./images/banner4.png" alt="" />-->
@@ -60,15 +60,22 @@
             <div class="download" @click="item.btnCb">{{ item.btnLabel }}</div>
           </div>
         </div>
+        <p style="text-align: center; color: #888; margin-bottom: 10px">京ICP证030173号-215A</p>
         <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
 
-      <div class="playing" v-show="activeTab === 1">
-        <van-empty :image="empty" image-size="120" description="未搜索到应用" />
-      </div>
+      <!--      <div class="playing" v-show="activeTab === 1">-->
+      <!--        <van-empty :image="empty" image-size="120" description="未搜索到应用" />-->
+      <!--      </div>-->
     </div>
     <BaseFooter v-bind:init-tab="1" :is-white="true" />
-
+    <div class="contact" @click="jumpToQQ">
+      <img src="@/assets/img/kefu.png" alt="" />
+      <div>
+        <div>联系</div>
+        <div>客服</div>
+      </div>
+    </div>
     <!--<div class="contact" @click="$router.push('/article?id=5')">-->
     <!--  <img src="@/assets/img/paly-introduce.png" alt="" />-->
     <!--  <div>-->
@@ -110,8 +117,8 @@ const appList = ref([
     }
   },
   {
-    name: '平台简介',
-    desc: '点击查看平台简介！',
+    name: '百度极速版简介',
+    desc: '点击查看百度极速版简介！',
     logo: 'pingtaijianjie',
     btnLabel: '查看',
     btnCb() {
@@ -148,15 +155,27 @@ const appList = ref([
   {
     name: '官方交流群',
     desc: '点击加入官方交流群！',
-    logo: 'weimaiquan',
+    logo: 'qq',
     btnLabel: '加入',
     btnCb() {
-      showImagePreview({
-        images: [weimaiquan]
-      })
-      // window.location.href = decodeURIComponent('https://qm.qq.com/q/lDjgCQB6Du')
+      // showImagePreview({
+      //   images: [weimaiquan]
+      // })
+      window.location.href = decodeURIComponent('https://qm.qq.com/q/nXjc3S4XwQ')
     }
   }
+  // {
+  //   name: '官方交流群',
+  //   desc: '点击加入官方交流群！',
+  //   logo: 'weimaiquan',
+  //   btnLabel: '加入',
+  //   btnCb() {
+  //     showImagePreview({
+  //       images: [weimaiquan]
+  //     })
+  //     // window.location.href = decodeURIComponent('https://qm.qq.com/q/lDjgCQB6Du')
+  //   }
+  // }
   // {
   //   name: '下载APP',
   //   desc: '点击下载最新版本APP',
@@ -212,7 +231,7 @@ function goDownload() {
   }
 }
 function jumpToQQ() {
-  window.location.href = decodeURIComponent('https://qm.qq.com/q/rfYONthKYq')
+  window.location.href = decodeURIComponent('https://qm.qq.com/q/nXjc3S4XwQ')
   // loadInteraction()
   // loadSplash()
   // loadPlayRewardVideo(() => {
@@ -461,29 +480,6 @@ onActivated(() => {
     }
   }
 }
-.contact {
-  position: fixed;
-  top: 50%;
-  right: 0;
-  display: flex;
-  align-items: center;
-  background-color: #fc7a02;
-  border-radius: 20px 0 0 20px;
-  padding: 4px;
-  color: #fff;
-  box-shadow:
-    0px 0.1px 2.2px rgba(0, 0, 0, 0.02),
-    0px 0.3px 5.3px rgba(0, 0, 0, 0.028),
-    0px 0.5px 10px rgba(0, 0, 0, 0.035),
-    0px 0.9px 17.9px rgba(0, 0, 0, 0.042),
-    0px 1.7px 33.4px rgba(0, 0, 0, 0.05),
-    0px 4px 80px rgba(0, 0, 0, 0.07);
-  img {
-    margin-right: 4px;
-    width: 30px;
-    height: 30px;
-  }
-}
 
 .my-swipe .van-swipe-item {
   color: #fff;
@@ -495,6 +491,28 @@ onActivated(() => {
   img {
     width: 100%;
     height: 100%;
+  }
+}
+.contact {
+  position: fixed;
+  top: 80%;
+  right: 0;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 20px 0 0 20px;
+  padding: 4px;
+  box-shadow:
+    0px 0.1px 2.2px rgba(0, 0, 0, 0.02),
+    0px 0.3px 5.3px rgba(0, 0, 0, 0.028),
+    0px 0.5px 10px rgba(0, 0, 0, 0.035),
+    0px 0.9px 17.9px rgba(0, 0, 0, 0.042),
+    0px 1.7px 33.4px rgba(0, 0, 0, 0.05),
+    0px 4px 80px rgba(0, 0, 0, 0.07);
+  img {
+    margin-right: 4px;
+    width: 30px;
+    height: 30px;
   }
 }
 </style>

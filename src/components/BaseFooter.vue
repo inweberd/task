@@ -53,16 +53,22 @@
     </div>
     <div class="l-button" @click="tab(5)">
       <div class="add-ctn">
-        <div class="img-box">
-          <img
-            src="../assets/img/tabbar/vip-active.png"
-            alt=""
-            class="add"
-            v-if="currentTab === 5"
-          />
-          <img src="../assets/img/tabbar/vip.png" alt="" class="add" v-else />
+        <!--        <div class="img-box">-->
+        <!--          <img-->
+        <!--            src="../assets/img/tabbar/vip-active.png"-->
+        <!--            alt=""-->
+        <!--            class="add"-->
+        <!--            v-if="currentTab === 5"-->
+        <!--          />-->
+        <!--          <img src="../assets/img/tabbar/vip.png" alt="" class="add" v-else />-->
+        <!--        </div>-->
+        <div
+          style="white-space: nowrap; text-align: center; font-size: 15px"
+          :style="{ color: currentTab === 5 ? '#496DFE' : '' }"
+        >
+          <p style="color: red">（无广告）</p>
+          VIP
         </div>
-        <div :style="{ color: currentTab === 5 ? '#496DFE' : '' }">入职</div>
       </div>
     </div>
     <div class="l-button" @click="tab(6)">

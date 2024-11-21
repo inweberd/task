@@ -3,7 +3,7 @@
     <!-- <dy-back mode="light" img="back" @click="router.back()" class="fixed-back" direction="left" /> -->
 
     <van-nav-bar
-      title="余额互转"
+      title="佣金互转"
       safe-area-inset-top
       :class="{ inApp: getIsInApp() }"
       fixed
@@ -46,7 +46,7 @@
               size="small"
               type="primary"
               @click="getCode"
-              style="background: #f46d16; border: none"
+              style="background: #3f86ff; border: none"
               :disabled="countdown"
             >
               {{ countdown ? countdown + 's重新发送' : '发送验证码' }}
@@ -65,7 +65,7 @@
             block
             type="primary"
             native-type="submit"
-            style="background: #f46d16; border: none"
+            style="background: #3f86ff; border: none"
           >
             转账
           </van-button>
@@ -131,8 +131,8 @@ function getCode() {
   })
 }
 function onSubmit() {
-  if (data.amount < 10) {
-    return _notice('小于十元不许转账！')
+  if (data.amount < 50) {
+    return _notice('佣金互转50元起！')
   }
   if (!data.phone || !data.code) {
     return _notice('请输入验证码！')

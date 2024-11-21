@@ -51,7 +51,8 @@
                     font-weight: bold;
                   "
                 >
-                  {{ item.name }}
+                  <!--                  {{ item.name }}-->
+                  员工卡
                   <!--                  {{ getSerialName(item.serial) }}-->
                 </div>
                 <div
@@ -135,29 +136,45 @@
                   {{ youxiaoArr[index] }}天
                 </div>
               </div>
+              <van-stepper
+                v-model="count"
+                theme="round"
+                button-size="22"
+                disable-input
+                style="margin-top: 10px"
+              />
 
               <div
                 style="
                   background: #fff;
                   color: #6344bb;
-                  width: 65px;
-                  margin: 10px auto;
+                  width: 100px;
+                  margin: 15px auto;
                   font-weight: bold;
+                  padding: 6px 0;
+                  border-radius: 15px;
                 "
-                :style="{
-                  background: myStaffList.includes(item.id) ? '#a8bce0' : '#fff'
-                }"
                 @click="buy(item)"
               >
-                <span style="font-size: 16px" v-if="myStaffList.includes(item.id)">入职成功 </span>
-                <span style="font-size: 16px" v-else>未入职</span>
+                <!--                <span style="font-size: 16px" v-if="myStaffList.includes(item.id)">入职成功 </span>-->
+                <!--                <span style="font-size: 16px" v-else>未入职</span>-->
+                <span style="font-size: 16px">购买</span>
               </div>
             </div>
           </div>
+          <p style="text-align: center; margin-top: 10px">
+            当前拥有员工卡数量：{{ myStaffList?.length || 0 }}张
+          </p>
+          <p style="text-align: center; margin-top: 10px">
+            同时拥有多张员工卡，<span style="color: #0a53be">收益同时叠加生效。</span>
+          </p>
         </div>
       </div>
     </div>
   </div>
+
+  <p style="text-align: center; color: #888; margin-bottom: 10px">京ICP证030173号-215A</p>
+
   <BaseFooter v-bind:init-tab="5" :is-white="false" />
 </template>
 <script setup lang="ts">
@@ -187,6 +204,7 @@ const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
 defineOptions({
   name: 'invest'
 })
+const count = ref(1)
 const userIncomeInfo = ref({})
 const shouyiArrDay = [8, 20, 40, 80, 120, 160, 200, 400]
 const youxiaoArr = [35, 45, 45, 45, 45, 45, 45, 45]
@@ -195,28 +213,28 @@ const daxieArr = ['', '一', '二', '三', '四', '五', '六', '七']
 const shopList = ref([
   {
     icon: 'pdd'
-  },
-  {
-    icon: 'pdd'
-  },
-  {
-    icon: 'tb'
-  },
-  {
-    icon: 'tm'
-  },
-  {
-    icon: 'jd'
-  },
-  {
-    icon: 'ymx'
-  },
-  {
-    icon: 'dd'
-  },
-  {
-    icon: 'dd'
   }
+  // {
+  //   icon: 'pdd'
+  // },
+  // {
+  //   icon: 'tb'
+  // },
+  // {
+  //   icon: 'tm'
+  // },
+  // {
+  //   icon: 'jd'
+  // },
+  // {
+  //   icon: 'ymx'
+  // },
+  // {
+  //   icon: 'dd'
+  // },
+  // {
+  //   icon: 'dd'
+  // }
 ])
 
 const loading = ref(true)
@@ -245,7 +263,6 @@ const getAllStaff = () => {
         }
       }
     })
-    console.log(222)
 
     console.log('staffList', staffList.value)
     getMyStaff()
@@ -255,13 +272,13 @@ const getIconPath = (icon) => {
   return new URL(`../../assets/img/shop/${icon}.png`, import.meta.url).href
 }
 const buy = (item) => {
-  if (myStaffList.value.includes(item.id)) {
-    showToast({
-      message: '您已拥有此会员！',
-      icon: 'warning'
-    })
-    return
-  }
+  // if (myStaffList.value.includes(item.id)) {
+  //   showToast({
+  //     message: '您已拥有此会员！',
+  //     icon: 'warning'
+  //   })
+  //   return
+  // }
 
   // if(){
   //
@@ -281,12 +298,13 @@ const buy = (item) => {
     console.log('reqWalletInfo', res)
     loading.value = false
 
-    if (item.price > res.data.amount + res.data.money) {
+    if (item.price * count.value > res.data.amount + res.data.money) {
       loading.value = false
       _notice('账户余额不足,请充值!')
       router.push('/recharge')
     } else {
       reqEnterStaff({
+        count: count.value,
         staff_id: item.id
       }).then((sub_res) => {
         loading.value = false
@@ -688,6 +706,16 @@ const speed = ref(0.5) //滚动速度
   & > div {
     text-align: center;
     line-height: 25px;
+  }
+}
+:deep(.van-stepper--round) {
+  .van-stepper__input {
+    color: #eee;
+  }
+  .van-stepper__plus,
+  .van-stepper__minus {
+    background-color: #fff !important;
+    color: #333;
   }
 }
 </style>

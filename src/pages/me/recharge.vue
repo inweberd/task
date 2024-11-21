@@ -170,14 +170,22 @@ import { load } from '@fingerprintjs/fingerprintjs'
 const loading = ref(false)
 
 const downloadList = [
-  // {
-  //   label: 'K豆钱包安卓下载地址',
-  //   url: 'https://552gfxy.zhengchang88.com/yziwzgq4og'
-  // },
-  // {
-  //   label: 'K豆钱包苹果下载地址',
-  //   url: 'https://552gfxy.zhengchang88.com/yziwzgq4og'
-  // },
+  {
+    label: 'K豆钱包安卓下载地址',
+    url: 'https://yze1z.360tixi.com/cs5t/yziwzgq4og'
+  },
+  {
+    label: 'K豆钱包苹果下载地址',
+    url: 'https://yze1z.360tixi.com/cs5t/yziwzgq4og'
+  },
+  {
+    label: 'JD钱包安卓下载地址',
+    url: 'https://s20w2la.foton-autoparts.com/32763431746c6f'
+  },
+  {
+    label: 'JD钱包苹果下载地址',
+    url: 'https://mgyyz.ieslabsd.com/PpNV6In/n2i3ody0yt'
+  }
   // {
   //   label: 'KD充值视频教程',
   //   url: '/data/video/buy.mp4'

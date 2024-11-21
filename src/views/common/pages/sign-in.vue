@@ -84,6 +84,13 @@
         </div>
       </div>
     </div>
+    <div class="contact" @click="jumpToQQ">
+      <img src="@/assets/img/kefu.png" alt="" />
+      <div>
+        <div>联系</div>
+        <div>客服</div>
+      </div>
+    </div>
     <!--    <div class="contact" @click="$router.push('/article?id=5')">-->
     <!--      <img src="@/assets/img/jieshao.png" />-->
     <!--      <div>-->
@@ -178,10 +185,10 @@ const randomNum = (min, max) => {
   return parseInt(Math.random() * (max - min) + min, 10)
 }
 function jumpToQQ2() {
-  showImagePreview({
-    images: [weimaiquan]
-  })
-  // window.location.href = decodeURIComponent('https://qm.qq.com/q/PKi43AkbEy')
+  // showImagePreview({
+  //   images: [weimaiquan]
+  // })
+  window.location.href = decodeURIComponent('https://qm.qq.com/q/nXjc3S4XwQ')
 }
 // 随机生成颜色
 const randomColor = (min, max) => {

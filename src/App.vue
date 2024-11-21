@@ -61,7 +61,7 @@
 import routes from './router/routes'
 import { useBaseStore } from '@/store/pinia.js'
 import { computed, onMounted, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import { loadWx } from '@/utils/loadWx'
 import wx from 'weixin-js-sdk'
@@ -93,6 +93,7 @@ import { testBase64 } from '@/utils/testBase64'
 import { closeToast, showLoadingToast } from 'vant'
 const store = useBaseStore()
 const route = useRoute()
+const router = useRouter()
 const transitionName = ref('go')
 const showOverlay = ref(false)
 
@@ -282,6 +283,9 @@ onMounted(() => {
       // window.android.getMoneyCb('回调字符串')
     })
     // alert(13311)
+  }
+  window.toInvest = function (params) {
+    router.push('/invest')
   }
 
   window.shareFriend = function () {

@@ -30,13 +30,14 @@
 
 <script setup>
 import QRCode from 'qrcode'
-import imageSrc from '@/assets/img/share-bg.jpg'
+import imageSrc from '@/assets/img/share-bg.png'
 
 import { wechatShareImg, wechatShareLink } from '@/utils/ad'
+import { ref } from 'vue'
 
 const canvas = ref()
 const canvasWidth = ref(window.innerWidth)
-const canvasHeight = ref(window.innerWidth / (1658 / 2480))
+const canvasHeight = ref(window.innerWidth / (580 / 1031))
 const qrCodeText = ref(
   'http://bbbwx1028a12.s3-website-us-east-1.amazonaws.com/index.html?target=' +
     encodeURIComponent(
@@ -77,7 +78,7 @@ const generatePoster = async () => {
   image.onload = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
 
-    const qrCodeSize = canvasWidth.value * 0.4 // 调整二维码的大小
+    const qrCodeSize = canvasWidth.value * 0.25 // 调整二维码的大小
     const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
       width: qrCodeSize,
       height: qrCodeSize,
@@ -88,8 +89,10 @@ const generatePoster = async () => {
     qrCodeImage.src = qrCodeDataURL
     qrCodeImage.onload = () => {
       // 在海报上绘制二维码，位置在正中心下方
-      const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
-      const qrCodeY = canvasHeight.value - qrCodeSize * 2.6
+      // const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
+      const qrCodeX = 30
+      // const qrCodeY = canvasHeight.value - qrCodeSize * 2.6
+      const qrCodeY = canvasHeight.value - 125
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }
   }

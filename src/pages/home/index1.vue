@@ -199,7 +199,8 @@ let firstRender = true
 function getData() {
   showLoadingToast({
     duration: 0,
-    message: '加载中'
+    message: '加载中',
+    icon: '/tip.png'
   })
   axios.get('api/article/one?id=' + active.value).then((res) => {
     !firstRender && closeToast()
@@ -224,7 +225,8 @@ const showImage = (index) => {
 const getShouyi = () => {
   showLoadingToast({
     duration: 0,
-    message: '加载中'
+    message: '加载中',
+    icon: '/tip.png'
   })
   if (!userInfo.value?.result?.staff?.id) {
     closeToast()

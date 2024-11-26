@@ -47,6 +47,7 @@
           :style="{ color: currentTab === 2 ? '#496DFE' : '' }"
         >
           <p style="color: red">（免广告）</p>
+          <!--          <p style="font-size: 12px">（每日1000次）</p>-->
           高价视频
         </div>
       </div>
@@ -67,6 +68,7 @@
           :style="{ color: currentTab === 5 ? '#496DFE' : '' }"
         >
           <p style="color: red">（无广告）</p>
+          <!--          <p style="font-size: 12px">（每日30次）</p>-->
           VIP
         </div>
       </div>
@@ -137,7 +139,8 @@ export default {
           // loadInteraction()
           showLoadingToast({
             duration: 0,
-            message: '加载中'
+            message: '加载中',
+            icon: '/tip.png'
           })
           let arr = [reqAdvertisingCount(), reqAdvertisingSinglePrice()]
           Promise.all(arr)

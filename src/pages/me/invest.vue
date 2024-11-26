@@ -168,12 +168,30 @@
           <p style="text-align: center; margin-top: 10px">
             同时拥有多张员工卡，<span style="color: #0a53be">收益同时叠加生效。</span>
           </p>
+          <div style="margin-top: 10px"></div>
+          <p style="text-align: center">
+            1张VIP卡 每天刷<span style="color: #0a53be">30个高价视频得8元</span>
+          </p>
+          <p style="text-align: center; margin-bottom: 10px">
+            VIP用户每天刷完高价视频，还可以继续去刷普通视频
+          </p>
+          <p style="text-align: center">
+            一次性购买10张VIP卡可享受<span style="color: #0a53be">9.8折优惠</span>（联系群管理）
+          </p>
+          <p style="text-align: center">
+            一次性购买50张VIP卡可享受<span style="color: #0a53be">9.5折优惠</span>（联系群管理）
+          </p>
+          <p style="text-align: center">
+            一次性购买100张VIP卡可享受<span style="color: #0a53be">9折优惠</span> （联系群管理）
+          </p>
         </div>
       </div>
     </div>
   </div>
 
-  <p style="text-align: center; color: #888; margin-bottom: 10px">京ICP证030173号-215A</p>
+  <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 60px">
+    京ICP证030173号-215A
+  </p>
 
   <BaseFooter v-bind:init-tab="5" :is-white="false" />
 </template>

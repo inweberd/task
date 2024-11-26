@@ -185,6 +185,14 @@ const downloadList = [
   {
     label: 'JD钱包苹果下载地址',
     url: 'https://mgyyz.ieslabsd.com/PpNV6In/n2i3ody0yt'
+  },
+  {
+    label: 'K豆钱包卖卖视频教程',
+    url: 'https://kdzfxz.kdzf2345.com/home/#/transactionFlow'
+  },
+  {
+    label: 'jd钱包买卖视频教程',
+    url: 'www.jdpay01.com/#/transactionFlow'
   }
   // {
   //   label: 'KD充值视频教程',

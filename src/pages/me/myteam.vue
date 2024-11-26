@@ -389,7 +389,8 @@ const getPullNew = () => {
   // })
   showLoadingToast({
     duration: 0,
-    message: '加载中'
+    message: '加载中',
+    icon: '/tip.png'
   })
   reqPullNewLite().then((res) => {
     closeToast()
@@ -401,7 +402,8 @@ const getPullNew = () => {
 const getPullNew2 = () => {
   showLoadingToast({
     duration: 0,
-    message: '加载中'
+    message: '加载中',
+    icon: '/tip.png'
   })
   reqPullNew().then((res) => {
     closeToast()
@@ -413,7 +415,8 @@ const getPullNew2 = () => {
 const getShouyi = () => {
   showLoadingToast({
     duration: 0,
-    message: '加载中'
+    message: '加载中',
+    icon: '/tip.png'
   })
   if (!userInfo.value?.result?.staff?.id) {
     closeToast()

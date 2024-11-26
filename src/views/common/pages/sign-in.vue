@@ -84,7 +84,7 @@
         </div>
       </div>
     </div>
-    <div class="contact" @click="jumpToQQ">
+    <div class="contact" @click="jumpToQQ2">
       <img src="@/assets/img/kefu.png" alt="" />
       <div>
         <div>联系</div>

@@ -60,7 +60,8 @@
             <div class="download" @click="item.btnCb">{{ item.btnLabel }}</div>
           </div>
         </div>
-        <p style="text-align: center; color: #888; margin-bottom: 10px">京ICP证030173号-215A</p>
+        <!--        <p style="text-align: center; color: #888; margin-bottom: 10px">京ICP证030173号-215A</p>-->
+
         <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
 
@@ -68,6 +69,9 @@
       <!--        <van-empty :image="empty" image-size="120" description="未搜索到应用" />-->
       <!--      </div>-->
     </div>
+    <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 70px">
+      京ICP证030173号-215A
+    </p>
     <BaseFooter v-bind:init-tab="1" :is-white="true" />
     <div class="contact" @click="jumpToQQ">
       <img src="@/assets/img/kefu.png" alt="" />
@@ -317,9 +321,13 @@ onActivated(() => {
   top: 0;
 
   .container {
+    position: relative;
+    z-index: 2;
     //width: 90vw;
     //height: 80vh;
     width: 100%;
+    padding-bottom: 30px;
+    box-sizing: border-box;
     height: calc(var(--vh, 1vh) * 100 - var(--footer-height)) !important;
     //background-color: #f8f8f8;
     overflow-y: auto;
@@ -495,6 +503,7 @@ onActivated(() => {
 }
 .contact {
   position: fixed;
+  z-index: 4;
   top: 80%;
   right: 0;
   display: flex;

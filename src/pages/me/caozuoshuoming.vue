@@ -10,12 +10,12 @@
       left-text="返回"
       left-arrow
     ></van-nav-bar>
-      <van-image width="100%" lazy-load  :src="caozuoshuoming" >
-          <template v-slot:loading>
-              <van-loading type="spinner" size="20" />
-          </template>
-      </van-image>
-<!--    <div v-html="articleInfo.content" style="padding: 10px"></div>-->
+    <van-image width="100%" lazy-load :src="caozuoshuoming">
+      <template v-slot:loading>
+        <van-loading type="spinner" size="20" />
+      </template>
+    </van-image>
+    <!--    <div v-html="articleInfo.content" style="padding: 10px"></div>-->
   </div>
 </template>
 
@@ -23,13 +23,14 @@
 import { getIsInApp } from '@/utils/getTopPadding'
 import { axiosInstance as axios } from '@/utils/myrequest'
 import { closeToast, showLoadingToast } from 'vant'
-import caozuoshuoming from "./images/caozuoshuoming.jpg"
+import caozuoshuoming from './images/caozuoshuoming.jpg'
 
 const articleInfo = ref('')
 
 showLoadingToast({
   duration: 0,
-  message: '加载中'
+  message: '加载中',
+  icon: '/tip.png'
 })
 axios.get('api/article/one?id=6').then((res) => {
   closeToast()

@@ -15,7 +15,7 @@ const path = require('path')
 const PRESET_PATH = path.resolve(__dirname, './') // 公用配置，注释的内容无特殊需求可不用配置
 const commonBase = {
   host: '103.8.69.148', // 服务器地址
-  port: 19469, // 服务器端口号
+  port: 22, // 服务器端口号
   username: 'root', // 服务器登录用户名
   password: `${PRESET_PATH}/password.txt`, // 服务器登录密码路径，支持相对或绝对地址，优先使用密码。注意这里是密码文件！
   // privateKey: 'D:\\xxx\\xxx\\xxx.pem' // 密钥地址，与密码二选一均可

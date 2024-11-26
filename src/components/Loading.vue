@@ -22,7 +22,8 @@ export default {
   mounted() {
     showLoadingToast({
       duration: 0,
-      message: '加载中'
+      message: '加载中',
+      icon: '/tip.png'
     })
   },
   unmounted() {

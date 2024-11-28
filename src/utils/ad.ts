@@ -459,6 +459,16 @@ export function getVersionCode() {
   }
 }
 
+//系统oaid
+export function getOaid() {
+  try {
+    var oaid = window.android.getOaid()
+    return oaid
+  } catch (e) {
+    return ''
+  }
+}
+
 //强制更新
 export function androidUpdate() {
   try {

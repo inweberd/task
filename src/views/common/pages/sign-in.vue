@@ -117,6 +117,7 @@ import CryptoJS from 'crypto-js'
 import axios from 'axios'
 import { _notice } from '@/utils'
 import weimaiquan from '@/assets/img/weimaiquan.jpg'
+import { getOaid } from '@/utils/ad'
 
 const { info, token, status } = storeToRefs(useUsers())
 
@@ -343,6 +344,7 @@ const SignIn = async () => {
         // 注意：每个签名有效时间只有60s
         'X-Argus': item.encrypt(
           JSON.stringify({
+            imei: getOaid(),
             unix,
             account: state.struct.account,
             password: state.struct.password

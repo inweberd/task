@@ -143,16 +143,16 @@ function touchEnd(e) {
 <style scoped lang="less">
 .indicator-bullets {
   position: absolute;
-  bottom: 10px;
+  bottom: 10rem;
   z-index: 2;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
-  gap: 7px;
+  gap: 7rem;
 
   .bullet {
-    @width: 5px;
+    @width: 5rem;
     width: @width;
     height: @width;
     border-radius: 50%;

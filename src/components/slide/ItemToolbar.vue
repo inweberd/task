@@ -4,7 +4,7 @@ import { _formatNumber, cloneDeep } from '@/utils'
 import bus, { EVENT_KEY } from '@/utils/bus'
 import { Icon } from '@iconify/vue'
 import { useClick } from '@/utils/hooks/useClick'
-import { inject, onMounted, onUnmounted, ref } from 'vue'
+import { inject } from 'vue'
 
 const props = defineProps({
   isMy: {
@@ -20,6 +20,8 @@ const props = defineProps({
     }
   }
 })
+console.log('item', props.item)
+
 const position = inject<any>('position')
 
 const emit = defineEmits(['update:item', 'goUserInfo', 'showComments', 'showShare', 'goMusic'])
@@ -52,7 +54,12 @@ const vClick = useClick()
 <template>
   <div class="toolbar mb1r">
     <div class="avatar-ctn mb2r">
-      <img class="avatar" :src="item.author.avatar_168x168.url_list[0]" alt="" />
+      <img
+        class="avatar"
+        :src="item.author.avatar_168x168.url_list[0]"
+        alt=""
+        v-click="() => bus.emit(EVENT_KEY.GO_USERINFO)"
+      />
       <transition name="fade">
         <div v-if="!item.isAttention" v-click="attention" class="options">
           <img class="no" src="../../assets/img/icon/add-light.png" alt="" />
@@ -60,7 +67,6 @@ const vClick = useClick()
         </div>
       </transition>
     </div>
-
     <div class="love mb2r" v-click="loved">
       <div>
         <img src="../../assets/img/icon/love.svg" class="love-image" v-if="!item.isLoved" />
@@ -83,14 +89,17 @@ const vClick = useClick()
       <Icon v-else icon="ic:round-star" class="icon" style="color: white" />
       <span>{{ _formatNumber(item.statistics.comment_count) }}</span>
     </div>
-    <!--    <div v-if="!props.isMy" class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">-->
-    <!--      <img src="../../assets/img/icon/share-white-full.png" alt="" class="share-image" />-->
-    <!--      <span>{{ _formatNumber(item.statistics.share_count) }}</span>-->
-    <!--    </div>-->
-    <!--    <div v-else class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">-->
-    <!--      <img src="../../assets/img/icon/menu-white.png" alt="" class="share-image" />-->
-    <!--    </div>-->
-    <!--    <BaseMusic :cover="item.music.cover" v-click="$router.push('/home/music')" />-->
+    <div v-if="!props.isMy" class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">
+      <img src="../../assets/img/icon/share-white-full.png" alt="" class="share-image" />
+      <span>{{ _formatNumber(item.statistics.share_count) }}</span>
+    </div>
+    <div v-else class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">
+      <img src="../../assets/img/icon/menu-white.png" alt="" class="share-image" />
+    </div>
+    <!--    <BaseMusic-->
+    <!--        :cover="item.music.cover"-->
+    <!--        v-click="$router.push('/home/music')"-->
+    <!--    /> -->
     <BaseMusic />
   </div>
 </template>
@@ -100,7 +109,7 @@ const vClick = useClick()
   //width: 40px;
   position: absolute;
   bottom: 0;
-  right: 10px;
+  right: 10rem;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -109,12 +118,12 @@ const vClick = useClick()
   .avatar-ctn {
     position: relative;
 
-    @w: 45px;
+    @w: 45rem;
 
     .avatar {
       width: @w;
       height: @w;
-      border: 3px solid white;
+      border: 3rem solid white;
       border-radius: 50%;
     }
 
@@ -127,8 +136,8 @@ const vClick = useClick()
       bottom: -5px;
       background: red;
       //background: black;
-      width: 18px;
-      height: 18px;
+      width: 18rem;
+      height: 18rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -136,8 +145,8 @@ const vClick = useClick()
 
       img {
         position: absolute;
-        width: 14px;
-        height: 14px;
+        width: 14rem;
+        height: 14rem;
         transition: all 1s;
       }
 
@@ -170,7 +179,7 @@ const vClick = useClick()
     justify-content: center;
     align-items: center;
 
-    @width: 35px;
+    @width: 35rem;
 
     img {
       width: @width;
@@ -178,22 +187,16 @@ const vClick = useClick()
     }
 
     span {
-      font-size: 12px;
+      font-size: 12rem;
     }
   }
 
   .icon {
-    font-size: 40px;
+    font-size: 40rem;
   }
 
   .loved {
     background: red;
   }
-}
-
-.myicon {
-  padding-bottom: 20px;
-  width: 40px;
-  height: 40px;
 }
 </style>

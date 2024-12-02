@@ -264,12 +264,12 @@
       <!--          <p>平台简介</p></a-->
       <!--        >-->
       <!--      </li>-->
-      <li>
-        <a href="javascript:void(0)" @click="$router.push('/caozuoshuoming')"
-          ><img src="./images/caozuoshuoming.png" />
-          <p>操作说明</p></a
-        >
-      </li>
+      <!--      <li>-->
+      <!--        <a href="javascript:void(0)" @click="$router.push('/caozuoshuoming')"-->
+      <!--          ><img src="./images/caozuoshuoming.png" />-->
+      <!--          <p>操作说明</p></a-->
+      <!--        >-->
+      <!--      </li>-->
       <!--      <li>-->
       <!--        <a href="javascript:void(0)" @click="$router.push('/hezuodanwei')"-->
       <!--          ><img src="./images/hezuodanwei.png" />-->

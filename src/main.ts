@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import './assets/less/index.less'
 import { Lazyload } from 'vant'
-// import { startMock } from '@/mock'
+import { startMock } from '@/mock'
 import router from './router'
 import mixin from './utils/mixin'
 import VueLazyload from '@jambonn/vue-lazyload'
@@ -31,7 +31,7 @@ import { useUsers } from '@/store/users'
 useUsers().init()
 
 //放到最后才可以使用pinia
-// startMock()
+startMock()
 setTimeout(() => {
   bus.emit(EVENT_KEY.HIDE_MUTED_NOTICE)
   window.showMutedNotice = false

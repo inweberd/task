@@ -94,7 +94,7 @@ function getMonth(time) {
 }
 
 .poster-item {
-  height: 200px;
+  height: 200rem;
   max-height: calc(33.33vw * 1.3);
   border: 0.5px solid black;
   overflow: hidden;
@@ -110,51 +110,51 @@ function getMonth(time) {
   .top,
   .music {
     position: absolute;
-    font-size: 12px;
+    font-size: 12rem;
     background: gold;
     color: black;
-    padding: 2px 3px;
-    border-radius: 2px;
-    top: 7px;
-    left: 7px;
+    padding: 2rem 3rem;
+    border-radius: 2rem;
+    top: 7rem;
+    left: 7rem;
   }
 
   .num {
     color: white;
     position: absolute;
-    bottom: 5px;
-    left: 5px;
+    bottom: 5rem;
+    left: 5rem;
     display: flex;
     align-items: center;
-    font-size: 14px;
-    gap: 3px;
+    font-size: 14rem;
+    gap: 3rem;
 
     .love {
-      width: 14px;
-      height: 14px;
-      margin-right: 5px;
+      width: 14rem;
+      height: 14rem;
+      margin-right: 5rem;
     }
   }
 
   .date {
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 5rem;
+    left: 5rem;
     display: flex;
     align-items: center;
     flex-direction: column;
-    font-size: 14px;
+    font-size: 14rem;
     color: black;
     background: white;
-    padding: 6px;
-    border-radius: 6px;
+    padding: 6rem;
+    border-radius: 6rem;
 
     .day {
       font-weight: bold;
     }
 
     .month {
-      font-size: 10px;
+      font-size: 10rem;
     }
   }
 }

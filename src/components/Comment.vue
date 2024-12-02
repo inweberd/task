@@ -41,7 +41,7 @@
                       </div>
                       <div class="reply-text">回复</div>
                     </div>
-                    <div class="right d-flex" style="gap: 10px">
+                    <div class="right d-flex" style="gap: 10rem">
                       <div class="love" :class="item.user_digged && 'loved'" @click="loved(item)">
                         <Icon
                           icon="icon-park-solid:like"
@@ -132,28 +132,37 @@
       <transition name="fade">
         <BaseMask v-if="isCall" mode="lightgray" @click="isCall = false" />
       </transition>
-      <!-- <div class="input-toolbar">
-				<transition name="fade">
-					<div class="call-friend" v-if="isCall">
-						<div class="friend" :key="i" v-for="(item, i) in friends.all" @click="toggleCall(item)">
-							<img :style="item.select ? 'opacity: .5;' : ''" class="avatar" :src="_checkImgUrl(item.avatar)" alt="" />
-							<span>{{ item.name }}</span>
-							<img v-if="item.select" class="checked" src="../assets/img/icon/components/check/check-red-share.png" />
-						</div>
-					</div>
-				</transition>
+      <div class="input-toolbar">
+        <transition name="fade">
+          <div class="call-friend" v-if="isCall">
+            <div class="friend" :key="i" v-for="(item, i) in friends.all" @click="toggleCall(item)">
+              <img
+                :style="item.select ? 'opacity: .5;' : ''"
+                class="avatar"
+                :src="_checkImgUrl(item.avatar)"
+                alt=""
+              />
+              <span>{{ item.name }}</span>
+              <img
+                v-if="item.select"
+                class="checked"
+                src="../assets/img/icon/components/check/check-red-share.png"
+              />
+            </div>
+          </div>
+        </transition>
 
-				<div class="toolbar">
-					<div class="input-wrapper">
-						<AutoInput v-model="comment" placeholder="善语结善缘，恶言伤人心"></AutoInput>
-						<div class="right">
-							<img src="../assets/img/icon/message/call.png" @click="isCall = !isCall" />
-							<img src="../assets/img/icon/message/emoji-black.png" @click="_no" />
-						</div>
-					</div>
-					<img v-if="comment" src="../assets/img/icon/message/up.png" @click="send" />
-				</div>
-			</div> -->
+        <div class="toolbar">
+          <div class="input-wrapper">
+            <AutoInput v-model="comment" placeholder="善语结善缘，恶言伤人心"></AutoInput>
+            <div class="right">
+              <img src="../assets/img/icon/message/call.png" @click="isCall = !isCall" />
+              <img src="../assets/img/icon/message/emoji-black.png" @click="_no" />
+            </div>
+          </div>
+          <img v-if="comment" src="../assets/img/icon/message/up.png" @click="send" />
+        </div>
+      </div>
       <ConfirmDialog title="私信给" ok-text="发送" v-model:visible="showPrivateChat">
         <Search mode="light" v-model="test" :isShowSearchIcon="false" />
       </ConfirmDialog>
@@ -321,33 +330,33 @@ export default {
 .title {
   box-sizing: border-box;
   width: 100%;
-  height: 40px;
-  padding: 0 15px;
+  height: 40rem;
+  padding: 0 15rem;
   background: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10rem 10rem 0 0;
 
   .num {
     width: 100%;
     position: absolute;
-    font-size: 12px;
+    font-size: 12rem;
     font-weight: bold;
     text-align: center;
   }
 
   .right {
     display: flex;
-    gap: 12px;
+    gap: 12rem;
     position: relative;
     z-index: 9;
 
     svg {
       color: #000;
       background: rgb(242, 242, 242);
-      padding: 4px;
-      font-size: 16px;
+      padding: 4rem;
+      font-size: 16rem;
       border-radius: 50%;
     }
   }
@@ -366,7 +375,7 @@ export default {
   .wrapper {
     width: 100%;
     position: relative;
-    padding-bottom: 60px;
+    padding-bottom: 60rem;
   }
 
   .items {
@@ -374,11 +383,11 @@ export default {
 
     .item {
       width: 100%;
-      margin-bottom: 15px;
+      margin-bottom: 15rem;
 
       .main {
         width: 100%;
-        padding: 5px 0;
+        padding: 5rem 0;
         display: flex;
 
         &:active {
@@ -386,19 +395,19 @@ export default {
         }
 
         .head-image {
-          margin-left: 15px;
-          margin-right: 10px;
-          width: 37px;
-          height: 37px;
+          margin-left: 15rem;
+          margin-right: 10rem;
+          width: 37rem;
+          height: 37rem;
           border-radius: 50%;
         }
       }
 
       .replies {
-        padding-left: 55px;
+        padding-left: 55rem;
 
         .reply {
-          padding: 5px 0 5px 5px;
+          padding: 5rem 0 5rem 5rem;
           display: flex;
 
           &:active {
@@ -406,33 +415,33 @@ export default {
           }
 
           .head-image {
-            margin-right: 10px;
-            width: 20px;
-            height: 20px;
+            margin-right: 10rem;
+            width: 20rem;
+            height: 20rem;
             border-radius: 50%;
           }
         }
 
         .more {
-          font-size: 13px;
-          margin: 5px;
+          font-size: 13rem;
+          margin: 5rem;
           display: flex;
           align-items: center;
           color: gray;
 
           .gang {
             background: #d5d5d5;
-            width: 20px;
-            margin-right: 10px;
+            width: 20rem;
+            margin-right: 10rem;
             height: 1px;
           }
 
           span {
-            margin-right: 5px;
+            margin-right: 5rem;
           }
 
           svg {
-            font-size: 10px;
+            font-size: 10rem;
           }
         }
       }
@@ -440,43 +449,43 @@ export default {
       .content {
         width: 100%;
         display: flex;
-        font-size: 14px;
+        font-size: 14rem;
 
         .comment-container {
           flex: 1;
-          margin-right: 20px;
+          margin-right: 20rem;
 
           .name {
             color: var(--second-text-color);
-            margin-bottom: 5px;
+            margin-bottom: 5rem;
             display: flex;
             align-items: center;
 
             .reply-user {
-              margin-left: 5px;
+              margin-left: 5rem;
               width: 0;
               height: 0;
-              border: 5px solid transparent;
-              border-left: 6px solid gray;
+              border: 5rem solid transparent;
+              border-left: 6rem solid gray;
             }
           }
 
           .detail {
-            margin-bottom: 5px;
+            margin-bottom: 5rem;
           }
 
           .time-wrapper {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-size: 13px;
+            font-size: 13rem;
 
             .left {
               display: flex;
 
               .time {
                 color: #c4c3c3;
-                margin-right: 10px;
+                margin-right: 10rem;
               }
 
               .reply-text {
@@ -494,8 +503,8 @@ export default {
               }
 
               .love-image {
-                font-size: 17px;
-                margin-right: 4px;
+                font-size: 17rem;
+                margin-right: 4rem;
               }
 
               span {
@@ -512,18 +521,18 @@ export default {
   @chat-bg-color: rgb(105, 143, 244);
 
   .input-toolbar {
-    border-radius: 10px 10px 0 0;
+    border-radius: 10rem 10rem 0 0;
     background: white;
     position: fixed;
     width: 100%;
     bottom: 0;
     z-index: 3;
 
-    @space-width: 18px;
-    @icon-width: 48px;
+    @space-width: 18rem;
+    @icon-width: 48rem;
 
     .call-friend {
-      padding-top: 30px;
+      padding-top: 30rem;
       overflow-x: scroll;
       display: flex;
       padding-right: @space-width;
@@ -533,7 +542,7 @@ export default {
         position: relative;
         margin-left: @space-width;
         margin-bottom: @space-width;
-        font-size: 10px;
+        font-size: 10rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -545,7 +554,7 @@ export default {
         }
 
         span {
-          margin-top: 5px;
+          margin-top: 5rem;
           text-align: center;
           width: @icon-width;
           white-space: nowrap;
@@ -557,18 +566,18 @@ export default {
           position: absolute;
           top: @icon-width - 1.5;
           right: -2px;
-          width: 20px;
-          height: 20px;
+          width: 20rem;
+          height: 20rem;
           border-radius: 50%;
         }
       }
     }
 
     .toolbar {
-      @icon-width: 25px;
+      @icon-width: 25rem;
       display: flex;
       align-items: center;
-      padding: 10px 15px;
+      padding: 10rem 15rem;
       border-top: 1px solid #e2e1e1;
 
       .input-wrapper {
@@ -577,9 +586,9 @@ export default {
         align-items: center;
         justify-content: space-between;
         box-sizing: border-box;
-        padding: 5px 10px;
+        padding: 5rem 10rem;
         background: #eee;
-        border-radius: 20px;
+        border-radius: 20rem;
 
         .right {
           display: flex;
@@ -587,7 +596,7 @@ export default {
         }
 
         .auto-input {
-          width: calc(100% - 160px);
+          width: calc(100% - 160rem);
         }
       }
 
@@ -595,7 +604,7 @@ export default {
         width: @icon-width;
         height: @icon-width;
         border-radius: 50%;
-        margin-left: 15px;
+        margin-left: 15rem;
       }
     }
   }

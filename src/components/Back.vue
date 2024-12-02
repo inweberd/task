@@ -44,6 +44,6 @@ onMounted(() => {
 
 <style scoped lang="less">
 img {
-  width: 20px;
+  width: 20rem;
 }
 </style>

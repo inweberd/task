@@ -1,12 +1,10 @@
 <template>
   <div class="Loading" :class="[isFullScreen ? 'full' : 'inline', type]">
-    <!--    <div class="circle blue"></div>-->
-    <!--    <div class="circle red"></div>-->
+    <div class="circle blue"></div>
+    <div class="circle red"></div>
   </div>
 </template>
 <script>
-import { closeToast, showLoadingToast } from 'vant'
-
 export default {
   name: 'Loading',
   props: {
@@ -18,16 +16,6 @@ export default {
       type: String,
       default: 'normal'
     }
-  },
-  mounted() {
-    showLoadingToast({
-      duration: 0,
-      message: '加载中',
-      icon: '/tip.png'
-    })
-  },
-  unmounted() {
-    closeToast()
   }
 }
 </script>
@@ -38,7 +26,7 @@ export default {
 .Loading {
   &.inline {
     width: 100%;
-    height: 40px;
+    height: 40rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,8 +34,8 @@ export default {
 
   &.small {
     .circle {
-      width: 8px;
-      height: 8px;
+      width: 8rem;
+      height: 8rem;
     }
   }
 
@@ -59,12 +47,12 @@ export default {
     transform: translate(-50%, -50%);
     display: flex;
     justify-content: space-between;
-    width: 22px;
+    width: 22rem;
   }
 
   .circle {
-    width: 10px;
-    height: 10px;
+    width: 10rem;
+    height: 10rem;
     border-radius: 50%;
   }
 
@@ -83,7 +71,7 @@ export default {
       transform: translate3d(0, 0, 0) scale(1);
     }
     to {
-      transform: translate3d(10px, 0, 0) scale(1.2);
+      transform: translate3d(10rem, 0, 0) scale(1.2);
     }
   }
   @keyframes anim-red {
@@ -91,7 +79,7 @@ export default {
       transform: translate3d(0, 0, 0) scale(1);
     }
     to {
-      transform: translate3d(-10px, 0, 0) scale(1.2);
+      transform: translate3d(-10rem, 0, 0) scale(1.2);
     }
   }
 }

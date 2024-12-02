@@ -117,7 +117,8 @@ const appList = ref([
     logo: 'mx',
     btnLabel: '查看',
     btnCb() {
-      router.push('/shourulaiyuan')
+      // router.push('/shourulaiyuan')
+      router.push('/short')
     }
   },
   {

@@ -31,7 +31,7 @@ const state = reactive({
   list: [],
   total: 0,
   pageNo: 0,
-  pageSize: 30,
+  pageSize: 10,
   loading: false
 })
 
@@ -51,11 +51,10 @@ async function getData(refresh = false) {
   state.loading = true
   let res = await props.api({
     pageNo: state.pageNo,
-    pageSize: 30
+    pageSize: state.pageSize
   })
   state.loading = false
   if (res.success) {
-    console.log(res.data.list)
     if (refresh) {
       state.list = res.data.list
     } else {

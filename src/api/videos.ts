@@ -9,6 +9,8 @@ export function historyVideo(params?: any, data?: any) {
 }
 
 export function recommendedVideo(params?: any, data?: any) {
+  console.log('params', params)
+  console.log('data', data)
   return request({ url: '/video/recommended', method: 'get', params, data })
 }
 

@@ -3,7 +3,6 @@
     <Loading v-if="state.loading" style="position: absolute" />
     <!--    <video :src="item.video + '?v=123'"-->
     <video
-      :src="item.video.play_addr.url_list[0]"
       :poster="poster"
       ref="videoEl"
       :muted="state.isMuted"
@@ -17,6 +16,12 @@
       :fullscreen="false"
       :autoplay="isPlay"
     >
+      <source
+        v-for="(urlItem, index) in item.video.play_addr.url_list"
+        :key="index"
+        :src="urlItem"
+        type="video/mp4"
+      />
       <p>您的浏览器不支持 video 标签。</p>
     </video>
     <Icon icon="fluent:play-28-filled" class="pause-icon" v-if="!isPlaying" />
@@ -83,10 +88,9 @@ import ItemToolbar from './ItemToolbar.vue'
 import ItemDesc from './ItemDesc.vue'
 import bus, { EVENT_KEY } from '../../utils/bus'
 import { SlideItemPlayStatus } from '@/utils/const_var'
-import { computed, onMounted, onUnmounted, provide, reactive, ref } from 'vue'
+import { computed, onMounted, onUnmounted, provide, reactive } from 'vue'
 import { Icon } from '@iconify/vue'
 import { _css } from '@/utils/dom'
-import BaseMusic from '@/components/BaseMusic.vue'
 
 defineOptions({
   name: 'BaseVideo'
@@ -188,39 +192,10 @@ const progressClass = $computed(() => {
     return isPlaying ? '' : 'stop'
   }
 })
-let observer = ref()
-function initObserver() {
-  const options = {
-    root: null, // 使用视口作为根
-    rootMargin: '0px',
-    threshold: 0.5 // 当 50% 的视频出现在视口中时触发回调
-  }
 
-  observer.value = new IntersectionObserver(handleIntersection, options)
-  observer.value.observe(videoEl)
-}
-function handleIntersection(entries) {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      // console.log(videoEl.muted)
-      videoEl.play()
-      // console.log('state.isMuted', state.isMuted)
-      if (!state.isMuted) {
-        videoEl.muted = false
-      }
-    } else {
-      // console.log(2)
-      if (window.test !== 1) {
-        videoEl.pause()
-        videoEl.muted = true
-      }
-    }
-  })
-}
 onMounted(() => {
   // console.log('video', this.localItem.aweme_id)
   // console.log(this.commentVisible)
-
   state.height = document.body.clientHeight
   state.width = document.body.clientWidth
   videoEl.currentTime = 0
@@ -240,35 +215,11 @@ onMounted(() => {
     videoEl.addEventListener(
       e,
       () => {
-        console.log(e)
         // console.log('eventTester', e, state.item.aweme_id)
-        if (e === 'playing') {
-          state.loading = false
-          // if (window.test !== 1) {
-          // 	state.isMuted = false
-          // }
-          console.log(videoEl.muted)
-          if (!videoEl.muted && window.test !== 1) {
-            console.log(88)
-            removeMuted()
-            // videoEl.muted = false
-            // videoEl.muted = false
-
-            // removeMuted()
-          }
-        }
+        if (e === 'playing') state.loading = false
         if (e === 'waiting') {
           if (!state.paused && !state.ignoreWaiting) {
             state.loading = true
-            if (window.my == 2) {
-              state.loading = false
-              setTimeout(() => {
-                console.log(3)
-                videoEl.muted = true
-                videoEl.play()
-                window.my = 1
-              }, 500)
-            }
           }
         }
         let s = false
@@ -279,6 +230,7 @@ onMounted(() => {
       false
     )
   }
+
   // eventTester("loadstart", '客户端开始请求数据'); //客户端开始请求数据
   // eventTester("abort", '客户端主动终止下载（不是因为错误引起）'); //客户端主动终止下载（不是因为错误引起）
   // eventTester("loadstart", '客户端开始请求数据'); //客户端开始请求数据
@@ -314,12 +266,6 @@ onMounted(() => {
   bus.on(EVENT_KEY.CLOSE_SUB_TYPE, onCloseSubType)
 
   bus.on(EVENT_KEY.REMOVE_MUTED, removeMuted)
-
-  // setTimeout(() => {
-  initObserver()
-
-  // }, 1000);
-  //
 })
 
 onUnmounted(() => {
@@ -332,21 +278,10 @@ onUnmounted(() => {
   bus.off(EVENT_KEY.OPEN_SUB_TYPE, onOpenSubType)
   bus.off(EVENT_KEY.CLOSE_SUB_TYPE, onCloseSubType)
   bus.off(EVENT_KEY.REMOVE_MUTED, removeMuted)
-  if (observer.value) {
-    observer.value.disconnect()
-  }
 })
 
 function removeMuted() {
   state.isMuted = false
-  // console.log(videoEl)
-  if (window.test == 1) {
-    console.log(33)
-    videoEl.pause()
-    videoEl.play()
-    window.test = 2
-  } else {
-  }
 }
 
 function onOpenSubType() {
@@ -563,7 +498,6 @@ function touchend(e) {
               display: block;
               transform: translate3d(0, 0, 0);
             }
-
             to {
               display: none;
               transform: translate3d(0, -60px, 0);

@@ -61,14 +61,14 @@ export const useBaseStore = defineStore('base', {
   },
   actions: {
     async init() {
-      // const r = await panel()
-      // if (r.success) {
-      //   this.userinfo = Object.assign(this.userinfo, r.data)
-      // }
-      // const r2 = await friends()
-      // if (r2.success) {
-      //   this.users = r2.data
-      // }
+      const r = await panel()
+      if (r.success) {
+        this.userinfo = Object.assign(this.userinfo, r.data)
+      }
+      const r2 = await friends()
+      if (r2.success) {
+        this.users = r2.data
+      }
     },
     setUserinfo(val) {
       this.userinfo = val

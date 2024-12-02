@@ -1,4 +1,5 @@
 import Home from '../pages/home/index.vue'
+import Short from '../pages/short/short.vue'
 import Test from '../pages/test/Test.vue'
 import Test4 from '../pages/test/Test4.vue'
 import type { RouteRecordRaw } from 'vue-router'
@@ -14,6 +15,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/test4', component: Test4 },
 
   { path: '/home', component: Home },
+  { path: '/short', component: Short },
 
   { path: '/me', component: () => import('@/pages/me/index.vue') },
   { path: '/nofinish', component: () => import('@/pages/me/nofinish.vue') },

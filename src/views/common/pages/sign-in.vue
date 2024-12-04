@@ -20,17 +20,28 @@
             flex-direction: column;
           "
         >
-          <van-cell-group>
+          <van-cell-group style="background-color: transparent !important; border: none !important">
             <van-field
+              style="
+                background-color: transparent !important;
+                border: 1px solid red;
+                border-radius: 15px;
+              "
               v-model="state.struct.account"
-              label="手机号码"
+              label=""
               left-icon="user-o"
               placeholder="请输入手机号码"
             />
             <van-field
+              style="
+                background-color: transparent !important;
+                border: 1px solid red;
+                border-radius: 15px;
+                margin-top: 20px;
+              "
               v-model="state.struct.password"
               clearable
-              label="密码"
+              label=""
               left-icon="newspaper-o"
               placeholder="请输入密码"
               type="password"
@@ -432,7 +443,7 @@ watch(
   --el-segmented-item-selected-bg-color: rgba(var(--inis-theme));
 }
 body {
-  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+  //background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
 }
 .text-white {
   color: #fff !important;
@@ -484,6 +495,7 @@ body {
   padding: 0 20px;
   //background: url(@/assets/img/bj.png);
   background-repeat: no-repeat;
+  background-image: url('@/assets/img/star.jpeg');
   background-size: 100% 100%;
 }
 </style>

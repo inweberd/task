@@ -254,8 +254,8 @@ export default {
   //justify-content: space-between;
 
   &.isWhite {
-    background: white !important;
-    color: #000 !important;
+    //background: white !important;
+    //color: #000 !important;
   }
 
   .l-button {

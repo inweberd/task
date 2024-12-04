@@ -3,26 +3,11 @@
     <!--<EarnedCash></EarnedCash>-->
     <Loading v-if="loading"></Loading>
     <div class="container">
-      <!--      <div class="top-wrap" style="padding-top: 40px; background-color: #ffffff">-->
-      <!--        <img src="./images/banner3.jpg" alt="" />-->
-      <!--<div class="title">-->
-      <!--  <div class="title-l">Kwai乐租</div>-->
-      <!--  <div class="title-r"></div>-->
-      <!--</div>-->
-      <!--<div class="tab">-->
-      <!--  <div class="tab-item" :class="{ active: activeTab === 0 }" @click="activeTab = 0">-->
-      <!--    发现-->
-      <!--  </div>-->
-      <!--  <div class="tab-item" :class="{ active: activeTab === 1 }" @click="activeTab = 1">-->
-      <!--    我在玩-->
-      <!--  </div>-->
-      <!--</div>-->
-      <!--      </div>-->
-      <div style="padding-top: 40px; background-color: #ffffff">
+      <div style="padding-top: 40px; background-color: #0e0f13">
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-          <van-swipe-item>
-            <img src="./images/banner3.png" alt="" />
-          </van-swipe-item>
+          <!--          <van-swipe-item>-->
+          <!--            <img src="./images/banner3.png" alt="" />-->
+          <!--          </van-swipe-item>-->
           <!--          <van-swipe-item>-->
           <!--            <img src="./images/banner4.png" alt="" />-->
           <!--          </van-swipe-item>-->
@@ -32,54 +17,51 @@
         </van-swipe>
       </div>
 
-      <!--      <div class="notice">-->
-      <!--        <van-notice-bar-->
-      <!--          color="#fff"-->
-      <!--          background="#689CFC"-->
-      <!--          left-icon="volume-o"-->
-      <!--          style="border-radius: 25px; height: 30px"-->
-      <!--          text="kwai-乐租，精彩短视频。期待您的加入"-->
-      <!--        >-->
-      <!--        </van-notice-bar>-->
-      <!--      </div>-->
       <div v-show="activeTab === 0" class="app-list" style="margin-top: 10px">
-        <div class="app-list-item" v-for="(item, index) of appList">
-          <div class="l">
-            <div class="logo">
-              <img :src="convertImgUrl(item.logo)" alt="" />
-            </div>
-            <div class="info">
-              <div class="name">{{ item.name }}</div>
-              <div class="desc">
-                <!--                :style="{ color: index === appList?.length - 1 ? '#9d9d9d' : 'red' }"-->
-                {{ item.desc }}
-              </div>
-            </div>
+        <div class="app-list-item" v-for="(item, index) of appList" @click="item.btnCb">
+          <div class="logo">
+            <img :src="convertImgUrl(item.logo)" alt="" />
           </div>
-          <div class="r">
-            <div class="download" @click="item.btnCb">{{ item.btnLabel }}</div>
+          <div class="info">
+            <div class="name">{{ item.name }}</div>
+            <!--            <div class="desc">-->
+            <!--              &lt;!&ndash;                :style="{ color: index === appList?.length - 1 ? '#9d9d9d' : 'red' }"&ndash;&gt;-->
+            <!--              {{ item.desc }}-->
+            <!--            </div>-->
           </div>
+          <!--          <div class="r">-->
+          <!--            <div class="download" @click="item.btnCb">{{ item.btnLabel }}</div>-->
+          <!--          </div>-->
         </div>
         <!--        <p style="text-align: center; color: #888; margin-bottom: 10px">京ICP证030173号-215A</p>-->
 
         <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
-
+      <div class="notice">
+        <van-notice-bar
+          color="#fff"
+          background="transparent"
+          left-icon="volume-o"
+          style="border-radius: 10px; height: 40px; border: 1px solid #6cc5be"
+          text="精彩短视频。期待您的加入"
+        >
+        </van-notice-bar>
+      </div>
       <!--      <div class="playing" v-show="activeTab === 1">-->
       <!--        <van-empty :image="empty" image-size="120" description="未搜索到应用" />-->
       <!--      </div>-->
     </div>
-    <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 70px">
-      京ICP证030173号-215A
-    </p>
+    <!--    <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 70px">-->
+    <!--      京ICP证030173号-215A-->
+    <!--    </p>-->
     <BaseFooter v-bind:init-tab="1" :is-white="true" />
-    <div class="contact" @click="jumpToQQ">
-      <img src="@/assets/img/kefu.png" alt="" />
-      <div>
-        <div>联系</div>
-        <div>客服</div>
-      </div>
-    </div>
+    <!--    <div class="contact" @click="jumpToQQ">-->
+    <!--      <img src="@/assets/img/kefu.png" alt="" />-->
+    <!--      <div>-->
+    <!--        <div>联系</div>-->
+    <!--        <div>客服</div>-->
+    <!--      </div>-->
+    <!--    </div>-->
     <!--<div class="contact" @click="$router.push('/article?id=5')">-->
     <!--  <img src="@/assets/img/paly-introduce.png" alt="" />-->
     <!--  <div>-->
@@ -112,9 +94,9 @@ const router = useRouter()
 const activeTab = ref(0)
 const appList = ref([
   {
-    name: '公司收入来源',
+    name: '收入来源',
     desc: '广告联盟每日结算记录',
-    logo: 'mx',
+    logo: '5',
     btnLabel: '查看',
     btnCb() {
       // router.push('/shourulaiyuan')
@@ -122,9 +104,9 @@ const appList = ref([
     }
   },
   {
-    name: '百度极速版简介',
+    name: '官方简介',
     desc: '点击查看百度极速版简介！',
-    logo: 'pingtaijianjie',
+    logo: '2',
     btnLabel: '查看',
     btnCb() {
       router.push('/pingtaijianjie')
@@ -149,18 +131,18 @@ const appList = ref([
   //   }
   // },
   {
-    name: '入职收入表',
+    name: '收入表',
     desc: '入职收入表！',
-    logo: 'rzsrb',
+    logo: '3',
     btnLabel: '查看',
     btnCb() {
       router.push('/demo')
     }
   },
   {
-    name: '官方交流群',
+    name: '交流群',
     desc: '点击加入官方交流群！',
-    logo: 'qq',
+    logo: '1',
     btnLabel: '加入',
     btnCb() {
       // showImagePreview({
@@ -198,33 +180,6 @@ const appList = ref([
   //       // state.loading.app = false
   //       // proxy.$refs['notify'].error('下载失败，请稍后再试！')
   //     }
-  //   }
-  // }
-  // {
-  //   name: '甜橙斗猿场',
-  //   desc: '甜橙斗猿场，一夜暴富',
-  //   logo: 'dyc',
-  //   btnLabel: '一夜暴富',
-  //   btnCb() {
-  //     router.push('/gameNoFinish?type=dyc')
-  //   }
-  // },
-  // {
-  //   name: '甜橙大逃杀',
-  //   desc: '甜橙大逃杀，一夜暴富',
-  //   logo: 'dts',
-  //   btnLabel: '一夜暴富',
-  //   btnCb() {
-  //     router.push('/gameNoFinish?type=dts')
-  //   }
-  // },
-  // {
-  //   name: '甜橙夹娃娃',
-  //   desc: '甜橙夹娃娃，一夜暴富',
-  //   logo: 'jww',
-  //   btnLabel: '一夜暴富',
-  //   btnCb() {
-  //     router.push('/gameNoFinish?type=jww')
   //   }
   // }
 ])
@@ -315,7 +270,7 @@ onActivated(() => {
   font-size: 14px;
   width: 100%;
   height: 100%;
-  background: #f8f8f8;
+  background: #0e0f13;
   overflow: hidden;
   position: absolute;
   left: 0;
@@ -383,6 +338,7 @@ onActivated(() => {
     }
     .notice {
       padding: 5px 15px;
+      margin-top: 10px;
     }
     .log {
       padding: 0px 20px 10px;
@@ -428,55 +384,37 @@ onActivated(() => {
       }
     }
     .app-list {
+      display: flex;
       //flex: 1;
       //overflow-y: auto;
-      padding: 0px 20px 10px;
+      background-color: #181622;
       .app-list-item {
-        background-color: #ffffff;
+        flex: 1;
+        color: #fff;
         display: flex;
-        margin-bottom: 10px;
+        flex-direction: column;
         padding: 10px 15px;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         border-radius: 10px;
 
-        .l {
-          display: flex;
-          .logo {
-            width: 55px;
-            height: 55px;
-            overflow: hidden;
-            border-radius: 10px;
+        .logo {
+          width: 55px;
+          height: 55px;
+          overflow: hidden;
+          border-radius: 10px;
 
-            img {
-              width: 100%;
-              height: 100%;
-            }
-          }
-          .info {
-            flex: 1;
-            margin-left: 6px;
-            padding: 2px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            .name {
-              font-size: 16px;
-              color: #000000;
-            }
-            .desc {
-              color: #9d9d9d;
-            }
+          img {
+            width: 100%;
+            height: 100%;
           }
         }
-        .r {
-          .download {
-            padding: 8px 18px;
-            background-color: #689cfc;
-            color: #fff;
-            border-radius: 20px;
+        .info {
+          margin-top: 6px;
+          flex: 1;
+          padding: 2px;
+          .name {
             font-size: 12px;
-            white-space: nowrap;
           }
         }
       }
@@ -499,7 +437,7 @@ onActivated(() => {
 
   img {
     width: 100%;
-    height: 100%;
+    height: 200px;
   }
 }
 .contact {

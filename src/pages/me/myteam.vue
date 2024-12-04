@@ -1,35 +1,31 @@
 <template>
   <div class="investClass">
-    <div
-      style="
-        background-color: #fff;
-        margin: 20px;
-        border-radius: 15px;
-        padding: 10px 10px;
-        box-sizing: border-box;
-      "
-    >
+    <div style="margin: 20px; border-radius: 15px; padding: 10px 0; box-sizing: border-box">
       <div class="info">
         <!--        <img src="@/assets/img/2.8184534.png" class="headerImg" />-->
         <img src="@/assets/img/logo.png" class="headerImg" />
         <div class="name">
-          <strong class="txt1">
-            {{
-              userInfo.phone
-                ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
-                : ''
-            }}</strong
-          >
-          <!--          <em class="txt2">-->
-          <!--            {{ getSerialName(userInfo?.result?.staff?.serial) }}-->
-          <!--            &lt;!&ndash;            <template v-else>LV{{ userInfo?.result?.staff?.serial }}</template>&ndash;&gt;-->
-          <!--          </em>-->
-          <small class="txt3">邀请码:{{ userInfo?.result?.invite?.code }} </small>
-          <small class="txt4">会员ID：{{ userInfo?.id }} </small>
-          <small class="txt4">当前星级：{{ star }}星级 </small>
-          <small class="txt4"
-            >当前职位: {{ getSerialName(userInfo?.result?.staff?.serial) }}
-          </small>
+          <div>
+            <small class="txt1">
+              {{
+                userInfo.phone
+                  ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
+                  : ''
+              }}</small
+            >
+            <!--          <em class="txt2">-->
+            <!--            {{ getSerialName(userInfo?.result?.staff?.serial) }}-->
+            <!--            &lt;!&ndash;            <template v-else>LV{{ userInfo?.result?.staff?.serial }}</template>&ndash;&gt;-->
+            <!--          </em>-->
+            <small class="txt3">邀请码:{{ userInfo?.result?.invite?.code }} </small>
+            <small class="txt4">会员ID：{{ userInfo?.id }} </small>
+          </div>
+          <div>
+            <small class="txt4">当前星级：{{ star }}星级 </small>
+            <small class="txt4"
+              >当前职位: {{ getSerialName(userInfo?.result?.staff?.serial) }}
+            </small>
+          </div>
         </div>
       </div>
       <!--    <div class="user-count" style="font-size: 14px">-->
@@ -73,11 +69,9 @@
     <div class="balance">
       <div class="price-box">
         <div class="price-1">
-          <div class="price-1-title" style="color: #3f86ff; font-size: 18px; font-weight: bolder">
-            账户余额
-          </div>
+          <div class="price-1-title" style="font-size: 18px; font-weight: bolder">账户余额</div>
           <div class="price-1-content flexS">
-            <div class="p-1-c-1" style="color: #323233">
+            <div class="p-1-c-1">
               {{ userIncomeInfo?.wallet?.money || 0 }}
             </div>
             <div class="p-1-c-3 flexS">
@@ -88,106 +82,67 @@
             </div>
           </div>
         </div>
-        <div class="hr"></div>
-        <div @click="$router.push('/teamStat')" class="price-2 flexS">
-          <div class="price-2-item">
-            <div class="price-2-item-1" style="color: #3f86ff">
-              {{ userIncomeInfo.today || 0 }}
-            </div>
-            <div class="price-1-title" style="color: #323233">今日收益</div>
-          </div>
-          <div class="price-2-item">
-            <div class="price-2-item-1" style="color: #3f86ff">
-              {{ userIncomeInfo.total || 0 }}
-            </div>
-            <div class="price-1-title" style="color: #323233">历史收益(元)</div>
-          </div>
-          <div class="price-2-item">
-            <div class="price-2-item-1" style="color: #3f86ff">
-              {{ walletInfo?.amount || 0 }}
-            </div>
-            <div class="price-1-title" style="color: #323233">充值余额(元)</div>
-          </div>
-        </div>
-        <div @click="$router.push('/teamStat')" class="price-2 flexS">
-          <div class="price-2-item">
-            <div class="price-2-item-1" style="color: #3f86ff">
-              {{ memberInfo.first?.total || 0 }}
-            </div>
-            <div class="price-1-title" style="color: #323233">直推总人数</div>
-          </div>
-          <div class="price-2-item">
-            <div class="price-2-item-1" style="color: #3f86ff">
-              {{ memberInfo.first?.vip || 0 }}
-            </div>
-            <div class="price-1-title" style="color: #323233">直推会员人数</div>
-          </div>
-          <div class="price-2-item">
-            <div class="price-2-item-1" style="color: #3f86ff">
-              {{ memberInfo.team?.deposit || 0 }}
-            </div>
-            <div class="price-1-title" style="color: #323233">团队业绩</div>
+        <!--        <div class="hr"></div>-->
+
+        <!--          <div class="price-2-item">-->
+        <!--            <div class="price-1-title">直推总人数</div>-->
+        <!--            <div class="price-2-item-1">-->
+        <!--              {{ memberInfo.first?.total || 0 }}-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--          <div class="price-2-item">-->
+        <!--            <div class="price-1-title">直推会员人数</div>-->
+        <!--            <div class="price-2-item-1">-->
+        <!--              {{ memberInfo.first?.vip || 0 }}-->
+        <!--            </div>-->
+        <!--          </div>-->
+      </div>
+      <div @click="$router.push('/teamStat')" class="price-2 flexS" v-if="false">
+        <div class="price-2-item">
+          <div class="price-1-title">团队业绩</div>
+          <div class="price-2-item-1">
+            {{ memberInfo.team?.deposit || 0 }}
           </div>
         </div>
-        <div @click="$router.push('/teamStat')" class="price-2 flexS">
-          <div class="price-2-item">
-            <div class="price-2-item-1" style="color: #3f86ff">
-              {{ memberInfo.team?.total || 0 }}
-            </div>
-            <div class="price-1-title" style="color: #323233">团队总人数</div>
+        <div class="price-2-item">
+          <div class="price-1-title">团队总人数</div>
+          <div class="price-2-item-1" style="color: #3f86ff">
+            {{ memberInfo.team?.total || 0 }}
           </div>
-          <div class="price-2-item">
-            <div class="price-2-item-1" style="color: #3f86ff">{{ memberInfo.team?.vip || 0 }}</div>
-            <div class="price-1-title" style="color: #323233">团队会员人数</div>
-          </div>
-          <div class="price-2-item">
-            <div class="price-2-item-1" style="color: #3f86ff">
-              {{ memberInfo.team?.withdraw || 0 }}
-            </div>
-            <div class="price-1-title" style="color: #323233">团队总提现</div>
+        </div>
+        <div class="price-2-item">
+          <div class="price-1-title">团队会员数</div>
+          <div class="price-2-item-1">{{ memberInfo.team?.vip || 0 }}</div>
+        </div>
+        <div class="price-2-item">
+          <div class="price-1-title">团队总提现</div>
+          <div class="price-2-item-1">
+            {{ memberInfo.team?.withdraw || 0 }}
           </div>
         </div>
       </div>
     </div>
-    <!--    <div class="black-tip">-->
-    <!--      <div>-->
-    <!--        <div>-->
-    <!--          拉新奖：拉新 <span class="active">2人</span> 并且他们<span class="active"-->
-    <!--            >开通任意会员</span-->
-    <!--          >-->
-    <!--        </div>-->
-    <!--        <div>-->
-    <!--          奖励你永久使用<span class="active">69元体验卡</span>！<van-tag-->
-    <!--            @click="getPullNew"-->
-    <!--            type="success"-->
-    <!--            style="padding: 6px 18px; font-size: 20px"-->
-    <!--            >领取</van-tag-->
-    <!--          >-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="black-tip" style="height: 70px; margin-bottom: 15px" @click="getShouyi">-->
-    <!--      <van-button type="warning" color="#3F86FF" block style="height: 25px; margin-top: 2px"-->
-    <!--        >尊贵的VIP用户，一键领取视频收入！</van-button-->
-    <!--      >-->
-    <!--    </div>-->
-    <!--    <div class="black-tip">-->
-    <!--      <div>-->
-    <!--        <div>-->
-    <!--          拉新奖：拉新 <span class="active">4人</span> 并且他们<span class="active"-->
-    <!--            >开通LV:1级会员</span-->
-    <!--          >-->
-    <!--        </div>-->
-    <!--        <div>-->
-    <!--          奖励你永久使用<span class="active">200元会员</span>！<van-tag-->
-    <!--            @click="getPullNew2"-->
-    <!--            type="success"-->
-    <!--            style="padding: 6px 18px; font-size: 20px"-->
-    <!--            >领取</van-tag-->
-    <!--          >-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <div @click="$router.push('/teamStat')" class="price-2 flexS">
+      <div class="price-2-item">
+        <div class="price-1-title">今日收益</div>
+        <div class="price-2-item-1">
+          {{ userIncomeInfo.today || 0 }}
+        </div>
+      </div>
+      <div class="price-2-item">
+        <div class="price-1-title">历史收益</div>
+        <div class="price-2-item-1">
+          {{ userIncomeInfo.total || 0 }}
+        </div>
+      </div>
+      <div class="price-2-item">
+        <div class="price-1-title">充值余额</div>
+        <div class="price-2-item-1">
+          {{ walletInfo?.amount || 0 }}
+        </div>
+      </div>
+    </div>
+
     <ul class="login_nav">
       <!--      <li>-->
       <!--        <a href="javascript:void(0)" @click="jumpToQQ">-->
@@ -205,7 +160,7 @@
           <!--            src="data:image/png;base64,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"-->
           <!--            alt=""-->
           <!--          />-->
-          <img src="./images/jiaoliu.png" alt="" />
+          <img src="./images/1.png" alt="" />
           <p>官方交流群</p></a
         >
       </li>
@@ -229,26 +184,26 @@
       <!--      </li>-->
       <li>
         <a href="javascript:void(0)" @click="$router.push('/me/my-card')"
-          ><img src="./images/yaoqing.png" alt="" />
+          ><img src="./images/2.png" alt="" />
           <p>我的邀请码</p></a
         >
       </li>
       <li>
         <a href="javascript:void(0)" @click="go('/demo', true)"
-          ><img src="./images/tuiguang.png" alt="" />
+          ><img src="./images/7.png" alt="" />
           <p>推广有钱！</p></a
         >
       </li>
       <li>
         <a href="javascript:void(0)" @click="go('/wallet')"
-          ><img src="./images/shouru.png" alt="" />
+          ><img src="./images/4.png" alt="" />
           <p>收入明细</p></a
         >
       </li>
 
       <li>
         <a href="javascript:void(0)" @click="$router.push('/teamStat')"
-          ><img src="./images/team.png" alt="" />
+          ><img src="./images/5.png" alt="" />
           <p>团队报表</p></a
         >
       </li>
@@ -278,13 +233,13 @@
       <!--      </li>-->
       <li>
         <a href="javascript:void(0)" @click="$router.push('/conversion')"
-          ><img src="./images/yongjin.png" />
+          ><img src="./images/6.png" />
           <p>佣金互转</p></a
         >
       </li>
       <li>
         <a href="javascript:void(0)" @click="goDownload"
-          ><img src="./images/download.png" />
+          ><img src="./images/3.png" />
           <p>APP下载</p></a
         >
       </li>
@@ -332,16 +287,15 @@
     <div class="LoginOut">
       <button class="tabs_btn1" @click="logout">退出登陆</button>
     </div>
-    <p style="text-align: center; color: #888; margin-bottom: 10px">京ICP证030173号-215A</p>
 
     <BaseFooter v-bind:init-tab="6" :is-white="false" />
-    <div class="contact" @click="jumpToQQ">
-      <img src="@/assets/img/kefu.png" alt="" />
-      <div>
-        <div>联系</div>
-        <div>客服</div>
-      </div>
-    </div>
+    <!--    <div class="contact" @click="jumpToQQ">-->
+    <!--      <img src="@/assets/img/kefu.png" alt="" />-->
+    <!--      <div>-->
+    <!--        <div>联系</div>-->
+    <!--        <div>客服</div>-->
+    <!--      </div>-->
+    <!--    </div>-->
   </div>
 </template>
 
@@ -553,62 +507,41 @@ onActivated(() => {
   width: 100vw;
   height: calc(100% - 56px);
   padding-top: 40px;
+  background-image: url('./images/star.jpeg');
+  background-size: 100% 100%;
   box-sizing: border-box;
 
   overflow-y: auto;
 
   .info {
-    margin: 15px auto 16px;
-    padding-left: 20px;
+    display: flex;
+    margin: 15px auto 0;
     overflow: hidden;
+    color: #fff;
     .headerImg {
-      width: 50px;
-      height: 50px;
+      width: 70px;
+      height: 70px;
       display: block;
-      border-radius: 5px;
-      margin-top: 20px;
-      float: left;
+      border-radius: 50%;
       border: 1px solid #fff;
       box-sizing: border-box;
     }
     .name {
-      float: left;
+      flex: 1;
       margin-left: 12px;
-      .txt1 {
-        font-size: 18px;
-        color: #323233;
-        display: block;
-        float: left;
-      }
-      .txt2 {
-        display: block;
-        float: left;
-        margin-left: 6px;
-        padding: 0 4px;
-        height: 16px;
-        background: #3f86ff;
-        color: #fff;
-        border-radius: 2px;
-        font-size: 10px;
-        line-height: 16px;
-        text-align: center;
-        margin-top: 4px;
-      }
-      .txt3 {
-        clear: both;
+      display: flex;
+      justify-content: space-between;
 
-        font-size: 13px;
-        color: #323233;
-        margin-top: 10px;
-        display: block;
-        text-align: left;
-      }
-      .txt4 {
-        clear: both;
-        font-size: 13px;
-        color: #323233;
-        display: block;
-        text-align: left;
+      & > div {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        font-size: 18px;
+
+        &:first-child {
+          justify-content: space-between;
+        }
       }
     }
   }
@@ -621,21 +554,21 @@ onActivated(() => {
     //height: 188px;
     //background: url(@/assets/img/mymp.png);
     //background-size: 100% 100%;
-    background-color: #fff;
-    margin: 20px;
+    background-color: rgba(26, 62, 84, 0.7);
+    margin: 10px;
     position: relative;
-    border-radius: 15px;
+    border-radius: 10px;
 
-    padding: 25px 23px 20px;
+    padding: 25px 20px;
     box-sizing: border-box;
     .price-box {
       width: 100%;
       background-size: 100% 100%;
+      color: #fff;
 
       .price-1 {
         .price-1-title {
           font-weight: 400;
-          color: #323233;
           height: 16.5px;
           line-height: 16.5px;
           font-size: 12px;
@@ -645,10 +578,10 @@ onActivated(() => {
           align-items: center;
           justify-content: space-between;
           .p-1-c-1 {
-            font-size: 27px;
+            color: #d1e562;
+            font-size: 30px;
             font-weight: 600;
-            line-height: 40px;
-            color: #3f86ff;
+            line-height: 50px;
           }
           .p-1-c-3 {
             display: flex;
@@ -677,26 +610,34 @@ onActivated(() => {
         top: 90px;
         position: absolute;
       }
-      .price-2 {
-        display: flex;
-        align-content: center;
-        justify-content: space-between;
-        margin-top: 20px;
-        .price-2-item {
-          position: relative;
-          flex: 1;
-          text-align: center;
-          .price-2-item-1 {
-            color: #3f86ff;
-            font-size: 16px;
-            font-weight: 700;
-          }
-          .price-2-item-2 {
-            color: #323233;
-            opacity: 0.7;
-            font-size: 12px;
-          }
-        }
+    }
+  }
+  .price-2 {
+    background-color: rgba(26, 62, 84, 0.7);
+    margin: 0 10px;
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    .price-2-item {
+      position: relative;
+      flex: 1;
+      text-align: center;
+      color: #eee;
+      .price-2-item-1 {
+        margin-top: 10px;
+        color: #d1e562;
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .price-2-item-2 {
+        color: #ccc;
+        opacity: 0.7;
+        font-size: 12px;
       }
     }
   }
@@ -723,17 +664,19 @@ onActivated(() => {
 
   .login_nav {
     border-radius: 15px;
-    padding: 10px;
 
     overflow: hidden;
-    margin: 20px;
-    background-color: #ffffff;
+    margin: 10px;
+
     li {
       float: left;
-      width: 33%;
+      width: calc(33% - 12px);
       box-sizing: border-box;
       text-align: center;
-      padding: 21px 0 2px;
+      padding: 21px 0 21px;
+      margin: 6px;
+      background-color: rgba(26, 62, 84, 0.7);
+
       a {
         display: block;
         width: 100%;
@@ -742,7 +685,7 @@ onActivated(() => {
         }
         p {
           font-size: 14px;
-          color: #323233;
+          color: #fff;
         }
       }
     }
@@ -750,14 +693,15 @@ onActivated(() => {
   .LoginOut {
     padding: 0 12.6px 25px;
     .tabs_btn1 {
-      margin-left: 5%;
-      width: 90%;
+      margin-left: 3%;
+      width: 94%;
       font-size: 15px;
       line-height: 37px;
       color: #fff;
       text-align: center;
       border-radius: 50px;
-      background-color: #4b6fff;
+      background-color: rgba(26, 62, 84, 0.7);
+
       margin-top: 18px;
       border: none;
     }

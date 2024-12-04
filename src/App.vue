@@ -2,7 +2,7 @@
   <canvas ref="canvas" v-show="false"></canvas>
   <div
     :style="{ height: topPadding }"
-    style="width: 100%; background-color: #f6f8fc; position: fixed; top: 0; left: 0; z-index: 999"
+    style="width: 100%; background-color: #0e0f13; position: fixed; top: 0; left: 0; z-index: 999"
   ></div>
   <div
     style="width: 100%; height: 100vh; box-sizing: border-box"

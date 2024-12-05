@@ -3,13 +3,8 @@
     <div
       id="sign"
       class="d-flex justify-content-around user-select-none"
-      style="max-height: 550px; max-width: 800px; width: 95%; height: 80%"
+      style="width: 80%; margin: 200px auto 0"
     >
-      <img
-        src="@/assets/img/logo.png"
-        style="position: absolute; width: 100px; top: 60px; left: 50%; transform: translateX(-50%)"
-        alt=""
-      />
       <div class="right card backdrop-filter" style="box-shadow: unset; background: transparent">
         <div
           class="card-body p-lg-4"
@@ -20,97 +15,96 @@
             flex-direction: column;
           "
         >
-          <van-cell-group>
-            <van-field
-              v-model="state.struct.social"
-              label="手机号码"
-              left-icon="user-o"
-              placeholder="请输入手机号码"
-            />
-            <van-field
-              v-model="state.struct.code"
-              center
-              left-icon="orders-o"
-              clearable
-              label="短信验证码"
-              placeholder="请输入短信验证码"
-            >
-              <template #button>
-                <van-button
-                  @click="SendCode"
-                  :disabled="state.status.code"
-                  size="small"
-                  type="primary"
-                >
-                  <span v-if="!state.status.code">发送验证码</span>
-                  <span v-else>{{ state.code.second }}秒重新发送</span>
-                </van-button>
+          <van-cell-group
+            style="background-color: transparent !important; border: none !important; width: 100%"
+          >
+            <van-field v-model="state.struct.social" placeholder="请输入手机号码" class="input">
+              <template #left-icon>
+                <van-icon color="#fff" name="contact" />
               </template>
             </van-field>
             <van-field
+              v-model="state.struct.code"
+              center
+              clearable
+              class="input"
+              placeholder="请输入短信验证码"
+              style="margin-top: 20px"
+            >
+              <template #left-icon>
+                <van-icon color="#fff" name="records" />
+              </template>
+              <template #button>
+                <div @click="SendCode" style="color: white">
+                  <span v-if="!state.status.code">发送验证码</span>
+                  <span v-else>{{ state.code.second }}秒重新发送</span>
+                </div>
+              </template>
+            </van-field>
+            <van-field
+              class="input"
               v-model="state.struct.password"
               clearable
-              label="密码"
-              left-icon="newspaper-o"
               placeholder="请输入密码"
               type="password"
-            />
+              style="margin-top: 20px"
+            >
+              <template #left-icon>
+                <van-icon color="#fff" name="lock" />
+              </template>
+            </van-field>
             <van-field
+              class="input"
               v-model="state.struct.AgainPassword"
               clearable
-              label="密码"
-              left-icon="notes-o"
               placeholder="请再次输入密码"
               type="password"
-            />
+              style="margin-top: 20px"
+            >
+              <template #left-icon>
+                <van-icon color="#fff" name="lock" />
+              </template>
+            </van-field>
+
             <van-field
               v-model="state.struct.invite"
-              label="邀请码"
-              left-icon="records-o"
               placeholder="请输入邀请码"
               :disabled="route.query.invite"
-            />
+              class="input"
+              style="margin-top: 20px"
+            >
+              <template #left-icon>
+                <van-icon color="#fff" name="notes-o" />
+              </template>
+            </van-field>
           </van-cell-group>
-
-          <el-button
-            v-on:click="SignUp()"
-            :loading="state.status.wait"
-            type="primary"
-            style="border-radius: 20px; margin-top: 20px !important"
-            color="#4B6FFF"
-            size="large"
-            class="w-100 mt-3"
-            >注册</el-button
-          >
-
-          <div
-            style="
-              color: #323233;
-              display: flex;
-              justify-content: space-around;
-              margin-top: 30px;
-              width: 100%;
-              font-size: 16px;
-              text-decoration: underline;
-            "
-          >
-            <router-link to="/common/sign-in" class="text-decoration-none">
-              <span class="text-light">前往登录</span>
-            </router-link>
-            <router-link to="/common/sign-forget" class="text-decoration-none">
-              <span class="text-light">忘记密码</span>
-            </router-link>
+          <div style="text-align: right; width: 100%; margin: 10px 10px 20px 0">
+            <span @click="$router.push('/common/sign-forget')"> 忘记密码 </span>
           </div>
+          <el-button
+            :loading="state.status.wait"
+            class="w-85"
+            color="#01c5f0"
+            size="large"
+            style="border-radius: 20px; margin-top: 20px !important; color: #fff"
+            type="primary"
+            @click="SignUp"
+            >注册
+          </el-button>
+          <span></span>
+          <el-button
+            class="w-85"
+            color="#00f7c4"
+            size="large"
+            style="border-radius: 20px; margin-top: 20px !important; color: #fff"
+            type="primary"
+            @click="$router.push('/common/sign-in')"
+          >
+            登录
+          </el-button>
         </div>
       </div>
     </div>
-    <!--    <div class="contact" @click="$router.push('/article?id=5')">-->
-    <!--      <img src="@/assets/img/jieshao.png" />-->
-    <!--      <div>-->
-    <!--        <div>玩法</div>-->
-    <!--        <div>介绍</div>-->
-    <!--      </div>-->
-    <!--    </div>-->
   </div>
 </template>
 
@@ -285,17 +279,37 @@ body {
 }
 
 .signupClass {
-  position: absolute;
   width: 100%;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-y: scroll;
   color: #fff;
-  padding: 0 20px;
-  //background: url(@/assets/img/bj.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-image: url('@/assets/img/bg.png');
+  background-size: 100% auto;
+}
+
+:deep(.van-cell) {
+  padding: 4px 10px;
+
+  &::after {
+    border: none !important;
+  }
+
+  .van-field__body {
+    input {
+      color: #fff;
+    }
+  }
+}
+
+:deep(.van-hairline--top-bottom) {
+  &::after {
+    border-width: 0;
+  }
+}
+
+.input {
+  background-color: transparent !important;
+  border: 1px solid #fff;
+  border-radius: 15px;
 }
 </style>

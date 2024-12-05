@@ -192,13 +192,13 @@ export default defineConfig((): Promise<UserConfig> => {
           proxy: {
             '/api/': {
               // target: 'https://tc.q18m.cc/api',
-              target: 'https://ht.yuyuwa.cn/api',
+              target: 'https://tt.kkwai.cn/api',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/api/'), '')
             },
             '/dev/': {
               // target: 'https://tc.q18m.cc/api',
-              target: 'https://ht.yuyuwa.cn/dev',
+              target: 'https://tt.kkwai.cn/dev',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/dev/'), '')
             },
@@ -206,7 +206,7 @@ export default defineConfig((): Promise<UserConfig> => {
               // target: 'http://111.180.196.127:8642/api',
               // target: 'https://wwc.gengshangpin.com/api',
               // target: 'https://hh.yuyuwa.cn/json',
-              target: 'https://tc.izakq.com/json',
+              target: 'https://tt.kkwai.cn/json',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/json/'), '')
             }

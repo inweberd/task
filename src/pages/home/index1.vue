@@ -12,7 +12,7 @@
           color: #323233;
           font-size: 26px;
         "
-        >好看视频</span
+        >全民来瓜分</span
       >
       <img src="@/assets/img/2.8184534.png" style="width: 15%; margin-right: 5%; float: right" />
     </div>

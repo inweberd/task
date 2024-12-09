@@ -1,9 +1,18 @@
 <template>
   <div class="signupClass">
+    <div class="logo-box">
+      <div class="logo-box-content">
+        <img src="@/assets/img/logo.png" alt="" />
+        <div class="info">
+          <p>全民来瓜分</p>
+          <p>the whole people divide</p>
+        </div>
+      </div>
+    </div>
     <div
       id="sign"
       class="d-flex justify-content-around user-select-none"
-      style="width: 80%; margin: 200px auto 0"
+      style="width: 80%; margin: 60px auto 0"
     >
       <div class="right card backdrop-filter" style="box-shadow: unset; background: transparent">
         <div
@@ -279,6 +288,7 @@ body {
 }
 
 .signupClass {
+  background-color: #000;
   width: 100%;
   height: 100vh;
   color: #fff;
@@ -311,5 +321,26 @@ body {
   background-color: transparent !important;
   border: 1px solid #fff;
   border-radius: 15px;
+}
+
+.logo-box {
+  margin-top: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .logo-box-content {
+    display: flex;
+    img {
+      width: 60px;
+    }
+    .info {
+      margin-left: 16px;
+      text-align: center;
+      p:nth-child(1) {
+        font-size: 30px;
+        letter-spacing: 8px;
+      }
+    }
+  }
 }
 </style>

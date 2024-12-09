@@ -50,17 +50,22 @@
         <!-- <van-image :src="imageSrc" width="100" height="100%"   fit="fill" class="action-button"></van-image> -->
       </div>
     </div>
-    <div class="tab">
-      <div class="tab-item" :class="{ active: activeTab === '收入' }" @click="activeTab = '收入'">
-        收入
-      </div>
-      <div class="tab-item" :class="{ active: activeTab === '支出' }" @click="activeTab = '支出'">
-        支出
-      </div>
-      <div class="tab-item" :class="{ active: activeTab === '提现' }" @click="activeTab = '提现'">
-        提现
-      </div>
-    </div>
+    <van-tabs v-model:active="activeTab" background="transparent" color="#01c5f0">
+      <van-tab title="收入" name="收入"></van-tab>
+      <van-tab title="支出" name="支出"></van-tab>
+      <van-tab title="提现" name="提现"></van-tab>
+    </van-tabs>
+    <!--    <div class="tab">-->
+    <!--      <div class="tab-item" :class="{ active: activeTab === '收入' }" @click="activeTab = '收入'">-->
+    <!--        收入-->
+    <!--      </div>-->
+    <!--      <div class="tab-item" :class="{ active: activeTab === '支出' }" @click="activeTab = '支出'">-->
+    <!--        支出-->
+    <!--      </div>-->
+    <!--      <div class="tab-item" :class="{ active: activeTab === '提现' }" @click="activeTab = '提现'">-->
+    <!--        提现-->
+    <!--      </div>-->
+    <!--    </div>-->
     <!--    <van-tabs v-model:active="activeTab" @change="change">-->
     <!--      <van-tab title="收入明细" name="收入">-->
     <wallet-income v-if="activeTab === '收入'"></wallet-income>

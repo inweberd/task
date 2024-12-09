@@ -15,6 +15,7 @@ coverage
 *.local
 hhsp
 hksp
+qmlgf
 stats.html
 
 /cypress/videos/

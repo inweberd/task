@@ -39,6 +39,7 @@
   --inAppPdddingTop: 40px !important;
 }
 
+
 html,
 body {
   width: 100%;
@@ -58,4 +59,12 @@ body {
   .van-nav-bar--fixed {
     top: var(--inAppPdddingTop);
   }
+}
+// 解决谷歌浏览器输入框填充之后 背景颜色问题
+input:-webkit-autofill {
+  //-webkit-box-shadow: 0 0 0px 1000px red inset !important;
+
+  -webkit-text-fill-color: #fff !important;
+  transition: background-color 5000s ease-in-out 0s;
+
 }

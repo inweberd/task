@@ -11,7 +11,7 @@
           <span v-if="!item.remark">
             <span v-if="item.status === 'wait'" class="text-warning">等待审核</span>
             <span v-else-if="item.status === 'finish'" class="text-success"
-              >好看视频提现成功！
+              >全民来瓜分提现成功！
             </span>
             <span v-else-if="item.status === 'paying'" class="text-dark">转账中</span>
             <span v-else-if="item.status === 'fail'" class="text-danger">转账失败（卡号有误）</span>

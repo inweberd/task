@@ -1,5 +1,13 @@
 <template>
-  <div style="padding: 40px 0px 50px; overflow-y: auto">
+  <div
+    style="
+      padding: 40px 0px 50px;
+      overflow-y: auto;
+      background-color: #0e0f13;
+      width: 100%;
+      height: 100%;
+    "
+  >
     <!--    <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />-->
     <Loading v-if="loading" />
     <!--    <div class="title" style="color: #b4a482; font-size: 22px">会员权益卡</div>-->
@@ -147,8 +155,8 @@
 
               <div
                 style="
-                  background: #fff;
-                  color: #6344bb;
+                  background: #01c5f0;
+                  color: #fff;
                   width: 100px;
                   margin: 15px auto;
                   font-weight: bold;
@@ -445,11 +453,6 @@ const speed = ref(0.5) //滚动速度
   z-index: 3;
 }
 
-.main {
-  width: 100%;
-  display: flex;
-}
-
 .item {
   display: block;
   font-size: 14px;
@@ -477,26 +480,6 @@ const speed = ref(0.5) //滚动速度
   //}
 }
 
-.stat {
-  margin-top: 20px;
-  background-image: linear-gradient(180deg, #494052 10%, #322c36 100%);
-  border-radius: 10px 10px 0 0;
-  height: auto;
-
-  .stat-header {
-    line-height: 40px;
-    display: flex;
-    justify-content: space-evenly;
-    color: #ccc;
-    font-size: 12px;
-    border-bottom: 1px solid #666;
-    .money {
-      font-size: 16px;
-      font-weight: bolder;
-      color: #fff;
-    }
-  }
-}
 .staff-list {
   color: #fff;
 }

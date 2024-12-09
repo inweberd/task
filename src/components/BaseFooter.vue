@@ -11,11 +11,25 @@
           />
           <img src="@/assets/img/tabbar/home.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 1 ? '#496DFE' : '' }">首页</div>
+        <div :style="{ color: currentTab === 1 ? '#fff' : '' }">首页</div>
       </div>
     </div>
     <!--    <div class="l-button" @click="refresh(2)">-->
     <div class="l-button" @click="loadShort(1)">
+      <div class="add-ctn">
+        <div class="img-box">
+          <img
+            src="../assets/img/tabbar/vipVideo-active.png"
+            alt=""
+            class="add"
+            v-if="currentTab === 2"
+          />
+          <img src="../assets/img/tabbar/vipVideo.png" alt="" class="add" v-else />
+        </div>
+        <div :style="{ color: currentTab === 2 ? '#fff' : '' }">普通视频</div>
+      </div>
+    </div>
+    <div class="l-button" @click="loadShort(3)">
       <div class="add-ctn">
         <div class="img-box">
           <img
@@ -24,53 +38,23 @@
             class="add"
             v-if="currentTab === 2"
           />
-          <img src="../assets/img/tabbar/video.png" alt="" class="add" v-else style="width: 25px" />
+          <img src="../assets/img/tabbar/video.png" alt="" class="add" v-else />
         </div>
-        <div style="white-space: nowrap" :style="{ color: currentTab === 2 ? '#496DFE' : '' }">
-          普通视频
-        </div>
-      </div>
-    </div>
-    <div class="l-button" @click="loadShort(3)">
-      <div class="add-ctn">
-        <!--        <div class="img-box">-->
-        <!--          <img-->
-        <!--            src="../assets/img/tabbar/vipVideo-active.png"-->
-        <!--            alt=""-->
-        <!--            class="add"-->
-        <!--            v-if="currentTab === 2"-->
-        <!--          />-->
-        <!--          <img src="../assets/img/tabbar/vipVideo.png" alt="" class="add" v-else />-->
-        <!--        </div>-->
-        <div
-          style="white-space: nowrap; text-align: center; font-size: 15px"
-          :style="{ color: currentTab === 2 ? '#496DFE' : '' }"
-        >
-          <p style="color: red">（免广告）</p>
-          <!--          <p style="font-size: 12px">（每日1000次）</p>-->
-          高价视频
-        </div>
+        <div :style="{ color: currentTab === 2 ? '#fff' : '' }">高价视频</div>
       </div>
     </div>
     <div class="l-button" @click="tab(5)">
       <div class="add-ctn">
-        <!--        <div class="img-box">-->
-        <!--          <img-->
-        <!--            src="../assets/img/tabbar/vip-active.png"-->
-        <!--            alt=""-->
-        <!--            class="add"-->
-        <!--            v-if="currentTab === 5"-->
-        <!--          />-->
-        <!--          <img src="../assets/img/tabbar/vip.png" alt="" class="add" v-else />-->
-        <!--        </div>-->
-        <div
-          style="white-space: nowrap; text-align: center; font-size: 15px"
-          :style="{ color: currentTab === 5 ? '#496DFE' : '' }"
-        >
-          <p style="color: red">（无广告）</p>
-          <!--          <p style="font-size: 12px">（每日30次）</p>-->
-          VIP
+        <div class="img-box">
+          <img
+            src="../assets/img/tabbar/vip-active.png"
+            alt=""
+            class="add"
+            v-if="currentTab === 5"
+          />
+          <img src="../assets/img/tabbar/vip.png" alt="" class="add" v-else />
         </div>
+        <div :style="{ color: currentTab === 5 ? '#fff' : '' }">VIP</div>
       </div>
     </div>
     <div class="l-button" @click="tab(6)">
@@ -84,7 +68,7 @@
           />
           <img src="../assets/img/tabbar/my.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 6 ? '#496DFE' : '' }">我的</div>
+        <div :style="{ color: currentTab === 6 ? '#fff' : '' }">我的</div>
       </div>
       <!-- <div class="badge">2</div> -->
     </div>
@@ -297,8 +281,8 @@ export default {
       justify-content: center;
 
       .img-box {
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         img {
           width: 100%;
           height: 100%;
@@ -306,7 +290,7 @@ export default {
       }
 
       & > div {
-        margin-top: 6px;
+        white-space: nowrap;
         color: #9f8b8b;
         font-size: 12px;
       }

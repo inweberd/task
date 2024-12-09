@@ -76,7 +76,7 @@
         <!--        </div>-->
       </div>
       <!--      <van-search v-model="searchInfo.phone" placeholder="请输入要查询的手机号码" />-->
-      <van-button color="#689CFC" style="width: 100%; border-radius: 20px">直推人员列表</van-button>
+      <van-button color="#01c5f0" style="width: 100%; border-radius: 20px">直推人员列表</van-button>
       <van-list
         style="margin-top: 20px"
         v-model:loading="loading"
@@ -253,7 +253,7 @@ onActivated(() => {
 
 .label {
   margin-top: 5px;
-  color: #323233;
+  color: #fff;
   font-size: 12px;
 }
 
@@ -264,16 +264,16 @@ onActivated(() => {
 }
 
 .stat-item {
-  background-color: #fff;
+  background-color: rgba(26, 62, 84, 0.7);
   border-radius: 8px;
   padding: 10px;
-  width: 40%;
+  width: 25%;
   margin-bottom: 10px;
   text-align: center;
 }
 
 .number {
-  color: #689cfc;
+  color: #d1e562;
   font-size: 24px;
 }
 

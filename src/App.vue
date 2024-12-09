@@ -2,7 +2,7 @@
   <canvas ref="canvas" v-show="false"></canvas>
   <div
     :style="{ height: topPadding }"
-    style="width: 100%; background-color: #0e0f13; position: fixed; top: 0; left: 0; z-index: 999"
+    style="width: 100%; background-color: #fff; position: fixed; top: 0; left: 0; z-index: 999"
   ></div>
   <div
     style="width: 100%; height: 100vh; box-sizing: border-box"
@@ -217,7 +217,7 @@ onMounted(() => {
   if (isWeChatBrowser) {
     loadWx(() => {
       wx.onMenuShareTimeline({
-        title: '好看视频',
+        title: '全民来瓜分',
         // link: 'http://movie.douban.com/subject/25785114asd/',
         imgUrl: 'http://tc.izakq.com/media/logo2.png',
         trigger: function (res) {
@@ -332,7 +332,9 @@ onMounted(() => {
 * {
   user-select: none;
 }
-
+:root {
+  --van-text-color: #fff;
+}
 #app {
   height: 100%;
   width: 100%;

@@ -75,8 +75,8 @@
               {{ userIncomeInfo?.wallet?.money || 0 }}
             </div>
             <div class="p-1-c-3 flexS">
-              <div class="p-1-c-3-btn" @click="go('/dep')" style="background: #3f86ff">提现</div>
-              <div class="p-1-c-3-btn" @click="go('recharge')" style="background: #3f86ff">
+              <div class="p-1-c-3-btn" @click="go('/dep')" style="background: #01c5f0">提现</div>
+              <div class="p-1-c-3-btn" @click="go('recharge')" style="background: #00f7c4">
                 充值
               </div>
             </div>
@@ -693,16 +693,14 @@ onActivated(() => {
   .LoginOut {
     padding: 0 12.6px 25px;
     .tabs_btn1 {
-      margin-left: 3%;
-      width: 94%;
+      margin-left: 2%;
+      width: 96%;
       font-size: 15px;
       line-height: 37px;
       color: #fff;
       text-align: center;
-      border-radius: 50px;
       background-color: rgba(26, 62, 84, 0.7);
 
-      margin-top: 18px;
       border: none;
     }
   }

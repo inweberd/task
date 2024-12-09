@@ -3,7 +3,7 @@
     <!--<EarnedCash></EarnedCash>-->
     <Loading v-if="loading"></Loading>
     <div class="container">
-      <div style="padding-top: 40px; background-color: #0e0f13">
+      <div style="padding-top: 40px; background-color: #fff">
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
           <!--          <van-swipe-item>-->
           <!--            <img src="./images/banner3.png" alt="" />-->
@@ -99,8 +99,8 @@ const appList = ref([
     logo: '5',
     btnLabel: '查看',
     btnCb() {
-      // router.push('/shourulaiyuan')
-      router.push('/short')
+      router.push('/shourulaiyuan')
+      // router.push('/short')
     }
   },
   {
@@ -114,7 +114,7 @@ const appList = ref([
   },
   // {
   //   name: '操作说明',
-  //   desc: '好看视频，精彩短视频。期待您的加入',
+  //   desc: '全民来瓜分，精彩短视频。期待您的加入',
   //   logo: 'hk',
   //   btnLabel: '查看',
   //   btnCb() {

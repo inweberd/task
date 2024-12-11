@@ -14,6 +14,11 @@ import bus, { EVENT_KEY } from '../../utils/bus'
 import Loading from '@/components/Loading.vue'
 import { useBaseStore } from '@/store/pinia'
 import { _css } from '@/utils/dom'
+import { AES, token as aesToken } from '@/utils/AES'
+import CryptoJS from 'crypto-js'
+import { createAdLog, reqAdvertisingSinglePrice } from '@/api/myApi'
+import { Toast } from 'tdesign-mobile-vue'
+// import { showNotify } from 'vant'
 
 const props = defineProps({
   index: {
@@ -144,14 +149,31 @@ watch(
     }
   }
 )
-
+const arr = [0]
+let price = 0
 /**
  * 滑动
  */
 watch(
   () => state.localIndex,
-  (newVal, oldVal) => {
-    console.log(111)
+  async (newVal, oldVal) => {
+    if (!price) {
+      const res = await reqAdvertisingSinglePrice()
+      price = res?.data?.price
+    }
+    if (!arr.includes(newVal)) {
+      createAdLog().then((res) => {
+        console.log('createAdLog', res)
+        // Toast()
+
+        showNotify({
+          color: '#fff',
+          background: '#01c5f0',
+          message: '今日已领取' + res.data.count * price + '元'
+        })
+      })
+      arr.push(newVal)
+    }
     bus.emit(EVENT_KEY.CURRENT_ITEM, props.list[newVal])
     bus.emit(EVENT_KEY.SINGLE_CLICK_BROADCAST, {
       uniqueId: props.uniqueId,

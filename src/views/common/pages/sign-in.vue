@@ -134,7 +134,7 @@ const state = reactive({
 
 function goDownload() {
   try {
-    window.location.href = `https://hh.yuyuwa.cn/download`
+    window.location.href = `https://fx.yuyuwa.cn/download`
   } catch (e) {
     _notice('下载失败')
   }

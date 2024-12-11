@@ -59,7 +59,7 @@ export default {
     }
   },
   mounted() {
-    this.qrCodeValue = 'https://hh.yuyuwa.cn/#/signUp?invite='
+    this.qrCodeValue = 'https://fx.yuyuwa.cn/#/signUp?invite='
     const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
     if (this.$route.query.invite && this.$route.query.uid && isWeChatBrowser) {
       this.qrCodeValue += this.$route.query.invite + '&uid=' + this.$route.query.uid
@@ -68,7 +68,7 @@ export default {
     }
   },
   activated() {
-    this.qrCodeValue = 'https://hh.yuyuwa.cn/#/signUp?invite='
+    this.qrCodeValue = 'https://fx.yuyuwa.cn/#/signUp?invite='
     // this.qrCodeValue = 'http://192.168.10.87:3000/#/signUp?invite='
     const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
     if (this.$route.query.invite && this.$route.query.uid && isWeChatBrowser) {

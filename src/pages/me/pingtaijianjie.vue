@@ -11,13 +11,13 @@
       left-arrow
     ></van-nav-bar>
 
-    <van-image width="100%" lazy-load :src="baidu1">
+    <van-image width="100%" lazy-load :src="jianjie">
       <template v-slot:loading>
         <van-loading type="spinner" size="20" />
       </template>
     </van-image>
 
-    <div data-v-316a7dba="" style="padding: 10px">
+    <div data-v-316a7dba="" style="padding: 10px" v-if="0">
       <p>
         <span style="color: rgb(53, 152, 219)"
           ><span class="text_H038s" data-text="true"
@@ -191,19 +191,13 @@
 
 <script lang="ts" setup>
 import { getIsInApp } from '@/utils/getTopPadding'
-import { axiosInstance as axios } from '@/utils/myrequest'
-import { closeToast, showLoadingToast } from 'vant'
 import baidu1 from './images/baidu1.png'
 import baidu2 from './images/baidu2.png'
+import jianjie from './images/jianjie.png'
 
 const articleInfo = ref('')
 
-// showLoadingToast({
-//   duration: 0,
-//   message: '加载中'
-// })
 // axios.get('api/article/one?id=4').then((res) => {
-//   closeToast()
 //   if (res.code === 200) {
 //     articleInfo.value = res.data
 //   }

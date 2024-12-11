@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100%; overflow: auto">
+  <div style="height: 100%; overflow: auto; background-color: #05112f">
     <van-nav-bar
       title="收入来源"
       safe-area-inset-top
@@ -10,7 +10,21 @@
       left-text="返回"
       left-arrow
     ></van-nav-bar>
-    <div ref="chart1Ref" class="chart1"></div>
+    <div class="statistics_content_wrapper">
+      <div class="statistics_content_body" v-for="item in dataList" :key="item.title">
+        <!-- 统计标题 -->
+        <div class="statistics_title">{{ item.title }}</div>
+        <!-- 统计内容 -->
+        <div class="statistics_content">
+          <!-- 统计数量 -->
+          <span class="statistics_content_num">{{ item.count }}</span>
+          &nbsp;
+          <!-- 统计单位 -->
+          <!--          <span class="statistics_content_unit">{{ item.unit }}</span>-->
+        </div>
+      </div>
+    </div>
+    <!--    <div ref="chart1Ref" class="chart1"></div>-->
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="date" label="日期" width="110" />
       <el-table-column prop="name" label="广告名称" width="120" />
@@ -23,11 +37,37 @@
 <script lang="ts" setup>
 import { getIsInApp } from '@/utils/getTopPadding'
 import { axiosInstance as axios } from '@/utils/myrequest'
-import { closeToast, showLoadingToast } from 'vant'
 
 import * as echarts from 'echarts'
 import { computed, onMounted } from 'vue'
+import { Toast } from 'tdesign-mobile-vue'
 
+const dataList = [
+  {
+    id: '1',
+    title: '总展示数',
+    count: 120598,
+    unit: '件'
+  },
+  {
+    id: '2',
+    title: '总点击数',
+    count: 35942,
+    unit: '件'
+  },
+  {
+    id: '3',
+    title: '总点击率',
+    count: '25%',
+    unit: '件'
+  },
+  {
+    id: '4',
+    title: '总收益',
+    count: 55200,
+    unit: '元'
+  }
+]
 const chart1Ref = ref()
 const data = ref([])
 const tableData = computed(() => {
@@ -271,21 +311,106 @@ const initChart = () => {
   myChart.setOption(option1)
 }
 onMounted(() => {
-  showLoadingToast({
-    duration: 0,
-    message: '加载中',
-    icon: '/tip.png'
+  Toast({
+    theme: 'loading',
+    message: '加载中...',
+    duration: 0
   })
   axios.get('/dev/info/chart').then((res) => {
-    closeToast()
+    Toast.clear()
+
     data.value = res.data
-    initChart()
+    // initChart()
   })
 })
 </script>
-<style scoped>
+<style scoped lang="less">
 .chart1 {
   width: 100%;
   height: 300px;
+}
+.statistics_content_wrapper {
+  width: calc(100% - 10px);
+  height: 80px;
+  margin: 20px 0;
+  //margin: 20px auto 20px;
+
+  // TODO 外边距合并问题
+  border: 1px solid transparent;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+
+  .statistics_content_body {
+    width: 25%;
+    height: 74px;
+    //margin: auto;
+    background: url('./images/statistics_bg.png') no-repeat center center/ 100% 100%;
+    padding-left: 8px;
+    .statistics_title {
+      margin-top: 5px;
+      font-family: 'PingFangSC-Regular', 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 16px;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .statistics_content {
+      height: 100%;
+      // 宽度自适应
+      width: fit-content;
+      margin: -15px auto 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('./images/content_bg.png') no-repeat center;
+      background-size: 72px 50px;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: -10px;
+        background: url('./images/content_left.png') no-repeat center center / 100% 100%;
+        height: 33px;
+        width: 10px;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: -10px;
+        background: url('./images/content_right.png') no-repeat center center / 100% 100%;
+        height: 33px;
+        width: 10px;
+      }
+
+      .statistics_content_num {
+        background-color: transparent;
+        font-family:
+          Arial Negreta,
+          serif;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: normal;
+        text-align: center;
+        color: #0adaea;
+      }
+
+      .statistics_content_unit {
+        background-color: transparent;
+        font-family: PingFangSC-Regular, serif;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: normal;
+        text-align: center;
+        color: #ffffff;
+        position: relative;
+      }
+    }
+  }
 }
 </style>

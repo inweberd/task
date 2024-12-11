@@ -191,7 +191,7 @@
       <li>
         <a href="javascript:void(0)" @click="go('/demo', true)"
           ><img src="./images/7.png" alt="" />
-          <p>推广有钱！</p></a
+          <p>推广佣金制度</p></a
         >
       </li>
       <li>
@@ -235,6 +235,12 @@
         <a href="javascript:void(0)" @click="$router.push('/conversion')"
           ><img src="./images/6.png" />
           <p>佣金互转</p></a
+        >
+      </li>
+      <li>
+        <a href="javascript:void(0)" @click="$router.push('/rank')"
+          ><img src="./images/rank.png" />
+          <p>排行榜</p></a
         >
       </li>
       <li>
@@ -318,8 +324,9 @@ import { loadInteraction } from '@/utils/ad'
 import { _notice } from '@/utils'
 import { useRouter } from 'vue-router'
 import weimaiquan from '@/assets/img/weimaiquan.jpg'
-import { closeToast, showDialog, showLoadingToast } from 'vant'
+import { showDialog } from 'vant'
 import { getSerialName } from '../../utils/getSerialName'
+import { Toast } from 'tdesign-mobile-vue'
 
 const router = useRouter()
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
@@ -341,39 +348,40 @@ const getPullNew = () => {
   // showDialog({
   //   message: '完成任务后，进入官方qq群找客服领取奖励！'
   // })
-  showLoadingToast({
-    duration: 0,
-    message: '加载中',
-    icon: '/tip.png'
+  Toast({
+    theme: 'loading',
+    message: '加载中...',
+    duration: 0
   })
   reqPullNewLite().then((res) => {
-    closeToast()
+    Toast.clear()
+
     showDialog({
       message: res.msg
     })
   })
 }
 const getPullNew2 = () => {
-  showLoadingToast({
-    duration: 0,
-    message: '加载中',
-    icon: '/tip.png'
+  Toast({
+    theme: 'loading',
+    message: '轻提示文字内容'
   })
   reqPullNew().then((res) => {
-    closeToast()
+    Toast.clear()
+
     showDialog({
       message: res.msg
     })
   })
 }
 const getShouyi = () => {
-  showLoadingToast({
-    duration: 0,
-    message: '加载中',
-    icon: '/tip.png'
+  Toast({
+    theme: 'loading',
+    message: '轻提示文字内容'
   })
   if (!userInfo.value?.result?.staff?.id) {
-    closeToast()
+    Toast.clear()
+
     showDialog({
       message: '开通会员即可一键获取收益！'
     }).then(() => {
@@ -382,7 +390,7 @@ const getShouyi = () => {
     return
   }
   reqQuickReceive().then((res) => {
-    closeToast()
+    Toast.clear()
 
     if (res.code !== 200) {
       return _notice(res.msg)
@@ -456,7 +464,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://hh.yuyuwa.cn/download`
+    window.location.href = `https://fx.yuyuwa.cn/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false

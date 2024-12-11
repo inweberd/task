@@ -1,17 +1,10 @@
 <template>
-  <div
-    style="
-      padding: 40px 0px 50px;
-      overflow-y: auto;
-      background-color: #0e0f13;
-      width: 100%;
-      height: 100%;
-    "
-  >
+  <div style="overflow-y: auto; background-color: #0e0f13; width: 100%; height: 100%">
+    <div style="background-color: #fff; height: 40px; width: 100%"></div>
     <!--    <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />-->
     <Loading v-if="loading" />
     <!--    <div class="title" style="color: #b4a482; font-size: 22px">会员权益卡</div>-->
-    <van-image :src="imageSrc1" width="100%" height="220" fit="fill"></van-image>
+    <!--    <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>-->
 
     <!--    <div class="alarmList-child">-->
     <!--      <div class="alarm-item" v-for="(item, index) in alarmList" :key="index">-->
@@ -32,6 +25,22 @@
     <!--        <div>开通不同等级会员， <span class="active"> 收益永久叠加</span> 生效 ！</div>-->
     <!--      </div>-->
     <!--    </div>-->
+    <div>
+      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+        <!--          <van-swipe-item>-->
+        <!--            <img src="./images/banner3.png" alt="" />-->
+        <!--          </van-swipe-item>-->
+        <!--          <van-swipe-item>-->
+        <!--            <img src="./images/banner4.png" alt="" />-->
+        <!--          </van-swipe-item>-->
+        <van-swipe-item>
+          <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>
+        </van-swipe-item>
+        <van-swipe-item>
+          <van-image :src="imageSrc4" width="100%" height="200" fit="fill"></van-image>
+        </van-swipe-item>
+      </van-swipe>
+    </div>
     <div class="announcement">
       <div class="announcement-task flexS">
         <div style="overflow: scroll; width: 100%; box-sizing: border-box; padding: 0 10px">
@@ -61,7 +70,7 @@
                   "
                 >
                   <!--                  {{ item.name }}-->
-                  员工卡
+                  股权价值
                   <!--                  {{ getSerialName(item.serial) }}-->
                 </div>
                 <div
@@ -73,7 +82,7 @@
                     font-weight: bold;
                   "
                 >
-                  日收益
+                  每天可分红
                 </div>
                 <div
                   style="
@@ -84,7 +93,7 @@
                     font-weight: bold;
                   "
                 >
-                  总收入
+                  30天总分红
                 </div>
                 <div
                   style="
@@ -171,6 +180,21 @@
               </div>
             </div>
           </div>
+          <div
+            v-for="(item, index) of shopList"
+            style="
+              margin-top: 10px;
+              text-align: center;
+              color: #fff;
+              display: flex;
+              background-image: linear-gradient(135deg, #43cbff 10%, #9708cc 100%);
+
+              width: 100%;
+              border-radius: 10px;
+            "
+          >
+            <p></p>
+          </div>
           <!--          <p style="text-align: center; margin-top: 10px">-->
           <!--            当前拥有员工卡数量：{{ myStaffList?.length || 0 }}张-->
           <!--          </p>-->
@@ -206,6 +230,7 @@
 </template>
 <script setup lang="ts">
 import imageSrc1 from '@/assets/img/hehuoren.jpg'
+import imageSrc4 from '@/assets/img/hehuoren3.png'
 import imageSrc2 from '@/assets/img/hehuoren2.png'
 import imageSrc3 from '@/assets/img/goumai.png'
 import { ref, reactive, onMounted, onUnmounted } from 'vue'
@@ -220,11 +245,8 @@ import {
   reqUserStaff,
   reqWalletInfo
 } from '@/api/myApi.js'
-import { closeToast, showFailToast, showLoadingToast, showNotify, showToast } from 'vant'
 import { _notice } from '@/utils'
 import { useRouter } from 'vue-router'
-import { getSerialName } from '@/utils/getSerialName'
-import { userinfo } from '@/api/user'
 import dayjs from 'dayjs'
 import BaseFooter from '@/components/BaseFooter.vue'
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
@@ -718,6 +740,18 @@ const speed = ref(0.5) //滚动速度
   .van-stepper__minus {
     background-color: #fff !important;
     color: #333;
+  }
+}
+.my-swipe .van-swipe-item {
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 100%;
+    height: 200px;
   }
 }
 </style>

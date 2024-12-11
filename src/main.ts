@@ -10,9 +10,13 @@ import { createPinia } from 'pinia'
 import { useClick } from '@/utils/hooks/useClick'
 import bus, { EVENT_KEY } from '@/utils/bus'
 import { setToastDefaultOptions, resetToastDefaultOptions } from 'vant'
+import TDesign from 'tdesign-mobile-vue'
+import 'tdesign-mobile-vue/es/style/index.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 const vClick = useClick()
 const pinia = createPinia()
 const app = createApp(App)
+app.use(TDesign)
 app.mixin(mixin)
 setToastDefaultOptions('loading', { forbidClick: true })
 const loadImage = new URL('./assets/img/icon/img-loading.png', import.meta.url).href

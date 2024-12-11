@@ -90,9 +90,9 @@
           </div>
         </div>
         <button class="btn" v-on:click="method.emit" :disabled="loading">
-          <div class="img-box">
-            <img src="@/assets/img/recharge/recharge.png" />
-          </div>
+          <!--          <div class="img-box">-->
+          <!--            <img src="@/assets/img/recharge/recharge.png" />-->
+          <!--          </div>-->
           <span>确认 </span>
           <van-loading size="20" v-if="loading" />
         </button>
@@ -406,10 +406,10 @@ onMounted(() => method.init())
   border-bottom: none;
 }
 :deep(.van-nav-bar__arrow) {
-  //color: #fff !important;
+  color: #fff !important;
 }
 :deep(.van-nav-bar__title) {
-  //color: #fff !important;
+  color: #fff !important;
 }
 
 .rechargeClass {
@@ -428,8 +428,8 @@ onMounted(() => method.init())
       display: flex;
       padding: 23px 0;
       border-bottom: 1px solid #534e4e;
-      color: #323233;
-      background-color: #fff;
+      color: #fff;
+      background-color: #0e0f13;
 
       &-left {
         margin: 0 25px;
@@ -460,12 +460,12 @@ onMounted(() => method.init())
       }
     }
     .recharge-money {
-      color: #323233;
+      color: #fff;
       padding: 30px 20px;
-      background-color: #fff;
+      background-color: #0e0f13;
       .txt {
         font-size: 16px;
-        color: #323233;
+        color: #fff;
       }
       .money-box {
         display: flex;
@@ -518,14 +518,16 @@ onMounted(() => method.init())
         line-height: 40px;
         color: black;
         border: 1px solid transparent !important;
-        background: rgba(255, 255, 255, calc(1.5 * 0.65));
-        backdrop-filter: blur(10px) saturate(160%);
+        color: #fff;
+        //background: rgba(255, 255, 255, calc(1.5 * 0.65));
+        background: #01c5f0;
+        //backdrop-filter: blur(10px) saturate(160%);
         box-shadow: 0 5px 40px rgb(17 58 93 / 10%) !important;
         border-radius: 100px;
         letter-spacing: 6px;
 
         &:active {
-          background-color: #fff;
+          background-color: #0e0f13;
           box-shadow:
             0 0 #0000001a,
             0 0 #fffc,

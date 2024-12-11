@@ -3,7 +3,7 @@
     style="
       width: 100%;
       height: 100vh;
-      background-color: #2e2e30;
+      background-color: #0e0f13;
       display: flex;
       justify-content: center;
       align-items: center;

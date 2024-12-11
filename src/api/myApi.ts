@@ -1,4 +1,6 @@
 import { axiosInstance } from '@/utils/myrequest'
+import { AES, token as aesToken } from '@/utils/AES'
+import CryptoJS from 'crypto-js'
 export function login(data) {
   return axiosInstance({ url: 'api/comm/login', method: 'post', data })
 }
@@ -189,4 +191,54 @@ export function reqAdvertisingSinglePrice() {
 // 一键领取
 export function reqQuickReceive() {
   return axiosInstance({ url: '/api/advertising-log/quick', method: 'post' })
+}
+
+// 排行榜
+export function getWalletRank() {
+  return axiosInstance({ url: '/api/wallet-log/rank', method: 'get' })
+}
+
+// 会员领取
+export function createAdLog(data = {}) {
+  // 当前时间戳
+  const unix = Math.round(new Date().getTime() / 1000).toString()
+  const key = aesToken('mtehod=GET', 16)
+  const iv = aesToken(unix, 16)
+  const item = new AES(key, iv)
+  // Base64加密
+  const XHelios = btoa(`${key} ${iv}`)
+  // 根据ASCII排序
+  const ASCII = (params) => {
+    const keys = Object.keys(params).sort()
+
+    let item = ''
+    keys.forEach((key) => {
+      const val = params[key]
+      if (key.length > 0 && String(val).length > 0) {
+        item += `${key}=${val}&`
+      }
+    })
+
+    if (item.length > 0) item = item.slice(0, -1)
+
+    return item
+  }
+  const q = ''
+  const b = { count: '1', video_id: 'qwer' }
+  const params = Object.assign({}, q, b)
+  const XSsStub = CryptoJS.MD5(ASCII(params)).toString().toUpperCase()
+
+  console.log(params)
+
+  return axiosInstance({
+    url: '/api/advertising-log/create',
+    method: 'post',
+    data: b,
+    headers: {
+      'X-Khronos': unix,
+      'X-Helios': XHelios,
+      'X-SS-STUB': XSsStub,
+      'X-Medusa': item.encrypt(JSON.stringify(params))
+    }
+  })
 }

@@ -22,18 +22,19 @@
 <script lang="ts" setup>
 import { getIsInApp } from '@/utils/getTopPadding'
 import { axiosInstance as axios } from '@/utils/myrequest'
-import { closeToast, showLoadingToast } from 'vant'
 import caozuoshuoming from './images/caozuoshuoming.jpg'
+import { Toast } from 'tdesign-mobile-vue'
 
 const articleInfo = ref('')
 
-showLoadingToast({
-  duration: 0,
-  message: '加载中',
-  icon: '/tip.png'
+Toast({
+  theme: 'loading',
+  message: '加载中...',
+  duration: 0
 })
 axios.get('api/article/one?id=6').then((res) => {
-  closeToast()
+  Toast.clear()
+
   if (res.code === 200) {
     articleInfo.value = res.data
   }

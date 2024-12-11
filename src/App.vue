@@ -72,7 +72,8 @@ const keepAliveBlackList = [
   'serveInfo',
   'invest',
   'dep',
-  'shourulaiyuan'
+  'shourulaiyuan',
+  'short'
 ]
 import {
   androidUpdate,
@@ -90,7 +91,7 @@ import avatar from '@/assets/img/avatar.png'
 import shareBtnBg from '@/assets/img/share-btn-bg.png'
 import { outsideFn } from '@/utils/outsideFn'
 import { testBase64 } from '@/utils/testBase64'
-import { closeToast, showLoadingToast } from 'vant'
+import { Toast } from 'tdesign-mobile-vue'
 const store = useBaseStore()
 const route = useRoute()
 const router = useRouter()
@@ -165,7 +166,8 @@ function resetVhAndPx() {
 }
 const canvas = ref()
 const canvasWidth = ref(window.innerWidth)
-const canvasHeight = ref(window.innerWidth / (580 / 1031))
+const canvasHeight = ref(window.innerWidth / (1658 / 2480))
+
 const qrCodeText = ref('')
 
 const generatePoster = async () => {
@@ -185,15 +187,15 @@ const generatePoster = async () => {
   // 绘制背景图片
   const image = new Image()
   image.src = imageSrc
-  showLoadingToast({
-    duration: 0,
-    message: '加载中',
-    icon: '/tip.png'
+  Toast({
+    theme: 'loading',
+    message: '加载中...',
+    duration: 0
   })
   image.onload = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
 
-    const qrCodeSize = canvasWidth.value * 0.25 // 调整二维码的大小
+    const qrCodeSize = canvasWidth.value * 0.3 // 调整二维码的大小
     const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
       width: qrCodeSize,
       height: qrCodeSize,
@@ -202,12 +204,12 @@ const generatePoster = async () => {
     const qrCodeImage = new Image()
     qrCodeImage.src = qrCodeDataURL
     qrCodeImage.onload = () => {
-      closeToast()
+      Toast.clear()
       // 在海报上绘制二维码，位置在正中心下方
-      // const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
-      const qrCodeX = 30
-      // const qrCodeY = canvasHeight.value - qrCodeSize * 2.6
-      const qrCodeY = canvasHeight.value - 125
+      const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
+      // const qrCodeX = 30
+      const qrCodeY = canvasHeight.value - qrCodeSize * 1.85
+      // const qrCodeY = canvasHeight.value - 125
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }
   }
@@ -269,9 +271,9 @@ onMounted(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
       qrCodeText.value =
-        'http://bbbwx1028a12.s3-website-us-east-1.amazonaws.com/index.html?target=' +
+        'http://bbbwx1203a11.s3-website-us-east-1.amazonaws.com/index.html?target=' +
         encodeURIComponent(
-          'https://hh.yuyuwa.cn/#/signUp?invite=' +
+          'https://fx.yuyuwa.cn/#/signUp?invite=' +
             JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
         )
       generatePoster()
@@ -334,7 +336,9 @@ onMounted(() => {
 }
 :root {
   --van-text-color: #fff;
+  --van-nav-bar-background: #0e0f13 !important;
 }
+
 #app {
   height: 100%;
   width: 100%;
@@ -389,7 +393,7 @@ onMounted(() => {
 //  font-weight: bold;
 //}
 //.van-nav-bar {
-//  background-color: #2e2e30 !important;
+//  background-color: #0e0f13 !important;
 //}
 //.van-nav-bar__title {
 //  color: #fff !important;
@@ -401,44 +405,56 @@ onMounted(() => {
 //.van-hairline--bottom:after {
 //  border-bottom-width: 0;
 //}
-//.van-tab {
-//  color: #fff !important;
-//}
-//.van-tabs__line {
-//  background-color: #4B6FFF !important;
-//}
-//.van-tabs__nav {
-//  background-color: #2e2e30 !important;
-//}
-//.van-cell {
-//  background-color: #2e2e30 !important;
-//  color: #fff !important;
-//}
-//.van-field__label {
-//  color: #fff !important;
-//}
-//.van-field__control {
-//  color: #fff !important;
-//}
-//.van-popup {
-//  background-color: #2e2e30;
-//  color: #fff !important;
-//}
-//.van-dialog__message {
-//  color: #fff !important;
-//}
-//[class*='van-hairline']:after {
-//  //border-left: none !important;
-//  border-color: #666 !important;
-//}
-//
-//.van-action-sheet__item {
-//  background-color: #2e2e30 !important;
-//}
-//.van-card {
-//  background-color: #2e2e30 !important;
-//}
+.van-tab {
+  color: #fff !important;
+}
+.van-tabs__line {
+  background-color: #4b6fff !important;
+}
+.van-tabs__nav {
+  background-color: #0e0f13 !important;
+}
+.van-cell {
+  background-color: #0e0f13 !important;
+  color: #fff !important;
+}
+.van-field__label {
+  color: #fff !important;
+}
+.van-field__control {
+  color: #fff !important;
+}
+.van-popup {
+  background-color: #0e0f13;
+  color: #fff !important;
+}
+.van-dialog__message {
+  color: #fff !important;
+}
+
+[class*='van-hairline']:after {
+  //border-left: none !important;
+  border-color: #666 !important;
+}
+
+.van-action-sheet__item {
+  background-color: #0e0f13 !important;
+}
+.van-card {
+  background-color: #0e0f13 !important;
+}
+.van-picker {
+  background-color: #0e0f13 !important;
+}
+.van-picker__mask {
+  background-image: none !important;
+}
 //.van-card__title {
 //  color: #fff;
 //}
+.el-table th.el-table__cell,
+.el-table tr {
+  background-color: #05112f !important;
+  color: #fff !important;
+}
 </style>

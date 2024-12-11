@@ -3,7 +3,6 @@
     <van-nav-bar
       title="收支明细"
       safe-area-inset-top
-      style="background-color: #2e2e30"
       fixed
       placeholder
       :class="{ inApp: getIsInApp() }"
@@ -154,7 +153,6 @@ onMounted(() => method.init())
 
 .wallet-page {
   padding: 16px;
-  background-color: #2e2e30;
   height: 100%;
   overflow-y: auto;
 }

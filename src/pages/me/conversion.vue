@@ -46,7 +46,7 @@
               size="small"
               type="primary"
               @click="getCode"
-              style="background: #3f86ff; border: none"
+              style="background: #01c5f0; border: none"
               :disabled="countdown"
             >
               {{ countdown ? countdown + 's重新发送' : '发送验证码' }}
@@ -65,7 +65,7 @@
             block
             type="primary"
             native-type="submit"
-            style="background: #3f86ff; border: none"
+            style="background: #01c5f0; border: none"
           >
             转账
           </van-button>

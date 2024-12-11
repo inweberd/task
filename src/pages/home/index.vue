@@ -12,7 +12,10 @@
           <!--            <img src="./images/banner4.png" alt="" />-->
           <!--          </van-swipe-item>-->
           <van-swipe-item>
-            <img src="./images/banner5.jpg" alt="" />
+            <img src="./images/banner0.jpg" alt="" />
+          </van-swipe-item>
+          <van-swipe-item>
+            <img src="./images/banner1.png" alt="" />
           </van-swipe-item>
         </van-swipe>
       </div>
@@ -51,6 +54,8 @@
       <!--        <van-empty :image="empty" image-size="120" description="未搜索到应用" />-->
       <!--      </div>-->
     </div>
+    <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>
+
     <!--    <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 70px">-->
     <!--      京ICP证030173号-215A-->
     <!--    </p>-->
@@ -87,7 +92,7 @@ import { reqRecordTask, reqWalletLog } from '@/api/myApi'
 import dayjs from 'dayjs'
 import weimaiquan from '@/assets/img/weimaiquan.jpg'
 import { axiosInstance as axios } from '@/utils/myrequest'
-import { closeToast } from 'vant'
+import imageSrc1 from '@/assets/img/hehuoren.jpg'
 
 const loading = ref(false)
 const router = useRouter()
@@ -112,6 +117,15 @@ const appList = ref([
       router.push('/pingtaijianjie')
     }
   },
+  {
+    name: '主播扶持政策',
+    desc: '点击查看百度极速版简介！',
+    logo: '6',
+    btnLabel: '查看',
+    btnCb() {
+      router.push('/zhubofuchizhengce')
+    }
+  },
   // {
   //   name: '操作说明',
   //   desc: '全民来瓜分，精彩短视频。期待您的加入',
@@ -131,7 +145,7 @@ const appList = ref([
   //   }
   // },
   {
-    name: '收入表',
+    name: '推广佣金制度',
     desc: '入职收入表！',
     logo: '3',
     btnLabel: '查看',
@@ -174,7 +188,7 @@ const appList = ref([
   //
   //       // const { VITE_APP_URL } = import.meta.env
   //       // 跳转下载
-  //       window.location.href = `https://hh.yuyuwa.cn/download`
+  //       window.location.href = `https://fx.yuyuwa.cn/download`
   //     } catch (e) {
   //       _notice('下载失败')
   //       // state.loading.app = false
@@ -185,7 +199,7 @@ const appList = ref([
 ])
 function goDownload() {
   try {
-    window.location.href = `https://hh.yuyuwa.cn/download`
+    window.location.href = `https://fx.yuyuwa.cn/download`
   } catch (e) {
     _notice('下载失败')
   }
@@ -393,7 +407,7 @@ onActivated(() => {
         color: #fff;
         display: flex;
         flex-direction: column;
-        padding: 10px 15px;
+        //padding: 10px 15px;
         justify-content: center;
         align-items: center;
         border-radius: 10px;
@@ -414,6 +428,7 @@ onActivated(() => {
           flex: 1;
           padding: 2px;
           .name {
+            white-space: nowrap;
             font-size: 12px;
           }
         }
@@ -437,7 +452,7 @@ onActivated(() => {
 
   img {
     width: 100%;
-    height: 200px;
+    height: 240px;
   }
 }
 .contact {

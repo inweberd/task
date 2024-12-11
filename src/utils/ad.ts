@@ -439,6 +439,8 @@ export const wechatShareLink = (str, scene) => {
 }
 
 export const wechatShareImg = (base64Str?, scene) => {
+  // window.android.wxLogin()
+  // return
   if (isIos) {
     window.webkit.messageHandlers.weiXinShare.postMessage({
       image: base64Str || testBase64,

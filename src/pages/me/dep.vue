@@ -33,13 +33,28 @@
           </van-radio-group>
         </van-action-sheet>
 
-        <van-field v-model="money" label="选择提现" placeholder="请输入提现金额" />
+        <van-field
+          v-model="money"
+          label="选择提现"
+          placeholder="请选择提现金额"
+          @click="showPicker = true"
+          is-link
+          readonly
+        />
+        <van-popup v-model:show="showPicker" destroy-on-close round position="bottom">
+          <van-picker
+            :model-value="money"
+            :columns="columns"
+            @cancel="showPicker = false"
+            @confirm="onConfirm"
+          />
+        </van-popup>
         <van-button
           style="margin-top: 100px; margin: 50px auto 30px; width: 80vw"
           round
           block
           type="primary"
-          color="#4B6FFF"
+          color="#01c5f0"
           @click="goPay"
           :loading="tixianLoading"
           loading-text="加载中..."
@@ -74,7 +89,7 @@
             <van-button
               type="primary"
               style="margin-top: 30px"
-              color="#4B6FFF"
+              color="#01c5f0"
               block
               @click="save('bank')"
               :loading="bindLoading"
@@ -95,7 +110,7 @@
             <van-button
               type="primary"
               style="margin-top: 30px"
-              color="#4B6FFF"
+              color="#01c5f0"
               block
               @click="save('ali')"
               >保存</van-button
@@ -283,9 +298,27 @@ const bank = async () => {
     }
   })
 }
+const columns = [
+  { text: '50', value: '50' },
+  { text: '100', value: '100' },
+  { text: '200', value: '200' },
+  { text: '300', value: '300' },
+  { text: '400', value: '400' },
+  { text: '500', value: '500' },
+  { text: '1000', value: '1000' },
+  { text: '2000', value: '2000' },
+  { text: '3000', value: '3000' },
+  { text: '4000', value: '4000' },
+  { text: '5000', value: '5000' }
+]
+const showPicker = ref(false)
 const loading = ref(false)
 const bindLoading = ref(false)
 const tixianLoading = ref(false)
+const onConfirm = ({ selectedValues, selectedOptions }) => {
+  showPicker.value = false
+  money.value = selectedValues[0]
+}
 const card = async () => {
   loading.value = true
   // state.card.load = true
@@ -305,6 +338,9 @@ const card = async () => {
 }
 async function goPay() {
   // loadInteraction()
+  if (!money.value) {
+    return _notice('请选择提现金额')
+  }
 
   // if (!sessionStorage.seeVideoWithdrawal) {
   //   showDialog({
@@ -547,7 +583,7 @@ const deleteCard = (item, index) => {
 
 .desc {
   padding: 0 10px;
-  color: #323233;
+  color: #fff;
   .desc-title {
     font-size: 16px;
     font-weight: bolder;

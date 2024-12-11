@@ -168,12 +168,9 @@ import {
   reqUserStaff,
   reqWalletInfo
 } from '@/api/myApi.js'
-import { closeToast, showFailToast, showLoadingToast, showNotify, showToast } from 'vant'
 import { _notice } from '@/utils'
 import { useRouter } from 'vue-router'
 import { getSerialName } from '@/utils/getSerialName'
-import { userinfo } from '@/api/user'
-import dayjs from 'dayjs'
 import BaseFooter from '@/components/BaseFooter.vue'
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
 defineOptions({

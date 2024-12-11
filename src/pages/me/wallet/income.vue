@@ -1,5 +1,5 @@
 <template>
-  <div class="card-body box-shadow radius-10 mx-3 mb-5">
+  <div class="card-body box-shadow radius-10 mx-3 mb-5" style="color: #fff">
     <van-list
       v-model:loading="loading"
       :finished="finished"
@@ -82,7 +82,8 @@ onMounted(() => {
   margin-top: 20px;
 }
 .card {
-  background-color: #a3a3a3;
+  background-color: rgba(26, 62, 84, 0.7);
+
   padding: 15px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;

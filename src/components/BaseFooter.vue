@@ -15,7 +15,7 @@
       </div>
     </div>
     <!--    <div class="l-button" @click="refresh(2)">-->
-    <div class="l-button" @click="loadShort(1)">
+    <div class="l-button" @click="loadShort(1)" v-if="!isIos">
       <div class="add-ctn">
         <div class="img-box">
           <img
@@ -79,8 +79,10 @@
 import bus, { EVENT_KEY } from '../utils/bus'
 import { loadInteraction, loadShortPlayVideo, loadShortVideo } from '@/utils/ad'
 import dayjs from 'dayjs'
-import { closeToast, showDialog, showLoadingToast } from 'vant'
+import { closeToast, showDialog } from 'vant'
 import { reqAdvertisingCount, reqAdvertisingSinglePrice } from '@/api/myApi'
+import { Toast } from 'tdesign-mobile-vue'
+const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
 
 export default {
   name: 'BaseFooter',
@@ -105,6 +107,11 @@ export default {
   },
   methods: {
     async loadShort(type) {
+      if (isIos) {
+        this.$router.push('/short')
+        return
+      }
+
       if (type === 1 || type === 3) {
         console.log("dayjs().format('YYYY-MM-DD')", dayjs().format('YYYY-MM-DD'))
         if (localStorage.isShortVideoShare === dayjs().format('YYYY-MM-DD')) {
@@ -121,38 +128,37 @@ export default {
             return
           }
           // loadInteraction()
-          showLoadingToast({
-            duration: 0,
-            message: '加载中',
-            icon: '/tip.png'
+          Toast({
+            theme: 'loading',
+            message: '加载中...',
+            duration: 0
           })
           let arr = [reqAdvertisingCount(), reqAdvertisingSinglePrice()]
           Promise.all(arr)
             .then((res) => {
-              closeToast()
-
+              Toast.clear()
               let todayCount = res[0]?.data?.ordinary
               let price = res[1]?.data?.price
               if (res[0].code !== 200) {
-                todayCount = 30
+                todayCount = 100
               }
               if (res[1].code !== 200) {
                 price = -1
               }
               nextTick(() => {
                 loadShortVideo({
-                  todayCount: 30 - todayCount,
+                  todayCount: todayCount,
                   price,
                   isVip: type === 3
                 })
               })
             })
             .catch(() => {
-              closeToast()
+              Toast.clear()
 
               nextTick(() => {
                 loadShortVideo({
-                  todayCount: 30,
+                  todayCount: 100,
                   price: -1,
                   isVip: type === 3
                 })

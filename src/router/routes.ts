@@ -15,7 +15,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/test4', component: Test4 },
 
   { path: '/home', component: Home },
-  { path: '/short', component: Short },
+  { path: '/short', component: Short, name: 'short' },
 
   { path: '/me', component: () => import('@/pages/me/index.vue') },
   { path: '/nofinish', component: () => import('@/pages/me/nofinish.vue') },
@@ -42,6 +42,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/signUp', redirect: '/common/sign-up' },
   { path: '/forget', redirect: '/common/sign-forget' },
   { path: '/conversion', component: () => import('@/pages/me/conversion.vue') },
+  { path: '/rank', component: () => import('@/pages/me/rank.vue') },
   { path: '/invest', component: () => import('@/pages/me/invest.vue') },
   { path: '/myServe', component: () => import('@/pages/me/myServe.vue') },
   { path: '/serveInfo', component: () => import('@/pages/me/serveInfo.vue') },
@@ -54,6 +55,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/mysub', component: () => import('@/pages/me/mysub.vue') },
   { path: '/fenxiang', component: () => import('@/pages/me/MyCard.vue') },
   { path: '/demo', component: () => import('@/pages/me/demo.vue') },
+  { path: '/zhubofuchizhengce', component: () => import('@/pages/me/zhubofuchizhengce.vue') },
   { path: '/pingtaijianjie', component: () => import('@/pages/me/pingtaijianjie.vue') },
   { path: '/caozuoshuoming', component: () => import('@/pages/me/caozuoshuoming.vue') },
   { path: '/shourulaiyuan', component: () => import('@/pages/me/shourulaiyuan.vue') },

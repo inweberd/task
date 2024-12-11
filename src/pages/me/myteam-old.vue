@@ -55,12 +55,12 @@
         <!--          <div class="label">团队总收益</div>-->
         <!--        </div>-->
         <div class="stat-item">
-          <div class="label">团队总充值</div>
-          <div class="number">￥{{ memberInfo.team?.deposit || 0 }}</div>
+          <div class="label">团队总充值(元)</div>
+          <div class="number">{{ memberInfo.team?.deposit || 0 }}</div>
         </div>
         <div class="stat-item">
-          <div class="label">团队总提现</div>
-          <div class="number">￥{{ memberInfo.team?.withdraw || 0 }}</div>
+          <div class="label">团队总提现(元)</div>
+          <div class="number">{{ memberInfo.team?.withdraw || 0 }}</div>
         </div>
         <div class="stat-item" style="width: 100%">
           <div class="label">今日收益</div>
@@ -288,8 +288,8 @@ onActivated(() => {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 40px;
   margin-bottom: 20px;
-  background-color: #fff;
-  color: #323233;
+  background-color: #646060;
+  color: #fff;
 }
 
 .card-body {

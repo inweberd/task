@@ -3,7 +3,7 @@
     <!--<EarnedCash></EarnedCash>-->
     <Loading v-if="loading"></Loading>
     <div class="container">
-      <div style="padding-top: 40px; background-color: #fff">
+      <div :style="containerStyle" style="background-color: #fff">
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
           <!--          <van-swipe-item>-->
           <!--            <img src="./images/banner3.png" alt="" />-->
@@ -12,33 +12,12 @@
           <!--            <img src="./images/banner4.png" alt="" />-->
           <!--          </van-swipe-item>-->
           <van-swipe-item>
-            <img src="./images/banner0.jpg" alt="" />
+            <img src="./images/banner6.png" alt="" />
           </van-swipe-item>
-          <van-swipe-item>
-            <img src="./images/banner1.png" alt="" />
-          </van-swipe-item>
+          <!--          <van-swipe-item>-->
+          <!--            <img src="./images/banner1.png" alt="" />-->
+          <!--          </van-swipe-item>-->
         </van-swipe>
-      </div>
-
-      <div v-show="activeTab === 0" class="app-list" style="margin-top: 10px">
-        <div class="app-list-item" v-for="(item, index) of appList" @click="item.btnCb">
-          <div class="logo">
-            <img :src="convertImgUrl(item.logo)" alt="" />
-          </div>
-          <div class="info">
-            <div class="name">{{ item.name }}</div>
-            <!--            <div class="desc">-->
-            <!--              &lt;!&ndash;                :style="{ color: index === appList?.length - 1 ? '#9d9d9d' : 'red' }"&ndash;&gt;-->
-            <!--              {{ item.desc }}-->
-            <!--            </div>-->
-          </div>
-          <!--          <div class="r">-->
-          <!--            <div class="download" @click="item.btnCb">{{ item.btnLabel }}</div>-->
-          <!--          </div>-->
-        </div>
-        <!--        <p style="text-align: center; color: #888; margin-bottom: 10px">京ICP证030173号-215A</p>-->
-
-        <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
       <div class="notice">
         <van-notice-bar
@@ -50,15 +29,38 @@
         >
         </van-notice-bar>
       </div>
+      <div v-show="activeTab === 0" class="app-list" style="margin-top: 10px">
+        <div class="app-list-item" v-for="(item, index) of appList">
+          <div class="l">
+            <div class="logo">
+              <img :src="convertImgUrl(item.logo)" alt="" />
+            </div>
+            <div class="info">
+              <div class="name">{{ item.name }}</div>
+              <div class="desc">
+                <!--                :style="{ color: index === appList?.length - 1 ? '#9d9d9d' : 'red' }"-->
+                {{ item.desc }}
+              </div>
+            </div>
+          </div>
+          <div class="r">
+            <div class="download" @click="item.btnCb">{{ item.btnLabel }}</div>
+          </div>
+        </div>
+        <!--        <p style="text-align: center; color: #888; margin-bottom: 10px">京ICP证030173号-215A</p>-->
+
+        <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
+      </div>
+
       <!--      <div class="playing" v-show="activeTab === 1">-->
       <!--        <van-empty :image="empty" image-size="120" description="未搜索到应用" />-->
       <!--      </div>-->
     </div>
-    <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>
+    <!--    <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>-->
 
-    <!--    <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 70px">-->
-    <!--      京ICP证030173号-215A-->
-    <!--    </p>-->
+    <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 70px">
+      京ICP备12025439号
+    </p>
     <BaseFooter v-bind:init-tab="1" :is-white="true" />
     <!--    <div class="contact" @click="jumpToQQ">-->
     <!--      <img src="@/assets/img/kefu.png" alt="" />-->
@@ -78,7 +80,7 @@
 </template>
 
 <script setup lang="tsx">
-import { nextTick, onActivated, onMounted, reactive, ref } from 'vue'
+import { computed, nextTick, onActivated, onMounted, reactive, ref } from 'vue'
 
 import Loading from '@/components/Loading.vue'
 import BaseFooter from '@/components/BaseFooter.vue'
@@ -93,7 +95,13 @@ import dayjs from 'dayjs'
 import weimaiquan from '@/assets/img/weimaiquan.jpg'
 import { axiosInstance as axios } from '@/utils/myrequest'
 import imageSrc1 from '@/assets/img/hehuoren.jpg'
-
+const containerStyle = computed(() => {
+  if (window.android) {
+    return { paddingTop: '40px' }
+  } else {
+    return {}
+  }
+})
 const loading = ref(false)
 const router = useRouter()
 const activeTab = ref(0)
@@ -108,18 +116,18 @@ const appList = ref([
       // router.push('/short')
     }
   },
-  {
-    name: '官方简介',
-    desc: '点击查看百度极速版简介！',
-    logo: '2',
-    btnLabel: '查看',
-    btnCb() {
-      router.push('/pingtaijianjie')
-    }
-  },
+  // {
+  //   name: '官方简介',
+  //   desc: '点击查看简介！',
+  //   logo: '2',
+  //   btnLabel: '查看',
+  //   btnCb() {
+  //     router.push('/pingtaijianjie')
+  //   }
+  // },
   {
     name: '主播扶持政策',
-    desc: '点击查看百度极速版简介！',
+    desc: '点击查看主播扶持政策！',
     logo: '6',
     btnLabel: '查看',
     btnCb() {
@@ -146,7 +154,7 @@ const appList = ref([
   // },
   {
     name: '推广佣金制度',
-    desc: '入职收入表！',
+    desc: '推广制度',
     logo: '3',
     btnLabel: '查看',
     btnCb() {
@@ -162,7 +170,9 @@ const appList = ref([
       // showImagePreview({
       //   images: [weimaiquan]
       // })
-      window.location.href = decodeURIComponent('https://qm.qq.com/q/nXjc3S4XwQ')
+      // window.location.href = decodeURIComponent('https://qm.qq.com/q/nXjc3S4XwQ')
+      // window.location.href = 'https://dd.kkwai.cn/download/android.apk'
+      router.push('/weimaiquanDetail')
     }
   }
   // {
@@ -398,38 +408,57 @@ onActivated(() => {
       }
     }
     .app-list {
-      display: flex;
       //flex: 1;
       //overflow-y: auto;
-      background-color: #181622;
+      padding: 0px 20px 10px;
       .app-list-item {
-        flex: 1;
-        color: #fff;
+        //background-color: #ffffff;
+        background-image: linear-gradient(135deg, #414138 10%, #272d65 100%);
+
         display: flex;
-        flex-direction: column;
-        //padding: 10px 15px;
-        justify-content: center;
+        margin-bottom: 10px;
+        padding: 10px 15px;
+        justify-content: space-between;
         align-items: center;
         border-radius: 10px;
 
-        .logo {
-          width: 55px;
-          height: 55px;
-          overflow: hidden;
-          border-radius: 10px;
+        .l {
+          display: flex;
+          .logo {
+            width: 55px;
+            height: 55px;
+            overflow: hidden;
+            border-radius: 10px;
 
-          img {
-            width: 100%;
-            height: 100%;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .info {
+            flex: 1;
+            margin-left: 6px;
+            padding: 2px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .name {
+              font-size: 16px;
+              color: #fff;
+            }
+            .desc {
+              color: #9d9d9d;
+            }
           }
         }
-        .info {
-          margin-top: 6px;
-          flex: 1;
-          padding: 2px;
-          .name {
-            white-space: nowrap;
+        .r {
+          .download {
+            padding: 8px 18px;
+            background-color: #689cfc;
+            color: #fff;
+            border-radius: 20px;
             font-size: 12px;
+            white-space: nowrap;
           }
         }
       }
@@ -452,7 +481,7 @@ onActivated(() => {
 
   img {
     width: 100%;
-    height: 240px;
+    height: 200px;
   }
 }
 .contact {

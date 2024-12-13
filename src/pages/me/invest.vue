@@ -1,6 +1,6 @@
 <template>
   <div style="overflow-y: auto; background-color: #0e0f13; width: 100%; height: 100%">
-    <div style="background-color: #fff; height: 40px; width: 100%"></div>
+    <div :style="containerStyle" style="background-color: #fff; width: 100%"></div>
     <!--    <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />-->
     <Loading v-if="loading" />
     <!--    <div class="title" style="color: #b4a482; font-size: 22px">会员权益卡</div>-->
@@ -33,9 +33,9 @@
         <!--          <van-swipe-item>-->
         <!--            <img src="./images/banner4.png" alt="" />-->
         <!--          </van-swipe-item>-->
-        <van-swipe-item>
-          <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>
-        </van-swipe-item>
+        <!--        <van-swipe-item>-->
+        <!--          <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>-->
+        <!--        </van-swipe-item>-->
         <van-swipe-item>
           <van-image :src="imageSrc4" width="100%" height="200" fit="fill"></van-image>
         </van-swipe-item>
@@ -44,115 +44,26 @@
     <div class="announcement">
       <div class="announcement-task flexS">
         <div style="overflow: scroll; width: 100%; box-sizing: border-box; padding: 0 10px">
-          <div
-            v-for="(item, index) of shopList"
-            style="
-              margin-top: 10px;
-              text-align: center;
-              color: #fff;
-              display: flex;
-              background-image: linear-gradient(135deg, #43cbff 10%, #9708cc 100%);
-
-              width: 100%;
-              border-radius: 10px;
-            "
-          >
+          <div v-for="(item, index) of shopList" class="item">
             <div style="width: 100%; padding: 10px">
               <div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 25%;
-                    white-space: nowrap;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                  "
-                >
+                <div class="txt">
                   <!--                  {{ item.name }}-->
-                  股权价值
+                  大额股权
                   <!--                  {{ getSerialName(item.serial) }}-->
                 </div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 25%;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                  "
-                >
-                  每天可分红
-                </div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 25%;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                  "
-                >
-                  30天总分红
-                </div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 25%;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                  "
-                >
-                  有效期
-                </div>
+                <div class="txt">每天可分红</div>
+                <div class="txt">30天总分红</div>
+                <div class="txt">有效期</div>
               </div>
               <div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 25%;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                    font-size: 16px;
-                  "
-                >
-                  {{ item.price }}元
-                </div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 25%;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                  "
-                >
-                  {{ shouyiArrDay[index] }}元
-                </div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 25%;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                  "
-                >
-                  {{ shouyiArrDay[index] * youxiaoArr[index] }}元
-                </div>
-                <div
-                  style="
-                    display: inline-block;
-                    width: 25%;
-                    text-align: center;
-                    color: #fff;
-                    font-weight: bold;
-                  "
-                >
-                  {{ youxiaoArr[index] }}天
-                </div>
+                <div class="txt">{{ item.price }}元</div>
+                <div class="txt">{{ shouyiArrDay[index] }}元</div>
+                <div class="txt">{{ shouyiArrDay[index] * youxiaoArr[index] }}元</div>
+                <div class="txt">{{ youxiaoArr[index] }}天</div>
+              </div>
+              <div style="margin: 10px">
+                <span style="padding-left: 10px">拥有多份股权，可同时叠加生效</span>
               </div>
               <van-stepper
                 v-model="count"
@@ -176,7 +87,7 @@
               >
                 <!--                <span style="font-size: 16px" v-if="myStaffList.includes(item.id)">入职成功 </span>-->
                 <!--                <span style="font-size: 16px" v-else>未入职</span>-->
-                <span style="font-size: 16px">购买</span>
+                <span style="font-size: 16px">认购股权</span>
               </div>
             </div>
           </div>
@@ -222,18 +133,18 @@
     </div>
   </div>
 
-  <!--  <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 60px">-->
-  <!--    京ICP证030173号-215A-->
-  <!--  </p>-->
+  <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 60px">
+    京ICP备12025439号
+  </p>
 
   <BaseFooter v-bind:init-tab="5" :is-white="false" />
 </template>
 <script setup lang="ts">
 import imageSrc1 from '@/assets/img/hehuoren.jpg'
-import imageSrc4 from '@/assets/img/hehuoren3.png'
+import imageSrc4 from '@/assets/img/banner6.png'
 import imageSrc2 from '@/assets/img/hehuoren2.png'
 import imageSrc3 from '@/assets/img/goumai.png'
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import { ref, reactive, onMounted, onUnmounted, computed } from 'vue'
 import {
   reqAllStaff,
   reqCreateShareLog,
@@ -253,10 +164,18 @@ const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
 defineOptions({
   name: 'invest'
 })
+
+const containerStyle = computed(() => {
+  if (window.android) {
+    return { height: '40px' }
+  } else {
+    return {}
+  }
+})
 const count = ref(1)
 const userIncomeInfo = ref({})
-const shouyiArrDay = [8, 20, 40, 80, 120, 160, 200, 400]
-const youxiaoArr = [35, 45, 45, 45, 45, 45, 45, 45]
+const shouyiArrDay = [5, 20, 40, 80, 120, 160, 200, 400]
+const youxiaoArr = [30, 45, 45, 45, 45, 45, 45, 45]
 const daxieArr = ['', '一', '二', '三', '四', '五', '六', '七']
 
 const shopList = ref([
@@ -610,73 +529,24 @@ const speed = ref(0.5) //滚动速度
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    .a-t-items {
-      height: 150px;
-      width: 90%;
-      padding: 10px;
-      position: relative;
-      margin: 6px 12px;
+    .item {
+      margin-top: 10px;
+      text-align: center;
+      color: #fff;
+      display: flex;
+      //background-image: url('@/assets/img/invest-bg.png');
+      background-image: linear-gradient(135deg, #414138 10%, #0e197d 100%);
+      background-size: 100% 100%;
+      width: 100%;
+      border-radius: 10px;
 
-      .a-t-text {
-        position: relative;
-        top: 4px;
-        font-size: 12px;
-        left: 0;
-        .a-t-t-3 {
-          background-color: #5d5e5f;
-          border-radius: 15px;
-          position: relative;
-          .a-t-title {
-            width: 90%;
-            left: 0;
-            color: #b4a482;
-            margin-left: 5%;
-            position: absolute;
-            top: 4px;
-            img {
-              float: right;
-              width: 20%;
-              height: auto;
-              border-radius: 50px;
-            }
-          }
-          .introduce {
-            position: absolute;
-            bottom: 5px;
-            left: 80%;
-            transform: translateX(-50%);
-            color: #f60;
-          }
-          .introduce-left {
-            position: absolute;
-            bottom: 35px;
-            font-size: 16px;
-            left: 20%;
-            transform: translateX(-50%);
-            color: #f60;
-          }
-          .a-t-t-3-1 {
-            top: 30%;
-            height: auto;
-            position: absolute;
-            left: 0;
-            right: 20px;
-            bottom: 20px;
-            background: rgba(0, 0, 0, 0.6);
-            width: 100%;
-            img {
-              width: 20px;
-              display: block;
-              margin: 14px auto 5px;
-              height: 20px;
-            }
-            .a-t-t-3-text {
-              color: #b5a483;
-              text-align: center;
-              font-size: 14px;
-            }
-          }
-        }
+      .txt {
+        display: inline-block;
+        width: 25%;
+        white-space: nowrap;
+        text-align: center;
+        color: #fff;
+        font-weight: bold;
       }
     }
   }

@@ -72,7 +72,9 @@ onActivated(() => {
   //height: 300px;
   padding: 10px;
   box-sizing: border-box;
-  background: linear-gradient(to bottom, #598eea, #fff);
+  //background: linear-gradient(to bottom, #598eea, #fff);
+  background-image: linear-gradient(135deg, #414138 10%, #484b65 100%);
+
   //background: url('./images/fenhontg-bg.jpg') no-repeat center center/ 100% 100%;
   overflow: hidden;
   .redBag {

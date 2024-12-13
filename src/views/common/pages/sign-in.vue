@@ -141,7 +141,9 @@ function goDownload() {
 }
 
 function jumpToQQ2() {
-  window.location.href = decodeURIComponent('https://qm.qq.com/q/nXjc3S4XwQ')
+  router.push('/weimaiquanDetail')
+
+  // window.location.href = decodeURIComponent('https://qm.qq.com/q/nXjc3S4XwQ')
 }
 
 const SignIn = async () => {

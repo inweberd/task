@@ -26,7 +26,7 @@
         </div>
         <div class="d-flex justify-content-between font-13 text-muted">
           <span>
-            邀请好友观看视频，奖励多多
+            <!--            邀请好友观看视频，奖励多多-->
             <!--            {{ state.bank.list.find(({ value }) => value === item.result.card.card_type)?.label }}-->
             <!--            ( {{ item.result.card.name }} )-->
           </span>

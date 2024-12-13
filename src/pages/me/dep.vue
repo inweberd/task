@@ -42,12 +42,7 @@
           readonly
         />
         <van-popup v-model:show="showPicker" destroy-on-close round position="bottom">
-          <van-picker
-            :model-value="money"
-            :columns="columns"
-            @cancel="showPicker = false"
-            @confirm="onConfirm"
-          />
+          <van-picker :columns="columns" @cancel="showPicker = false" @confirm="onConfirm" />
         </van-popup>
         <van-button
           style="margin-top: 100px; margin: 50px auto 30px; width: 80vw"
@@ -65,7 +60,7 @@
           <!--<div class="desc-title">提现流程</div>-->
           <p><span class="index">1.</span> 提现时间为10--21点</p>
           <p><span class="index">2.</span> 提现手续费固定5%</p>
-          <p><span class="index">3.</span> 单笔11元起提，最高单笔1万元</p>
+          <p><span class="index">3.</span> 提现需为50的整倍数</p>
           <p><span class="index">4.</span> 使用KD钱包，JD钱包提现免手续费</p>
           <!--          <p>-->
           <!--            <span class="index">6.</span>-->
@@ -116,14 +111,14 @@
               >保存</van-button
             >
           </van-tab>
-          <van-tab v-if="false" title="K豆钱包" style="padding: 0px 20px">
+          <van-tab title="K豆钱包" style="padding: 0px 20px">
             <van-field v-model="kd_value.name" label="姓名" placeholder="姓名" />
             <van-field v-model="kd_value.card_no" label="钱包地址" placeholder="钱包地址" />
             <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">
               钱包地址为钱包主页界面的34位字母+数字组合。
             </p>
             <van-button
-              color="#4B6FFF"
+              color="#01c5f0"
               type="primary"
               style="margin-top: 30px"
               block
@@ -133,7 +128,7 @@
               >保存</van-button
             >
           </van-tab>
-          <van-tab v-if="false" title="JD钱包" style="padding: 0px 20px">
+          <van-tab title="JD钱包" style="padding: 0px 20px">
             <van-field v-model="jd_value.name" label="姓名" placeholder="姓名" />
             <van-field v-model="jd_value.card_no" label="钱包地址" placeholder="钱包地址" />
             <!--            <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">-->
@@ -141,7 +136,7 @@
             <!--            </p>-->
 
             <van-button
-              color="#4B6FFF"
+              color="#01c5f0"
               ty
               pe="primary"
               style="margin-top: 30px"
@@ -196,7 +191,7 @@ defineOptions({
 const active = ref('')
 const selectName = ref('')
 const checked = ref(false)
-const money = ref()
+const money = ref('')
 const pay_card_id = ref('111')
 let user
 let alipay =
@@ -353,17 +348,17 @@ async function goPay() {
   //   })
   //   return
   // }
-  if (!sessionStorage.isShared) {
-    showDialog({
-      message: '先分享微信朋友圈，再进行提现!'
-    }).then(() => {
-      // on close
-
-      sessionStorage.isShared = true
-      window.shareFriend()
-    })
-    return
-  }
+  // if (!sessionStorage.isShared) {
+  //   showDialog({
+  //     message: '先分享微信朋友圈，再进行提现!'
+  //   }).then(() => {
+  //     // on close
+  //
+  //     sessionStorage.isShared = true
+  //     window.shareFriend()
+  //   })
+  //   return
+  // }
   tixianLoading.value = true
   const { code, msg } = await axios.post('/api/wallet-fetch/create', {
     money: money.value,

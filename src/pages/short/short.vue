@@ -1,5 +1,11 @@
 <template>
   <div class="test-slide-wrapper" id="home-index">
+    <div style="position: fixed; top: 50px; right: 0px; z-index: 10">
+      <span style="font-size: 22px; color: #ff3157; position: absolute; left: 30px; top: 45px">{{
+        total || '0.00'
+      }}</span>
+      <img src="./images/fenhong.png" style="width: 120px; height: 140px" />
+    </div>
     <div class="first-horizontal-item">
       <SlideList uniqueId="home" style="background: #000" :active="true" :api="recommendedVideo" />
     </div>
@@ -20,6 +26,9 @@ import bus, { EVENT_KEY } from '../../utils/bus'
 import { DefaultUser } from '@/utils/const_var'
 import { recommendedVideo } from '@/api/videos'
 import SlideList from '@/pages/home/slide/SlideList.vue'
+import { reqAdvertisingCount, reqAdvertisingSinglePrice } from '@/api/myApi'
+import { Toast } from 'tdesign-mobile-vue'
+import { loadShortVideo } from '@/utils/ad'
 
 const state = reactive({
   active: true,
@@ -43,7 +52,8 @@ const state = reactive({
     aweme_list: []
   }
 })
-
+let price = 0
+const total = ref(0.0)
 onMounted(() => {
   bus.on(EVENT_KEY.OPEN_COMMENTS, () => {
     if (!state.active) return
@@ -54,6 +64,16 @@ onMounted(() => {
     if (!state.active) return
     bus.emit(EVENT_KEY.EXIT_FULLSCREEN)
     state.commentVisible = false
+  })
+  bus.on('updateTotal', (count) => {
+    total.value = (count * price).toFixed(2)
+  })
+  let arr = [reqAdvertisingCount(), reqAdvertisingSinglePrice()]
+  Promise.all(arr).then((res) => {
+    Toast.clear()
+    let todayCount = res[0]?.data?.ordinary
+    price = res[1]?.data?.price
+    total.value = (todayCount * price).toFixed(2)
   })
 })
 

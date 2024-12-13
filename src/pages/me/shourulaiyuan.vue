@@ -46,25 +46,25 @@ const dataList = [
   {
     id: '1',
     title: '总展示数',
-    count: 120598,
+    count: 0,
     unit: '件'
   },
   {
     id: '2',
     title: '总点击数',
-    count: 35942,
+    count: 0,
     unit: '件'
   },
   {
     id: '3',
     title: '总点击率',
-    count: '25%',
+    count: '100%',
     unit: '件'
   },
   {
     id: '4',
     title: '总收益',
-    count: 55200,
+    count: 0,
     unit: '元'
   }
 ]

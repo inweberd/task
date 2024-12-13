@@ -31,7 +31,8 @@ let routeDeep = [
   '/common/sign-in',
   '/common/sign-up',
   '/common/sign-forget',
-  '/article'
+  '/article',
+  '/weimaiquanDetail'
 ]
 router.beforeEach(async (to, from) => {
   // console.log()

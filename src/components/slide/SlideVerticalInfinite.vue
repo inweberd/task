@@ -157,20 +157,20 @@ let price = 0
 watch(
   () => state.localIndex,
   async (newVal, oldVal) => {
-    if (!price) {
-      const res = await reqAdvertisingSinglePrice()
-      price = res?.data?.price
-    }
+    // if (!price) {
+    //   const res = await reqAdvertisingSinglePrice()
+    //   price = res?.data?.price
+    // }
     if (!arr.includes(newVal)) {
       createAdLog().then((res) => {
         console.log('createAdLog', res)
         // Toast()
-
-        showNotify({
-          color: '#fff',
-          background: '#01c5f0',
-          message: '今日已领取' + res.data.count * price + '元'
-        })
+        bus.emit('updateTotal', res.data.count)
+        // showNotify({
+        //   color: '#fff',
+        //   background: '#01c5f0',
+        //   message: '今日已领取' + res.data.count * price + '元'
+        // })
       })
       arr.push(newVal)
     }

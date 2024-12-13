@@ -18,13 +18,14 @@
             <!--            &lt;!&ndash;            <template v-else>LV{{ userInfo?.result?.staff?.serial }}</template>&ndash;&gt;-->
             <!--          </em>-->
             <small class="txt3">邀请码:{{ userInfo?.result?.invite?.code }} </small>
+            <small class="txt4"
+              >当前股权: {{ getSerialName(userInfo?.result?.staff?.serial)
+              }}{{ myStaffList?.length ? myStaffList?.length + '份' : '' }}
+            </small>
             <small class="txt4">会员ID：{{ userInfo?.id }} </small>
           </div>
-          <div>
-            <small class="txt4">当前星级：{{ star }}星级 </small>
-            <small class="txt4"
-              >当前职位: {{ getSerialName(userInfo?.result?.staff?.serial) }}
-            </small>
+          <div style="text-align: right">
+            <!--            <small class="txt4">当前星级：{{ star }}星级 </small>-->
           </div>
         </div>
       </div>
@@ -244,6 +245,12 @@
         >
       </li>
       <li>
+        <a href="javascript:void(0)" @click="$router.push('/fenhong')"
+          ><img src="./images/fenhong.png" />
+          <p>分红奖池</p></a
+        >
+      </li>
+      <li>
         <a href="javascript:void(0)" @click="goDownload"
           ><img src="./images/3.png" />
           <p>APP下载</p></a
@@ -293,7 +300,7 @@
     <div class="LoginOut">
       <button class="tabs_btn1" @click="logout">退出登陆</button>
     </div>
-
+    <p style="text-align: center; color: #888; width: 100%">京ICP备12025439号</p>
     <BaseFooter v-bind:init-tab="6" :is-white="false" />
     <!--    <div class="contact" @click="jumpToQQ">-->
     <!--      <img src="@/assets/img/kefu.png" alt="" />-->
@@ -310,6 +317,7 @@ import BaseFooter from '@/components/BaseFooter.vue'
 import { onActivated, onMounted, ref } from 'vue'
 import {
   logout as fnlogout,
+  reqMyStaff,
   reqPullNew,
   reqPullNewLite,
   reqQuickReceive,
@@ -335,6 +343,7 @@ const userIncomeInfo = ref({})
 const walletInfo = ref({ credit: 0 })
 const star = ref(0)
 const userCount = ref(0)
+const myStaffList = ref([])
 const format = (price = 0) => {
   let result = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   return result === '0' ? '0.00' : result
@@ -342,6 +351,15 @@ const format = (price = 0) => {
 const showWeimaiquan = () => {
   showImagePreview({
     images: [weimaiquan]
+  })
+}
+const getMyStaff = () => {
+  myStaffList.value = []
+  reqMyStaff().then((res) => {
+    myStaffList.value = res.data.map((item) => item.staff_id)
+    if (res.data.length) {
+      myStaffList.value = res.data
+    }
   })
 }
 const getPullNew = () => {
@@ -449,7 +467,9 @@ function go(e, interaction = false) {
   router.push(e)
 }
 function jumpToQQ() {
-  window.location.href = decodeURIComponent('https://qm.qq.com/q/nXjc3S4XwQ')
+  router.push('/weimaiquanDetail')
+
+  // window.location.href = decodeURIComponent('https://qm.qq.com/q/nXjc3S4XwQ')
 }
 
 function go2(val1, val2) {
@@ -507,6 +527,7 @@ onActivated(() => {
   userInfo.value = JSON.parse(window.localStorage.getItem('userInfo'))
   init()
   getNewUserInfo()
+  getMyStaff()
 })
 </script>
 
@@ -514,7 +535,7 @@ onActivated(() => {
 .investClass {
   width: 100vw;
   height: calc(100% - 56px);
-  padding-top: 40px;
+  padding-top: 20px;
   background-image: url('./images/star.jpeg');
   background-size: 100% 100%;
   box-sizing: border-box;
@@ -541,15 +562,17 @@ onActivated(() => {
       justify-content: space-between;
 
       & > div {
+        line-height: 20px;
+        white-space: nowrap;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        font-size: 18px;
+        font-size: 16px;
 
-        &:first-child {
-          justify-content: space-between;
-        }
+        //&:first-child {
+        //  justify-content: space-between;
+        //}
       }
     }
   }
@@ -562,7 +585,7 @@ onActivated(() => {
     //height: 188px;
     //background: url(@/assets/img/mymp.png);
     //background-size: 100% 100%;
-    background-color: rgba(26, 62, 84, 0.7);
+    //background-color: rgba(26, 62, 84, 0.7);
     margin: 10px;
     position: relative;
     border-radius: 10px;
@@ -621,7 +644,7 @@ onActivated(() => {
     }
   }
   .price-2 {
-    background-color: rgba(26, 62, 84, 0.7);
+    //background-color: rgba(26, 62, 84, 0.7);
     margin: 0 10px;
     position: relative;
     padding: 10px;
@@ -683,7 +706,8 @@ onActivated(() => {
       text-align: center;
       padding: 21px 0 21px;
       margin: 6px;
-      background-color: rgba(26, 62, 84, 0.7);
+      //border-radius: 50%;
+      //background-color: rgba(26, 62, 84, 0.7);
 
       a {
         display: block;

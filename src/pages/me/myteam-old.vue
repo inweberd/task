@@ -267,7 +267,7 @@ onActivated(() => {
   background-color: rgba(26, 62, 84, 0.7);
   border-radius: 8px;
   padding: 10px;
-  width: 25%;
+  width: 43%;
   margin-bottom: 10px;
   text-align: center;
 }
@@ -288,7 +288,7 @@ onActivated(() => {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 40px;
   margin-bottom: 20px;
-  background-color: #646060;
+  //background-color: #646060;
   color: #fff;
 }
 

@@ -73,6 +73,7 @@ const keepAliveBlackList = [
   'invest',
   'dep',
   'shourulaiyuan',
+  'rank',
   'short'
 ]
 import {

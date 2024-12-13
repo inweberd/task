@@ -10,26 +10,32 @@
       left-arrow
       @click-left="$router.back()"
     />
-    <van-swipe
-      style="transform: translateY(120px)"
-      class="my-swipe"
-      :autoplay="3000"
-      indicator-color="white"
-    >
-      <!--          <van-swipe-item>-->
-      <!--            <img src="./images/banner3.png" alt="" />-->
-      <!--          </van-swipe-item>-->
-      <!--          <van-swipe-item>-->
-      <!--            <img src="./images/banner4.png" alt="" />-->
-      <!--          </van-swipe-item>-->
-      <van-swipe-item>
-        <van-image :src="imageSrc1" width="100%" height="200" fit="fill"></van-image>
-      </van-swipe-item>
-      <van-swipe-item>
-        <van-image :src="imageSrc4" width="100%" height="200" fit="fill"></van-image>
-      </van-swipe-item>
-    </van-swipe>
+    <!--    <van-swipe-->
+    <!--      style="transform: translateY(120px)"-->
+    <!--      class="my-swipe"-->
+    <!--      :autoplay="3000"-->
+    <!--      indicator-color="white"-->
+    <!--    >-->
+    <!--      &lt;!&ndash;          <van-swipe-item>&ndash;&gt;-->
+    <!--      &lt;!&ndash;            <img src="./images/banner3.png" alt="" />&ndash;&gt;-->
+    <!--      &lt;!&ndash;          </van-swipe-item>&ndash;&gt;-->
+    <!--      &lt;!&ndash;          <van-swipe-item>&ndash;&gt;-->
+    <!--      &lt;!&ndash;            <img src="./images/banner4.png" alt="" />&ndash;&gt;-->
+    <!--      &lt;!&ndash;          </van-swipe-item>&ndash;&gt;-->
+    <!--      <van-swipe-item>-->
+    <!--        <van-image :src="imageSrc1" width="100%" height="200" fit="fill"></van-image>-->
+    <!--      </van-swipe-item>-->
+    <!--      <van-swipe-item>-->
+    <!--        <van-image :src="imageSrc4" width="100%" height="200" fit="fill"></van-image>-->
+    <!--      </van-swipe-item>-->
+    <!--    </van-swipe>-->
     <div class="list">
+      <div style="position: absolute; left: 0; top: -40px; width: 100%; color: #cda65b">
+        <p style="text-align: center; width: 100%">每周统计一次分红资格</p>
+        <p style="text-align: center; width: 100%; font-weight: bolder; font-size: 15px">
+          前50名在榜的用户可获得全网超级分红
+        </p>
+      </div>
       <div class="list-header">
         <div class="list-item">
           <div style="background: none; color: #fff">排名</div>
@@ -38,6 +44,7 @@
         </div>
       </div>
       <div class="list-container">
+        <div v-if="!rankList?.length" style="text-align: center; line-height: 200px">暂无数据</div>
         <div class="list-item" v-for="(item, index) of rankList">
           <div>{{ index + 1 }}</div>
           <div>{{ getPhone(item.phone) }}</div>
@@ -52,7 +59,7 @@
 import { getIsInApp } from '@/utils/getTopPadding'
 import { getWalletRank } from '@/api/myApi'
 import { Toast } from 'tdesign-mobile-vue'
-import { ref } from 'vue'
+import { onBeforeUnmount, ref } from 'vue'
 import imageSrc1 from './images/rank1.png'
 import imageSrc4 from './images/rank2.png'
 
@@ -80,6 +87,9 @@ const getRank = () => {
 }
 
 getRank()
+onBeforeUnmount(() => {
+  Toast.clear()
+})
 </script>
 
 <style lang="less" scoped>
@@ -89,14 +99,15 @@ getRank()
   background: url('./images/rank-bg.png');
   background-size: 100% 100%;
   .list {
+    position: relative;
     width: 80%;
-    margin: 140px auto;
-    height: calc(100% - 400px);
-    min-height: 260px;
+    margin: 180px auto;
+    height: calc(100% - 240px);
+    min-height: 420px;
     background-color: rgba(23, 33, 66, 0.66);
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    //overflow: hidden;
     .list-container {
       flex: 1;
       overflow-y: auto;

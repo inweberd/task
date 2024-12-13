@@ -172,11 +172,11 @@ const loading = ref(false)
 const downloadList = [
   {
     label: 'K豆钱包安卓下载地址',
-    url: 'https://yze1z.360tixi.com/cs5t/yziwzgq4og'
+    url: 'https://kd002.com'
   },
   {
     label: 'K豆钱包苹果下载地址',
-    url: 'https://yze1z.360tixi.com/cs5t/yziwzgq4og'
+    url: 'https://mgi3m.aneeyx.com/L4eXiggS/yjfhzjflnm'
   },
   {
     label: 'JD钱包安卓下载地址',

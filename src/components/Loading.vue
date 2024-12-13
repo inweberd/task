@@ -1,10 +1,12 @@
 <template>
   <div class="Loading" :class="[isFullScreen ? 'full' : 'inline', type]">
-    <div class="circle blue"></div>
-    <div class="circle red"></div>
+    <!--    <div class="circle blue"></div>-->
+    <!--    <div class="circle red"></div>-->
   </div>
 </template>
 <script>
+import { Toast } from 'tdesign-mobile-vue'
+
 export default {
   name: 'Loading',
   props: {
@@ -16,6 +18,16 @@ export default {
       type: String,
       default: 'normal'
     }
+  },
+  mounted() {
+    Toast({
+      theme: 'loading',
+      message: '加载中...',
+      duration: 0
+    })
+  },
+  beforeUnmount() {
+    Toast.clear()
   }
 }
 </script>

@@ -26,7 +26,7 @@
           />
           <img src="../assets/img/tabbar/vipVideo.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 2 ? '#fff' : '' }">普通视频</div>
+        <div :style="{ color: currentTab === 2 ? '#fff' : '' }">体验分红</div>
       </div>
     </div>
     <div class="l-button" @click="loadShort(3)">
@@ -40,7 +40,7 @@
           />
           <img src="../assets/img/tabbar/video.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 2 ? '#fff' : '' }">高价视频</div>
+        <div :style="{ color: currentTab === 2 ? '#fff' : '' }">大额分红</div>
       </div>
     </div>
     <div class="l-button" @click="tab(5)">
@@ -54,7 +54,7 @@
           />
           <img src="../assets/img/tabbar/vip.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 5 ? '#fff' : '' }">VIP</div>
+        <div :style="{ color: currentTab === 5 ? '#fff' : '' }">认购股权</div>
       </div>
     </div>
     <div class="l-button" @click="tab(6)">
@@ -107,7 +107,19 @@ export default {
   },
   methods: {
     async loadShort(type) {
+      const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+      const userId = userInfo?.id
+      const serial = userInfo?.result?.staff?.serial
       if (isIos) {
+        if (!serial && type === 3) {
+          showDialog({
+            message: '认购股权，开启大额分红模式，每天收益不间断!'
+          }).then(() => {
+            this.$router.push('/invest')
+          })
+          return
+        }
+
         this.$router.push('/short')
         return
       }
@@ -115,13 +127,10 @@ export default {
       if (type === 1 || type === 3) {
         console.log("dayjs().format('YYYY-MM-DD')", dayjs().format('YYYY-MM-DD'))
         if (localStorage.isShortVideoShare === dayjs().format('YYYY-MM-DD')) {
-          const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
-          const userId = userInfo?.id
-          const serial = userInfo?.result?.staff?.serial
           console.log(!serial)
           if (!serial && type === 3) {
             showDialog({
-              message: 'vip专属入口，开通vip领取更高收益!'
+              message: '认购股权，开启大额分红模式，每天收益不间断!'
             }).then(() => {
               this.$router.push('/invest')
             })

@@ -31,6 +31,24 @@
       <el-table-column prop="num" label="展现数" width="100" />
       <el-table-column prop="price" label="收益（元）" width="110" />
     </el-table>
+    <div
+      style="
+        margin: 10px;
+        background-color: rgba(70, 89, 101, 0.7);
+        border-radius: 10px;
+        padding: 6px;
+        color: #fff;
+        text-indent: 2em;
+        line-height: 1.6;
+      "
+    >
+      <p style="text-indent: 2em">
+        此表格为公司盈利模式和每天公司盈利数据，方便代理对照参考，我司会在用户量增加到一定程度，陆续对接更多高质量，高价格广告厂商，来提供更多盈利分红给用户。陆续增加游戏板块，电商带货板块，正在开发中.....
+      </p>
+      <p style="text-indent: 2em">
+        平台每日将拿出90%的自身广告收入，分红给持有股份的用户。公司只赚取有限的10%广告利润，实现良性可循环！
+      </p>
+    </div>
   </div>
 </template>
 
@@ -46,25 +64,25 @@ const dataList = [
   {
     id: '1',
     title: '总展示数',
-    count: 0,
+    count: 853257,
     unit: '件'
   },
   {
     id: '2',
     title: '总点击数',
-    count: 0,
+    count: 126452,
     unit: '件'
   },
   {
     id: '3',
     title: '总点击率',
-    count: '100%',
+    count: '14.82%',
     unit: '件'
   },
   {
     id: '4',
     title: '总收益',
-    count: 0,
+    count: 5749.73,
     unit: '元'
   }
 ]

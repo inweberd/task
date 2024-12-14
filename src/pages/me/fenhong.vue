@@ -16,7 +16,7 @@
       <div class="fenhong">
         <div class="title">
           本次周期分红总金额 <br />
-          （每X天进行一轮分红） <br />
+          <!--          （每X天进行一轮分红） <br />-->
           <div style="margin-top: 10px">当前奖池金额</div>
         </div>
         <div class="money">{{ total }}(元)</div>

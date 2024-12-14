@@ -272,7 +272,7 @@ onMounted(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
       qrCodeText.value =
-        'http://bbbwx1203a11.s3-website-us-east-1.amazonaws.com/index.html?target=' +
+        'http://bbbwx1203a12.s3-website-us-east-1.amazonaws.com/index.html?target=' +
         encodeURIComponent(
           'https://fx.yuyuwa.cn/#/signUp?invite=' +
             JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code

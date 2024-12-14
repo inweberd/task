@@ -247,7 +247,7 @@
       <li>
         <a href="javascript:void(0)" @click="$router.push('/fenhong')"
           ><img src="./images/fenhong.png" />
-          <p>分红奖池</p></a
+          <p>每周分红奖池</p></a
         >
       </li>
       <li>
@@ -356,7 +356,6 @@ const showWeimaiquan = () => {
 const getMyStaff = () => {
   myStaffList.value = []
   reqMyStaff().then((res) => {
-    myStaffList.value = res.data.map((item) => item.staff_id)
     if (res.data.length) {
       myStaffList.value = res.data
     }
@@ -431,6 +430,7 @@ const getMemberInfo = async () => {
   reqUserMemberInfo({
     uid: userInfo.value.id
   }).then((res) => {
+    console.log('memberInfo', memberInfo)
     memberInfo.value = res.data
   })
 }

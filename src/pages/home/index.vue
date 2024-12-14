@@ -174,6 +174,15 @@ const appList = ref([
       // window.location.href = 'https://dd.kkwai.cn/download/android.apk'
       router.push('/weimaiquanDetail')
     }
+  },
+  {
+    name: '每周分红奖池',
+    desc: '点击查看每周分红奖池！',
+    logo: '7',
+    btnLabel: '查看',
+    btnCb() {
+      router.push('/fenhong')
+    }
   }
   // {
   //   name: '官方交流群',

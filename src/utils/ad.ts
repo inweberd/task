@@ -389,6 +389,7 @@ export const loadShortVideo = ({ todayCount, price, isVip }) => {
           q: q,
           b: b,
           ll: 0.033,
+          showMsg: false,
           h: {
             'X-Khronos': unix,
             'X-Helios': XHelios,

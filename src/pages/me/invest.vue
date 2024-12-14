@@ -1,5 +1,5 @@
 <template>
-  <div style="overflow-y: auto; background-color: #0e0f13; width: 100%; height: 100%">
+  <div style="overflow-y: auto; background-color: #0e0f13; width: 100%; height: calc(100% - 65px)">
     <div :style="containerStyle" style="background-color: #fff; width: 100%"></div>
     <!--    <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />-->
     <Loading v-if="loading" />
@@ -91,21 +91,26 @@
               </div>
             </div>
           </div>
-          <div
-            v-for="(item, index) of shopList"
-            style="
-              margin-top: 10px;
-              text-align: center;
-              color: #fff;
-              display: flex;
-              background-image: linear-gradient(135deg, #43cbff 10%, #9708cc 100%);
+          <van-image :src="imageSrc5" width="100%" height="300" fit="fill"></van-image>
 
-              width: 100%;
-              border-radius: 10px;
-            "
-          >
-            <p></p>
-          </div>
+          <!--          <div-->
+          <!--            style="-->
+          <!--              margin: 10px;-->
+          <!--              background-color: rgba(70, 89, 101, 0.7);-->
+          <!--              border-radius: 10px;-->
+          <!--              padding: 6px;-->
+          <!--              color: #fff;-->
+          <!--              line-height: 1.6;-->
+          <!--              text-align: center;-->
+          <!--            "-->
+          <!--          >-->
+          <!--            <p>每份股权可持续分红30天</p>-->
+          <!--            <p>激活1份股权，每天可得分红5元</p>-->
+          <!--            <p>激活10份股权，每天可得分红50元</p>-->
+          <!--            <p>到期可续购股权，中途也可加购股权</p>-->
+          <!--            <p>下级用户每次续购股权或者中途加购股权</p>-->
+          <!--            <p>直属上级依旧可以获得下属激活奖励</p>-->
+          <!--          </div>-->
           <!--          <p style="text-align: center; margin-top: 10px">-->
           <!--            当前拥有员工卡数量：{{ myStaffList?.length || 0 }}张-->
           <!--          </p>-->
@@ -131,17 +136,18 @@
         </div>
       </div>
     </div>
+    <p style="text-align: center; color: #888; width: 100%">京ICP备12025439号</p>
   </div>
 
-  <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 60px">
-    京ICP备12025439号
-  </p>
-
+  <!--  <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 60px">-->
+  <!--    京ICP备12025439号-->
+  <!--  </p>-->
   <BaseFooter v-bind:init-tab="5" :is-white="false" />
 </template>
 <script setup lang="ts">
 import imageSrc1 from '@/assets/img/hehuoren.jpg'
 import imageSrc4 from '@/assets/img/banner6.png'
+import imageSrc5 from './images/invest-info.png'
 import imageSrc2 from '@/assets/img/hehuoren2.png'
 import imageSrc3 from '@/assets/img/goumai.png'
 import { ref, reactive, onMounted, onUnmounted, computed } from 'vue'
@@ -535,7 +541,8 @@ const speed = ref(0.5) //滚动速度
       color: #fff;
       display: flex;
       //background-image: url('@/assets/img/invest-bg.png');
-      background-image: linear-gradient(135deg, #414138 10%, #0e197d 100%);
+      //background-image: linear-gradient(135deg, #414138 10%, #0e197d 100%);
+      background-image: url('./images/invest-bg.png');
       background-size: 100% 100%;
       width: 100%;
       border-radius: 10px;

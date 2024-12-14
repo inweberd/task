@@ -39,22 +39,40 @@
   <!--  <img src="@/assets/img/openByOtherBrower.jpg" style="width: 100%" />-->
   <!--</div>-->
   <van-overlay :show="showOverlay" :z-index="99999999">
-    <div
-      class="wrapper"
-      style="
-        font-size: 26px;
-        font-weight: bolder;
-        color: #fff;
-        display: flex;
-        width: 100%;
-        height: 100vh;
-        align-items: center;
-        justify-content: center;
-      "
-      @click.stop
-    >
-      请更新或重新下载app
+    <div class="wrapper" @click.stop>
+      <div class="update-box">
+        <img src="@/assets/img/update.png" alt="" />
+        <div class="title">发现新版本 1.0.2</div>
+        <div>
+          <p>1. APP流畅度优化</p>
+          <p>2. 大额股份认购界面优化</p>
+          <p>3. 公司收入来源界面优化</p>
+        </div>
+        <el-button
+          color="#689cfc"
+          size="large"
+          style="border-radius: 20px; margin-top: 30px !important; color: #fff; width: 80%"
+          @click="toDownload"
+          >立即升级
+        </el-button>
+      </div>
     </div>
+    <!--    <div-->
+    <!--      class="wrapper"-->
+    <!--      style="-->
+    <!--        font-size: 26px;-->
+    <!--        font-weight: bolder;-->
+    <!--        color: #fff;-->
+    <!--        display: flex;-->
+    <!--        width: 100%;-->
+    <!--        height: 100vh;-->
+    <!--        align-items: center;-->
+    <!--        justify-content: center;-->
+    <!--      "-->
+    <!--      @click.stop-->
+    <!--    >-->
+    <!--      请更新或重新下载app-->
+    <!--    </div>-->
   </van-overlay>
 </template>
 <script setup lang="ts">
@@ -215,6 +233,10 @@ const generatePoster = async () => {
     }
   }
 }
+
+const toDownload = () => {
+  window.location.href = `https://fx.yuyuwa.cn/download/android.apk`
+}
 onMounted(() => {
   outsideFn()
   if (isWeChatBrowser) {
@@ -300,31 +322,51 @@ onMounted(() => {
 
   // 监听 visibilitychange 事件
   // document.addEventListener('visibilitychange', handleVisibilityChange)
-  const updateTimer = setInterval(() => {
-    if (!window.android) {
-      clearInterval(updateTimer)
-      return
-    }
-    fetch('/c.json')
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.c > getVersionCode()) {
-          showOverlay.value = true
-          clearInterval(updateTimer)
-          androidUpdate()
-        }
-      })
-  }, 5000)
+  // const updateTimer = setInterval(() => {
+  //   if (!window.android) {
+  //     clearInterval(updateTimer)
+  //     return
+  //   }
+  //   fetch('/c.json')
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       if (res.c > getVersionCode()) {
+  //         showOverlay.value = true
+  //         clearInterval(updateTimer)
+  //         androidUpdate()
+  //       }
+  //     })
+  // }, 5000)
+  // if (window.android) {
+  //   fetch('/c.json')
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       if (res.c > getVersionCode()) {
+  //         showOverlay.value = true
+  //         clearInterval(updateTimer)
+  //         androidUpdate()
+  //       }
+  //     })
+  // }
+  // const updateTimer = setInterval(() => {
+  //   if (!window.android) {
+  //     clearInterval(updateTimer)
+  //     return
+  //   }
+  //   fetch('/c.json')
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       if (res.c > getVersionCode()) {
+  //         showOverlay.value = true
+  //         clearInterval(updateTimer)
+  //         androidUpdate()
+  //       }
+  //     })
+  // }, 5000)
   if (window.android) {
-    fetch('/c.json')
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.c > getVersionCode()) {
-          showOverlay.value = true
-          clearInterval(updateTimer)
-          androidUpdate()
-        }
-      })
+    if (2 > getVersionCode()) {
+      showOverlay.value = true
+    }
   }
 })
 </script>
@@ -457,5 +499,39 @@ onMounted(() => {
 .el-table tr {
   background-color: #05112f !important;
   color: #fff !important;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.update-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  width: 80%;
+  background-color: #202022;
+  border-radius: 15px;
+  padding: 70px 0 20px;
+
+  img {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 80px;
+  }
+  .title {
+    text-align: center;
+    font-weight: bolder;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
 }
 </style>

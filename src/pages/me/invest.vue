@@ -57,9 +57,9 @@
                 <div class="txt">有效期</div>
               </div>
               <div>
-                <div class="txt">{{ item.price }}元</div>
-                <div class="txt">{{ shouyiArrDay[index] }}元</div>
-                <div class="txt">{{ shouyiArrDay[index] * youxiaoArr[index] }}元</div>
+                <div class="txt">{{ item.price }}元/份</div>
+                <div class="txt">{{ shouyiArrDay[index] * count }}元</div>
+                <div class="txt">{{ shouyiArrDay[index] * youxiaoArr[index] * count }}元</div>
                 <div class="txt">{{ youxiaoArr[index] }}天</div>
               </div>
               <div style="margin: 10px">
@@ -72,7 +72,7 @@
                 disable-input
                 style="margin-top: 10px"
               />
-
+              份
               <div
                 style="
                   background: #01c5f0;

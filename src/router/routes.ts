@@ -55,6 +55,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/mysub', component: () => import('@/pages/me/mysub.vue') },
   { path: '/fenxiang', component: () => import('@/pages/me/MyCard.vue') },
   { path: '/demo', component: () => import('@/pages/me/demo.vue') },
+  { path: '/quanminlaibaojiang', component: () => import('@/pages/me/quanminlaibaojiang.vue') },
   { path: '/zhubofuchizhengce', component: () => import('@/pages/me/zhubofuchizhengce.vue') },
   { path: '/pingtaijianjie', component: () => import('@/pages/me/pingtaijianjie.vue') },
   { path: '/caozuoshuoming', component: () => import('@/pages/me/caozuoshuoming.vue') },

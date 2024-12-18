@@ -26,7 +26,7 @@
           />
           <img src="../assets/img/tabbar/vipVideo.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 2 ? '#fff' : '' }">体验分红</div>
+        <div :style="{ color: currentTab === 2 ? '#fff' : '' }">体验股权</div>
       </div>
     </div>
     <div class="l-button" @click="loadShort(3)">
@@ -40,7 +40,7 @@
           />
           <img src="../assets/img/tabbar/video.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 2 ? '#fff' : '' }">大额分红</div>
+        <div :style="{ color: currentTab === 2 ? '#fff' : '' }">正式股权</div>
       </div>
     </div>
     <div class="l-button" @click="tab(5)">

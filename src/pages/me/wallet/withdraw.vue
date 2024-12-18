@@ -22,16 +22,20 @@
           </span>
           <span>{{ item.remark }}</span>
           <!--          <span class="text-warning">{{ parseFloat(item.money || 0).toFixed(2) }}</span>-->
-          <span class="text-warning">{{ item.money || 0 }}</span>
+          <span class="text-warning">{{ item.money || 0 }}元</span>
         </div>
-        <div class="d-flex justify-content-between font-13 text-muted">
-          <span>
-            <!--            邀请好友观看视频，奖励多多-->
-            <!--            {{ state.bank.list.find(({ value }) => value === item.result.card.card_type)?.label }}-->
-            <!--            ( {{ item.result.card.name }} )-->
-          </span>
+        <div style="margin-top: 6px">每周排行超级股东分红，奖励更丰厚！</div>
+        <div style="margin-top: 6px">
           <span>{{ method.toDate(item.create_time) }}</span>
         </div>
+        <!--        <div class="d-flex justify-content-between font-13 text-muted">-->
+        <!--          <span>-->
+        <!--            &lt;!&ndash;            邀请好友观看视频，奖励多多&ndash;&gt;-->
+        <!--            &lt;!&ndash;            {{ state.bank.list.find(({ value }) => value === item.result.card.card_type)?.label }}&ndash;&gt;-->
+        <!--            &lt;!&ndash;            ( {{ item.result.card.name }} )&ndash;&gt;-->
+        <!--          </span>-->
+        <!--          <span>{{ method.toDate(item.create_time) }}</span>-->
+        <!--        </div>-->
         <div v-if="index != dataList.length - 1" class="h-2px bg-light d-block my-2"></div>
       </div>
     </van-list>

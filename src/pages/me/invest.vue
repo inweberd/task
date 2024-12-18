@@ -37,7 +37,13 @@
         <!--          <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>-->
         <!--        </van-swipe-item>-->
         <van-swipe-item>
-          <van-image :src="imageSrc4" width="100%" height="200" fit="fill"></van-image>
+          <van-image :src="imageSrc8" width="100%" height="200" fit="fill"></van-image>
+        </van-swipe-item>
+        <van-swipe-item>
+          <van-image :src="imageSrc6" width="100%" height="200" fit="fill"></van-image>
+        </van-swipe-item>
+        <van-swipe-item>
+          <van-image :src="imageSrc7" width="100%" height="200" fit="fill"></van-image>
         </van-swipe-item>
       </van-swipe>
     </div>
@@ -49,7 +55,7 @@
               <div>
                 <div class="txt">
                   <!--                  {{ item.name }}-->
-                  大额股权
+                  正式股权
                   <!--                  {{ getSerialName(item.serial) }}-->
                 </div>
                 <div class="txt">每天可分红</div>
@@ -91,7 +97,7 @@
               </div>
             </div>
           </div>
-          <van-image :src="imageSrc5" width="100%" height="300" fit="fill"></van-image>
+          <!--          <van-image :src="imageSrc5" width="100%" height="240" fit="fill"></van-image>-->
 
           <!--          <div-->
           <!--            style="-->
@@ -136,18 +142,21 @@
         </div>
       </div>
     </div>
-    <p style="text-align: center; color: #888; width: 100%">京ICP备12025439号</p>
+    <!--    <p style="text-align: center; color: #888; width: 100%">京ICP备12025439号</p>-->
   </div>
 
-  <!--  <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 60px">-->
-  <!--    京ICP备12025439号-->
-  <!--  </p>-->
+  <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 60px">
+    京ICP备12025439号
+  </p>
   <BaseFooter v-bind:init-tab="5" :is-white="false" />
 </template>
 <script setup lang="ts">
 import imageSrc1 from '@/assets/img/hehuoren.jpg'
 import imageSrc4 from '@/assets/img/banner6.png'
 import imageSrc5 from './images/invest-info.png'
+import imageSrc6 from './images/banner6.jpg'
+import imageSrc7 from './images/banner7.jpg'
+import imageSrc8 from './images/banner8.jpg'
 import imageSrc2 from '@/assets/img/hehuoren2.png'
 import imageSrc3 from '@/assets/img/goumai.png'
 import { ref, reactive, onMounted, onUnmounted, computed } from 'vue'

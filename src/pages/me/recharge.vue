@@ -6,7 +6,7 @@
       @click-left="$router.back()"
       style="background-color: transparent"
     />
-    <!--    <van-image :src="tixian" width="100%" height="100%;"></van-image>-->
+    <van-image :src="tixian" width="100%" height="100%;"></van-image>
 
     <Loading v-if="loading"></Loading>
     <div class="container">
@@ -15,36 +15,41 @@
           <span>充值方式</span>
         </div>
         <div class="recharge-info-center">
-          <div class="recharge-info-center-t">
-            <img
-              v-if="state.item.pay?.data?.type == 'wechat'"
-              src="@/assets/img/recharge/wechat.png"
-            />
-            <img
-              src="@/assets/img/recharge/bank2.png"
-              v-else-if="state.item.pay?.data?.type == 'bank'"
-            />
-            <img
-              src="@/assets/img/recharge/jd.jpg"
-              v-else-if="state.item.pay?.data?.key == 'jdpay'"
-            />
-            <img
-              src="@/assets/img/recharge/kd.jpg"
-              v-else-if="state.item.pay?.data?.key == 'kdpay'"
-            />
-            <img
-              src="@/assets/img/recharge/usdt.png"
-              v-else-if="state.item.pay?.data?.key == 'bs'"
-            />
-            <img src="@/assets/img/recharge/alipay.png" v-else />
-            <span>{{ state.item.pay?.data?.name }}</span>
-          </div>
-          <div class="recharge-info-center-b">
-            <span>
-              单笔支付限额 {{ state.item.pay?.data?.min }} -
-              {{ state.item.pay?.data?.max }} ￥</span
-            >
-          </div>
+          <template v-if="state.item.pay?.id">
+            <div class="recharge-info-center-t">
+              <img
+                v-if="state.item.pay?.data?.type == 'wechat'"
+                src="@/assets/img/recharge/wechat.png"
+              />
+              <img
+                src="@/assets/img/recharge/bank2.png"
+                v-else-if="state.item.pay?.data?.type == 'bank'"
+              />
+              <img
+                src="@/assets/img/recharge/jd.jpg"
+                v-else-if="state.item.pay?.data?.key == 'jdpay'"
+              />
+              <img
+                src="@/assets/img/recharge/kd.jpg"
+                v-else-if="state.item.pay?.data?.key == 'kdpay'"
+              />
+              <img
+                src="@/assets/img/recharge/usdt.png"
+                v-else-if="state.item.pay?.data?.key == 'bs'"
+              />
+              <img src="@/assets/img/recharge/alipay.png" v-else />
+              <span>{{ state.item.pay?.data?.name }}</span>
+            </div>
+            <div class="recharge-info-center-b">
+              <span>
+                单笔支付限额 {{ state.item.pay?.data?.min }} -
+                {{ state.item.pay?.data?.max }} ￥</span
+              >
+            </div>
+          </template>
+          <template v-else>
+            <p style="font-size: 14px; color: #ccc; margin-top: 3px">点击选择充值方式</p>
+          </template>
         </div>
         <div class="recharge-info-right">
           <van-icon name="arrow" size="20" />
@@ -103,6 +108,26 @@
         is-link
         @click="openDownload(item.url)"
       />
+      <div
+        style="
+          margin: 10px;
+          background-color: rgba(70, 89, 101, 0.7);
+          border-radius: 10px;
+          padding: 6px;
+          color: #fff;
+          text-indent: 2em;
+          line-height: 1.6;
+        "
+      >
+        <p style="text-indent: 2em">
+          全民瓜分温馨提示： 推广的代理用户，尽量都下载钱包， 使用钱包提现，免手续费，
+        </p>
+        <p style="text-indent: 2em">
+          日积月累能省下很大一部分手续费， 另外代理也可以登录下级账号，帮下级代充。
+        </p>
+        <p style="text-indent: 2em">使用钱包充值，USDT充值，帮下级代充，24小时不风控！</p>
+      </div>
+      <div></div>
       <!--      <van-image :src="pay2" width="100%" height="100%;"></van-image>-->
       <van-popup v-model:show="state.sheet.show" position="bottom" closeable round>
         <div class="select-wrap">
@@ -192,7 +217,7 @@ const downloadList = [
   },
   {
     label: 'jd钱包买卖视频教程',
-    url: 'www.jdpay01.com/#/transactionFlow'
+    url: 'https://www.jdpay01.com/#/transactionFlow'
   }
   // {
   //   label: 'KD充值视频教程',

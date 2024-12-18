@@ -55,6 +55,12 @@
           @click="toDownload"
           >立即升级
         </el-button>
+        <!--        <p-->
+        <!--          style="font-size: 12px; text-decoration: underline; color: #1e83d3; margin-top: 10px"-->
+        <!--          @click="upGrade"-->
+        <!--        >-->
+        <!--          升级没反应，点这里！-->
+        <!--        </p>-->
       </div>
     </div>
     <!--    <div-->
@@ -233,9 +239,49 @@ const generatePoster = async () => {
     }
   }
 }
+function clipboardCopy(content) {
+  let copyDom = document.createElement('div')
+  copyDom.innerText = content
+  copyDom.style.position = 'absolute'
+
+  copyDom.style.top = '0px'
+  copyDom.style.right = '-9999px'
+  document.body.appendChild(copyDom)
+  //创建选中范围
+  let range = document.createRange()
+  range.selectNode(copyDom)
+  //移除剪切板中内容
+  window.getSelection().removeAllRanges()
+  //添加新的内容到剪切板
+  window.getSelection().addRange(range)
+  //复制
+
+  let successful = document.execCommand('copy')
+
+  copyDom.parentNode.removeChild(copyDom)
+  if (successful) {
+    alert(5555)
+    Toast('复制成功，打开浏览器粘贴链接进行下载！')
+    // alert('复制成功')
+  } else {
+    alert(666)
+    Toast('复制失败，请手动复制再打开浏览器粘贴链接进行下载！')
+    // alert('复制失败')
+  }
+}
 
 const toDownload = () => {
-  window.location.href = `https://fx.yuyuwa.cn/download/android.apk`
+  window.android.openBrowser('https://fx.yuyuwa.cn/download/android.apk')
+
+  // window.location.href = `https://fx.yuyuwa.cn/download/android.apk`
+}
+
+const upGrade = () => {
+  window.android.openBrowser('https://fx.yuyuwa.cn/download/android.apk')
+  // clipboardCopy('https://fx.yuyuwa.cn/download/android.apk')
+  // navigator.clipboard.writeText('12312').then(() => {
+  //   alert('复制成功')
+  // })
 }
 onMounted(() => {
   outsideFn()
@@ -294,7 +340,7 @@ onMounted(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
       qrCodeText.value =
-        'http://bbbwx1203a13.s3-website-us-east-1.amazonaws.com/index.html?target=' +
+        'http://bbbwx1203a15.s3-website-us-east-1.amazonaws.com/index.html?target=' +
         encodeURIComponent(
           'https://fx.yuyuwa.cn/#/signUp?invite=' +
             JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
@@ -518,6 +564,7 @@ onMounted(() => {
   background-color: #202022;
   border-radius: 15px;
   padding: 70px 0 20px;
+  color: #fff;
 
   img {
     position: absolute;

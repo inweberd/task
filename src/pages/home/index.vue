@@ -76,6 +76,30 @@
     <!--    <div>介绍</div>-->
     <!--  </div>-->
     <!--</div>-->
+    <van-overlay :show="showGonggaoOverlay" :z-index="99999999">
+      <div class="wrapper" @click.stop>
+        <div class="update-box">
+          <img src="@/assets/img/update.png" alt="" />
+          <div class="title">系统公告</div>
+          <div style="padding: 0 20px">
+            <p style="text-indent: 22px">
+              体验用户，一机1号，每天刷视频，分红1元，永久有效！
+              多个账号切换在同一台手机设备登录，只有1个账号有收益
+              严厉打击恶意批量注册工作室小号拉低整体广告收益单价！
+              发现恶意机刷一律封禁账号，切勿抱有侥幸心理！
+            </p>
+            <p style="text-align: right; margin-top: 10px">全民来瓜分运营部</p>
+          </div>
+          <el-button
+            color="#689cfc"
+            size="large"
+            style="border-radius: 20px; margin-top: 30px !important; color: #fff; width: 80%"
+            @click="showGonggaoOverlay = false"
+            >朕已阅
+          </el-button>
+        </div>
+      </div>
+    </van-overlay>
   </div>
 </template>
 
@@ -95,6 +119,8 @@ import dayjs from 'dayjs'
 import weimaiquan from '@/assets/img/weimaiquan.jpg'
 import { axiosInstance as axios } from '@/utils/myrequest'
 import imageSrc1 from '@/assets/img/hehuoren.jpg'
+const showGonggaoOverlay = ref(false)
+
 const containerStyle = computed(() => {
   if (window.android) {
     return { paddingTop: '40px' }
@@ -107,8 +133,8 @@ const router = useRouter()
 const activeTab = ref(0)
 const appList = ref([
   {
-    name: '收入来源',
-    desc: '广告联盟每日结算记录',
+    name: '每日广告收入来源',
+    desc: '查看每日广告收入来源',
     logo: '5',
     btnLabel: '查看',
     btnCb() {
@@ -152,13 +178,22 @@ const appList = ref([
   //     router.push('/hezuodanwei')
   //   }
   // },
+  // {
+  //   name: '推广佣金制度',
+  //   desc: '推广制度',
+  //   logo: '3',
+  //   btnLabel: '查看',
+  //   btnCb() {
+  //     router.push('/demo')
+  //   }
+  // },
   {
-    name: '推广佣金制度',
-    desc: '推广制度',
-    logo: '3',
+    name: '超级大赢家',
+    desc: '查看超级大赢家',
+    logo: '9',
     btnLabel: '查看',
     btnCb() {
-      router.push('/demo')
+      router.push('/quanminlaibaojiang')
     }
   },
   {
@@ -271,6 +306,9 @@ const isReceive = ref(false)
 onActivated(() => {
   axios.get('api/article/one?id=6').then((res) => {})
   if (timer) return
+})
+onMounted(() => {
+  // showGonggaoOverlay.value = true
 })
 
 // onMounted(() => {
@@ -437,7 +475,7 @@ onActivated(() => {
             width: 55px;
             height: 55px;
             overflow: hidden;
-            border-radius: 10px;
+            border-radius: 50%;
 
             img {
               width: 100%;

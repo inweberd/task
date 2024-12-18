@@ -34,7 +34,7 @@ async function fetchData() {
         w.type = 'recommend-video'
         const item: any = userList.find((a) => String(a.uid) === String(w.author_user_id))
         if (item) w.author = item
-        console.log('w', w)
+        // console.log('w', w)
         return w
       })
       allRecommendVideos = allRecommendVideos.concat(v)

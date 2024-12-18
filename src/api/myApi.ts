@@ -100,6 +100,26 @@ export function reqUserMemberInfo(params) {
   return axiosInstance({ url: 'api/users/member', method: 'get', params })
 }
 
+// 获取成员信息一二三级
+export function reqUserMemberTeamIds() {
+  return axiosInstance({ url: 'api/users/team', method: 'get' })
+}
+
+// 获取成员信息一二三级
+export function reqUserMemberTeamList(data) {
+  if (!data.ids) {
+    return Promise.resolve({
+      code: 200,
+      data: {
+        page: 0,
+        count: 0,
+        data: []
+      }
+    })
+  }
+  return axiosInstance({ url: 'api/users/all', method: 'post', data })
+}
+
 // 查询我的会员信息
 export function reqUserStaff() {
   return axiosInstance({ url: 'api/users/staff', method: 'get' })

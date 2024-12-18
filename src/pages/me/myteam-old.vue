@@ -76,7 +76,17 @@
         <!--        </div>-->
       </div>
       <!--      <van-search v-model="searchInfo.phone" placeholder="请输入要查询的手机号码" />-->
-      <van-button color="#01c5f0" style="width: 100%; border-radius: 20px">直推人员列表</van-button>
+      <!--      <van-button color="#01c5f0" style="width: 100%; border-radius: 20px">直推人员列表</van-button>-->
+      <van-tabs
+        v-model:active="active"
+        title-active-color="#01c5f0"
+        color="#01c5f0"
+        @change="tabChange"
+      >
+        <van-tab :title="'一级(' + (teamIds['one']?.length || 0) + ')'" name="one" />
+        <van-tab :title="'二级(' + (teamIds['two']?.length || 0) + ')'" name="two" />
+        <van-tab :title="'三级(' + (teamIds['three']?.length || 0) + ')'" name="three" />
+      </van-tabs>
       <van-list
         style="margin-top: 20px"
         v-model:loading="loading"
@@ -104,7 +114,7 @@
                       }}</span
                     >
                     <span style="font-size: 14px">
-                      等级：{{ getSerialName(item?.staff?.serial) }}
+                      等级：{{ getSerialName(item?.result?.staff?.serial) }}
                     </span>
                   </div>
                 </div>
@@ -113,7 +123,10 @@
                 <!--                </div>-->
               </div>
             </div>
-            <div class="money">￥{{ parseFloat(item?.staff?.money || 0).toFixed(2) }}</div>
+            <!--            <div class="money">￥{{ parseFloat(item?.result?.staff?.money || 0).toFixed(2) }}</div>-->
+            <div class="money">
+              <!--              ￥{{ parseFloat(item?.result?.wallet?.today?.profit || 0).toFixed(2) }}-->
+            </div>
           </div>
         </div>
       </van-list>
@@ -129,7 +142,13 @@ import utils from '@/utils/utils.js'
 import { axiosInstance as axios } from '@/utils/myrequest'
 import { useRouter } from 'vue-router'
 import { onMounted, ref, reactive, onActivated } from 'vue'
-import { reqUserDistribution, reqUserIncome, reqUserMemberInfo } from '@/api/myApi'
+import {
+  reqUserDistribution,
+  reqUserIncome,
+  reqUserMemberInfo,
+  reqUserMemberTeamIds,
+  reqUserMemberTeamList
+} from '@/api/myApi'
 import { _notice } from '@/utils'
 import { getSerialName } from '../../utils/getSerialName'
 import { getIsInApp } from '@/utils/getTopPadding'
@@ -143,7 +162,7 @@ const service = ref(false)
 const memberInfo = ref({})
 const dataList = ref([])
 const userIncomeInfo = ref({})
-
+const active = ref('one')
 const format = (price = 0) => {
   let result = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   return result === '0' ? '0.00' : result
@@ -167,11 +186,20 @@ const searchInfo = reactive({
   limit: 10,
   phone: ''
 })
+const teamIds = ref({})
+let isHaveIds = false
 const getDataList = async (index = 'one') => {
+  if (!isHaveIds) {
+    const idsRes = await reqUserMemberTeamIds()
+    teamIds.value = idsRes.data
+    isHaveIds = true
+  }
   searchInfo.page++
 
   loading.value = true
-  const { code, msg, data } = await reqUserDistribution({
+  // const { code, msg, data } = await reqUserDistribution({
+  const { code, msg, data } = await reqUserMemberTeamList({
+    ids: teamIds.value[active.value],
     page: searchInfo.page,
     limit: searchInfo.limit
   })
@@ -193,10 +221,19 @@ const init = async () => {
   getMemberInfo()
   getDataList()
 }
-onActivated(() => {
+const tabChange = () => {
   dataList.value = []
   finished.value = false
   searchInfo.page = 0
+  getDataList()
+}
+
+onActivated(() => {
+  dataList.value = []
+  finished.value = false
+  isHaveIds = false
+  searchInfo.page = 0
+  teamIds.value = {}
 
   init()
   getUserIncome()

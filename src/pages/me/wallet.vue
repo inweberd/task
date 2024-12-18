@@ -50,13 +50,14 @@
       </div>
     </div>
     <van-tabs v-model:active="activeTab" background="transparent" color="#01c5f0">
-      <van-tab title="收入" name="收入"></van-tab>
+      <van-tab title="团队分红  " name="团队分红"></van-tab>
+      <van-tab title="认购返利" name="认购返利"></van-tab>
       <van-tab title="支出" name="支出"></van-tab>
       <van-tab title="提现" name="提现"></van-tab>
     </van-tabs>
     <!--    <div class="tab">-->
-    <!--      <div class="tab-item" :class="{ active: activeTab === '收入' }" @click="activeTab = '收入'">-->
-    <!--        收入-->
+    <!--      <div class="tab-item" :class="{ active: activeTab === '团队分红  ' }" @click="activeTab = '团队分红  '">-->
+    <!--        团队分红  -->
     <!--      </div>-->
     <!--      <div class="tab-item" :class="{ active: activeTab === '支出' }" @click="activeTab = '支出'">-->
     <!--        支出-->
@@ -66,14 +67,15 @@
     <!--      </div>-->
     <!--    </div>-->
     <!--    <van-tabs v-model:active="activeTab" @change="change">-->
-    <!--      <van-tab title="收入明细" name="收入">-->
-    <wallet-income v-if="activeTab === '收入'"></wallet-income>
+    <!--      <van-tab title="小额分红明细" name="团队分红  ">-->
+    <wallet-income v-if="activeTab === '团队分红'"></wallet-income>
     <!--      </van-tab>-->
     <!--      <van-tab title="支出明细" name="支出">-->
     <wallet-expense v-if="activeTab === '支出'"></wallet-expense>
     <!--      </van-tab>-->
     <!--      <van-tab title="提现记录" name="提现">-->
     <wallet-withdraw v-if="activeTab === '提现'"></wallet-withdraw>
+    <rengoufanli v-if="activeTab === '认购返利'"></rengoufanli>
     <!--      </van-tab>-->
     <!--    </van-tabs>-->
     <modzz v-model="service"></modzz>
@@ -84,6 +86,8 @@
 import WalletIncome from './wallet/income.vue'
 import WalletExpense from './wallet/expense.vue'
 import WalletWithdraw from './wallet/withdraw.vue'
+import daefenhong from './wallet/daefenhong.vue'
+import rengoufanli from './wallet/rengoufanli.vue'
 import modzz from '../login/model.vue'
 import imageSrc from '@/assets/img/chongzhi.png'
 import { axiosInstance as axios } from '@/utils/myrequest'
@@ -92,14 +96,14 @@ import { getIsInApp } from '@/utils/getTopPadding'
 
 const router = useRouter()
 const service = ref(false)
-const activeTab = ref('收入')
+const activeTab = ref('团队分红  ')
 
 const state = reactive({
   wallet: {},
   tabs: {
     value: 0,
     list: [
-      { name: '收入' },
+      { name: '团队分红  ' },
       { name: '支出', badge: { isDot: true } },
       { name: '提现' }
       // , disabled: true

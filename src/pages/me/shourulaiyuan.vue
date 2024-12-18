@@ -17,7 +17,9 @@
         <!-- 统计内容 -->
         <div class="statistics_content">
           <!-- 统计数量 -->
-          <span class="statistics_content_num">{{ item.count }}</span>
+          <span class="statistics_content_num"
+            >{{ item.count }}<span v-if="item.id === '3'">%</span>
+          </span>
           &nbsp;
           <!-- 统计单位 -->
           <!--          <span class="statistics_content_unit">{{ item.unit }}</span>-->
@@ -64,38 +66,53 @@ const dataList = [
   {
     id: '1',
     title: '总展示数',
-    count: 853257,
+    count: computed(() => {
+      return data.value.totalPreview || 0
+    }),
     unit: '件'
   },
   {
     id: '2',
     title: '总点击数',
-    count: 126452,
+    count: computed(() => {
+      return data.value.totalClick || 0
+    }),
     unit: '件'
   },
   {
     id: '3',
     title: '总点击率',
-    count: '14.82%',
+    count: computed(() => {
+      return data.value.totalClickPercent || '0.00'
+    }),
     unit: '件'
   },
   {
     id: '4',
     title: '总收益',
-    count: 5749.73,
+    count: computed(() => {
+      return data.value.total || 0
+    }),
     unit: '元'
   }
 ]
 const chart1Ref = ref()
 const data = ref([])
 const tableData = computed(() => {
-  return data.value.reduce((prev, next) => {
-    let arr = next.list.map((item) => {
-      item.date = next.date
-      return item
-    })
-    return prev.concat(arr)
-  }, [])
+  const date = data.value.date
+
+  return (data.value.list || []).map((item) => {
+    item.date = date
+    return item
+  })
+
+  // return (data.value.list || []).reduce((prev, next) => {
+  //   let arr = next.list.map((item) => {
+  //     item.date = next.date
+  //     return item
+  //   })
+  //   return prev.concat(arr)
+  // }, [])
 })
 
 const initChart = () => {
@@ -338,6 +355,7 @@ onMounted(() => {
     Toast.clear()
 
     data.value = res.data
+    // data.value = res.data
     // initChart()
   })
 })

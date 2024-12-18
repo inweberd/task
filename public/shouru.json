@@ -2,6 +2,9 @@
   {
     "date": "2024-12-13",
     "total": 0,
+    "totalClick": 0,
+    "totalClickPercent": "10",
+    "totalPreview": "10",
     "list": [
       {
         "num": 287541,

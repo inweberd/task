@@ -71,6 +71,26 @@
           </van-button>
         </div>
       </van-form>
+      <p style="color: #fff">佣金互转50元起转，免手续费，佣金也可以直接用于认购股权抵扣使用</p>
+
+      <div
+        style="
+          margin: 10px 0 0 0px;
+          background-color: rgba(70, 89, 101, 0.7);
+          border-radius: 10px;
+          padding: 6px;
+          color: #fff;
+          text-indent: 2em;
+          line-height: 1.6;
+        "
+      >
+        <p style="margin-bottom: 8px">
+          每日推广佣金，可以用来进行游戏娱乐，中奖可提现，投入1块钱，最多可中奖30000（3万元）爆奖奖金！
+          中奖，无任何附加条件，直接可提现！
+        </p>
+
+        <p>长期稳定，信誉，正规企业，合法合规!</p>
+      </div>
     </div>
   </div>
 </template>

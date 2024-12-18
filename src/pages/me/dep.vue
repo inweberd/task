@@ -67,6 +67,25 @@
           <!--            推荐优先使用K豆钱包和JD钱包充提，永不风控，钱包里面内置支付宝，微信，银行卡，USDT等多种到账方式，自由转换，安全，方便快捷-->
           <!--          </p>-->
         </div>
+
+        <div
+          style="
+            margin: 10px;
+            background-color: rgba(70, 89, 101, 0.7);
+            border-radius: 10px;
+            padding: 6px;
+            color: #fff;
+            text-indent: 2em;
+            line-height: 1.6;
+          "
+        >
+          <p style="margin-bottom: 8px">
+            每日推广佣金，可以用来进行游戏娱乐，中奖可提现，投入1块钱，最多可中奖30000（3万元）爆奖奖金！
+            中奖，无任何附加条件，直接可提现！
+          </p>
+
+          <p>长期稳定，信誉，正规企业，合法合规!</p>
+        </div>
       </van-tab>
       <van-tab title="绑定提现">
         <van-tabs v-model:active="active_">
@@ -144,6 +163,24 @@
               @click="save('jd')"
               >保存</van-button
             >
+          </van-tab>
+          <van-tab title="usdt(trc20)" style="padding: 0px 20px">
+            <van-empty description="对接中，敬请期待！"></van-empty>
+            <!--            <van-field v-model="kd_value.name" label="姓名" placeholder="姓名" />-->
+            <!--            <van-field v-model="kd_value.card_no" label="钱包地址" placeholder="钱包地址" />-->
+            <!--            <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">-->
+            <!--              钱包地址为钱包主页界面的34位字母+数字组合。-->
+            <!--            </p>-->
+            <!--            <van-button-->
+            <!--              color="#01c5f0"-->
+            <!--              type="primary"-->
+            <!--              style="margin-top: 30px"-->
+            <!--              block-->
+            <!--              @click="save('kd')"-->
+            <!--              loading-text="提交中..."-->
+            <!--              :loading="bindLoading"-->
+            <!--            >保存</van-button-->
+            <!--            >-->
           </van-tab>
           <div v-if="false" class="desc" style="margin: 10px 0">
             <p style="font-weight: bolder">《绑定使用JDPAY（JD钱包）提现，笔笔获得抽转盘大奖》</p>

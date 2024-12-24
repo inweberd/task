@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login" v-if="false">
     <!-- <dy-back mode="light" img="back" @click="router.back()" class="fixed-back" direction="left" /> -->
 
     <van-nav-bar
@@ -71,7 +71,7 @@
           </van-button>
         </div>
       </van-form>
-      <p style="color: #fff">佣金互转50元起转，免手续费，佣金也可以直接用于认购股权抵扣使用</p>
+      <p style="color: #fff">佣金互转50元起转，免手续费，佣金也可以直接用于购买股权抵扣使用</p>
 
       <div
         style="

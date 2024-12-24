@@ -6,6 +6,8 @@
       <div
         style="
           display: flex;
+          flex-direction: column;
+          align-items: center;
           justify-content: center;
           width: 100vw;
           height: 100vh;
@@ -13,6 +15,8 @@
         "
       >
         <canvas ref="canvas"></canvas>
+        <p style="color: red; font-size: 16px">手机截屏保存二维码分享给朋友</p>
+        <p style="color: red; font-size: 16px">您将获得推广收入！月入过万轻松获得</p>
       </div>
       <!--<div class="btns">-->
       <!--  <van-image :src="weixin" width="60" height="60" fit="fill" @click="share"></van-image>-->
@@ -41,7 +45,7 @@ const canvasWidth = ref(window.innerWidth)
 const canvasHeight = ref(window.innerWidth / (1658 / 2480))
 
 const qrCodeText = ref(
-  'http://bbbwx1203a15.s3-website-us-east-1.amazonaws.com/index.html?target=' +
+  'http://bbbwx1203a16.s3-website-us-east-1.amazonaws.com/index.html?target=' +
     encodeURIComponent(
       'https://fx.yuyuwa.cn/#/signUp?invite=' +
         JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code

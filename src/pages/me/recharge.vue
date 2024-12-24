@@ -6,7 +6,8 @@
       @click-left="$router.back()"
       style="background-color: transparent"
     />
-    <van-image :src="tixian" width="100%" height="100%;"></van-image>
+    <!--    <van-image :src="tixian" width="100%" height="100%;"></van-image>-->
+    <van-image :src="imageSrc6" width="100%" height="100%;"></van-image>
 
     <Loading v-if="loading"></Loading>
     <div class="container">
@@ -48,7 +49,10 @@
             </div>
           </template>
           <template v-else>
-            <p style="font-size: 14px; color: #ccc; margin-top: 3px">点击选择充值方式</p>
+            <p style="font-size: 14px; color: #ccc">
+              <!--              充值如果提示风控，请进官方微脉圈群，联系人工客服充值-->
+              如遇充值失败或异常，请找官方微脉圈群主人工代充值！
+            </p>
           </template>
         </div>
         <div class="recharge-info-right">
@@ -102,31 +106,45 @@
           <van-loading size="20" v-if="loading" />
         </button>
       </div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 100%;
+          align-items: center;
+        "
+        @click="$router.push('/weimaiquanDetail')"
+      >
+        <img style="width: 60px" src="./images/1.png" alt="" />
+        <p style="font-size: 20px">官方微脉圈群</p>
+      </div>
+
       <van-cell
         v-for="item of downloadList"
         :title="item.label"
         is-link
         @click="openDownload(item.url)"
       />
-      <div
-        style="
-          margin: 10px;
-          background-color: rgba(70, 89, 101, 0.7);
-          border-radius: 10px;
-          padding: 6px;
-          color: #fff;
-          text-indent: 2em;
-          line-height: 1.6;
-        "
-      >
-        <p style="text-indent: 2em">
-          全民瓜分温馨提示： 推广的代理用户，尽量都下载钱包， 使用钱包提现，免手续费，
-        </p>
-        <p style="text-indent: 2em">
-          日积月累能省下很大一部分手续费， 另外代理也可以登录下级账号，帮下级代充。
-        </p>
-        <p style="text-indent: 2em">使用钱包充值，USDT充值，帮下级代充，24小时不风控！</p>
-      </div>
+      <!--      <div-->
+      <!--        style="-->
+      <!--          margin: 10px;-->
+      <!--          background-color: rgba(70, 89, 101, 0.7);-->
+      <!--          border-radius: 10px;-->
+      <!--          padding: 6px;-->
+      <!--          color: #fff;-->
+      <!--          text-indent: 2em;-->
+      <!--          line-height: 1.6;-->
+      <!--        "-->
+      <!--      >-->
+      <!--        <p style="text-indent: 2em">-->
+      <!--          全民瓜分温馨提示： 推广的代理用户，尽量都下载钱包， 使用钱包提现，免手续费，-->
+      <!--        </p>-->
+      <!--        <p style="text-indent: 2em">-->
+      <!--          日积月累能省下很大一部分手续费， 另外代理也可以登录下级账号，帮下级代充。-->
+      <!--        </p>-->
+      <!--        <p style="text-indent: 2em">使用钱包充值，USDT充值，帮下级代充，24小时不风控！</p>-->
+      <!--      </div>-->
       <div></div>
       <!--      <van-image :src="pay2" width="100%" height="100%;"></van-image>-->
       <van-popup v-model:show="state.sheet.show" position="bottom" closeable round>
@@ -168,7 +186,8 @@
 // import { useUserStore }   from '@/store/user'
 // import { onLoad } from '@dcloudio/uni-app'
 
-import tixian from '@/assets/img/recharge/tixian.jpg'
+// import tixian from '@/assets/img/recharge/tixian.jpg'
+import tixian from '@/assets/img/recharge/texian2.jpg'
 
 defineOptions({
   name: 'recharge'
@@ -191,34 +210,35 @@ import ysf from '@/assets/img/recharge/ysf.png'
 import pay2 from '@/assets/img/recharge/pay2.jpg'
 import shouxia from '@/assets/img/shouxia.png'
 import { load } from '@fingerprintjs/fingerprintjs'
+import imageSrc6 from '@/pages/me/images/banner6.jpg'
 
 const loading = ref(false)
 
 const downloadList = [
-  {
-    label: 'K豆钱包安卓下载地址',
-    url: 'https://kd002.com'
-  },
-  {
-    label: 'K豆钱包苹果下载地址',
-    url: 'https://mgi3m.aneeyx.com/L4eXiggS/yjfhzjflnm'
-  },
-  {
-    label: 'JD钱包安卓下载地址',
-    url: 'https://s20w2la.foton-autoparts.com/32763431746c6f'
-  },
-  {
-    label: 'JD钱包苹果下载地址',
-    url: 'https://mgyyz.ieslabsd.com/PpNV6In/n2i3ody0yt'
-  },
-  {
-    label: 'K豆钱包卖卖视频教程',
-    url: 'https://kdzfxz.kdzf2345.com/home/#/transactionFlow'
-  },
-  {
-    label: 'jd钱包买卖视频教程',
-    url: 'https://www.jdpay01.com/#/transactionFlow'
-  }
+  // {
+  //   label: 'K豆钱包安卓下载地址',
+  //   url: 'https://kd002.com'
+  // },
+  // {
+  //   label: 'K豆钱包苹果下载地址',
+  //   url: 'https://mgi3m.aneeyx.com/L4eXiggS/yjfhzjflnm'
+  // },
+  // {
+  //   label: 'JD钱包安卓下载地址',
+  //   url: 'https://s20w2la.foton-autoparts.com/32763431746c6f'
+  // },
+  // {
+  //   label: 'JD钱包苹果下载地址',
+  //   url: 'https://mgyyz.ieslabsd.com/PpNV6In/n2i3ody0yt'
+  // },
+  // {
+  //   label: 'K豆钱包卖卖视频教程',
+  //   url: 'https://kdzfxz.kdzf2345.com/home/#/transactionFlow'
+  // },
+  // {
+  //   label: 'jd钱包买卖视频教程',
+  //   url: 'https://www.jdpay01.com/#/transactionFlow'
+  // }
   // {
   //   label: 'KD充值视频教程',
   //   url: '/data/video/buy.mp4'
@@ -356,7 +376,9 @@ const method = {
       return _notice('请输入充值金额！')
     }
     if (!state.item.pay.data) {
-      return _notice('请选择充值方式！')
+      // return _notice('请选择充值方式！')
+      method.sheet.open()
+      return
     }
 
     if (state.struct.amount < state.item.pay?.data?.min) {

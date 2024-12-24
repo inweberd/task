@@ -85,7 +85,7 @@
             style="display: flex; justify-content: space-evenly; align-items: center; width: 100%"
           >
             <a style="font-size: 16px; color: #fff" @click="goDownload">下载app</a>
-            <a style="font-size: 16px; color: #fff" @click="jumpToQQ2">官方交流群 </a>
+            <a style="font-size: 16px; color: #fff" @click="jumpToQQ2">官方微脉圈群 </a>
           </div>
         </div>
       </div>
@@ -112,7 +112,7 @@ import { AES, token as aesToken } from '@/utils/AES'
 import CryptoJS from 'crypto-js'
 import axios from 'axios'
 import { _notice } from '@/utils'
-import { getOaid } from '@/utils/ad'
+import { getImei, getOaid } from '@/utils/ad'
 
 const { info, token, status } = storeToRefs(useUsers())
 
@@ -179,7 +179,7 @@ const SignIn = async () => {
         // 注意：每个签名有效时间只有60s
         'X-Argus': item.encrypt(
           JSON.stringify({
-            imei: getOaid(),
+            imei: getOaid() || getImei(),
             unix,
             account: state.struct.account,
             password: state.struct.password

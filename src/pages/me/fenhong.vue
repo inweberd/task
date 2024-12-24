@@ -11,8 +11,7 @@
       left-arrow
     ></van-nav-bar>
     <div class="content">
-      <img class="redBag" src="./images/fenhongrenBag.png" alt="" />
-      <img class="info" src="./images/fenhong-info.png" alt="" />
+      <!--      <img class="redBag" src="./images/fenhongrenBag.png" alt="" />-->
       <div class="fenhong">
         <div class="title">
           本次周期分红总金额 <br />
@@ -29,6 +28,8 @@
           <span>0</span>
         </div>
       </div>
+      <img class="info" src="@/assets/img/fhgz.jpg" alt="" />
+      <img class="info" src="./images/fenhong-info.png" alt="" />
     </div>
     <!--<van-image-->
     <!--  :src="rule"-->
@@ -101,7 +102,7 @@ onActivated(() => {
     .money {
       text-align: center;
       font-size: 28px;
-      color: #4186ff;
+      color: #ff1300;
       font-weight: bolder;
     }
     .mine {

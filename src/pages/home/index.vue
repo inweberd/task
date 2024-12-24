@@ -11,8 +11,11 @@
           <!--          <van-swipe-item>-->
           <!--            <img src="./images/banner4.png" alt="" />-->
           <!--          </van-swipe-item>-->
+          <!--          <van-swipe-item>-->
+          <!--            <img src="./images/banner6.png" alt="" />-->
+          <!--          </van-swipe-item>-->
           <van-swipe-item>
-            <img src="./images/banner6.png" alt="" />
+            <van-image :src="imageSrc6" width="100%" height="200" fit="fill"></van-image>
           </van-swipe-item>
           <!--          <van-swipe-item>-->
           <!--            <img src="./images/banner1.png" alt="" />-->
@@ -20,14 +23,57 @@
         </van-swipe>
       </div>
       <div class="notice">
+        <!--        <van-notice-bar-->
+        <!--          color="#fff"-->
+        <!--          background="transparent"-->
+        <!--          left-icon="volume-o"-->
+        <!--          style="border-radius: 10px; height: 40px; border: 1px solid #6cc5be"-->
+        <!--          text=""-->
+        <!--        >-->
+        <!--        </van-notice-bar>-->
+
         <van-notice-bar
+          :scrollable="false"
           color="#fff"
           background="transparent"
           left-icon="volume-o"
-          style="border-radius: 10px; height: 40px; border: 1px solid #6cc5be"
-          text="精彩短视频。期待您的加入"
+          style="border-radius: 10px; height: 40px; border: 1px solid #6cc5be; line-height: 40px"
         >
+          <van-swipe
+            style="height: 40px; line-height: 40px"
+            vertical
+            class="notice-swipe"
+            :autoplay="500"
+            :touchable="false"
+            :show-indicators="false"
+          >
+            <van-swipe-item v-for="item of scrollContent">{{ item }}</van-swipe-item>
+          </van-swipe>
         </van-notice-bar>
+        <!--        <t-notice-bar-->
+        <!--          v-if="!scrollContent.length"-->
+        <!--          visible-->
+        <!--          content="精彩短视频。期待您的加入"-->
+        <!--          class="notice-class"-->
+        <!--        >-->
+        <!--          <template #prefixIcon>-->
+        <!--            <van-icon name="volume-o" color="#fff" size="18" style="margin-top: 2px" />-->
+        <!--          </template>-->
+        <!--        </t-notice-bar>-->
+        <!--        <t-notice-bar-->
+        <!--          v-else-->
+        <!--          class="notice-class"-->
+        <!--          visible-->
+        <!--          :marquee="{-->
+        <!--            speed: 10000-->
+        <!--          }"-->
+        <!--          :content="scrollContent"-->
+        <!--          direction="vertical"-->
+        <!--        >-->
+        <!--          <template #prefixIcon>-->
+        <!--            <van-icon name="volume-o" color="#fff" size="18" style="margin-top: 2px" />-->
+        <!--          </template>-->
+        <!--        </t-notice-bar>-->
       </div>
       <div v-show="activeTab === 0" class="app-list" style="margin-top: 10px">
         <div class="app-list-item" v-for="(item, index) of appList">
@@ -58,9 +104,9 @@
     </div>
     <!--    <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>-->
 
-    <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 70px">
-      京ICP备12025439号
-    </p>
+    <!--    <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 70px">-->
+    <!--      京ICP备12025439号-->
+    <!--    </p>-->
     <BaseFooter v-bind:init-tab="1" :is-white="true" />
     <!--    <div class="contact" @click="jumpToQQ">-->
     <!--      <img src="@/assets/img/kefu.png" alt="" />-->
@@ -82,13 +128,19 @@
           <img src="@/assets/img/update.png" alt="" />
           <div class="title">系统公告</div>
           <div style="padding: 0 20px">
-            <p style="text-indent: 22px">
-              体验用户，一机1号，每天刷视频，分红1元，永久有效！
-              多个账号切换在同一台手机设备登录，只有1个账号有收益
-              严厉打击恶意批量注册工作室小号拉低整体广告收益单价！
-              发现恶意机刷一律封禁账号，切勿抱有侥幸心理！
-            </p>
-            <p style="text-align: right; margin-top: 10px">全民来瓜分运营部</p>
+            <!--            <p style="text-indent: 22px">-->
+            <!--              体验用户，一机1号，每天刷视频，分红1元，永久有效！-->
+            <!--              多个账号切换在同一台手机设备登录，只有1个账号有收益-->
+            <!--              严厉打击恶意批量注册工作室小号拉低整体广告收益单价！-->
+            <!--              发现恶意机刷一律封禁账号，切勿抱有侥幸心理！-->
+            <!--            </p>-->
+            <!--            <p style="text-align: right; margin-top: 10px">全民来瓜分运营部</p>-->
+            <p style="margin-bottom: 4px">1、游戏板块，超级大赢家即将上线！</p>
+            <p style="margin-bottom: 4px">2、游戏板块，全民猜盲盒即将上线！</p>
+            <p style="margin-bottom: 4px">3、每周分红奖池，奖金更新，每周一必得分红</p>
+            <p style="margin-bottom: 4px">4、邀请0撸下级1人，下级得1元，你必得1元</p>
+            <p>5、下级认购一份，你必得20元</p>
+            <p>6、进入官方微脉圈万人群，每周大红包发放！人人可抢</p>
           </div>
           <el-button
             color="#689cfc"
@@ -119,8 +171,10 @@ import dayjs from 'dayjs'
 import weimaiquan from '@/assets/img/weimaiquan.jpg'
 import { axiosInstance as axios } from '@/utils/myrequest'
 import imageSrc1 from '@/assets/img/hehuoren.jpg'
+import imageSrc6 from '@/pages/me/images/banner6.jpg'
 const showGonggaoOverlay = ref(false)
 
+const scrollContent = ref(['精彩短视频。期待您的加入'])
 const containerStyle = computed(() => {
   if (window.android) {
     return { paddingTop: '40px' }
@@ -198,7 +252,7 @@ const appList = ref([
   },
   {
     name: '交流群',
-    desc: '点击加入官方交流群！',
+    desc: '点击加入官方微脉圈群！',
     logo: '1',
     btnLabel: '加入',
     btnCb() {
@@ -220,8 +274,8 @@ const appList = ref([
     }
   }
   // {
-  //   name: '官方交流群',
-  //   desc: '点击加入官方交流群！',
+  //   name: '官方微脉圈群',
+  //   desc: '点击加入官方微脉圈群！',
   //   logo: 'weimaiquan',
   //   btnLabel: '加入',
   //   btnCb() {
@@ -304,11 +358,23 @@ let timer = null
 const isReceive = ref(false)
 
 onActivated(() => {
-  axios.get('api/article/one?id=6').then((res) => {})
-  if (timer) return
+  // axios.get('api/article/one?id=6').then((res) => {})
+  // if (timer) return
 })
 onMounted(() => {
-  // showGonggaoOverlay.value = true
+  showGonggaoOverlay.value = true
+  reqWalletLog({
+    limit: 50,
+    // order: 'id desc',
+    where: [['bind_type', '=', 'staff']]
+  }).then((res) => {
+    scrollContent.value = res.data.data
+      .sort((item) => Math.random() - 0.5)
+      .map((item) => {
+        return `id为${item.uid}的用户${item.remark}`
+      })
+    console.log(' scrollContent.value ', scrollContent.value)
+  })
 })
 
 // onMounted(() => {
@@ -552,6 +618,17 @@ onMounted(() => {
     margin-right: 4px;
     width: 30px;
     height: 30px;
+  }
+}
+:deep(.notice-class) {
+  background-color: transparent;
+  border-radius: 10px;
+  border: 1px solid #6cc5be;
+  padding: 7px 16px !important;
+
+  .t-swiper-item,
+  .t-notice-bar__content {
+    color: #fff !important;
   }
 }
 </style>

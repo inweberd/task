@@ -54,7 +54,7 @@
           />
           <img src="../assets/img/tabbar/vip.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 5 ? '#fff' : '' }">认购股权</div>
+        <div :style="{ color: currentTab === 5 ? '#fff' : '' }">购买股权</div>
       </div>
     </div>
     <div class="l-button" @click="tab(6)">
@@ -113,7 +113,7 @@ export default {
       if (isIos) {
         if (!serial && type === 3) {
           showDialog({
-            message: '认购股权，开启大额分红模式，每天收益不间断!'
+            message: '购买股权，开启大额分红模式，每天收益不间断!'
           }).then(() => {
             this.$router.push('/invest')
           })
@@ -130,7 +130,7 @@ export default {
           console.log(!serial)
           if (!serial && type === 3) {
             showDialog({
-              message: '认购股权，开启大额分红模式，每天收益不间断!'
+              message: '购买股权，开启大额分红模式，每天收益不间断!'
             }).then(() => {
               this.$router.push('/invest')
             })

@@ -453,6 +453,11 @@ export const wechatShareImg = (base64Str?, scene) => {
   }
 }
 
+//微信登录
+export function wxLogin() {
+  window.android.wxLogin()
+}
+
 //系统版本
 export function getVersionCode() {
   try {
@@ -468,6 +473,16 @@ export function getOaid() {
   try {
     var oaid = window.android.getOaid()
     return oaid
+  } catch (e) {
+    return ''
+  }
+}
+
+//系统imei
+export function getImei() {
+  try {
+    var imei = window.android.getImei()
+    return imei
   } catch (e) {
     return ''
   }

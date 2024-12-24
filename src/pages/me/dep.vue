@@ -67,25 +67,26 @@
           <!--            推荐优先使用K豆钱包和JD钱包充提，永不风控，钱包里面内置支付宝，微信，银行卡，USDT等多种到账方式，自由转换，安全，方便快捷-->
           <!--          </p>-->
         </div>
+        <!--        <van-image style="margin-top: 10px" :src="tixian" width="100%"></van-image>-->
 
-        <div
-          style="
-            margin: 10px;
-            background-color: rgba(70, 89, 101, 0.7);
-            border-radius: 10px;
-            padding: 6px;
-            color: #fff;
-            text-indent: 2em;
-            line-height: 1.6;
-          "
-        >
-          <p style="margin-bottom: 8px">
-            每日推广佣金，可以用来进行游戏娱乐，中奖可提现，投入1块钱，最多可中奖30000（3万元）爆奖奖金！
-            中奖，无任何附加条件，直接可提现！
-          </p>
+        <!--        <div-->
+        <!--          style="-->
+        <!--            margin: 10px;-->
+        <!--            background-color: rgba(70, 89, 101, 0.7);-->
+        <!--            border-radius: 10px;-->
+        <!--            padding: 6px;-->
+        <!--            color: #fff;-->
+        <!--            text-indent: 2em;-->
+        <!--            line-height: 1.6;-->
+        <!--          "-->
+        <!--        >-->
+        <!--          <p style="margin-bottom: 8px">-->
+        <!--            每日推广佣金，可以用来进行游戏娱乐，中奖可提现，投入1块钱，最多可中奖30000（3万元）爆奖奖金！-->
+        <!--            中奖，无任何附加条件，直接可提现！-->
+        <!--          </p>-->
 
-          <p>长期稳定，信誉，正规企业，合法合规!</p>
-        </div>
+        <!--          <p>长期稳定，信誉，正规企业，合法合规!</p>-->
+        <!--        </div>-->
       </van-tab>
       <van-tab title="绑定提现">
         <van-tabs v-model:active="active_">
@@ -210,7 +211,15 @@
 </template>
 
 <script lang="ts" setup>
-import { payCard, bank_list, create, reqDeleteCard } from '@/api/myApi'
+import {
+  payCard,
+  bank_list,
+  create,
+  reqDeleteCard,
+  reqCreateShareLog,
+  reqWalletInfo,
+  reqEnterStaff
+} from '@/api/myApi'
 import utils from '@/utils/utils.js'
 import { onActivated, reactive, ref } from 'vue'
 import { axiosInstance as axios } from '@/utils/myrequest'
@@ -218,13 +227,17 @@ import { _checkImgUrl, _notice, _showConfirmDialog, cloneDeep } from '@/utils'
 import imageSrc from '@/assets/img/yinlian.png'
 import kdImgSrc from '@/assets/img/recharge/kd.jpg'
 import jdImgSrc from '@/assets/img/recharge/jd.jpg'
-import tixian from '@/assets/img/recharge/tixian.jpg'
+import tixian from '@/assets/img/jdhd.jpg'
 import { showConfirmDialog, showDialog } from 'vant'
-import { loadInteraction, loadPlayRewardVideo } from '@/utils/ad'
+import { loadInteraction, loadPlayRewardVideo, wxLogin } from '@/utils/ad'
+import dayjs from 'dayjs'
+import { useRouter } from 'vue-router'
 
 defineOptions({
   name: 'dep'
 })
+
+const router = useRouter()
 const active = ref('')
 const selectName = ref('')
 const checked = ref(false)
@@ -372,6 +385,27 @@ async function goPay() {
   // loadInteraction()
   if (!money.value) {
     return _notice('请选择提现金额')
+  }
+
+  const walletRes = await reqWalletInfo()
+
+  if (money.value > walletRes.data.amount + walletRes.data.money) {
+    loading.value = false
+    _notice('余额不足!')
+    return
+  }
+  const serial = user?.result?.staff?.serial
+  if (!serial) {
+    showDialog({
+      title: '重要公告',
+      message:
+        '为保障平台的公平与可持续发展，抵制工作室刷子的批量违规行为，公司决定，零撸用户玩家需购买一份股权后，才可进行出款操作。这一举措旨在维护广大用户的长远利益，确保平台能够长久稳定运营，感谢大家的理解与支持。' +
+        '\n购买股权后，后续出款将无需审核，款项将在 30 分钟内到账，让您的资金流转更加便捷高效。',
+      confirmButtonText: '去购买'
+    }).then(() => {
+      router.push('/invest')
+    })
+    return
   }
 
   // if (!sessionStorage.seeVideoWithdrawal) {

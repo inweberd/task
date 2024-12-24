@@ -38,6 +38,7 @@
       </div>
       <div class="list-header">
         <div class="list-item">
+          <div style="background: none; color: #fff"></div>
           <div style="background: none; color: #fff">排名</div>
           <div>手机号</div>
           <div>本周佣金</div>
@@ -46,8 +47,11 @@
       <div class="list-container">
         <div v-if="!rankList?.length" style="text-align: center; line-height: 200px">暂无数据</div>
         <div class="list-item" v-for="(item, index) of rankList">
+          <div>
+            <img :src="item.avatar || defaultAvatar" class="headerImg" />
+          </div>
           <div>{{ index + 1 }}</div>
-          <div>{{ getPhone(item.phone) }}</div>
+          <div>{{ item.nickname || getPhone(item.phone) }}</div>
           <div>{{ item.total }}</div>
         </div>
       </div>
@@ -62,6 +66,7 @@ import { Toast } from 'tdesign-mobile-vue'
 import { onBeforeUnmount, ref } from 'vue'
 import imageSrc1 from './images/rank1.png'
 import imageSrc4 from './images/rank2.png'
+import defaultAvatar from '@/assets/img/logo.png'
 
 const getPhone = (phone) => {
   if (phone?.length === 11) {
@@ -100,7 +105,7 @@ onBeforeUnmount(() => {
   background-size: 100% 100%;
   .list {
     position: relative;
-    width: 80%;
+    width: 85%;
     margin: 180px auto;
     height: calc(100% - 240px);
     min-height: 420px;
@@ -115,12 +120,28 @@ onBeforeUnmount(() => {
     .list-item {
       color: #fff;
       display: flex;
+      align-items: center;
       & > div {
         height: 45px;
         line-height: 40px;
-        width: 40%;
-        text-align: center;
+        width: 32%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        img {
+          transform: translateY(5px);
+          width: 30px;
+          height: 30px;
+        }
         &:nth-child(1) {
+          text-align: center;
+
+          width: 15%;
+        }
+
+        &:nth-child(2) {
+          text-align: center;
+
           color: #000;
           background-image: url('./images/four.png');
           background-repeat: no-repeat;
@@ -128,23 +149,29 @@ onBeforeUnmount(() => {
           background-size: 26px auto;
           background-position: center 5px;
         }
+        &:nth-child(3) {
+          width: 40%;
+        }
+        &:nth-child(4) {
+          width: 24%;
+        }
       }
-      &:nth-child(2) {
-        & > div:nth-child(1) {
+      &:nth-child(1) {
+        & > div:nth-child(2) {
           background-image: url('./images/one.png');
           background-position: center 5px;
           background-size: 32px auto;
         }
       }
-      &:nth-child(3) {
-        & > div:nth-child(1) {
+      &:nth-child(2) {
+        & > div:nth-child(2) {
           background-image: url('./images/two.png');
           background-position: center 5px;
           background-size: 32px auto;
         }
       }
-      &:nth-child(4) {
-        & > div:nth-child(1) {
+      &:nth-child(3) {
+        & > div:nth-child(2) {
           background-image: url('./images/three.png');
           background-position: center 5px;
           background-size: 32px auto;

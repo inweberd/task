@@ -3,10 +3,11 @@
     <div style="margin: 20px; border-radius: 15px; padding: 10px 0; box-sizing: border-box">
       <div class="info">
         <!--        <img src="@/assets/img/2.8184534.png" class="headerImg" />-->
-        <img src="@/assets/img/logo.png" class="headerImg" />
+        <img :src="userInfo.avatar || defaultAvatar" class="headerImg" />
         <div class="name">
           <div>
-            <small class="txt1">
+            <small class="txt1" v-if="userInfo.nickname"> {{ userInfo.nickname }}</small>
+            <small class="txt1" v-else>
               {{
                 userInfo.phone
                   ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
@@ -28,7 +29,26 @@
             <!--            <small class="txt4">当前星级：{{ star }}星级 </small>-->
           </div>
         </div>
+        <div
+          @click="renzheng"
+          v-if="showRenzheng"
+          style="
+            position: absolute;
+            top: 25px;
+            right: 0px;
+            width: fit-content;
+            padding: 8px 18px;
+            background-color: #689cfc;
+            color: #fff;
+            border-radius: 20px;
+            font-size: 12px;
+            white-space: nowrap;
+          "
+        >
+          获取微信头像
+        </div>
       </div>
+
       <!--    <div class="user-count" style="font-size: 14px">-->
       <!--      新用户首次注册，默认赠送体验<span style="color: #3F86FF; font-size: 18px"-->
       <!--        >1星级<br />享受团队下级无限代收益</span-->
@@ -74,6 +94,25 @@
           <div class="price-1-content flexS">
             <div class="p-1-c-1">
               {{ userIncomeInfo?.wallet?.money || 0 }}
+            </div>
+            <div class="charge">
+              <div
+                @click="$router.push('/invest')"
+                style="
+                  position: absolute;
+                  top: -15px;
+                  right: 20px;
+                  width: fit-content;
+                  padding: 8px 32px;
+                  background-color: #689cfc;
+                  color: #fff;
+                  border-radius: 20px;
+                  font-size: 18px;
+                  white-space: nowrap;
+                "
+              >
+                购买股权
+              </div>
             </div>
             <div class="p-1-c-3 flexS">
               <div class="p-1-c-3-btn" @click="go('/dep')" style="background: #01c5f0">提现</div>
@@ -162,7 +201,7 @@
           <!--            alt=""-->
           <!--          />-->
           <img src="./images/1.png" alt="" />
-          <p>官方交流群</p></a
+          <p>官方微脉圈群</p></a
         >
       </li>
       <!--      <li>-->
@@ -232,12 +271,12 @@
       <!--          <p>合作单位</p></a-->
       <!--        >-->
       <!--      </li>-->
-      <li>
-        <a href="javascript:void(0)" @click="$router.push('/conversion')"
-          ><img src="./images/6.png" />
-          <p>佣金互转</p></a
-        >
-      </li>
+      <!--      <li>-->
+      <!--        <a href="javascript:void(0)" @click="$router.push('/conversion')"-->
+      <!--          ><img src="./images/6.png" />-->
+      <!--          <p>佣金互转</p></a-->
+      <!--        >-->
+      <!--      </li>-->
       <li>
         <a href="javascript:void(0)" @click="$router.push('/rank')"
           ><img src="./images/rank.png" />
@@ -300,7 +339,7 @@
     <div class="LoginOut">
       <button class="tabs_btn1" @click="logout">退出登陆</button>
     </div>
-    <p style="text-align: center; color: #888; width: 100%">京ICP备12025439号</p>
+    <!--    <p style="text-align: center; color: #888; width: 100%">京ICP备12025439号</p>-->
     <BaseFooter v-bind:init-tab="6" :is-white="false" />
     <!--    <div class="contact" @click="jumpToQQ">-->
     <!--      <img src="@/assets/img/kefu.png" alt="" />-->
@@ -314,7 +353,8 @@
 
 <script lang="ts" setup>
 import BaseFooter from '@/components/BaseFooter.vue'
-import { onActivated, onMounted, ref } from 'vue'
+import { computed, onActivated, onMounted, ref } from 'vue'
+import defaultAvatar from '@/assets/img/logo.png'
 import {
   logout as fnlogout,
   reqMyStaff,
@@ -328,16 +368,29 @@ import {
   reqUserStaff,
   reqWalletInfo
 } from '@/api/myApi'
-import { loadInteraction } from '@/utils/ad'
+import { loadInteraction, wxLogin } from '@/utils/ad'
 import { _notice } from '@/utils'
 import { useRouter } from 'vue-router'
 import weimaiquan from '@/assets/img/weimaiquan.jpg'
 import { showDialog } from 'vant'
 import { getSerialName } from '../../utils/getSerialName'
 import { Toast } from 'tdesign-mobile-vue'
+import bus from '@/utils/bus'
 
 const router = useRouter()
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
+
+const showRenzheng = computed(() => {
+  if (window.android && !userInfo.value.avatar) {
+    return true
+  } else {
+    return false
+  }
+})
+const renzheng = () => {
+  wxLogin()
+}
+
 const memberInfo = ref({})
 const userIncomeInfo = ref({})
 const walletInfo = ref({ credit: 0 })
@@ -528,6 +581,9 @@ onActivated(() => {
   init()
   getNewUserInfo()
   getMyStaff()
+  bus.on('userInfoChange', (data) => {
+    userInfo.value = data
+  })
 })
 </script>
 
@@ -543,6 +599,7 @@ onActivated(() => {
   overflow-y: auto;
 
   .info {
+    position: relative;
     display: flex;
     margin: 15px auto 0;
     overflow: hidden;

@@ -36,15 +36,15 @@
         <!--        <van-swipe-item>-->
         <!--          <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>-->
         <!--        </van-swipe-item>-->
-        <van-swipe-item>
-          <van-image :src="imageSrc8" width="100%" height="200" fit="fill"></van-image>
-        </van-swipe-item>
+        <!--        <van-swipe-item>-->
+        <!--          <van-image :src="imageSrc8" width="100%" height="200" fit="fill"></van-image>-->
+        <!--        </van-swipe-item>-->
         <van-swipe-item>
           <van-image :src="imageSrc6" width="100%" height="200" fit="fill"></van-image>
         </van-swipe-item>
-        <van-swipe-item>
-          <van-image :src="imageSrc7" width="100%" height="200" fit="fill"></van-image>
-        </van-swipe-item>
+        <!--        <van-swipe-item>-->
+        <!--          <van-image :src="imageSrc7" width="100%" height="200" fit="fill"></van-image>-->
+        <!--        </van-swipe-item>-->
       </van-swipe>
     </div>
     <div class="announcement">
@@ -93,7 +93,127 @@
               >
                 <!--                <span style="font-size: 16px" v-if="myStaffList.includes(item.id)">入职成功 </span>-->
                 <!--                <span style="font-size: 16px" v-else>未入职</span>-->
-                <span style="font-size: 16px">认购股权</span>
+                <span style="font-size: 16px">购买股权</span>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 20px" v-for="(item, index) of shopList" class="item">
+            <div style="width: 100%; padding: 10px">
+              <div>
+                <div class="txt">
+                  <!--                  {{ item.name }}-->
+                  正式股权
+                  <!--                  {{ getSerialName(item.serial) }}-->
+                </div>
+                <div class="txt">每天可分红</div>
+                <div class="txt">30天总分红</div>
+                <div class="txt">有效期</div>
+              </div>
+              <div>
+                <div class="txt">500元/份</div>
+                <div class="txt">25元</div>
+                <div class="txt">750元</div>
+                <div class="txt">{{ youxiaoArr[index] }}天</div>
+              </div>
+              <div style="margin: 10px">
+                <span style="padding-left: 10px">拥有多份股权，可同时叠加生效</span>
+              </div>
+
+              <div
+                style="
+                  background: #01c5f0;
+                  color: #fff;
+                  width: 100px;
+                  margin: 15px auto;
+                  font-weight: bold;
+                  padding: 6px 0;
+                  border-radius: 15px;
+                "
+                @click="buy(item, 5)"
+              >
+                <!--                <span style="font-size: 16px" v-if="myStaffList.includes(item.id)">入职成功 </span>-->
+                <!--                <span style="font-size: 16px" v-else>未入职</span>-->
+                <span style="font-size: 16px">购买股权</span>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 20px" v-for="(item, index) of shopList" class="item">
+            <div style="width: 100%; padding: 10px">
+              <div>
+                <div class="txt">
+                  <!--                  {{ item.name }}-->
+                  正式股权
+                  <!--                  {{ getSerialName(item.serial) }}-->
+                </div>
+                <div class="txt">每天可分红</div>
+                <div class="txt">30天总分红</div>
+                <div class="txt">有效期</div>
+              </div>
+              <div>
+                <div class="txt">2000元/份</div>
+                <div class="txt">100元</div>
+                <div class="txt">3000元</div>
+                <div class="txt">{{ youxiaoArr[index] }}天</div>
+              </div>
+              <div style="margin: 10px">
+                <span style="padding-left: 10px">拥有多份股权，可同时叠加生效</span>
+              </div>
+
+              <div
+                style="
+                  background: #01c5f0;
+                  color: #fff;
+                  width: 100px;
+                  margin: 15px auto;
+                  font-weight: bold;
+                  padding: 6px 0;
+                  border-radius: 15px;
+                "
+                @click="buy(item, 20)"
+              >
+                <!--                <span style="font-size: 16px" v-if="myStaffList.includes(item.id)">入职成功 </span>-->
+                <!--                <span style="font-size: 16px" v-else>未入职</span>-->
+                <span style="font-size: 16px">购买股权</span>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 20px" v-for="(item, index) of shopList" class="item">
+            <div style="width: 100%; padding: 10px">
+              <div>
+                <div class="txt">
+                  <!--                  {{ item.name }}-->
+                  正式股权
+                  <!--                  {{ getSerialName(item.serial) }}-->
+                </div>
+                <div class="txt">每天可分红</div>
+                <div class="txt">30天总分红</div>
+                <div class="txt">有效期</div>
+              </div>
+              <div>
+                <div class="txt">5000元/份</div>
+                <div class="txt">250元</div>
+                <div class="txt">7500元</div>
+                <div class="txt">{{ youxiaoArr[index] }}天</div>
+              </div>
+              <div style="margin: 10px">
+                <span style="padding-left: 10px">拥有多份股权，可同时叠加生效</span>
+              </div>
+
+              <div
+                style="
+                  background: #01c5f0;
+                  color: #fff;
+                  width: 100px;
+                  margin: 15px auto;
+                  font-weight: bold;
+                  padding: 6px 0;
+                  border-radius: 15px;
+                "
+                @click="buy(item, 50)"
+              >
+                <!--                <span style="font-size: 16px" v-if="myStaffList.includes(item.id)">入职成功 </span>-->
+                <!--                <span style="font-size: 16px" v-else>未入职</span>-->
+                <span style="font-size: 16px">购买股权</span>
               </div>
             </div>
           </div>
@@ -143,11 +263,13 @@
       </div>
     </div>
     <!--    <p style="text-align: center; color: #888; width: 100%">京ICP备12025439号</p>-->
+
+    <!--    <p style="text-align: center; color: #888; width: 100%">京ICP备12025439号</p>-->
   </div>
 
-  <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 60px">
-    京ICP备12025439号
-  </p>
+  <!--  <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 60px">-->
+  <!--    京ICP备12025439号-->
+  <!--  </p>-->
   <BaseFooter v-bind:init-tab="5" :is-white="false" />
 </template>
 <script setup lang="ts">
@@ -254,7 +376,8 @@ const getAllStaff = () => {
 const getIconPath = (icon) => {
   return new URL(`../../assets/img/shop/${icon}.png`, import.meta.url).href
 }
-const buy = (item) => {
+const buy = (item, customCount) => {
+  const finallyCount = customCount || count.value
   // if (myStaffList.value.includes(item.id)) {
   //   showToast({
   //     message: '您已拥有此会员！',
@@ -281,13 +404,13 @@ const buy = (item) => {
     console.log('reqWalletInfo', res)
     loading.value = false
 
-    if (item.price * count.value > res.data.amount + res.data.money) {
+    if (item.price * finallyCount > res.data.amount + res.data.money) {
       loading.value = false
       _notice('账户余额不足,请充值!')
       router.push('/recharge')
     } else {
       reqEnterStaff({
-        count: count.value,
+        count: finallyCount,
         staff_id: item.id
       }).then((sub_res) => {
         loading.value = false

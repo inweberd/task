@@ -20,33 +20,33 @@
   </div>
   <!--  v-if=" (isWeChatBrowser && ['fenxiang', '/me/my-card'].includes(route.path)) ||-->
   <!--  route.query.injectWeixin "-->
-  <!--<div-->
-  <!--  style="-->
-  <!--    width: 100vw;-->
-  <!--    height: 100vh;-->
-  <!--    display: flex;-->
-  <!--    align-items: center;-->
-  <!--    justify-content: center;-->
-  <!--    position: absolute;-->
-  <!--    left: 0;-->
-  <!--    top: 0;-->
-  <!--    z-index: 9999999;-->
-  <!--    background: #fff;-->
-  <!--  "-->
-  <!--  v-if="isWeChatBrowser"-->
-  <!--&gt;-->
-  <!--  &lt;!&ndash;请点击右上角选择在默认浏览器中打开&ndash;&gt;-->
-  <!--  <img src="@/assets/img/openByOtherBrower.jpg" style="width: 100%" />-->
-  <!--</div>-->
+  <!--  <div-->
+  <!--    style="-->
+  <!--      width: 100vw;-->
+  <!--      height: 100vh;-->
+  <!--      display: flex;-->
+  <!--      align-items: center;-->
+  <!--      justify-content: center;-->
+  <!--      position: absolute;-->
+  <!--      left: 0;-->
+  <!--      top: 0;-->
+  <!--      z-index: 99999999999;-->
+  <!--      background: #fff;-->
+  <!--    "-->
+  <!--    v-if="isWeChatBrowser"-->
+  <!--  >-->
+  <!--    &lt;!&ndash;请点击右上角选择在默认浏览器中打开&ndash;&gt;-->
+  <!--    <img src="@/assets/img/openByOtherBrower.jpg" style="width: 100%" />-->
+  <!--  </div>-->
   <van-overlay :show="showOverlay" :z-index="99999999">
     <div class="wrapper" @click.stop>
       <div class="update-box">
         <img src="@/assets/img/update.png" alt="" />
-        <div class="title">发现新版本 1.0.2</div>
+        <div class="title">发现新版本 1.0.5</div>
         <div>
-          <p>1. APP流畅度优化</p>
-          <p>2. 大额股份认购界面优化</p>
-          <p>3. 公司收入来源界面优化</p>
+          <p>1. 优化正式股权用户刷正式视频的流畅度</p>
+          <p>2. 修复零撸用户无法获得收益的问题</p>
+          <p>3. 大赢家游戏即将上线</p>
         </div>
         <el-button
           color="#689cfc"
@@ -102,13 +102,14 @@ const keepAliveBlackList = [
 ]
 import {
   androidUpdate,
+  getOaid,
   getVersionCode,
   loadInteraction,
   loadSplash,
   testCallback,
   wechatShareImg
 } from '@/utils/ad'
-import { reqCreateShareLog } from '@/api/myApi'
+import { reqCreateShareLog, reqUpdateUserInfo, reqUserInfo, reqUserStaff } from '@/api/myApi'
 import dayjs from 'dayjs'
 import imageSrc from '@/assets/img/share-bg.png'
 import QRCode from 'qrcode/lib'
@@ -117,6 +118,8 @@ import shareBtnBg from '@/assets/img/share-btn-bg.png'
 import { outsideFn } from '@/utils/outsideFn'
 import { testBase64 } from '@/utils/testBase64'
 import { Toast } from 'tdesign-mobile-vue'
+import { _notice } from '@/utils'
+import bus from '@/utils/bus'
 const store = useBaseStore()
 const route = useRoute()
 const router = useRouter()
@@ -126,7 +129,11 @@ const showOverlay = ref(false)
 const topPadding = computed(() => {
   // window.webkit?.messageHandlers
   if (window.android) {
-    if (!['/home', '/me', '/invest', '/myteam', '/myServe', '/serveInfo'].includes(route.path)) {
+    if (
+      !['/home', '/me', '/invest', '/myteam', '/myServe', '/serveInfo', '/rank1'].includes(
+        route.path
+      )
+    ) {
       return '40px !important'
     } else {
       return 0 + 'px !important'
@@ -149,7 +156,7 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
     (navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1 ||
       navigator.userAgent.toLowerCase().indexOf('qqbrowser') !== -1 ||
       navigator.userAgent.toLowerCase().indexOf('qq') !== -1) &&
-    !window.android
+    !window.android?.getOaid
 }
 
 // watch $route 决定使用哪种过渡
@@ -340,7 +347,7 @@ onMounted(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
       qrCodeText.value =
-        'http://bbbwx1203a15.s3-website-us-east-1.amazonaws.com/index.html?target=' +
+        'http://bbbwx1203a16.s3-website-us-east-1.amazonaws.com/index.html?target=' +
         encodeURIComponent(
           'https://fx.yuyuwa.cn/#/signUp?invite=' +
             JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
@@ -356,6 +363,39 @@ onMounted(() => {
       // window.android.getMoneyCb('回调字符串')
     })
     // alert(13311)
+  }
+  window.setU = function (params) {
+    console.log('params', params)
+    const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+    const data = {
+      id: userInfo.id,
+      avatar: params.headimgurl,
+      nickname: params.nickname,
+      description: JSON.stringify({
+        openid: params.openid,
+        nickname: params.nickname,
+        sex: params.sex,
+        unionid: params.unionid
+      })
+    }
+    if (params.sex) {
+      data.gender = params.sex == '1' ? 'boy' : 'girl'
+    }
+
+    reqUpdateUserInfo(data).then((res) => {
+      if (res.code !== 200) {
+        return Toast('认证失败，请重试！')
+      }
+      reqUserInfo({ id: userInfo.id }).then((sub_res) => {
+        if (sub_res.code !== 200) {
+          return _notice(sub_res.msg)
+        }
+        Toast('认证成功')
+        userInfo.value = sub_res.data
+        window.localStorage.setItem('userInfo', JSON.stringify(sub_res.data))
+        bus.emit('userInfoChange', sub_res.data)
+      })
+    })
   }
   window.toInvest = function (params) {
     router.push('/invest')
@@ -410,7 +450,7 @@ onMounted(() => {
   //     })
   // }, 5000)
   if (window.android) {
-    if (2 > getVersionCode()) {
+    if (5 > getVersionCode()) {
       showOverlay.value = true
     }
   }

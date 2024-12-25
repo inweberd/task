@@ -135,19 +135,40 @@
             <!--              发现恶意机刷一律封禁账号，切勿抱有侥幸心理！-->
             <!--            </p>-->
             <!--            <p style="text-align: right; margin-top: 10px">全民来瓜分运营部</p>-->
-            <p style="margin-bottom: 4px">1、游戏板块，超级大赢家即将上线！</p>
-            <p style="margin-bottom: 4px">2、游戏板块，全民猜盲盒即将上线！</p>
-            <p style="margin-bottom: 4px">3、每周分红奖池，奖金更新，每周一必得分红</p>
-            <p style="margin-bottom: 4px">4、邀请0撸下级1人，下级得1元，你必得1元</p>
-            <p>5、下级认购一份，你必得20元</p>
-            <p>6、进入官方微脉圈万人群，每周大红包发放！人人可抢</p>
+            <!--            <p style="margin-bottom: 4px">1、游戏板块，超级大赢家即将上线！</p>-->
+            <!--            <p style="margin-bottom: 4px">2、游戏板块，全民猜盲盒即将上线！</p>-->
+            <!--            <p style="margin-bottom: 4px">3、每周分红奖池，奖金更新，每周一必得分红</p>-->
+            <!--            <p style="margin-bottom: 4px">4、邀请0撸下级1人，下级得1元，你必得1元</p>-->
+            <!--            <p>5、下级认购一份，你必得20元</p>-->
+            <!--            <p>6、进入官方微脉圈万人群，每周大红包发放！人人可抢</p>-->
+            <!--            <p style="margin-bottom: 4px">-->
+            <!--              近期服务器遭遇了恶意攻击，可能导致部分服务出现中断，给您的使用造成了极大不便，我们对此深表歉意。-->
+            <!--            </p>-->
+            <!--            <p style="margin-bottom: 4px">-->
+            <!--              <span style="font-weight: bolder; color: #e51919">-->
+            <!--                如果您遇到系统无法访问的情况，请不要惊慌，只需耐心等待恢复即可。请您放心，您的数据安全无虞，不会有丢失的风险。</span-->
+            <!--              >-->
+            <!--            </p>-->
+            <!--            <p style="margin-bottom: 4px">-->
+            <!--              十分感谢您在这个时候给予我们的理解与信任。-->
+            <!--              我们会持续努力，并将进一步加强安全防护措施。-->
+            <!--            </p>-->
+            <!--            <p style="text-align: center; font-size: 16px">-->
+            <!--              请及时加入-->
+            <!--              <span-->
+            <!--                @click="$router.push('/weimaiquanDetail')"-->
+            <!--                style="text-decoration: underline; color: #1e83d3"-->
+            <!--                >官方交流群</span-->
+            <!--              >-->
+            <!--            </p>-->
+            <p>用户如遇到充值不进，可以进官方QQ群，找客服人工充值，支持 微信，支付宝</p>
           </div>
           <el-button
             color="#689cfc"
             size="large"
             style="border-radius: 20px; margin-top: 30px !important; color: #fff; width: 80%"
             @click="showGonggaoOverlay = false"
-            >朕已阅
+            >已阅
           </el-button>
         </div>
       </div>
@@ -251,17 +272,17 @@ const appList = ref([
     }
   },
   {
-    name: '交流群',
-    desc: '点击加入官方微脉圈群！',
+    name: '人工代充群',
+    desc: '点击加入人工代充群！',
     logo: '1',
     btnLabel: '加入',
     btnCb() {
       // showImagePreview({
       //   images: [weimaiquan]
       // })
-      // window.location.href = decodeURIComponent('https://qm.qq.com/q/nXjc3S4XwQ')
+      window.location.href = decodeURIComponent('https://qm.qq.com/q/oVkcjwfykS')
       // window.location.href = 'https://dd.kkwai.cn/download/android.apk'
-      router.push('/weimaiquanDetail')
+      // router.push('/weimaiquanDetail')
     }
   },
   {
@@ -296,7 +317,7 @@ const appList = ref([
   //
   //       // const { VITE_APP_URL } = import.meta.env
   //       // 跳转下载
-  //       window.location.href = `https://fx.yuyuwa.cn/download`
+  //       window.location.href = `https://wuw.anqtu.cn/download`
   //     } catch (e) {
   //       _notice('下载失败')
   //       // state.loading.app = false
@@ -307,7 +328,7 @@ const appList = ref([
 ])
 function goDownload() {
   try {
-    window.location.href = `https://fx.yuyuwa.cn/download`
+    window.location.href = `https://wuw.anqtu.cn/download`
   } catch (e) {
     _notice('下载失败')
   }

@@ -205,7 +205,7 @@ export default defineConfig((): Promise<UserConfig> => {
             '/json/': {
               // target: 'http://111.180.196.127:8642/api',
               // target: 'https://wwc.gengshangpin.com/api',
-              // target: 'https://fx.yuyuwa.cn/json',
+              // target: 'https://wuw.anqtu.cn/json',
               target: 'https://dd.kkwai.cn/json',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/json/'), '')

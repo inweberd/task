@@ -278,14 +278,14 @@ function clipboardCopy(content) {
 }
 
 const toDownload = () => {
-  window.android.openBrowser('https://fx.yuyuwa.cn/download/android.apk')
+  window.android.openBrowser('https://wuw.anqtu.cn/download/android.apk')
 
-  // window.location.href = `https://fx.yuyuwa.cn/download/android.apk`
+  // window.location.href = `https://wuw.anqtu.cn/download/android.apk`
 }
 
 const upGrade = () => {
-  window.android.openBrowser('https://fx.yuyuwa.cn/download/android.apk')
-  // clipboardCopy('https://fx.yuyuwa.cn/download/android.apk')
+  window.android.openBrowser('https://wuw.anqtu.cn/download/android.apk')
+  // clipboardCopy('https://wuw.anqtu.cn/download/android.apk')
   // navigator.clipboard.writeText('12312').then(() => {
   //   alert('复制成功')
   // })
@@ -347,9 +347,9 @@ onMounted(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
       qrCodeText.value =
-        'http://bbbwx1203a16.s3-website-us-east-1.amazonaws.com/index.html?target=' +
+        'http://bbbwx1203a17.s3-website-us-east-1.amazonaws.com/index.html?target=' +
         encodeURIComponent(
-          'https://fx.yuyuwa.cn/#/signUp?invite=' +
+          'https://wuw.anqtu.cn/#/signUp?invite=' +
             JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
         )
       generatePoster()

@@ -151,7 +151,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://fx.yuyuwa.cn/download`
+    window.location.href = `https://wuw.anqtu.cn/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false

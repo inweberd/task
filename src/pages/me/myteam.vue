@@ -201,7 +201,7 @@
           <!--            alt=""-->
           <!--          />-->
           <img src="./images/1.png" alt="" />
-          <p>官方微脉圈群</p></a
+          <p>人工代充群</p></a
         >
       </li>
       <!--      <li>-->
@@ -520,9 +520,9 @@ function go(e, interaction = false) {
   router.push(e)
 }
 function jumpToQQ() {
-  router.push('/weimaiquanDetail')
+  // router.push('/weimaiquanDetail')
 
-  // window.location.href = decodeURIComponent('https://qm.qq.com/q/nXjc3S4XwQ')
+  window.location.href = decodeURIComponent('https://qm.qq.com/q/oVkcjwfykS')
 }
 
 function go2(val1, val2) {
@@ -537,7 +537,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://fx.yuyuwa.cn/download`
+    window.location.href = `https://wuw.anqtu.cn/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false

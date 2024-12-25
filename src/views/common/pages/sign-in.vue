@@ -85,7 +85,7 @@
             style="display: flex; justify-content: space-evenly; align-items: center; width: 100%"
           >
             <a style="font-size: 16px; color: #fff" @click="goDownload">下载app</a>
-            <a style="font-size: 16px; color: #fff" @click="jumpToQQ2">官方微脉圈群 </a>
+            <a style="font-size: 16px; color: #fff" @click="jumpToQQ2">官方交流群 </a>
           </div>
         </div>
       </div>
@@ -134,16 +134,16 @@ const state = reactive({
 
 function goDownload() {
   try {
-    window.location.href = `https://fx.yuyuwa.cn/download`
+    window.location.href = `https://wuw.anqtu.cn/download`
   } catch (e) {
     _notice('下载失败')
   }
 }
 
 function jumpToQQ2() {
-  router.push('/weimaiquanDetail')
+  // router.push('/weimaiquanDetail')
 
-  // window.location.href = decodeURIComponent('https://qm.qq.com/q/nXjc3S4XwQ')
+  window.location.href = decodeURIComponent('https://qm.qq.com/q/oVkcjwfykS')
 }
 
 const SignIn = async () => {

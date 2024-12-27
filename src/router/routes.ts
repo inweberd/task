@@ -47,6 +47,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/myServe', component: () => import('@/pages/me/myServe.vue') },
   { path: '/serveInfo', component: () => import('@/pages/me/serveInfo.vue') },
   { path: '/dep', component: () => import('@/pages/me/dep.vue') },
+  { path: '/binddep', component: () => import('@/pages/me/binddep.vue') },
   { path: '/recharge', component: () => import('@/pages/me/recharge.vue') },
 
   { path: '/article', component: () => import('@/pages/me/article.vue') },

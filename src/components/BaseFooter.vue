@@ -11,7 +11,7 @@
           />
           <img src="@/assets/img/tabbar/home.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 1 ? '#fff' : '' }">首页</div>
+        <div :style="{ color: currentTab === 1 ? '#666' : '' }">首页</div>
       </div>
     </div>
     <!--    <div class="l-button" @click="refresh(2)">-->
@@ -26,7 +26,7 @@
           />
           <img src="../assets/img/tabbar/vipVideo.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 2 ? '#fff' : '' }">体验股权</div>
+        <div :style="{ color: currentTab === 2 ? '#666' : '' }">体验股权</div>
       </div>
     </div>
     <div class="l-button" @click="loadShort(3)">
@@ -40,7 +40,7 @@
           />
           <img src="../assets/img/tabbar/video.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 2 ? '#fff' : '' }">正式股权</div>
+        <div :style="{ color: currentTab === 2 ? '#666' : '' }">正式股权</div>
       </div>
     </div>
     <div class="l-button" @click="tab(5)">
@@ -54,7 +54,7 @@
           />
           <img src="../assets/img/tabbar/vip.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 5 ? '#fff' : '' }">购买股权</div>
+        <div :style="{ color: currentTab === 5 ? '#666' : '' }">购买股权</div>
       </div>
     </div>
     <div class="l-button" @click="tab(6)">
@@ -68,7 +68,7 @@
           />
           <img src="../assets/img/tabbar/my.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 6 ? '#fff' : '' }">我的</div>
+        <div :style="{ color: currentTab === 6 ? '#666' : '' }">我的</div>
       </div>
       <!-- <div class="badge">2</div> -->
     </div>

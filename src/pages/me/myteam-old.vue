@@ -14,6 +14,33 @@
         <!--        <van-icon name="friends-o" size="18" @click="service = true" />-->
       </template>
     </van-nav-bar>
+    <div class="container">
+      <div class="zhitui">
+        <div>
+          <p>直推总人数</p>
+          <p>{{ memberInfo.first?.total || 0 }}</p>
+        </div>
+        <div>
+          <p>直推有效人数</p>
+          <p>{{ memberInfo.first?.vip || 0 }}</p>
+        </div>
+      </div>
+
+      <div class="tuandui">
+        <div class="tuandui-item">
+          <p>团队总人数</p>
+          <p>{{ memberInfo.team?.total || 0 }}</p>
+        </div>
+        <div class="tuandui-item">
+          <p>团队有效人数</p>
+          <p>{{ memberInfo.team?.vip || 0 }}</p>
+        </div>
+        <div class="tuandui-item">
+          <p>团队总充值</p>
+          <p>{{ memberInfo.team?.deposit || 0 }}</p>
+        </div>
+      </div>
+    </div>
     <!--    <Loading v-if="loading" />-->
     <div>
       <!--      <div class="summary">-->
@@ -27,7 +54,7 @@
       <!--        </div>-->
       <!--      </div>-->
 
-      <div class="stats">
+      <div class="stats" v-if="false">
         <div class="stat-item">
           <div class="label">团队总人数</div>
           <div class="number">
@@ -326,7 +353,7 @@ onActivated(() => {
   border-radius: 40px;
   margin-bottom: 20px;
   //background-color: #646060;
-  color: #fff;
+  color: #666;
 }
 
 .card-body {
@@ -394,5 +421,54 @@ onActivated(() => {
 
 .font-13 {
   font-size: 13px;
+}
+
+.container {
+  .zhitui {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: linear-gradient(to right, #a423ce, #a423ce);
+    border-radius: 20px;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+
+      p:nth-child(1) {
+        letter-spacing: 2px;
+      }
+      p:nth-child(2) {
+        margin-top: 12px;
+        font-size: 26px;
+        font-weight: bold;
+      }
+    }
+  }
+  .tuandui {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    .tuandui-item {
+      border-radius: 15px;
+      padding: 10px 15px;
+
+      p:nth-child(1) {
+      }
+      p:nth-child(2) {
+        margin-top: 10px;
+        font-size: 24px;
+      }
+      &:nth-child(1) {
+        background: linear-gradient(to right, #eb677e, #f989c6);
+      }
+      &:nth-child(2) {
+        background: linear-gradient(to right, #33aafa, #72c8f7);
+      }
+      &:nth-child(3) {
+        background: linear-gradient(to right, #f98a5f, #fcb591);
+      }
+    }
+  }
 }
 </style>

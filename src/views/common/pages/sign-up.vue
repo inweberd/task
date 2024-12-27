@@ -9,12 +9,8 @@
         </div>
       </div>
     </div>
-    <div
-      id="sign"
-      class="d-flex justify-content-around user-select-none"
-      style="width: 80%; margin: 60px auto 0"
-    >
-      <div class="right card backdrop-filter" style="box-shadow: unset; background: transparent">
+    <div class="container d-flex justify-content-around user-select-none">
+      <div class="right card backdrop-filter" style="width: 100%">
         <div
           class="card-body p-lg-4"
           style="
@@ -22,90 +18,76 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            width: 100%;
           "
         >
-          <van-cell-group
-            style="background-color: transparent !important; border: none !important; width: 100%"
-          >
-            <van-field v-model="state.struct.social" placeholder="请输入手机号码" class="input">
-              <template #left-icon>
-                <van-icon color="#fff" name="contact" />
-              </template>
-            </van-field>
+          <van-cell-group style="width: 100%">
+            <van-field v-model="state.struct.social" placeholder="请输入手机号码" />
+
             <van-field
               v-model="state.struct.code"
-              center
               clearable
-              class="input"
               placeholder="请输入短信验证码"
-              style="margin-top: 20px"
+              style="margin-top: 10px"
             >
-              <template #left-icon>
-                <van-icon color="#fff" name="records" />
-              </template>
               <template #button>
-                <div @click="SendCode" style="color: white">
+                <div @click="SendCode" style="color: #999">
                   <span v-if="!state.status.code">发送验证码</span>
                   <span v-else>{{ state.code.second }}秒重新发送</span>
                 </div>
               </template>
             </van-field>
             <van-field
-              class="input"
               v-model="state.struct.password"
               clearable
               placeholder="请输入密码"
               type="password"
-              style="margin-top: 20px"
-            >
-              <template #left-icon>
-                <van-icon color="#fff" name="lock" />
-              </template>
-            </van-field>
+              style="margin-top: 10px"
+            />
             <van-field
-              class="input"
               v-model="state.struct.AgainPassword"
               clearable
               placeholder="请再次输入密码"
               type="password"
-              style="margin-top: 20px"
-            >
-              <template #left-icon>
-                <van-icon color="#fff" name="lock" />
-              </template>
-            </van-field>
+              style="margin-top: 10px"
+            />
 
             <van-field
               v-model="state.struct.invite"
               placeholder="请输入邀请码"
               :disabled="route.query.invite"
-              class="input"
-              style="margin-top: 20px"
-            >
-              <template #left-icon>
-                <van-icon color="#fff" name="notes-o" />
-              </template>
-            </van-field>
+              style="margin-top: 10px"
+            />
           </van-cell-group>
           <div style="text-align: right; width: 100%; margin: 10px 10px 20px 0">
             <span @click="$router.push('/common/sign-forget')"> 忘记密码 </span>
           </div>
           <el-button
             :loading="state.status.wait"
-            class="w-85"
+            class="w-100"
             color="#01c5f0"
             size="large"
-            style="border-radius: 20px; margin-top: 20px !important; color: #fff"
+            style="
+              border-radius: 15px;
+              color: #fff;
+              background-image: linear-gradient(to right, #ff8b6e, #ff625c);
+            "
             type="primary"
             @click="SignUp"
             >注册
           </el-button>
           <span></span>
           <el-button
-            class="w-85"
+            class="w-100"
             color="#00f7c4"
             size="large"
-            style="border-radius: 20px; margin-top: 20px !important; color: #fff"
+            style="
+              border-radius: 15px;
+              margin-top: 20px !important;
+              color: #666;
+              background-color: #fff;
+              border: 1px solid #ccc !important;
+            "
             type="primary"
             @click="$router.push('/common/sign-in')"
           >
@@ -257,7 +239,7 @@ body {
   background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
 }
 .text-white {
-  color: #fff !important;
+  color: #666 !important;
 }
 .contact {
   position: fixed;
@@ -288,29 +270,35 @@ body {
 }
 
 .signupClass {
-  background-color: #000;
   width: 100%;
   height: 100vh;
-  color: #fff;
+  color: #666;
   background-repeat: no-repeat;
   background-image: url('@/assets/img/bg.png');
   background-size: 100% auto;
+  .container {
+    width: 90%;
+    margin: 50px auto 0;
+    background-color: #fff;
+    padding: 20px 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px #0000001f;
+  }
 }
 
 :deep(.van-cell) {
-  padding: 4px 10px;
-
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
   &::after {
     border: none !important;
   }
 
   .van-field__body {
     input {
-      color: #fff;
+      color: #666 !important;
     }
   }
 }
-
 :deep(.van-hairline--top-bottom) {
   &::after {
     border-width: 0;
@@ -319,7 +307,7 @@ body {
 
 .input {
   background-color: transparent !important;
-  border: 1px solid #fff;
+  border: 1px solid #666;
   border-radius: 15px;
 }
 
@@ -334,6 +322,7 @@ body {
       width: 60px;
     }
     .info {
+      color: #fff;
       margin-left: 16px;
       text-align: center;
       p:nth-child(1) {

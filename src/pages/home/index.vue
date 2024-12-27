@@ -3,7 +3,7 @@
     <!--<EarnedCash></EarnedCash>-->
     <Loading v-if="loading"></Loading>
     <div class="container">
-      <div :style="containerStyle" style="background-color: #fff">
+      <div :style="containerStyle" style="background-color: #666">
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
           <!--          <van-swipe-item>-->
           <!--            <img src="./images/banner3.png" alt="" />-->
@@ -24,7 +24,7 @@
       </div>
       <div class="notice">
         <!--        <van-notice-bar-->
-        <!--          color="#fff"-->
+        <!--          color="#666"-->
         <!--          background="transparent"-->
         <!--          left-icon="volume-o"-->
         <!--          style="border-radius: 10px; height: 40px; border: 1px solid #6cc5be"-->
@@ -34,7 +34,7 @@
 
         <van-notice-bar
           :scrollable="false"
-          color="#fff"
+          color="#666"
           background="transparent"
           left-icon="volume-o"
           style="border-radius: 10px; height: 40px; border: 1px solid #6cc5be; line-height: 40px"
@@ -57,7 +57,7 @@
         <!--          class="notice-class"-->
         <!--        >-->
         <!--          <template #prefixIcon>-->
-        <!--            <van-icon name="volume-o" color="#fff" size="18" style="margin-top: 2px" />-->
+        <!--            <van-icon name="volume-o" color="#666" size="18" style="margin-top: 2px" />-->
         <!--          </template>-->
         <!--        </t-notice-bar>-->
         <!--        <t-notice-bar-->
@@ -71,7 +71,7 @@
         <!--          direction="vertical"-->
         <!--        >-->
         <!--          <template #prefixIcon>-->
-        <!--            <van-icon name="volume-o" color="#fff" size="18" style="margin-top: 2px" />-->
+        <!--            <van-icon name="volume-o" color="#666" size="18" style="margin-top: 2px" />-->
         <!--          </template>-->
         <!--        </t-notice-bar>-->
       </div>
@@ -166,7 +166,7 @@
           <el-button
             color="#689cfc"
             size="large"
-            style="border-radius: 20px; margin-top: 30px !important; color: #fff; width: 80%"
+            style="border-radius: 20px; margin-top: 30px !important; color: #666; width: 80%"
             @click="showGonggaoOverlay = false"
             >已阅
           </el-button>
@@ -428,7 +428,7 @@ onMounted(() => {
   font-size: 14px;
   width: 100%;
   height: 100%;
-  background: #0e0f13;
+  background: #fff;
   overflow: hidden;
   position: absolute;
   left: 0;
@@ -462,7 +462,7 @@ onMounted(() => {
         .title-l {
           font-weight: bolder;
           font-size: 30px;
-          color: #ffffff;
+          color: #999;
           transform: skewX(-15deg);
         }
       }
@@ -485,7 +485,7 @@ onMounted(() => {
               content: '';
               display: block;
               border: 8px solid transparent;
-              border-bottom-color: #fff;
+              border-bottom-color: #666;
               left: 50%;
               bottom: 0;
               transform: translateX(-50%);
@@ -507,7 +507,7 @@ onMounted(() => {
         height: 100%;
         display: flex;
         flex-direction: column;
-        background-color: #fff;
+        background-color: #666;
         margin-top: 10px;
         border-radius: 10px;
         padding: 15px 15px 0;
@@ -546,7 +546,7 @@ onMounted(() => {
       //overflow-y: auto;
       padding: 0px 20px 10px;
       .app-list-item {
-        //background-color: #ffffff;
+        //background-color: #666666;
         background-image: linear-gradient(135deg, #414138 10%, #272d65 100%);
 
         display: flex;
@@ -578,7 +578,7 @@ onMounted(() => {
             justify-content: space-between;
             .name {
               font-size: 16px;
-              color: #fff;
+              color: #666;
             }
             .desc {
               color: #9d9d9d;
@@ -589,7 +589,7 @@ onMounted(() => {
           .download {
             padding: 8px 18px;
             background-color: #689cfc;
-            color: #fff;
+            color: #666;
             border-radius: 20px;
             font-size: 12px;
             white-space: nowrap;
@@ -607,7 +607,7 @@ onMounted(() => {
 }
 
 .my-swipe .van-swipe-item {
-  color: #fff;
+  color: #666;
   font-size: 20px;
   text-align: center;
   display: flex;
@@ -625,7 +625,7 @@ onMounted(() => {
   right: 0;
   display: flex;
   align-items: center;
-  background-color: #fff;
+  background-color: #666;
   border-radius: 20px 0 0 20px;
   padding: 4px;
   box-shadow:
@@ -649,7 +649,7 @@ onMounted(() => {
 
   .t-swiper-item,
   .t-notice-bar__content {
-    color: #fff !important;
+    color: #666 !important;
   }
 }
 </style>

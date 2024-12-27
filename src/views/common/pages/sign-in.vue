@@ -9,12 +9,8 @@
         </div>
       </div>
     </div>
-    <div
-      id="sign"
-      class="d-flex justify-content-around user-select-none"
-      style="width: 80%; margin: 100px auto 0"
-    >
-      <div class="right card backdrop-filter" style="box-shadow: unset; background: transparent">
+    <div class="container d-flex justify-content-around user-select-none">
+      <div class="right card backdrop-filter" style="width: 100%">
         <div
           class="card-body p-lg-4"
           style="
@@ -22,72 +18,66 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            width: 100%;
           "
         >
-          <van-cell-group
-            style="background-color: transparent !important; border: none !important; width: 100%"
-          >
+          <van-cell-group style="width: 100%">
+            <van-field v-model="state.struct.account" placeholder="请输入手机号码" />
             <van-field
-              v-model="state.struct.account"
-              label=""
-              placeholder="请输入手机号码"
-              class="input"
-            >
-              <template #left-icon>
-                <van-icon color="#fff" name="contact" />
-              </template>
-            </van-field>
-            <van-field
-              class="input"
+              style="margin-top: 20px"
               v-model="state.struct.password"
               clearable
-              left-icon="newspaper-o"
               placeholder="请输入密码"
-              style="margin-top: 20px"
               type="password"
-            >
-              <template #left-icon>
-                <van-icon color="#fff" name="lock" />
-              </template>
-            </van-field>
+            />
           </van-cell-group>
           <div style="text-align: right; width: 100%; margin: 10px 10px 20px 0">
             <span @click="$router.push('/common/sign-forget')"> 忘记密码 </span>
           </div>
+
           <el-button
             :loading="state.status.wait"
-            class="w-85"
+            class="w-100"
             color="#01c5f0"
             size="large"
-            style="border-radius: 20px; margin-top: 20px !important; color: #fff"
+            style="
+              border-radius: 15px;
+              color: #fff;
+              background-image: linear-gradient(to right, #ff8b6e, #ff625c);
+            "
             type="primary"
             @click="SignIn"
             >登录
           </el-button>
           <span></span>
           <el-button
-            class="w-85"
+            class="w-100"
             color="#00f7c4"
             size="large"
-            style="border-radius: 20px; margin-top: 20px !important; color: #fff"
+            style="
+              border-radius: 15px;
+              margin-top: 20px !important;
+              color: #666;
+              background-color: #fff;
+              border: 1px solid #ccc !important;
+            "
             type="primary"
             @click="$router.push('/common/sign-up')"
             >注册
           </el-button>
-
-          <van-divider
-            :style="{ color: '#fff', borderColor: '#fff', padding: '0 16px' }"
-            style="width: 100%; margin-top: 40px"
-          >
-            其他
-          </van-divider>
-          <div
-            style="display: flex; justify-content: space-evenly; align-items: center; width: 100%"
-          >
-            <a style="font-size: 16px; color: #fff" @click="goDownload">下载app</a>
-            <a style="font-size: 16px; color: #fff" @click="jumpToQQ2">官方交流群 </a>
-          </div>
         </div>
+      </div>
+    </div>
+    <div style="width: 80%; margin: 0 auto">
+      <van-divider
+        :style="{ color: '#666', borderColor: '#666', padding: '0 16px' }"
+        style="width: 100%; margin-top: 40px"
+      >
+        其他
+      </van-divider>
+      <div style="display: flex; justify-content: space-evenly; align-items: center; width: 100%">
+        <a style="font-size: 16px; color: #666" @click="goDownload">下载app</a>
+        <a style="font-size: 16px; color: #666" @click="jumpToQQ2">官方交流群 </a>
       </div>
     </div>
     <!--    <div class="contact" @click="jumpToQQ2">-->
@@ -226,7 +216,7 @@ onMounted(() => {
 @import '@/assets/css/index.css';
 
 .text-white {
-  color: #fff !important;
+  color: #666 !important;
 }
 
 .contact {
@@ -235,7 +225,7 @@ onMounted(() => {
   right: 0;
   display: flex;
   align-items: center;
-  background-color: #fff;
+  background-color: #666;
   color: #000;
   border-radius: 20px 0 0 20px;
   padding: 4px;
@@ -262,23 +252,31 @@ onMounted(() => {
 .signinClass {
   width: 100%;
   height: 100vh;
-  color: #fff;
+  color: #666;
   background-repeat: no-repeat;
   background-image: url('@/assets/img/bg.png');
   background-size: 100% auto;
-  background-color: #000;
+
+  .container {
+    width: 90%;
+    margin: 50px auto 0;
+    background-color: #fff;
+    padding: 20px 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px #0000001f;
+  }
 }
 
 :deep(.van-cell) {
-  padding: 4px 10px;
-
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
   &::after {
     border: none !important;
   }
 
   .van-field__body {
     input {
-      color: #fff;
+      color: #666 !important;
     }
   }
 }
@@ -291,7 +289,7 @@ onMounted(() => {
 
 .input {
   background-color: transparent !important;
-  border: 1px solid #fff;
+  border: 1px solid #666;
   border-radius: 15px;
 }
 .logo-box {
@@ -305,6 +303,7 @@ onMounted(() => {
       width: 60px;
     }
     .info {
+      color: #fff;
       margin-left: 16px;
       text-align: center;
       p:nth-child(1) {

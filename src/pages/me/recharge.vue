@@ -11,7 +11,7 @@
 
     <Loading v-if="loading"></Loading>
     <div class="container">
-      <div class="recharge-info" @click="method.sheet.open()">
+      <div v-if="false" class="recharge-info" @click="method.sheet.open()">
         <div class="recharge-info-left">
           <span>充值方式</span>
         </div>
@@ -84,11 +84,10 @@
                   font-weight: bolder;
                   padding-bottom: 0;
                   margin-bottom: 10px;
-                  color: #fff;
+                  color: #333;
                   background-color: transparent;
                 "
                 type="number"
-                name="aa"
                 @input="
                   () => {
                     state.struct.amount = parseInt(state.struct.amount)
@@ -98,27 +97,63 @@
             </div>
           </div>
         </div>
-        <button class="btn" v-on:click="method.emit" :disabled="loading">
-          <!--          <div class="img-box">-->
-          <!--            <img src="@/assets/img/recharge/recharge.png" />-->
-          <!--          </div>-->
-          <span>确认 </span>
-          <van-loading size="20" v-if="loading" />
-        </button>
+        <!--        <button class="btn" v-on:click="method.emit" :disabled="loading">-->
+        <!--          &lt;!&ndash;          <div class="img-box">&ndash;&gt;-->
+        <!--          &lt;!&ndash;            <img src="@/assets/img/recharge/recharge.png" />&ndash;&gt;-->
+        <!--          &lt;!&ndash;          </div>&ndash;&gt;-->
+        <!--          <span>确认 </span>-->
+        <!--          <van-loading size="20" v-if="loading" />-->
+        <!--        </button>-->
+        <div style="margin-top: 20px; font-size: 16px; font-weight: bolder; color: #333">
+          充值方式
+        </div>
+
+        <div class="chongzhiList">
+          <div
+            class="chongzhiList-item"
+            v-for="item of state.select.pay"
+            @click="payItemClick(item.id)"
+            :class="{
+              active: state.item.pay?.id == item.id
+            }"
+          >
+            <img :src="getIcon(item)" />
+            <span>
+              {{ item.name }}
+            </span>
+          </div>
+        </div>
+        <el-button
+          :loading="loading"
+          class="w-100"
+          color="#01c5f0"
+          size="large"
+          style="
+            margin-top: 20px;
+            width: 100%;
+            border-radius: 15px;
+            border: none;
+            color: #fff;
+            background-image: linear-gradient(to right, #ff8b6e, #ff625c);
+          "
+          type="primary"
+          @click="method.emit"
+          >确认
+        </el-button>
       </div>
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          width: 100%;
-          align-items: center;
-        "
-        @click="$router.push('/weimaiquanDetail')"
-      >
-        <img style="width: 60px" src="./images/1.png" alt="" />
-        <p style="font-size: 20px">官方微脉圈群</p>
-      </div>
+      <!--      <div-->
+      <!--        style="-->
+      <!--          display: flex;-->
+      <!--          flex-direction: column;-->
+      <!--          justify-content: center;-->
+      <!--          width: 100%;-->
+      <!--          align-items: center;-->
+      <!--        "-->
+      <!--        @click="$router.push('/weimaiquanDetail')"-->
+      <!--      >-->
+      <!--        <img style="width: 60px" src="./images/1.png" alt="" />-->
+      <!--        <p style="font-size: 20px">官方微脉圈群</p>-->
+      <!--      </div>-->
 
       <van-cell
         v-for="item of downloadList"
@@ -452,12 +487,12 @@ onMounted(() => method.init())
 :deep(.van-hairline--bottom:after) {
   border-bottom: none;
 }
-:deep(.van-nav-bar__arrow) {
-  color: #fff !important;
-}
-:deep(.van-nav-bar__title) {
-  color: #fff !important;
-}
+//:deep(.van-nav-bar__arrow) {
+//  color: #fff !important;
+//}
+//:deep(.van-nav-bar__title) {
+//  color: #fff !important;
+//}
 
 .rechargeClass {
   width: 100%;
@@ -475,8 +510,8 @@ onMounted(() => method.init())
       display: flex;
       padding: 23px 0;
       border-bottom: 1px solid #534e4e;
-      color: #fff;
-      background-color: #0e0f13;
+      color: #333;
+      background-color: #fff;
 
       &-left {
         margin: 0 25px;
@@ -507,12 +542,13 @@ onMounted(() => method.init())
       }
     }
     .recharge-money {
-      color: #fff;
+      color: #333;
       padding: 30px 20px;
-      background-color: #0e0f13;
+      background-color: #fff;
       .txt {
         font-size: 16px;
-        color: #fff;
+        font-weight: bolder;
+        color: #333;
       }
       .money-box {
         display: flex;
@@ -520,7 +556,7 @@ onMounted(() => method.init())
         align-items: center;
         justify-content: space-between;
         flex: 1;
-        border-bottom: 1px solid #534e4e;
+        border-bottom: 1px solid #c9c9c9;
         height: 50px;
         .input-content {
           flex: 1;
@@ -563,9 +599,8 @@ onMounted(() => method.init())
         width: 100%;
         height: 40px;
         line-height: 40px;
-        color: black;
         border: 1px solid transparent !important;
-        color: #fff;
+        color: #333;
         //background: rgba(255, 255, 255, calc(1.5 * 0.65));
         background: #01c5f0;
         //backdrop-filter: blur(10px) saturate(160%);
@@ -574,7 +609,7 @@ onMounted(() => method.init())
         letter-spacing: 6px;
 
         &:active {
-          background-color: #0e0f13;
+          background-color: #fff;
           box-shadow:
             0 0 #0000001a,
             0 0 #fffc,
@@ -636,6 +671,34 @@ onMounted(() => method.init())
           &-r {
             padding-right: 8px;
           }
+        }
+      }
+    }
+
+    .chongzhiList {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      .chongzhiList-item {
+        margin-bottom: 10px;
+        margin-right: 10px;
+        display: flex;
+        border-radius: 15px;
+        align-items: center;
+        background-color: #f5f5f5;
+        padding: 10px 14px;
+        img {
+          width: 22px;
+          height: 22px;
+        }
+        span {
+          padding-left: 8px;
+          font-size: 14px;
+        }
+
+        &.active {
+          color: #fff;
+          background-color: #ff896d;
         }
       }
     }

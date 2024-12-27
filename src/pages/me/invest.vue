@@ -1,5 +1,5 @@
 <template>
-  <div style="overflow-y: auto; background-color: #0e0f13; width: 100%; height: calc(100% - 65px)">
+  <div class="investClass">
     <div :style="containerStyle" style="background-color: #fff; width: 100%"></div>
     <!--    <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />-->
     <Loading v-if="loading" />
@@ -47,6 +47,42 @@
         <!--        </van-swipe-item>-->
       </van-swipe>
     </div>
+    <!--    <div class="container">-->
+    <!--      <div class="list">-->
+    <!--        <div class="list-item active">-->
+    <!--          <p>普通会员</p>-->
+    <!--          <p>100</p>-->
+    <!--          <p>30天分红期限</p>-->
+    <!--        </div>-->
+    <!--        <div class="list-item">-->
+    <!--          <p>普通会员</p>-->
+    <!--          <p>100</p>-->
+    <!--          <p>30天分红期限</p>-->
+    <!--        </div>-->
+    <!--        <div class="list-item">-->
+    <!--          <p>普通会员</p>-->
+    <!--          <p>100</p>-->
+    <!--          <p>30天分红期限</p>-->
+    <!--        </div>-->
+    <!--        <div class="list-item">-->
+    <!--          <p>普通会员</p>-->
+    <!--          <p>100</p>-->
+    <!--          <p>30天分红期限</p>-->
+    <!--        </div>-->
+    <!--        <div class="list-item">-->
+    <!--          <p>普通会员</p>-->
+    <!--          <p>100</p>-->
+    <!--          <p>30天分红期限</p>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <div class="viplist-box">
+      <div class="list">
+        <div class="list-item"></div>
+        <div class="list-item"></div>
+      </div>
+    </div>
+
     <div class="announcement">
       <div class="announcement-task flexS">
         <div style="overflow: scroll; width: 100%; box-sizing: border-box; padding: 0 10px">
@@ -525,6 +561,50 @@ const speed = ref(0.5) //滚动速度
 </script>
 
 <style scoped lang="less">
+.investClass {
+  overflow-y: auto;
+  background-color: #fff;
+  width: 100%;
+  height: calc(100% - 65px);
+
+  .container {
+    overflow-x: auto;
+    .list {
+      padding: 10px;
+      width: 800px;
+      .list-item {
+        float: left;
+        margin-right: 10px;
+        width: 130px;
+        height: 100px;
+        background-color: #eee;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        color: #000;
+
+        &.active {
+          background-color: #ff816a;
+          color: #fff;
+        }
+      }
+    }
+  }
+  .viplist-box {
+    padding: 0 10px;
+    .list {
+      .list-item {
+        width: 100%;
+        height: 100px;
+        background-image: linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%);
+        border-radius: 20px;
+        margin-top: 10px;
+      }
+    }
+  }
+}
 .fixed-back {
   position: fixed;
   left: 10px;

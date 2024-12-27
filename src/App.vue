@@ -464,8 +464,8 @@ onMounted(() => {
   user-select: none;
 }
 :root {
-  --van-text-color: #fff;
-  --van-nav-bar-background: #0e0f13 !important;
+  //--van-text-color: #fff;
+  //--van-nav-bar-background: #0e0f13 !important;
 }
 
 #app {
@@ -534,50 +534,50 @@ onMounted(() => {
 //.van-hairline--bottom:after {
 //  border-bottom-width: 0;
 //}
-.van-tab {
-  color: #fff !important;
-}
-.van-tabs__line {
-  background-color: #4b6fff !important;
-}
-.van-tabs__nav {
-  background-color: #0e0f13 !important;
-}
-.van-cell {
-  background-color: #0e0f13 !important;
-  color: #fff !important;
-}
-.van-field__label {
-  color: #fff !important;
-}
-.van-field__control {
-  color: #fff !important;
-}
-.van-popup {
-  background-color: #0e0f13;
-  color: #fff !important;
-}
-.van-dialog__message {
-  color: #fff !important;
-}
+//.van-tab {
+//  color: #fff !important;
+//}
+//.van-tabs__line {
+//  background-color: #4b6fff !important;
+//}
+//.van-tabs__nav {
+//  background-color: #0e0f13 !important;
+//}
+//.van-cell {
+//  background-color: #0e0f13 !important;
+//  color: #fff !important;
+//}
+//.van-field__label {
+//  color: #fff !important;
+//}
+//.van-field__control {
+//  color: #333 !important;
+//}
+//.van-popup {
+//  background-color: #0e0f13;
+//  color: #fff !important;
+//}
+//.van-dialog__message {
+//  color: #fff !important;
+//}
 
-[class*='van-hairline']:after {
-  //border-left: none !important;
-  border-color: #666 !important;
-}
+//[class*='van-hairline']:after {
+//  //border-left: none !important;
+//  border-color: #666 !important;
+//}
 
-.van-action-sheet__item {
-  background-color: #0e0f13 !important;
-}
-.van-card {
-  background-color: #0e0f13 !important;
-}
-.van-picker {
-  background-color: #0e0f13 !important;
-}
-.van-picker__mask {
-  background-image: none !important;
-}
+//.van-action-sheet__item {
+//  background-color: #0e0f13 !important;
+//}
+//.van-card {
+//  background-color: #0e0f13 !important;
+//}
+//.van-picker {
+//  background-color: #0e0f13 !important;
+//}
+//.van-picker__mask {
+//  background-image: none !important;
+//}
 //.van-card__title {
 //  color: #fff;
 //}

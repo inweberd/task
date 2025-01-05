@@ -70,26 +70,26 @@
         </div>
       </div>
 
-      <div class="info">
-        <!--          v-if="showRenzheng"-->
-        <div
-          @click="renzheng"
-          style="
-            position: absolute;
-            top: 25px;
-            right: 0px;
-            width: fit-content;
-            padding: 8px 18px;
-            background-color: #689cfc;
-            color: #666;
-            border-radius: 20px;
-            font-size: 12px;
-            white-space: nowrap;
-          "
-        >
-          获取微信头像
-        </div>
-      </div>
+      <!--      <div class="info">-->
+      <!--        &lt;!&ndash;          v-if="showRenzheng"&ndash;&gt;-->
+      <!--        <div-->
+      <!--          @click="renzheng"-->
+      <!--          style="-->
+      <!--            position: absolute;-->
+      <!--            top: 25px;-->
+      <!--            right: 0px;-->
+      <!--            width: fit-content;-->
+      <!--            padding: 8px 18px;-->
+      <!--            background-color: #689cfc;-->
+      <!--            color: #666;-->
+      <!--            border-radius: 20px;-->
+      <!--            font-size: 12px;-->
+      <!--            white-space: nowrap;-->
+      <!--          "-->
+      <!--        >-->
+      <!--          获取微信头像-->
+      <!--        </div>-->
+      <!--      </div>-->
       <div class="list">
         <van-cell
           v-for="item of list"
@@ -583,6 +583,7 @@ onActivated(() => {
   overflow-y: auto;
 
   .user-name {
+    margin-top: 30px;
     color: #fff;
     font-size: 24px;
     font-weight: bold;

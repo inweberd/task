@@ -4,8 +4,8 @@
       <div class="logo-box-content">
         <img src="@/assets/img/logo.png" alt="" />
         <div class="info">
-          <p>全民来瓜分</p>
-          <p>the whole people divide</p>
+          <p>大拇指视频</p>
+          <p>the big thumb video</p>
         </div>
       </div>
     </div>

@@ -411,9 +411,9 @@ const method = {
       return _notice('请输入充值金额！')
     }
     if (!state.item.pay.data) {
-      // return _notice('请选择充值方式！')
-      method.sheet.open()
-      return
+      return _notice('请选择充值方式！')
+      // method.sheet.open()
+      // return
     }
 
     if (state.struct.amount < state.item.pay?.data?.min) {

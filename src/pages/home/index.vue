@@ -34,10 +34,10 @@
 
         <van-notice-bar
           :scrollable="false"
-          color="#666"
+          color="#333"
           background="transparent"
           left-icon="volume-o"
-          style="border-radius: 10px; height: 40px; border: 1px solid #6cc5be; line-height: 40px"
+          style="border-radius: 10px; height: 40px; border: 1px solid #ff8e7d; line-height: 40px"
         >
           <van-swipe
             style="height: 40px; line-height: 40px"
@@ -76,37 +76,78 @@
         <!--        </t-notice-bar>-->
       </div>
       <div v-show="activeTab === 0" class="app-list" style="margin-top: 10px">
-        <div class="app-list-item" v-for="(item, index) of appList">
+        <div class="app-list-item" v-for="(item, index) of appList" @click="item.btnCb">
           <div class="l">
             <div class="logo">
               <img :src="convertImgUrl(item.logo)" alt="" />
             </div>
             <div class="info">
               <div class="name">{{ item.name }}</div>
-              <div class="desc">
-                <!--                :style="{ color: index === appList?.length - 1 ? '#9d9d9d' : 'red' }"-->
-                {{ item.desc }}
-              </div>
+              <!--              <div class="desc">-->
+              <!--                &lt;!&ndash;                :style="{ color: index === appList?.length - 1 ? '#9d9d9d' : 'red' }"&ndash;&gt;-->
+              <!--                {{ item.desc }}-->
+              <!--              </div>-->
             </div>
           </div>
           <div class="r">
-            <div class="download" @click="item.btnCb">{{ item.btnLabel }}</div>
+            <!--            <div class="download" @click="item.btnCb">{{ item.btnLabel }}</div>-->
           </div>
         </div>
         <!--        <p style="text-align: center; color: #888; margin-bottom: 10px">京ICP证030173号-215A</p>-->
 
         <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
+      <div class="shulist">
+        <div class="shu-item">
+          <div class="l">
+            <div class="img-box">
+              <img src="@/assets/img/up/CA.png" alt="" />
+            </div>
+            <div>
+              <div>普通视频</div>
+              <div>观看普通视频获得收入(每日1元)</div>
+            </div>
+          </div>
+          <div class="r">
+            <div @click="loadShort(1)">观看</div>
+          </div>
+        </div>
+        <div class="shu-item">
+          <div class="l">
+            <div class="img-box">
+              <img src="@/assets/img/up/CA.png" alt="" />
+            </div>
+            <div>
+              <div>会员视频</div>
+              <div>观看会员视频获得(每日5-1000元)</div>
+            </div>
+          </div>
+          <div class="r">
+            <div @click="loadShort(3)">观看</div>
+          </div>
+        </div>
+        <div class="shu-item">
+          <div class="l">
+            <div class="img-box">
+              <img src="@/assets/img/up/CA.png" alt="" />
+            </div>
+            <div>
+              <div>超级大赢家</div>
+              <div>游戏好礼送不停</div>
+            </div>
+          </div>
+          <div class="r">
+            <div @click="$router.push('/quanminlaibaojiang')">详情</div>
+          </div>
+        </div>
+      </div>
 
       <!--      <div class="playing" v-show="activeTab === 1">-->
       <!--        <van-empty :image="empty" image-size="120" description="未搜索到应用" />-->
       <!--      </div>-->
+      <!--    <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>-->
     </div>
-    <!--    <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>-->
 
-    <!--    <p style="text-align: center; color: #888; width: 100%; position: fixed; bottom: 70px">-->
-    <!--      京ICP备12025439号-->
-    <!--    </p>-->
     <BaseFooter v-bind:init-tab="1" :is-white="true" />
     <!--    <div class="contact" @click="jumpToQQ">-->
     <!--      <img src="@/assets/img/kefu.png" alt="" />-->
@@ -122,57 +163,37 @@
     <!--    <div>介绍</div>-->
     <!--  </div>-->
     <!--</div>-->
-    <van-overlay :show="showGonggaoOverlay" :z-index="99999999">
-      <div class="wrapper" @click.stop>
-        <div class="update-box">
-          <img src="@/assets/img/update.png" alt="" />
-          <div class="title">系统公告</div>
-          <div style="padding: 0 20px">
-            <!--            <p style="text-indent: 22px">-->
-            <!--              体验用户，一机1号，每天刷视频，分红1元，永久有效！-->
-            <!--              多个账号切换在同一台手机设备登录，只有1个账号有收益-->
-            <!--              严厉打击恶意批量注册工作室小号拉低整体广告收益单价！-->
-            <!--              发现恶意机刷一律封禁账号，切勿抱有侥幸心理！-->
-            <!--            </p>-->
-            <!--            <p style="text-align: right; margin-top: 10px">全民来瓜分运营部</p>-->
-            <!--            <p style="margin-bottom: 4px">1、游戏板块，超级大赢家即将上线！</p>-->
-            <!--            <p style="margin-bottom: 4px">2、游戏板块，全民猜盲盒即将上线！</p>-->
-            <!--            <p style="margin-bottom: 4px">3、每周分红奖池，奖金更新，每周一必得分红</p>-->
-            <!--            <p style="margin-bottom: 4px">4、邀请0撸下级1人，下级得1元，你必得1元</p>-->
-            <!--            <p>5、下级认购一份，你必得20元</p>-->
-            <!--            <p>6、进入官方微脉圈万人群，每周大红包发放！人人可抢</p>-->
-            <!--            <p style="margin-bottom: 4px">-->
-            <!--              近期服务器遭遇了恶意攻击，可能导致部分服务出现中断，给您的使用造成了极大不便，我们对此深表歉意。-->
-            <!--            </p>-->
-            <!--            <p style="margin-bottom: 4px">-->
-            <!--              <span style="font-weight: bolder; color: #e51919">-->
-            <!--                如果您遇到系统无法访问的情况，请不要惊慌，只需耐心等待恢复即可。请您放心，您的数据安全无虞，不会有丢失的风险。</span-->
-            <!--              >-->
-            <!--            </p>-->
-            <!--            <p style="margin-bottom: 4px">-->
-            <!--              十分感谢您在这个时候给予我们的理解与信任。-->
-            <!--              我们会持续努力，并将进一步加强安全防护措施。-->
-            <!--            </p>-->
-            <!--            <p style="text-align: center; font-size: 16px">-->
-            <!--              请及时加入-->
-            <!--              <span-->
-            <!--                @click="$router.push('/weimaiquanDetail')"-->
-            <!--                style="text-decoration: underline; color: #1e83d3"-->
-            <!--                >官方交流群</span-->
-            <!--              >-->
-            <!--            </p>-->
-            <p>用户如遇到充值不进，可以进官方QQ群，找客服人工充值，支持 微信，支付宝</p>
-          </div>
-          <el-button
-            color="#689cfc"
-            size="large"
-            style="border-radius: 20px; margin-top: 30px !important; color: #666; width: 80%"
-            @click="showGonggaoOverlay = false"
-            >已阅
-          </el-button>
-        </div>
+
+    <TipDialog v-model="showGonggaoOverlay" @confirm="showGonggaoOverlay = false">
+      <div style="padding: 20px">
+        <p>用户如遇到充值不进，可以进官方QQ群，找客服人工充值，支持 微信，支付宝</p>
       </div>
-    </van-overlay>
+    </TipDialog>
+    <TipDialog
+      v-model="buyDialogShow"
+      confirm-text="去看看"
+      @confirm="
+        () => {
+          buyDialogShow = false
+          $router.push('/invest')
+        }
+      "
+    >
+      <div style="padding: 20px">
+        <p>购买股权，开启大额分红模式，每天收益不间断!</p>
+      </div>
+    </TipDialog>
+
+    <TipDialog
+      v-model="shareDialogShow"
+      @confirm="shareFriend"
+      confirm-text="一键分享"
+      :show-close="false"
+    >
+      <div style="padding: 20px">
+        <p>分享朋友圈，刷短视频赚收益!</p>
+      </div>
+    </TipDialog>
   </div>
 </template>
 
@@ -185,16 +206,31 @@ import appLogo2 from '@/assets/img/appLogo/tcsp.png'
 import EarnedCash from '@/components/EarnedCash.vue'
 import empty from '@/assets/img/custom-empty-image.png'
 import { _notice } from '@/utils'
-import { loadInteraction, loadPlayRewardVideo, loadSplash } from '@/utils/ad'
+import {
+  loadInteraction,
+  loadPlayRewardVideo,
+  loadShortPlayVideo,
+  loadShortVideo,
+  loadSplash
+} from '@/utils/ad'
 import { useRouter } from 'vue-router'
-import { reqRecordTask, reqWalletLog } from '@/api/myApi'
+import {
+  reqAdvertisingCount,
+  reqAdvertisingSinglePrice,
+  reqRecordTask,
+  reqWalletLog
+} from '@/api/myApi'
 import dayjs from 'dayjs'
 import weimaiquan from '@/assets/img/weimaiquan.jpg'
 import { axiosInstance as axios } from '@/utils/myrequest'
 import imageSrc1 from '@/assets/img/hehuoren.jpg'
 import imageSrc6 from '@/pages/me/images/banner6.jpg'
+import { showDialog } from 'vant'
+import { Toast } from 'tdesign-mobile-vue'
 const showGonggaoOverlay = ref(false)
 
+const shareDialogShow = ref(false)
+const buyDialogShow = ref(false)
 const scrollContent = ref(['精彩短视频。期待您的加入'])
 const containerStyle = computed(() => {
   if (window.android) {
@@ -208,9 +244,9 @@ const router = useRouter()
 const activeTab = ref(0)
 const appList = ref([
   {
-    name: '每日广告收入来源',
+    name: '收入来源',
     desc: '查看每日广告收入来源',
-    logo: '5',
+    logo: '9',
     btnLabel: '查看',
     btnCb() {
       router.push('/shourulaiyuan')
@@ -227,9 +263,9 @@ const appList = ref([
   //   }
   // },
   {
-    name: '主播扶持政策',
+    name: '扶持政策',
     desc: '点击查看主播扶持政策！',
-    logo: '6',
+    logo: '11',
     btnLabel: '查看',
     btnCb() {
       router.push('/zhubofuchizhengce')
@@ -237,7 +273,7 @@ const appList = ref([
   },
   // {
   //   name: '操作说明',
-  //   desc: '全民来瓜分，精彩短视频。期待您的加入',
+  //   desc: '大拇指视频，精彩短视频。期待您的加入',
   //   logo: 'hk',
   //   btnLabel: '查看',
   //   btnCb() {
@@ -262,15 +298,15 @@ const appList = ref([
   //     router.push('/demo')
   //   }
   // },
-  {
-    name: '超级大赢家',
-    desc: '查看超级大赢家',
-    logo: '9',
-    btnLabel: '查看',
-    btnCb() {
-      router.push('/quanminlaibaojiang')
-    }
-  },
+  // {
+  //   name: '超级大赢家',
+  //   desc: '查看超级大赢家',
+  //   logo: '9',
+  //   btnLabel: '查看',
+  //   btnCb() {
+  //     router.push('/quanminlaibaojiang')
+  //   }
+  // },
   {
     name: '人工代充群',
     desc: '点击加入人工代充群！',
@@ -281,12 +317,12 @@ const appList = ref([
       //   images: [weimaiquan]
       // })
       window.location.href = decodeURIComponent('https://qm.qq.com/q/oVkcjwfykS')
-      // window.location.href = 'https://dd.kkwai.cn/download/android.apk'
+      // window.location.href = 'https://api.onxxm900.cn/download/android.apk'
       // router.push('/weimaiquanDetail')
     }
   },
   {
-    name: '每周分红奖池',
+    name: '分红奖池',
     desc: '点击查看每周分红奖池！',
     logo: '7',
     btnLabel: '查看',
@@ -344,7 +380,7 @@ function jumpToQQ() {
 
 const convertImgUrl = (iconUrl: string) => {
   // return new URL(`./images/${iconUrl}.png`, import.meta.url).href
-  return new URL(`../../assets/img/appLogo/${iconUrl}.png`, import.meta.url).href
+  return new URL(`../../assets/icon/${iconUrl}.png`, import.meta.url).href
 }
 
 // 生产随机IP
@@ -398,6 +434,79 @@ onMounted(() => {
   })
 })
 
+const loadShort = (type) => {
+  const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+  const userId = userInfo?.id
+  const serial = userInfo?.result?.staff?.serial
+  const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+
+  if (isIos) {
+    if (!serial && type === 3) {
+      buyDialogShow.value = true
+
+      return
+    }
+
+    router.push('/short')
+    return
+  }
+
+  if (type === 1 || type === 3) {
+    if (localStorage.isShortVideoShare === dayjs().format('YYYY-MM-DD')) {
+      if (!serial && type === 3) {
+        buyDialogShow.value = true
+        return
+      }
+      // loadInteraction()
+      Toast({
+        theme: 'loading',
+        message: '加载中...',
+        duration: 0
+      })
+      let arr = [reqAdvertisingCount(), reqAdvertisingSinglePrice()]
+      Promise.all(arr)
+        .then((res) => {
+          Toast.clear()
+          let todayCount = res[0]?.data?.ordinary
+          let price = res[1]?.data?.price
+          if (res[0].code !== 200) {
+            todayCount = 100
+          }
+          if (res[1].code !== 200) {
+            price = -1
+          }
+          nextTick(() => {
+            loadShortVideo({
+              todayCount: todayCount,
+              price,
+              isVip: type === 3
+            })
+          })
+        })
+        .catch(() => {
+          Toast.clear()
+
+          nextTick(() => {
+            loadShortVideo({
+              todayCount: 100,
+              price: -1,
+              isVip: type === 3
+            })
+          })
+        })
+    } else {
+      shareDialogShow.value = true
+    }
+  } else if (type === 2) {
+    // loadInteraction()
+    loadShortPlayVideo()
+  }
+}
+const shareFriend = () => {
+  shareDialogShow.value = false
+  localStorage.isShortVideoShare = dayjs().format('YYYY-MM-DD')
+  window.shareFriend()
+}
 // onMounted(() => {
 //   //   showDialog({
 //   //     message: 'QQ群15群已满，请大家点击我的界面。点击联系客服进16群！',
@@ -542,25 +651,37 @@ onMounted(() => {
       }
     }
     .app-list {
+      box-sizing: border-box;
+      background-color: #fff;
+      padding-top: 10px;
+      display: flex;
       //flex: 1;
-      //overflow-y: auto;
-      padding: 0px 20px 10px;
+      overflow-x: auto;
       .app-list-item {
         //background-color: #666666;
-        background-image: linear-gradient(135deg, #414138 10%, #272d65 100%);
-
+        //background-image: linear-gradient(135deg, #414138 10%, #272d65 100%);
         display: flex;
+        justify-content: center;
+        flex: 1;
+        flex-basis: 80px;
+        flex-shrink: 0;
+        //transform: scale(0.8);
+
         margin-bottom: 10px;
-        padding: 10px 15px;
-        justify-content: space-between;
+        //padding: 10px 25px;
         align-items: center;
         border-radius: 10px;
 
         .l {
+          white-space: nowrap;
           display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
           .logo {
-            width: 55px;
-            height: 55px;
+            width: 35px;
+            height: 35px;
             overflow: hidden;
             border-radius: 50%;
 
@@ -577,7 +698,7 @@ onMounted(() => {
             flex-direction: column;
             justify-content: space-between;
             .name {
-              font-size: 16px;
+              font-size: 14px;
               color: #666;
             }
             .desc {
@@ -602,6 +723,52 @@ onMounted(() => {
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    .shulist {
+      padding: 15px;
+      .shu-item {
+        display: flex;
+        background-color: #fff;
+        border-radius: 6px;
+        padding: 8px;
+        color: #000;
+        margin-bottom: 10px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        .l {
+          flex: 1;
+          display: flex;
+          .img-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+              width: 45px;
+              height: auto;
+            }
+          }
+          & > div:nth-child(2) {
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            flex: 1;
+          }
+        }
+        .r {
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          div {
+            background-image: linear-gradient(to right, #ff8b6e, #ff625c);
+            color: #fff;
+            border-radius: 15px;
+            padding: 4px 8px;
+          }
+        }
+      }
     }
   }
 }

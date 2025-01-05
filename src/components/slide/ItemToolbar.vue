@@ -60,12 +60,12 @@ const vClick = useClick()
         alt=""
         v-click="() => bus.emit(EVENT_KEY.GO_USERINFO)"
       />
-      <transition name="fade">
-        <div v-if="!item.isAttention" v-click="attention" class="options">
-          <img class="no" src="../../assets/img/icon/add-light.png" alt="" />
-          <img class="yes" src="../../assets/img/icon/ok-red.png" alt="" />
-        </div>
-      </transition>
+      <!--      <transition name="fade">-->
+      <!--        <div v-if="!item.isAttention" v-click="attention" class="options">-->
+      <!--          <img class="no" src="../../assets/img/icon/add-light.png" alt="" />-->
+      <!--          <img class="yes" src="../../assets/img/icon/ok-red.png" alt="" />-->
+      <!--        </div>-->
+      <!--      </transition>-->
     </div>
     <div class="love mb2r" v-click="loved">
       <div>
@@ -79,16 +79,16 @@ const vClick = useClick()
       <span>{{ _formatNumber(item.statistics.comment_count) }}</span>
     </div>
     <!--TODO     -->
-    <div class="message mb2r" v-click="() => _updateItem(props, 'isCollect', !item.isCollect)">
-      <Icon
-        v-if="item.isCollect"
-        icon="ic:round-star"
-        class="icon"
-        style="color: rgb(252, 179, 3)"
-      />
-      <Icon v-else icon="ic:round-star" class="icon" style="color: white" />
-      <span>{{ _formatNumber(item.statistics.comment_count) }}</span>
-    </div>
+    <!--    <div class="message mb2r" v-click="() => _updateItem(props, 'isCollect', !item.isCollect)">-->
+    <!--      <Icon-->
+    <!--        v-if="item.isCollect"-->
+    <!--        icon="ic:round-star"-->
+    <!--        class="icon"-->
+    <!--        style="color: rgb(252, 179, 3)"-->
+    <!--      />-->
+    <!--      <Icon v-else icon="ic:round-star" class="icon" style="color: white" />-->
+    <!--      <span>{{ _formatNumber(item.statistics.comment_count) }}</span>-->
+    <!--    </div>-->
     <div v-if="!props.isMy" class="share mb2r" v-click="() => bus.emit(EVENT_KEY.SHOW_SHARE)">
       <img src="../../assets/img/icon/share-white-full.png" alt="" class="share-image" />
       <span>{{ _formatNumber(item.statistics.share_count) }}</span>

@@ -9,7 +9,7 @@
     <div class="first-horizontal-item">
       <SlideList uniqueId="home" style="background: #000" :active="true" :api="recommendedVideo" />
     </div>
-    <BaseFooter v-bind:init-tab="1" />
+    <!--    <BaseFooter v-bind:init-tab="1" />-->
     <Comment
       page-id="home-index"
       :video-id="state.currentItem.aweme_id"
@@ -107,7 +107,8 @@ function closeComments() {
 
 .first-horizontal-item {
   width: 100%;
-  height: calc(var(--vh, 1vh) * 100 - var(--footer-height)) !important;
+  //height: calc(var(--vh, 1vh) * 100 - var(--footer-height)) !important;
+  height: calc(var(--vh, 1vh) * 100) !important;
   overflow: hidden;
   border-radius: 10rem;
 }

@@ -21,7 +21,7 @@
       <p>
         <span style="color: rgb(53, 152, 219)"
           ><span class="text_H038s" data-text="true"
-            >全民来瓜分是百度短视频旗舰品牌，包括全民来瓜分独立App、全民来瓜分极速版，</span
+            >大拇指视频是百度短视频旗舰品牌，包括大拇指视频独立App、大拇指视频极速版，</span
           ><span class="text_H038s" data-text="true"
             ><a
               class="innerLink_UtiNv"
@@ -46,7 +46,7 @@
       >
         <span style="color: rgb(53, 152, 219)"
           ><span class="text_H038s" data-text="true"
-            >全民来瓜分依托百度技术，致力于为用户提供优质的视频内容。全民来瓜分以创作者、用户为核心，每天有大量</span
+            >大拇指视频依托百度技术，致力于为用户提供优质的视频内容。大拇指视频以创作者、用户为核心，每天有大量</span
           ><span class="text_H038s" data-text="true"
             ><a
               class="innerLink_UtiNv"
@@ -58,7 +58,7 @@
               >活跃用户</a
             ></span
           ><span class="text_H038s" data-text="true"
-            >在全民来瓜分上传、观看、分享及评论视频，超200万视频创作者通过全民来瓜分为百度生态用户提供视频内容。</span
+            >在大拇指视频上传、观看、分享及评论视频，超200万视频创作者通过大拇指视频为百度生态用户提供视频内容。</span
           ><span class="supWrap_C9i5o J-supWrap"
             ><sup data-tag="ref">&nbsp;<em id="sup-13" data-ctrid="sXA1MxqOA7Jv"></em></sup></span
         ></span>
@@ -84,7 +84,7 @@
       >
         <span style="color: rgb(53, 152, 219)"
           ><span class="text_H038s" data-text="true"
-            >百度全民来瓜分还将通过付费专栏、电商带货、视频赞赏、线索导流等多元方式，解决变现的问题。而对于专注的创作者人群，百度方面表示以真金白银和技术全力扶持媒体人、律师、评测大神等泛知识类优质创作者</span
+            >百度大拇指视频还将通过付费专栏、电商带货、视频赞赏、线索导流等多元方式，解决变现的问题。而对于专注的创作者人群，百度方面表示以真金白银和技术全力扶持媒体人、律师、评测大神等泛知识类优质创作者</span
           ><span class="supWrap_C9i5o J-supWrap"
             ><sup data-tag="ref">&nbsp;[1]<em id="sup-1"></em></sup></span
           ><span class="text_H038s" data-text="true">。</span></span
@@ -122,7 +122,7 @@
               data-idx=""
             >
               <span class="text_H038s" style="color: rgb(53, 152, 219)" data-text="true"
-                >Tab类别全而精：全民来瓜分内容全面且划分精细，既有“搞笑”“影视”“音乐”等大众化tab，又有“教育”“军事”“科技”等个性化tab，以满足用户快速获取优质内容需求。</span
+                >Tab类别全而精：大拇指视频内容全面且划分精细，既有“搞笑”“影视”“音乐”等大众化tab，又有“教育”“军事”“科技”等个性化tab，以满足用户快速获取优质内容需求。</span
               >
             </div>
           </li>
@@ -136,7 +136,7 @@
             >
               <span style="color: rgb(53, 152, 219)"
                 ><span class="text_H038s" data-ctrid-svchjoigvhrs="sVChjOigVHrs" data-text="true"
-                  >圈一下功能：全民来瓜分打造出专属社区符号，创作者和用户可以在视频中圈出有用的知识点、有趣的话题点、有态度的观点。实现知识的分享与互通，构建一个良好的视频知识社区。</span
+                  >圈一下功能：大拇指视频打造出专属社区符号，创作者和用户可以在视频中圈出有用的知识点、有趣的话题点、有态度的观点。实现知识的分享与互通，构建一个良好的视频知识社区。</span
                 ><span class="supWrap_C9i5o J-supWrap"
                   ><sup class="" data-tag="ref"
                     >&nbsp;[2]<em id="sup-2" data-ctrid="sVChjOigVHrs"></em></sup></span
@@ -165,7 +165,7 @@
               data-idx=""
             >
               <span class="text_H038s" style="color: rgb(53, 152, 219)" data-text="true"
-                >优质内容一键关注：全民来瓜分筛选多媒体和优质自媒体账号，进行分类，用户可一键关注，此外用户在观看视频过程中还可直接订阅视频发布者。</span
+                >优质内容一键关注：大拇指视频筛选多媒体和优质自媒体账号，进行分类，用户可一键关注，此外用户在观看视频过程中还可直接订阅视频发布者。</span
               >
             </div>
           </li>

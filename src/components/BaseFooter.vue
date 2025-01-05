@@ -3,70 +3,45 @@
     <div class="l-button" @click="refresh(1)">
       <div class="add-ctn">
         <div class="img-box">
-          <img
-            src="@/assets/img/tabbar/home-active.png"
-            alt=""
-            class="add"
-            v-if="currentTab === 1"
-          />
-          <img src="@/assets/img/tabbar/home.png" alt="" class="add" v-else />
+          <img src="@/assets/icon/1.png" alt="" class="add" v-if="currentTab === 1" />
+          <img src="@/assets/icon/1.png" alt="" class="add" v-else />
         </div>
         <div :style="{ color: currentTab === 1 ? '#666' : '' }">首页</div>
       </div>
     </div>
     <!--    <div class="l-button" @click="refresh(2)">-->
-    <div class="l-button" @click="loadShort(1)" v-if="!isIos">
-      <div class="add-ctn">
-        <div class="img-box">
-          <img
-            src="../assets/img/tabbar/vipVideo-active.png"
-            alt=""
-            class="add"
-            v-if="currentTab === 2"
-          />
-          <img src="../assets/img/tabbar/vipVideo.png" alt="" class="add" v-else />
-        </div>
-        <div :style="{ color: currentTab === 2 ? '#666' : '' }">体验股权</div>
-      </div>
-    </div>
-    <div class="l-button" @click="loadShort(3)">
-      <div class="add-ctn">
-        <div class="img-box">
-          <img
-            src="../assets/img/tabbar/video-active.png"
-            alt=""
-            class="add"
-            v-if="currentTab === 2"
-          />
-          <img src="../assets/img/tabbar/video.png" alt="" class="add" v-else />
-        </div>
-        <div :style="{ color: currentTab === 2 ? '#666' : '' }">正式股权</div>
-      </div>
-    </div>
+    <!--    <div class="l-button" @click="loadShort(1)" v-if="!isIos">-->
+    <!--      <div class="add-ctn">-->
+    <!--        <div class="img-box">-->
+    <!--          <img src="@/assets/icon/4.png" alt="" class="add" v-if="currentTab === 2" />-->
+    <!--          <img src="@/assets/icon/4.png" alt="" class="add" v-else />-->
+    <!--        </div>-->
+    <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">零撸专区</div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--    <div class="l-button" @click="loadShort(3)">-->
+    <!--      <div class="add-ctn">-->
+    <!--        <div class="img-box">-->
+    <!--          <img src="@/assets/icon/6.png" alt="" class="add" v-if="currentTab === 2" />-->
+    <!--          <img src="@/assets/icon/6.png" alt="" class="add" v-else />-->
+    <!--        </div>-->
+    <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">会员专享</div>-->
+    <!--      </div>-->
+    <!--    </div>-->
     <div class="l-button" @click="tab(5)">
       <div class="add-ctn">
         <div class="img-box">
-          <img
-            src="../assets/img/tabbar/vip-active.png"
-            alt=""
-            class="add"
-            v-if="currentTab === 5"
-          />
-          <img src="../assets/img/tabbar/vip.png" alt="" class="add" v-else />
+          <img src="@/assets/icon/7.png" alt="" class="add" v-if="currentTab === 5" />
+          <img src="@/assets/icon/7.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 5 ? '#666' : '' }">购买股权</div>
+        <div :style="{ color: currentTab === 5 ? '#666' : '' }">会员</div>
       </div>
     </div>
     <div class="l-button" @click="tab(6)">
       <div class="add-ctn">
         <div class="img-box">
-          <img
-            src="../assets/img/tabbar/my-active.png"
-            alt=""
-            class="add"
-            v-if="currentTab === 6"
-          />
-          <img src="../assets/img/tabbar/my.png" alt="" class="add" v-else />
+          <img src="@/assets/icon/17.png" alt="" class="add" v-if="currentTab === 6" />
+          <img src="@/assets/icon/17.png" alt="" class="add" v-else />
         </div>
         <div :style="{ color: currentTab === 6 ? '#666' : '' }">我的</div>
       </div>

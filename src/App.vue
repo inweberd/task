@@ -38,7 +38,21 @@
   <!--    &lt;!&ndash;请点击右上角选择在默认浏览器中打开&ndash;&gt;-->
   <!--    <img src="@/assets/img/openByOtherBrower.jpg" style="width: 100%" />-->
   <!--  </div>-->
-  <van-overlay :show="showOverlay" :z-index="99999999">
+  <TipDialog
+    v-model="showOverlay"
+    @confirm="toDownload"
+    title="发现新版本 1.0.2"
+    :show-close="false"
+    confirm-text="立即下载"
+  >
+    <div>
+      <p>1. 优化正式股权用户刷正式视频的流畅度</p>
+      <p>2. 修复零撸用户无法获得收益的问题</p>
+      <p>3. 大赢家游戏即将上线</p>
+    </div>
+  </TipDialog>
+
+  <van-overlay :show="showOverlay" :z-index="99999999" v-if="false">
     <div class="wrapper" @click.stop>
       <div class="update-box">
         <img src="@/assets/img/update.png" alt="" />
@@ -295,7 +309,7 @@ onMounted(() => {
   if (isWeChatBrowser) {
     loadWx(() => {
       wx.onMenuShareTimeline({
-        title: '全民来瓜分',
+        title: '大拇指视频',
         // link: 'http://movie.douban.com/subject/25785114asd/',
         imgUrl: 'http://tc.izakq.com/media/logo2.png',
         trigger: function (res) {
@@ -450,7 +464,7 @@ onMounted(() => {
   //     })
   // }, 5000)
   if (window.android) {
-    if (5 > getVersionCode()) {
+    if (1 > getVersionCode()) {
       showOverlay.value = true
     }
   }

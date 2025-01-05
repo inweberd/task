@@ -39,14 +39,17 @@
         <!--        <van-swipe-item>-->
         <!--          <van-image :src="imageSrc8" width="100%" height="200" fit="fill"></van-image>-->
         <!--        </van-swipe-item>-->
-        <van-swipe-item>
-          <van-image :src="imageSrc6" width="100%" height="200" fit="fill"></van-image>
-        </van-swipe-item>
+        <!--        <van-swipe-item>-->
+        <!--          <van-image :src="imageSrc6" width="100%" height="200" fit="fill"></van-image>-->
+        <!--        </van-swipe-item>-->
         <!--        <van-swipe-item>-->
         <!--          <van-image :src="imageSrc7" width="100%" height="200" fit="fill"></van-image>-->
         <!--        </van-swipe-item>-->
       </van-swipe>
     </div>
+    <p style="color: #000; padding-left: 15px; font-size: 22px; font-weight: bolder">
+      说明：每份会员有效期30天
+    </p>
     <!--    <div class="container">-->
     <!--      <div class="list">-->
     <!--        <div class="list-item active">-->
@@ -78,12 +81,44 @@
     <!--    </div>-->
     <div class="viplist-box">
       <div class="list">
-        <div class="list-item"></div>
-        <div class="list-item"></div>
+        <div
+          class="list-item"
+          v-for="item of vipList"
+          :style="{
+            backgroundImage: item.bgColor
+          }"
+        >
+          <div class="title" :style="{ color: item.color }">
+            {{ item.name }}（{{ item.count * 100 }}元）
+          </div>
+          <div class="content">
+            <div class="l" :style="{ color: item.color }">
+              <div>
+                <p>每天可分红</p>
+                <p>{{ item.count * 5 }}元</p>
+              </div>
+              <div>
+                <p>30天可分红</p>
+                <p>{{ item.count * 5 * 30 }}元</p>
+              </div>
+            </div>
+            <div class="r">
+              <el-button
+                class="w-100"
+                color="#fff"
+                size="large"
+                style="border: none; border-radius: 15px; color: #ff6491; font-weight: bolder"
+                type="primary"
+                @click="buy(item, item.count)"
+                >购买
+              </el-button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="announcement">
+    <div class="announcement" v-if="false">
       <div class="announcement-task flexS">
         <div style="overflow: scroll; width: 100%; box-sizing: border-box; padding: 0 10px">
           <div v-for="(item, index) of shopList" class="item">
@@ -378,6 +413,37 @@ const shopList = ref([
   // }
 ])
 
+const vipList = [
+  {
+    name: '铜卡会员',
+    count: 1,
+    // bgColor: 'linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%)',
+    bgColor: 'linear-gradient( 135deg, #DEC3BA 10%, #DEC3BA 100%)',
+    color: '#66380F'
+  },
+  {
+    name: '银卡会员',
+    count: 5,
+    // bgColor: 'linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%)',
+    bgColor: 'linear-gradient( 135deg, #FE698C 10%, #FE698C 100%)',
+    color: '#fff'
+  },
+  {
+    name: '金卡会员',
+    count: 30,
+    // bgColor: 'linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%)',
+    bgColor: 'linear-gradient( 135deg, #792848 10%, #792848 100%)',
+    color: '#FEC35F'
+  },
+  {
+    name: '黑卡会员',
+    count: 50,
+    // bgColor: 'linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%)',
+    bgColor: 'linear-gradient( 135deg, #333 10%, #333 100%)',
+    color: '#FEC35F'
+  }
+]
+
 const loading = ref(false)
 const loadingBtn = ref(false)
 const staffList = ref([])
@@ -440,14 +506,16 @@ const buy = (item, customCount) => {
     console.log('reqWalletInfo', res)
     loading.value = false
 
-    if (item.price * finallyCount > res.data.amount + res.data.money) {
+    // if (item.price * finallyCount > res.data.amount + res.data.money) {
+    if (100 * finallyCount > res.data.amount + res.data.money) {
       loading.value = false
       _notice('账户余额不足,请充值!')
       router.push('/recharge')
     } else {
       reqEnterStaff({
         count: finallyCount,
-        staff_id: item.id
+        staff_id: 156
+        // staff_id: item.id
       }).then((sub_res) => {
         loading.value = false
         _notice(sub_res.msg)
@@ -597,10 +665,31 @@ const speed = ref(0.5) //滚动速度
     .list {
       .list-item {
         width: 100%;
-        height: 100px;
-        background-image: linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%);
         border-radius: 20px;
         margin-top: 10px;
+        overflow: hidden;
+        padding: 20px;
+        box-sizing: border-box;
+        .title {
+          color: #fff;
+          font-size: 22px;
+          font-weight: bolder;
+        }
+        .content {
+          margin-top: 20px;
+          display: flex;
+          justify-content: space-between;
+
+          .l {
+            font-size: 16px;
+            color: #eee;
+            display: flex;
+
+            div:nth-child(2) {
+              margin-left: 20px;
+            }
+          }
+        }
       }
     }
   }
@@ -617,26 +706,6 @@ const speed = ref(0.5) //滚动速度
   font-size: 14px;
   font-weight: bold;
   color: #fff;
-}
-
-.title {
-  font-size: 26px;
-  color: #eee;
-  font-weight: bolder;
-  margin-left: 30px;
-  position: relative;
-  padding-left: 8px;
-  //&:before {
-  //  position: absolute;
-  //  top: 2px;
-  //  left: -10px;
-  //  display: block;
-  //  content: '';
-  //  height: 30px;
-  //  width: 6px;
-  //  background-color: #666cf8;
-  //  border-radius: 10px;
-  //}
 }
 
 .staff-list {

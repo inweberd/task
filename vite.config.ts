@@ -152,7 +152,7 @@ export default defineConfig((): Promise<UserConfig> => {
           extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
         },
         build: {
-          outDir: 'qmlgf',
+          outDir: 'dmz',
           sourcemap: false,
           rollupOptions: {
             // https://rollupjs.org/guide/en/#outputmanualchunks
@@ -192,13 +192,13 @@ export default defineConfig((): Promise<UserConfig> => {
           proxy: {
             '/api/': {
               // target: 'https://tc.q18m.cc/api',
-              target: 'https://dd.kkwai.cn/api',
+              target: 'https://api.onxxm900.cn/api',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/api/'), '')
             },
             '/dev/': {
               // target: 'https://tc.q18m.cc/api',
-              target: 'https://dd.kkwai.cn/dev',
+              target: 'https://api.onxxm900.cn/dev',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/dev/'), '')
             },
@@ -206,7 +206,7 @@ export default defineConfig((): Promise<UserConfig> => {
               // target: 'http://111.180.196.127:8642/api',
               // target: 'https://wwc.gengshangpin.com/api',
               // target: 'https://wuw.anqtu.cn/json',
-              target: 'https://dd.kkwai.cn/json',
+              target: 'https://api.onxxm900.cn/json',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/json/'), '')
             }

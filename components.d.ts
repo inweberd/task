@@ -53,6 +53,7 @@ declare module 'vue' {
     SlideUser: typeof import('./src/components/slide/SlideUser.vue')['default']
     SlideVertical: typeof import('./src/components/slide/SlideVertical.vue')['default']
     SlideVerticalInfinite: typeof import('./src/components/slide/SlideVerticalInfinite.vue')['default']
+    TipDialog: typeof import('./src/components/TipDialog/TipDialog.vue')['default']
     UserPanel: typeof import('./src/components/UserPanel.vue')['default']
     VanActionSheet: typeof import('vant/es')['ActionSheet']
     VanButton: typeof import('vant/es')['Button']

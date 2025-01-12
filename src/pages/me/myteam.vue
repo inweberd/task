@@ -15,8 +15,8 @@
         <img :src="userInfo.avatar || defaultAvatar" />
       </div>
       <div class="idandcode">
-        <p>会员ID：{{ userInfo?.id }}</p>
-        <p style="margin-left: 40px">邀请码：{{ userInfo?.result?.invite?.code }}</p>
+        <p>我的会员ID : {{ userInfo?.id }}</p>
+        <p style="margin-left: 40px">我的邀请码 : {{ userInfo?.result?.invite?.code }}</p>
       </div>
       <div class="money-info">
         <p>
@@ -35,12 +35,27 @@
       <div class="total-box">
         <div class="top" @click="$router.push('/teamStat')">
           <div class="left">
-            <img src="./images/qianbao.png" alt="" />
-            <span>我的余额</span>
+            <img class="qianbao" src="./images/qianbao.png" alt="" />
+            <span> 我的余额 </span>
+            <img
+              class="eye"
+              @click.stop="showTotal = false"
+              v-if="showTotal"
+              src="@/assets/img/eye-show.png"
+            />
+            <img
+              class="eye"
+              @click.stop="handleEyeClick"
+              v-else
+              src="@/assets/img/eye-hidden.png"
+            />
           </div>
           <div class="right">
             <span>
-              {{ userIncomeInfo?.wallet?.money || 0 }}
+              <template v-if="showTotal">
+                {{ userIncomeInfo?.wallet?.money || 0 }}
+              </template>
+              <template v-else> ****** </template>
             </span>
             <van-icon name="arrow" />
           </div>
@@ -48,8 +63,9 @@
       </div>
       <div class="chongzhiandtixian">
         <div class="vipcount">
-          当前股权: {{ getSerialName(userInfo?.result?.staff?.serial)
-          }}{{ myStaffList?.length ? myStaffList?.length + '份' : '' }}
+          <!--          会员等级: {{ getSerialName(userInfo?.result?.staff?.serial)-->
+          <!--          }}{{ myStaffList?.length ? myStaffList?.length + '份' : '' }}-->
+          会员等级: {{ getSerialName(myStaffList?.length || 0) }}
         </div>
         <div class="btn-box">
           <van-button
@@ -71,24 +87,25 @@
       </div>
 
       <!--      <div class="info">-->
-      <!--        &lt;!&ndash;          v-if="showRenzheng"&ndash;&gt;-->
-      <!--        <div-->
-      <!--          @click="renzheng"-->
-      <!--          style="-->
-      <!--            position: absolute;-->
-      <!--            top: 25px;-->
-      <!--            right: 0px;-->
-      <!--            width: fit-content;-->
-      <!--            padding: 8px 18px;-->
-      <!--            background-color: #689cfc;-->
-      <!--            color: #666;-->
-      <!--            border-radius: 20px;-->
-      <!--            font-size: 12px;-->
-      <!--            white-space: nowrap;-->
-      <!--          "-->
-      <!--        >-->
-      <!--          获取微信头像-->
-      <!--        </div>-->
+      <!--          v-if="showRenzheng"-->
+      <div
+        @click="renzheng"
+        style="
+          position: absolute;
+          top: 25px;
+          right: 0px;
+          width: fit-content;
+          padding: 8px 18px;
+          background-color: #689cfc;
+          color: #666;
+          border-radius: 20px;
+          font-size: 12px;
+          white-space: nowrap;
+          z-index: 99999999999;
+        "
+      >
+        获取微信头像
+      </div>
       <!--      </div>-->
       <div class="list">
         <van-cell
@@ -275,11 +292,12 @@
 
 <script lang="ts" setup>
 import BaseFooter from '@/components/BaseFooter.vue'
-import { computed, onActivated, onMounted, ref } from 'vue'
+import { computed, onActivated, onDeactivated, ref } from 'vue'
 import defaultAvatar from '@/assets/img/logo.png'
 import {
   logout as fnlogout,
   reqMyStaff,
+  reqNgTransfer,
   reqPullNew,
   reqPullNewLite,
   reqQuickReceive,
@@ -315,21 +333,21 @@ const renzheng = () => {
 
 const list = [
   {
-    label: '人工代充群',
+    label: '官方不禁言交流群（微脉圈）',
     icon: 'like-o',
     fn() {
       jumpToQQ()
     }
   },
   {
-    label: '我的邀请码',
+    label: '分享好友二维码',
     icon: 'star-o',
     fn() {
       router.push('/me/my-card')
     }
   },
   {
-    label: '推广佣金制度',
+    label: '推广收入表（月入十万）',
     icon: 'coupon-o',
     fn() {
       router.push('/demo')
@@ -343,21 +361,21 @@ const list = [
     }
   },
   {
-    label: '团队报表',
+    label: '团队明细',
     icon: 'user-o',
     fn() {
       router.push('/teamStat')
     }
   },
   {
-    label: '排行榜',
+    label: '收入排行榜',
     icon: 'notes-o',
     fn() {
       router.push('/rank')
     }
   },
   {
-    label: '每周分红奖池',
+    label: '每周奖池大奖',
     icon: 'cash-o',
     fn() {
       router.push('/fenhong')
@@ -468,11 +486,12 @@ const getMemberInfo = async () => {
     memberInfo.value = res.data
   })
 }
-const getUserIncome = () => {
+const getUserIncome = (cb?) => {
   // loading.value = true
   reqUserIncome().then((res) => {
     // loading.value = false
     userIncomeInfo.value = res.data
+    cb && cb()
   })
 }
 
@@ -557,6 +576,22 @@ const toMySub = () => {
   // loadInteraction()
   router.push('/mysub')
 }
+
+const showTotal = ref(false)
+
+const handleEyeClick = () => {
+  Toast({
+    theme: 'loading',
+    message: '加载中...',
+    duration: 0
+  })
+  reqNgTransfer().finally(() => {
+    getUserIncome(() => {
+      showTotal.value = true
+      Toast.clear()
+    })
+  })
+}
 onActivated(() => {
   userInfo.value = JSON.parse(window.localStorage.getItem('userInfo'))
   init()
@@ -565,6 +600,9 @@ onActivated(() => {
   bus.on('userInfoChange', (data) => {
     userInfo.value = data
   })
+})
+onDeactivated(() => {
+  showTotal.value = false
 })
 </script>
 
@@ -646,8 +684,12 @@ onActivated(() => {
         .left {
           display: flex;
           align-items: center;
-          img {
+          .qianbao {
             width: 40px;
+          }
+          .eye {
+            width: 20px;
+            margin-left: 4px;
           }
           span {
             font-weight: bolder;

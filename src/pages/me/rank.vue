@@ -4,7 +4,6 @@
       title="排行榜"
       safe-area-inset-top
       :class="{ inApp: getIsInApp() }"
-      fixed
       placeholder
       left-text="返回"
       left-arrow
@@ -29,33 +28,88 @@
     <!--        <van-image :src="imageSrc4" width="100%" height="200" fit="fill"></van-image>-->
     <!--      </van-swipe-item>-->
     <!--    </van-swipe>-->
-    <div class="list">
-      <div style="position: absolute; left: 0; top: -40px; width: 100%; color: #cda65b">
-        <p style="text-align: center; width: 100%">每周统计一次分红资格</p>
-        <p style="text-align: center; width: 100%; font-weight: bolder; font-size: 15px">
-          前50名在榜的用户可获得全网超级分红
-        </p>
-      </div>
-      <div class="list-header">
-        <div class="list-item">
-          <div style="background: none; color: #fff"></div>
-          <div style="background: none; color: #fff">排名</div>
-          <div>手机号</div>
-          <div>本周佣金</div>
+    <div style="display: flex; justify-content: center; margin-top: 10px">
+      <img src="./images/rank-bg2.png" style="height: 90px" alt="" />
+    </div>
+    <div class="qiansan">
+      <div class="one">
+        <div class="box">
+          <div class="img-box">
+            <img :src="rankList?.[0]?.avatar || headImg" style="width: 100%; height: 100%" alt="" />
+          </div>
+          <p>1</p>
+        </div>
+        <div class="info">
+          <p>{{ rankList?.[0]?.nickname || getPhone(rankList?.[0]?.phone) || '--' }}</p>
+
+          <p>${{ rankList?.[0]?.total || '--' }}</p>
         </div>
       </div>
-      <div class="list-container">
-        <div v-if="!rankList?.length" style="text-align: center; line-height: 200px">暂无数据</div>
-        <div class="list-item" v-for="(item, index) of rankList">
-          <div>
-            <img :src="item.avatar || defaultAvatar" class="headerImg" />
+      <div class="two">
+        <div class="box">
+          <div class="img-box">
+            <img :src="rankList?.[1]?.avatar || headImg" style="width: 100%; height: 100%" alt="" />
           </div>
-          <div>{{ index + 1 }}</div>
-          <div>{{ item.nickname || getPhone(item.phone) }}</div>
-          <div>{{ item.total }}</div>
+
+          <p>2</p>
+        </div>
+        <div class="info">
+          <p>{{ rankList?.[1]?.nickname || getPhone(rankList?.[1]?.phone) || '--' }}</p>
+          <p>${{ rankList?.[1]?.total || '--' }}</p>
+        </div>
+      </div>
+      <div class="three">
+        <div class="box">
+          <div class="img-box">
+            <img :src="rankList?.[2]?.avatar || headImg" style="width: 100%; height: 100%" alt="" />
+          </div>
+          <p>3</p>
+        </div>
+        <div class="info">
+          <p>{{ rankList?.[2]?.nickname || getPhone(rankList?.[2]?.phone) || '--' }}</p>
+
+          <p>${{ rankList?.[2]?.total || '--' }}</p>
         </div>
       </div>
     </div>
+
+    <div class="list">
+      <!--      <div style="position: absolute; left: 0; top: -40px; width: 100%; color: #cda65b">-->
+      <!--        <p style="text-align: center; width: 100%">每周统计一次分红资格</p>-->
+      <!--        <p style="text-align: center; width: 100%; font-weight: bolder; font-size: 15px">-->
+      <!--          前50名在榜的用户可获得全网超级分红-->
+      <!--        </p>-->
+      <!--      </div>-->
+      <!--      <div class="list-header">-->
+      <!--        <div class="list-item">-->
+      <!--          <div style="background: none; color: #fff">排名</div>-->
+      <!--          <div>手机号</div>-->
+      <!--          <div>本周佣金</div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <div class="list-container">
+        <div v-if="!rankListCom?.length" style="text-align: center; line-height: 200px">
+          暂无数据
+        </div>
+        <div class="list-item" v-for="(item, index) of rankListCom">
+          <div>{{ index + 4 }}</div>
+          <section>
+            <img :src="item.avatar || headImg" style="width: 100%; height: 100%" alt="" />
+          </section>
+          <div>{{ item.nickname || getPhone(item.phone) }}</div>
+          <div>${{ item.total }}</div>
+        </div>
+      </div>
+    </div>
+    <!--    <div style="width: 100%; color: #cda65b; font-size: 16px; margin-bottom: 6px">-->
+    <!--      <p class="linear" style="text-align: center; width: 100%">每周统计一次分红资格</p>-->
+    <!--      <p-->
+    <!--        class="linear"-->
+    <!--        style="text-align: center; width: 100%; font-weight: bolder; font-size: 15px"-->
+    <!--      >-->
+    <!--        前50名在榜的用户可获得全网超级分红-->
+    <!--      </p>-->
+    <!--    </div>-->
   </div>
 </template>
 
@@ -63,10 +117,10 @@
 import { getIsInApp } from '@/utils/getTopPadding'
 import { getWalletRank } from '@/api/myApi'
 import { Toast } from 'tdesign-mobile-vue'
-import { onBeforeUnmount, ref } from 'vue'
+import { computed, onBeforeUnmount, ref } from 'vue'
 import imageSrc1 from './images/rank1.png'
 import imageSrc4 from './images/rank2.png'
-import defaultAvatar from '@/assets/img/logo.png'
+import headImg from '@/assets/img/logo.png'
 
 const getPhone = (phone) => {
   if (phone?.length === 11) {
@@ -76,6 +130,10 @@ const getPhone = (phone) => {
   }
 }
 const rankList = ref([])
+const rankListCom = computed(() => {
+  const arr = rankList.value.slice(3)
+  return arr
+})
 const getRank = () => {
   Toast({
     theme: 'loading',
@@ -88,6 +146,40 @@ const getRank = () => {
     Toast.clear()
     console.log('getWalletRank', res)
     rankList.value = res.data?.list
+    // rankList.value = [
+    //   {
+    //     avatar:
+    //       'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
+    //     id: 1,
+    //     nickname: '暴走兔',
+    //     phone: '',
+    //     total: 101
+    //   },
+    //   { avatar: '', id: 2, nickname: '', phone: '18743133130', total: 102 },
+    //   {
+    //     avatar:
+    //       'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
+    //     id: 3,
+    //     nickname: '暴走兔',
+    //     phone: '',
+    //     total: 103
+    //   },
+    //   { avatar: '', id: 4, nickname: '暴走兔', phone: '', total: 104 },
+    //   { avatar: '', id: 5, nickname: '暴走兔', phone: '', total: 105 },
+    //   {
+    //     avatar:
+    //       'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
+    //     id: 6,
+    //     nickname: '暴走兔',
+    //     phone: '',
+    //     total: 106
+    //   },
+    //   { avatar: '', id: 7, nickname: '暴走兔', phone: '', total: 107 },
+    //   { avatar: '', id: 8, nickname: '暴走兔', phone: '', total: 108 },
+    //   { avatar: '', id: 9, nickname: '暴走兔', phone: '', total: 109 },
+    //   { avatar: '', id: 10, nickname: '暴走兔', phone: '', total: 110 },
+    //   { avatar: '', id: 11, nickname: '暴走兔', phone: '', total: 111 }
+    // ]
   })
 }
 
@@ -101,82 +193,106 @@ onBeforeUnmount(() => {
 .rank {
   width: 100%;
   height: 100vh;
-  background: url('./images/rank-bg.png');
+
+  background-image: url('@/assets/img/bg.png');
   background-size: 100% 100%;
+  overflow: auto;
+  border: 1px solid transparent;
   .list {
     position: relative;
-    width: 85%;
-    margin: 180px auto;
-    height: calc(100% - 240px);
-    min-height: 420px;
-    background-color: rgba(23, 33, 66, 0.66);
+    //width: 90%;
+    margin: auto;
+    //height: calc(100vh - 20px);
+    padding-top: 10px;
+    padding-bottom: 20px;
+    //height: 240px;
+    //background-color: rgba(23, 33, 66, 0.66);
     display: flex;
     flex-direction: column;
+    //background:
+    //  url('./images/rank-bg4.png') no-repeat top center/ 100% auto,
+    //  url('./images/rank-bg5.png') no-repeat center 20px / 80% 90%;
     //overflow: hidden;
     .list-container {
       flex: 1;
       overflow-y: auto;
     }
     .list-item {
+      //width: 70%;
+      margin: auto;
       color: #fff;
       display: flex;
-      align-items: center;
+      //border-bottom: 1px dotted #fff;
+      box-shadow: inset 0px -1px 1px -1px #fff;
+      padding-top: 5px;
       & > div {
-        height: 45px;
-        line-height: 40px;
-        width: 32%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        img {
-          transform: translateY(5px);
-          width: 30px;
-          height: 30px;
-        }
+        height: 60px;
+        line-height: 60px;
+        width: 40%;
+        text-align: center;
+
         &:nth-child(1) {
-          text-align: center;
-
-          width: 15%;
-        }
-
-        &:nth-child(2) {
-          text-align: center;
-
-          color: #000;
-          background-image: url('./images/four.png');
+          color: #fff;
+          //background-image: url('./images/four.png');
           background-repeat: no-repeat;
           width: 20%;
           background-size: 26px auto;
           background-position: center 5px;
         }
-        &:nth-child(3) {
-          width: 40%;
-        }
         &:nth-child(4) {
-          width: 24%;
+          color: #ece11f;
+          font-size: 14px;
+          font-weight: bolder;
         }
       }
-      &:nth-child(1) {
-        & > div:nth-child(2) {
-          background-image: url('./images/one.png');
-          background-position: center 5px;
-          background-size: 32px auto;
+      & > section {
+        img {
+          border-radius: 50%;
+          width: 50px !important;
+          height: 50px !important;
         }
       }
       &:nth-child(2) {
-        & > div:nth-child(2) {
-          background-image: url('./images/two.png');
+        & > div:nth-child(1) {
+          //background-image: url('./images/one.png');
           background-position: center 5px;
           background-size: 32px auto;
         }
       }
       &:nth-child(3) {
-        & > div:nth-child(2) {
-          background-image: url('./images/three.png');
+        & > div:nth-child(1) {
+          //background-image: url('./images/two.png');
           background-position: center 5px;
           background-size: 32px auto;
         }
       }
+      &:nth-child(4) {
+        & > div:nth-child(1) {
+          //background-image: url('./images/three.png');
+          background-position: center 5px;
+          background-size: 32px auto;
+        }
+      }
+    }
+  }
+
+  :deep(.van-nav-bar) {
+    background: transparent;
+    .van-nav-bar__title {
+      color: #fff;
+    }
+
+    .van-nav-bar__text {
+      color: #fff;
+    }
+
+    .van-icon {
+      color: #fff;
+    }
+  }
+  :deep(.van-hairline--bottom) {
+    &:after {
+      border-bottom: none;
     }
   }
 }
@@ -191,5 +307,106 @@ onBeforeUnmount(() => {
     width: 100%;
     height: 200px;
   }
+}
+
+.qiansan {
+  width: 100%;
+  height: 180px;
+  position: relative;
+  .one,
+  .two,
+  .three {
+    position: absolute;
+    background: url('./images/rank-avatar-bg.png');
+    background-size: 100% 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .box {
+      position: relative;
+      width: 75px;
+      height: 75px;
+      .img-box {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      p {
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #fff;
+        width: 20px;
+        height: 20px;
+        color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+      }
+    }
+    .info {
+      text-align: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      p {
+        color: transparent;
+        //background-image: -webkit-linear-gradient(45deg, #f3debb, #fcf6ed); /* Chrome, Safari */
+        //background-image: linear-gradient(45deg, #f3debb, #fcf6ed); /* 标准语法 */
+        //-webkit-background-clip: text; /* Chrome, Safari */
+        //background-clip: text;
+        white-space: nowrap;
+        font-size: 16px;
+
+        &:nth-child(1) {
+          color: #fff;
+        }
+        &:nth-child(2) {
+          color: #ece11f;
+          margin-top: 4px;
+          background-color: rgba(0, 0, 0, 0.2);
+          padding: 2px 25px;
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+  .two,
+  .three {
+    top: 30px;
+    width: 95px;
+    height: 80px;
+    .info {
+      bottom: -65px;
+    }
+  }
+  .one {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 100px;
+    .info {
+      font-size: 16px;
+      bottom: -50px;
+    }
+  }
+  .two {
+    left: 5%;
+  }
+  .three {
+    right: 5%;
+  }
+}
+.linear {
+  background-image: -webkit-linear-gradient(45deg, #f3debb, #fcf6ed); /* Chrome, Safari */
+  background-image: linear-gradient(45deg, #f3debb, #fcf6ed); /* 标准语法 */
+  -webkit-background-clip: text; /* Chrome, Safari */
+  background-clip: text;
+  color: transparent;
 }
 </style>

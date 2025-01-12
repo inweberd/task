@@ -21,5 +21,22 @@ const serialNameMap = {
   // '18': '十八级'
 }
 export const getSerialName = (val) => {
-  return serialNameMap[val] || '--'
+  if (!val) {
+    return '暂无会员'
+  } else if (val < 5) {
+    return '铜卡'
+  } else if (val < 10) {
+    return '银卡'
+  } else if (val < 30) {
+    return '黄金卡'
+  } else if (val < 50) {
+    return '白金卡'
+  } else if (val < 100) {
+    return '钻石卡'
+  } else if (val < 200) {
+    return '黑卡'
+  } else {
+    return '至尊卡'
+  }
+  // return serialNameMap[val] || '--'
 }

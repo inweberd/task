@@ -212,7 +212,7 @@ function resetVhAndPx() {
 }
 const canvas = ref()
 const canvasWidth = ref(window.innerWidth)
-const canvasHeight = ref(window.innerWidth / (1658 / 2480))
+const canvasHeight = ref(window.innerWidth / (2000 / 3556))
 
 const qrCodeText = ref('')
 
@@ -252,9 +252,10 @@ const generatePoster = async () => {
     qrCodeImage.onload = () => {
       Toast.clear()
       // 在海报上绘制二维码，位置在正中心下方
-      const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
+      // const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
+      const qrCodeX = 35
       // const qrCodeX = 30
-      const qrCodeY = canvasHeight.value - qrCodeSize * 1.85
+      const qrCodeY = canvasHeight.value / 2 - 95
       // const qrCodeY = canvasHeight.value - 125
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }
@@ -305,6 +306,8 @@ const upGrade = () => {
   // })
 }
 onMounted(() => {
+  window.android?.closeLoadImg?.()
+
   outsideFn()
   if (isWeChatBrowser) {
     loadWx(() => {

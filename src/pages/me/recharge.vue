@@ -6,8 +6,14 @@
       @click-left="$router.back()"
       style="background-color: transparent"
     />
-    <!--    <van-image :src="tixian" width="100%" height="100%;"></van-image>-->
-    <van-image :src="imageSrc6" width="100%" height="100%;"></van-image>
+    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+      <van-swipe-item>
+        <img src="@/pages/home/images/banner7.jpg" alt="" />
+      </van-swipe-item>
+      <van-swipe-item>
+        <img src="@/pages/home/images/banner8.jpg" alt="" />
+      </van-swipe-item>
+    </van-swipe>
 
     <Loading v-if="loading"></Loading>
     <div class="container">
@@ -677,8 +683,8 @@ onMounted(() => method.init())
 
     .chongzhiList {
       margin-top: 10px;
-      display: flex;
-      flex-wrap: wrap;
+      //display: flex;
+      //flex-wrap: wrap;
       .chongzhiList-item {
         margin-bottom: 10px;
         margin-right: 10px;
@@ -702,6 +708,18 @@ onMounted(() => method.init())
         }
       }
     }
+  }
+}
+.my-swipe .van-swipe-item {
+  color: #666;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 100%;
+    height: 200px;
   }
 }
 </style>

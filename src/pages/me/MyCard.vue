@@ -15,8 +15,8 @@
         "
       >
         <canvas ref="canvas"></canvas>
-        <p style="color: red; font-size: 16px">手机截屏保存二维码分享给朋友</p>
-        <p style="color: red; font-size: 16px">您将获得推广收入！月入过万轻松获得</p>
+        <!--        <p style="color: red; font-size: 16px">手机截屏保存二维码分享给朋友</p>-->
+        <!--        <p style="color: red; font-size: 16px">您将获得推广收入！月入过万轻松获得</p>-->
       </div>
       <!--<div class="btns">-->
       <!--  <van-image :src="weixin" width="60" height="60" fit="fill" @click="share"></van-image>-->
@@ -42,7 +42,7 @@ import { ref } from 'vue'
 const canvas = ref()
 const canvasWidth = ref(window.innerWidth)
 // const canvasHeight = ref(window.innerWidth / (580 / 1031))
-const canvasHeight = ref(window.innerWidth / (1658 / 2480))
+const canvasHeight = ref(window.innerWidth / (2000 / 3556))
 
 const qrCodeText = ref(
   'http://bbbwx1203a17.s3-website-us-east-1.amazonaws.com/index.html?target=' +
@@ -84,7 +84,7 @@ const generatePoster = async () => {
   image.onload = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
 
-    const qrCodeSize = canvasWidth.value * 0.3 // 调整二维码的大小
+    const qrCodeSize = canvasWidth.value * 0.33 // 调整二维码的大小
     const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
       width: qrCodeSize,
       height: qrCodeSize,
@@ -95,9 +95,10 @@ const generatePoster = async () => {
     qrCodeImage.src = qrCodeDataURL
     qrCodeImage.onload = () => {
       // 在海报上绘制二维码，位置在正中心下方
-      const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
+      // const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
+      const qrCodeX = 26
       // const qrCodeX = 30
-      const qrCodeY = canvasHeight.value - qrCodeSize * 1.85
+      const qrCodeY = canvasHeight.value / 2 - 95
       // const qrCodeY = canvasHeight.value - 125
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }

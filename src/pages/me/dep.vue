@@ -46,7 +46,10 @@
     <van-popup v-model:show="showPicker" destroy-on-close round position="bottom">
       <van-picker :columns="columns" @cancel="showPicker = false" @confirm="onConfirm" />
     </van-popup>
-
+    <p style="color: #000; margin: 10px" v-if="!state?.select?.card?.length">
+      <van-icon name="warning" />
+      暂无体现方式，请添加！
+    </p>
     <van-radio-group v-model="pay_card_id">
       <van-cell-group inset>
         <van-cell

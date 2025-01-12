@@ -262,3 +262,13 @@ export function createAdLog(data = {}) {
     }
   })
 }
+
+// 开始游戏
+export function reqNgPlay() {
+  return axiosInstance({ url: 'api/ng-game/play', method: 'post' })
+}
+
+// 额度转换
+export function reqNgTransfer() {
+  return axiosInstance({ url: 'api/ng-game/transfer', method: 'post' })
+}

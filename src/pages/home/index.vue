@@ -14,12 +14,15 @@
           <!--          <van-swipe-item>-->
           <!--            <img src="./images/banner6.png" alt="" />-->
           <!--          </van-swipe-item>-->
-          <van-swipe-item>
-            <van-image :src="imageSrc6" width="100%" height="200" fit="fill"></van-image>
-          </van-swipe-item>
           <!--          <van-swipe-item>-->
-          <!--            <img src="./images/banner1.png" alt="" />-->
+          <!--            <van-image :src="imageSrc6" width="100%" height="200" fit="fill"></van-image>-->
           <!--          </van-swipe-item>-->
+          <van-swipe-item>
+            <img src="./images/banner7.jpg" alt="" />
+          </van-swipe-item>
+          <van-swipe-item>
+            <img src="./images/banner8.jpg" alt="" />
+          </van-swipe-item>
         </van-swipe>
       </div>
       <div class="notice">
@@ -43,7 +46,7 @@
             style="height: 40px; line-height: 40px"
             vertical
             class="notice-swipe"
-            :autoplay="500"
+            :autoplay="1000"
             :touchable="false"
             :show-indicators="false"
           >
@@ -104,8 +107,8 @@
               <img src="@/assets/img/up/CA.png" alt="" />
             </div>
             <div>
-              <div>普通视频</div>
-              <div>观看普通视频获得收入(每日1元)</div>
+              <div>普通视频（0撸刷视频）</div>
+              <div>刷普通视频。每日获得1元</div>
             </div>
           </div>
           <div class="r">
@@ -118,8 +121,8 @@
               <img src="@/assets/img/up/CA.png" alt="" />
             </div>
             <div>
-              <div>会员视频</div>
-              <div>观看会员视频获得(每日5-1000元)</div>
+              <div>会员视频（每日2元--1000元）</div>
+              <div>刷会员视频。每日获得2元-1000元</div>
             </div>
           </div>
           <div class="r">
@@ -137,7 +140,7 @@
             </div>
           </div>
           <div class="r">
-            <div @click="$router.push('/quanminlaibaojiang')">详情</div>
+            <div @click="handleGame">详情</div>
           </div>
         </div>
       </div>
@@ -217,6 +220,8 @@ import { useRouter } from 'vue-router'
 import {
   reqAdvertisingCount,
   reqAdvertisingSinglePrice,
+  reqNgPlay,
+  reqNgTransfer,
   reqRecordTask,
   reqWalletLog
 } from '@/api/myApi'
@@ -225,7 +230,7 @@ import weimaiquan from '@/assets/img/weimaiquan.jpg'
 import { axiosInstance as axios } from '@/utils/myrequest'
 import imageSrc1 from '@/assets/img/hehuoren.jpg'
 import imageSrc6 from '@/pages/me/images/banner6.jpg'
-import { showDialog } from 'vant'
+import { showDialog, showFailToast } from 'vant'
 import { Toast } from 'tdesign-mobile-vue'
 const showGonggaoOverlay = ref(false)
 
@@ -243,16 +248,16 @@ const loading = ref(false)
 const router = useRouter()
 const activeTab = ref(0)
 const appList = ref([
-  {
-    name: '收入来源',
-    desc: '查看每日广告收入来源',
-    logo: '9',
-    btnLabel: '查看',
-    btnCb() {
-      router.push('/shourulaiyuan')
-      // router.push('/short')
-    }
-  },
+  // {
+  //   name: '收入来源',
+  //   desc: '查看每日广告收入来源',
+  //   logo: '9',
+  //   btnLabel: '查看',
+  //   btnCb() {
+  //     router.push('/shourulaiyuan')
+  //     // router.push('/short')
+  //   }
+  // },
   // {
   //   name: '官方简介',
   //   desc: '点击查看简介！',
@@ -263,8 +268,8 @@ const appList = ref([
   //   }
   // },
   {
-    name: '扶持政策',
-    desc: '点击查看主播扶持政策！',
+    name: '推广收入表',
+    desc: '点击查看返佣海报！',
     logo: '11',
     btnLabel: '查看',
     btnCb() {
@@ -307,22 +312,35 @@ const appList = ref([
   //     router.push('/quanminlaibaojiang')
   //   }
   // },
+  // {
+  //   name: '人工代充群',
+  //   desc: '点击加入人工代充群！',
+  //   logo: '1',
+  //   btnLabel: '加入',
+  //   btnCb() {
+  //     // showImagePreview({
+  //     //   images: [weimaiquan]
+  //     // })
+  //     window.location.href = decodeURIComponent('https://qm.qq.com/q/oVkcjwfykS')
+  //     // window.location.href = 'https://api.onxxm900.cn/download/android.apk'
+  //     // router.push('/weimaiquanDetail')
+  //   }
+  // },
   {
-    name: '人工代充群',
-    desc: '点击加入人工代充群！',
+    name: '收入排行榜',
+    desc: '点击查看排行榜！',
     logo: '1',
     btnLabel: '加入',
     btnCb() {
       // showImagePreview({
       //   images: [weimaiquan]
       // })
-      window.location.href = decodeURIComponent('https://qm.qq.com/q/oVkcjwfykS')
       // window.location.href = 'https://api.onxxm900.cn/download/android.apk'
-      // router.push('/weimaiquanDetail')
+      router.push('/rank')
     }
   },
   {
-    name: '分红奖池',
+    name: '每周奖池大奖',
     desc: '点击查看每周分红奖池！',
     logo: '7',
     btnLabel: '查看',
@@ -419,7 +437,7 @@ onActivated(() => {
   // if (timer) return
 })
 onMounted(() => {
-  showGonggaoOverlay.value = true
+  // showGonggaoOverlay.value = true
   reqWalletLog({
     limit: 50,
     // order: 'id desc',
@@ -430,7 +448,6 @@ onMounted(() => {
       .map((item) => {
         return `id为${item.uid}的用户${item.remark}`
       })
-    console.log(' scrollContent.value ', scrollContent.value)
   })
 })
 
@@ -507,6 +524,32 @@ const shareFriend = () => {
   localStorage.isShortVideoShare = dayjs().format('YYYY-MM-DD')
   window.shareFriend()
 }
+
+const handleGame = () => {
+  // router.push('/quanminlaibaojiang')
+  Toast({
+    theme: 'loading',
+    message: '加载中...',
+    duration: 0
+  })
+  reqNgPlay()
+    .then((res) => {
+      console.log('reqNgPlay', res)
+      if (res.code === 200) {
+        window.location.href = res.data.url
+      } else {
+        showFailToast('游戏加载失败！')
+      }
+    })
+    .finally(() => {
+      Toast.clear()
+    })
+}
+onActivated(() => {
+  reqNgTransfer().then((res) => {
+    console.log('res', res)
+  })
+})
 // onMounted(() => {
 //   //   showDialog({
 //   //     message: 'QQ群15群已满，请大家点击我的界面。点击联系客服进16群！',

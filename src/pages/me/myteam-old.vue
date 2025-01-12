@@ -24,6 +24,10 @@
           <p>直推有效人数</p>
           <p>{{ memberInfo.first?.vip || 0 }}</p>
         </div>
+        <div>
+          <p>团队总提现</p>
+          <p>{{ format(memberInfo?.wallet?.withdraw?.money) }}</p>
+        </div>
       </div>
 
       <div class="tuandui">
@@ -143,10 +147,13 @@
                     <span style="font-size: 14px">
                       等级：{{ getSerialName(item?.result?.staff?.serial) }}
                     </span>
+                    <span style="font-size: 14px">
+                      注册时间：{{ utils.timeToDate(item.create_time, 'Y-M-D H:i:s') }}
+                    </span>
                   </div>
                 </div>
                 <!--                <div class="mt-1 text-muted font-13">-->
-                <!--                  {{ utils.timeToDate(item.create_time, 'Y-M-D H:i:s') }}-->
+                <!--                {{ utils.timeToDate(item.create_time, 'Y-M-D H:i:s') }}-->
                 <!--                </div>-->
               </div>
             </div>
@@ -179,6 +186,7 @@ import {
 import { _notice } from '@/utils'
 import { getSerialName } from '../../utils/getSerialName'
 import { getIsInApp } from '@/utils/getTopPadding'
+import dayjs from 'dayjs'
 // import headImg from '@/assets/img/head.png'
 import headImg from '@/assets/img/logo.png'
 const router = useRouter()

@@ -45,10 +45,29 @@
         <!--        <van-swipe-item>-->
         <!--          <van-image :src="imageSrc7" width="100%" height="200" fit="fill"></van-image>-->
         <!--        </van-swipe-item>-->
+        <van-swipe-item>
+          <img src="@/pages/home/images/banner7.jpg" alt="" />
+        </van-swipe-item>
+        <van-swipe-item>
+          <img src="@/pages/home/images/banner8.jpg" alt="" />
+        </van-swipe-item>
       </van-swipe>
     </div>
-    <p style="color: #000; padding-left: 15px; font-size: 22px; font-weight: bolder">
-      说明：每份会员有效期30天
+    <p style="color: #000; padding-left: 15px; font-size: 18px; font-weight: bolder;margin: 4px 0">
+<!--      说明：每份会员有效期30天-->
+      温馨提示： 每张会员卡可以使用365天！
+
+    </p>
+    <p style="color: #222; padding-left: 15px; font-size: 14px; font-weight: bolder">
+      <!--      可重复购买，达到数量后，系统将自动为您提升等级，享受更高收益！-->
+      <p>
+
+      </p>
+      <p>当天同时购买不同等级会员卡，收益可叠加同时生效！</p>
+      <p>
+
+      中途加购升级不同等级会员卡，收益也可叠加同时生效！
+      </p>
     </p>
     <!--    <div class="container">-->
     <!--      <div class="list">-->
@@ -418,29 +437,64 @@ const vipList = [
     name: '铜卡会员',
     count: 1,
     // bgColor: 'linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%)',
-    bgColor: 'linear-gradient( 135deg, #DEC3BA 10%, #DEC3BA 100%)',
-    color: '#66380F'
+    // bgColor: 'linear-gradient( 135deg, #DEC3BA 10%, #DEC3BA 100%)',
+    // color: '#66380F'
+    bgColor: 'linear-gradient( 135deg, #FF7E30 10%, #FF7E30 100%)',
+    color: '#fff'
   },
   {
     name: '银卡会员',
     count: 5,
     // bgColor: 'linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%)',
-    bgColor: 'linear-gradient( 135deg, #FE698C 10%, #FE698C 100%)',
+    // bgColor: 'linear-gradient( 135deg, #E5E4E2 10%, #E5E4E2 100%)',
+    // color: '#000'
+    bgColor: 'linear-gradient( 135deg, #FF7E30 10%, #FF7E30 100%)',
     color: '#fff'
   },
   {
-    name: '金卡会员',
+    name: '黄金卡会员',
+    count: 10,
+    // bgColor: 'linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%)',
+    // bgColor: 'linear-gradient( 135deg, #FFD700 10%, #FFD700 100%)',
+    // color: '#000'
+    bgColor: 'linear-gradient( 135deg, #FF7E30 10%, #FF7E30 100%)',
+    color: '#fff'
+  },
+  {
+    name: '白金卡会员',
     count: 30,
     // bgColor: 'linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%)',
-    bgColor: 'linear-gradient( 135deg, #792848 10%, #792848 100%)',
-    color: '#FEC35F'
+    // bgColor: 'linear-gradient( 135deg, #FE698C 10%, #FE698C 100%)',
+    // color: '#fff'
+    bgColor: 'linear-gradient( 135deg, #FF7E30 10%, #FF7E30 100%)',
+    color: '#fff'
+  },
+  {
+    name: '钻石卡会员',
+    count: 50,
+    // bgColor: 'linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%)',
+    // bgColor: 'linear-gradient( 135deg, #B9F2FF 10%, #B9F2FF 100%)',
+    // color: '#000'
+    bgColor: 'linear-gradient( 135deg, #FF7E30 10%, #FF7E30 100%)',
+    color: '#fff'
   },
   {
     name: '黑卡会员',
-    count: 50,
+    count: 100,
     // bgColor: 'linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%)',
-    bgColor: 'linear-gradient( 135deg, #333 10%, #333 100%)',
-    color: '#FEC35F'
+    // bgColor: 'linear-gradient( 135deg, #000000 10%, #000000 100%)',
+    // color: '#FEC35F'
+    bgColor: 'linear-gradient( 135deg, #FF7E30 10%, #FF7E30 100%)',
+    color: '#fff'
+  },
+  {
+    name: '至尊会员',
+    count: 200,
+    // bgColor: 'linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%)',
+    // bgColor: 'linear-gradient( 135deg, #6A0DAD 10%, #6A0DAD  100%)',
+    // color: '#FEC35F'
+    bgColor: 'linear-gradient( 135deg, #FF7E30 10%, #FF7E30 100%)',
+    color: '#fff'
   }
 ]
 

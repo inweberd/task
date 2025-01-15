@@ -138,7 +138,7 @@ const state = reactive({
 
 function goDownload() {
   try {
-    window.location.href = `https://wuw.anqtu.cn/download`
+    window.location.href = `https://afx.chenfukang.com/download`
   } catch (e) {
     _notice('下载失败')
   }

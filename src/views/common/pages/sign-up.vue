@@ -177,7 +177,7 @@ const SignUp = async () => {
   for (let i in state.struct) state.struct[i] = ''
 
   showToast('注册成功')
-  // window.location.href = `https://wuw.anqtu.cn/download`
+  // window.location.href = `https://afx.chenfukang.com/download`
   // 跳转到首页
   router.push({ path: '/' })
 }

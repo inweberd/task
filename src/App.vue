@@ -141,7 +141,7 @@ const transitionName = ref('go')
 const showOverlay = ref(false)
 const topPadding = computed(() => {
   // window.webkit?.messageHandlers
-  if (window.android) {
+  if (window.android && window.android.getVersionCode) {
     if (
       !['/home', '/me', '/invest', '/myteam', '/myServe', '/serveInfo', '/rank1'].includes(
         route.path
@@ -240,7 +240,7 @@ const generatePoster = async () => {
   image.onload = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
 
-    const qrCodeSize = canvasWidth.value * 0.3 // 调整二维码的大小
+    const qrCodeSize = canvasWidth.value * 0.33 // 调整二维码的大小
     const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
       width: qrCodeSize,
       height: qrCodeSize,
@@ -252,7 +252,7 @@ const generatePoster = async () => {
       Toast.clear()
       // 在海报上绘制二维码，位置在正中心下方
       // const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
-      const qrCodeX = 35
+      const qrCodeX = 26
       // const qrCodeX = 30
       const qrCodeY = canvasHeight.value / 2 - 95
       // const qrCodeY = canvasHeight.value - 125
@@ -292,14 +292,14 @@ function clipboardCopy(content) {
 }
 
 const toDownload = () => {
-  window.android.openBrowser('https://wuw.anqtu.cn/download/android.apk')
+  window.android.openBrowser('https://afx.chenfukang.com/download/android.apk')
 
-  // window.location.href = `https://wuw.anqtu.cn/download/android.apk`
+  // window.location.href = `https://afx.chenfukang.com/download/android.apk`
 }
 
 const upGrade = () => {
-  window.android.openBrowser('https://wuw.anqtu.cn/download/android.apk')
-  // clipboardCopy('https://wuw.anqtu.cn/download/android.apk')
+  window.android.openBrowser('https://afx.chenfukang.com/download/android.apk')
+  // clipboardCopy('')
   // navigator.clipboard.writeText('12312').then(() => {
   //   alert('复制成功')
   // })
@@ -309,34 +309,34 @@ onMounted(() => {
 
   outsideFn()
   if (isWeChatBrowser) {
-    loadWx(() => {
-      wx.onMenuShareTimeline({
-        title: '大拇指视频',
-        // link: 'http://movie.douban.com/subject/25785114asd/',
-        imgUrl: 'http://tc.izakq.com/media/logo2.png',
-        trigger: function (res) {
-          // 涓嶈灏濊瘯鍦╰rigger涓娇鐢╝jax寮傛璇锋眰淇敼鏈鍒嗕韩鐨勫唴瀹癸紝鍥犱负瀹㈡埛绔垎浜搷浣滄槸涓€涓悓姝ユ搷浣滐紝杩欐椂鍊欎娇鐢╝jax鐨勫洖鍖呬細杩樻病鏈夎繑鍥�
-          // alert('您点击分享啦！')
-          console.log('trigger', res)
-        },
-        success: function (res) {
-          setTimeout(function () {
-            //回调要执行的代码
-            // alert('分享成功啦！')
-            console.log('success', res)
-          }, 500)
-        },
-        cancel: function (res) {
-          alert('取消分享')
-          console.log('cancel', res)
-        },
-        fail: function (res) {
-          alert('分享失败')
-          // alert(JSON.stringify(res))
-          console.log('fail', res)
-        }
-      })
-    })
+    // loadWx(() => {
+    //   wx.onMenuShareTimeline({
+    //     title: '大拇指视频',
+    //     // link: 'http://movie.douban.com/subject/25785114asd/',
+    //     imgUrl: 'http://tc.izakq.com/media/logo2.png',
+    //     trigger: function (res) {
+    //       // 涓嶈灏濊瘯鍦╰rigger涓娇鐢╝jax寮傛璇锋眰淇敼鏈鍒嗕韩鐨勫唴瀹癸紝鍥犱负瀹㈡埛绔垎浜搷浣滄槸涓€涓悓姝ユ搷浣滐紝杩欐椂鍊欎娇鐢╝jax鐨勫洖鍖呬細杩樻病鏈夎繑鍥�
+    //       // alert('您点击分享啦！')
+    //       console.log('trigger', res)
+    //     },
+    //     success: function (res) {
+    //       setTimeout(function () {
+    //         //回调要执行的代码
+    //         // alert('分享成功啦！')
+    //         console.log('success', res)
+    //       }, 500)
+    //     },
+    //     cancel: function (res) {
+    //       alert('取消分享')
+    //       console.log('cancel', res)
+    //     },
+    //     fail: function (res) {
+    //       alert('分享失败')
+    //       // alert(JSON.stringify(res))
+    //       console.log('fail', res)
+    //     }
+    //   })
+    // })
   }
   window.my = 2
   window.test = 1
@@ -363,9 +363,9 @@ onMounted(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
       qrCodeText.value =
-        'http://bbbwx1203a17.s3-website-us-east-1.amazonaws.com/index.html?target=' +
+        'http://bbbwx0115a12.s3-website-us-east-1.amazonaws.com/index.html?target=' +
         encodeURIComponent(
-          'https://wuw.anqtu.cn/#/signUp?invite=' +
+          'https://bfx.muyichang.com/#/signUp?invite=' +
             JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
         )
       generatePoster()
@@ -465,7 +465,7 @@ onMounted(() => {
   //       }
   //     })
   // }, 5000)
-  if (window.android) {
+  if (window.android && window.android.getVersionCode) {
     if (1 > getVersionCode()) {
       showOverlay.value = true
     }

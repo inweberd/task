@@ -113,11 +113,11 @@
           <div class="content">
             <div class="l" :style="{ color: item.color }">
               <div>
-                <p>每天可分红</p>
+                <p>日收益</p>
                 <p>{{ item.count * 2.5 }}元</p>
               </div>
               <div>
-                <p>365天可分红</p>
+                <p>年收益</p>
                 <p>{{ item.count * 2.5 * 365 }}元</p>
               </div>
             </div>

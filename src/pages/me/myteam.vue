@@ -62,10 +62,14 @@
         </div>
       </div>
       <div class="chongzhiandtixian">
-        <div class="vipcount">
+        <div class="vipcount" style="color: red">
           <!--          会员等级: {{ getSerialName(userInfo?.result?.staff?.serial)-->
           <!--          }}{{ myStaffList?.length ? myStaffList?.length + '份' : '' }}-->
-          会员等级: {{ getSerialName(myStaffList?.length || 0) }}
+          <p>
+            我的会员等级:
+            <span>{{ getSerialName(myStaffList?.length || 0) }}</span>
+          </p>
+          <p v-if="myStaffList?.length">当日可领取收益: {{ myStaffList.length * 2.5 }}</p>
         </div>
         <div class="btn-box">
           <van-button
@@ -554,7 +558,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://wuw.anqtu.cn/download`
+    window.location.href = `https://afx.chenfukang.com/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false

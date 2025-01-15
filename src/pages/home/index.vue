@@ -192,7 +192,7 @@
       "
     >
       <div style="padding: 20px">
-        <p>购买股权，开启大额分红模式，每天收益不间断!</p>
+        <p>请先购买会员，享受一年长久收入!</p>
       </div>
     </TipDialog>
 
@@ -386,7 +386,7 @@ const appList = ref([
   //
   //       // const { VITE_APP_URL } = import.meta.env
   //       // 跳转下载
-  //       window.location.href = `https://wuw.anqtu.cn/download`
+  //       window.location.href = ``
   //     } catch (e) {
   //       _notice('下载失败')
   //       // state.loading.app = false
@@ -397,7 +397,7 @@ const appList = ref([
 ])
 function goDownload() {
   try {
-    window.location.href = `https://wuw.anqtu.cn/download`
+    window.location.href = `https://afx.chenfukang.com/download`
   } catch (e) {
     _notice('下载失败')
   }
@@ -452,7 +452,6 @@ onActivated(() => {
   // if (timer) return
 })
 onMounted(() => {
-  showGonggaoOverlay.value = true
   // reqWalletLog({
   //   limit: 50,
   //   // order: 'id desc',
@@ -562,6 +561,7 @@ const handleGame = () => {
   //   })
 }
 onActivated(() => {
+  showGonggaoOverlay.value = true
   reqNgTransfer().then((res) => {
     console.log('res', res)
   })

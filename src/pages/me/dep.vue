@@ -346,19 +346,19 @@ async function goPay() {
     _notice('余额不足!')
     return
   }
-  const serial = user?.result?.staff?.serial
-  if (!serial) {
-    showDialog({
-      title: '重要公告',
-      message:
-        '为保障平台的公平与可持续发展，抵制工作室刷子的批量违规行为，公司决定，零撸用户玩家需购买一份股权后，才可进行出款操作。这一举措旨在维护广大用户的长远利益，确保平台能够长久稳定运营，感谢大家的理解与支持。' +
-        '\n购买股权后，后续出款将无需审核，款项将在 30 分钟内到账，让您的资金流转更加便捷高效。',
-      confirmButtonText: '去购买'
-    }).then(() => {
-      router.push('/invest')
-    })
-    return
-  }
+  // const serial = user?.result?.staff?.serial
+  // if (!serial) {
+  //   showDialog({
+  //     title: '重要公告',
+  //     message:
+  //       '为保障平台的公平与可持续发展，抵制工作室刷子的批量违规行为，公司决定，零撸用户玩家需购买一份股权后，才可进行出款操作。这一举措旨在维护广大用户的长远利益，确保平台能够长久稳定运营，感谢大家的理解与支持。' +
+  //       '\n购买股权后，后续出款将无需审核，款项将在 30 分钟内到账，让您的资金流转更加便捷高效。',
+  //     confirmButtonText: '去购买'
+  //   }).then(() => {
+  //     router.push('/invest')
+  //   })
+  //   return
+  // }
 
   // if (!sessionStorage.seeVideoWithdrawal) {
   //   showDialog({

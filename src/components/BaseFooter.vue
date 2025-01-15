@@ -28,6 +28,15 @@
     <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">会员专享</div>-->
     <!--      </div>-->
     <!--    </div>-->
+    <div class="l-button" @click="$router.push('/quanminlaibaojiang')">
+      <div class="add-ctn">
+        <div class="img-box">
+          <img src="@/assets/icon/6.png" alt="" class="add" v-if="currentTab === 2" />
+          <img src="@/assets/icon/6.png" alt="" class="add" v-else />
+        </div>
+        <div :style="{ color: currentTab === 2 ? '#666' : '' }">一夜暴富</div>
+      </div>
+    </div>
     <div class="l-button" @click="tab(5)">
       <div class="add-ctn">
         <div class="img-box">

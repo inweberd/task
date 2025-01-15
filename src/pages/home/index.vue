@@ -3,7 +3,7 @@
     <!--<EarnedCash></EarnedCash>-->
     <Loading v-if="loading"></Loading>
     <div class="container">
-      <div :style="containerStyle" style="background-color: #666">
+      <div :style="containerStyle" style="background-color: #fff">
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
           <!--          <van-swipe-item>-->
           <!--            <img src="./images/banner3.png" alt="" />-->
@@ -101,7 +101,7 @@
         <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
       <div class="shulist">
-        <div class="shu-item">
+        <div class="shu-item" v-if="!isIos">
           <div class="l">
             <div class="img-box">
               <img src="@/assets/img/up/CA.png" alt="" />
@@ -135,7 +135,7 @@
               <img src="@/assets/img/up/CA.png" alt="" />
             </div>
             <div>
-              <div>超级大赢家</div>
+              <div>一夜暴富--摇钱树</div>
               <div>游戏好礼送不停</div>
             </div>
           </div>
@@ -167,9 +167,18 @@
     <!--  </div>-->
     <!--</div>-->
 
-    <TipDialog v-model="showGonggaoOverlay" @confirm="showGonggaoOverlay = false">
+    <!--    <TipDialog v-model="showGonggaoOverlay" @confirm="showGonggaoOverlay = false">-->
+    <!--      <div style="padding: 20px">-->
+    <!--        <p>用户如遇到充值不进，可以进官方QQ群，找客服人工充值，支持 微信，支付宝</p>-->
+    <!--      </div>-->
+    <!--    </TipDialog>-->
+    <TipDialog
+      v-model="showGonggaoOverlay"
+      @confirm="handleGonggaoConfirm"
+      confirm-text="点击下载微脉圈扫码进群"
+    >
       <div style="padding: 20px">
-        <p>用户如遇到充值不进，可以进官方QQ群，找客服人工充值，支持 微信，支付宝</p>
+        <img style="width: 100%" src="@/assets/img/weimaiquan.jpg" alt="" />
       </div>
     </TipDialog>
     <TipDialog
@@ -233,10 +242,15 @@ import imageSrc6 from '@/pages/me/images/banner6.jpg'
 import { showDialog, showFailToast } from 'vant'
 import { Toast } from 'tdesign-mobile-vue'
 const showGonggaoOverlay = ref(false)
+const handleGonggaoConfirm = () => {
+  showGonggaoOverlay.value = false
+  window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
+}
+const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
 
 const shareDialogShow = ref(false)
 const buyDialogShow = ref(false)
-const scrollContent = ref(['精彩短视频。期待您的加入'])
+const scrollContent = ref(['精彩短视频，超级好礼送不停，期待您的加入!'])
 const containerStyle = computed(() => {
   if (window.android) {
     return { paddingTop: '40px' }
@@ -273,7 +287,8 @@ const appList = ref([
     logo: '11',
     btnLabel: '查看',
     btnCb() {
-      router.push('/zhubofuchizhengce')
+      // router.push('/zhubofuchizhengce')
+      router.push('/demo')
     }
   },
   // {
@@ -437,18 +452,18 @@ onActivated(() => {
   // if (timer) return
 })
 onMounted(() => {
-  // showGonggaoOverlay.value = true
-  reqWalletLog({
-    limit: 50,
-    // order: 'id desc',
-    where: [['bind_type', '=', 'staff']]
-  }).then((res) => {
-    scrollContent.value = res.data.data
-      .sort((item) => Math.random() - 0.5)
-      .map((item) => {
-        return `id为${item.uid}的用户${item.remark}`
-      })
-  })
+  showGonggaoOverlay.value = true
+  // reqWalletLog({
+  //   limit: 50,
+  //   // order: 'id desc',
+  //   where: [['bind_type', '=', 'staff']]
+  // }).then((res) => {
+  //   scrollContent.value = res.data.data
+  //     .sort((item) => Math.random() - 0.5)
+  //     .map((item) => {
+  //       return `id为${item.uid}的用户${item.remark}`
+  //     })
+  // })
 })
 
 const loadShort = (type) => {
@@ -526,24 +541,25 @@ const shareFriend = () => {
 }
 
 const handleGame = () => {
-  // router.push('/quanminlaibaojiang')
-  Toast({
-    theme: 'loading',
-    message: '加载中...',
-    duration: 0
-  })
-  reqNgPlay()
-    .then((res) => {
-      console.log('reqNgPlay', res)
-      if (res.code === 200) {
-        window.location.href = res.data.url
-      } else {
-        showFailToast('游戏加载失败！')
-      }
-    })
-    .finally(() => {
-      Toast.clear()
-    })
+  router.push('/quanminlaibaojiang')
+  // Toast({
+  //   theme: 'loading',
+  //   message: '加载中...',
+  //   duration: 0
+  // })
+  // reqNgPlay()
+  //   .then((res) => {
+  //     console.log('reqNgPlay', res)
+  //     return
+  //     if (res.code === 200) {
+  //       window.location.href = res.data.url
+  //     } else {
+  //       showFailToast('游戏加载失败！')
+  //     }
+  //   })
+  //   .finally(() => {
+  //     Toast.clear()
+  //   })
 }
 onActivated(() => {
   reqNgTransfer().then((res) => {

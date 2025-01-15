@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%; overflow: auto">
     <van-nav-bar
-      title="推广收益图"
+      title="推广收入表"
       safe-area-inset-top
       fixed
       :class="{ inApp: getIsInApp() }"

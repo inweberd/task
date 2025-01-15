@@ -14,8 +14,8 @@ const path = require('path')
 // eslint-disable-next-line no-undef
 const PRESET_PATH = path.resolve(__dirname, './') // 公用配置，注释的内容无特殊需求可不用配置
 const commonBase = {
-  host: '180.188.24.14', // 服务器地址
-  port: 22, // 服务器端口号
+  host: '110.42.0.150', // 服务器地址
+  port: 21088, // 服务器端口号
   username: 'root', // 服务器登录用户名
   password: `${PRESET_PATH}/password.txt`, // 服务器登录密码路径，支持相对或绝对地址，优先使用密码。注意这里是密码文件！
   // privateKey: 'D:\\xxx\\xxx\\xxx.pem' // 密钥地址，与密码二选一均可
@@ -33,8 +33,8 @@ const config = {
   dev: {
     ...commonBase,
     name: '开发环境', // 环境名称
-    distPath: '/qmlgf', // 本地打包后生成的目录。（Vue项目要跟outputDir保持一致；Vite项目要跟build.outDir保持一致；uni-app项目H5端默认为：/dist/build/h5）
-    webDir: '/www/wwwroot/qmlgf', // 服务器部署路径（不可为空或'/'）
+    distPath: '/dmz', // 本地打包后生成的目录。（Vue项目要跟outputDir保持一致；Vite项目要跟build.outDir保持一致；uni-app项目H5端默认为：/dist/build/h5）
+    webDir: '/www/wwwroot/dmz', // 服务器部署路径（不可为空或'/'）
     script: 'build' // 打包命令，要在 /package.json 中的 scripts 内事先定义
   },
   test: {

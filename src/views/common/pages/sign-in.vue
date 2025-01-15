@@ -80,6 +80,15 @@
         <a style="font-size: 16px; color: #666" @click="jumpToQQ2">官方交流群 </a>
       </div>
     </div>
+    <TipDialog
+      v-model="showGonggaoOverlay"
+      @confirm="handleGonggaoConfirm"
+      confirm-text="点击下载微脉圈扫码进群"
+    >
+      <div style="padding: 20px">
+        <img style="width: 100%" src="@/assets/img/weimaiquan.jpg" alt="" />
+      </div>
+    </TipDialog>
     <!--    <div class="contact" @click="jumpToQQ2">-->
     <!--      <img alt="" src="@/assets/img/kefu.png" />-->
     <!--      <div>-->
@@ -105,7 +114,12 @@ import { _notice } from '@/utils'
 import { getImei, getOaid } from '@/utils/ad'
 
 const { info, token, status } = storeToRefs(useUsers())
+const showGonggaoOverlay = ref(false)
 
+const handleGonggaoConfirm = () => {
+  showGonggaoOverlay.value = false
+  window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
+}
 const router = useRouter()
 const state = reactive({
   struct: {
@@ -132,8 +146,9 @@ function goDownload() {
 
 function jumpToQQ2() {
   // router.push('/weimaiquanDetail')
+  showGonggaoOverlay.value = true
 
-  window.location.href = decodeURIComponent('https://qm.qq.com/q/oVkcjwfykS')
+  // window.location.href = decodeURIComponent('https://qm.qq.com/q/oVkcjwfykS')
 }
 
 const SignIn = async () => {
@@ -194,7 +209,7 @@ const SignIn = async () => {
   window.localStorage.setItem('userInfo', JSON.stringify(data.user))
 
   // 跳转到首页
-  router.push({ path: '/' })
+  router.replace({ path: '/' })
 }
 onMounted(() => {
   window.localStorage.removeItem('userInfo')

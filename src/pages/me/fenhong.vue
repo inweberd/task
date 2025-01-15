@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%; overflow: auto">
     <van-nav-bar
-      title="分红奖池"
+      title="每周奖池大奖"
       safe-area-inset-top
       fixed
       :class="{ inApp: getIsInApp() }"

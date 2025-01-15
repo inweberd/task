@@ -24,7 +24,7 @@
           <!--          <span class="text-warning">{{ parseFloat(item.money || 0).toFixed(2) }}</span>-->
           <span class="text-warning">{{ item.money || 0 }}元</span>
         </div>
-        <div style="margin-top: 6px">每周排行超级股东分红，奖励更丰厚！</div>
+        <!--        <div style="margin-top: 6px">每周排行超级股东分红，奖励更丰厚！</div>-->
         <div style="margin-top: 6px">
           <span>{{ method.toDate(item.create_time) }}</span>
         </div>

@@ -48,7 +48,7 @@
     </van-popup>
     <p style="color: #000; margin: 10px" v-if="!state?.select?.card?.length">
       <van-icon name="warning" />
-      暂无体现方式，请添加！
+      暂无提现方式，请添加！
     </p>
     <van-radio-group v-model="pay_card_id">
       <van-cell-group inset>

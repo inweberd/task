@@ -1,10 +1,31 @@
 <template>
   <div class="test-slide-wrapper" id="home-index">
     <div style="position: fixed; top: 50px; right: 0px; z-index: 10">
-      <span style="font-size: 22px; color: #ff3157; position: absolute; left: 30px; top: 45px">{{
-        total || '0.00'
-      }}</span>
-      <img src="./images/fenhong.png" style="width: 120px; height: 140px" />
+      <p
+        style="
+          position: absolute;
+          color: #ff3157;
+          text-align: center;
+          width: 100%;
+          top: 10px;
+          font-size: 14px;
+        "
+      >
+        已获得奖励
+      </p>
+      <span
+        style="
+          font-size: 22px;
+          color: #ff3157;
+          position: absolute;
+          top: 40px;
+          width: 100%;
+          text-align: center;
+        "
+        >{{ total || '0.00' }}</span
+      >
+      <img src="./images/fenhong.png" style="width: 100px; height: 120px" />
+      <p style="position: absolute; text-align: center; width: 100%; bottom: 15px">大拇指视频</p>
     </div>
     <div class="first-horizontal-item">
       <SlideList uniqueId="home" style="background: #000" :active="true" :api="recommendedVideo" />

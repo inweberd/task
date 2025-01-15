@@ -124,9 +124,7 @@
             }"
           >
             <img :src="getIcon(item)" />
-            <span>
-              {{ item.name }}
-            </span>
+            <span> {{ item.name }}（{{ item.min }} - {{ item.max }}￥）</span>
           </div>
         </div>
         <el-button

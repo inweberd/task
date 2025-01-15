@@ -1,5 +1,13 @@
 import resource from '../assets/data/resource.js'
 import posts6 from '@/assets/data/posts6.json'
+import shipin1 from '@/assets/data/shipin1.json'
+import shipin2 from '@/assets/data/shipin2.json'
+import shipin3 from '@/assets/data/shipin3.json'
+import shipin4 from '@/assets/data/shipin4.json'
+import shipin5 from '@/assets/data/shipin5.json'
+import shipin6 from '@/assets/data/shipin6.json'
+import shipin7 from '@/assets/data/shipin7.json'
+import shipin8 from '@/assets/data/shipin8.json'
 import { _fetch, cloneDeep, random } from '@/utils'
 import { BASE_URL, FILE_URL } from '@/config'
 import { useBaseStore } from '@/store/pinia'
@@ -16,7 +24,22 @@ function getPage2(params: any): { limit: number; offset: number; pageNo: number 
 
 let allRecommendPosts = []
 let userVideos = []
-let allRecommendVideos = posts6.map((v: any) => {
+const map = {
+  1: shipin1,
+  2: shipin2,
+  3: shipin3,
+  4: shipin4,
+  5: shipin5,
+  6: shipin6,
+  7: shipin7,
+  8: shipin8
+}
+let num = parseInt(Math.random() * 8) + 1
+const arr = map[num]
+arr.sort(() => {
+  return Math.random() - 0.5
+})
+let allRecommendVideos = arr.map((v: any) => {
   v.type = 'recommend-video'
   return v
 })
@@ -37,7 +60,15 @@ async function fetchData() {
         // console.log('w', w)
         return w
       })
-      allRecommendVideos = allRecommendVideos.concat(v)
+      console.log('allRecommendVideos', v.slice(32, 130))
+      console.log('allRecommendVideos', v.slice(130, 230))
+      console.log('allRecommendVideos', v.slice(230, 330))
+      console.log('allRecommendVideos', v.slice(330, 430))
+      console.log('allRecommendVideos', v.slice(430, 530))
+      console.log('allRecommendVideos', v.slice(530, 630))
+      console.log('allRecommendVideos', v.slice(630, 730))
+      console.log('allRecommendVideos', v.slice(730, 830))
+      allRecommendVideos = allRecommendVideos.concat(v.length)
     })
   })
 }
@@ -47,6 +78,9 @@ export async function startMock() {
   mock.onGet(/video\/recommended/).reply(async (config) => {
     const { start, pageSize } = config.params
     // console.log('allRecommendVideos', cloneDeep(allRecommendVideos.length), config.params)
+    allRecommendVideos.sort(() => {
+      return Math.random() - 0.5
+    })
     return [
       200,
       {
@@ -285,5 +319,5 @@ export async function startMock() {
     ]
   })
 
-  setTimeout(fetchData, 1000)
+  // setTimeout(fetchData, 1000)
 }

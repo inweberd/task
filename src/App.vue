@@ -139,7 +139,6 @@ const route = useRoute()
 const router = useRouter()
 const transitionName = ref('go')
 const showOverlay = ref(false)
-
 const topPadding = computed(() => {
   // window.webkit?.messageHandlers
   if (window.android) {

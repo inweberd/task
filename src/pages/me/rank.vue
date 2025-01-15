@@ -123,6 +123,9 @@ import imageSrc4 from './images/rank2.png'
 import headImg from '@/assets/img/logo.png'
 
 const getPhone = (phone) => {
+  if (!phone) {
+    return '--'
+  }
   if (phone?.length === 11) {
     return phone.slice(0, 3) + '****' + phone.slice(7)
   } else {
@@ -145,7 +148,7 @@ const getRank = () => {
   }).then((res) => {
     Toast.clear()
     console.log('getWalletRank', res)
-    rankList.value = res.data?.list
+    rankList.value = res.data?.list || []
     // rankList.value = [
     //   {
     //     avatar:

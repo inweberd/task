@@ -11,7 +11,7 @@
       >
     </div>
     <div class="container">
-      <div class="avatar">
+      <div class="avatar" @click="renzheng(userInfo.avatar)">
         <img :src="userInfo.avatar || defaultAvatar" />
       </div>
       <div class="idandcode">
@@ -88,24 +88,24 @@
 
       <!--      <div class="info">-->
       <!--          v-if="showRenzheng"-->
-      <div
-        @click="renzheng"
-        style="
-          position: absolute;
-          top: 25px;
-          right: 0px;
-          width: fit-content;
-          padding: 8px 18px;
-          background-color: #689cfc;
-          color: #666;
-          border-radius: 20px;
-          font-size: 12px;
-          white-space: nowrap;
-          z-index: 99999999999;
-        "
-      >
-        获取微信头像
-      </div>
+      <!--      <div-->
+      <!--        @click="renzheng"-->
+      <!--        style="-->
+      <!--          position: absolute;-->
+      <!--          top: 25px;-->
+      <!--          right: 0px;-->
+      <!--          width: fit-content;-->
+      <!--          padding: 8px 18px;-->
+      <!--          background-color: #689cfc;-->
+      <!--          color: #666;-->
+      <!--          border-radius: 20px;-->
+      <!--          font-size: 12px;-->
+      <!--          white-space: nowrap;-->
+      <!--          z-index: 99999999999;-->
+      <!--        "-->
+      <!--      >-->
+      <!--        获取微信头像-->
+      <!--      </div>-->
       <!--      </div>-->
       <div class="list">
         <van-cell
@@ -287,6 +287,15 @@
     <!--        <div>客服</div>-->
     <!--      </div>-->
     <!--    </div>-->
+    <TipDialog
+      v-model="showGonggaoOverlay"
+      @confirm="handleGonggaoConfirm"
+      confirm-text="点击下载微脉圈扫码进群"
+    >
+      <div style="padding: 20px">
+        <img style="width: 100%" src="@/assets/img/weimaiquan.jpg" alt="" />
+      </div>
+    </TipDialog>
   </div>
 </template>
 
@@ -327,10 +336,18 @@ const showRenzheng = computed(() => {
     return false
   }
 })
-const renzheng = () => {
+const renzheng = (avatar) => {
+  if (avatar) {
+    return
+  }
   wxLogin()
 }
+const showGonggaoOverlay = ref(false)
 
+const handleGonggaoConfirm = () => {
+  showGonggaoOverlay.value = false
+  window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
+}
 const list = [
   {
     label: '官方不禁言交流群（微脉圈）',
@@ -521,8 +538,8 @@ function go(e, interaction = false) {
 }
 function jumpToQQ() {
   // router.push('/weimaiquanDetail')
-
-  window.location.href = decodeURIComponent('https://qm.qq.com/q/oVkcjwfykS')
+  showGonggaoOverlay.value = true
+  // window.location.href = decodeURIComponent('https://qm.qq.com/q/oVkcjwfykS')
 }
 
 function go2(val1, val2) {

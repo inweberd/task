@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%; overflow: auto">
     <van-nav-bar
-      title="主播扶持政策"
+      title="推广收入表"
       safe-area-inset-top
       fixed
       :class="{ inApp: getIsInApp() }"

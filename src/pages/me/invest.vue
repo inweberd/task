@@ -114,11 +114,11 @@
             <div class="l" :style="{ color: item.color }">
               <div>
                 <p>每天可分红</p>
-                <p>{{ item.count * 5 }}元</p>
+                <p>{{ item.count * 2.5 }}元</p>
               </div>
               <div>
-                <p>30天可分红</p>
-                <p>{{ item.count * 5 * 30 }}元</p>
+                <p>365天可分红</p>
+                <p>{{ item.count * 2.5 * 365 }}元</p>
               </div>
             </div>
             <div class="r">
@@ -635,7 +635,7 @@ const getMyStaff = () => {
   })
 }
 onMounted(() => {
-  getAllStaff()
+  // getAllStaff()
   // getUserIncome()
 })
 
@@ -855,7 +855,6 @@ const speed = ref(0.5) //滚动速度
   }
 }
 .my-swipe {
-  margin-top: 20px;
   .van-swipe-item {
     color: #fff;
     font-size: 20px;

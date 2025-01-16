@@ -69,7 +69,8 @@
             我的会员等级:
             <span>{{ getSerialName(myStaffList?.length || 0) }}</span>
           </p>
-          <p v-if="myStaffList?.length">当日可领取收益: {{ myStaffList.length * 2.5 }}</p>
+          <!--          <p v-if="myStaffList?.length">当日可领取收益: {{ myStaffList.length * 2.5 }}</p>-->
+          <p v-if="myStaffList?.length">今日未领取收益: {{ shengyukelinqqu }}</p>
         </div>
         <div class="btn-box">
           <van-button
@@ -309,6 +310,8 @@ import { computed, onActivated, onDeactivated, ref } from 'vue'
 import defaultAvatar from '@/assets/img/logo.png'
 import {
   logout as fnlogout,
+  reqAdvertisingCount,
+  reqAdvertisingSinglePrice,
   reqMyStaff,
   reqNgTransfer,
   reqPullNew,
@@ -568,6 +571,7 @@ function goDownload() {
 const goFenHong = () => {
   router.push('/fenhong')
 }
+const shengyukelinqqu = ref(0)
 const getNewUserInfo = () => {
   reqUserInfo({ id: userInfo.value.id }).then((res) => {
     if (res.code !== 200) {
@@ -578,13 +582,19 @@ const getNewUserInfo = () => {
 
     // 如果是会员 查询股东星级
     if (userInfo.value?.result?.staff?.serial) {
+      let arr = [reqAdvertisingCount(), reqAdvertisingSinglePrice()]
+      Promise.all(arr).then((res) => {
+        let todayshengyuCount = 100 - res[0]?.data?.ordinary,
+          price = res[1]?.data?.price
+        shengyukelinqqu.value = (todayshengyuCount * price).toFixed(2)
+      })
     }
-    reqUserStaff().then((res) => {
-      // if (res.code !== 200) {
-      //   return _notice(res.msg)
-      // }
-      star.value = res.data.star || 0
-    })
+    // reqUserStaff().then((res) => {
+    //   // if (res.code !== 200) {
+    //   //   return _notice(res.msg)
+    //   // }
+    //   star.value = res.data.star || 0
+    // })
   })
 
   reqWalletInfo().then((res) => {

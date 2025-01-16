@@ -14,6 +14,12 @@
       <div class="avatar" @click="renzheng(userInfo.avatar)">
         <img :src="userInfo.avatar || defaultAvatar" />
       </div>
+      <p
+        v-if="showRenzheng"
+        style="color: red; width: 100%; text-align: center; transform: translateY(-8px)"
+      >
+        点击头像可更换微信微信头像
+      </p>
       <div class="idandcode">
         <p>我的会员ID : {{ userInfo?.id }}</p>
         <p style="margin-left: 40px">我的邀请码 : {{ userInfo?.result?.invite?.code }}</p>
@@ -21,11 +27,11 @@
       <div class="money-info">
         <p>
           <span>{{ userIncomeInfo.today || 0 }}</span>
-          <span>今日收益</span>
+          <span>今日佣金</span>
         </p>
         <p>
           <span>{{ userIncomeInfo.total || 0 }}</span>
-          <span>历史收益</span>
+          <span>历史佣金</span>
         </p>
         <p>
           <span>{{ walletInfo?.amount || 0 }}</span>
@@ -69,8 +75,8 @@
             我的会员等级:
             <span>{{ getSerialName(myStaffList?.length || 0) }}</span>
           </p>
-          <!--          <p v-if="myStaffList?.length">当日可领取收益: {{ myStaffList.length * 2.5 }}</p>-->
-          <p v-if="myStaffList?.length">今日未领取收益: {{ shengyukelinqqu }}</p>
+          <!--          <p v-if="myStaffList?.length">当日可领取佣金: {{ myStaffList.length * 2.5 }}</p>-->
+          <p v-if="myStaffList?.length">今日未领取佣金: {{ shengyukelinqqu }}</p>
         </div>
         <div class="btn-box">
           <van-button
@@ -297,6 +303,17 @@
       @confirm="handleGonggaoConfirm"
       confirm-text="点击下载微脉圈扫码进群"
     >
+      <p
+        style="
+          transform: translateY(10px);
+          text-align: center;
+          font-size: 18px;
+          color: #f1361e;
+          font-weight: bolder;
+        "
+      >
+        请使用微脉圈APP扫码进官方群
+      </p>
       <div style="padding: 20px">
         <img style="width: 100%" src="@/assets/img/weimaiquan.jpg" alt="" />
       </div>
@@ -335,9 +352,9 @@ import bus from '@/utils/bus'
 
 const router = useRouter()
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
-
+const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
 const showRenzheng = computed(() => {
-  if (window.android && !userInfo.value.avatar) {
+  if (window.android && window.android.getVersionCode && !userInfo.value.avatar) {
     return true
   } else {
     return false
@@ -403,6 +420,13 @@ const list = [
     icon: 'cash-o',
     fn() {
       router.push('/fenhong')
+    }
+  },
+  {
+    label: '佣金互转（佣金可以玩PG游戏）',
+    icon: 'exchange',
+    fn() {
+      router.push('/conversion')
     }
   },
   {
@@ -476,7 +500,7 @@ const getShouyi = () => {
     Toast.clear()
 
     showDialog({
-      message: '开通会员即可一键获取收益！'
+      message: '开通会员即可一键获取佣金！'
     }).then(() => {
       router.push('/invest')
     })
@@ -652,6 +676,7 @@ onDeactivated(() => {
   overflow-y: auto;
 
   .user-name {
+    position: relative;
     margin-top: 30px;
     color: #fff;
     font-size: 24px;

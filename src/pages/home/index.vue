@@ -107,8 +107,8 @@
               <img src="@/assets/img/up/CA.png" alt="" />
             </div>
             <div>
-              <div>普通视频（0撸刷视频）</div>
-              <div>刷普通视频。每日获得1元</div>
+              <div>普通视频（0撸只刷视频,不养鸡）</div>
+              <div>遇到广告直接X掉或跳过，每日获得1元！</div>
             </div>
           </div>
           <div class="r">
@@ -122,7 +122,7 @@
             </div>
             <div>
               <div>会员视频（每日2元--1000元）</div>
-              <div>刷会员视频。每日获得2元-1000元</div>
+              <div>购买会员刷视频无广告，2分钟极速完成！</div>
             </div>
           </div>
           <div class="r">
@@ -136,11 +136,39 @@
             </div>
             <div>
               <div>一夜暴富--摇钱树</div>
-              <div>游戏好礼送不停</div>
+              <div>游戏好礼送不停！</div>
             </div>
           </div>
           <div class="r">
             <div @click="handleGame">详情</div>
+          </div>
+        </div>
+        <div class="shu-item">
+          <div class="l">
+            <div class="img-box">
+              <img src="@/assets/img/up/CA.png" alt="" />
+            </div>
+            <div>
+              <div>收入排行榜</div>
+              <div>点击查看收入排行榜！</div>
+            </div>
+          </div>
+          <div class="r">
+            <div @click="$router.push('/rank')">详情</div>
+          </div>
+        </div>
+        <div class="shu-item">
+          <div class="l">
+            <div class="img-box">
+              <img src="@/assets/img/up/CA.png" alt="" />
+            </div>
+            <div>
+              <div>每周奖池大奖</div>
+              <div>点击查看每周分红奖池！</div>
+            </div>
+          </div>
+          <div class="r">
+            <div @click="$router.push('/fenhong')">详情</div>
           </div>
         </div>
       </div>
@@ -177,6 +205,17 @@
       @confirm="handleGonggaoConfirm"
       confirm-text="点击下载微脉圈扫码进群"
     >
+      <p
+        style="
+          transform: translateY(10px);
+          text-align: center;
+          font-size: 18px;
+          color: #f1361e;
+          font-weight: bolder;
+        "
+      >
+        请使用微脉圈APP扫码进官方群
+      </p>
       <div style="padding: 20px">
         <img style="width: 100%" src="@/assets/img/weimaiquan.jpg" alt="" />
       </div>
@@ -758,7 +797,7 @@ onActivated(() => {
             justify-content: space-between;
             .name {
               font-size: 14px;
-              color: #666;
+              color: #000;
             }
             .desc {
               color: #9d9d9d;
@@ -812,6 +851,10 @@ onActivated(() => {
             flex-direction: column;
             justify-content: space-evenly;
             flex: 1;
+            & > div:nth-child(2) {
+              color: red;
+              font-size: 12px;
+            }
           }
         }
         .r {

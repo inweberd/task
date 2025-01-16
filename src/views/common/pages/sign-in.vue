@@ -85,6 +85,17 @@
       @confirm="handleGonggaoConfirm"
       confirm-text="点击下载微脉圈扫码进群"
     >
+      <p
+        style="
+          transform: translateY(10px);
+          text-align: center;
+          font-size: 18px;
+          color: #f1361e;
+          font-weight: bolder;
+        "
+      >
+        请使用微脉圈APP扫码进官方群
+      </p>
       <div style="padding: 20px">
         <img style="width: 100%" src="@/assets/img/weimaiquan.jpg" alt="" />
       </div>

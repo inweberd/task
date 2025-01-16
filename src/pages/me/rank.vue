@@ -29,7 +29,7 @@
     <!--      </van-swipe-item>-->
     <!--    </van-swipe>-->
     <div style="display: flex; justify-content: center; margin-top: 10px">
-      <img src="./images/rank-bg2.png" style="height: 90px" alt="" />
+      <img src="./images/rank-bg2.png" style="height: 120px" alt="" />
     </div>
     <div class="qiansan">
       <div class="one">
@@ -42,7 +42,7 @@
         <div class="info">
           <p>{{ rankList?.[0]?.nickname || getPhone(rankList?.[0]?.phone) || '--' }}</p>
 
-          <p>${{ rankList?.[0]?.total || '--' }}</p>
+          <p>￥{{ rankList?.[0]?.total || '--' }}</p>
         </div>
       </div>
       <div class="two">
@@ -55,7 +55,7 @@
         </div>
         <div class="info">
           <p>{{ rankList?.[1]?.nickname || getPhone(rankList?.[1]?.phone) || '--' }}</p>
-          <p>${{ rankList?.[1]?.total || '--' }}</p>
+          <p>￥{{ rankList?.[1]?.total || '--' }}</p>
         </div>
       </div>
       <div class="three">
@@ -68,7 +68,7 @@
         <div class="info">
           <p>{{ rankList?.[2]?.nickname || getPhone(rankList?.[2]?.phone) || '--' }}</p>
 
-          <p>${{ rankList?.[2]?.total || '--' }}</p>
+          <p>￥{{ rankList?.[2]?.total || '--' }}</p>
         </div>
       </div>
     </div>
@@ -97,7 +97,7 @@
             <img :src="item.avatar || headImg" style="width: 100%; height: 100%" alt="" />
           </section>
           <div>{{ item.nickname || getPhone(item.phone) }}</div>
-          <div>${{ item.total }}</div>
+          <div>￥{{ item.total }}</div>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@
       </template>
     </van-nav-bar>
     <div class="container">
-      <div class="zhitui">
+      <div class="zhitui" v-if="false">
         <div>
           <p>直推总人数</p>
           <p>{{ memberInfo.first?.total || 0 }}</p>
@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <div class="tuandui">
+      <div v-if="false" class="tuandui">
         <div class="tuandui-item">
           <p>团队总人数</p>
           <p>{{ memberInfo.team?.total || 0 }}</p>
@@ -42,6 +42,36 @@
         <div class="tuandui-item">
           <p>团队总充值</p>
           <p>{{ memberInfo.team?.deposit || 0 }}</p>
+        </div>
+      </div>
+      <div class="tuandui">
+        <div class="tuandui-item">
+          <p>团队总人数</p>
+          <p>{{ memberInfo.team?.total || 0 }}</p>
+        </div>
+        <div class="tuandui-item">
+          <p>团队会员人数</p>
+          <p>{{ memberInfo.team?.vip || 0 }}</p>
+        </div>
+      </div>
+      <div class="tuandui">
+        <div class="tuandui-item">
+          <p>直推总人数</p>
+          <p>{{ memberInfo.first?.total || 0 }}</p>
+        </div>
+        <div class="tuandui-item">
+          <p>直推会员人数</p>
+          <p>{{ memberInfo.first?.vip || 0 }}</p>
+        </div>
+      </div>
+      <div class="tuandui">
+        <div class="tuandui-item">
+          <p>团队总业绩</p>
+          <p>{{ memberInfo.team?.deposit || 0 }}</p>
+        </div>
+        <div class="tuandui-item">
+          <p>团队总提现</p>
+          <p>{{ format(memberInfo?.wallet?.withdraw?.money) }}</p>
         </div>
       </div>
     </div>
@@ -457,7 +487,23 @@ onActivated(() => {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+    &:nth-child(1) {
+      .tuandui-item {
+        background: linear-gradient(to right, #eb677e, #f989c6);
+      }
+    }
+    &:nth-child(2) {
+      .tuandui-item {
+        background: linear-gradient(to right, #33aafa, #72c8f7);
+      }
+    }
+    &:nth-child(3) {
+      .tuandui-item {
+        background: linear-gradient(to right, #f98a5f, #fcb591);
+      }
+    }
     .tuandui-item {
+      flex: 1;
       border-radius: 15px;
       padding: 10px 15px;
 
@@ -468,14 +514,16 @@ onActivated(() => {
         font-size: 24px;
       }
       &:nth-child(1) {
-        background: linear-gradient(to right, #eb677e, #f989c6);
+        //background: linear-gradient(to right, #eb677e, #f989c6);
+        margin-right: 5px;
       }
       &:nth-child(2) {
-        background: linear-gradient(to right, #33aafa, #72c8f7);
+        margin-left: 5px;
+        //background: linear-gradient(to right, #33aafa, #72c8f7);
       }
-      &:nth-child(3) {
-        background: linear-gradient(to right, #f98a5f, #fcb591);
-      }
+      //&:nth-child(3) {
+      //  background: linear-gradient(to right, #f98a5f, #fcb591);
+      //}
     }
   }
 }

@@ -6,7 +6,7 @@ export const getTopPadding = () => {
   }
 }
 export const getIsInApp = () => {
-  if (window.android) {
+  if (window.android && window.android.getVersionCode) {
     return true
   } else {
     return false

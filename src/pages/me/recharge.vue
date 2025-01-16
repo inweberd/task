@@ -431,11 +431,16 @@ const method = {
       code: state.item.pay.data.code,
       amount: state.struct.amount,
       return: `${method.domain()}/#/me`
-    }).then((res: any) => {
-      loading.value = false
-      if (res.code !== 200) return _notice(res.msg)
-      window.location.href = decodeURIComponent(res.data.url)
     })
+      .then((res: any) => {
+        loading.value = false
+        if (res.code !== 200) return _notice(res.msg)
+        window.location.href = decodeURIComponent(res.data.url)
+      })
+      .catch((err) => {
+        loading.value = false
+        _notice('请求超时，请稍后重试')
+      })
     // axios.post('/api/order/create', {
     //   key: state.item.pay.data.key,
     //   code: state.item.pay.data.code,

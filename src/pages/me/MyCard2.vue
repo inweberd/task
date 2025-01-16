@@ -53,7 +53,7 @@ const canvasHeight = ref(window.innerWidth / (1242 / 2208))
 //     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
 // )
 const qrCodeText = ref(
-  'http://bbbwx0115a13.s3-website-us-east-1.amazonaws.com/index.html?target=' +
+  'http://bbbwx0115a15.s3-website-us-east-1.amazonaws.com/index.html?target=' +
     encodeURIComponent(
       'https://afx.chenfukang.com/#/signUp?invite=' +
         JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code

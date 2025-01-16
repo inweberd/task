@@ -1,5 +1,5 @@
 <template>
-  <div class="login" v-if="false">
+  <div class="login">
     <!-- <dy-back mode="light" img="back" @click="router.back()" class="fixed-back" direction="left" /> -->
 
     <van-nav-bar
@@ -36,21 +36,24 @@
           v-model="data.code"
           center
           clearable
-          label="短信验证码"
+          label=""
           name="验证码"
           placeholder="(必填) 验证码"
         >
           <template #button>
-            <van-button
-              v-if="!time"
-              size="small"
-              type="primary"
-              @click="getCode"
-              style="background: #01c5f0; border: none"
-              :disabled="countdown"
-            >
+            <!--            <van-button-->
+            <!--              v-if="!time"-->
+            <!--              size="small"-->
+            <!--              type="primary"-->
+            <!--              @click="getCode"-->
+            <!--              style="background: #01c5f0; border: none"-->
+            <!--              :disabled="countdown"-->
+            <!--            >-->
+            <!--              {{ countdown ? countdown + 's重新发送' : '发送验证码' }}-->
+            <!--            </van-button>-->
+            <p v-if="!time" @click="getCode" style="color: #999">
               {{ countdown ? countdown + 's重新发送' : '发送验证码' }}
-            </van-button>
+            </p>
             <div v-else>
               {{ time }}
             </div>
@@ -65,32 +68,37 @@
             block
             type="primary"
             native-type="submit"
-            style="background: #01c5f0; border: none"
+            style="border: none"
+            color="linear-gradient(to right, #ff8b6e, #ff625c)"
+            :disabled="countdown"
           >
             转账
           </van-button>
         </div>
       </van-form>
-      <p style="color: #fff">佣金互转50元起转，免手续费，佣金也可以直接用于购买股权抵扣使用</p>
+      <p style="color: #000; text-align: center">佣金互转50元起转，免手续费</p>
+      <p style="color: red; text-align: center; margin-top: 10px; font-size: 16px">
+        佣金可以进行PG游戏娱乐
+      </p>
 
-      <div
-        style="
-          margin: 10px 0 0 0px;
-          background-color: rgba(70, 89, 101, 0.7);
-          border-radius: 10px;
-          padding: 6px;
-          color: #fff;
-          text-indent: 2em;
-          line-height: 1.6;
-        "
-      >
-        <p style="margin-bottom: 8px">
-          每日推广佣金，可以用来进行游戏娱乐，中奖可提现，投入1块钱，最多可中奖30000（3万元）爆奖奖金！
-          中奖，无任何附加条件，直接可提现！
-        </p>
+      <!--      <div-->
+      <!--        style="-->
+      <!--          margin: 10px 0 0 0px;-->
+      <!--          background-color: rgba(70, 89, 101, 0.7);-->
+      <!--          border-radius: 10px;-->
+      <!--          padding: 6px;-->
+      <!--          color: #fff;-->
+      <!--          text-indent: 2em;-->
+      <!--          line-height: 1.6;-->
+      <!--        "-->
+      <!--      >-->
+      <!--        <p style="margin-bottom: 8px">-->
+      <!--          每日推广佣金，可以用来进行游戏娱乐，中奖可提现，投入1块钱，最多可中奖30000（3万元）爆奖奖金！-->
+      <!--          中奖，无任何附加条件，直接可提现！-->
+      <!--        </p>-->
 
-        <p>长期稳定，信誉，正规企业，合法合规!</p>
-      </div>
+      <!--        <p>长期稳定，信誉，正规企业，合法合规!</p>-->
+      <!--      </div>-->
     </div>
   </div>
 </template>
@@ -192,20 +200,25 @@ function onSubmit() {
 }
 
 .login {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  overflow: auto;
-
+  width: 100%;
+  height: 100vh;
+  color: #666;
+  background-repeat: no-repeat;
+  background-image: url('@/assets/img/bg.png');
+  background-size: 100% auto;
   // background: linear-gradient(45deg, #fdfbfb 10%, #FFFFFF 48%, #ebedee 100%) !important;
   .van-divider {
     color: white;
   }
 
   .content {
-    padding: 30px 30px;
+    box-sizing: border-box;
+    padding: 0 30px 30px;
+    width: 90%;
+    margin: 110px auto 0;
+    box-shadow: 0 0 10px #0000001f;
+    border-radius: 20px;
+    background-color: #fff;
 
     .desc {
       margin-top: 10px;

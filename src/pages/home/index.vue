@@ -149,8 +149,8 @@
               <img src="@/assets/img/up/CA.png" alt="" />
             </div>
             <div>
-              <div>收入排行榜</div>
-              <div>点击查看收入排行榜！</div>
+              <div>代理佣金排行榜</div>
+              <div>点击查看代理佣金排行榜！</div>
             </div>
           </div>
           <div class="r">
@@ -381,8 +381,8 @@ const appList = ref([
   //   }
   // },
   {
-    name: '收入排行榜',
-    desc: '点击查看排行榜！',
+    name: '代理佣金排行榜',
+    desc: '点击查看代理佣金排行榜！',
     logo: '1',
     btnLabel: '加入',
     btnCb() {

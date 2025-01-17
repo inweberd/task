@@ -3,7 +3,7 @@
     <!-- <dy-back mode="light" img="back" @click="router.back()" class="fixed-back" direction="left" /> -->
 
     <van-nav-bar
-      title="佣金互转"
+      title="余额互转"
       safe-area-inset-top
       :class="{ inApp: getIsInApp() }"
       fixed
@@ -76,9 +76,9 @@
           </van-button>
         </div>
       </van-form>
-      <p style="color: #000; text-align: center">佣金互转50元起转，免手续费</p>
+      <p style="color: #000; text-align: center">余额互转50元起转，免手续费</p>
       <p style="color: red; text-align: center; margin-top: 10px; font-size: 16px">
-        佣金可以进行PG游戏娱乐
+        余额可以进行PG游戏娱乐
       </p>
 
       <!--      <div-->
@@ -93,7 +93,7 @@
       <!--        "-->
       <!--      >-->
       <!--        <p style="margin-bottom: 8px">-->
-      <!--          每日推广佣金，可以用来进行游戏娱乐，中奖可提现，投入1块钱，最多可中奖30000（3万元）爆奖奖金！-->
+      <!--          每日推广余额，可以用来进行游戏娱乐，中奖可提现，投入1块钱，最多可中奖30000（3万元）爆奖奖金！-->
       <!--          中奖，无任何附加条件，直接可提现！-->
       <!--        </p>-->
 
@@ -160,7 +160,7 @@ function getCode() {
 }
 function onSubmit() {
   if (data.amount < 50) {
-    return _notice('佣金互转50元起！')
+    return _notice('余额互转50元起！')
   }
   if (!data.phone || !data.code) {
     return _notice('请输入验证码！')

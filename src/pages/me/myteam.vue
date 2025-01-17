@@ -27,11 +27,11 @@
       <div class="money-info">
         <p>
           <span>{{ userIncomeInfo.today || 0 }}</span>
-          <span>今日佣金</span>
+          <span>今日收入</span>
         </p>
         <p>
           <span>{{ userIncomeInfo.total || 0 }}</span>
-          <span>历史佣金</span>
+          <span>历史收入</span>
         </p>
         <p>
           <span>{{ walletInfo?.amount || 0 }}</span>
@@ -423,7 +423,7 @@ const list = [
     }
   },
   {
-    label: '佣金互转（佣金可以玩PG游戏）',
+    label: '余额互转（余额可以玩PG游戏）',
     icon: 'exchange',
     fn() {
       router.push('/conversion')

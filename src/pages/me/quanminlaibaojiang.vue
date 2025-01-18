@@ -67,6 +67,33 @@ import img5 from './images/quanminlaibaojiang/5.webp'
 import img6 from './images/quanminlaibaojiang/6.webp'
 import img7 from './images/quanminlaibaojiang/7.webp'
 import img8 from './images/quanminlaibaojiang/8.webp'
+import img65 from './images/quanminlaibaojiang/65.webp'
+
+import img26 from './images/quanminlaibaojiang/26.webp'
+import img37 from './images/quanminlaibaojiang/37.webp'
+import img41 from './images/quanminlaibaojiang/41.webp'
+import img57 from './images/quanminlaibaojiang/57.webp'
+import img69 from './images/quanminlaibaojiang/69.webp'
+import img73 from './images/quanminlaibaojiang/73.webp'
+import img83 from './images/quanminlaibaojiang/83.webp'
+import img85 from './images/quanminlaibaojiang/85.webp'
+import img92 from './images/quanminlaibaojiang/92.webp'
+import img103 from './images/quanminlaibaojiang/103.webp'
+import img104 from './images/quanminlaibaojiang/104.webp'
+import img105 from './images/quanminlaibaojiang/105.webp'
+import img106 from './images/quanminlaibaojiang/106.webp'
+import img107 from './images/quanminlaibaojiang/107.webp'
+import img108 from './images/quanminlaibaojiang/108.webp'
+import img132 from './images/quanminlaibaojiang/132.webp'
+import img1312883 from './images/quanminlaibaojiang/1312883.webp'
+import img1381200 from './images/quanminlaibaojiang/1381200.webp'
+import img1420892 from './images/quanminlaibaojiang/1420892.webp'
+import img1489936 from './images/quanminlaibaojiang/1489936.webp'
+import img1594259 from './images/quanminlaibaojiang/1594259.webp'
+import img1655268 from './images/quanminlaibaojiang/1655268.webp'
+import img1671262 from './images/quanminlaibaojiang/1671262.webp'
+import img1682240 from './images/quanminlaibaojiang/1682240.webp'
+import img98 from './images/quanminlaibaojiang/98.jpg'
 
 // const handleClick = () => {
 //   showDialog({
@@ -92,13 +119,13 @@ import { showDialog, showFailToast } from 'vant'
 
 const list = [
   {
-    name: '赏金船长',
+    name: '麻将胡了',
     online: Math.floor(Math.random() * 1000 + 1000),
-    icon: img1,
-    value: '30000',
+    icon: img65,
+    value: '100000',
     rtp: '中',
-    return: '96.15%',
-    code: '54'
+    return: '96.97%',
+    code: '74'
   },
   {
     name: '麻将胡了2',
@@ -110,24 +137,6 @@ const list = [
     code: '74'
   },
   {
-    name: '少林足球',
-    online: Math.floor(Math.random() * 1000 + 1000),
-    icon: img3,
-    value: '4000',
-    rtp: '中',
-    return: '96.93%',
-    code: '67'
-  },
-  {
-    name: '赢财神',
-    online: Math.floor(Math.random() * 1000 + 1000),
-    icon: img4,
-    value: '100000',
-    rtp: '中',
-    return: '96.97%',
-    code: '71'
-  },
-  {
     name: '赏金女王',
     online: Math.floor(Math.random() * 1000 + 1000),
     icon: img5,
@@ -137,13 +146,13 @@ const list = [
     code: '84'
   },
   {
-    name: '寻宝黄金城',
+    name: '少林足球',
     online: Math.floor(Math.random() * 1000 + 1000),
-    icon: img6,
-    value: '100000',
+    icon: img3,
+    value: '4000',
     rtp: '中',
-    return: '96.71%',
-    code: '87'
+    return: '96.93%',
+    code: '67'
   },
   {
     name: '招财喵',
@@ -162,6 +171,258 @@ const list = [
     rtp: '高',
     return: '96.75%',
     code: '135'
+  },
+  {
+    name: '赏金船长',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img1,
+    value: '30000',
+    rtp: '中',
+    return: '96.15%',
+    code: '54'
+  },
+  {
+    name: '赢财神',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img4,
+    value: '100000',
+    rtp: '中',
+    return: '96.97%',
+    code: '71'
+  },
+  {
+    name: '寻宝黄金城',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img6,
+    value: '100000',
+    rtp: '中',
+    return: '96.71%',
+    code: '87'
+  },
+  {
+    name: '摇钱树',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img26,
+    value: '50000',
+    rtp: '中',
+    return: '95.32%',
+    code: '1312883'
+  },
+  {
+    name: '圣诞欢乐送',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img37,
+    value: '70000',
+    rtp: '中',
+    return: '96.71%',
+    code: '37'
+  },
+  {
+    name: '埃及寻宝',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img41,
+    value: '40000',
+    rtp: '中',
+    return: '96.78%',
+    code: '41'
+  },
+  {
+    name: '寻龙探宝',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img57,
+    value: '80000',
+    rtp: '中',
+    return: '96.54%',
+    code: '57'
+  },
+  {
+    name: '比基尼天堂',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img69,
+    value: '100000',
+    rtp: '中',
+    return: '96.63%',
+    code: '69'
+  },
+  {
+    name: '探秘宝典',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img73,
+    value: '70000',
+    rtp: '中',
+    return: '96.72%',
+    code: '73'
+  },
+  {
+    name: '火树赢花',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img83,
+    value: '90000',
+    rtp: '中',
+    return: '96.85%',
+    code: '83'
+  },
+  {
+    name: '阿拉丁神灯',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img85,
+    value: '40000',
+    rtp: '中',
+    return: '96.47%',
+    code: '85'
+  },
+  {
+    name: '水上泰神奇',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img92,
+    value: '80000',
+    rtp: '中',
+    return: '96.36%',
+    code: '92'
+  },
+  {
+    name: '比特淘金',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img103,
+    value: '70000',
+    rtp: '中',
+    return: '96.19%',
+    code: '103'
+  },
+  {
+    name: '亡灵大盗',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img104,
+    value: '60000',
+    rtp: '中',
+    return: '96.63%',
+    code: '104'
+  },
+  {
+    name: '霹雳神偷',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img105,
+    value: '80000',
+    rtp: '中',
+    return: '96.28%',
+    code: '105'
+  },
+  {
+    name: '麒麟送宝',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img106,
+    value: '60000',
+    rtp: '中',
+    return: '96.86%',
+    code: '106'
+  },
+  {
+    name: '美猴王传奇',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img107,
+    value: '40000',
+    rtp: '中',
+    return: '96.36%',
+    code: '107'
+  },
+  {
+    name: '美洲野牛',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img108,
+    value: '50000',
+    rtp: '中',
+    return: '96.47%',
+    code: '108'
+  },
+  {
+    name: '疯狂过山车',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img132,
+    value: '100000',
+    rtp: '中',
+    return: '96.50%',
+    code: '132'
+  },
+  {
+    name: '黄金摇钱树',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img1312883,
+    value: '90000',
+    rtp: '中',
+    return: '96.63%',
+    code: '1312883'
+  },
+  {
+    name: '夏威夷探奇',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img1381200,
+    value: '60000',
+    rtp: '中',
+    return: '96.71%',
+    code: '1381200'
+  },
+  {
+    name: '电音派对',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img1420892,
+    value: '40000',
+    rtp: '中',
+    return: '96.45%',
+    code: '1420892'
+  },
+  {
+    name: '金秋射手',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img1489936,
+    value: '50000',
+    rtp: '中',
+    return: '96.92%',
+    code: '1489936'
+  },
+  {
+    name: '非洲大冒险',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img1594259,
+    value: '70000',
+    rtp: '中',
+    return: '96.35%',
+    code: '1594259'
+  },
+  {
+    name: '沙皇宝藏',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img1655268,
+    value: '90000',
+    rtp: '中',
+    return: '96.67%',
+    code: '1655268'
+  },
+  {
+    name: '宝石矿工',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img1671262,
+    value: '80000',
+    rtp: '中',
+    return: '96.81%',
+    code: '1671262'
+  },
+  {
+    name: '快钱来了',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img1682240,
+    value: '100000',
+    rtp: '中',
+    return: '96.71%',
+    code: '1682240'
+  },
+  {
+    name: '十倍金牛',
+    online: Math.floor(Math.random() * 1000 + 1000),
+    icon: img98,
+    value: '4000',
+    rtp: '中',
+    return: '96.41%',
+    code: '98'
   }
 ]
 

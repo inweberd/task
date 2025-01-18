@@ -33,7 +33,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/me/userinfo/EditUserInfoItem.vue')
   },
 
-  { path: '/me/my-card', component: () => import('@/pages/me/MyCard.vue') },
+  { path: '/me/my-card', name: 'myCard', component: () => import('@/pages/me/MyCard.vue') },
 
   // {path: '/login', component: Login},
   // { path: '/signUp', component: () => import('@/pages/login/signUp.vue') },

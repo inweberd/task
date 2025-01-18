@@ -71,7 +71,7 @@
         </div>
         <div class="tuandui-item">
           <p>团队总提现</p>
-          <p>{{ format(memberInfo?.wallet?.withdraw?.money) }}</p>
+          <p>{{ memberInfo.team?.withdraw || 0 }}</p>
         </div>
       </div>
     </div>

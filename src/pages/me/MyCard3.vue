@@ -1,17 +1,13 @@
 <template>
   <div>
     <!--    <div style="background-image: linear-gradient(180deg, #fcae03 40%, #fc7a02 80%); height: 100%">-->
-    <div style="height: 100%">
-      <dy-back
-        mode="light"
-        img="back"
-        @click="$router.back()"
-        class="fixed-back"
-        direction="left"
-      />
+    <div style="height: 100%; background-color: #fff">
+      <dy-back mode="dark" img="back" @click="$router.back()" class="fixed-back" direction="left" />
       <div
         style="
           display: flex;
+          flex-direction: column;
+          align-items: center;
           justify-content: center;
           width: 100vw;
           height: 100vh;
@@ -19,6 +15,8 @@
         "
       >
         <canvas ref="canvas"></canvas>
+        <!--        <p style="color: red; font-size: 16px">手机截屏保存二维码分享给朋友</p>-->
+        <!--        <p style="color: red; font-size: 16px">您将获得推广收入！月入过万轻松获得</p>-->
       </div>
       <!--<div class="btns">-->
       <!--  <van-image :src="weixin" width="60" height="60" fit="fill" @click="share"></van-image>-->
@@ -36,30 +34,37 @@
 
 <script setup>
 import QRCode from 'qrcode'
-import imageSrc from '@/assets/img/share2.jpg'
-import avatar from '@/assets/img/logo.png'
+import imageSrc from '@/assets/img/share-bg.png'
 
 import { wechatShareImg, wechatShareLink } from '@/utils/ad'
-defineOptions({
-  name: 'myCard'
-})
+import { ref } from 'vue'
+
 const canvas = ref()
 const canvasWidth = ref(window.innerWidth)
-const canvasHeight = ref(window.innerWidth / (1242 / 2208))
+// const canvasHeight = ref(window.innerWidth / (580 / 1031))
+const canvasHeight = ref(window.innerWidth / (2000 / 3556))
 
 const qrCodeText = ref(
   'http://bbbwx0115a16.s3-website-us-east-1.amazonaws.com/index.html?target=' +
     encodeURIComponent(
-      'https://afx.chenfukang.com/#/signUp?invite=' +
+      'https://bfx.muyichang.com/#/signUp?invite=' +
         JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
     )
 )
 const updateCanvasSize = () => {
+  // canvasWidth.value = window.innerWidth
+  // canvasHeight.value = window.innerHeight
+  // canvasWidth.value = window.innerWidth
+  // canvasHeight.value = window.innerWidth / (1080 / 2336)
+  // canvasHeight.value = window.innerHeight
+  // canvasWidth.value = window.innerHeight / (1080 / 2336)
+
+  // 1080  window.innerWidth
+  // 2336  window.innerHeight
+
   generatePoster()
 }
 const generatePoster = async () => {
-  const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
-
   canvas.value.width = canvasWidth.value
   canvas.value.height = canvasHeight.value
   const ctx = canvas.value.getContext('2d')
@@ -79,8 +84,7 @@ const generatePoster = async () => {
   image.onload = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
 
-    const qrCodeSize = 100 // 调整二维码的大小
-    const qrCodeMarginBottom = 25 // 调整二维码距离底部的距离
+    const qrCodeSize = canvasWidth.value * 0.33 // 调整二维码的大小
     const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
       width: qrCodeSize,
       height: qrCodeSize,
@@ -91,47 +95,19 @@ const generatePoster = async () => {
     qrCodeImage.src = qrCodeDataURL
     qrCodeImage.onload = () => {
       // 在海报上绘制二维码，位置在正中心下方
-      const qrCodeX = canvasWidth.value - 130
-      const qrCodeY = canvasHeight.value - 150
+      // const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
+      const qrCodeX = 26
+      // const qrCodeX = 30
+      const qrCodeY = canvasHeight.value / 2 - 95
+      // const qrCodeY = canvasHeight.value - 125
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }
-    const avatarImage = new Image()
-    avatarImage.style.borderRadius = '50%'
-    if (userInfo.avatar) {
-      avatarImage.src = userInfo.avatar
-    } else {
-      avatarImage.src = avatar
-    }
-    avatarImage.onload = () => {
-      const qrCodeX = canvasWidth.value / 2
-      const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
-
-      ctx.drawImage(avatarImage, 15, canvasHeight.value - 90, 50, 55)
-    }
-
-    ctx.font = '18px Arial'
-    // 设置填充颜色
-    ctx.fillStyle = 'black'
-    const qrCodeX = canvasWidth.value / 2
-    const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
-    // 绘制文本
-    let name = userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
-    if (userInfo.nickname) {
-      name = userInfo.nickname
-    }
-    ctx.fillText(name, 75, canvasHeight.value - 70)
-    ctx.font = '16px Arial'
-
-    ctx.fillText('邀请码：', 75, canvasHeight.value - 40)
-    ctx.fillStyle = '#EA591F'
-    ctx.font = '18px Arial'
-    ctx.fillText(userInfo?.result?.invite?.code, 135, canvasHeight.value - 40)
   }
 }
 
 const share = () => {
+  // wechatShareImg(canvas.value.toDataURL('image/png'), 1)
   window.shareFriend()
-
   // 创建一个 a 标签，并设置 href 和 download 属性
   // const el = document.createElement('a')
   // // 设置 href 为图片经过 base64 编码后的字符串，默认为 png 格式
@@ -182,7 +158,7 @@ body,
 }
 .contact {
   position: fixed;
-  top: 45%;
+  top: 65%;
   right: 0;
   display: flex;
   align-items: center;

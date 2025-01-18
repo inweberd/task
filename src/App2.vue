@@ -126,11 +126,9 @@ import {
 } from '@/utils/ad'
 import { reqCreateShareLog, reqUpdateUserInfo, reqUserInfo, reqUserStaff } from '@/api/myApi'
 import dayjs from 'dayjs'
-// import imageSrc from '@/assets/img/share-bg.png'
-import imageSrc from '@/assets/img/share2.jpg'
-
+import imageSrc from '@/assets/img/share-bg.png'
 import QRCode from 'qrcode/lib'
-import avatar from '@/assets/img/logo.png'
+import avatar from '@/assets/img/avatar.png'
 import shareBtnBg from '@/assets/img/share-btn-bg.png'
 import { outsideFn } from '@/utils/outsideFn'
 import { testBase64 } from '@/utils/testBase64'
@@ -214,17 +212,11 @@ function resetVhAndPx() {
 }
 const canvas = ref()
 const canvasWidth = ref(window.innerWidth)
-const canvasHeight = ref(window.innerWidth / (1242 / 2208))
+const canvasHeight = ref(window.innerWidth / (2000 / 3556))
 
 const qrCodeText = ref('')
 
 const generatePoster = async () => {
-  qrCodeText.value =
-    'http://bbbwx0115a16.s3-website-us-east-1.amazonaws.com/index.html?target=' +
-    encodeURIComponent(
-      'https://bfx.muyichang.com/#/signUp?invite=' +
-        JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
-    )
   canvas.value.width = canvasWidth.value
   canvas.value.height = canvasHeight.value
   const ctx = canvas.value.getContext('2d')
@@ -248,9 +240,8 @@ const generatePoster = async () => {
   })
   image.onload = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
-    const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
 
-    const qrCodeSize = 100 // 调整二维码的大小
+    const qrCodeSize = canvasWidth.value * 0.33 // 调整二维码的大小
     const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
       width: qrCodeSize,
       height: qrCodeSize,
@@ -259,77 +250,15 @@ const generatePoster = async () => {
     const qrCodeImage = new Image()
     qrCodeImage.src = qrCodeDataURL
     qrCodeImage.onload = () => {
+      Toast.clear()
       // 在海报上绘制二维码，位置在正中心下方
-      const qrCodeX = canvasWidth.value - 130
-      const qrCodeY = canvasHeight.value - 150
+      // const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
+      const qrCodeX = 26
+      // const qrCodeX = 30
+      const qrCodeY = canvasHeight.value / 2 - 95
+      // const qrCodeY = canvasHeight.value - 125
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }
-    const avatarImage = new Image()
-    // avatarImage.style.borderRadius = '50%'
-    if (userInfo.avatar) {
-      fetch(userInfo.avatar, {
-        responseType: 'blob'
-      })
-        .then((response) => {
-          return response.blob()
-        })
-        .then((blob) => {
-          let oFileReader = new FileReader()
-          oFileReader.onloadend = function (e) {
-            // base64结果
-            const base64 = e.target.result
-            avatarImage.src = base64
-            avatarImage.onload = () => {
-              ctx.drawImage(avatarImage, 15, canvasHeight.value - 90, 50, 55)
-              Toast.clear()
-            }
-            // console.log(base64);
-          }
-          oFileReader.readAsDataURL(blob)
-        })
-    } else {
-      avatarImage.src = avatar
-      avatarImage.onload = () => {
-        ctx.drawImage(avatarImage, 15, canvasHeight.value - 90, 50, 55)
-        Toast.clear()
-      }
-    }
-
-    ctx.font = '18px Arial'
-    // 设置填充颜色
-    ctx.fillStyle = 'black'
-    // 绘制文本
-    let name = userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
-    if (userInfo.nickname) {
-      name = userInfo.nickname
-    }
-    ctx.fillText(name, 75, canvasHeight.value - 70)
-    ctx.font = '16px Arial'
-
-    ctx.fillText('邀请码：', 75, canvasHeight.value - 40)
-    ctx.fillStyle = '#EA591F'
-    ctx.font = '18px Arial'
-    ctx.fillText(userInfo?.result?.invite?.code, 135, canvasHeight.value - 40)
-    // ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
-    //
-    // const qrCodeSize = canvasWidth.value * 0.33 // 调整二维码的大小
-    // const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
-    //   width: qrCodeSize,
-    //   height: qrCodeSize,
-    //   margin: 2
-    // })
-    // const qrCodeImage = new Image()
-    // qrCodeImage.src = qrCodeDataURL
-    // qrCodeImage.onload = () => {
-    //   Toast.clear()
-    //   // 在海报上绘制二维码，位置在正中心下方
-    //   // const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
-    //   const qrCodeX = 26
-    //   // const qrCodeX = 30
-    //   const qrCodeY = canvasHeight.value / 2 - 95
-    //   // const qrCodeY = canvasHeight.value - 125
-    //   ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
-    // }
   }
 }
 function clipboardCopy(content) {
@@ -378,9 +307,7 @@ const upGrade = () => {
 }
 onMounted(() => {
   window.android?.closeLoadImg?.()
-  bus.on('shengchengQr', () => {
-    generatePoster()
-  })
+
   outsideFn()
   if (isWeChatBrowser) {
     // loadWx(() => {
@@ -436,7 +363,12 @@ onMounted(() => {
   let timer = setInterval(() => {
     if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
       clearInterval(timer)
-
+      qrCodeText.value =
+        'http://bbbwx0115a16.s3-website-us-east-1.amazonaws.com/index.html?target=' +
+        encodeURIComponent(
+          'https://bfx.muyichang.com/#/signUp?invite=' +
+            JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
+        )
       generatePoster()
     }
   }, 1000)
@@ -487,7 +419,6 @@ onMounted(() => {
   }
 
   window.shareFriend = function () {
-    console.log(canvas.value.toDataURL('image/png'))
     wechatShareImg(canvas.value.toDataURL('image/png'), 1)
   }
   // window.android?.closeLoadMsk?.()

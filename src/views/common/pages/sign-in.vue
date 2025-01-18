@@ -123,6 +123,7 @@ import CryptoJS from 'crypto-js'
 import axios from 'axios'
 import { _notice } from '@/utils'
 import { getImei, getOaid } from '@/utils/ad'
+import bus from '@/utils/bus'
 
 const { info, token, status } = storeToRefs(useUsers())
 const showGonggaoOverlay = ref(false)
@@ -220,6 +221,7 @@ const SignIn = async () => {
   window.localStorage.setItem('userInfo', JSON.stringify(data.user))
 
   // 跳转到首页
+  bus.emit('shengchengQr')
   router.replace({ path: '/' })
 }
 onMounted(() => {

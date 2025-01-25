@@ -376,8 +376,8 @@ async function goPay() {
   if (money.value > walletRes.data.amount + walletRes.data.money) {
     loading.value = false
     _notice('余额不足!')
-  //   return
-  // }
+    return
+  }
   const serial = user?.result?.staff?.serial
   if (!serial) {
     showGonggaoOverlay.value = true

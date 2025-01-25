@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login" v-if="false">
     <!-- <dy-back mode="light" img="back" @click="router.back()" class="fixed-back" direction="left" /> -->
 
     <van-nav-bar

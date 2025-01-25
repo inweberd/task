@@ -414,7 +414,7 @@ const list = [
     fn() {
       router.push('/teamStat')
     }
-  },
+  }
   // {
   //   label: '收入排行榜',
   //   icon: 'notes-o',
@@ -429,13 +429,13 @@ const list = [
   //     router.push('/fenhong')
   //   }
   // },
-  {
-    label: '余额互转（10元起转，散户小代理优先推荐使用）',
-    icon: 'exchange',
-    fn() {
-      router.push('/conversion')
-    }
-  }
+  // {
+  //   label: '余额互转（10元起转，散户小代理优先推荐使用）',
+  //   icon: 'exchange',
+  //   fn() {
+  //     router.push('/conversion')
+  //   }
+  // }
 ]
 
 const memberInfo = ref({})

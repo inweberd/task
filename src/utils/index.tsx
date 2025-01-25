@@ -361,7 +361,7 @@ export function _notice(val) {
   document.body.append(div)
   setTimeout(() => {
     document.body.removeChild(div)
-  }, 1000)
+  }, 2000)
 }
 
 export function _no() {

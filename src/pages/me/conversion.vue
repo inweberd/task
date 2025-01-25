@@ -21,7 +21,7 @@
           v-model="data.phone"
           label=""
           name="团队成员手机号"
-          placeholder="团队成员手机号"
+          placeholder="请输入对方手机号"
           :rules="[{ required: true, message: '请输入团队成员手机号' }]"
         />
         <van-field
@@ -76,10 +76,16 @@
           </van-button>
         </div>
       </van-form>
-      <p style="color: #000; text-align: center">余额互转50元起转，免手续费</p>
-      <p style="color: red; text-align: center; margin-top: 10px; font-size: 16px">
-        余额可以进行PG游戏娱乐
+      <p style="color: #000">1、余额互转10元起，互转免手续费,全平台用户可以互相转！</p>
+      <p style="color: #000; margin-top: 10px">
+        2、前期小代理，低等级会员，0撸用户，可以通过余额互转来实现余额流通，可以卖给上级，也可以在群内卖给收余额的用户，或者在APP内收别人的余额，用来凑够50元在APP发起提现。
       </p>
+      <p style="color: #000; margin-top: 10px">
+        3、余额可以直接用来购买会员！余额也可以直接进行游戏，游戏过程中，有中奖赢钱，，满足50元，可以在APP内发起提现。
+      </p>
+      <!--      <p style="color: red; text-align: center; margin-top: 10px; font-size: 16px">-->
+      <!--        全平台用户可以互相转-->
+      <!--      </p>-->
 
       <!--      <div-->
       <!--        style="-->
@@ -159,8 +165,8 @@ function getCode() {
   })
 }
 function onSubmit() {
-  if (data.amount < 50) {
-    return _notice('余额互转50元起！')
+  if (data.amount < 10) {
+    return _notice('余额互转10元起！')
   }
   if (!data.phone || !data.code) {
     return _notice('请输入验证码！')

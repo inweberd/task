@@ -244,6 +244,7 @@ import wechatLarge from '@/assets/img/recharge/wechatLarge.png'
 import jd from '@/assets/img/recharge/jd.jpg'
 import kd from '@/assets/img/recharge/kd.jpg'
 import usdt from '@/assets/img/recharge/usdt.png'
+import usdt2 from '@/assets/img/recharge/usdt2.jpg'
 import pay1 from '@/assets/img/recharge/pay1.jpg'
 import ysf from '@/assets/img/recharge/ysf.png'
 import pay2 from '@/assets/img/recharge/pay2.jpg'
@@ -318,6 +319,8 @@ const getIcon = (item) => {
       return kd
     } else if (item.key === 'bs') {
       return usdt
+    } else if (item.key === 'bishengusdt') {
+      return usdt2
     }
   }
 }

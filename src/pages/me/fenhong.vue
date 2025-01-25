@@ -20,13 +20,13 @@
         </div>
         <div class="money">{{ total }}(元)</div>
         <van-divider style="border-color: #bababa"></van-divider>
-        <div class="mine">
-          <span
-            >我的分红
-            <span style="font-weight: bolder">(未发放) </span>
-          </span>
-          <span>0</span>
-        </div>
+        <!--        <div class="mine">-->
+        <!--          <span-->
+        <!--            >我的分红-->
+        <!--            <span style="font-weight: bolder">(未发放) </span>-->
+        <!--          </span>-->
+        <!--          <span>0</span>-->
+        <!--        </div>-->
       </div>
       <img class="info" src="@/assets/img/fhgz.jpg" alt="" />
       <img class="info" src="./images/fenhong-info.png" alt="" />

@@ -130,10 +130,17 @@
     <!--        >-->
     <div class="desc">
       <!--<div class="desc-title">提现流程</div>-->
-      <p><span class="index">1.</span> 提现时间为10--21点</p>
-      <p><span class="index">2.</span> 提现手续费固定5%</p>
-      <p><span class="index">3.</span> 提现需为50的整倍数</p>
-      <p><span class="index">4.</span> 使用KD钱包，JD钱包提现免手续费</p>
+      <p style="margin-bottom: 10px">
+        <span class="index">1.</span> 提现20元起提，手续费固定5%，提现时间上午11点--晚上21点
+      </p>
+      <p style="margin-bottom: 10px">
+        <span class="index">2.</span>
+        你无需充值，你也可以使用余额转账功能，将你得余额出售给有会员的用户！/p>
+      </p>
+      <p>
+        <span class="index">3.</span>
+        你无需充值，你也可以使用余额转账功能，将你得余额出售给有会员的用户！
+      </p>
       <!--          <p>-->
       <!--            <span class="index">6.</span>-->
       <!--            推荐优先使用K豆钱包和JD钱包充提，永不风控，钱包里面内置支付宝，微信，银行卡，USDT等多种到账方式，自由转换，安全，方便快捷-->
@@ -159,6 +166,24 @@
 
     <!--          <p>长期稳定，信誉，正规企业，合法合规!</p>-->
     <!--        </div>-->
+    <TipDialog
+      v-model="showGonggaoOverlay"
+      @confirm="handleGonggaoConfirm"
+      confirm-text="去看看"
+      title="重要公告"
+    >
+      <div style="padding: 20px">
+        <p>
+          1：避免大批量0撸，机刷工作室捣乱，首次发起提现的用户，需要成为任意会员。方可提现，后续无任何要求。
+        </p>
+        <p style="margin-top: 10px">
+          2: 你无需充值，你也可以使用余额转账功能，将你的余额出售给有会员的用户！
+        </p>
+        <p style="margin-top: 10px">
+          3: 你无需充值，你的每日收益余额，也可以直接APP用来购买会员抵扣费用！
+        </p>
+      </div>
+    </TipDialog>
   </div>
 </template>
 
@@ -296,6 +321,7 @@ const bank = async () => {
   })
 }
 const columns = [
+  { text: '20', value: '20' },
   { text: '50', value: '50' },
   { text: '100', value: '100' },
   { text: '200', value: '200' },
@@ -315,6 +341,12 @@ const tixianLoading = ref(false)
 const onConfirm = ({ selectedValues, selectedOptions }) => {
   showPicker.value = false
   money.value = selectedValues[0]
+}
+
+const showGonggaoOverlay = ref(false)
+const handleGonggaoConfirm = () => {
+  showGonggaoOverlay.value = false
+  router.push('/invest')
 }
 const card = async () => {
   loading.value = true
@@ -344,21 +376,22 @@ async function goPay() {
   if (money.value > walletRes.data.amount + walletRes.data.money) {
     loading.value = false
     _notice('余额不足!')
-    return
-  }
-  // const serial = user?.result?.staff?.serial
-  // if (!serial) {
-  //   showDialog({
-  //     title: '重要公告',
-  //     message:
-  //       '为保障平台的公平与可持续发展，抵制工作室刷子的批量违规行为，公司决定，零撸用户玩家需购买一份股权后，才可进行出款操作。这一举措旨在维护广大用户的长远利益，确保平台能够长久稳定运营，感谢大家的理解与支持。' +
-  //       '\n购买股权后，后续出款将无需审核，款项将在 30 分钟内到账，让您的资金流转更加便捷高效。',
-  //     confirmButtonText: '去购买'
-  //   }).then(() => {
-  //     router.push('/invest')
-  //   })
   //   return
   // }
+  const serial = user?.result?.staff?.serial
+  if (!serial) {
+    showGonggaoOverlay.value = true
+    // showDialog({
+    //   title: '重要公告',
+    //   message:
+    //     '为保障平台的公平与可持续发展，抵制工作室刷子的批量违规行为，公司决定，零撸用户玩家需购买一份股权后，才可进行出款操作。这一举措旨在维护广大用户的长远利益，确保平台能够长久稳定运营，感谢大家的理解与支持。' +
+    //     '\n购买股权后，后续出款将无需审核，款项将在 30 分钟内到账，让您的资金流转更加便捷高效。',
+    //   confirmButtonText: '去购买'
+    // }).then(() => {
+    //   router.push('/invest')
+    // })
+    return
+  }
 
   // if (!sessionStorage.seeVideoWithdrawal) {
   //   showDialog({
@@ -392,9 +425,10 @@ async function goPay() {
   sessionStorage.seeVideoWithdrawal = ''
   sessionStorage.isShared = ''
   if (code !== 200) {
-    showDialog({
-      message: msg
-    })
+    // showDialog({
+    //   message: msg
+    // })
+    _notice(msg)
     return
   }
   showDialog({
@@ -600,8 +634,9 @@ const deleteCard = (item, index) => {
 }
 
 .desc {
-  padding: 0 10px;
-  color: #fff;
+  margin-top: 10px;
+  padding: 10px 40px;
+  color: #000;
   .desc-title {
     font-size: 16px;
     font-weight: bolder;

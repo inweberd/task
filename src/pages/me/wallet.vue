@@ -51,6 +51,7 @@
     </div>
     <van-tabs v-model:active="activeTab" background="transparent" color="#01c5f0">
       <van-tab title="团队分红  " name="团队分红"></van-tab>
+      <van-tab title="奖池发放  " name="排行榜奖励"></van-tab>
       <van-tab title="认购返利" name="认购返利"></van-tab>
       <van-tab title="支出" name="支出"></van-tab>
       <van-tab title="提现" name="提现"></van-tab>
@@ -76,6 +77,7 @@
     <!--      <van-tab title="提现记录" name="提现">-->
     <wallet-withdraw v-if="activeTab === '提现'"></wallet-withdraw>
     <rengoufanli v-if="activeTab === '认购返利'"></rengoufanli>
+    <paihangjiangli v-if="activeTab === '排行榜奖励'"></paihangjiangli>
     <!--      </van-tab>-->
     <!--    </van-tabs>-->
     <modzz v-model="service"></modzz>
@@ -93,6 +95,7 @@ import imageSrc from '@/assets/img/chongzhi.png'
 import { axiosInstance as axios } from '@/utils/myrequest'
 import { test } from '@/api/myApi'
 import { getIsInApp } from '@/utils/getTopPadding'
+import Paihangjiangli from '@/pages/me/wallet/paihangjiangli.vue'
 
 const router = useRouter()
 const service = ref(false)

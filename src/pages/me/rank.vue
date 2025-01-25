@@ -31,6 +31,15 @@
     <div style="display: flex; justify-content: center; margin-top: 10px">
       <img src="./images/rank-bg2.png" style="height: 120px" alt="" />
     </div>
+    <div class="fenhong">
+      <div class="title">
+        <!--        本次周期分红总金额 <br />-->
+        <!--          （每X天进行一轮分红） <br />-->
+        <div>当前奖池金额</div>
+      </div>
+      <div class="money">{{ total }}(元)</div>
+      <!--      <van-divider style="border-color: #bababa"></van-divider>-->
+    </div>
     <div class="qiansan">
       <div class="one">
         <div class="box">
@@ -115,7 +124,7 @@
 
 <script lang="ts" setup>
 import { getIsInApp } from '@/utils/getTopPadding'
-import { getWalletRank } from '@/api/myApi'
+import { getWalletRank, reqWalletStat } from '@/api/myApi'
 import { Toast } from 'tdesign-mobile-vue'
 import { computed, onBeforeUnmount, ref } from 'vue'
 import imageSrc1 from './images/rank1.png'
@@ -137,6 +146,8 @@ const rankListCom = computed(() => {
   const arr = rankList.value.slice(3)
   return arr
 })
+const total = ref(0)
+
 const getRank = () => {
   Toast({
     theme: 'loading',
@@ -187,6 +198,20 @@ const getRank = () => {
 }
 
 getRank()
+reqWalletStat().then((res) => {
+  console.log('reqWalletStat', res)
+  if (res.code !== 200) {
+    return
+  }
+  total.value = res.data.value
+  // if (date >= 1 && date <= 10) {
+  //   total.value = res.data.deposit[0].total
+  // } else if (date >= 11 && date <= 20) {
+  //   total.value = res.data.deposit[1].total
+  // } else {
+  //   total.value = res.data.deposit[2].total
+  // }
+})
 onBeforeUnmount(() => {
   Toast.clear()
 })
@@ -411,5 +436,34 @@ onBeforeUnmount(() => {
   -webkit-background-clip: text; /* Chrome, Safari */
   background-clip: text;
   color: transparent;
+}
+.fenhong {
+  //display: flex;
+  //justify-content: center;
+  //background: url('./images/square.png') no-repeat center center/ 100% 100%;
+  overflow: hidden;
+  .title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bolder;
+    margin-top: 10px;
+  }
+  .money {
+    text-align: center;
+    font-size: 28px;
+    color: #ff1300;
+    font-weight: bolder;
+  }
+  .mine {
+    padding: 10px 30px 20px;
+    display: flex;
+    font-size: 16px;
+    justify-content: space-between;
+    span:nth-child(2) {
+      font-size: 22px;
+      font-weight: bold;
+      color: #ff1300;
+    }
+  }
 }
 </style>

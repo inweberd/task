@@ -125,7 +125,7 @@ const list = [
     value: '100000',
     rtp: '中',
     return: '96.97%',
-    code: '74'
+    code: '65'
   },
   {
     name: '麻将胡了2',

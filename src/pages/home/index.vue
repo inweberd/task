@@ -101,6 +101,20 @@
         <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
       <div class="shulist">
+        <!--        <div class="shu-item">-->
+        <!--          <div class="l">-->
+        <!--            <div class="img-box">-->
+        <!--              <img src="@/assets/img/up/CA.png" alt="" />-->
+        <!--            </div>-->
+        <!--            <div>-->
+        <!--              <div>下载App</div>-->
+        <!--              <div>点击下载，获取更高收益！</div>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--          <div class="r">-->
+        <!--            <div @click="goDownload">下载</div>-->
+        <!--          </div>-->
+        <!--        </div>-->
         <div class="shu-item" v-if="!isIos">
           <div class="l">
             <div class="img-box">
@@ -135,8 +149,8 @@
               <img src="@/assets/img/up/CA.png" alt="" />
             </div>
             <div>
-              <div>一夜暴富--摇钱树</div>
-              <div>游戏好礼送不停！</div>
+              <div>一夜暴富--pg电子</div>
+              <div>PG电子---拼手气---一夜暴富！</div>
             </div>
           </div>
           <div class="r">
@@ -601,9 +615,9 @@ const handleGame = () => {
 }
 onActivated(() => {
   showGonggaoOverlay.value = true
-  reqNgTransfer().then((res) => {
-    console.log('res', res)
-  })
+  // reqNgTransfer().then((res) => {
+  //   console.log('res', res)
+  // })
 })
 // onMounted(() => {
 //   //   showDialog({

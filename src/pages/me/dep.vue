@@ -131,15 +131,19 @@
     <div class="desc">
       <!--<div class="desc-title">提现流程</div>-->
       <p style="margin-bottom: 10px">
-        <span class="index">1.</span> 提现20元起提，手续费固定5%，提现时间上午11点--晚上21点
+        <span class="index">1.</span> 提现20元起提，手续费固定5%，提现时间上午11点--晚上21点！
       </p>
       <p style="margin-bottom: 10px">
         <span class="index">2.</span>
-        你无需充值，你也可以使用余额转账功能，将你得余额出售给有会员的用户！/p>
+        余额互转10元起，余额互转，免手续费，支持全平台用户互转！
+      </p>
+      <p style="margin-bottom: 10px">
+        <span class="index">2.</span>
+        你无需充值，你也可以使用余额转账功能，将你得余额出售给有会员的用户！
       </p>
       <p>
         <span class="index">3.</span>
-        你无需充值，你也可以使用余额转账功能，将你得余额出售给有会员的用户！
+        你无需充值，你的每日收益余额，也可以直接在APP内用来购买会员抵扣费用使用！
       </p>
       <!--          <p>-->
       <!--            <span class="index">6.</span>-->
@@ -180,7 +184,7 @@
           2: 你无需充值，你也可以使用余额转账功能，将你的余额出售给有会员的用户！
         </p>
         <p style="margin-top: 10px">
-          3: 你无需充值，你的每日收益余额，也可以直接APP用来购买会员抵扣费用！
+          3: 你无需充值，你的每日收益余额，也可以直接在APP内用来购买会员抵扣费用使用！
         </p>
       </div>
     </TipDialog>

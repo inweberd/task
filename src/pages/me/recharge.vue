@@ -113,6 +113,7 @@
         <div style="margin-top: 20px; font-size: 16px; font-weight: bolder; color: #333">
           充值方式
         </div>
+        <p style="font-size: 12px">(每天0点到23点开放充值，每天23点-0点，公司1小时出账期停充！)</p>
 
         <div class="chongzhiList">
           <div

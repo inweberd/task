@@ -21,7 +21,10 @@
         点击头像可更换微信微信头像
       </p>
       <div class="idandcode">
-        <p>我的会员ID : {{ userInfo?.id }}</p>
+        <div>
+          <p>上级会员ID : {{ userInfo?.invite_id }}</p>
+          <p>我的会员ID : {{ userInfo?.id }}</p>
+        </div>
         <p style="margin-left: 40px">我的邀请码 : {{ userInfo?.result?.invite?.code }}</p>
       </div>
       <div class="money-info">
@@ -42,7 +45,7 @@
         <div class="top" @click="$router.push('/teamStat')">
           <div class="left">
             <img class="qianbao" src="./images/qianbao.png" alt="" />
-            <span> 我的余额 </span>
+            <span> 可提现余额 </span>
             <img
               class="eye"
               @click.stop="showTotal = false"
@@ -414,7 +417,7 @@ const list = [
     fn() {
       router.push('/teamStat')
     }
-  }
+  },
   // {
   //   label: '收入排行榜',
   //   icon: 'notes-o',
@@ -429,13 +432,13 @@ const list = [
   //     router.push('/fenhong')
   //   }
   // },
-  // {
-  //   label: '余额互转（10元起转，散户小代理优先推荐使用）',
-  //   icon: 'exchange',
-  //   fn() {
-  //     router.push('/conversion')
-  //   }
-  // }
+  {
+    label: '余额互转（10元起转）',
+    icon: 'exchange',
+    fn() {
+      router.push('/conversion')
+    }
+  }
 ]
 
 const memberInfo = ref({})
@@ -709,6 +712,7 @@ onDeactivated(() => {
       color: #666;
       display: flex;
       justify-content: center;
+      align-items: center;
     }
     .money-info {
       margin-top: 10px;

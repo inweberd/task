@@ -1,7 +1,6 @@
 <template>
-  <div class="login" v-if="false">
+  <div class="login">
     <!-- <dy-back mode="light" img="back" @click="router.back()" class="fixed-back" direction="left" /> -->
-
     <van-nav-bar
       title="余额互转"
       safe-area-inset-top
@@ -70,18 +69,20 @@
             native-type="submit"
             style="border: none"
             color="linear-gradient(to right, #ff8b6e, #ff625c)"
-            :disabled="countdown"
           >
             转账
           </van-button>
         </div>
       </van-form>
       <p style="color: #000">1、余额互转10元起，互转免手续费,全平台用户可以互相转！</p>
+      <!--      <p style="color: #000; margin-top: 10px">-->
+      <!--        2、前期小代理，低等级会员，0撸用户，可以通过余额互转来实现余额流通，可以卖给上级，也可以在群内卖给收余额的用户，或者在APP内收别人的余额，用来凑够50元在APP发起提现。-->
+      <!--      </p>-->
       <p style="color: #000; margin-top: 10px">
-        2、前期小代理，低等级会员，0撸用户，可以通过余额互转来实现余额流通，可以卖给上级，也可以在群内卖给收余额的用户，或者在APP内收别人的余额，用来凑够50元在APP发起提现。
+        2、余额可以直接用来购买会员！余额也可以直接进行游戏，游戏过程中，有中奖赢钱，满足50元，可以在APP内发起提现。
       </p>
       <p style="color: #000; margin-top: 10px">
-        3、余额可以直接用来购买会员！余额也可以直接进行游戏，游戏过程中，有中奖赢钱，，满足50元，可以在APP内发起提现。
+        3、余额互转功能，谁发起转账，谁需要拥有会员，接收方无需会员可接收
       </p>
       <!--      <p style="color: red; text-align: center; margin-top: 10px; font-size: 16px">-->
       <!--        全平台用户可以互相转-->
@@ -106,6 +107,29 @@
       <!--        <p>长期稳定，信誉，正规企业，合法合规!</p>-->
       <!--      </div>-->
     </div>
+    <TipDialog
+      v-model="showGonggaoOverlay2"
+      @confirm="
+        () => {
+          $router.push('/invest')
+          showGonggaoOverlay2 = false
+        }
+      "
+      confirm-text="去开通"
+    >
+      <p
+        style="
+          transform: translateY(10px);
+          text-align: center;
+          font-size: 18px;
+          color: #f1361e;
+          font-weight: bolder;
+          padding: 20px 0 40px;
+        "
+      >
+        余额互转仅限会员用户使用
+      </p>
+    </TipDialog>
   </div>
 </template>
 
@@ -117,9 +141,11 @@ import { logout as fnlogout, register, reqWalletTransfer, sociallogin } from '@/
 import { _no, _sleep, _notice } from '@/utils'
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
 import { useRoute } from 'vue-router'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { getIsInApp } from '@/utils/getTopPadding'
+const showGonggaoOverlay2 = ref(false)
 
+const isVip = ref(JSON.parse(window.localStorage.getItem('userInfo'))?.result?.staff?.serial)
 const route = useRoute()
 const time = ref()
 const data = reactive({
@@ -152,6 +178,12 @@ function go(path) {
 }
 
 function getCode() {
+  const serial = JSON.parse(window.localStorage.getItem('userInfo'))?.result?.staff?.serial
+  if (!serial) {
+    showGonggaoOverlay2.value = true
+
+    return
+  }
   if (!data.phone) {
     return _notice('请输入团队成员手机号')
   }

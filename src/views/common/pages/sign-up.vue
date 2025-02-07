@@ -96,6 +96,46 @@
         </div>
       </div>
     </div>
+    <div style="width: 80%; margin: 0 auto">
+      <van-divider
+        :style="{ color: '#666', borderColor: '#666', padding: '0 16px' }"
+        style="width: 100%; margin-top: 20px"
+      >
+        其他
+      </van-divider>
+      <div
+        style="
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          width: 100%;
+          padding-bottom: 20px;
+        "
+      >
+        <a style="font-size: 16px; color: #666" @click="goDownload">下载app</a>
+        <a style="font-size: 16px; color: #666" @click="jumpToQQ2">官方交流群 </a>
+      </div>
+    </div>
+    <TipDialog
+      v-model="showGonggaoOverlay"
+      @confirm="handleGonggaoConfirm"
+      confirm-text="点击下载微脉圈扫码进群"
+    >
+      <p
+        style="
+          transform: translateY(10px);
+          text-align: center;
+          font-size: 18px;
+          color: #f1361e;
+          font-weight: bolder;
+        "
+      >
+        请使用微脉圈APP扫码进官方群
+      </p>
+      <div style="padding: 20px">
+        <img style="width: 100%" src="@/assets/img/weimaiquan.jpg" alt="" />
+      </div>
+    </TipDialog>
   </div>
 </template>
 
@@ -104,13 +144,19 @@ import cache from '@/utils/cache'
 import logo from '@/views/common/assets/logo.png'
 
 import { POST } from '@/utils/axios'
-import { reactive, watch } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { useUsers } from '@/store/users'
 import { showFailToast, showToast } from 'vant'
 import { DocumentCopy, User, Lock, Connection } from '@element-plus/icons-vue'
+import { _notice } from '@/utils'
+const showGonggaoOverlay = ref(false)
 
+const handleGonggaoConfirm = () => {
+  showGonggaoOverlay.value = false
+  window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
+}
 const user = useUsers()
 const router = useRouter()
 const route = useRoute()
@@ -216,6 +262,20 @@ watch(
     if (val > 0 && val <= 60) state.status.code = true
   }
 )
+function goDownload() {
+  try {
+    window.location.href = `https://afx.chenfukang.com/download`
+  } catch (e) {
+    _notice('下载失败')
+  }
+}
+
+function jumpToQQ2() {
+  // router.push('/weimaiquanDetail')
+  showGonggaoOverlay.value = true
+
+  // window.location.href = decodeURIComponent('https://qm.qq.com/q/oVkcjwfykS')
+}
 </script>
 
 <style scoped lang="scss">

@@ -326,17 +326,26 @@ const bank = async () => {
 }
 const columns = [
   { text: '20', value: '20' },
+  { text: '40', value: '40' },
   { text: '50', value: '50' },
+  { text: '70', value: '70' },
+  { text: '90', value: '90' },
   { text: '100', value: '100' },
+  { text: '150', value: '150' },
   { text: '200', value: '200' },
+  { text: '250', value: '250' },
   { text: '300', value: '300' },
+  { text: '350', value: '350' },
   { text: '400', value: '400' },
+  { text: '450', value: '450' },
   { text: '500', value: '500' },
+  { text: '550', value: '550' },
   { text: '1000', value: '1000' },
   { text: '2000', value: '2000' },
   { text: '3000', value: '3000' },
   { text: '4000', value: '4000' },
-  { text: '5000', value: '5000' }
+  { text: '5000', value: '5000' },
+  { text: '10000', value: '10000' }
 ]
 const showPicker = ref(false)
 const loading = ref(false)

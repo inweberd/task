@@ -126,6 +126,16 @@
                 class="w-100"
                 color="#fff"
                 size="large"
+                style="border: none; border-radius: 15px; color: #ff6491; font-weight: bolder;padding:4px 8px;margin-right: 4px"
+                type="primary"
+                @click="buy(item, item.count)"
+              >0撸余额 <br>免费兑换
+              </el-button>
+              <span></span>
+              <el-button
+                class="w-100"
+                color="#fff"
+                size="large"
                 style="border: none; border-radius: 15px; color: #ff6491; font-weight: bolder"
                 type="primary"
                 @click="buy(item, item.count)"
@@ -526,7 +536,7 @@ const getAllStaff = () => {
     })
 
     console.log('staffList', staffList.value)
-    getMyStaff()
+    // getMyStaff()
   })
 }
 const getIconPath = (icon) => {
@@ -635,7 +645,7 @@ const getMyStaff = () => {
   })
 }
 onMounted(() => {
-  // getAllStaff()
+  getAllStaff()
   // getUserIncome()
 })
 
@@ -728,6 +738,7 @@ const speed = ref(0.5) //滚动速度
           color: #fff;
           font-size: 22px;
           font-weight: bolder;
+          display: flex;
         }
         .content {
           margin-top: 20px;
@@ -742,6 +753,10 @@ const speed = ref(0.5) //滚动速度
             div:nth-child(2) {
               margin-left: 20px;
             }
+          }
+          .r{
+            //display: flex;
+            //flex-direction: column;
           }
         }
       }

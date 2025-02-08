@@ -49,7 +49,7 @@
           <img src="@/pages/home/images/banner7.jpg" alt="" />
         </van-swipe-item>
         <van-swipe-item>
-          <img src="@/pages/home/images/banner8.jpg" alt="" />
+          <img src="@/pages/home/images/banner9.jpg" alt="" />
         </van-swipe-item>
       </van-swipe>
     </div>
@@ -453,6 +453,24 @@ const vipList = [
     color: '#fff'
   },
   {
+    name: '铜卡会员',
+    count: 2,
+    // bgColor: 'linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%)',
+    // bgColor: 'linear-gradient( 135deg, #DEC3BA 10%, #DEC3BA 100%)',
+    // color: '#66380F'
+    bgColor: 'linear-gradient( 135deg, #FF7E30 10%, #FF7E30 100%)',
+    color: '#fff'
+  },
+  {
+    name: '铜卡会员',
+    count: 3,
+    // bgColor: 'linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%)',
+    // bgColor: 'linear-gradient( 135deg, #DEC3BA 10%, #DEC3BA 100%)',
+    // color: '#66380F'
+    bgColor: 'linear-gradient( 135deg, #FF7E30 10%, #FF7E30 100%)',
+    color: '#fff'
+  },
+  {
     name: '银卡会员',
     count: 5,
     // bgColor: 'linear-gradient(135deg, #ff4e9a 10%, #ffc161 100%)',
@@ -645,7 +663,7 @@ const getMyStaff = () => {
   })
 }
 onMounted(() => {
-  getAllStaff()
+  // getAllStaff()
   // getUserIncome()
 })
 

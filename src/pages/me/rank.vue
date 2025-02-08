@@ -32,23 +32,13 @@
       <img src="./images/rank-bg2.png" style="width: 95%" alt="" />
     </div>
     <div class="fenhong">
-      <div style="display: grid; grid-template-columns: 1fr 1fr">
-        <div>
-          <div class="title">
-            <!--        本次周期分红总金额 <br />-->
-            <!--          （每X天进行一轮分红） <br />-->
-            <div>累计已发放奖金</div>
-          </div>
-          <div class="money">￥{{ alreadyTotal.toFixed(2) }}</div>
+      <div>
+        <div class="title">
+          <!--        本次周期分红总金额 <br />-->
+          <!--          （每X天进行一轮分红） <br />-->
+          <div>本周（第五周）奖池金额</div>
         </div>
-        <div>
-          <div class="title">
-            <!--        本次周期分红总金额 <br />-->
-            <!--          （每X天进行一轮分红） <br />-->
-            <div>本周奖池金额</div>
-          </div>
-          <div class="money">￥{{ total }}</div>
-        </div>
+        <div class="money">￥{{ total }}</div>
       </div>
       <van-divider style="border-color: #bababa"></van-divider>
       <div style="text-align: center; margin-top: 10px">
@@ -163,7 +153,6 @@ const rankListCom = computed(() => {
   return arr
 })
 const total = ref(0)
-const alreadyTotal = ref(0)
 const getRank = () => {
   Toast({
     theme: 'loading',
@@ -210,10 +199,6 @@ const getRank = () => {
     //   { avatar: '', id: 10, nickname: '暴走兔', phone: '', total: 110 },
     //   { avatar: '', id: 11, nickname: '暴走兔', phone: '', total: 111 }
     // ]
-  })
-
-  getRankRecord().then((res) => {
-    alreadyTotal.value = res.data.total
   })
 }
 
@@ -522,13 +507,13 @@ onBeforeUnmount(() => {
   overflow: hidden;
   .title {
     text-align: center;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bolder;
     margin-top: 10px;
   }
   .money {
     text-align: center;
-    font-size: 24px;
+    font-size: 32px;
     color: #ff1300;
     font-weight: bolder;
   }

@@ -4,7 +4,7 @@
     <Loading v-if="loading"></Loading>
     <div class="container">
       <div :style="containerStyle" style="background-color: #fff">
-        <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+        <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white" v-if="false">
           <!--          <van-swipe-item>-->
           <!--            <img src="./images/banner3.png" alt="" />-->
           <!--          </van-swipe-item>-->
@@ -35,24 +35,25 @@
         <!--        >-->
         <!--        </van-notice-bar>-->
 
-        <van-notice-bar
-          :scrollable="false"
-          color="#333"
-          background="transparent"
-          left-icon="volume-o"
-          style="border-radius: 10px; height: 40px; border: 1px solid #ff8e7d; line-height: 40px"
-        >
-          <van-swipe
-            style="height: 40px; line-height: 40px"
-            vertical
-            class="notice-swipe"
-            :autoplay="1000"
-            :touchable="false"
-            :show-indicators="false"
-          >
-            <van-swipe-item v-for="item of scrollContent">{{ item }}</van-swipe-item>
-          </van-swipe>
-        </van-notice-bar>
+        <!--        <van-notice-bar-->
+        <!--          :scrollable="false"-->
+        <!--          color="#333"-->
+        <!--          background="transparent"-->
+        <!--          left-icon="volume-o"-->
+        <!--          style="border-radius: 10px; height: 40px; border: 1px solid #ff8e7d; line-height: 40px"-->
+        <!--        >-->
+        <!--          <van-swipe-->
+        <!--            style="height: 40px; line-height: 40px"-->
+        <!--            vertical-->
+        <!--            class="notice-swipe"-->
+        <!--            :autoplay="1000"-->
+        <!--            :touchable="false"-->
+        <!--            :show-indicators="false"-->
+        <!--          >-->
+        <!--            <van-swipe-item v-for="item of scrollContent">{{ item }}</van-swipe-item>-->
+        <!--          </van-swipe>-->
+        <!--        </van-notice-bar>-->
+
         <!--        <t-notice-bar-->
         <!--          v-if="!scrollContent.length"-->
         <!--          visible-->
@@ -78,7 +79,87 @@
         <!--          </template>-->
         <!--        </t-notice-bar>-->
       </div>
-      <div v-show="activeTab === 0" class="app-list" style="margin-top: 10px">
+      <van-notice-bar
+        left-icon="volume-o"
+        text="指尖网络欢迎您，邀请好友赚翻天，现金奖励无上限！"
+      />
+      <div class="game-box">
+        <div class="title">PG电子老虎机</div>
+        <div class="img-list" @click="toGame('pg')">
+          <div class="img-item" style="margin: 0 2px; width: calc(20% - 4px)">
+            <img
+              style="border-radius: 50%"
+              src="@/pages/me/images/quanminlaibaojiang/65.webp"
+              alt=""
+            />
+          </div>
+          <div class="img-item" style="margin: 0 2px; width: calc(20% - 4px)">
+            <img
+              style="border-radius: 50%"
+              src="@/pages/me/images/quanminlaibaojiang/5.webp"
+              alt=""
+            />
+          </div>
+          <div class="img-item" style="margin: 0 2px; width: calc(20% - 4px)">
+            <img
+              style="border-radius: 50%"
+              src="@/pages/me/images/quanminlaibaojiang/3.webp"
+              alt=""
+            />
+          </div>
+          <div class="img-item" style="margin: 0 2px; width: calc(20% - 4px)">
+            <img
+              style="border-radius: 50%"
+              src="@/pages/me/images/quanminlaibaojiang/104.webp"
+              alt=""
+            />
+          </div>
+          <div class="img-item" style="margin: 0 2px; width: calc(20% - 4px)">
+            <img
+              style="border-radius: 50%"
+              src="@/pages/me/images/quanminlaibaojiang/6.webp"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      <div class="game-box">
+        <div class="title">指尖网络-棋牌娱乐</div>
+        <!--        <div class="img-list">-->
+        <div class="img-list" @click="toGame('ky')">
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/220.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/510.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/620.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/830.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/910.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/2011.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/950.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/630.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/900.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/1960.webp" alt="" />
+          </div>
+        </div>
+      </div>
+      <div v-show="activeTab === 0" class="app-list" style="margin-top: 10px" v-if="false">
         <div class="app-list-item" v-for="(item, index) of appList" @click="item.btnCb">
           <div class="l">
             <div class="logo">
@@ -100,6 +181,7 @@
 
         <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
+      <div style="font-size: 16px; color: #333; padding: 5px 15px 0">刷视频收入板块</div>
       <div class="shulist">
         <!--        <div class="shu-item">-->
         <!--          <div class="l">-->
@@ -115,6 +197,20 @@
         <!--            <div @click="goDownload">下载</div>-->
         <!--          </div>-->
         <!--        </div>-->
+        <div class="shu-item">
+          <div class="l">
+            <div class="img-box">
+              <img src="@/assets/img/up/CA.png" alt="" />
+            </div>
+            <div>
+              <div>每周大奖池排行榜</div>
+              <div>点击查看每周大奖池排行榜！</div>
+            </div>
+          </div>
+          <div class="r">
+            <div @click="$router.push('/rank')">详情</div>
+          </div>
+        </div>
         <div class="shu-item" v-if="!isIos">
           <div class="l">
             <div class="img-box">
@@ -163,28 +259,28 @@
               <img src="@/assets/img/up/CA.png" alt="" />
             </div>
             <div>
-              <div>代理佣金排行榜</div>
-              <div>点击查看代理佣金排行榜！</div>
+              <div>指尖网络--棋牌娱乐</div>
+              <div>点击查看详情！</div>
             </div>
           </div>
           <div class="r">
-            <div @click="$router.push('/rank')">详情</div>
+            <div @click="toGame('ky')">详情</div>
           </div>
         </div>
-        <div class="shu-item">
-          <div class="l">
-            <div class="img-box">
-              <img src="@/assets/img/up/CA.png" alt="" />
-            </div>
-            <div>
-              <div>每周奖池大奖</div>
-              <div>点击查看每周分红奖池！</div>
-            </div>
-          </div>
-          <div class="r">
-            <div @click="$router.push('/fenhong')">详情</div>
-          </div>
-        </div>
+        <!--        <div class="shu-item">-->
+        <!--          <div class="l">-->
+        <!--            <div class="img-box">-->
+        <!--              <img src="@/assets/img/up/CA.png" alt="" />-->
+        <!--            </div>-->
+        <!--            <div>-->
+        <!--              <div>每周奖池大奖</div>-->
+        <!--              <div>点击查看每周分红奖池！</div>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--          <div class="r">-->
+        <!--            <div @click="$router.push('/fenhong')">详情</div>-->
+        <!--          </div>-->
+        <!--        </div>-->
       </div>
 
       <!--      <div class="playing" v-show="activeTab === 1">-->
@@ -615,9 +711,12 @@ const handleGame = () => {
 }
 onActivated(() => {
   showGonggaoOverlay.value = true
-  // reqNgTransfer().then((res) => {
-  //   console.log('res', res)
-  // })
+  reqNgTransfer().then((res) => {
+    console.log('res', res)
+  })
+  reqNgTransfer({ plat: 'ky' }).then((res) => {
+    console.log('res', res)
+  })
 })
 // onMounted(() => {
 //   //   showDialog({
@@ -642,6 +741,32 @@ onActivated(() => {
 //     // }
 //   })
 // })
+const toGame = (plat) => {
+  Toast({
+    theme: 'loading',
+    message: '加载中...',
+    duration: 0
+  })
+  // reqNgPlay(code)
+  // reqNgPlayCode().then((res) => {
+  //   console.log('reqNgPlayCode', res)
+  // })
+  reqNgPlay({
+    // code: '',
+    plat
+  })
+    .then((res) => {
+      // console.log('reqNgPlay', res)
+      if (res.code === 200) {
+        window.location.href = res.data.url
+      } else {
+        showFailToast('游戏加载失败！' + res.msg)
+      }
+    })
+    .finally(() => {
+      Toast.clear()
+    })
+}
 </script>
 
 <style scoped lang="less">
@@ -718,6 +843,25 @@ onActivated(() => {
     .notice {
       padding: 5px 15px;
       margin-top: 10px;
+    }
+
+    .game-box {
+      padding: 5px 15px;
+      color: #333;
+      .title {
+        font-size: 16px;
+        margin: 6px;
+      }
+      .img-list {
+        display: flex;
+        flex-wrap: wrap;
+        .img-item {
+          width: 20%;
+          img {
+            width: 100%;
+          }
+        }
+      }
     }
     .log {
       padding: 0px 20px 10px;

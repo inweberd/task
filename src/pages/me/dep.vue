@@ -6,6 +6,14 @@
       @click-left="$router.back()"
       style="background-color: transparent"
     />
+    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+      <van-swipe-item>
+        <img src="@/pages/home/images/banner7.jpg" alt="" />
+      </van-swipe-item>
+      <van-swipe-item>
+        <img src="@/pages/home/images/banner9.jpg" alt="" />
+      </van-swipe-item>
+    </van-swipe>
     <Loading v-if="loading" />
     <!--    <van-image :src="tixian" width="100%" height="100%;"></van-image>-->
 
@@ -106,8 +114,8 @@
           width: 80%;
           border-radius: 15px;
           margin-top: 20px !important;
-          color: #666;
-          background-color: #fff;
+          color: #fff;
+          background-image: linear-gradient(to right, #ff8b6e, #ff625c);
           border: 1px solid #ccc !important;
         "
         type="primary"
@@ -133,18 +141,23 @@
       <p style="margin-bottom: 10px">
         <span class="index">1.</span> 提现20元起提，手续费固定5%，提现时间上午11点--晚上21点！
       </p>
+      <!--      <p style="margin-bottom: 10px">-->
+      <!--        <span class="index">2.</span>-->
+      <!--        余额互转10元起，余额互转，免手续费，支持全平台用户互转！-->
+      <!--      </p>-->
+      <!--      <p style="margin-bottom: 10px">-->
+      <!--        <span class="index">2.</span>-->
+      <!--        你无需充值，你也可以使用余额转账功能，将你得余额出售给有会员的用户！-->
+      <!--      </p>-->
       <p style="margin-bottom: 10px">
         <span class="index">2.</span>
-        余额互转10元起，余额互转，免手续费，支持全平台用户互转！
-      </p>
-      <p style="margin-bottom: 10px">
-        <span class="index">2.</span>
-        你无需充值，你也可以使用余额转账功能，将你得余额出售给有会员的用户！
-      </p>
-      <p>
-        <span class="index">3.</span>
         你无需充值，你的每日收益余额，也可以直接在APP内用来购买会员抵扣费用使用！
       </p>
+      <!--      <p style="background-color: #666; color: #fff">-->
+      <!--        <span class="index">3.</span>-->
+      <!--        使用jd钱包充值，单笔冲100额外送100元，单笔冲5000额外送200元-->
+      <!--        使用jd钱包单笔提现100元，可在jd钱包内轮盘抽奖中现金！-->
+      <!--      </p>-->
       <!--          <p>-->
       <!--            <span class="index">6.</span>-->
       <!--            推荐优先使用K豆钱包和JD钱包充提，永不风控，钱包里面内置支付宝，微信，银行卡，USDT等多种到账方式，自由转换，安全，方便快捷-->
@@ -152,24 +165,23 @@
     </div>
     <!--        <van-image style="margin-top: 10px" :src="tixian" width="100%"></van-image>-->
 
-    <!--        <div-->
-    <!--          style="-->
-    <!--            margin: 10px;-->
-    <!--            background-color: rgba(70, 89, 101, 0.7);-->
-    <!--            border-radius: 10px;-->
-    <!--            padding: 6px;-->
-    <!--            color: #fff;-->
-    <!--            text-indent: 2em;-->
-    <!--            line-height: 1.6;-->
-    <!--          "-->
-    <!--        >-->
-    <!--          <p style="margin-bottom: 8px">-->
-    <!--            每日推广佣金，可以用来进行游戏娱乐，中奖可提现，投入1块钱，最多可中奖30000（3万元）爆奖奖金！-->
-    <!--            中奖，无任何附加条件，直接可提现！-->
-    <!--          </p>-->
-
-    <!--          <p>长期稳定，信誉，正规企业，合法合规!</p>-->
-    <!--        </div>-->
+    <div
+      style="
+        margin: 10px;
+        background-color: #ff625c;
+        border-radius: 10px;
+        padding: 6px;
+        color: #fff;
+        line-height: 1.6;
+        font-size: 16px;
+      "
+    >
+      <p style="margin-bottom: 8px">
+        使用jd钱包充值，首次单笔冲1000额外送100元，首次单笔冲5000额外送200元
+      </p>
+      <p>使用jd钱包单笔提现100元，可在jd钱包内轮盘抽奖中现金！</p>
+      <!--      <p>长期稳定，信誉，正规企业，合法合规!</p>-->
+    </div>
     <TipDialog
       v-model="showGonggaoOverlay"
       @confirm="handleGonggaoConfirm"
@@ -186,6 +198,16 @@
         <p style="margin-top: 10px">
           3: 你无需充值，你的每日收益余额，也可以直接在APP内用来购买会员抵扣费用使用！
         </p>
+      </div>
+    </TipDialog>
+    <TipDialog
+      v-model="shareDialogShow"
+      @confirm="shareFriend"
+      confirm-text="一键分享"
+      :show-close="false"
+    >
+      <div style="padding: 20px">
+        <p>先分享微信朋友圈，再进行提现!</p>
       </div>
     </TipDialog>
   </div>
@@ -236,6 +258,12 @@ onMounted(async () => {
   await card()
   setPay()
 })
+const shareDialogShow = ref(false)
+const shareFriend = () => {
+  shareDialogShow.value = false
+  sessionStorage.isShared = true
+  window.shareFriend()
+}
 onActivated(() => {
   user = JSON.parse(window.localStorage.getItem('userInfo'))
 })
@@ -383,7 +411,18 @@ async function goPay() {
   if (!money.value) {
     return _notice('请选择提现金额')
   }
-
+  if (!sessionStorage.isShared && window.android && window.android.shareImg) {
+    shareDialogShow.value = true
+    // showDialog({
+    //   message: '先分享微信朋友圈，再进行提现!'
+    // }).then(() => {
+    //   // on close
+    //
+    //   sessionStorage.isShared = true
+    //   window.shareFriend()
+    // })
+    return
+  }
   const walletRes = await reqWalletInfo()
 
   if (money.value > walletRes.data.amount + walletRes.data.money) {
@@ -417,17 +456,7 @@ async function goPay() {
   //   })
   //   return
   // }
-  // if (!sessionStorage.isShared) {
-  //   showDialog({
-  //     message: '先分享微信朋友圈，再进行提现!'
-  //   }).then(() => {
-  //     // on close
-  //
-  //     sessionStorage.isShared = true
-  //     window.shareFriend()
-  //   })
-  //   return
-  // }
+
   tixianLoading.value = true
   const { code, msg } = await axios.post('/api/wallet-fetch/create', {
     money: money.value,
@@ -448,7 +477,6 @@ async function goPay() {
     message: '申请已提交！'
   })
 }
-
 const setPay = () => {
   const id = state.item.card.id
   state.item.card.data = state.select.card.find((item) => item.id === id)
@@ -659,6 +687,18 @@ const deleteCard = (item, index) => {
     .index {
       font-weight: bolder;
     }
+  }
+}
+.my-swipe .van-swipe-item {
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 100%;
+    height: 200px;
   }
 }
 </style>

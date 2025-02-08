@@ -110,7 +110,7 @@ import img98 from './images/quanminlaibaojiang/98.jpg'
 import { getIsInApp } from '@/utils/getTopPadding'
 import { showImagePreview } from 'vant'
 import { Toast } from 'tdesign-mobile-vue'
-import { reqNgPlay } from '@/api/myApi'
+import { reqNgPlay, reqNgPlayCode } from '@/api/myApi'
 import { showDialog, showFailToast } from 'vant'
 
 // const showImage = () => {
@@ -432,7 +432,9 @@ const toGame = (code) => {
     message: '加载中...',
     duration: 0
   })
-  reqNgPlay(code)
+  reqNgPlay({
+    code
+  })
     .then((res) => {
       console.log('reqNgPlay', res)
       if (res.code === 200) {

@@ -264,17 +264,28 @@ export function createAdLog(data = {}) {
 }
 
 // 开始游戏
-export function reqNgPlay(code = '') {
+export function reqNgPlay(data) {
   return axiosInstance({
     url: 'api/ng-game/play',
     method: 'post',
-    data: {
-      code
-    }
+    data
+  })
+}
+
+// 根据游戏类型请求code
+export function reqNgPlayCode() {
+  return axiosInstance({
+    url: 'api/ng-game/code?plat=ky',
+    method: 'get'
   })
 }
 
 // 额度转换
-export function reqNgTransfer() {
-  return axiosInstance({ url: 'api/ng-game/transfer', method: 'post' })
+export function reqNgTransfer(data = {}) {
+  return axiosInstance({ url: 'api/ng-game/transfer', method: 'post', data })
+}
+
+// 额度转换
+export function getRankRecord() {
+  return axiosInstance({ url: '/api/wallet-log/rank-record', method: 'get' })
 }

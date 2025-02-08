@@ -22,7 +22,7 @@
       </p>
       <div class="idandcode">
         <div>
-          <p>上级会员ID : {{ userInfo?.invite_id }}</p>
+          <!--          <p>上级会员ID : {{ userInfo?.invite_id }}</p>-->
           <p>我的会员ID : {{ userInfo?.id }}</p>
         </div>
         <p style="margin-left: 40px">我的邀请码 : {{ userInfo?.result?.invite?.code }}</p>
@@ -40,6 +40,18 @@
           <span>{{ walletInfo?.amount || 0 }}</span>
           <span>充值余额</span>
         </p>
+      </div>
+      <div class="vipcount" style="color: red; margin-top: 10px; font-size: 16px">
+        <!--          会员等级: {{ getSerialName(userInfo?.result?.staff?.serial)-->
+        <!--          }}{{ myStaffList?.length ? myStaffList?.length + '份' : '' }}-->
+        <p style="text-align: center">
+          我的会员等级:
+          <span>{{ getSerialName(myStaffList?.length || 0) }}</span>
+          <span style="padding-left: 20px" v-if="myStaffList?.length"
+            >今日未领取收入: {{ shengyukelinqqu }}</span
+          >
+        </p>
+        <!--          <p v-if="myStaffList?.length">当日可领取佣金: {{ myStaffList.length * 2.5 }}</p>-->
       </div>
       <div class="total-box">
         <div class="top" @click="$router.push('/teamStat')">
@@ -70,17 +82,8 @@
           </div>
         </div>
       </div>
+
       <div class="chongzhiandtixian">
-        <div class="vipcount" style="color: red">
-          <!--          会员等级: {{ getSerialName(userInfo?.result?.staff?.serial)-->
-          <!--          }}{{ myStaffList?.length ? myStaffList?.length + '份' : '' }}-->
-          <p>
-            我的会员等级:
-            <span>{{ getSerialName(myStaffList?.length || 0) }}</span>
-          </p>
-          <!--          <p v-if="myStaffList?.length">当日可领取佣金: {{ myStaffList.length * 2.5 }}</p>-->
-          <p v-if="myStaffList?.length">今日未领取佣金: {{ shengyukelinqqu }}</p>
-        </div>
         <div class="btn-box">
           <van-button
             @click="go('recharge')"
@@ -96,6 +99,14 @@
             style="margin-left: 10px"
           >
             提现
+          </van-button>
+          <van-button
+            @click="go('/invest')"
+            class="btn"
+            color="linear-gradient(to right, #F6CEEC, #D939CD)"
+            style="margin-left: 10px"
+          >
+            购买会员
           </van-button>
         </div>
       </div>
@@ -384,12 +395,19 @@ const list = [
     }
   },
   {
-    label: '官方不禁言交流群（微脉圈）',
+    label: '每周奖池大奖',
     icon: 'like-o',
     fn() {
-      jumpToQQ()
+      router.push('/fenhong')
     }
   },
+  // {
+  //   label: '官方不禁言交流群（微脉圈）',
+  //   icon: 'like-o',
+  //   fn() {
+  //     jumpToQQ()
+  //   }
+  // },
   {
     label: '分享好友二维码',
     icon: 'star-o',
@@ -643,6 +661,9 @@ const handleEyeClick = () => {
     message: '加载中...',
     duration: 0
   })
+  reqNgTransfer({ plat: 'ky' }).then((res) => {
+    console.log('res', res)
+  })
   reqNgTransfer().finally(() => {
     getUserIncome(() => {
       showTotal.value = true
@@ -732,7 +753,7 @@ onDeactivated(() => {
       }
     }
     .total-box {
-      margin-top: 20px;
+      margin-top: 10px;
       background-color: #f6f6f6;
       padding: 10px 10px;
       border-radius: 10px;
@@ -776,10 +797,13 @@ onDeactivated(() => {
         font-size: 16px;
       }
       .btn-box {
+        width: 100%;
+        display: flex;
+        justify-content: center;
         .btn {
-          height: 30px;
+          height: 35px;
           border-radius: 15px;
-          padding: 2px 20px;
+          padding: 2px 25px;
         }
       }
     }

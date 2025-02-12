@@ -98,7 +98,7 @@
 <script setup lang="ts">
 import routes from './router/routes'
 import { useBaseStore } from '@/store/pinia.js'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import { loadWx } from '@/utils/loadWx'
@@ -113,7 +113,8 @@ const keepAliveBlackList = [
   'shourulaiyuan',
   'rank',
   'short',
-  'myCard'
+  'myCard',
+  'iframeCom'
 ]
 import {
   androidUpdate,
@@ -144,7 +145,7 @@ const transitionName = ref('go')
 const showOverlay = ref(false)
 const topPadding = computed(() => {
   // window.webkit?.messageHandlers
-  if (window.android && window.android.getVersionCode) {
+  if (window.android && window.android.getVersionCode && !window.android.hideBar) {
     if (
       !['/home', '/me', '/invest', '/myteam', '/myServe', '/serveInfo', '/rank1'].includes(
         route.path
@@ -220,7 +221,7 @@ const qrCodeText = ref('')
 
 const generatePoster = async () => {
   qrCodeText.value =
-    'http://bbbwx0115a110.s3-website-us-east-1.amazonaws.com/index.html?target=' +
+    'http://bbbwx0207a11.s3-website-us-east-1.amazonaws.com/index.html?target=' +
     encodeURIComponent(
       'https://bfx.muyichang.com/#/signUp?invite=' +
         JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code

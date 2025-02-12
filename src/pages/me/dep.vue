@@ -7,11 +7,14 @@
       style="background-color: transparent"
     />
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item>
-        <img src="@/pages/home/images/banner7.jpg" alt="" />
-      </van-swipe-item>
+      <!--      <van-swipe-item>-->
+      <!--        <img src="@/pages/home/images/banner7.jpg" alt="" />-->
+      <!--      </van-swipe-item>-->
       <van-swipe-item>
         <img src="@/pages/home/images/banner9.jpg" alt="" />
+      </van-swipe-item>
+      <van-swipe-item>
+        <img src="@/pages/home/images/banner10.jpg" alt="" />
       </van-swipe-item>
     </van-swipe>
     <Loading v-if="loading" />
@@ -61,17 +64,25 @@
     <van-radio-group v-model="pay_card_id">
       <van-cell-group inset>
         <van-cell
-          v-for="item of state.select.card"
+          v-for="(item, index) of state.select.card"
           :title="item.card_no"
           clickable
           @click="onSelect(item)"
         >
           <template #icon>
-            <img
-              style="width: 25px; height: 25px; margin-right: 6px"
-              :src="getThumb(item.mode)"
-              alt=""
-            />
+            <div style="display: flex; align-items: center">
+              <van-icon
+                name="delete-o"
+                size="20"
+                style="margin-right: 4px"
+                @click="deleteCard(item, index)"
+              />
+              <img
+                style="width: 25px; height: 25px; margin-right: 6px"
+                :src="getThumb(item.mode)"
+                alt=""
+              />
+            </div>
           </template>
           <template #right-icon>
             <van-radio :name="item.id" />
@@ -179,7 +190,7 @@
       <p style="margin-bottom: 8px">
         使用jd钱包充值，首次单笔冲1000额外送100元，首次单笔冲5000额外送200元
       </p>
-      <p>使用jd钱包单笔提现100元，可在jd钱包内轮盘抽奖中现金！</p>
+      <p>使用365钱包充值，首次注册365钱包送58，单笔充365值钱包400元送88元.到365钱包账户内</p>
       <!--      <p>长期稳定，信誉，正规企业，合法合规!</p>-->
     </div>
     <TipDialog
@@ -192,11 +203,11 @@
         <p>
           1：避免大批量0撸，机刷工作室捣乱，首次发起提现的用户，需要成为任意会员。方可提现，后续无任何要求。
         </p>
+        <!--        <p style="margin-top: 10px">-->
+        <!--          2: 你无需充值，你也可以使用余额转账功能，将你的余额出售给有会员的用户！-->
+        <!--        </p>-->
         <p style="margin-top: 10px">
-          2: 你无需充值，你也可以使用余额转账功能，将你的余额出售给有会员的用户！
-        </p>
-        <p style="margin-top: 10px">
-          3: 你无需充值，你的每日收益余额，也可以直接在APP内用来购买会员抵扣费用使用！
+          2: 你无需充值，你的每日收益余额，也可以直接在APP内用来购买会员抵扣费用使用！
         </p>
       </div>
     </TipDialog>

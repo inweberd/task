@@ -74,12 +74,12 @@
           </van-button>
         </div>
       </van-form>
-      <p style="color: #000">1、余额互转10元起，互转免手续费,全平台用户可以互相转！</p>
+      <p style="color: #000">1、余额互转20元起，互转免手续费,全平台用户可以互相转！</p>
       <!--      <p style="color: #000; margin-top: 10px">-->
       <!--        2、前期小代理，低等级会员，0撸用户，可以通过余额互转来实现余额流通，可以卖给上级，也可以在群内卖给收余额的用户，或者在APP内收别人的余额，用来凑够50元在APP发起提现。-->
       <!--      </p>-->
       <p style="color: #000; margin-top: 10px">
-        2、余额可以直接用来购买会员！余额也可以直接进行游戏，游戏过程中，有中奖赢钱，满足50元，可以在APP内发起提现。
+        2、余额可以直接用来购买会员！余额也可以直接进行游戏，游戏过程中，有中奖赢钱，满足20元，可以在APP内发起提现。
       </p>
       <p style="color: #000; margin-top: 10px">
         3、余额互转功能，谁发起转账，谁需要拥有会员，接收方无需会员可接收
@@ -197,8 +197,8 @@ function getCode() {
   })
 }
 function onSubmit() {
-  if (data.amount < 10) {
-    return _notice('余额互转10元起！')
+  if (data.amount < 20) {
+    return _notice('余额互转20元起！')
   }
   if (!data.phone || !data.code) {
     return _notice('请输入验证码！')

@@ -14,9 +14,11 @@
               >大拇指视频提现成功！
             </span>
             <span v-else-if="item.status === 'paying'" class="text-dark">转账中</span>
-            <span v-else-if="item.status === 'fail'" class="text-danger">转账失败（卡号有误）</span>
-            <span v-else-if="item.status === 'cancel'" class="text-dark"
-              >拒绝，咨询微脉圈群内客服</span
+            <span v-else-if="item.status === 'fail'" class="text-danger"
+              >转账失败（收款帐号有误，请更换）</span
+            >
+            <span v-else-if="item.status === 'cancel'" class="text-dark">
+              收款账号有误，请更换正确收款方式</span
             >
             <span v-else>{{ item.status }}</span>
           </span>

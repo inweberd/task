@@ -66,6 +66,16 @@
       </div>
       <div class="tuandui">
         <div class="tuandui-item">
+          <p>团队游戏流水</p>
+          <p style="font-size: 12px">开发测试中</p>
+        </div>
+        <div class="tuandui-item">
+          <p>团队游戏返利</p>
+          <p style="font-size: 12px">开发测试中</p>
+        </div>
+      </div>
+      <div class="tuandui">
+        <div class="tuandui-item">
           <p>团队总业绩</p>
           <p>{{ memberInfo.team?.deposit || 0 }}</p>
         </div>
@@ -498,6 +508,11 @@ onActivated(() => {
       }
     }
     &:nth-child(3) {
+      .tuandui-item {
+        background: linear-gradient(to right, #eead92, #6018dc);
+      }
+    }
+    &:nth-child(4) {
       .tuandui-item {
         background: linear-gradient(to right, #f98a5f, #fcb591);
       }

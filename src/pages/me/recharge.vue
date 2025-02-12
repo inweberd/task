@@ -7,11 +7,14 @@
       style="background-color: transparent"
     />
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item>
-        <img src="@/pages/home/images/banner7.jpg" alt="" />
-      </van-swipe-item>
+      <!--      <van-swipe-item>-->
+      <!--        <img src="@/pages/home/images/banner7.jpg" alt="" />-->
+      <!--      </van-swipe-item>-->
       <van-swipe-item>
         <img src="@/pages/home/images/banner9.jpg" alt="" />
+      </van-swipe-item>
+      <van-swipe-item>
+        <img src="@/pages/home/images/banner10.jpg" alt="" />
       </van-swipe-item>
     </van-swipe>
 
@@ -113,13 +116,27 @@
         <div style="margin-top: 20px; font-size: 16px; font-weight: bolder; color: #333">
           充值方式
         </div>
-        <p style="font-size: 12px; color: #ff625c">
-          (每天0点到23点开放充值，每天23点-0点，公司1小时出账期停充！)
-        </p>
-        <p style="font-size: 12px; color: #ff625c; margin-top: 6px">
-          (使用jd钱包充值，单笔冲1000额外送100元，单笔冲5000额外送200元 )
-        </p>
-
+        <div
+          style="
+            margin: 6px 0 0 0px;
+            background-color: #ff625c;
+            border-radius: 10px;
+            padding: 6px;
+            color: #fff;
+            line-height: 1.6;
+            font-size: 16px;
+          "
+        >
+          <p style="font-size: 16px; color: #fff">
+            (每天0点到23点开放充值，每天23点-0点，公司1小时出账期停充！)
+          </p>
+          <p style="font-size: 16px; color: #fff; margin-top: 6px">
+            (首次注册使用JD钱包单笔充值1000元赠送100，充5000赠送200元 )
+          </p>
+          <p style="font-size: 16px; color: #fff; margin-top: 6px">
+            (首次注册使用365钱包注册送58元，单笔充值400赠送58元 )
+          </p>
+        </div>
         <div class="chongzhiList">
           <div
             class="chongzhiList-item"

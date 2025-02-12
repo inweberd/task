@@ -45,30 +45,33 @@
         <!--        <van-swipe-item>-->
         <!--          <van-image :src="imageSrc7" width="100%" height="200" fit="fill"></van-image>-->
         <!--        </van-swipe-item>-->
-        <van-swipe-item>
-          <img src="@/pages/home/images/banner7.jpg" alt="" />
-        </van-swipe-item>
+        <!--        <van-swipe-item>-->
+        <!--          <img src="@/pages/home/images/banner7.jpg" alt="" />-->
+        <!--        </van-swipe-item>-->
         <van-swipe-item>
           <img src="@/pages/home/images/banner9.jpg" alt="" />
         </van-swipe-item>
+        <van-swipe-item>
+          <img src="@/pages/home/images/banner10.jpg" alt="" />
+        </van-swipe-item>
       </van-swipe>
     </div>
-    <p style="color: #000; padding-left: 15px; font-size: 18px; font-weight: bolder;margin: 4px 0">
-<!--      说明：每份会员有效期30天-->
+    <p style="color: #000; padding-left: 15px; font-size: 18px; font-weight: bolder; margin: 4px 0">
+      <!--      说明：每份会员有效期30天-->
       温馨提示： 每张会员卡可以使用365天！
-
     </p>
-    <p style="color: #222; padding-left: 15px; font-size: 14px; font-weight: bolder">
+    <div style="color: #222; padding-left: 15px; font-size: 14px; font-weight: bolder">
       <!--      可重复购买，达到数量后，系统将自动为您提升等级，享受更高收益！-->
-      <p>
-
-      </p>
+      <p></p>
       <p>当天同时购买不同等级会员卡，收益可叠加同时生效！</p>
-      <p>
-
-      中途加购升级不同等级会员卡，收益也可叠加同时生效！
+      <p>中途加购升级不同等级会员卡，收益也可叠加同时生效！</p>
+      <p style="margin-top: 6px; font-size: 16px; padding-right: 6px">
+        首次注册使用JD钱包单笔充值1000元赠送100，充5000赠送200元！
       </p>
-    </p>
+      <p style="margin-top: 6px; font-size: 16px; padding-right: 6px">
+        首次注册使用365钱包注册送58元，单笔充值400赠送58元！
+      </p>
+    </div>
     <!--    <div class="container">-->
     <!--      <div class="list">-->
     <!--        <div class="list-item active">-->
@@ -110,6 +113,7 @@
           <div class="title" :style="{ color: item.color }">
             {{ item.name }}（{{ item.count * 100 }}元）
           </div>
+          <p style="color: #000">每种会员都可以重复购买，收益叠加生效</p>
           <div class="content">
             <div class="l" :style="{ color: item.color }">
               <div>
@@ -126,10 +130,17 @@
                 class="w-100"
                 color="#fff"
                 size="large"
-                style="border: none; border-radius: 15px; color: #ff6491; font-weight: bolder;padding:4px 8px;margin-right: 4px"
+                style="
+                  border: none;
+                  border-radius: 15px;
+                  color: #ff6491;
+                  font-weight: bolder;
+                  padding: 4px 8px;
+                  margin-right: 4px;
+                "
                 type="primary"
                 @click="buy(item, item.count)"
-              >0撸余额 <br>免费兑换
+                >0撸余额 <br />免费兑换
               </el-button>
               <span></span>
               <el-button
@@ -403,7 +414,7 @@ defineOptions({
 })
 
 const containerStyle = computed(() => {
-  if (window.android) {
+  if (window.android && !window.android.hideBar) {
     return { height: '40px' }
   } else {
     return {}
@@ -772,7 +783,7 @@ const speed = ref(0.5) //滚动速度
               margin-left: 20px;
             }
           }
-          .r{
+          .r {
             //display: flex;
             //flex-direction: column;
           }

@@ -108,6 +108,14 @@
           >
             购买会员
           </van-button>
+          <van-button
+            @click="go('/invest')"
+            class="btn"
+            color="linear-gradient(to right,#FFA8A8, #2376DD)"
+            style="margin-left: 10px"
+          >
+            免费兑 <br />换会员
+          </van-button>
         </div>
       </div>
 
@@ -451,7 +459,7 @@ const list = [
   //   }
   // },
   {
-    label: '余额互转（10元起转）',
+    label: '余额互转',
     icon: 'exchange',
     fn() {
       router.push('/conversion')
@@ -803,7 +811,7 @@ onDeactivated(() => {
         .btn {
           height: 35px;
           border-radius: 15px;
-          padding: 2px 25px;
+          padding: 2px 15px;
         }
       }
     }

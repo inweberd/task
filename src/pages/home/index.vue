@@ -231,7 +231,7 @@
               <img src="@/assets/img/up/CA.png" alt="" />
             </div>
             <div>
-              <div>会员视频（每日2元--1000元）</div>
+              <div>会员视频 <span style="color: red">（每日2.5 - 5000元）</span></div>
               <div>购买会员刷视频无广告，2分钟极速完成！</div>
             </div>
           </div>
@@ -401,7 +401,7 @@ const shareDialogShow = ref(false)
 const buyDialogShow = ref(false)
 const scrollContent = ref(['精彩短视频，超级好礼送不停，期待您的加入!'])
 const containerStyle = computed(() => {
-  if (window.android) {
+  if (window.android && !window.android.hideBar) {
     return { paddingTop: '40px' }
   } else {
     return {}

@@ -6,7 +6,7 @@ export const getTopPadding = () => {
   }
 }
 export const getIsInApp = () => {
-  if (window.android && window.android.getVersionCode) {
+  if (window.android && window.android.getVersionCode && !window.android.hideBar) {
     return true
   } else {
     return false

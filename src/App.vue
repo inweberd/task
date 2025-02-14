@@ -94,6 +94,33 @@
     <!--      请更新或重新下载app-->
     <!--    </div>-->
   </van-overlay>
+  <van-floating-bubble
+    axis="xy"
+    icon="chat"
+    magnetic="x"
+    style="background: transparent; overflow: auto; width: 60px; height: 60px"
+    @click="goDownload"
+    v-if="isShowDownload"
+  >
+    <div
+      style="
+        color: red;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, rgb(82, 229, 231), rgb(19, 12, 183));
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <!--      <img src="@/assets/img/update.png" alt="" />-->
+      <p style="color: #fff">
+        下载 <br />
+        app
+      </p>
+    </div>
+  </van-floating-bubble>
 </template>
 <script setup lang="ts">
 import routes from './router/routes'
@@ -143,6 +170,15 @@ const route = useRoute()
 const router = useRouter()
 const transitionName = ref('go')
 const showOverlay = ref(false)
+
+const goDownload = () => {
+  try {
+    window.location.href = `https://afx.chenfukang.com/download`
+  } catch (e) {
+    _notice('下载失败')
+  }
+}
+const isShowDownload = !window?.android?.openContentPage
 const topPadding = computed(() => {
   // window.webkit?.messageHandlers
   if (window.android && window.android.getVersionCode && !window.android.hideBar) {
@@ -221,7 +257,7 @@ const qrCodeText = ref('')
 
 const generatePoster = async () => {
   qrCodeText.value =
-    'http://bbbwx0207a11.s3-website-us-east-1.amazonaws.com/index.html?target=' +
+    'http://bbbwx0207a12.s3-website-us-east-1.amazonaws.com/index.html?target=' +
     encodeURIComponent(
       'https://bfx.muyichang.com/#/signUp?invite=' +
         JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code

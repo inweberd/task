@@ -390,7 +390,7 @@ export const loadShortVideo = ({ todayCount, price, isVip }) => {
           b: b,
           ll: 0.025,
           dayCount: 40, // 每日最高次数
-          showMsg: false,
+          showMsg: true,
           h: {
             'X-Khronos': unix,
             'X-Helios': XHelios,

@@ -145,15 +145,15 @@ const list = [
     return: '96.74%',
     code: '84'
   },
-  {
-    name: '少林足球',
-    online: Math.floor(Math.random() * 1000 + 1000),
-    icon: img3,
-    value: '4000',
-    rtp: '中',
-    return: '96.93%',
-    code: '67'
-  },
+  // {
+  //   name: '少林足球',
+  //   online: Math.floor(Math.random() * 1000 + 1000),
+  //   icon: img3,
+  //   value: '4000',
+  //   rtp: '中',
+  //   return: '96.93%',
+  //   code: '67'
+  // },
   {
     name: '招财喵',
     online: Math.floor(Math.random() * 1000 + 1000),

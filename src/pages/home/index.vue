@@ -124,7 +124,7 @@
         </div>
       </div>
       <div class="game-box">
-        <div class="title">指尖网络-棋牌娱乐</div>
+        <div class="title">指尖网络-棋牌娱乐 (点击图标进行精彩游戏)</div>
         <!--        <div class="img-list">-->
         <div class="img-list" @click="toGame('ky')">
           <div class="img-item">
@@ -253,34 +253,34 @@
             <div @click="handleGame">详情</div>
           </div>
         </div>
-        <div class="shu-item">
-          <div class="l">
-            <div class="img-box">
-              <img src="@/assets/img/up/CA.png" alt="" />
-            </div>
-            <div>
-              <div>指尖网络--棋牌娱乐</div>
-              <div>点击查看详情！</div>
-            </div>
-          </div>
-          <div class="r">
-            <div @click="toGame('ky')">详情</div>
-          </div>
-        </div>
         <!--        <div class="shu-item">-->
         <!--          <div class="l">-->
         <!--            <div class="img-box">-->
         <!--              <img src="@/assets/img/up/CA.png" alt="" />-->
         <!--            </div>-->
         <!--            <div>-->
-        <!--              <div>每周奖池大奖</div>-->
-        <!--              <div>点击查看每周分红奖池！</div>-->
+        <!--              <div>指尖网络&#45;&#45;棋牌娱乐</div>-->
+        <!--              <div>点击进行精彩游戏！</div>-->
         <!--            </div>-->
         <!--          </div>-->
         <!--          <div class="r">-->
-        <!--            <div @click="$router.push('/fenhong')">详情</div>-->
+        <!--            <div @click="toGame('ky')">详情</div>-->
         <!--          </div>-->
         <!--        </div>-->
+        <div class="shu-item">
+          <div class="l">
+            <div class="img-box">
+              <img src="@/assets/img/up/CA.png" alt="" />
+            </div>
+            <div>
+              <div>每周奖池大奖</div>
+              <div>点击查看每周分红奖池！</div>
+            </div>
+          </div>
+          <div class="r">
+            <div @click="$router.push('/fenhong')">详情</div>
+          </div>
+        </div>
       </div>
 
       <!--      <div class="playing" v-show="activeTab === 1">-->

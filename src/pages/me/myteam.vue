@@ -443,7 +443,7 @@ const list = [
     fn() {
       router.push('/teamStat')
     }
-  },
+  }
   // {
   //   label: '收入排行榜',
   //   icon: 'notes-o',
@@ -458,13 +458,13 @@ const list = [
   //     router.push('/fenhong')
   //   }
   // },
-  {
-    label: '余额互转',
-    icon: 'exchange',
-    fn() {
-      router.push('/conversion')
-    }
-  }
+  // {
+  //   label: '余额互转',
+  //   icon: 'exchange',
+  //   fn() {
+  //     router.push('/conversion')
+  //   }
+  // }
 ]
 
 const memberInfo = ref({})
@@ -639,7 +639,7 @@ const getNewUserInfo = () => {
       Promise.all(arr).then((res) => {
         let todayshengyuCount = 100 - res[0]?.data?.ordinary,
           price = res[1]?.data?.price
-        shengyukelinqqu.value = (todayshengyuCount * price).toFixed(2)
+        shengyukelinqqu.value = Math.max(0, (todayshengyuCount * price).toFixed(2))
       })
     }
     // reqUserStaff().then((res) => {

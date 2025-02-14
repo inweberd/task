@@ -124,7 +124,7 @@
             padding: 6px;
             color: #fff;
             line-height: 1.6;
-            font-size: 16px;
+            font-size: 14px;
           "
         >
           <p style="font-size: 16px; color: #fff">
@@ -134,7 +134,7 @@
             (首次注册使用JD钱包单笔充值1000元赠送100，充5000赠送200元 )
           </p>
           <p style="font-size: 16px; color: #fff; margin-top: 6px">
-            (首次注册使用365钱包注册送58元，单笔充值400赠送58元 )
+            (首次注册使用365钱包注册送58元，单笔充值400赠送88元，首次365钱包总共送146元 )
           </p>
         </div>
         <div class="chongzhiList">
@@ -268,6 +268,7 @@ import jd from '@/assets/img/recharge/jd.jpg'
 import kd from '@/assets/img/recharge/kd.jpg'
 import usdt from '@/assets/img/recharge/usdt.png'
 import usdt2 from '@/assets/img/recharge/usdt2.jpg'
+import img365 from '@/assets/img/recharge/365.jpg'
 import pay1 from '@/assets/img/recharge/pay1.jpg'
 import ysf from '@/assets/img/recharge/ysf.png'
 import pay2 from '@/assets/img/recharge/pay2.jpg'
@@ -344,6 +345,8 @@ const getIcon = (item) => {
       return usdt
     } else if (item.key === 'bishengusdt') {
       return usdt2
+    } else if (item.key === '365') {
+      return img365
     }
   }
 }

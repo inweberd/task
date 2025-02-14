@@ -6,7 +6,24 @@
       finished-text="没有更多了"
       @load="getDataList"
     >
-      <div v-for="(item, index) in dataList" :key="item.id" class="card">
+      <div v-for="(item, index) in dataList" :key="item.id" class="card" style="position: relative">
+        <div
+          v-if="item.count"
+          style="
+            position: absolute;
+            height: 20px;
+            background-color: red;
+            top: -5px;
+            left: 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5px;
+          "
+        >
+          *{{ item.count }}
+        </div>
         <div class="d-flex justify-content-between font-15">
           <span>{{ item.content }}</span>
           <!--          <span class="text-warning">+ {{ parseFloat(item.money || 0).toFixed(2) }}</span>-->

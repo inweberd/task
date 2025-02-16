@@ -37,7 +37,7 @@
 
         <!--        <van-notice-bar-->
         <!--          :scrollable="false"-->
-        <!--          color="#333"-->
+        <!--          color="red"-->
         <!--          background="transparent"-->
         <!--          left-icon="volume-o"-->
         <!--          style="border-radius: 10px; height: 40px; border: 1px solid #ff8e7d; line-height: 40px"-->
@@ -84,7 +84,7 @@
         text="指尖网络欢迎您，邀请好友赚翻天，现金奖励无上限！"
       />
       <div class="game-box">
-        <div class="title">PG电子老虎机</div>
+        <div class="title">指尖网络--PG电子游戏</div>
         <div class="img-list" @click="toGame('pg')">
           <div class="img-item" style="margin: 0 2px; width: calc(20% - 4px)">
             <img
@@ -181,7 +181,9 @@
 
         <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
-      <div style="font-size: 16px; color: #333; padding: 5px 15px 0">刷视频收入板块</div>
+      <div style="font-size: 16px; color: red; padding: 5px 15px 0">
+        指尖网络--刷视频快速挣钱专区
+      </div>
       <div class="shulist">
         <!--        <div class="shu-item">-->
         <!--          <div class="l">-->
@@ -203,8 +205,8 @@
               <img src="@/assets/img/up/CA.png" alt="" />
             </div>
             <div>
-              <div>每周大奖池排行榜</div>
-              <div>点击查看每周大奖池排行榜！</div>
+              <div>每周现金分红排行榜</div>
+              <div>点击查看每周现金分红排行榜！</div>
             </div>
           </div>
           <div class="r">
@@ -273,8 +275,8 @@
               <img src="@/assets/img/up/CA.png" alt="" />
             </div>
             <div>
-              <div>每周奖池大奖</div>
-              <div>点击查看每周分红奖池！</div>
+              <div>每周奖池分红规则</div>
+              <div>点击查看每周奖池分红规则！</div>
             </div>
           </div>
           <div class="r">
@@ -689,25 +691,24 @@ const shareFriend = () => {
 }
 
 const handleGame = () => {
-  router.push('/quanminlaibaojiang')
-  // Toast({
-  //   theme: 'loading',
-  //   message: '加载中...',
-  //   duration: 0
-  // })
-  // reqNgPlay()
-  //   .then((res) => {
-  //     console.log('reqNgPlay', res)
-  //     return
-  //     if (res.code === 200) {
-  //       window.location.href = res.data.url
-  //     } else {
-  //       showFailToast('游戏加载失败！')
-  //     }
-  //   })
-  //   .finally(() => {
-  //     Toast.clear()
-  //   })
+  // router.push('/quanminlaibaojiang')
+  Toast({
+    theme: 'loading',
+    message: '加载中...',
+    duration: 0
+  })
+  reqNgPlay({})
+    .then((res) => {
+      console.log('reqNgPlay', res)
+      if (res.code === 200) {
+        window.location.href = res.data.url
+      } else {
+        showFailToast('游戏加载失败！')
+      }
+    })
+    .finally(() => {
+      Toast.clear()
+    })
 }
 onActivated(() => {
   showGonggaoOverlay.value = true
@@ -847,7 +848,7 @@ const toGame = (plat) => {
 
     .game-box {
       padding: 5px 15px;
-      color: #333;
+      color: red;
       .title {
         font-size: 16px;
         margin: 6px;

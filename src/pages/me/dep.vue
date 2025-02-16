@@ -187,10 +187,11 @@
         font-size: 16px;
       "
     >
-      <p style="margin-bottom: 8px">
-        使用jd钱包充值，首次单笔冲1000额外送100元，首次单笔冲5000额外送200元
-      </p>
-      <p>使用365钱包充值，首次注册365钱包送58，单笔充365值钱包400元送88元.到365钱包账户内</p>
+      <!--      <p style="margin-bottom: 8px">-->
+      <!--        使用jd钱包充值，首次单笔冲1000额外送100元，首次单笔冲5000额外送200元-->
+      <!--      </p>-->
+      <!--      <p>使用365钱包充值，首次注册365钱包送58，单笔充365值钱包400元送88元.到365钱包账户内</p>-->
+      <p>使用jd钱包，k豆钱包，365钱包提现，免除手续费！</p>
       <!--      <p>长期稳定，信誉，正规企业，合法合规!</p>-->
     </div>
     <TipDialog
@@ -241,6 +242,7 @@ import { _checkImgUrl, _notice, _showConfirmDialog, cloneDeep } from '@/utils'
 import imageSrc from '@/assets/img/yinlian.png'
 import kdImgSrc from '@/assets/img/recharge/kd.jpg'
 import jdImgSrc from '@/assets/img/recharge/jd.jpg'
+import img365ImgSrc from '@/assets/img/recharge/365.jpg'
 import tixian from '@/assets/img/jdhd.jpg'
 import { showConfirmDialog, showDialog } from 'vant'
 import { loadInteraction, loadPlayRewardVideo, wxLogin } from '@/utils/ad'
@@ -634,6 +636,8 @@ const getThumb = (mode) => {
     return kdImgSrc
   } else if (mode === 'jdpay') {
     return jdImgSrc
+  } else if (mode === '365') {
+    return img365ImgSrc
   } else {
     return alipay
   }

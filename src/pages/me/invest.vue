@@ -63,8 +63,9 @@
     <div style="color: #222; padding-left: 15px; font-size: 14px; font-weight: bolder">
       <!--      可重复购买，达到数量后，系统将自动为您提升等级，享受更高收益！-->
       <p></p>
-      <p>当天同时购买不同等级会员卡，收益可叠加同时生效！</p>
-      <p>中途加购升级不同等级会员卡，收益也可叠加同时生效！</p>
+      <p style="color: red">当天同时购买不同等级会员卡，收益可叠加同时生效！</p>
+      <p style="color: red">中途加购升级不同等级会员卡，收益也可叠加同时生效！</p>
+      <p style="color: red">每个档位会员，都可以重复购买，收入无限叠加，无上限！</p>
       <p style="margin-top: 6px; font-size: 16px; padding-right: 6px">
         首次注册使用JD钱包单笔充值1000元赠送100，充5000赠送200元！
       </p>

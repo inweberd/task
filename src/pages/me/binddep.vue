@@ -15,6 +15,7 @@
           <van-sidebar-item title="支付宝" @click="active_ = 1" />
           <van-sidebar-item title="K豆钱包" @click="active_ = 2" />
           <van-sidebar-item title="JD钱包" @click="active_ = 3" />
+          <van-sidebar-item title="365钱包" @click="active_ = 4" />
         </van-sidebar>
       </div>
       <div>
@@ -121,6 +122,32 @@
               "
               type="primary"
               @click="save('jd')"
+              >保存
+            </el-button>
+          </div>
+        </template>
+        <template v-if="active_ == 4">
+          <van-field v-model="w365_value.name" label="姓名" placeholder="姓名" />
+          <van-field v-model="w365_value.card_no" label="钱包地址" placeholder="钱包地址" />
+          <!--            <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">-->
+          <!--              钱包地址为钱包主页界面的34位字母+数字组合。-->
+          <!--            </p>-->
+          <div style="display: flex; justify-content: center">
+            <el-button
+              :loading="bindLoading"
+              class="w-100"
+              color="#01c5f0"
+              size="large"
+              style="
+                margin-top: 30px;
+                border: none;
+                width: 90%;
+                border-radius: 15px;
+                color: #fff;
+                background-image: linear-gradient(to right, #ff8b6e, #ff625c);
+              "
+              type="primary"
+              @click="save('365')"
               >保存
             </el-button>
           </div>
@@ -363,6 +390,10 @@ const jd_value = reactive({
   name: '',
   card_no: ''
 })
+const w365_value = reactive({
+  name: '',
+  card_no: ''
+})
 const showArea = ref(false)
 const areaText = ref('')
 const actions = ref([])
@@ -465,6 +496,29 @@ const save = async (e) => {
     if (code === 200) {
       jd_value.card_no = ''
       jd_value.name = ''
+    }
+    await bank() //查询银行列表
+    await card()
+    setPay()
+  } else if (e == '365') {
+    if (!w365_value.card_no || !w365_value.name) {
+      return _notice('请输入完整信息！')
+    }
+    const flag = state.select.card.some((item) => item.card_no === w365_value.card_no)
+    if (flag) {
+      return _notice('已绑定过此卡号！')
+    }
+    bindLoading.value = true
+    const { code, msg } = await axios.post('/api/pay-card/save', {
+      ...w365_value,
+      mode: '365'
+    })
+    bindLoading.value = false
+
+    _notice(msg)
+    if (code === 200) {
+      w365_value.card_no = ''
+      w365_value.name = ''
     }
     await bank() //查询银行列表
     await card()

@@ -97,6 +97,7 @@
                   background-color: transparent;
                 "
                 type="number"
+                placeholder="请输入充值金额"
                 @input="
                   () => {
                     state.struct.amount = parseInt(state.struct.amount)

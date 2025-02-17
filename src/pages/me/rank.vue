@@ -36,7 +36,7 @@
         <div class="title">
           <!--        本次周期分红总金额 <br />-->
           <!--          （每X天进行一轮分红） <br />-->
-          <div>本周（第六周）奖池金额</div>
+          <div>本周（第七周）奖池金额</div>
         </div>
         <div class="money">￥{{ total }}</div>
       </div>

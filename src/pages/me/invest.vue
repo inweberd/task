@@ -106,6 +106,53 @@
       <div class="list">
         <div
           class="list-item"
+          style="background-image: linear-gradient(135deg, #ff7e30 10%, #ff7e30 100%)"
+        >
+          <div class="title" style="color: #fff">铜卡会员（50元）</div>
+          <p style="color: #000">每种会员都可以重复购买，收益叠加生效</p>
+          <div class="content">
+            <div class="l" style="color: #fff">
+              <div>
+                <p>日收益</p>
+                <p>1元</p>
+              </div>
+              <div>
+                <p>年收益</p>
+                <p>365元</p>
+              </div>
+            </div>
+            <div class="r">
+              <el-button
+                class="w-100"
+                color="#fff"
+                size="large"
+                style="
+                  border: none;
+                  border-radius: 15px;
+                  color: #ff6491;
+                  font-weight: bolder;
+                  padding: 4px 8px;
+                  margin-right: 4px;
+                "
+                type="primary"
+                @click="buyBase"
+                >0撸余额 <br />免费兑换
+              </el-button>
+              <span></span>
+              <el-button
+                class="w-100"
+                color="#fff"
+                size="large"
+                style="border: none; border-radius: 15px; color: #ff6491; font-weight: bolder"
+                type="primary"
+                @click="buyBase"
+                >购买
+              </el-button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="list-item"
           v-for="item of vipList"
           :style="{
             backgroundImage: item.bgColor
@@ -556,14 +603,14 @@ const getAllStaff = () => {
 
   reqAllStaff(searchInfo).then((res: any) => {
     staffList.value = res.data.data
-
-    res.data.data.forEach((item, index) => {
-      for (const itemKey in item) {
-        if (shopList.value[index]) {
-          shopList.value[index][itemKey] = item[itemKey]
-        }
-      }
-    })
+    loading.value = false
+    // res.data.data.forEach((item, index) => {
+    //   for (const itemKey in item) {
+    //     if (shopList.value[index]) {
+    //       shopList.value[index][itemKey] = item[itemKey]
+    //     }
+    //   }
+    // })
 
     console.log('staffList', staffList.value)
     // getMyStaff()
@@ -571,6 +618,35 @@ const getAllStaff = () => {
 }
 const getIconPath = (icon) => {
   return new URL(`../../assets/img/shop/${icon}.png`, import.meta.url).href
+}
+const buyBase = (item, customCount) => {
+  const finallyCount = customCount || count.value
+
+  loading.value = true
+  loading.value = true
+  reqWalletInfo().then((res: any) => {
+    console.log('reqWalletInfo', res)
+    loading.value = false
+
+    // if (item.price * finallyCount > res.data.amount + res.data.money) {
+    if (50 > res.data.amount + res.data.money) {
+      loading.value = false
+      _notice('账户余额不足,请充值!')
+      router.push('/recharge')
+    } else {
+      reqEnterStaff({
+        count: 1,
+        staff_id: 165
+        // staff_id: item.id
+      }).then((sub_res) => {
+        loading.value = false
+        _notice(sub_res.msg)
+        if (res.code === 200) {
+          getMyStaff()
+        }
+      })
+    }
+  })
 }
 const buy = (item, customCount) => {
   const finallyCount = customCount || count.value

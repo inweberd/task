@@ -486,9 +486,10 @@ async function goPay() {
     _notice(msg)
     return
   }
-  showDialog({
-    message: '申请已提交！'
-  })
+  _notice('申请已提交！')
+  // showDialog({
+  //   message: '申请已提交！'
+  // })
 }
 const setPay = () => {
   const id = state.item.card.id

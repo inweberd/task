@@ -192,13 +192,13 @@ export default defineConfig((): Promise<UserConfig> => {
           proxy: {
             '/api/': {
               // target: 'https://tc.q18m.cc/api',
-              target: 'https://ht.kakta.cn/api',
+              target: 'https://api.fadc902.com/api',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/api/'), '')
             },
             '/dev/': {
               // target: 'https://tc.q18m.cc/api',
-              target: 'https://ht.kakta.cn/dev',
+              target: 'https://api.fadc902.com/dev',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/dev/'), '')
             },
@@ -206,7 +206,7 @@ export default defineConfig((): Promise<UserConfig> => {
               // target: 'http://111.180.196.127:8642/api',
               // target: 'https://wwc.gengshangpin.com/api',
               // target: 'https://afx.chenfukang.com/json',
-              target: 'https://ht.kakta.cn/json',
+              target: 'https://api.fadc902.com/json',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/json/'), '')
             }

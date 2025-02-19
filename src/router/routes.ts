@@ -64,6 +64,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/hezuodanwei', component: () => import('@/pages/me/hezuodanwei.vue') },
   { path: '/fenhong', component: () => import('@/pages/me/fenhong.vue') },
   { path: '/wallet', name: 'wallet', component: () => import('@/pages/me/wallet.vue') },
+  { path: '/gameList', name: 'gameList', component: () => import('@/pages/game/gameList.vue') },
 
   {
     path: '/login/retrieve-password',

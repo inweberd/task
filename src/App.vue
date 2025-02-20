@@ -141,6 +141,7 @@ const keepAliveBlackList = [
   'rank',
   'short',
   'myCard',
+  'signIn',
   'iframeCom'
 ]
 import {
@@ -257,7 +258,7 @@ const qrCodeText = ref('')
 
 const generatePoster = async () => {
   qrCodeText.value =
-    'http://bbbwx0207a13.s3-website-us-east-1.amazonaws.com/index.html?target=' +
+    'http://bbbwx0207a14.s3-website-us-east-1.amazonaws.com/index.html?target=' +
     encodeURIComponent(
       'https://bfx.muyichang.com/#/signUp?invite=' +
         JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code

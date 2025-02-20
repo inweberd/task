@@ -125,6 +125,9 @@ import { _notice } from '@/utils'
 import { getImei, getOaid } from '@/utils/ad'
 import bus from '@/utils/bus'
 
+defineOptions({
+  name: 'signIn'
+})
 const { info, token, status } = storeToRefs(useUsers())
 const showGonggaoOverlay = ref(false)
 
@@ -207,7 +210,11 @@ const SignIn = async () => {
   )
   state.status.wait = false
 
-  if (code !== 200) return showFailToast(msg)
+  if (code !== 200)
+    return showToast({
+      message: msg,
+      teleport: '.signinClass'
+    })
 
   // 更新仓库状态
   info.value = data.user
@@ -229,7 +236,13 @@ onMounted(() => {
   window.localStorage.removeItem('token')
 })
 </script>
-
+<style>
+.signinClass {
+  --van-toast-default-width: 60%;
+}
+:root {
+}
+</style>
 <style lang="scss" scoped>
 @import '@/assets/css/root.css';
 // 通过scss覆盖element-plus样式

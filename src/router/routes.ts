@@ -77,7 +77,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/views/common/layout/base.vue'),
     children: [
       {
-        name: 'sign-in',
+        name: 'signIn',
         path: '/common/sign-in',
         component: CommonSignIn,
         meta: { title: '登录' }

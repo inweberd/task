@@ -41,59 +41,58 @@
   <TipDialog
     v-model="showOverlay"
     @confirm="toDownload"
-    title="发现新版本 1.0.2"
+    title="发现新版本"
     :show-close="false"
     confirm-text="立即下载"
   >
     <div>
-      <p>1. 优化正式股权用户刷正式视频的流畅度</p>
-      <p>2. 修复零撸用户无法获得收益的问题</p>
-      <p>3. 大赢家游戏即将上线</p>
+      <p style="margin-top: 6px">1. 加强系统安全性，防范刷子行为</p>
+      <p style="margin-top: 6px">2. 提升用户体验，优化操作流畅度</p>
+      <p style="margin-top: 6px">3. 解决已知问题，提升系统稳定性</p>
     </div>
   </TipDialog>
 
-  <van-overlay :show="showOverlay" :z-index="99999999" v-if="false">
-    <div class="wrapper" @click.stop>
-      <div class="update-box">
-        <img src="@/assets/img/update.png" alt="" />
-        <div class="title">发现新版本 1.0.5</div>
-        <div>
-          <p>1. 优化正式股权用户刷正式视频的流畅度</p>
-          <p>2. 修复零撸用户无法获得收益的问题</p>
-          <p>3. 大赢家游戏即将上线</p>
-        </div>
-        <el-button
-          color="#689cfc"
-          size="large"
-          style="border-radius: 20px; margin-top: 30px !important; color: #fff; width: 80%"
-          @click="toDownload"
-          >立即升级
-        </el-button>
-        <!--        <p-->
-        <!--          style="font-size: 12px; text-decoration: underline; color: #1e83d3; margin-top: 10px"-->
-        <!--          @click="upGrade"-->
-        <!--        >-->
-        <!--          升级没反应，点这里！-->
-        <!--        </p>-->
-      </div>
-    </div>
-    <!--    <div-->
-    <!--      class="wrapper"-->
-    <!--      style="-->
-    <!--        font-size: 26px;-->
-    <!--        font-weight: bolder;-->
-    <!--        color: #fff;-->
-    <!--        display: flex;-->
-    <!--        width: 100%;-->
-    <!--        height: 100vh;-->
-    <!--        align-items: center;-->
-    <!--        justify-content: center;-->
-    <!--      "-->
-    <!--      @click.stop-->
-    <!--    >-->
-    <!--      请更新或重新下载app-->
-    <!--    </div>-->
-  </van-overlay>
+  <!--  <van-overlay :show="showOverlay" :z-index="99999999" v-if="false">-->
+  <!--    <div class="wrapper" @click.stop>-->
+  <!--      <div class="update-box">-->
+  <!--        <img src="@/assets/img/update.png" alt="" />-->
+  <!--        <div class="title">发现新版本 1.0.4</div>-->
+  <!--        <div>-->
+  <!--          <p>1. 优化用户体验</p>-->
+  <!--          <p>2. 修复已知问题</p>-->
+  <!--        </div>-->
+  <!--        <el-button-->
+  <!--          color="#689cfc"-->
+  <!--          size="large"-->
+  <!--          style="border-radius: 20px; margin-top: 30px !important; color: #fff; width: 80%"-->
+  <!--          @click="toDownload"-->
+  <!--          >立即升级-->
+  <!--        </el-button>-->
+  <!--        &lt;!&ndash;        <p&ndash;&gt;-->
+  <!--        &lt;!&ndash;          style="font-size: 12px; text-decoration: underline; color: #1e83d3; margin-top: 10px"&ndash;&gt;-->
+  <!--        &lt;!&ndash;          @click="upGrade"&ndash;&gt;-->
+  <!--        &lt;!&ndash;        >&ndash;&gt;-->
+  <!--        &lt;!&ndash;          升级没反应，点这里！&ndash;&gt;-->
+  <!--        &lt;!&ndash;        </p>&ndash;&gt;-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    &lt;!&ndash;    <div&ndash;&gt;-->
+  <!--    &lt;!&ndash;      class="wrapper"&ndash;&gt;-->
+  <!--    &lt;!&ndash;      style="&ndash;&gt;-->
+  <!--    &lt;!&ndash;        font-size: 26px;&ndash;&gt;-->
+  <!--    &lt;!&ndash;        font-weight: bolder;&ndash;&gt;-->
+  <!--    &lt;!&ndash;        color: #fff;&ndash;&gt;-->
+  <!--    &lt;!&ndash;        display: flex;&ndash;&gt;-->
+  <!--    &lt;!&ndash;        width: 100%;&ndash;&gt;-->
+  <!--    &lt;!&ndash;        height: 100vh;&ndash;&gt;-->
+  <!--    &lt;!&ndash;        align-items: center;&ndash;&gt;-->
+  <!--    &lt;!&ndash;        justify-content: center;&ndash;&gt;-->
+  <!--    &lt;!&ndash;      "&ndash;&gt;-->
+  <!--    &lt;!&ndash;      @click.stop&ndash;&gt;-->
+  <!--    &lt;!&ndash;    >&ndash;&gt;-->
+  <!--    &lt;!&ndash;      请更新或重新下载app&ndash;&gt;-->
+  <!--    &lt;!&ndash;    </div>&ndash;&gt;-->
+  <!--  </van-overlay>-->
   <van-floating-bubble
     axis="xy"
     icon="chat"

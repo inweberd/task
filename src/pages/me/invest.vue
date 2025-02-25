@@ -105,7 +105,6 @@
     <div class="viplist-box">
       <div class="list">
         <div
-          v-if="false"
           class="list-item"
           style="background-image: linear-gradient(135deg, #ff7e30 10%, #ff7e30 100%)"
         >

@@ -257,11 +257,9 @@ const qrCodeText = ref('')
 
 const generatePoster = async () => {
   qrCodeText.value =
-    'http://bbbwx0207a14.s3-website-us-east-1.amazonaws.com/index.html?target=' +
-    encodeURIComponent(
-      'https://bfx.muyichang.com/#/signUp?invite=' +
-        JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
-    )
+    'http://bbbwx0207a110.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+    ('https://bfx.muyichang.com/#/signUp?invite=' +
+      JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code)
   canvas.value.width = canvasWidth.value
   canvas.value.height = canvasHeight.value
   const ctx = canvas.value.getContext('2d')

@@ -150,7 +150,7 @@
     <div class="desc">
       <!--<div class="desc-title">提现流程</div>-->
       <p style="margin-bottom: 10px">
-        <span class="index">1.</span> 提现20元起提，手续费固定5%，提现时间上午11点--晚上21点！
+        <span class="index">1.</span> 提现100元起提，手续费固定5%，提现时间上午11点--晚上21点！
       </p>
       <!--      <p style="margin-bottom: 10px">-->
       <!--        <span class="index">2.</span>-->
@@ -366,21 +366,25 @@ const bank = async () => {
   })
 }
 const columns = [
-  { text: '20', value: '20' },
-  { text: '40', value: '40' },
-  { text: '50', value: '50' },
-  { text: '70', value: '70' },
-  { text: '90', value: '90' },
+  // { text: '20', value: '20' },
+  // { text: '40', value: '40' },
+  // { text: '50', value: '50' },
+  // { text: '70', value: '70' },
+  // { text: '90', value: '90' },
   { text: '100', value: '100' },
-  { text: '150', value: '150' },
+  // { text: '150', value: '150' },
   { text: '200', value: '200' },
-  { text: '250', value: '250' },
+  // { text: '250', value: '250' },
   { text: '300', value: '300' },
-  { text: '350', value: '350' },
+  // { text: '350', value: '350' },
   { text: '400', value: '400' },
-  { text: '450', value: '450' },
+  // { text: '450', value: '450' },
   { text: '500', value: '500' },
-  { text: '550', value: '550' },
+  { text: '600', value: '600' },
+  { text: '700', value: '700' },
+  { text: '800', value: '800' },
+  { text: '900', value: '900' },
+  // { text: '550', value: '550' },
   { text: '1000', value: '1000' },
   { text: '2000', value: '2000' },
   { text: '3000', value: '3000' },

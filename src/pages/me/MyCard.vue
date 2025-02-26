@@ -48,7 +48,7 @@ const canvasWidth = ref(window.innerWidth)
 const canvasHeight = ref(window.innerWidth / (1242 / 2208))
 
 const qrCodeText = ref(
-  'http://bbbwx0207a110.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+  'http://bbbwx0224b11.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     ('https://afx.chenfukang.com/#/signUp?invite=' +
       JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code)
 )

@@ -150,7 +150,7 @@
     <div class="desc">
       <!--<div class="desc-title">提现流程</div>-->
       <p style="margin-bottom: 10px">
-        <span class="index">1.</span> 提现100元起提，手续费固定5%，提现时间上午11点--晚上21点！
+        <span class="index">1.</span> 提现50元起提，手续费固定5%，提现时间上午11点--晚上21点！
       </p>
       <!--      <p style="margin-bottom: 10px">-->
       <!--        <span class="index">2.</span>-->
@@ -368,7 +368,7 @@ const bank = async () => {
 const columns = [
   // { text: '20', value: '20' },
   // { text: '40', value: '40' },
-  // { text: '50', value: '50' },
+  { text: '50', value: '50' },
   // { text: '70', value: '70' },
   // { text: '90', value: '90' },
   { text: '100', value: '100' },

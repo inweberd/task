@@ -256,7 +256,7 @@ const canvasHeight = ref(window.innerWidth / (1242 / 2208))
 const qrCodeText = ref('')
 const generatePoster = async () => {
   qrCodeText.value =
-    'http://bbbwx0224b11.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+    'http://bbbwx0224b12.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     ('https://bfx.muyichang.com/#/signUp?invite=' +
       JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code)
   canvas.value.width = canvasWidth.value

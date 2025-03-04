@@ -1,7 +1,6 @@
 import Home from '../pages/home/index.vue'
 import Short from '../pages/short/short.vue'
 import Test from '../pages/test/Test.vue'
-import Test4 from '../pages/test/Test4.vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 import CommonSignIn from '@/views/common/pages/sign-in.vue'
@@ -12,7 +11,6 @@ const routes: RouteRecordRaw[] = [
   // {path: '/', redirect: '/attention'},
   { path: '/', redirect: '/home' },
   { path: '/test', component: Test },
-  { path: '/test4', component: Test4 },
 
   { path: '/home', component: Home },
   { path: '/short', component: Short, name: 'short' },
@@ -45,7 +43,6 @@ const routes: RouteRecordRaw[] = [
   { path: '/rank', component: () => import('@/pages/me/rank.vue') },
   { path: '/invest', component: () => import('@/pages/me/invest.vue') },
   { path: '/myServe', component: () => import('@/pages/me/myServe.vue') },
-  { path: '/serveInfo', component: () => import('@/pages/me/serveInfo.vue') },
   { path: '/dep', component: () => import('@/pages/me/dep.vue') },
   { path: '/binddep', component: () => import('@/pages/me/binddep.vue') },
   { path: '/recharge', component: () => import('@/pages/me/recharge.vue') },
@@ -53,15 +50,12 @@ const routes: RouteRecordRaw[] = [
   { path: '/article', component: () => import('@/pages/me/article.vue') },
   { path: '/myteam', component: () => import('@/pages/me/myteam.vue') },
   { path: '/teamStat', component: () => import('@/pages/me/myteam-old.vue') },
-  { path: '/mysub', component: () => import('@/pages/me/mysub.vue') },
   { path: '/fenxiang', component: () => import('@/pages/me/MyCard.vue') },
   { path: '/demo', component: () => import('@/pages/me/demo.vue') },
   { path: '/quanminlaibaojiang', component: () => import('@/pages/me/quanminlaibaojiang.vue') },
-  { path: '/zhubofuchizhengce', component: () => import('@/pages/me/zhubofuchizhengce.vue') },
   { path: '/pingtaijianjie', component: () => import('@/pages/me/pingtaijianjie.vue') },
   { path: '/caozuoshuoming', component: () => import('@/pages/me/caozuoshuoming.vue') },
   { path: '/shourulaiyuan', component: () => import('@/pages/me/shourulaiyuan.vue') },
-  { path: '/hezuodanwei', component: () => import('@/pages/me/hezuodanwei.vue') },
   { path: '/fenhong', component: () => import('@/pages/me/fenhong.vue') },
   { path: '/wallet', name: 'wallet', component: () => import('@/pages/me/wallet.vue') },
   { path: '/gameList', name: 'gameList', component: () => import('@/pages/game/gameList.vue') },

@@ -58,7 +58,6 @@
 </template>
 
 <script lang="ts" setup>
-import shareholder from '@/assets/img/shareholder2.jpg'
 // import rule from '@/assets/img/rule.jpg'
 import { getIsInApp } from '@/utils/getTopPadding'
 import { onActivated, ref, onDeactivated } from 'vue'

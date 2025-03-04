@@ -93,33 +93,33 @@
   <!--    &lt;!&ndash;      请更新或重新下载app&ndash;&gt;-->
   <!--    &lt;!&ndash;    </div>&ndash;&gt;-->
   <!--  </van-overlay>-->
-  <van-floating-bubble
-    axis="xy"
-    icon="chat"
-    magnetic="x"
-    style="background: transparent; overflow: auto; width: 60px; height: 60px"
-    @click="goDownload"
-    v-if="isShowDownload"
-  >
-    <div
-      style="
-        color: red;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to right, rgb(82, 229, 231), rgb(19, 12, 183));
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      "
-    >
-      <!--      <img src="@/assets/img/update.png" alt="" />-->
-      <p style="color: #fff">
-        下载 <br />
-        app
-      </p>
-    </div>
-  </van-floating-bubble>
+  <!--  <van-floating-bubble-->
+  <!--    axis="xy"-->
+  <!--    icon="chat"-->
+  <!--    magnetic="x"-->
+  <!--    style="background: transparent; overflow: auto; width: 60px; height: 60px"-->
+  <!--    @click="goDownload"-->
+  <!--    v-if="isShowDownload"-->
+  <!--  >-->
+  <!--    <div-->
+  <!--      style="-->
+  <!--        color: red;-->
+  <!--        width: 100%;-->
+  <!--        height: 100%;-->
+  <!--        background: linear-gradient(to right, rgb(82, 229, 231), rgb(19, 12, 183));-->
+  <!--        font-size: 14px;-->
+  <!--        display: flex;-->
+  <!--        align-items: center;-->
+  <!--        justify-content: center;-->
+  <!--      "-->
+  <!--    >-->
+  <!--      &lt;!&ndash;      <img src="@/assets/img/update.png" alt="" />&ndash;&gt;-->
+  <!--      <p style="color: #fff">-->
+  <!--        下载 <br />-->
+  <!--        app-->
+  <!--      </p>-->
+  <!--    </div>-->
+  <!--  </van-floating-bubble>-->
 </template>
 <script setup lang="ts">
 import routes from './router/routes'
@@ -154,7 +154,6 @@ import {
 } from '@/utils/ad'
 import { reqCreateShareLog, reqUpdateUserInfo, reqUserInfo, reqUserStaff } from '@/api/myApi'
 import dayjs from 'dayjs'
-// import imageSrc from '@/assets/img/share-bg.png'
 import imageSrc from '@/assets/img/share2.jpg'
 
 import QRCode from 'qrcode/lib'

@@ -26,14 +26,14 @@
         </van-swipe>
       </div>
       <div class="notice">
-        <van-notice-bar
-          color="#fff"
-          background="transparent"
-          left-icon="volume-o"
-          style="border-radius: 10px; height: 40px; border: 1px solid #fff"
-          text="指尖网络欢迎您，邀请好友赚翻天，现金奖励无上限！"
-        >
-        </van-notice-bar>
+        <!--        <van-notice-bar-->
+        <!--          color="#666"-->
+        <!--          background="transparent"-->
+        <!--          left-icon="volume-o"-->
+        <!--          style="border-radius: 10px; height: 40px; border: 1px solid #6cc5be"-->
+        <!--          text=""-->
+        <!--        >-->
+        <!--        </van-notice-bar>-->
 
         <!--        <van-notice-bar-->
         <!--          :scrollable="false"-->
@@ -79,13 +79,87 @@
         <!--          </template>-->
         <!--        </t-notice-bar>-->
       </div>
-      <div class="bg"></div>
-      <!--      <van-notice-bar-->
-      <!--        left-icon="volume-o"-->
-      <!--        text="指尖网络欢迎您，邀请好友赚翻天，现金奖励无上限！"-->
-      <!--      />-->
-
-      <div v-show="activeTab === 0" class="app-list" style="margin-top: 120px">
+      <van-notice-bar
+        left-icon="volume-o"
+        text="指尖网络欢迎您，邀请好友赚翻天，现金奖励无上限！"
+      />
+      <div class="game-box">
+        <div class="title">指尖网络--PG电子游戏</div>
+        <div class="img-list" @click="toGame('pg')">
+          <div class="img-item" style="margin: 0 2px; width: calc(20% - 4px)">
+            <img
+              style="border-radius: 50%"
+              src="@/pages/me/images/quanminlaibaojiang/65.webp"
+              alt=""
+            />
+          </div>
+          <div class="img-item" style="margin: 0 2px; width: calc(20% - 4px)">
+            <img
+              style="border-radius: 50%"
+              src="@/pages/me/images/quanminlaibaojiang/5.webp"
+              alt=""
+            />
+          </div>
+          <div class="img-item" style="margin: 0 2px; width: calc(20% - 4px)">
+            <img
+              style="border-radius: 50%"
+              src="@/pages/me/images/quanminlaibaojiang/3.webp"
+              alt=""
+            />
+          </div>
+          <div class="img-item" style="margin: 0 2px; width: calc(20% - 4px)">
+            <img
+              style="border-radius: 50%"
+              src="@/pages/me/images/quanminlaibaojiang/104.webp"
+              alt=""
+            />
+          </div>
+          <div class="img-item" style="margin: 0 2px; width: calc(20% - 4px)">
+            <img
+              style="border-radius: 50%"
+              src="@/pages/me/images/quanminlaibaojiang/6.webp"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      <div class="game-box">
+        <div class="title">指尖网络-棋牌娱乐 (点击图标进行精彩游戏)</div>
+        <!--        <div class="img-list">-->
+        <div class="img-list" @click="toGame('ky')">
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/220.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/510.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/620.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/830.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/910.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/2011.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/950.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/630.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/900.webp" alt="" />
+          </div>
+          <div class="img-item">
+            <img src="@/pages/me/images/quanminlaibaojiang/1960.webp" alt="" />
+          </div>
+        </div>
+      </div>
+      <div v-show="activeTab === 0" class="app-list" style="margin-top: 10px" v-if="false">
         <div class="app-list-item" v-for="(item, index) of appList" @click="item.btnCb">
           <div class="l">
             <div class="logo">
@@ -107,29 +181,10 @@
 
         <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
-      <div class="big-title" style="margin-top: 10px">特色理财</div>
-
-      <div class="shouyi-list">
-        <div class="item" @click="loadShort(3)">
-          <div class="item-box">
-            <div>会员专区</div>
-            <div>高额收益</div>
-          </div>
-        </div>
-        <div class="item" v-if="!isIos" @click="loadShort(1)">
-          <div class="item-box">
-            <div>零撸专区</div>
-            <div>看视频赚收益</div>
-          </div>
-        </div>
-        <div class="item" @click="$router.push('/gameList')">
-          <div class="item-box">
-            <div>游戏专区</div>
-            <div>拼手气！</div>
-          </div>
-        </div>
+      <div style="font-size: 16px; color: red; padding: 5px 15px 0">
+        指尖网络--刷视频快速挣钱专区
       </div>
-      <div class="shulist" v-if="false">
+      <div class="shulist">
         <!--        <div class="shu-item">-->
         <!--          <div class="l">-->
         <!--            <div class="img-box">-->
@@ -200,6 +255,20 @@
             <div @click="handleGame">详情</div>
           </div>
         </div>
+        <!--        <div class="shu-item">-->
+        <!--          <div class="l">-->
+        <!--            <div class="img-box">-->
+        <!--              <img src="@/assets/img/up/CA.png" alt="" />-->
+        <!--            </div>-->
+        <!--            <div>-->
+        <!--              <div>指尖网络&#45;&#45;棋牌娱乐</div>-->
+        <!--              <div>点击进行精彩游戏！</div>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--          <div class="r">-->
+        <!--            <div @click="toGame('ky')">详情</div>-->
+        <!--          </div>-->
+        <!--        </div>-->
         <div class="shu-item">
           <div class="l">
             <div class="img-box">
@@ -223,6 +292,26 @@
     </div>
 
     <BaseFooter v-bind:init-tab="1" :is-white="true" />
+    <!--    <div class="contact" @click="jumpToQQ">-->
+    <!--      <img src="@/assets/img/kefu.png" alt="" />-->
+    <!--      <div>-->
+    <!--        <div>联系</div>-->
+    <!--        <div>客服</div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--<div class="contact" @click="$router.push('/article?id=5')">-->
+    <!--  <img src="@/assets/img/paly-introduce.png" alt="" />-->
+    <!--  <div>-->
+    <!--    <div>玩法</div>-->
+    <!--    <div>介绍</div>-->
+    <!--  </div>-->
+    <!--</div>-->
+
+    <!--    <TipDialog v-model="showGonggaoOverlay" @confirm="showGonggaoOverlay = false">-->
+    <!--      <div style="padding: 20px">-->
+    <!--        <p>用户如遇到充值不进，可以进官方QQ群，找客服人工充值，支持 微信，支付宝</p>-->
+    <!--      </div>-->
+    <!--    </TipDialog>-->
     <TipDialog
       v-model="showGonggaoOverlay"
       @confirm="handleGonggaoConfirm"
@@ -309,12 +398,11 @@ const shareDialogShow = ref(false)
 const buyDialogShow = ref(false)
 const scrollContent = ref(['精彩短视频，超级好礼送不停，期待您的加入!'])
 const containerStyle = computed(() => {
-  // if (window.android && !window.android.hideBar) {
-  //   return { paddingTop: '40px' }
-  // } else {
-  //   return {}
-  // }
-  return {}
+  if (window.android && !window.android.hideBar) {
+    return { paddingTop: '40px' }
+  } else {
+    return {}
+  }
 })
 const loading = ref(false)
 const router = useRouter()
@@ -342,7 +430,7 @@ const appList = ref([
   {
     name: '推广收入表',
     desc: '点击查看返佣海报！',
-    logo: '8',
+    logo: '11',
     btnLabel: '查看',
     btnCb() {
       // router.push('/zhubofuchizhengce')
@@ -402,7 +490,7 @@ const appList = ref([
   {
     name: '代理佣金排行榜',
     desc: '点击查看代理佣金排行榜！',
-    logo: '9',
+    logo: '1',
     btnLabel: '加入',
     btnCb() {
       // showImagePreview({
@@ -683,7 +771,6 @@ const toGame = (plat) => {
   width: 100%;
   height: 100%;
   background: #fff;
-
   overflow: hidden;
   position: absolute;
   left: 0;
@@ -691,17 +778,6 @@ const toGame = (plat) => {
 
   .container {
     position: relative;
-    .bg {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: -1;
-      background-image: url('./images/home-bg.png');
-      background-repeat: no-repeat;
-      background-size: 100% auto;
-    }
     z-index: 2;
     //width: 90vw;
     //height: 80vh;
@@ -765,6 +841,24 @@ const toGame = (plat) => {
       margin-top: 10px;
     }
 
+    .game-box {
+      padding: 5px 15px;
+      color: red;
+      .title {
+        font-size: 16px;
+        margin: 6px;
+      }
+      .img-list {
+        display: flex;
+        flex-wrap: wrap;
+        .img-item {
+          width: 20%;
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
     .log {
       padding: 0px 20px 10px;
       height: 300px;
@@ -808,75 +902,10 @@ const toGame = (plat) => {
         }
       }
     }
-    .big-title {
-      font-size: 20px;
-      color: #000;
-      font-weight: bolder;
-      padding: 5px 20px 0;
-      position: relative;
-      &:before {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        content: '';
-        display: block;
-        width: 12px;
-        height: 6px;
-        background-color: #ccc;
-        margin-bottom: 10px;
-        background-image: linear-gradient(135deg, #6a78f0 10%, #8999f0 100%);
-      }
-    }
-    .shouyi-list {
-      display: flex;
-      padding: 10px 5px;
-      .item {
-        flex: 1;
-        padding: 5px;
-
-        .item-box {
-          border-radius: 10px;
-          width: 100%;
-          height: 150px;
-          background: url('./images/home-icon2.png') no-repeat;
-          background-size: 100% 100%;
-          padding: 10px;
-          box-sizing: border-box;
-
-          & > div {
-            &:nth-child(1) {
-              font-size: 18px;
-            }
-            &:nth-child(2) {
-              font-size: 14px;
-              opacity: 0.8;
-              margin-top: 5px;
-            }
-          }
-        }
-        &:nth-child(2) {
-          .item-box {
-            background: url('./images/home-icon3.png') no-repeat;
-            background-size: 100% 100%;
-          }
-        }
-        &:nth-child(3) {
-          .item-box {
-            background: url('./images/home-icon1.png') no-repeat;
-            background-size: 100% 100%;
-          }
-        }
-      }
-    }
     .app-list {
-      width: 90%;
       box-sizing: border-box;
       background-color: #fff;
-      padding: 20px 0;
-      margin: 0 auto;
-      border-radius: 15px;
-
-      box-shadow: 0 4px 5px rgba(0, 0, 0, 0.05);
+      padding-top: 10px;
       display: flex;
       //flex: 1;
       overflow-x: auto;
@@ -903,8 +932,8 @@ const toGame = (plat) => {
           align-items: center;
 
           .logo {
-            width: 80px;
-            height: 80px;
+            width: 35px;
+            height: 35px;
             overflow: hidden;
             border-radius: 50%;
 
@@ -916,15 +945,13 @@ const toGame = (plat) => {
           .info {
             flex: 1;
             margin-left: 6px;
-            padding: 0 2px;
-            margin-top: -5px;
+            padding: 2px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             .name {
               font-size: 14px;
               color: #000;
-              font-weight: bolder;
             }
             .desc {
               color: #9d9d9d;
@@ -979,7 +1006,7 @@ const toGame = (plat) => {
             justify-content: space-evenly;
             flex: 1;
             & > div:nth-child(2) {
-              color: #999;
+              color: red;
               font-size: 12px;
             }
           }
@@ -991,7 +1018,7 @@ const toGame = (plat) => {
           align-items: center;
           justify-content: center;
           div {
-            background-image: linear-gradient(to right, #6879fd, #82a6fd);
+            background-image: linear-gradient(to right, #ff8b6e, #ff625c);
             color: #fff;
             border-radius: 15px;
             padding: 4px 8px;

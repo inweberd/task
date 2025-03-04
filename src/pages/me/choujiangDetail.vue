@@ -30,14 +30,7 @@
 <script lang="ts" setup>
 import choujiang1 from '@/assets/img/choujiang1.png'
 import choujiang2 from '@/assets/img/choujiang2.png'
-// import my from '@/assets/img/my.jpg'
-import my from '@/assets/img/creadotInfo.jpg'
 import { getIsInApp } from '@/utils/getTopPadding'
-import zhengshu1 from '@/assets/img/zhengshu1.jpg'
-import zhengshu2 from '@/assets/img/zhengshu2.jpg.jpg'
-import zhengshu3 from '@/assets/img/zhengshu3.jpg'
-import zhengshu4 from '@/assets/img/zhengshu4.jpg'
-import zhengshu5 from '@/assets/img/zhengshu5.png'
 
 const showImage = (index) => {
   showImagePreview({

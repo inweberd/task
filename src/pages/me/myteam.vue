@@ -1,16 +1,7 @@
 <template>
   <div class="investClass">
-    <div class="user-name">
-      <template v-if="userInfo.nickname"> {{ userInfo.nickname }}</template>
-      <template v-else>
-        {{
-          userInfo.phone
-            ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
-            : ''
-        }}</template
-      >
-    </div>
-    <div class="container">
+    <!--    <van-nav-bar title="我的" safe-area-inset-top fixed placeholder />-->
+    <div class="info">
       <div class="avatar" @click="renzheng(userInfo.avatar)">
         <img :src="userInfo.avatar || defaultAvatar" />
       </div>
@@ -20,104 +11,148 @@
       >
         点击头像可更换微信微信头像
       </p>
-      <div class="idandcode">
-        <div>
-          <!--          <p>上级会员ID : {{ userInfo?.invite_id }}</p>-->
-          <p>我的会员ID : {{ userInfo?.id }}</p>
-        </div>
-        <p style="margin-left: 40px">我的邀请码 : {{ userInfo?.result?.invite?.code }}</p>
-      </div>
-      <div class="money-info">
-        <p>
-          <span>{{ userIncomeInfo.today || 0 }}</span>
-          <span>今日收入</span>
-        </p>
-        <p>
-          <span>{{ userIncomeInfo.total || 0 }}</span>
-          <span>历史收入</span>
-        </p>
-        <p>
-          <span>{{ walletInfo?.amount || 0 }}</span>
-          <span>充值余额</span>
-        </p>
-      </div>
-      <div class="vipcount" style="color: red; margin-top: 10px; font-size: 16px">
-        <!--          会员等级: {{ getSerialName(userInfo?.result?.staff?.serial)-->
-        <!--          }}{{ myStaffList?.length ? myStaffList?.length + '份' : '' }}-->
-        <p style="text-align: center">
-          我的会员等级:
-          <span>{{ getSerialName(myStaffList?.length || 0) }}</span>
-          <span style="padding-left: 20px" v-if="myStaffList?.length"
-            >今日未领取收入: {{ shengyukelinqqu }}</span
+      <div class="info-r">
+        <div class="t">
+          <template v-if="userInfo.nickname"> {{ userInfo.nickname }}</template>
+          <template v-else>
+            {{
+              userInfo.phone
+                ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
+                : ''
+            }}</template
           >
-        </p>
-        <!--          <p v-if="myStaffList?.length">当日可领取佣金: {{ myStaffList.length * 2.5 }}</p>-->
+        </div>
+        <div class="b">
+          <div>
+            <!--          <p>上级会员ID : {{ userInfo?.invite_id }}</p>-->
+            <p>我的ID : {{ userInfo?.id }}</p>
+          </div>
+          <p style="margin-left: 40px">我的邀请码 : {{ userInfo?.result?.invite?.code }}</p>
+        </div>
       </div>
-      <div class="total-box">
-        <div class="top" @click="$router.push('/teamStat')">
-          <div class="left">
-            <img class="qianbao" src="./images/qianbao.png" alt="" />
-            <span> 可提现余额 </span>
-            <img
-              class="eye"
-              @click.stop="showTotal = false"
-              v-if="showTotal"
-              src="@/assets/img/eye-show.png"
-            />
-            <img
-              class="eye"
-              @click.stop="handleEyeClick"
-              v-else
-              src="@/assets/img/eye-hidden.png"
-            />
+    </div>
+
+    <div class="container">
+      <div class="money-box">
+        <div class="total">
+          <div class="txt1">总资产(元)</div>
+          <div class="txt2">
+            {{ userIncomeInfo?.wallet?.money || 0 }}
+            <!--            <template v-if="showTotal">-->
+            <!--              {{ userIncomeInfo?.wallet?.money || 0 }}-->
+            <!--            </template>-->
+            <!--            <template v-else> ****** </template>-->
+            <!--            <img-->
+            <!--              class="eye"-->
+            <!--              @click.stop="showTotal = false"-->
+            <!--              v-if="showTotal"-->
+            <!--              src="@/assets/img/eye-show.png"-->
+            <!--            />-->
+            <!--            <img-->
+            <!--              class="eye"-->
+            <!--              @click.stop="handleEyeClick"-->
+            <!--              v-else-->
+            <!--              src="@/assets/img/eye-hidden.png"-->
+            <!--            />-->
           </div>
-          <div class="right">
-            <span>
-              <template v-if="showTotal">
-                {{ userIncomeInfo?.wallet?.money || 0 }}
-              </template>
-              <template v-else> ****** </template>
-            </span>
-            <van-icon name="arrow" />
-          </div>
+        </div>
+        <div class="border"></div>
+        <div class="money-info">
+          <p>
+            <span class="title">今日收益(元)</span>
+            <span class="num">{{ userIncomeInfo.today || 0 }}</span>
+          </p>
+          <p>
+            <span class="title">累计收益(元)</span>
+            <span class="num">{{ userIncomeInfo.total || 0 }}</span>
+          </p>
+          <!--          <p>-->
+          <!--            <span>{{ walletInfo?.amount || 0 }}</span>-->
+          <!--            <span>充值余额</span>-->
+          <!--          </p>-->
         </div>
       </div>
 
       <div class="chongzhiandtixian">
+        <div class="chongzhiyue">
+          充值余额(元)&nbsp;&nbsp;
+          <div class="num">{{ walletInfo?.amount || 0 }}</div>
+        </div>
         <div class="btn-box">
           <van-button
             @click="go('recharge')"
             class="btn"
-            color="linear-gradient(to right, #FEC163, #DE4313)"
+            color="linear-gradient(to right, #A9DDFD, #1D9AE8)"
           >
             充值
           </van-button>
           <van-button
             @click="go('/dep')"
             class="btn"
-            color="linear-gradient(to right, #52E5E7, #130CB7)"
-            style="margin-left: 10px"
+            color="#fff"
+            style="margin-left: 10px; color: #1d9ae8; border: 1px solid #1d9ae8"
           >
             提现
           </van-button>
-          <van-button
-            @click="go('/invest')"
-            class="btn"
-            color="linear-gradient(to right, #F6CEEC, #D939CD)"
-            style="margin-left: 10px"
-          >
-            购买会员
-          </van-button>
-          <van-button
-            @click="go('/invest')"
-            class="btn"
-            color="linear-gradient(to right,#FFA8A8, #2376DD)"
-            style="margin-left: 10px"
-          >
-            免费兑 <br />换会员
-          </van-button>
+          <!--          <van-button-->
+          <!--            @click="go('/invest')"-->
+          <!--            class="btn"-->
+          <!--            color="linear-gradient(to right, #F6CEEC, #D939CD)"-->
+          <!--            style="margin-left: 10px"-->
+          <!--          >-->
+          <!--            购买会员-->
+          <!--          </van-button>-->
+          <!--          <van-button-->
+          <!--            @click="go('/invest')"-->
+          <!--            class="btn"-->
+          <!--            color="linear-gradient(to right,#FFA8A8, #2376DD)"-->
+          <!--            style="margin-left: 10px"-->
+          <!--          >-->
+          <!--            免费兑 <br />换会员-->
+          <!--          </van-button>-->
         </div>
       </div>
+      <!--      <div class="vipcount" style="color: red; margin-top: 10px; font-size: 16px">-->
+      <!--        &lt;!&ndash;          会员等级: {{ getSerialName(userInfo?.result?.staff?.serial)&ndash;&gt;-->
+      <!--        &lt;!&ndash;          }}{{ myStaffList?.length ? myStaffList?.length + '份' : '' }}&ndash;&gt;-->
+      <!--        <p style="text-align: center">-->
+      <!--          我的会员等级:-->
+      <!--          <span>{{ getSerialName(myStaffList?.length || 0) }}</span>-->
+      <!--          <span style="padding-left: 20px" v-if="myStaffList?.length"-->
+      <!--            >今日未领取收入: {{ shengyukelinqqu }}</span-->
+      <!--          >-->
+      <!--        </p>-->
+      <!--        &lt;!&ndash;          <p v-if="myStaffList?.length">当日可领取佣金: {{ myStaffList.length * 2.5 }}</p>&ndash;&gt;-->
+      <!--      </div>-->
+      <!--      <div class="total-box" >-->
+      <!--        <div class="top" @click="$router.push('/teamStat')">-->
+      <!--          <div class="left">-->
+      <!--            <img class="qianbao" src="./images/qianbao.png" alt="" />-->
+      <!--            <span> 可提现余额 </span>-->
+      <!--            <img-->
+      <!--              class="eye"-->
+      <!--              @click.stop="showTotal = false"-->
+      <!--              v-if="showTotal"-->
+      <!--              src="@/assets/img/eye-show.png"-->
+      <!--            />-->
+      <!--            <img-->
+      <!--              class="eye"-->
+      <!--              @click.stop="handleEyeClick"-->
+      <!--              v-else-->
+      <!--              src="@/assets/img/eye-hidden.png"-->
+      <!--            />-->
+      <!--          </div>-->
+      <!--          <div class="right">-->
+      <!--            <span>-->
+      <!--              <template v-if="showTotal">-->
+      <!--                {{ userIncomeInfo?.wallet?.money || 0 }}-->
+      <!--              </template>-->
+      <!--              <template v-else> ****** </template>-->
+      <!--            </span>-->
+      <!--            <van-icon name="arrow" />-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
 
       <!--      <div class="info">-->
       <!--          v-if="showRenzheng"-->
@@ -142,13 +177,431 @@
       <!--      </div>-->
       <div class="list">
         <van-cell
-          v-for="item of list"
+          v-for="(item, index) of list"
           class="list-item"
           :icon="item.icon"
           :title="item.label"
           @click="item.fn"
           is-link
-        />
+        >
+          <template #icon>
+            <i class="menu-icon" v-if="index === 0">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="62"
+                height="62"
+                viewBox="0 0 62 62"
+                fill="none"
+              >
+                <circle cx="31" cy="31" r="31" fill="#FFFFFF"></circle>
+                <path
+                  fill-rule="evenodd"
+                  fill="rgba(77, 77, 77, 1)"
+                  d="M31 62C48.1208 62 62 48.1208 62 31C62 13.8792 48.1208 0 31 0C13.8792 0 0 13.8792 0 31C0 48.1208 13.8792 62 31 62ZM31 4C45.9117 4 58 16.0883 58 31C58 45.9117 45.9117 58 31 58C16.0883 58 4 45.9117 4 31C4 16.0883 16.0883 4 31 4Z"
+                ></path>
+                <rect
+                  x="28"
+                  y="15"
+                  width="6"
+                  height="18"
+                  rx="3"
+                  fill="url(#linear_fill_67c9f63c-aa6b-4270-b0e2-399feebc8b3e_0)"
+                ></rect>
+                <rect
+                  x="50.5"
+                  y="28"
+                  width="6"
+                  height="22"
+                  transform="rotate(90 50.5 28)"
+                  rx="3"
+                  fill="url(#linear_fill_732ad231-072e-40e4-9d8c-b52061495ff0_0)"
+                ></rect>
+                <defs>
+                  <linearGradient
+                    id="linear_fill_67c9f63c-aa6b-4270-b0e2-399feebc8b3e_0"
+                    x1="31"
+                    y1="15"
+                    x2="31"
+                    y2="33"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#A0DBFF" />
+                    <stop offset="1" stop-color="#0A91E5" />
+                  </linearGradient>
+                  <linearGradient
+                    id="linear_fill_732ad231-072e-40e4-9d8c-b52061495ff0_0"
+                    x1="53.5"
+                    y1="28"
+                    x2="53.5"
+                    y2="50"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#A0DBFF" />
+                    <stop offset="1" stop-color="#0A91E5" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </i>
+            <i class="menu-icon" v-if="index === 1"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="62"
+                height="62"
+                viewBox="0 0 62 62"
+                fill="none"
+              >
+                <circle cx="31" cy="31" r="31" fill="#FFFFFF"></circle>
+                <path
+                  fill-rule="evenodd"
+                  fill="rgba(77, 77, 77, 1)"
+                  d="M31 62C48.1208 62 62 48.1208 62 31C62 13.8792 48.1208 0 31 0C13.8792 0 0 13.8792 0 31C0 48.1208 13.8792 62 31 62ZM31 4C45.9117 4 58 16.0883 58 31C58 45.9117 45.9117 58 31 58C16.0883 58 4 45.9117 4 31C4 16.0883 16.0883 4 31 4Z"
+                ></path>
+                <rect
+                  x="35.60713195800781"
+                  y="16"
+                  width="6"
+                  height="14"
+                  transform="rotate(25.000001154466787 35.60713195800781 16)"
+                  rx="3"
+                  fill="url(#linear_fill_1c29ec81-354b-4c12-88e6-78fd1fb1825a_0)"
+                ></rect>
+                <rect
+                  x="21"
+                  y="18.535888671875"
+                  width="6"
+                  height="14"
+                  transform="rotate(-24.999999711185435 21 18.535888671875)"
+                  rx="3"
+                  fill="url(#linear_fill_c419624e-dfaf-4d52-9877-fa2d34d749f4_0)"
+                ></rect>
+                <rect
+                  x="42"
+                  y="25.4248046875"
+                  width="6"
+                  height="22"
+                  transform="rotate(90 42 25.4248046875)"
+                  rx="3"
+                  fill="url(#linear_fill_27dec8d0-d16d-4ade-ae83-827f27105849_0)"
+                ></rect>
+                <rect
+                  x="42"
+                  y="34.4248046875"
+                  width="6"
+                  height="22"
+                  transform="rotate(90 42 34.4248046875)"
+                  rx="3"
+                  fill="url(#linear_fill_7710e0c9-565b-48ca-a3c1-1a2443f9fd37_0)"
+                ></rect>
+                <rect
+                  x="28"
+                  y="23.4248046875"
+                  width="6"
+                  height="22"
+                  rx="3"
+                  fill="url(#linear_fill_4572dbfb-b1e3-4a8d-9b2b-42e885ea2f6d_0)"
+                ></rect>
+                <defs>
+                  <linearGradient
+                    id="linear_fill_1c29ec81-354b-4c12-88e6-78fd1fb1825a_0"
+                    x1="38.60713195800781"
+                    y1="16"
+                    x2="38.60713195800781"
+                    y2="30"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#A0DBFF" />
+                    <stop offset="1" stop-color="#0A91E5" />
+                  </linearGradient>
+                  <linearGradient
+                    id="linear_fill_c419624e-dfaf-4d52-9877-fa2d34d749f4_0"
+                    x1="24"
+                    y1="18.535888671875"
+                    x2="24"
+                    y2="32.535888671875"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#A0DBFF" />
+                    <stop offset="1" stop-color="#0A91E5" />
+                  </linearGradient>
+                  <linearGradient
+                    id="linear_fill_27dec8d0-d16d-4ade-ae83-827f27105849_0"
+                    x1="45"
+                    y1="25.4248046875"
+                    x2="45"
+                    y2="47.4248046875"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#A0DBFF" />
+                    <stop offset="1" stop-color="#0A91E5" />
+                  </linearGradient>
+                  <linearGradient
+                    id="linear_fill_7710e0c9-565b-48ca-a3c1-1a2443f9fd37_0"
+                    x1="45"
+                    y1="34.4248046875"
+                    x2="45"
+                    y2="56.4248046875"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#A0DBFF" />
+                    <stop offset="1" stop-color="#0A91E5" />
+                  </linearGradient>
+                  <linearGradient
+                    id="linear_fill_4572dbfb-b1e3-4a8d-9b2b-42e885ea2f6d_0"
+                    x1="31"
+                    y1="23.4248046875"
+                    x2="31"
+                    y2="45.4248046875"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#A0DBFF" />
+                    <stop offset="1" stop-color="#0A91E5" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </i>
+            <i class="menu-icon" v-if="index === 2"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="58"
+                height="58"
+                viewBox="0 0 58 58"
+                fill="none"
+              >
+                <path
+                  fill="#FFFFFF"
+                  d="M4 0L54 0C56.2091 0 58 1.79086 58 4L58 54C58 56.2091 56.2091 58 54 58L4 58C1.79086 58 0 56.2091 0 54L0 4C0 1.79086 1.79086 0 4 0Z"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  fill="rgba(77, 77, 77, 1)"
+                  d="M54 0L4 0C1.79086 0 0 1.79086 0 4L0 54C0 56.2091 1.79086 58 4 58L54 58C56.2091 58 58 56.2091 58 54L58 4C58 1.79086 56.2091 0 54 0ZM4 54L4 4L54 4L54 54L4 54Z"
+                ></path>
+                <rect
+                  x="20.90550994873047"
+                  y="24.62744140625"
+                  width="6"
+                  height="18"
+                  transform="rotate(-29.000000420085833 20.90550994873047 24.62744140625)"
+                  rx="3"
+                  fill="url(#linear_fill_38fc83cb-c0f7-4110-bc0e-bf2cd0b0ed9f_0)"
+                ></rect>
+                <rect
+                  x="23.755714416503906"
+                  y="22"
+                  width="6"
+                  height="20"
+                  transform="rotate(35.99999933864986 23.755714416503906 22)"
+                  rx="3"
+                  fill="url(#linear_fill_0c3a036b-5535-4322-9a64-5ce2343f2a9d_0)"
+                ></rect>
+                <rect
+                  x="41.755714416503906"
+                  y="17"
+                  width="6"
+                  height="24"
+                  transform="rotate(35.99999933864986 41.755714416503906 17)"
+                  rx="3"
+                  fill="url(#linear_fill_3d9e2c82-ae20-4040-8a02-cad32171a911_0)"
+                ></rect>
+                <defs>
+                  <linearGradient
+                    id="linear_fill_38fc83cb-c0f7-4110-bc0e-bf2cd0b0ed9f_0"
+                    x1="23.90550994873047"
+                    y1="24.62744140625"
+                    x2="23.90550994873047"
+                    y2="42.62744140625"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#A0DBFF" />
+                    <stop offset="1" stop-color="#0A91E5" />
+                  </linearGradient>
+                  <linearGradient
+                    id="linear_fill_0c3a036b-5535-4322-9a64-5ce2343f2a9d_0"
+                    x1="26.755714416503906"
+                    y1="22"
+                    x2="26.755714416503906"
+                    y2="42"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#A0DBFF" />
+                    <stop offset="1" stop-color="#0A91E5" />
+                  </linearGradient>
+                  <linearGradient
+                    id="linear_fill_3d9e2c82-ae20-4040-8a02-cad32171a911_0"
+                    x1="44.755714416503906"
+                    y1="17"
+                    x2="44.755714416503906"
+                    y2="41"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#A0DBFF" />
+                    <stop offset="1" stop-color="#0A91E5" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </i>
+            <i class="menu-icon" v-if="index === 3"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="56"
+                height="58"
+                viewBox="0 0 56 58"
+                fill="none"
+              >
+                <path
+                  fill="#FFFFFF"
+                  d="M3.86207 0L52.1379 0C54.2709 0 56 1.79086 56 4L56 54C56 56.2091 54.2709 58 52.1379 58L3.86207 58C1.72911 58 0 56.2091 0 54L0 4C0 1.79086 1.72911 0 3.86207 0Z"
+                ></path>
+                <path
+                  fill-rule="evenodd"
+                  fill="rgba(77, 77, 77, 1)"
+                  d="M52.1379 0L3.86207 0C1.72911 0 0 1.79086 0 4L0 54C0 56.2091 1.72911 58 3.86207 58L52.1379 58C54.2709 58 56 56.2091 56 54L56 4C56 1.79086 54.2709 0 52.1379 0ZM4 4L4 54L52 54L52 4L4 4Z"
+                ></path>
+                <rect
+                  x="39"
+                  y="19"
+                  width="6"
+                  height="22"
+                  transform="rotate(90 39 19)"
+                  rx="3"
+                  fill="url(#linear_fill_7172fef4-e314-4c61-a76e-67f3937926f2_0)"
+                ></rect>
+                <rect
+                  x="39"
+                  y="33"
+                  width="6"
+                  height="22"
+                  transform="rotate(90 39 33)"
+                  rx="3"
+                  fill="url(#linear_fill_ca0e69d5-be16-4d0a-9859-ea211359c8d5_0)"
+                ></rect>
+                <defs>
+                  <linearGradient
+                    id="linear_fill_7172fef4-e314-4c61-a76e-67f3937926f2_0"
+                    x1="42"
+                    y1="19"
+                    x2="42"
+                    y2="41"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#A0DBFF" />
+                    <stop offset="1" stop-color="#0A91E5" />
+                  </linearGradient>
+                  <linearGradient
+                    id="linear_fill_ca0e69d5-be16-4d0a-9859-ea211359c8d5_0"
+                    x1="42"
+                    y1="33"
+                    x2="42"
+                    y2="55"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#A0DBFF" />
+                    <stop offset="1" stop-color="#0A91E5" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </i>
+            <i class="menu-icon" v-if="index === 4"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="56"
+                height="58"
+                viewBox="0 0 56 58"
+                fill="none"
+              >
+                <path
+                  d="M5.58621 2L50.4138 2C52.3944 2 54 3.48209 54 5.31035L54 46.6897C54 48.5179 52.3944 50 50.4138 50L43.2661 50L37.3098 56L31.665 50L5.58621 50C3.6056 50 2 48.5179 2 46.6897L2 5.31035C2 3.48209 3.6056 2 5.58621 2Z"
+                  stroke="rgba(77, 77, 77, 1)"
+                  stroke-width="4"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  fill="#FFFFFF"
+                ></path>
+                <rect
+                  x="39"
+                  y="16"
+                  width="6"
+                  height="22"
+                  transform="rotate(90 39 16)"
+                  rx="3"
+                  fill="url(#linear_fill_661f1488-e5a1-445a-8c9f-88d47d2eb006_0)"
+                ></rect>
+                <rect
+                  x="39"
+                  y="30"
+                  width="6"
+                  height="22"
+                  transform="rotate(90 39 30)"
+                  rx="3"
+                  fill="url(#linear_fill_d4746e94-e4a7-4537-9fd4-4edd8dab2a8e_0)"
+                ></rect>
+                <defs>
+                  <linearGradient
+                    id="linear_fill_661f1488-e5a1-445a-8c9f-88d47d2eb006_0"
+                    x1="42"
+                    y1="16"
+                    x2="42"
+                    y2="38"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#A0DBFF" />
+                    <stop offset="1" stop-color="#0A91E5" />
+                  </linearGradient>
+                  <linearGradient
+                    id="linear_fill_d4746e94-e4a7-4537-9fd4-4edd8dab2a8e_0"
+                    x1="42"
+                    y1="30"
+                    x2="42"
+                    y2="52"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#A0DBFF" />
+                    <stop offset="1" stop-color="#0A91E5" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </i>
+            <i class="menu-icon" v-if="index === 5"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="62"
+                height="62"
+                viewBox="0 0 62 62"
+                fill="none"
+              >
+                <circle cx="31" cy="31" r="31" fill="#FFFFFF"></circle>
+                <path
+                  fill-rule="evenodd"
+                  fill="rgba(77, 77, 77, 1)"
+                  d="M31 62C48.1208 62 62 48.1208 62 31C62 13.8792 48.1208 0 31 0C13.8792 0 0 13.8792 0 31C0 48.1208 13.8792 62 31 62ZM31 4C45.9117 4 58 16.0883 58 31C58 45.9117 45.9117 58 31 58C16.0883 58 4 45.9117 4 31C4 16.0883 16.0883 4 31 4Z"
+                ></path>
+                <path
+                  d="M31.2574 51.7158C26.21 51.7158 21.5428 49.4139 18.4384 45.4014C17.7203 44.4721 17.9104 43.1417 18.8185 42.4447C19.7477 41.7267 21.0782 41.9168 21.7751 42.8249C24.077 45.7815 27.5405 47.4921 31.2574 47.4921C34.9742 47.4921 38.4377 45.7815 40.7185 42.8249C41.4366 41.8957 42.7459 41.7267 43.6751 42.4447C44.6043 43.1628 44.7733 44.4721 44.0553 45.4014C40.9931 49.4139 36.3258 51.7158 31.2574 51.7158Z"
+                  fill="url(#linear_fill_e8726982-e32b-4e13-93ae-d98f2d10a465)"
+                ></path>
+                <defs>
+                  <linearGradient
+                    id="linear_fill_e8726982-e32b-4e13-93ae-d98f2d10a465"
+                    x1="21.171817779541016"
+                    y1="42"
+                    x2="41.48236083984375"
+                    y2="46.85791015625"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#A0DBFF" />
+                    <stop offset="1" stop-color="#0A91E5" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </i>
+          </template>
+        </van-cell>
       </div>
 
       <ul class="login_nav" v-if="false">
@@ -371,6 +824,7 @@ import { showDialog } from 'vant'
 import { getSerialName } from '../../utils/getSerialName'
 import { Toast } from 'tdesign-mobile-vue'
 import bus from '@/utils/bus'
+import { getIsInApp } from '@/utils/getTopPadding'
 
 const router = useRouter()
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
@@ -699,64 +1153,105 @@ onDeactivated(() => {
   height: calc(100% - 56px);
   padding-top: 20px;
   box-sizing: border-box;
-  background-repeat: no-repeat;
-  background-image: url('@/assets/img/bg.png');
-  background-size: 100% auto;
+  //background-repeat: no-repeat;
+  //background-image: url('@/assets/img/bg.png');
+  //background-size: 100% auto;
   color: #666;
-  background-color: #f7f8fa;
+  background-color: #fff;
 
   overflow-y: auto;
 
-  .user-name {
-    position: relative;
-    margin-top: 30px;
-    color: #fff;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-  }
-
-  .container {
-    margin-top: 80px;
-    background-color: #fff;
-    position: relative;
-    border: 1px solid transparent;
-    padding: 40px 20px 0;
+  .info {
+    display: flex;
+    padding: 0 20px;
     .avatar {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: -65px;
-      width: 90px;
-      height: 90px;
-      border-radius: 15px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
       overflow: hidden;
       img {
         width: 100%;
         height: 100%;
       }
     }
-    .idandcode {
-      font-size: 16px;
-      color: #666;
+    .info-r {
+      margin-left: 15px;
       display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .money-info {
-      margin-top: 10px;
-      display: flex;
-      color: #000;
+      flex-direction: column;
       justify-content: space-around;
-      & > p {
+      .t {
+        color: #0a0a0a;
+        font-size: 16px;
+      }
+      .b {
         display: flex;
-        flex-direction: column;
-        padding: 3px;
+        color: #999999;
+        fonnt-size: 12px;
+      }
+    }
+  }
+
+  .container {
+    background-color: #fff;
+    position: relative;
+    border: 1px solid transparent;
+    padding: 20px 20px 0;
+
+    .money-box {
+      background-repeat: no-repeat;
+      background-image: url('./images/money-bg.png');
+      background-size: 100% 100%;
+      height: 150px;
+      overflow: hidden;
+      border-radius: 10px;
+      position: relative;
+
+      .total {
+        color: #fff;
+        margin-top: 20px;
         text-align: center;
-        &:nth-child(2) {
-          padding: 3px 20px;
-          border-right: 1px solid #ccc;
-          border-left: 1px solid #ccc;
+        display: flex;
+        justify-content: center;
+        .txt1 {
+          line-height: 32px;
+          font-size: 16px;
+        }
+        .txt2 {
+          margin-left: 15px;
+          font-size: 22px;
+          .eye {
+            width: 20px;
+            margin-left: 4px;
+          }
+        }
+      }
+      .border {
+        height: 35px;
+        width: 1px;
+        background-color: #eee;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 30px;
+      }
+      .money-info {
+        margin-top: 20px;
+        display: flex;
+        color: #fff;
+        justify-content: space-around;
+        width: 100%;
+        & > p {
+          width: 52%;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+
+          .title {
+            margin-bottom: 10px;
+          }
+          .num {
+            font-size: 20px;
+          }
         }
       }
     }
@@ -801,16 +1296,23 @@ onDeactivated(() => {
       justify-content: space-between;
       align-items: center;
 
-      .vipcount {
+      .chongzhiyue {
+        flex: 1;
         font-size: 16px;
+        color: #000;
+        display: flex;
+        align-items: center;
+        .num {
+          font-weight: bolder;
+        }
       }
       .btn-box {
-        width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: end;
+        align-items: center;
         .btn {
           height: 35px;
-          border-radius: 15px;
+          border-radius: 8px;
           padding: 2px 15px;
         }
       }
@@ -1011,5 +1513,11 @@ onDeactivated(() => {
     width: 30px;
     height: 30px;
   }
+}
+.menu-icon {
+  transform: scale(0.3) translateY(-25px);
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
 }
 </style>

@@ -1,4 +1,4 @@
-<template>
+template>
   <div
     class="call-float"
     v-if="state.isSmall"

@@ -1,6 +1,6 @@
 <template>
   <div class="investClass">
-    <div :style="containerStyle" style="background-color: #fff; width: 100%"></div>
+    <!--    <div :style="containerStyle" style="background-color: #fff; width: 100%"></div>-->
     <!--    <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />-->
     <Loading v-if="loading" />
     <!--    <div class="title" style="color: #b4a482; font-size: 22px">会员权益卡</div>-->
@@ -25,29 +25,8 @@
     <!--        <div>开通不同等级会员， <span class="active"> 收益永久叠加</span> 生效 ！</div>-->
     <!--      </div>-->
     <!--    </div>-->
-    <div>
+    <div v-if="false">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-        <!--          <van-swipe-item>-->
-        <!--            <img src="./images/banner3.png" alt="" />-->
-        <!--          </van-swipe-item>-->
-        <!--          <van-swipe-item>-->
-        <!--            <img src="./images/banner4.png" alt="" />-->
-        <!--          </van-swipe-item>-->
-        <!--        <van-swipe-item>-->
-        <!--          <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>-->
-        <!--        </van-swipe-item>-->
-        <!--        <van-swipe-item>-->
-        <!--          <van-image :src="imageSrc8" width="100%" height="200" fit="fill"></van-image>-->
-        <!--        </van-swipe-item>-->
-        <!--        <van-swipe-item>-->
-        <!--          <van-image :src="imageSrc6" width="100%" height="200" fit="fill"></van-image>-->
-        <!--        </van-swipe-item>-->
-        <!--        <van-swipe-item>-->
-        <!--          <van-image :src="imageSrc7" width="100%" height="200" fit="fill"></van-image>-->
-        <!--        </van-swipe-item>-->
-        <!--        <van-swipe-item>-->
-        <!--          <img src="@/pages/home/images/banner7.jpg" alt="" />-->
-        <!--        </van-swipe-item>-->
         <van-swipe-item>
           <img src="@/pages/home/images/banner9.jpg" alt="" />
         </van-swipe-item>
@@ -56,7 +35,58 @@
         </van-swipe-item>
       </van-swipe>
     </div>
-    <p style="color: #000; padding-left: 15px; font-size: 18px; font-weight: bolder; margin: 4px 0">
+    <div class="top-box">
+      <div class="avatar" @click="renzheng(userInfo.avatar)">
+        <img :src="userInfo.avatar || defaultAvatar" />
+      </div>
+      <div class="name">
+        <template v-if="userInfo.nickname"> {{ userInfo.nickname }}</template>
+        <template v-else>
+          {{
+            userInfo.phone
+              ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
+              : ''
+          }}</template
+        >
+      </div>
+      <span class="vip-info">暂无会员</span>
+    </div>
+
+    <div class="v-list-box">
+      <div class="v-list">
+        <div class="v-list-item" :class="{ active: activeIndex === 0 }" @click="activeIndex = 0">
+          <img src="./images/vip-icon.png" alt="" />
+          <div>普通会员</div>
+          <div>新用户首月仅需6元</div>
+          <div>赠送一个月超级权益</div>
+        </div>
+        <div class="v-list-item" :class="{ active: activeIndex === 1 }" @click="activeIndex = 1">
+          <img src="./images/vip-icon.png" alt="" />
+          <div>超级视频会员</div>
+          <div>仅需20元</div>
+          <div>可叠加，可累计</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip">
+      <p>1. 可重复购买，达到数量后，系统将自动为您提升等级，享受更高收益！</p>
+      <p>2. 每个档位会员，都可以重复购买，收入无限叠加，无上限！</p>
+      <p style="color: #000; font-weight: bolder">
+        3. 当天同时购买不同等级会员卡，收益可叠加同时生效！
+      </p>
+    </div>
+    <van-button type="danger" round block style="margin: 20px auto; width: 90%; height: 40px">
+      开通
+    </van-button>
+    <p
+      style="
+        color: #000;
+        padding-left: 15px;
+        font-size: 18px;
+        font-weight: bolder;
+        margin-top: 254px;
+      "
+    >
       <!--      说明：每份会员有效期30天-->
       温馨提示： 每张会员卡可以使用365天！
     </p>
@@ -102,7 +132,7 @@
     <!--        </div>-->
     <!--      </div>-->
     <!--    </div>-->
-    <div class="viplist-box">
+    <div v-if="false" class="viplist-box">
       <div class="list">
         <div
           v-if="false"
@@ -433,14 +463,6 @@
   <BaseFooter v-bind:init-tab="5" :is-white="false" />
 </template>
 <script setup lang="ts">
-import imageSrc1 from '@/assets/img/hehuoren.jpg'
-import imageSrc4 from '@/assets/img/banner6.png'
-import imageSrc5 from './images/invest-info.png'
-import imageSrc6 from './images/banner6.jpg'
-import imageSrc7 from './images/banner7.jpg'
-import imageSrc8 from './images/banner8.jpg'
-import imageSrc2 from '@/assets/img/hehuoren2.png'
-import imageSrc3 from '@/assets/img/goumai.png'
 import { ref, reactive, onMounted, onUnmounted, computed } from 'vue'
 import {
   reqAllStaff,
@@ -457,11 +479,13 @@ import { _notice } from '@/utils'
 import { useRouter } from 'vue-router'
 import dayjs from 'dayjs'
 import BaseFooter from '@/components/BaseFooter.vue'
+import defaultAvatar from '@/assets/img/logo.png'
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
 defineOptions({
   name: 'invest'
 })
 
+const activeIndex = ref(0)
 const containerStyle = computed(() => {
   if (window.android && !window.android.hideBar) {
     return { height: '40px' }
@@ -806,6 +830,95 @@ const speed = ref(0.5) //滚动速度
   width: 100%;
   height: calc(100% - 65px);
 
+  .top-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 220px;
+    background-image: url('./images/vip-bg.png');
+    background-repeat: no-repeat;
+    background-size: 100% 220px;
+    .avatar {
+      margin: 50px auto 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .name {
+      text-align: center;
+      color: #000;
+      font-size: 16px;
+      margin: 10px 0;
+    }
+    .vip-info {
+      color: #f85f62;
+      padding: 2px 10px;
+      border: 1px solid #f85f62;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+  }
+
+  .v-list-box {
+    margin-top: 10px;
+    .v-list {
+      display: flex;
+      width: 95%;
+      margin: 0 auto;
+
+      .v-list-item {
+        margin: 10px;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 15px 0;
+
+        background-color: #eeeeee;
+        color: #616161;
+
+        img {
+          width: 30%;
+          margin-bottom: 15px;
+        }
+
+        & > div {
+          color: #000;
+          &:nth-of-type(1) {
+            font-size: 18px;
+            font-weight: bolder;
+          }
+
+          &:nth-of-type(2) {
+            font-size: 14px;
+            opacity: 0.8;
+            padding: 5px 0;
+          }
+          &:nth-of-type(3) {
+            font-size: 14px;
+            opacity: 0.8;
+          }
+        }
+
+        &.active {
+          color: #655858;
+          background-color: #fdd4d5;
+        }
+      }
+    }
+  }
+
+  .tip {
+    color: #666666;
+    padding: 0 20px;
+    font-size: 14px;
+    line-height: 22px;
+  }
   .container {
     overflow-x: auto;
     .list {
@@ -996,8 +1109,6 @@ const speed = ref(0.5) //滚动速度
       text-align: center;
       color: #fff;
       display: flex;
-      //background-image: url('@/assets/img/invest-bg.png');
-      //background-image: linear-gradient(135deg, #414138 10%, #0e197d 100%);
       background-image: url('./images/invest-bg.png');
       background-size: 100% 100%;
       width: 100%;

@@ -9,6 +9,8 @@
         </div>
       </div>
     </div>
+    <div></div>
+    <ToggleLoginAndRegister style="margin-top: 120px"></ToggleLoginAndRegister>
     <div class="container d-flex justify-content-around user-select-none">
       <div class="right card backdrop-filter" style="width: 100%">
         <div
@@ -22,12 +24,17 @@
           "
         >
           <van-cell-group style="width: 100%">
-            <van-field v-model="state.struct.account" placeholder="请输入手机号码" />
+            <van-field
+              v-model="state.struct.account"
+              placeholder="请输入手机号码"
+              left-icon="user-o"
+            />
             <van-field
               style="margin-top: 20px"
               v-model="state.struct.password"
               clearable
               placeholder="请输入密码"
+              left-icon="shield-o"
               type="password"
             />
           </van-cell-group>
@@ -43,38 +50,22 @@
             style="
               border-radius: 15px;
               color: #fff;
-              background-image: linear-gradient(to right, #ff8b6e, #ff625c);
+              background-image: linear-gradient(to bottom, #723efe, #ac24f5);
             "
             type="primary"
             @click="SignIn"
             >登录
           </el-button>
-          <span></span>
-          <el-button
-            class="w-100"
-            color="#00f7c4"
-            size="large"
-            style="
-              border-radius: 15px;
-              margin-top: 20px !important;
-              color: #666;
-              background-color: #fff;
-              border: 1px solid #ccc !important;
-            "
-            type="primary"
-            @click="$router.push('/common/sign-up')"
-            >注册
-          </el-button>
         </div>
       </div>
     </div>
     <div style="width: 80%; margin: 0 auto">
-      <van-divider
-        :style="{ color: '#666', borderColor: '#666', padding: '0 16px' }"
-        style="width: 100%; margin-top: 40px"
-      >
-        其他
-      </van-divider>
+      <!--      <van-divider-->
+      <!--        :style="{ color: '#666', borderColor: '#666', padding: '0 16px' }"-->
+      <!--        style="width: 100%; margin-top: 40px"-->
+      <!--      >-->
+      <!--        其他-->
+      <!--      </van-divider>-->
       <div style="display: flex; justify-content: space-evenly; align-items: center; width: 100%">
         <a style="font-size: 16px; color: #666" @click="goDownload">下载app</a>
         <a style="font-size: 16px; color: #666" @click="jumpToQQ2">官方交流群 </a>
@@ -124,6 +115,7 @@ import axios from 'axios'
 import { _notice } from '@/utils'
 import { getImei, getOaid } from '@/utils/ad'
 import bus from '@/utils/bus'
+import ToggleLoginAndRegister from '@/views/common/components/ToggleLoginAndRegister.vue'
 
 defineOptions({
   name: 'signIn'
@@ -299,12 +291,12 @@ onMounted(() => {
   background-size: 100% auto;
 
   .container {
-    width: 90%;
-    margin: 50px auto 0;
+    width: 95%;
+    margin: 20px auto 0;
     background-color: #fff;
     padding: 20px 40px;
     border-radius: 20px;
-    box-shadow: 0 0 10px #0000001f;
+    //box-shadow: 0 0 10px #0000001f;
   }
 }
 

@@ -135,7 +135,6 @@
 
 <script lang="ts" setup>
 // import imgg from './images/logo1.png'
-import imgg from '@/views/common/assets/logo.png'
 
 import { logout as fnlogout, register, reqWalletTransfer, sociallogin } from '@/api/myApi'
 import { _no, _sleep, _notice } from '@/utils'

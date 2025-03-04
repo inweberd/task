@@ -9,6 +9,8 @@
         </div>
       </div>
     </div>
+    <ToggleLoginAndRegister style="margin-top: 120px" :active="1"></ToggleLoginAndRegister>
+
     <div class="container d-flex justify-content-around user-select-none">
       <div class="right card backdrop-filter" style="width: 100%">
         <div
@@ -22,12 +24,17 @@
           "
         >
           <van-cell-group style="width: 100%">
-            <van-field v-model="state.struct.social" placeholder="请输入手机号码" />
+            <van-field
+              v-model="state.struct.social"
+              placeholder="请输入手机号码"
+              left-icon="user-o"
+            />
 
             <van-field
               v-model="state.struct.code"
               clearable
               placeholder="请输入短信验证码"
+              left-icon="label-o"
               style="margin-top: 10px"
             >
               <template #button>
@@ -41,6 +48,7 @@
               v-model="state.struct.password"
               clearable
               placeholder="请输入密码"
+              left-icon="shield-o"
               type="password"
               style="margin-top: 10px"
             />
@@ -48,61 +56,47 @@
               v-model="state.struct.AgainPassword"
               clearable
               placeholder="请再次输入密码"
+              left-icon="shield-o"
               type="password"
               style="margin-top: 10px"
             />
 
             <van-field
+              left-icon="orders-o"
               v-model="state.struct.invite"
               placeholder="请输入邀请码"
               :disabled="route.query.invite"
               style="margin-top: 10px"
             />
           </van-cell-group>
-          <div style="text-align: right; width: 100%; margin: 10px 10px 20px 0">
-            <span @click="$router.push('/common/sign-forget')"> 忘记密码 </span>
-          </div>
+          <!--          <div style="text-align: right; width: 100%; margin: 10px 10px 20px 0">-->
+          <!--            <span @click="$router.push('/common/sign-forget')"> 忘记密码 </span>-->
+          <!--          </div>-->
           <el-button
             :loading="state.status.wait"
             class="w-100"
             color="#01c5f0"
             size="large"
             style="
+              margin-top: 20px;
               border-radius: 15px;
               color: #fff;
-              background-image: linear-gradient(to right, #ff8b6e, #ff625c);
+              background-image: linear-gradient(to bottom, #723efe, #ac24f5);
             "
             type="primary"
             @click="SignUp"
             >注册
           </el-button>
-          <span></span>
-          <el-button
-            class="w-100"
-            color="#00f7c4"
-            size="large"
-            style="
-              border-radius: 15px;
-              margin-top: 20px !important;
-              color: #666;
-              background-color: #fff;
-              border: 1px solid #ccc !important;
-            "
-            type="primary"
-            @click="$router.push('/common/sign-in')"
-          >
-            登录
-          </el-button>
         </div>
       </div>
     </div>
     <div style="width: 80%; margin: 0 auto">
-      <van-divider
-        :style="{ color: '#666', borderColor: '#666', padding: '0 16px' }"
-        style="width: 100%; margin-top: 20px"
-      >
-        其他
-      </van-divider>
+      <!--      <van-divider-->
+      <!--        :style="{ color: '#666', borderColor: '#666', padding: '0 16px' }"-->
+      <!--        style="width: 100%; margin-top: 20px"-->
+      <!--      >-->
+      <!--        其他-->
+      <!--      </van-divider>-->
       <div
         style="
           display: flex;
@@ -141,7 +135,6 @@
 
 <script setup lang="ts">
 import cache from '@/utils/cache'
-import logo from '@/views/common/assets/logo.png'
 
 import { POST } from '@/utils/axios'
 import { reactive, ref, watch } from 'vue'
@@ -151,6 +144,7 @@ import { useUsers } from '@/store/users'
 import { showFailToast, showToast } from 'vant'
 import { DocumentCopy, User, Lock, Connection } from '@element-plus/icons-vue'
 import { _notice } from '@/utils'
+import ToggleLoginAndRegister from '@/views/common/components/ToggleLoginAndRegister.vue'
 const showGonggaoOverlay = ref(false)
 
 const handleGonggaoConfirm = () => {
@@ -337,12 +331,12 @@ body {
   background-image: url('@/assets/img/bg.png');
   background-size: 100% auto;
   .container {
-    width: 90%;
-    margin: 50px auto 0;
+    width: 95%;
+    margin: 20px auto 0;
     background-color: #fff;
     padding: 20px 40px;
     border-radius: 20px;
-    box-shadow: 0 0 10px #0000001f;
+    //box-shadow: 0 0 10px #0000001f;
   }
 }
 

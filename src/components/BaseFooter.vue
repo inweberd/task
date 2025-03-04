@@ -3,10 +3,10 @@
     <div class="l-button" @click="refresh(1)">
       <div class="add-ctn">
         <div class="img-box">
-          <img src="@/assets/icon/1.png" alt="" class="add" v-if="currentTab === 1" />
+          <img src="@/assets/icon/1-active.png" alt="" class="add" v-if="currentTab === 1" />
           <img src="@/assets/icon/1.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 1 ? '#666' : '' }">首页</div>
+        <!--        <div :style="{ color: currentTab === 1 ? '#666' : '' }">首页</div>-->
       </div>
     </div>
     <!--    <div class="l-button" @click="refresh(2)">-->
@@ -31,28 +31,28 @@
     <div class="l-button" @click="$router.push('/gameList')">
       <div class="add-ctn">
         <div class="img-box">
-          <img src="@/assets/icon/6.png" alt="" class="add" v-if="currentTab === 2" />
-          <img src="@/assets/icon/6.png" alt="" class="add" v-else />
+          <img src="@/assets/icon/3-active.png" alt="" class="add" v-if="currentTab === 2" />
+          <img src="@/assets/icon/3.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 2 ? '#666' : '' }">大拇指娱乐</div>
+        <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">大拇指娱乐</div>-->
       </div>
     </div>
     <div class="l-button" @click="tab(5)">
       <div class="add-ctn">
         <div class="img-box">
-          <img src="@/assets/icon/7.png" alt="" class="add" v-if="currentTab === 5" />
-          <img src="@/assets/icon/7.png" alt="" class="add" v-else />
+          <img src="@/assets/icon/4-active.png" alt="" class="add" v-if="currentTab === 5" />
+          <img src="@/assets/icon/4.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 5 ? '#666' : '' }">会员</div>
+        <!--        <div :style="{ color: currentTab === 5 ? '#666' : '' }">会员</div>-->
       </div>
     </div>
     <div class="l-button" @click="tab(6)">
       <div class="add-ctn">
         <div class="img-box">
-          <img src="@/assets/icon/17.png" alt="" class="add" v-if="currentTab === 6" />
-          <img src="@/assets/icon/17.png" alt="" class="add" v-else />
+          <img src="@/assets/icon/5-active.png" alt="" class="add" v-if="currentTab === 6" />
+          <img src="@/assets/icon/5.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 6 ? '#666' : '' }">我的</div>
+        <!--        <div :style="{ color: currentTab === 6 ? '#666' : '' }">我的</div>-->
       </div>
       <!-- <div class="badge">2</div> -->
     </div>
@@ -280,8 +280,8 @@ export default {
       justify-content: center;
 
       .img-box {
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         img {
           width: 100%;
           height: 100%;

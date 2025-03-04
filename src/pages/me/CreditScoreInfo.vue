@@ -20,7 +20,6 @@
 
 <script lang="ts" setup>
 import shareholder from '@/assets/img/kaifa.png'
-// import my from '@/assets/img/my.jpg'
 import my from '@/assets/img/creadotDETAIL.jpg'
 import { getIsInApp } from '@/utils/getTopPadding'
 </script>

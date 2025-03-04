@@ -49,13 +49,20 @@
         <!-- <van-image :src="imageSrc" width="100" height="100%"   fit="fill" class="action-button"></van-image> -->
       </div>
     </div>
-    <van-tabs v-model:active="activeTab" background="transparent" color="#01c5f0">
-      <van-tab title="团队分红  " name="团队分红"></van-tab>
-      <van-tab title="奖池发放  " name="排行榜奖励"></van-tab>
-      <van-tab title="认购返利" name="认购返利"></van-tab>
-      <van-tab title="支出" name="支出"></van-tab>
-      <van-tab title="提现" name="提现"></van-tab>
-    </van-tabs>
+    <t-tabs default-value="团队分红" theme="tag" :space-evenly="false" @change="tabChange">
+      <t-tab-panel value="团队分红" label="团队分红" />
+      <t-tab-panel value="排行榜奖励" label="奖池发放" />
+      <t-tab-panel value="认购返利" label="认购返利" />
+      <t-tab-panel value="支出" label="支出" />
+      <t-tab-panel value="提现" label="提现" />
+    </t-tabs>
+    <!--    <van-tabs v-model:active="activeTab" background="transparent" color="#01c5f0">-->
+    <!--      <van-tab title="团队分红  " name="团队分红"></van-tab>-->
+    <!--      <van-tab title="奖池发放  " name="排行榜奖励"></van-tab>-->
+    <!--      <van-tab title="认购返利" name="认购返利"></van-tab>-->
+    <!--      <van-tab title="支出" name="支出"></van-tab>-->
+    <!--      <van-tab title="提现" name="提现"></van-tab>-->
+    <!--    </van-tabs>-->
     <!--    <div class="tab">-->
     <!--      <div class="tab-item" :class="{ active: activeTab === '团队分红  ' }" @click="activeTab = '团队分红  '">-->
     <!--        团队分红  -->
@@ -93,14 +100,16 @@ import rengoufanli from './wallet/rengoufanli.vue'
 import modzz from '../login/model.vue'
 import imageSrc from '@/assets/img/chongzhi.png'
 import { axiosInstance as axios } from '@/utils/myrequest'
-import { test } from '@/api/myApi'
 import { getIsInApp } from '@/utils/getTopPadding'
 import Paihangjiangli from '@/pages/me/wallet/paihangjiangli.vue'
 
 const router = useRouter()
 const service = ref(false)
-const activeTab = ref('团队分红  ')
-
+const activeTab = ref('团队分红')
+const tabChange = (a) => {
+  console.log(a)
+  activeTab.value = a
+}
 const state = reactive({
   wallet: {},
   tabs: {

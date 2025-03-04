@@ -2,21 +2,21 @@
   <van-overlay :show="modelValue" :z-index="99999999">
     <div class="wrapper" @click.stop>
       <div class="update-container">
-        <div v-if="showClose" class="close" @click="modelValue = false">
-          <img src="./img/close.png" />
-        </div>
-        <div class="title">{{ title }}</div>
-        <div style="padding: 15px 0">
+        <!--        <div class="title">{{ title }}</div>-->
+        <div style="padding: 0px 0">
           <slot></slot>
         </div>
         <van-button
           v-if="showConfirm"
-          color="linear-gradient(to right, #ff8b6e, #ff625c)"
+          color="linear-gradient(to right, #A9DDFD, #1D9AE8)"
           style="border-radius: 20px; width: 80%"
           @click="handleConfirm"
         >
           {{ confirmText }}
         </van-button>
+      </div>
+      <div v-if="showClose" class="close" @click="modelValue = false">
+        <img src="./img/close.png" />
       </div>
     </div>
   </van-overlay>
@@ -51,8 +51,18 @@ const handleConfirm = () => {
   align-items: center;
   justify-content: center;
   height: 100%;
+  flex-direction: column;
 }
-
+.close {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: 10px;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
 .update-container {
   display: flex;
   justify-content: center;
@@ -61,23 +71,10 @@ const handleConfirm = () => {
   position: relative;
   width: 80%;
   background-color: #202022;
-  background-image: linear-gradient(to bottom, #e1b087 0%, #fff 30%, #fff 100%);
+  background-image: linear-gradient(to bottom, #1d9ae8 0%, #fff 30%, #fff 100%);
   border-radius: 15px;
-  padding: 15px 0 20px;
+  padding: 0px 0 20px;
   color: #000;
-
-  .close {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    width: 20px;
-    height: 30px;
-
-    img {
-      width: 100%;
-      height: auto;
-    }
-  }
 
   .title {
     text-align: center;

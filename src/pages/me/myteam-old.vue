@@ -227,7 +227,6 @@ import { _notice } from '@/utils'
 import { getSerialName } from '../../utils/getSerialName'
 import { getIsInApp } from '@/utils/getTopPadding'
 import dayjs from 'dayjs'
-// import headImg from '@/assets/img/head.png'
 import headImg from '@/assets/img/logo.png'
 const router = useRouter()
 let user

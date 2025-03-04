@@ -69,11 +69,6 @@
   <BaseFooter v-bind:init-tab="5" :is-white="false" />
 </template>
 <script setup lang="ts">
-import QRCode from 'qrcode'
-import imageSrc from '@/assets/img/hehuoren.png'
-import imageSrc1 from '@/assets/img/hehuoren.jpg'
-import imageSrc2 from '@/assets/img/hehuoren2.png'
-import imageSrc3 from '@/assets/img/goumai.png'
 import { ref, reactive, onMounted } from 'vue'
 import {
   reqAllStaff,

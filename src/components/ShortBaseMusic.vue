@@ -1,4 +1,5 @@
-<template>
+
+template>
   <div class="music-wrapper">
     <div
       class="mute-icon"

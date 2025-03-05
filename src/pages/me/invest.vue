@@ -79,6 +79,7 @@
       开通
     </van-button>
     <p
+      v-if="false"
       style="
         color: #000;
         padding-left: 15px;
@@ -90,7 +91,7 @@
       <!--      说明：每份会员有效期30天-->
       温馨提示： 每张会员卡可以使用365天！
     </p>
-    <div style="color: #222; padding-left: 15px; font-size: 14px; font-weight: bolder">
+    <div v-if="false" style="color: #222; padding-left: 15px; font-size: 14px; font-weight: bolder">
       <!--      可重复购买，达到数量后，系统将自动为您提升等级，享受更高收益！-->
       <p></p>
       <p style="color: red">当天同时购买不同等级会员卡，收益可叠加同时生效！</p>

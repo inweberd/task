@@ -671,7 +671,7 @@
         <li>
           <a href="javascript:void(0)" @click="$router.push('/teamStat')"
             ><img src="./images/5.png" alt="" />
-            <p>团队报表</p></a
+            <p>我的团队</p></a
           >
         </li>
         <!--      <li>-->
@@ -892,7 +892,7 @@ const list = [
     }
   },
   {
-    label: '团队明细',
+    label: '我的团队',
     icon: 'user-o',
     fn() {
       router.push('/teamStat')

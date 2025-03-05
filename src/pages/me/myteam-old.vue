@@ -1,10 +1,9 @@
 <template>
   <div class="team-benefits">
     <van-nav-bar
-      title="团队报表"
+      title="我的团队"
       safe-area-inset-top
       fixed
-      :class="{ inApp: getIsInApp() }"
       placeholder
       @click-left="router.back()"
       left-text="返回"
@@ -15,46 +14,35 @@
       </template>
     </van-nav-bar>
     <div class="container">
-      <div class="zhitui" v-if="false">
+      <div class="num-box">
         <div>
-          <p>直推总人数</p>
-          <p>{{ memberInfo.first?.total || 0 }}</p>
+          <div>总人数</div>
+          <div>{{ memberInfo.team?.total || 0 }}</div>
         </div>
         <div>
-          <p>直推有效人数</p>
-          <p>{{ memberInfo.first?.vip || 0 }}</p>
+          <div>
+            <div>会员人数</div>
+            <div>{{ memberInfo.team?.vip || 0 }}</div>
+          </div>
+          <div>
+            <div>直推会员</div>
+            <div>{{ memberInfo.first?.vip || 0 }}</div>
+          </div>
         </div>
-        <div>
+      </div>
+
+      <div class="tuandui">
+        <div class="tuandui-item">
+          <p>团队总业绩</p>
+          <p>{{ memberInfo.team?.deposit || 0 }} <span class="unit">元</span></p>
+        </div>
+        <div class="tuandui-item">
           <p>团队总提现</p>
-          <p>{{ format(memberInfo?.wallet?.withdraw?.money) }}</p>
+          <p>{{ memberInfo.team?.withdraw || 0 }} <span class="unit">元</span></p>
         </div>
       </div>
 
       <div v-if="false" class="tuandui">
-        <div class="tuandui-item">
-          <p>团队总人数</p>
-          <p>{{ memberInfo.team?.total || 0 }}</p>
-        </div>
-        <div class="tuandui-item">
-          <p>团队有效人数</p>
-          <p>{{ memberInfo.team?.vip || 0 }}</p>
-        </div>
-        <div class="tuandui-item">
-          <p>团队总充值</p>
-          <p>{{ memberInfo.team?.deposit || 0 }}</p>
-        </div>
-      </div>
-      <div class="tuandui">
-        <div class="tuandui-item">
-          <p>团队总人数</p>
-          <p>{{ memberInfo.team?.total || 0 }}</p>
-        </div>
-        <div class="tuandui-item">
-          <p>团队会员人数</p>
-          <p>{{ memberInfo.team?.vip || 0 }}</p>
-        </div>
-      </div>
-      <div class="tuandui">
         <div class="tuandui-item">
           <p>直推总人数</p>
           <p>{{ memberInfo.first?.total || 0 }}</p>
@@ -62,26 +50,6 @@
         <div class="tuandui-item">
           <p>直推会员人数</p>
           <p>{{ memberInfo.first?.vip || 0 }}</p>
-        </div>
-      </div>
-      <div class="tuandui">
-        <div class="tuandui-item">
-          <p>团队游戏流水</p>
-          <p style="font-size: 12px">开发测试中</p>
-        </div>
-        <div class="tuandui-item">
-          <p>团队游戏返利</p>
-          <p style="font-size: 12px">开发测试中</p>
-        </div>
-      </div>
-      <div class="tuandui">
-        <div class="tuandui-item">
-          <p>团队总业绩</p>
-          <p>{{ memberInfo.team?.deposit || 0 }}</p>
-        </div>
-        <div class="tuandui-item">
-          <p>团队总提现</p>
-          <p>{{ memberInfo.team?.withdraw || 0 }}</p>
         </div>
       </div>
     </div>
@@ -148,62 +116,97 @@
       </div>
       <!--      <van-search v-model="searchInfo.phone" placeholder="请输入要查询的手机号码" />-->
       <!--      <van-button color="#01c5f0" style="width: 100%; border-radius: 20px">直推人员列表</van-button>-->
-      <van-tabs
-        v-model:active="active"
-        title-active-color="#01c5f0"
-        color="#01c5f0"
-        @change="tabChange"
-      >
-        <van-tab :title="'一级(' + (teamIds['one']?.length || 0) + ')'" name="one" />
-        <van-tab :title="'二级(' + (teamIds['two']?.length || 0) + ')'" name="two" />
-        <van-tab :title="'三级(' + (teamIds['three']?.length || 0) + ')'" name="three" />
-      </van-tabs>
-      <van-list
-        style="margin-top: 20px"
-        v-model:loading="loading"
-        :finished="finished"
-        finished-text="没有更多了"
-        @load="getDataList"
-      >
-        <div class="card" v-for="item in dataList">
-          <div class="card-body d-flex justify-content-between flex-row align-items-center">
-            <div class="d-flex flex-row">
-              <div class="u-avatar u-avatar--circle avatar-shadow">
-                <van-image :src="headImg" width="40" height="40" />
-              </div>
-              <div class="d-flex flex-column justify-content-center ms-2">
-                <div class="d-flex flex-row align-items-center">
-                  <div
-                    class="font-15 me-2"
-                    style="display: flex; flex-direction: column; align-items: flex-start"
-                  >
-                    <span>
-                      电话:{{
-                        (item.phone
-                          ? item.phone.substring(0, 3) + '****' + item.phone.substring(7)
-                          : '') || item.nickname
-                      }}</span
-                    >
-                    <span style="font-size: 14px">
-                      等级：{{ getSerialName(item?.result?.staff?.serial) }}
-                    </span>
-                    <span style="font-size: 14px">
-                      注册时间：{{ utils.timeToDate(item.create_time, 'Y-M-D H:i:s') }}
-                    </span>
-                  </div>
+      <div style="padding: 10px">
+        <div style="font-size: 22px; color: #000; font-weight: bolder">团队列表</div>
+        <!--        <van-tabs-->
+        <!--          v-model:active="active"-->
+        <!--          title-active-color="#01c5f0"-->
+        <!--          color="#01c5f0"-->
+        <!--          @change="tabChange"-->
+        <!--        >-->
+        <!--          <van-tab :title="'一级(' + (teamIds['one']?.length || 0) + ')'" name="one" />-->
+        <!--          <van-tab :title="'二级(' + (teamIds['two']?.length || 0) + ')'" name="two" />-->
+        <!--          <van-tab :title="'三级(' + (teamIds['three']?.length || 0) + ')'" name="three" />-->
+        <!--        </van-tabs>-->
+        <t-tabs default-value="one" theme="tag" :space-evenly="false" @change="tabChange">
+          <t-tab-panel value="one" :label="'一级直推(' + (teamIds['one']?.length || 0) + ')'" />
+          <t-tab-panel value="two" :label="'二级直推(' + (teamIds['two']?.length || 0) + ')'" />
+          <t-tab-panel value="three" :label="'三级直推(' + (teamIds['three']?.length || 0) + ')'" />
+        </t-tabs>
+        <van-list
+          style="margin-top: 20px"
+          v-model:loading="loading"
+          :finished="finished"
+          finished-text="没有更多了"
+          @load="getDataList"
+        >
+          <div class="card" v-for="item in dataList">
+            <div class="card-body d-flex justify-content-between flex-row align-items-center">
+              <div class="d-flex flex-row" style="width: 100%; align-items: center">
+                <div class="u-avatar u-avatar--circle avatar-shadow">
+                  <van-image :src="headImg" width="40" height="40" />
                 </div>
-                <!--                <div class="mt-1 text-muted font-13">-->
-                <!--                {{ utils.timeToDate(item.create_time, 'Y-M-D H:i:s') }}-->
-                <!--                </div>-->
+                <div class="d-flex flex-column justify-content-center ms-2" style="flex: 1">
+                  <div class="d-flex flex-row align-items-center">
+                    <div
+                      class="font-15 me-2"
+                      style="
+                        flex: 1;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                      "
+                    >
+                      <div
+                        style="
+                          display: flex;
+                          flex-direction: column;
+                          justify-content: space-between;
+                        "
+                      >
+                        <span
+                          style="
+                            margin-bottom: 10px;
+                            color: #000;
+                            font-weight: bolder;
+                            font-size: 16px;
+                          "
+                        >
+                          {{
+                            (item.phone
+                              ? item.phone.substring(0, 3) + '****' + item.phone.substring(7)
+                              : '') || item.nickname
+                          }}</span
+                        >
+                        <span style="font-size: 14px">
+                          {{ utils.timeToDate(item.create_time, 'Y-M-D') }}
+                        </span>
+                      </div>
+                      <span
+                        style="
+                          font-size: 14px;
+                          border: 1px solid #999;
+                          border-radius: 10px;
+                          padding: 2px 5px;
+                        "
+                      >
+                        {{ getSerialName(item?.result?.staff?.serial) }}
+                      </span>
+                    </div>
+                  </div>
+                  <!--                <div class="mt-1 text-muted font-13">-->
+                  <!--                {{ utils.timeToDate(item.create_time, 'Y-M-D H:i:s') }}-->
+                  <!--                </div>-->
+                </div>
               </div>
-            </div>
-            <!--            <div class="money">￥{{ parseFloat(item?.result?.staff?.money || 0).toFixed(2) }}</div>-->
-            <div class="money">
-              <!--              ￥{{ parseFloat(item?.result?.wallet?.today?.profit || 0).toFixed(2) }}-->
+              <!--            <div class="money">￥{{ parseFloat(item?.result?.staff?.money || 0).toFixed(2) }}</div>-->
+              <div class="money">
+                <!--              ￥{{ parseFloat(item?.result?.wallet?.today?.profit || 0).toFixed(2) }}-->
+              </div>
             </div>
           </div>
-        </div>
-      </van-list>
+        </van-list>
+      </div>
     </div>
 
     <modzz v-model="service"></modzz>
@@ -295,7 +298,8 @@ const init = async () => {
   getMemberInfo()
   getDataList()
 }
-const tabChange = () => {
+const tabChange = (a) => {
+  active.value = a
   dataList.value = []
   finished.value = false
   searchInfo.page = 0
@@ -330,7 +334,6 @@ onActivated(() => {
 }
 
 .team-benefits {
-  padding: 16px;
   height: 100%;
   overflow-y: auto;
 }
@@ -395,8 +398,8 @@ onActivated(() => {
 }
 
 .card {
-  padding: 15px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  //box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 40px;
   margin-bottom: 20px;
   //background-color: #646060;
@@ -413,7 +416,7 @@ onActivated(() => {
   width: 40px;
   height: 40px;
   background-color: transparent;
-  margin-right: 20px;
+  margin-right: 2px;
 }
 
 .u-avatar__image {
@@ -471,6 +474,47 @@ onActivated(() => {
 }
 
 .container {
+  color: #000;
+  background-color: #edecfa;
+  .num-box {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+
+    & > div:nth-child(1) {
+      width: 45%;
+
+      & > div:nth-child(1) {
+        color: #666;
+        font-size: 16px;
+      }
+
+      & > div:nth-child(2) {
+        font-size: 28px;
+        margin-top: 8px;
+        font-weight: bolder;
+      }
+    }
+
+    & > div:nth-child(2) {
+      width: 55%;
+      display: flex;
+      & > div {
+        width: 50%;
+        & > div:nth-child(1) {
+          font-size: 14px;
+          color: #666;
+        }
+
+        & > div:nth-child(2) {
+          font-size: 22px;
+          margin-top: 8px;
+          font-weight: bolder;
+        }
+      }
+    }
+  }
+
   .zhitui {
     display: flex;
     justify-content: space-between;
@@ -488,48 +532,42 @@ onActivated(() => {
       p:nth-child(2) {
         margin-top: 12px;
         font-size: 26px;
-        font-weight: bold;
+        font-weight: bolder;
       }
     }
   }
   .tuandui {
+    padding: 0 16px 16px;
+
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
-    &:nth-child(1) {
-      .tuandui-item {
-        background: linear-gradient(to right, #eb677e, #f989c6);
-      }
+    .tuandui-item {
+      background: linear-gradient(to right, #fff, #fff);
     }
-    &:nth-child(2) {
-      .tuandui-item {
-        background: linear-gradient(to right, #33aafa, #72c8f7);
-      }
-    }
-    &:nth-child(3) {
-      .tuandui-item {
-        background: linear-gradient(to right, #eead92, #6018dc);
-      }
-    }
-    &:nth-child(4) {
-      .tuandui-item {
-        background: linear-gradient(to right, #f98a5f, #fcb591);
-      }
-    }
+
     .tuandui-item {
       flex: 1;
-      border-radius: 15px;
-      padding: 10px 15px;
+      border-radius: 5px;
+      padding: 10px 20px;
 
       p:nth-child(1) {
+        font-size: 16px;
+        color: #666;
       }
       p:nth-child(2) {
         margin-top: 10px;
         font-size: 24px;
+        font-weight: bolder;
+
+        .unit {
+          font-weight: normal;
+          font-size: 16px;
+        }
       }
       &:nth-child(1) {
         //background: linear-gradient(to right, #eb677e, #f989c6);
-        margin-right: 5px;
+        margin-right: 10px;
       }
       &:nth-child(2) {
         margin-left: 5px;

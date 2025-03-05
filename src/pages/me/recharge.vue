@@ -20,47 +20,64 @@
 
     <Loading v-if="loading"></Loading>
     <div class="container">
-      <div v-if="false" class="recharge-info" @click="method.sheet.open()">
+      <div
+        style="
+          margin-left: 20px;
+          margin-top: 10px;
+          font-size: 16px;
+          font-weight: bolder;
+          color: #333;
+        "
+      >
+        充值方式
+      </div>
+      <div class="recharge-info" @click="method.sheet.open()">
         <div class="recharge-info-left">
-          <span>充值方式</span>
+          <template v-if="state.item.pay?.id">
+            <img
+              v-if="state.item.pay?.data?.type == 'wechat'"
+              src="@/assets/img/recharge/wechat.png"
+            />
+            <img
+              src="@/assets/img/recharge/bank2.png"
+              v-else-if="state.item.pay?.data?.type == 'bank'"
+            />
+            <img
+              src="@/assets/img/recharge/jd.jpg"
+              v-else-if="state.item.pay?.data?.key == 'jdpay'"
+            />
+            <img
+              src="@/assets/img/recharge/kd.jpg"
+              v-else-if="state.item.pay?.data?.key == 'kdpay'"
+            />
+            <img
+              src="@/assets/img/recharge/usdt.png"
+              v-else-if="state.item.pay?.data?.key == 'bs'"
+            />
+            <img src="@/assets/img/recharge/alipay.png" v-else />
+          </template>
         </div>
         <div class="recharge-info-center">
           <template v-if="state.item.pay?.id">
             <div class="recharge-info-center-t">
-              <img
-                v-if="state.item.pay?.data?.type == 'wechat'"
-                src="@/assets/img/recharge/wechat.png"
-              />
-              <img
-                src="@/assets/img/recharge/bank2.png"
-                v-else-if="state.item.pay?.data?.type == 'bank'"
-              />
-              <img
-                src="@/assets/img/recharge/jd.jpg"
-                v-else-if="state.item.pay?.data?.key == 'jdpay'"
-              />
-              <img
-                src="@/assets/img/recharge/kd.jpg"
-                v-else-if="state.item.pay?.data?.key == 'kdpay'"
-              />
-              <img
-                src="@/assets/img/recharge/usdt.png"
-                v-else-if="state.item.pay?.data?.key == 'bs'"
-              />
-              <img src="@/assets/img/recharge/alipay.png" v-else />
               <span>{{ state.item.pay?.data?.name }}</span>
             </div>
             <div class="recharge-info-center-b">
-              <span>
-                单笔支付限额 {{ state.item.pay?.data?.min }} -
-                {{ state.item.pay?.data?.max }} ￥</span
-              >
+              <span>（{{ state.item.pay?.data?.min }} - {{ state.item.pay?.data?.max }} ￥）</span>
             </div>
           </template>
           <template v-else>
-            <p style="font-size: 14px; color: #ccc">
-              <!--              充值如果提示风控，请进官方微脉圈群，联系人工客服充值-->
-              如遇充值失败或异常，请找官方微脉圈群主人工代充值！
+            <!--            <p style="font-size: 18px; color: #ccc; margin-left: 20px">请选择充值方式</p>-->
+            <p
+              style="
+                font-size: 22px;
+                font-weight: bolder;
+                padding-bottom: 0;
+                color: #cfc9cc;
+                background-color: transparent;
+              "
+            >
+              请选择充值方式
             </p>
           </template>
         </div>
@@ -89,7 +106,7 @@
                 class="unp"
                 label=""
                 style="
-                  font-size: 26px;
+                  font-size: 22px;
                   font-weight: bolder;
                   padding-bottom: 0;
                   margin-bottom: 10px;
@@ -114,7 +131,10 @@
         <!--          <span>确认 </span>-->
         <!--          <van-loading size="20" v-if="loading" />-->
         <!--        </button>-->
-        <div style="margin-top: 20px; font-size: 16px; font-weight: bolder; color: #333">
+        <div
+          v-if="false"
+          style="margin-top: 20px; font-size: 16px; font-weight: bolder; color: #333"
+        >
           充值方式
         </div>
         <!--        <div-->
@@ -138,7 +158,7 @@
         <!--            (首次注册使用365钱包注册送58元，单笔充值400赠送88元，首次365钱包总共送146元 )-->
         <!--          </p>-->
         <!--        </div>-->
-        <div class="chongzhiList">
+        <div class="chongzhiList" v-if="false">
           <div
             class="chongzhiList-item"
             v-for="item of state.select.pay"
@@ -165,7 +185,7 @@
             border-radius: 15px;
             border: none;
             color: #fff;
-            background-image: linear-gradient(to right, #ff8b6e, #ff625c);
+            background-image: linear-gradient(to right, #a9ddfd, #1d9ae8);
           "
           type="primary"
           @click="method.emit"
@@ -548,29 +568,33 @@ onMounted(() => method.init())
       //background-size: 100% auto;
       //background-repeat: no-repeat;
       //background-color: transparent;
+      margin: 0 20px;
       font-size: 16px;
       display: flex;
-      padding: 23px 0;
-      border-bottom: 1px solid #534e4e;
+      padding: 20px 0;
+      border-bottom: 1px solid #ccc;
       color: #333;
       background-color: #fff;
+      align-items: center;
 
       &-left {
-        margin: 0 25px;
+        img {
+          margin-right: 6px;
+          width: 40px;
+          height: 40px;
+        }
       }
       &-center {
         flex: 1;
+        //margin-left: 20px;
         &-t {
           display: flex;
           align-items: center;
-          img {
-            margin-right: 6px;
-            width: 15px;
-            height: 15px;
-          }
+          font-size: 14px;
         }
         &-b {
           margin-top: 6px;
+          font-size: 14px;
           //color: #fff;
         }
       }
@@ -702,11 +726,12 @@ onMounted(() => method.init())
               div:nth-child(1) {
                 font-weight: 400;
                 font-size: 16px;
+                color: #000;
               }
               div:nth-child(2) {
                 margin-top: 8px;
                 font-size: 13px;
-                color: #aaa;
+                color: #666;
               }
             }
           }

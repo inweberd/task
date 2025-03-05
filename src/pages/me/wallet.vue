@@ -49,13 +49,15 @@
         <!-- <van-image :src="imageSrc" width="100" height="100%"   fit="fill" class="action-button"></van-image> -->
       </div>
     </div>
-    <t-tabs default-value="团队分红" theme="tag" :space-evenly="false" @change="tabChange">
-      <t-tab-panel value="团队分红" label="团队分红" />
-      <t-tab-panel value="排行榜奖励" label="奖池发放" />
-      <t-tab-panel value="认购返利" label="认购返利" />
-      <t-tab-panel value="支出" label="支出" />
-      <t-tab-panel value="提现" label="提现" />
-    </t-tabs>
+    <div style="background-color: #fff">
+      <t-tabs default-value="团队分红" theme="tag" :space-evenly="false" @change="tabChange">
+        <t-tab-panel value="团队分红" label="团队分红" />
+        <!--      <t-tab-panel value="排行榜奖励" label="奖池发放" />-->
+        <t-tab-panel value="认购返利" label="认购返利" />
+        <t-tab-panel value="支出" label="支出" />
+        <t-tab-panel value="提现" label="提现" />
+      </t-tabs>
+    </div>
     <!--    <van-tabs v-model:active="activeTab" background="transparent" color="#01c5f0">-->
     <!--      <van-tab title="团队分红  " name="团队分红"></van-tab>-->
     <!--      <van-tab title="奖池发放  " name="排行榜奖励"></van-tab>-->
@@ -168,7 +170,8 @@ onMounted(() => method.init())
 }
 
 .wallet-page {
-  padding: 16px;
+  background-color: #ebecee;
+
   height: 100%;
   overflow-y: auto;
 }

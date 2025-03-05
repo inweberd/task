@@ -618,7 +618,7 @@ const handleGame = () => {
     })
 }
 onActivated(() => {
-  showGonggaoOverlay.value = true
+  // showGonggaoOverlay.value = true
   reqNgTransfer().then((res) => {
     console.log('res', res)
   })

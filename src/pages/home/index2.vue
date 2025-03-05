@@ -293,7 +293,6 @@
 
     <BaseFooter v-bind:init-tab="1" :is-white="true" />
     <!--    <div class="contact" @click="jumpToQQ">-->
-    <!--      <img src="@/assets/img/kefu.png" alt="" />-->
     <!--      <div>-->
     <!--        <div>联系</div>-->
     <!--        <div>客服</div>-->

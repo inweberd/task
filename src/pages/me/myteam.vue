@@ -767,7 +767,6 @@
     <!--    <p style="text-align: center; color: #888; width: 100%">京ICP备12025439号</p>-->
     <BaseFooter v-bind:init-tab="6" :is-white="false" />
     <!--    <div class="contact" @click="jumpToQQ">-->
-    <!--      <img src="@/assets/img/kefu.png" alt="" />-->
     <!--      <div>-->
     <!--        <div>联系</div>-->
     <!--        <div>客服</div>-->

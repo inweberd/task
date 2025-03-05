@@ -155,12 +155,7 @@
         <div class="toolbar">
           <div class="input-wrapper">
             <AutoInput v-model="comment" placeholder="善语结善缘，恶言伤人心"></AutoInput>
-            <div class="right">
-              <img src="../assets/img/icon/message/call.png" @click="isCall = !isCall" />
-              <img src="../assets/img/icon/message/emoji-black.png" @click="_no" />
-            </div>
           </div>
-          <img v-if="comment" src="../assets/img/icon/message/up.png" @click="send" />
         </div>
       </div>
       <ConfirmDialog title="私信给" ok-text="发送" v-model:visible="showPrivateChat">

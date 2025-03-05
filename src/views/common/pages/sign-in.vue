@@ -92,7 +92,6 @@
       </div>
     </TipDialog>
     <!--    <div class="contact" @click="jumpToQQ2">-->
-    <!--      <img alt="" src="@/assets/img/kefu.png" />-->
     <!--      <div>-->
     <!--        <div>联系</div>-->
     <!--        <div>客服</div>-->

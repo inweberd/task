@@ -22,14 +22,6 @@ const routes: RouteRecordRaw[] = [
   { path: '/CreditScoreInfo', component: () => import('@/pages/me/CreditScoreInfo.vue') },
   { path: '/choujiangDetail', component: () => import('@/pages/me/choujiangDetail.vue') },
   { path: '/weimaiquanDetail', component: () => import('@/pages/me/weimaiquanDetail.vue') },
-  {
-    path: '/me/edit-userinfo',
-    component: () => import('@/pages/me/userinfo/EditUserInfo.vue')
-  },
-  {
-    path: '/me/edit-userinfo-item',
-    component: () => import('@/pages/me/userinfo/EditUserInfoItem.vue')
-  },
 
   { path: '/me/my-card', name: 'myCard', component: () => import('@/pages/me/MyCard.vue') },
 
@@ -59,11 +51,6 @@ const routes: RouteRecordRaw[] = [
   { path: '/fenhong', component: () => import('@/pages/me/fenhong.vue') },
   { path: '/wallet', name: 'wallet', component: () => import('@/pages/me/wallet.vue') },
   { path: '/gameList', name: 'gameList', component: () => import('@/pages/game/gameList.vue') },
-
-  {
-    path: '/login/retrieve-password',
-    component: () => import('@/pages/login/RetrievePassword.vue')
-  },
 
   {
     name: 'common',

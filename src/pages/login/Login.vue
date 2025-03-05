@@ -69,8 +69,6 @@
 </template>
 <script setup lang="ts">
 import modzz from './model'
-import Check from '../../components/Check.vue'
-import Tooltip from './components/Tooltip.vue'
 import Loading from '../../components/Loading.vue'
 import { onMounted, reactive } from 'vue'
 import { useNav } from '@/utils/hooks/useNav'

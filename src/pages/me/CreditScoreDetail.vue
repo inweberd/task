@@ -10,7 +10,7 @@
       left-text="返回"
       left-arrow
     ></van-nav-bar>
-    <van-image :src="my" width="100%" height="100%" fit="cover"></van-image>
+    <!--    <van-image :src="my" width="100%" height="100%" fit="cover"></van-image>-->
     <div style="color: #fff; padding: 0 10px 10px; text-indent: 24px">
       <div>
         特别注意：如果自己只想玩静态收入。自己玩，或者没推广能力，那么。你自己开小号扫自己二维码注册成为自己下级，
@@ -25,6 +25,5 @@
 
 <script lang="ts" setup>
 import shareholder from '@/assets/img/kaifa.png'
-import my from '@/assets/img/creadotInfo.jpg'
 import { getIsInApp } from '@/utils/getTopPadding'
 </script>

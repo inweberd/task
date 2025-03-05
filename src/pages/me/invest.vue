@@ -1167,7 +1167,6 @@ const speed = ref(0.5) //滚动速度
   white-space: nowrap;
   width: 100%;
   height: 60px;
-  background: url('@/assets/img/black-tip.png') no-repeat;
   background-size: 100% 100%;
   .active {
     color: red;

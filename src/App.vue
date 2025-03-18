@@ -164,6 +164,7 @@ import { testBase64 } from '@/utils/testBase64'
 import { Toast } from 'tdesign-mobile-vue'
 import { _notice } from '@/utils'
 import bus from '@/utils/bus'
+import { closeToast } from 'vant'
 const store = useBaseStore()
 const route = useRoute()
 const router = useRouter()
@@ -277,9 +278,14 @@ const generatePoster = async () => {
   // 绘制背景图片
   const image = new Image()
   image.src = imageSrc
-  Toast({
-    theme: 'loading',
-    message: '加载中...',
+  // Toast({
+  //   theme: 'loading',
+  //   message: '加载中...',
+  //   duration: 0
+  // })
+  showLoadingToast({
+    forbidClick: true,
+    loadingType: 'spinner',
     duration: 0
   })
   image.onload = async () => {
@@ -317,7 +323,7 @@ const generatePoster = async () => {
             avatarImage.src = base64
             avatarImage.onload = () => {
               ctx.drawImage(avatarImage, 15, canvasHeight.value - 90, 50, 55)
-              Toast.clear()
+              closeToast()
             }
             // console.log(base64);
           }
@@ -327,7 +333,8 @@ const generatePoster = async () => {
       avatarImage.src = avatar
       avatarImage.onload = () => {
         ctx.drawImage(avatarImage, 15, canvasHeight.value - 90, 50, 55)
-        Toast.clear()
+
+        closeToast()
       }
     }
 
@@ -357,7 +364,6 @@ const generatePoster = async () => {
     // const qrCodeImage = new Image()
     // qrCodeImage.src = qrCodeDataURL
     // qrCodeImage.onload = () => {
-    //   Toast.clear()
     //   // 在海报上绘制二维码，位置在正中心下方
     //   // const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
     //   const qrCodeX = 26
@@ -388,15 +394,6 @@ function clipboardCopy(content) {
   let successful = document.execCommand('copy')
 
   copyDom.parentNode.removeChild(copyDom)
-  if (successful) {
-    alert(5555)
-    Toast('复制成功，打开浏览器粘贴链接进行下载！')
-    // alert('复制成功')
-  } else {
-    alert(666)
-    Toast('复制失败，请手动复制再打开浏览器粘贴链接进行下载！')
-    // alert('复制失败')
-  }
 }
 
 const toDownload = () => {
@@ -505,13 +502,14 @@ onMounted(() => {
 
     reqUpdateUserInfo(data).then((res) => {
       if (res.code !== 200) {
-        return Toast('认证失败，请重试！')
+        return _notice('认证失败，请重试！')
       }
       reqUserInfo({ id: userInfo.id }).then((sub_res) => {
         if (sub_res.code !== 200) {
           return _notice(sub_res.msg)
         }
-        Toast('认证成功')
+        // Toast('认证成功')
+        showSuccessToast('认证成功')
         userInfo.value = sub_res.data
         window.localStorage.setItem('userInfo', JSON.stringify(sub_res.data))
         bus.emit('userInfoChange', sub_res.data)
@@ -588,6 +586,35 @@ onMounted(() => {
 :root {
   //--van-text-color: #fff;
   //--van-nav-bar-background: #0e0f13 !important;
+  --van-cell-group-background: transparent !important;
+  --van-cell-background: transparent !important;
+  --van-popup-background: #2e3350 !important;
+
+  --van-nav-bar-background: #1f203d !important;
+
+  --van-active-color: #1f203d !important;
+}
+.big-title {
+  font-size: 20px;
+  color: #fff;
+  font-weight: bolder;
+  padding: 5px 20px 0;
+  position: relative;
+  &:before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    content: '';
+    display: block;
+    width: 12px;
+    height: 6px;
+    background-color: #ccc;
+    margin-bottom: 10px;
+    background-image: linear-gradient(135deg, #6a78f0 10%, #8999f0 100%);
+  }
+}
+.common-input-title {
+  color: #afb6ba;
 }
 
 #app {
@@ -646,16 +673,16 @@ onMounted(() => {
 //.van-nav-bar {
 //  background-color: #0e0f13 !important;
 //}
-//.van-nav-bar__title {
-//  color: #fff !important;
-//}
+.van-nav-bar__title {
+  color: #fff !important;
+}
 //.van-nav-bar__content:after {
 //  border: none !important;
 //  display: none;
 //}
-//.van-hairline--bottom:after {
-//  border-bottom-width: 0;
-//}
+.van-hairline--bottom:after {
+  border-bottom-width: 0;
+}
 //.van-tab {
 //  color: #fff !important;
 //}
@@ -672,9 +699,9 @@ onMounted(() => {
 //.van-field__label {
 //  color: #fff !important;
 //}
-//.van-field__control {
-//  color: #333 !important;
-//}
+.van-field__control {
+  color: #fff !important;
+}
 //.van-popup {
 //  background-color: #0e0f13;
 //  color: #fff !important;
@@ -688,9 +715,14 @@ onMounted(() => {
 //  border-color: #666 !important;
 //}
 
-//.van-action-sheet__item {
-//  background-color: #0e0f13 !important;
-//}
+//2e3350
+//1f203d
+.van-action-sheet__item {
+  background-color: #1f203d !important;
+}
+.van-action-sheet__name {
+  color: #fff !important;
+}
 //.van-card {
 //  background-color: #0e0f13 !important;
 //}
@@ -742,5 +774,22 @@ onMounted(() => {
     margin-bottom: 20px;
     font-size: 18px;
   }
+}
+
+.t-tabs,
+.t-tabs__wrapper {
+  background-color: #2e3350 !important;
+}
+.t-tabs__scroll--top::after {
+  background-color: #2e3350 !important;
+}
+
+.t-tabs__item-inner--tag {
+  background-color: #1f203d;
+  color: #fff;
+}
+
+.t-tabs__item-inner--active.t-tabs__item-inner--tag {
+  background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
 }
 </style>

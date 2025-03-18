@@ -28,7 +28,7 @@
         <div style="display: flex; justify-content: space-between; align-items: center">
           <div style="width: 60%">
             <div>
-              <span style="font-size: 14px; font-weight: bolder">
+              <span style="font-size: 14px; font-weight: bolder; color: #fff">
                 <span v-if="!item.remark">
                   <span v-if="item.status === 'wait'" class="text-warning">等待审核</span>
                   <span v-else-if="item.status === 'finish'" class="text-success"
@@ -47,7 +47,7 @@
               </span>
             </div>
             <div>
-              <span style="font-size: 12px; color: #666">{{
+              <span style="font-size: 12px; color: #aaa">{{
                 method.toDate(item.create_time)
               }}</span>
             </div>
@@ -55,7 +55,7 @@
           <div style="flex: 1; text-align: right">
             <div>
               <span
-                style="font-size: 16px; color: #e4424a; font-weight: bolder"
+                style="font-size: 16px; color: #f6202b; font-weight: bolder"
                 class="text-warning"
                 >{{ item.money || 0 }}元</span
               >
@@ -127,7 +127,7 @@ const getDataList = () => {
       return
     }
     // 数据全部加载完成
-    dataList.value.push(...data.data)
+    dataList.value.push(...(data.data || []))
     if ((data.data || []).length === 0 || dataList.value.length >= data.count) {
       finished.value = true
     }
@@ -155,7 +155,7 @@ onMounted(() => {
   margin-top: 10px;
 }
 .container {
-  background-color: #fff;
+  background-color: #2e3350;
   margin: 10px;
   border-radius: 10px;
   color: #000;

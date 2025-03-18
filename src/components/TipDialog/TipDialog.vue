@@ -8,7 +8,7 @@
         </div>
         <van-button
           v-if="showConfirm"
-          color="linear-gradient(to right, #A9DDFD, #1D9AE8)"
+          color="linear-gradient(to right, #fb5b4b, #9c38e5)"
           style="border-radius: 20px; width: 80%"
           @click="handleConfirm"
         >
@@ -71,7 +71,7 @@ const handleConfirm = () => {
   position: relative;
   width: 80%;
   background-color: #202022;
-  background-image: linear-gradient(to bottom, #1d9ae8 0%, #fff 30%, #fff 100%);
+  background-image: linear-gradient(to bottom, #fb5b4b 0%, #fff 30%, #fff 100%);
   border-radius: 15px;
   padding: 0px 0 20px;
   color: #000;

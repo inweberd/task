@@ -1,15 +1,15 @@
 <template>
   <div class="signupClass">
     <div class="logo-box">
+      <img src="@/assets/img/logo.png" alt="" />
       <div class="logo-box-content">
-        <img src="@/assets/img/logo.png" alt="" />
         <div class="info">
           <p>大拇指视频</p>
           <p>the big thumb video</p>
         </div>
       </div>
     </div>
-    <ToggleLoginAndRegister style="margin-top: 120px" :active="1"></ToggleLoginAndRegister>
+    <ToggleLoginAndRegister style="margin-top: 50px" :active="1"></ToggleLoginAndRegister>
 
     <div class="container d-flex justify-content-around user-select-none">
       <div class="right card backdrop-filter" style="width: 100%">
@@ -24,19 +24,10 @@
           "
         >
           <van-cell-group style="width: 100%">
-            <van-field
-              v-model="state.struct.social"
-              placeholder="请输入手机号码"
-              left-icon="user-o"
-            />
-
-            <van-field
-              v-model="state.struct.code"
-              clearable
-              placeholder="请输入短信验证码"
-              left-icon="label-o"
-              style="margin-top: 10px"
-            >
+            <div class="common-input-title">手机号码</div>
+            <van-field v-model="state.struct.social" placeholder="请输入手机号码" />
+            <div class="common-input-title" style="margin-top: 10px">短信验证码</div>
+            <van-field v-model="state.struct.code" clearable placeholder="请输入短信验证码">
               <template #button>
                 <div @click="SendCode" style="color: #999">
                   <span v-if="!state.status.code">发送验证码</span>
@@ -44,29 +35,26 @@
                 </div>
               </template>
             </van-field>
+            <div class="common-input-title" style="margin-top: 10px">密码</div>
             <van-field
               v-model="state.struct.password"
               clearable
               placeholder="请输入密码"
-              left-icon="shield-o"
               type="password"
-              style="margin-top: 10px"
             />
+            <div class="common-input-title" style="margin-top: 10px">确认密码</div>
             <van-field
               v-model="state.struct.AgainPassword"
               clearable
               placeholder="请再次输入密码"
-              left-icon="shield-o"
               type="password"
-              style="margin-top: 10px"
             />
+            <div class="common-input-title" style="margin-top: 10px">邀请码</div>
 
             <van-field
-              left-icon="orders-o"
               v-model="state.struct.invite"
               placeholder="请输入邀请码"
               :disabled="route.query.invite"
-              style="margin-top: 10px"
             />
           </van-cell-group>
           <!--          <div style="text-align: right; width: 100%; margin: 10px 10px 20px 0">-->
@@ -81,7 +69,8 @@
               margin-top: 20px;
               border-radius: 15px;
               color: #fff;
-              background-image: linear-gradient(to bottom, #723efe, #ac24f5);
+              background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+              font-weight: bolder;
             "
             type="primary"
             @click="SignUp"
@@ -89,27 +78,20 @@
           </el-button>
         </div>
       </div>
-    </div>
-    <div style="width: 80%; margin: 0 auto">
-      <!--      <van-divider-->
-      <!--        :style="{ color: '#666', borderColor: '#666', padding: '0 16px' }"-->
-      <!--        style="width: 100%; margin-top: 20px"-->
-      <!--      >-->
-      <!--        其他-->
-      <!--      </van-divider>-->
-      <div
-        style="
-          display: flex;
-          justify-content: space-evenly;
-          align-items: center;
-          width: 100%;
-          padding-bottom: 20px;
-        "
-      >
-        <a style="font-size: 16px; color: #666" @click="goDownload">下载app</a>
-        <a style="font-size: 16px; color: #666" @click="jumpToQQ2">官方交流群 </a>
+      <div style="width: 80%; margin: 30px auto 0">
+        <!--      <van-divider-->
+        <!--        :style="{ color: '#666', borderColor: '#666', padding: '0 16px' }"-->
+        <!--        style="width: 100%; margin-top: 20px"-->
+        <!--      >-->
+        <!--        其他-->
+        <!--      </van-divider>-->
+        <div style="display: flex; justify-content: space-evenly; align-items: center; width: 100%">
+          <a style="font-size: 16px; color: #fff" @click="goDownload">下载app</a>
+          <a style="font-size: 16px; color: #fff" @click="jumpToQQ2">官方交流群 </a>
+        </div>
       </div>
     </div>
+
     <TipDialog
       v-model="showGonggaoOverlay"
       @confirm="handleGonggaoConfirm"
@@ -326,22 +308,25 @@ body {
 .signupClass {
   width: 100%;
   height: 100vh;
+  overflow-y: auto;
   color: #666;
-  background-repeat: no-repeat;
-  background-image: url('@/assets/img/bg.png');
-  background-size: 100% auto;
+  background-color: #1f203d;
+  //background-repeat: no-repeat;
+  //background-image: url('@/assets/img/bg.png');
+  //background-size: 100% auto;
   .container {
-    width: 95%;
+    flex-direction: column;
+    width: 80%;
     margin: 20px auto 0;
-    background-color: #fff;
-    padding: 20px 40px;
+    background-color: #2e3350;
+    padding: 20px 20px;
     border-radius: 20px;
     //box-shadow: 0 0 10px #0000001f;
   }
 }
 
 :deep(.van-cell) {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #4d536a;
   padding: 10px 0;
   &::after {
     border: none !important;
@@ -349,7 +334,10 @@ body {
 
   .van-field__body {
     input {
-      color: #666 !important;
+      color: #fff !important;
+      &::placeholder {
+        color: #fff !important;
+      }
     }
   }
 }
@@ -366,10 +354,16 @@ body {
 }
 
 .logo-box {
-  margin-top: 100px;
+  margin-top: 30px;
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  & > img {
+    width: 100px;
+  }
   .logo-box-content {
     display: flex;
     img {
@@ -380,7 +374,7 @@ body {
       margin-left: 16px;
       text-align: center;
       p:nth-child(1) {
-        font-size: 30px;
+        font-size: 26px;
         letter-spacing: 8px;
       }
     }

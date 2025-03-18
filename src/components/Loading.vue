@@ -6,6 +6,7 @@
 </template>
 <script>
 import { Toast } from 'tdesign-mobile-vue'
+import { closeToast } from 'vant'
 
 export default {
   name: 'Loading',
@@ -20,14 +21,14 @@ export default {
     }
   },
   mounted() {
-    Toast({
-      theme: 'loading',
-      message: '加载中...',
+    showLoadingToast({
+      forbidClick: true,
+      loadingType: 'spinner',
       duration: 0
     })
   },
   beforeUnmount() {
-    Toast.clear()
+    closeToast()
   }
 }
 </script>

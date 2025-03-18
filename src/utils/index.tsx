@@ -355,13 +355,18 @@ export function _showNoticeDialog(title, subtitle, subtitleColor, cancelCb, canc
 }
 
 export function _notice(val) {
-  const div = document.createElement('div')
-  div.classList.add('global-notice')
-  div.textContent = val
-  document.body.append(div)
-  setTimeout(() => {
-    document.body.removeChild(div)
-  }, 2000)
+  // const div = document.createElement('div')
+  // div.classList.add('global-notice')
+  // div.textContent = val
+  // document.body.append(div)
+  // setTimeout(() => {
+  //   document.body.removeChild(div)
+  // }, 2000)
+
+  showToast({
+    message: val,
+    icon: 'warning'
+  })
 }
 
 export function _no() {

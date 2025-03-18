@@ -27,16 +27,18 @@
         <div style="display: flex; justify-content: space-between; align-items: center">
           <div style="width: 60%">
             <div>
-              <span style="font-size: 14px; font-weight: bolder">{{ item.content }}</span>
+              <span style="font-size: 14px; font-weight: bolder; color: #fff">{{
+                item.content
+              }}</span>
             </div>
             <div>
-              <span style="font-size: 12px; color: #666">{{ item.remark }}</span>
+              <span style="font-size: 12px; color: #aaa">{{ item.remark }}</span>
             </div>
           </div>
           <div style="flex: 1; text-align: right">
             <div>
               <span
-                style="font-size: 16px; color: #e4424a; font-weight: bolder"
+                style="font-size: 16px; color: #f6202b; font-weight: bolder"
                 class="text-warning"
                 >+ {{ item.money || 0 }}元</span
               >
@@ -77,11 +79,13 @@ const getDataList = () => {
   reqWalletLog({
     page: searchInfo.page,
     limit: searchInfo.limit,
+    uid: userInfo.value.id,
     order: 'id desc',
-    where: [
-      ['type', '=', 1],
-      ['uid', '=', userInfo.value.id]
-    ]
+    type: '1'
+    // where: [
+    //   ['type', '=', 1],
+    //   ['uid', '=', userInfo.value.id]
+    // ]
   }).then(({ code, msg, data }) => {
     loading.value = false
     if (code !== 200) {
@@ -89,7 +93,7 @@ const getDataList = () => {
       return
     }
     // 数据全部加载完成
-    dataList.value.push(...data.data)
+    dataList.value.push(...(data.data || []))
     if ((data.data || []).length === 0 || dataList.value.length >= data.count) {
       finished.value = true
     }
@@ -116,7 +120,7 @@ onMounted(() => {
   margin-top: 10px;
 }
 .container {
-  background-color: #fff;
+  background-color: #2e3350;
   margin: 10px;
   border-radius: 10px;
   color: #000;

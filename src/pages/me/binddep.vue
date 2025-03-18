@@ -8,214 +8,194 @@
     />
     <Loading v-if="loading" />
     <!--    <van-image :src="tixian" width="100%" height="100%;"></van-image>-->
-    <div style="display: flex">
-      <div style="width: 80px">
-        <van-sidebar v-model="activeBar">
-          <van-sidebar-item title="银行卡" @click="active_ = 0" />
-          <van-sidebar-item title="支付宝" @click="active_ = 1" />
-          <van-sidebar-item title="K豆钱包" @click="active_ = 2" />
-          <van-sidebar-item title="JD钱包" @click="active_ = 3" />
-          <van-sidebar-item title="365钱包" @click="active_ = 4" />
-        </van-sidebar>
-      </div>
-      <div>
-        <template v-if="active_ == 0">
-          <van-field v-model="bank_value.name" label="姓名" placeholder="姓名" />
-          <van-field v-model="bank_value.card_no" label="卡号" placeholder="卡号" />
-          <van-cell-group>
-            <van-cell title="选择银行" is-link @click="showArea = true">
-              <template #value>
-                <span>{{ areaText }}</span>
-              </template>
-            </van-cell>
-          </van-cell-group>
-          <div style="display: flex; justify-content: center">
-            <el-button
-              :loading="bindLoading"
-              class="w-100"
-              color="#01c5f0"
-              size="large"
-              style="
-                margin-top: 30px;
-                border: none;
-                width: 90%;
-                border-radius: 15px;
-                color: #fff;
-                background-image: linear-gradient(to right, #ff8b6e, #ff625c);
-              "
-              type="primary"
-              @click="save('bank')"
-              >保存
-            </el-button>
-          </div>
+    <div style="background-color: #1f203d; margin: 10px; border-radius: 10px; overflow: hidden">
+      <t-tabs :default-value="0" theme="tag" :space-evenly="false" @change="tabChange">
+        <t-tab-panel :value="0" label="银行卡" />
+        <!--      <t-tab-panel value="排行榜奖励" label="奖池发放" />-->
+        <t-tab-panel :value="1" label="支付宝" />
+        <t-tab-panel :value="2" label="K豆钱包" />
+        <t-tab-panel :value="3" label="JD钱包" />
+        <t-tab-panel :value="4" label="365钱包" />
+      </t-tabs>
+    </div>
+    <div
+      style="
+        background-color: #2e3350;
+        margin: 10px;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 20px 20px 20px;
+      "
+    >
+      <template v-if="active_ == 0">
+        <div class="common-input-title">姓名</div>
+        <van-field v-model="bank_value.name" placeholder="请输入姓名" />
+        <div class="common-input-title" style="margin-top: 20px">卡号</div>
 
-          <van-action-sheet v-model:show="showArea" :actions="actions" @select="onAreaConfirm" />
-        </template>
-        <template v-if="active_ == 1"
-          ><van-field v-model="ali_value.name" label="姓名" placeholder="姓名" />
-          <van-field v-model="ali_value.card_no" label="账号" placeholder="账号" />
-          <div style="display: flex; justify-content: center">
-            <el-button
-              :loading="bindLoading"
-              class="w-100"
-              color="#01c5f0"
-              size="large"
-              style="
-                margin-top: 30px;
-                border: none;
-                width: 90%;
-                border-radius: 15px;
-                color: #fff;
-                background-image: linear-gradient(to right, #ff8b6e, #ff625c);
-              "
-              type="primary"
-              @click="save('ali')"
-              >保存
-            </el-button>
-          </div></template
-        >
-        <template v-if="active_ == 2">
-          <van-field v-model="kd_value.name" label="姓名" placeholder="姓名" />
-          <van-field v-model="kd_value.card_no" label="钱包地址" placeholder="钱包地址" />
-          <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">
-            钱包地址为钱包主页界面的34位字母+数字组合。
-          </p>
-          <div style="display: flex; justify-content: center">
-            <el-button
-              :loading="bindLoading"
-              class="w-100"
-              color="#01c5f0"
-              size="large"
-              style="
-                margin-top: 30px;
-                border: none;
-                width: 90%;
-                border-radius: 15px;
-                color: #fff;
-                background-image: linear-gradient(to right, #ff8b6e, #ff625c);
-              "
-              type="primary"
-              @click="save('kd')"
-              >保存
-            </el-button>
-          </div>
-        </template>
-        <template v-if="active_ == 3">
-          <van-field v-model="jd_value.name" label="姓名" placeholder="姓名" />
-          <van-field v-model="jd_value.card_no" label="钱包地址" placeholder="钱包地址" />
-          <!--            <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">-->
-          <!--              钱包地址为钱包主页界面的34位字母+数字组合。-->
-          <!--            </p>-->
-          <div style="display: flex; justify-content: center">
-            <el-button
-              :loading="bindLoading"
-              class="w-100"
-              color="#01c5f0"
-              size="large"
-              style="
-                margin-top: 30px;
-                border: none;
-                width: 90%;
-                border-radius: 15px;
-                color: #fff;
-                background-image: linear-gradient(to right, #ff8b6e, #ff625c);
-              "
-              type="primary"
-              @click="save('jd')"
-              >保存
-            </el-button>
-          </div>
-        </template>
-        <template v-if="active_ == 4">
-          <van-field v-model="w365_value.name" label="姓名" placeholder="姓名" />
-          <van-field v-model="w365_value.card_no" label="钱包地址" placeholder="钱包地址" />
-          <!--            <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">-->
-          <!--              钱包地址为钱包主页界面的34位字母+数字组合。-->
-          <!--            </p>-->
-          <div style="display: flex; justify-content: center">
-            <el-button
-              :loading="bindLoading"
-              class="w-100"
-              color="#01c5f0"
-              size="large"
-              style="
-                margin-top: 30px;
-                border: none;
-                width: 90%;
-                border-radius: 15px;
-                color: #fff;
-                background-image: linear-gradient(to right, #ff8b6e, #ff625c);
-              "
-              type="primary"
-              @click="save('365')"
-              >保存
-            </el-button>
-          </div>
-        </template>
-        <van-tabs v-model:active="active_" v-if="false">
-          <van-tab title="银行卡" style="padding: 0px 20px"> </van-tab>
-          <van-tab title="支付宝" style="padding: 0px 20px"> </van-tab>
-          <van-tab title="K豆钱包" style="padding: 0px 20px"> </van-tab>
-          <van-tab title="JD钱包" style="padding: 0px 20px"> </van-tab>
-          <!--      <van-tab title="usdt(trc20)" style="padding: 0px 20px">-->
-          <!--        <van-empty description="对接中，敬请期待！"></van-empty>-->
-          <!--        &lt;!&ndash;            <van-field v-model="kd_value.name" label="姓名" placeholder="姓名" />&ndash;&gt;-->
-          <!--        &lt;!&ndash;            <van-field v-model="kd_value.card_no" label="钱包地址" placeholder="钱包地址" />&ndash;&gt;-->
-          <!--        &lt;!&ndash;            <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">&ndash;&gt;-->
-          <!--        &lt;!&ndash;              钱包地址为钱包主页界面的34位字母+数字组合。&ndash;&gt;-->
-          <!--        &lt;!&ndash;            </p>&ndash;&gt;-->
-          <!--        &lt;!&ndash;            <van-button&ndash;&gt;-->
-          <!--        &lt;!&ndash;              color="#01c5f0"&ndash;&gt;-->
-          <!--        &lt;!&ndash;              type="primary"&ndash;&gt;-->
-          <!--        &lt;!&ndash;              style="margin-top: 30px"&ndash;&gt;-->
-          <!--        &lt;!&ndash;              block&ndash;&gt;-->
-          <!--        &lt;!&ndash;              @click="save('kd')"&ndash;&gt;-->
-          <!--        &lt;!&ndash;              loading-text="提交中..."&ndash;&gt;-->
-          <!--        &lt;!&ndash;              :loading="bindLoading"&ndash;&gt;-->
-          <!--        &lt;!&ndash;            >保存</van-button&ndash;&gt;-->
-          <!--        &lt;!&ndash;            >&ndash;&gt;-->
-          <!--      </van-tab>-->
-          <div v-if="false" class="desc" style="margin: 10px 0">
-            <p style="font-weight: bolder">《绑定使用JDPAY（JD钱包）提现，笔笔获得抽转盘大奖》</p>
-            <p><span class="index">1、</span>活动门槛</p>
-            <p style="padding-left: 20px">全体用户可参与，无门槛限制</p>
-            <p><span class="index">2、</span>获取方式</p>
-            <p style="padding-left: 20px">黄金转盘：下发达100即可获得一次</p>
-            <p style="padding-left: 20px">白金转盘：下发达1000即可获得一次</p>
-            <p style="padding-left: 20px">钻石转盘：下发达5000即可获得一次</p>
-            <p><span class="index">3、</span>限制条件</p>
-            <p style="padding-left: 20px">黄金转盘：每天最多获得5次机会，最多可抽奖5次</p>
-            <p style="padding-left: 20px">白金转盘：每天最多获得10次机会，最多可抽奖10次</p>
-            <p style="padding-left: 20px">钻石转盘：无限制</p>
-            <p><span class="index">4、</span>额外奖励</p>
-            <p style="padding-left: 20px">黄金转盘：累计抽奖10次即可获得一次白金转盘抽奖</p>
-            <p style="padding-left: 20px">白金转盘：累计抽奖10次即可获得一次钻石转盘抽奖</p>
-            <p style="padding-left: 20px">
-              钻石转盘：累计抽奖10次即可获得 黄金+白金 各一次转盘抽奖
-            </p>
+        <van-field v-model="bank_value.card_no" placeholder="请输入卡号" />
 
-            注： 100积分=1币 1000积分起即可兑换 JD币
-          </div>
-        </van-tabs>
+        <div class="common-input-title" style="margin-top: 20px">请选择银行</div>
+
+        <van-cell style="color: #fff" title="选择银行" is-link @click="showArea = true">
+          <template #value>
+            <span>{{ areaText }}</span>
+          </template>
+        </van-cell>
         <div style="display: flex; justify-content: center">
           <el-button
+            :loading="bindLoading"
             class="w-100"
-            color="#00f7c4"
+            color="#01c5f0"
             size="large"
             style="
+              margin-top: 30px;
+              border: none;
               width: 90%;
               border-radius: 15px;
-              margin-top: 20px !important;
-              color: #666;
-              background-color: #fff;
-              border: 1px solid #ccc !important;
+              color: #fff;
+              background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
             "
             type="primary"
-            @click="$router.push('/dep')"
-            >去提现
+            @click="save('bank')"
+            >保存
           </el-button>
         </div>
-      </div>
+
+        <van-action-sheet v-model:show="showArea" :actions="actions" @select="onAreaConfirm" />
+      </template>
+      <template v-if="active_ == 1">
+        <div class="common-input-title">姓名</div>
+        <van-field v-model="ali_value.name" placeholder="请输入姓名" />
+        <div class="common-input-title" style="margin-top: 20px">账号</div>
+        <van-field v-model="ali_value.card_no" placeholder="请输入账号" />
+        <div style="display: flex; justify-content: center">
+          <el-button
+            :loading="bindLoading"
+            class="w-100"
+            color="#01c5f0"
+            size="large"
+            style="
+              margin-top: 30px;
+              border: none;
+              width: 90%;
+              border-radius: 15px;
+              color: #fff;
+              background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+            "
+            type="primary"
+            @click="save('ali')"
+            >保存
+          </el-button>
+        </div></template
+      >
+      <template v-if="active_ == 2">
+        <div class="common-input-title">姓名</div>
+
+        <van-field v-model="kd_value.name" placeholder="请输入姓名" />
+        <div class="common-input-title" style="margin-top: 20px">钱包地址</div>
+
+        <van-field v-model="kd_value.card_no" placeholder="请输入钱包地址" />
+        <!--        <p style="font-size: 12px; color: #ccc; margin-top: 10px">-->
+        <!--          钱包地址为钱包主页界面的34位字母+数字组合。-->
+        <!--        </p>-->
+        <div style="display: flex; justify-content: center">
+          <el-button
+            :loading="bindLoading"
+            class="w-100"
+            color="#01c5f0"
+            size="large"
+            style="
+              margin-top: 30px;
+              border: none;
+              width: 90%;
+              border-radius: 15px;
+              color: #fff;
+              background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+            "
+            type="primary"
+            @click="save('kd')"
+            >保存
+          </el-button>
+        </div>
+      </template>
+      <template v-if="active_ == 3">
+        <div class="common-input-title">姓名</div>
+        <van-field v-model="jd_value.name" placeholder="请输入姓名" />
+        <div class="common-input-title" style="margin-top: 20px">钱包地址</div>
+
+        <van-field v-model="jd_value.card_no" placeholder="请输入钱包地址" />
+        <!--            <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">-->
+        <!--              钱包地址为钱包主页界面的34位字母+数字组合。-->
+        <!--            </p>-->
+        <div style="display: flex; justify-content: center">
+          <el-button
+            :loading="bindLoading"
+            class="w-100"
+            color="#01c5f0"
+            size="large"
+            style="
+              margin-top: 30px;
+              border: none;
+              width: 90%;
+              border-radius: 15px;
+              color: #fff;
+              background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+            "
+            type="primary"
+            @click="save('jd')"
+            >保存
+          </el-button>
+        </div>
+      </template>
+      <template v-if="active_ == 4">
+        <div class="common-input-title">姓名</div>
+
+        <van-field v-model="w365_value.name" placeholder="请输入姓名" />
+        <div class="common-input-title" style="margin-top: 20px">钱包地址</div>
+
+        <van-field v-model="w365_value.card_no" placeholder="请输入钱包地址" />
+        <!--            <p style="font-size: 15px; color: #666; text-indent: 20px; margin-top: 20px">-->
+        <!--              钱包地址为钱包主页界面的34位字母+数字组合。-->
+        <!--            </p>-->
+        <div style="display: flex; justify-content: center">
+          <el-button
+            :loading="bindLoading"
+            class="w-100"
+            color="#01c5f0"
+            size="large"
+            style="
+              margin-top: 30px;
+              border: none;
+              width: 90%;
+              border-radius: 15px;
+              color: #fff;
+              background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+            "
+            type="primary"
+            @click="save('365')"
+            >保存
+          </el-button>
+        </div>
+      </template>
+
+      <!--      <div style="display: flex; justify-content: center">-->
+      <!--        <el-button-->
+      <!--          class="w-100"-->
+      <!--          color="#00f7c4"-->
+      <!--          size="large"-->
+      <!--          style="-->
+      <!--            width: 90%;-->
+      <!--            border-radius: 15px;-->
+      <!--            margin-top: 20px !important;-->
+      <!--            color: #666;-->
+      <!--            background-color: #fff;-->
+      <!--            border: 1px solid #ccc !important;-->
+      <!--          "-->
+      <!--          type="primary"-->
+      <!--          @click="$router.push('/dep')"-->
+      <!--          >去提现-->
+      <!--        </el-button>-->
+      <!--      </div>-->
     </div>
   </div>
 </template>
@@ -247,12 +227,7 @@ defineOptions({
   name: 'dep'
 })
 
-const router = useRouter()
-const activeBar = ref('')
-const selectName = ref('')
 const checked = ref(false)
-const money = ref('')
-const pay_card_id = ref('111')
 let user
 let alipay =
   'data:image/svg+xml;charset=utf-8,%3Csvg%20t%3D%221714383521253%22%20class%3D%22icon%22%20viewBox%3D%220%200%201024%201024%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20p-id%3D%224435%22%20width%3D%22200%22%20height%3D%22200%22%3E%3Cpath%20d%3D%22M860.16%200C950.272%200%201024%2073.889684%201024%20164.163368v531.509895s-32.768-4.122947-180.224-53.355789c-40.96-14.362947-96.256-34.896842-157.696-57.478737%2036.864-63.595789%2065.536-137.485474%2086.016-215.444211h-202.752v-71.841684h247.808V256.512h-247.808V135.437474h-100.352c-18.432%200-18.432%2018.458947-18.432%2018.458947v104.663579H200.704v41.040842h249.856v69.793684H243.712v41.013895H645.12c-14.336%2051.307789-34.816%2098.519579-57.344%20141.608421-129.024-43.115789-268.288-77.985684-356.352-55.403789-55.296%2014.362947-92.16%2038.992842-112.64%2063.595789-96.256%20116.978526-26.624%20295.504842%20176.128%20295.504842%20120.832%200%20237.568-67.718737%20327.68-178.526316C757.76%20742.858105%201024%20853.692632%201024%20853.692632v6.144C1024%20950.110316%20950.272%201024%20860.16%201024H163.84C73.728%201024%200%20950.137263%200%20859.836632V164.163368C0%2073.889684%2073.728%200%20163.84%200h696.32zM268.126316%20553.121684c93.049263-10.374737%20180.062316%2026.974316%20283.270737%2078.874948-74.886737%2095.501474-165.941895%20155.701895-256.970106%20155.701894-157.830737%200-204.368842-126.652632-125.466947-197.200842%2026.300632-22.851368%2072.838737-35.301053%2099.166316-37.376z%22%20fill%3D%22%2300A0EA%22%20p-id%3D%224436%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E'
@@ -298,6 +273,10 @@ const state = reactive({
   }
 })
 
+const tabChange = (a) => {
+  console.log(a)
+  active_.value = a
+}
 const bank = async () => {
   const { data: item } = await bank_list()
 
@@ -577,6 +556,22 @@ const deleteCard = (item, index) => {
 
 .withdraw-page {
   height: 100%;
+  :deep(.van-cell) {
+    border-bottom: 1px solid #4d536a;
+    padding: 10px 0;
+    &::after {
+      border: none !important;
+    }
+
+    .van-field__body {
+      input {
+        color: #fff !important;
+        &::placeholder {
+          color: #fff !important;
+        }
+      }
+    }
+  }
 }
 
 .content {

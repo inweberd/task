@@ -49,33 +49,48 @@
           }}</template
         >
       </div>
-      <span class="vip-info">暂无会员</span>
+      <span class="vip-info">{{ userInfo?.result?.staff?.name || '暂无会员' }}</span>
     </div>
 
     <div class="v-list-box">
       <div class="v-list">
-        <div class="v-list-item" :class="{ active: activeIndex === 0 }" @click="activeIndex = 0">
+        <div
+          class="v-list-item"
+          :class="{ active: activeIndex === index, has: myStaffList.includes(item.id) }"
+          @click="activeIndex = index"
+          v-for="(item, index) of staffList"
+        >
           <img src="./images/vip-icon.png" alt="" />
-          <div>普通会员</div>
-          <div>新用户首月仅需6元</div>
-          <div>赠送一个月超级权益</div>
-        </div>
-        <div class="v-list-item" :class="{ active: activeIndex === 1 }" @click="activeIndex = 1">
-          <img src="./images/vip-icon.png" alt="" />
-          <div>超级视频会员</div>
-          <div>仅需20元</div>
-          <div>可叠加，可累计</div>
+          <div>{{ item.name }}</div>
+          <div><span class="fuhao">￥</span>{{ item.price }}</div>
+          <div>{{ item.days }}天版权</div>
         </div>
       </div>
     </div>
     <div class="tip">
-      <p>1. 可重复购买，达到数量后，系统将自动为您提升等级，享受更高收益！</p>
-      <p>2. 每个档位会员，都可以重复购买，收入无限叠加，无上限！</p>
-      <p style="color: #000; font-weight: bolder">
-        3. 当天同时购买不同等级会员卡，收益可叠加同时生效！
-      </p>
+      <p>用户成为”短视频创作者合伙人"，投资平台精选的优质短广告商进行广告投放，</p>
+      <p>按比享受创作者和广告商的商业收益(广告+电商+打赏)，平台中间赚取服务费。</p>
+      <p>【视频掘金计划:五档会员加速器，投得多赚得多!】</p>
+      <p>会员收益逻辑图解:</p>
+      <p style="color: #fff; font-weight: bolder">你的「刷视频收益」可自由选择加速档位</p>
+      <p>投入越多，广告分成权重越高，每日收益越多!</p>
+      <p>五档黄金会员权益(会员费全额用于广告合作)</p>
+      <p>会员收益逻辑图解:</p>
+      <p>你的投资 - 注入平台广告合作资金池 → 吸引更多品牌投放 →</p>
+      <p>广告总收益按比例分配 →(投入越多→ 占股比例越高一每日产生广告投放收益分钱!)</p>
+      <p>广告总收益分配比例：2%-0.5%每日根据热门程度逐渐衰减。</p>
+      <p>每轮广告20天收益周期，到期全额返还到账户余额，</p>
+      <p>返还余额可以继续用来购买会员，继续产生收益相当于一次购买，永久有效！</p>
+      <p>档位专属特权(以黑金会员为例)</p>
     </div>
-    <van-button type="danger" round block style="margin: 20px auto; width: 90%; height: 40px">
+    <van-button
+      type="danger"
+      round
+      block
+      color=" linear-gradient(to right, #fb5b4b, #9c38e5)"
+      style="margin: 20px auto; width: 90%; height: 40px; position: fixed; left: 5%; bottom: 40px"
+      @click="buy"
+    >
       开通
     </van-button>
     <p
@@ -481,6 +496,7 @@ import { useRouter } from 'vue-router'
 import dayjs from 'dayjs'
 import BaseFooter from '@/components/BaseFooter.vue'
 import defaultAvatar from '@/assets/img/logo.png'
+import { getSerialName } from '../../utils/getSerialName'
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
 defineOptions({
   name: 'invest'
@@ -674,43 +690,46 @@ const buyBase = (item, customCount) => {
     }
   })
 }
-const buy = (item, customCount) => {
-  const finallyCount = customCount || count.value
-  // if (myStaffList.value.includes(item.id)) {
-  //   showToast({
-  //     message: '您已拥有此会员！',
-  //     icon: 'warning'
-  //   })
-  //   return
-  // }
+const buy = () => {
+  const item = staffList.value[activeIndex.value]
+  console.log('item', item)
+  // const finallyCount = customCount || count.value
+  if (myStaffList.value.includes(item.id)) {
+    showToast({
+      message: '您已拥有此会员！',
+      icon: 'warning'
+    })
+    return
+  }
 
   // if(){
   //
   // }
+  if (userInfo.value.result.staff.id == 0 && item.serial != 1) {
+    return showToast({
+      message: '请逐级开通！',
+      icon: 'warning'
+    })
+  }
+  if (userInfo.value.result.staff.serial + 1 != item.serial) {
+    return showToast({
+      message: '请逐级开通！',
+      icon: 'warning'
+    })
+  }
 
-  // if (userInfo.value.result.staff.id === 0 && item.id === 1) {
-  //   return _notice('请逐级开通！')
-  // }
-  // if (userInfo.value.result.staff.id + 1 !== item.id) {
-  //   return _notice('请逐级开通！')
-  // }
-
-  loading.value = true
-  console.log('item', item)
   loading.value = true
   reqWalletInfo().then((res: any) => {
-    console.log('reqWalletInfo', res)
     loading.value = false
 
     // if (item.price * finallyCount > res.data.amount + res.data.money) {
-    if (100 * finallyCount > res.data.amount + res.data.money) {
+    if (item.price > res.data.amount + res.data.money) {
       loading.value = false
       _notice('账户余额不足,请充值!')
       router.push('/recharge')
     } else {
       reqEnterStaff({
-        count: finallyCount,
-        staff_id: 156
+        staff_id: item.id
         // staff_id: item.id
       }).then((sub_res) => {
         loading.value = false
@@ -777,7 +796,8 @@ const getMyStaff = () => {
   })
 }
 onMounted(() => {
-  // getAllStaff()
+  getAllStaff()
+  getMyStaff()
   // getUserIncome()
 })
 
@@ -827,9 +847,11 @@ const speed = ref(0.5) //滚动速度
 <style scoped lang="less">
 .investClass {
   overflow-y: auto;
-  background-color: #fff;
+  //background-color: #fff;
   width: 100%;
   height: calc(100% - 65px);
+  color: #fff;
+  padding-bottom: 120px;
 
   .top-box {
     display: flex;
@@ -852,14 +874,14 @@ const speed = ref(0.5) //滚动速度
     }
     .name {
       text-align: center;
-      color: #000;
+      color: #fff;
       font-size: 16px;
       margin: 10px 0;
     }
     .vip-info {
-      color: #f85f62;
+      color: #ccc;
       padding: 2px 10px;
-      border: 1px solid #f85f62;
+      border: 1px solid #ccc;
       border-radius: 20px;
       font-size: 14px;
     }
@@ -867,14 +889,20 @@ const speed = ref(0.5) //滚动速度
 
   .v-list-box {
     margin-top: 10px;
+    width: 100%;
     .v-list {
+      overflow-x: auto;
       display: flex;
-      width: 95%;
+      flex-wrap: nowrap;
+      //display: flex;
       margin: 0 auto;
 
       .v-list-item {
+        flex: 0 0 auto;
+
+        width: 100px;
+        float: left;
         margin: 10px;
-        flex: 1;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -884,19 +912,22 @@ const speed = ref(0.5) //滚动速度
         color: #616161;
 
         img {
-          width: 30%;
+          width: 40%;
           margin-bottom: 15px;
+        }
+        .fuhao {
+          font-size: 14px;
         }
 
         & > div {
           color: #000;
           &:nth-of-type(1) {
-            font-size: 18px;
+            font-size: 14px;
             font-weight: bolder;
           }
 
           &:nth-of-type(2) {
-            font-size: 14px;
+            font-size: 22px;
             opacity: 0.8;
             padding: 5px 0;
           }
@@ -907,15 +938,42 @@ const speed = ref(0.5) //滚动速度
         }
 
         &.active {
-          color: #655858;
-          background-color: #fdd4d5;
+          color: #fff;
+          //background-color: #fdd4d5;
+          background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+          & > div {
+            color: #fff;
+          }
+        }
+        &.has {
+          position: relative;
+          overflow: hidden;
+          &.active {
+            &:before {
+              color: red;
+              background-color: #ccc;
+            }
+          }
+          &:before {
+            position: absolute;
+            top: 8px;
+            left: -18px;
+            width: 74px;
+            height: 20px;
+            font-size: 12px;
+            color: #fff;
+            text-align: center;
+            background-color: #ff5722;
+            content: '已拥有';
+            transform: rotate(-45deg);
+          }
         }
       }
     }
   }
 
   .tip {
-    color: #666666;
+    color: #ccc;
     padding: 0 20px;
     font-size: 14px;
     line-height: 22px;

@@ -132,7 +132,8 @@ export function reqResetPwd(data) {
 
 // 收入支出日志
 export function reqWalletLog(params) {
-  return axiosInstance({ url: 'api/wallet-log/all', method: 'get', params })
+  return axiosInstance({ url: '/api/wallet-logs/find', method: 'get', params })
+  // return axiosInstance({ url: 'api/wallet-log/all', method: 'get', params })
 }
 
 // 提现日志

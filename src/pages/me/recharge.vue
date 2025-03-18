@@ -19,18 +19,69 @@
     <!--    </van-swipe>-->
 
     <Loading v-if="loading"></Loading>
-    <div class="container">
-      <div
-        style="
-          margin-left: 20px;
-          margin-top: 10px;
-          font-size: 16px;
-          font-weight: bolder;
-          color: #333;
-        "
-      >
-        充值方式
+    <div class="fangshi-box" @click="method.sheet.open()">
+      <div>充值方式</div>
+
+      <div style="display: flex; align-items: center">
+        <!--        <template v-if="pay_card_id">-->
+        <!--          <img :src="getImg" alt="" />-->
+        <!--        </template>-->
+        <template v-if="state.item.pay?.id">
+          <img
+            v-if="state.item.pay?.data?.type == 'wechat'"
+            src="@/assets/img/recharge/wechat.png"
+          />
+          <img
+            src="@/assets/img/recharge/bank2.png"
+            v-else-if="state.item.pay?.data?.type == 'bank'"
+          />
+          <img
+            src="@/assets/img/recharge/jd.jpg"
+            v-else-if="state.item.pay?.data?.key == 'jdpay'"
+          />
+          <img
+            src="@/assets/img/recharge/kd.jpg"
+            v-else-if="state.item.pay?.data?.key == 'kdpay'"
+          />
+          <img src="@/assets/img/recharge/usdt.png" v-else-if="state.item.pay?.data?.key == 'bs'" />
+          <img src="@/assets/img/recharge/alipay.png" v-else />
+        </template>
+        <template v-else> 请选择 </template>
+        <van-icon name="arrow" size="20" color="#ccc" />
       </div>
+    </div>
+    <div v-if="state.item.pay?.id" style="text-indent: 30px; color: #ccc; font-size: 12px">
+      <div class="recharge-info-center-t">
+        <span
+          >{{ state.item.pay?.data?.name }} （{{ state.item.pay?.data?.min }} -
+          {{ state.item.pay?.data?.max }} ￥）</span
+        >
+      </div>
+    </div>
+
+    <div class="jine-box">
+      <div
+        class="jine-item"
+        :class="{ active: item.value == state.struct.amount }"
+        v-for="item of columns"
+        @click="state.struct.amount = item.value"
+      >
+        ￥{{ item.text }}
+      </div>
+    </div>
+    <div class="container" v-if="false">
+      <!--      <div-->
+      <!--        style="-->
+      <!--          margin-left: 20px;-->
+      <!--          margin-top: 10px;-->
+      <!--          font-size: 16px;-->
+      <!--          font-weight: bolder;-->
+      <!--          color: #fff;-->
+      <!--        "-->
+      <!--      >-->
+      <!--        充值方式-->
+      <!--      </div>-->
+
       <div class="recharge-info" @click="method.sheet.open()">
         <div class="recharge-info-left">
           <template v-if="state.item.pay?.id">
@@ -73,7 +124,7 @@
                 font-size: 22px;
                 font-weight: bolder;
                 padding-bottom: 0;
-                color: #cfc9cc;
+                color: #fff;
                 background-color: transparent;
               "
             >
@@ -82,7 +133,7 @@
           </template>
         </div>
         <div class="recharge-info-right">
-          <van-icon name="arrow" size="20" />
+          <van-icon name="arrow" size="20" color="#fff" />
         </div>
       </div>
       <div class="recharge-money">
@@ -110,7 +161,7 @@
                   font-weight: bolder;
                   padding-bottom: 0;
                   margin-bottom: 10px;
-                  color: #333;
+                  color: #fff !important;
                   background-color: transparent;
                 "
                 type="number"
@@ -174,37 +225,7 @@
             </div>
           </div>
         </div>
-        <el-button
-          :loading="loading"
-          class="w-100"
-          color="#01c5f0"
-          size="large"
-          style="
-            margin-top: 20px;
-            width: 100%;
-            border-radius: 15px;
-            border: none;
-            color: #fff;
-            background-image: linear-gradient(to right, #a9ddfd, #1d9ae8);
-          "
-          type="primary"
-          @click="method.emit"
-          >确认
-        </el-button>
       </div>
-      <!--      <div-->
-      <!--        style="-->
-      <!--          display: flex;-->
-      <!--          flex-direction: column;-->
-      <!--          justify-content: center;-->
-      <!--          width: 100%;-->
-      <!--          align-items: center;-->
-      <!--        "-->
-      <!--        @click="$router.push('/weimaiquanDetail')"-->
-      <!--      >-->
-      <!--        <img style="width: 60px" src="./images/1.png" alt="" />-->
-      <!--        <p style="font-size: 20px">官方微脉圈群</p>-->
-      <!--      </div>-->
 
       <van-cell
         v-for="item of downloadList"
@@ -212,27 +233,36 @@
         is-link
         @click="openDownload(item.url)"
       />
-      <!--      <div-->
-      <!--        style="-->
-      <!--          margin: 10px;-->
-      <!--          background-color: rgba(70, 89, 101, 0.7);-->
-      <!--          border-radius: 10px;-->
-      <!--          padding: 6px;-->
-      <!--          color: #fff;-->
-      <!--          text-indent: 2em;-->
-      <!--          line-height: 1.6;-->
-      <!--        "-->
-      <!--      >-->
-      <!--        <p style="text-indent: 2em">-->
-      <!--          全民瓜分温馨提示： 推广的代理用户，尽量都下载钱包， 使用钱包提现，免手续费，-->
-      <!--        </p>-->
-      <!--        <p style="text-indent: 2em">-->
-      <!--          日积月累能省下很大一部分手续费， 另外代理也可以登录下级账号，帮下级代充。-->
-      <!--        </p>-->
-      <!--        <p style="text-indent: 2em">使用钱包充值，USDT充值，帮下级代充，24小时不风控！</p>-->
-      <!--      </div>-->
-      <div></div>
-      <!--      <van-image :src="pay2" width="100%" height="100%;"></van-image>-->
+    </div>
+    <div
+      style="
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      "
+    >
+      <el-button
+        :loading="loading"
+        class="w-100"
+        color="#01c5f0"
+        size="large"
+        style="
+          border: none;
+          width: 85%;
+          border-radius: 15px;
+          color: #fff;
+          background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+        "
+        type="primary"
+        @click="method.emit"
+        >充值
+      </el-button>
+    </div>
+
+    <!--      <van-image :src="pay2" width="100%" height="100%;"></van-image>-->
+    <div class="container">
       <van-popup v-model:show="state.sheet.show" position="bottom" closeable round>
         <div class="select-wrap">
           <div class="title">{{ state.sheet.title }}</div>
@@ -351,7 +381,17 @@ const payItemClick = (id) => {
   state.item.pay.id = id
   method.sheet.close()
 }
-
+const columns = ref([
+  { text: '100', value: '100' },
+  { text: '200', value: '200' },
+  { text: '500', value: '500' },
+  { text: '800', value: '800' },
+  { text: '1000', value: '1000' },
+  { text: '1500', value: '1500' },
+  { text: '2000', value: '2000' },
+  { text: '3000', value: '3000' },
+  { text: '5000', value: '5000' }
+])
 const getIcon = (item) => {
   if (item.type === 'alipay') {
     return alipayLarge
@@ -385,7 +425,9 @@ const state = reactive({
       data: null
     }
   },
-  struct: {},
+  struct: {
+    amount: 100
+  },
   modal: {
     service: false
   },
@@ -572,9 +614,9 @@ onMounted(() => method.init())
       font-size: 16px;
       display: flex;
       padding: 20px 0;
-      border-bottom: 1px solid #ccc;
-      color: #333;
-      background-color: #fff;
+      border-bottom: 1px solid #4d536a;
+      color: #fff;
+      background-color: #1f203d;
       align-items: center;
 
       &-left {
@@ -585,6 +627,7 @@ onMounted(() => method.init())
         }
       }
       &-center {
+        color: #fff;
         flex: 1;
         //margin-left: 20px;
         &-t {
@@ -608,13 +651,13 @@ onMounted(() => method.init())
       }
     }
     .recharge-money {
-      color: #333;
+      color: #fff;
       padding: 30px 20px;
-      background-color: #fff;
+      //background-color: #fff;
       .txt {
         font-size: 16px;
         font-weight: bolder;
-        color: #333;
+        color: #fff;
       }
       .money-box {
         display: flex;
@@ -622,7 +665,7 @@ onMounted(() => method.init())
         align-items: center;
         justify-content: space-between;
         flex: 1;
-        border-bottom: 1px solid #c9c9c9;
+        border-bottom: 1px solid #4d536a;
         height: 50px;
         .input-content {
           flex: 1;
@@ -666,7 +709,7 @@ onMounted(() => method.init())
         height: 40px;
         line-height: 40px;
         border: 1px solid transparent !important;
-        color: #333;
+        color: #fff;
         //background: rgba(255, 255, 255, calc(1.5 * 0.65));
         background: #01c5f0;
         //backdrop-filter: blur(10px) saturate(160%);
@@ -726,12 +769,12 @@ onMounted(() => method.init())
               div:nth-child(1) {
                 font-weight: 400;
                 font-size: 16px;
-                color: #000;
+                color: #fff;
               }
               div:nth-child(2) {
                 margin-top: 8px;
                 font-size: 13px;
-                color: #666;
+                color: #fff;
               }
             }
           }
@@ -772,7 +815,7 @@ onMounted(() => method.init())
   }
 }
 .my-swipe .van-swipe-item {
-  color: #666;
+  color: #fff;
   font-size: 20px;
   text-align: center;
   display: flex;
@@ -781,6 +824,42 @@ onMounted(() => method.init())
   img {
     width: 100%;
     height: 200px;
+  }
+}
+.fangshi-box {
+  background-color: #2e3350;
+  margin: 10px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px 10px 20px;
+
+  img {
+    margin-right: 10px;
+    width: 25px;
+  }
+}
+.jine-box {
+  background-color: #2e3350;
+  margin: 10px 20px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  color: #fff;
+
+  .jine-item {
+    background-color: #1d1e3a;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    font-size: 16px;
+    border-radius: 10px;
+    &.active {
+      background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+    }
   }
 }
 </style>

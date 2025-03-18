@@ -122,12 +122,12 @@
             <div>看视频赚收益</div>
           </div>
         </div>
-        <div class="item" @click="$router.push('/gameList')">
-          <div class="item-box">
-            <div>游戏专区</div>
-            <div>拼手气！</div>
-          </div>
-        </div>
+        <!--        <div class="item" @click="$router.push('/gameList')">-->
+        <!--          <div class="item-box">-->
+        <!--            <div>游戏专区</div>-->
+        <!--            <div>拼手气！</div>-->
+        <!--          </div>-->
+        <!--        </div>-->
       </div>
       <div class="shulist" v-if="false">
         <!--        <div class="shu-item">-->
@@ -296,7 +296,7 @@ import {
   reqWalletLog
 } from '@/api/myApi'
 import dayjs from 'dayjs'
-import { showFailToast } from 'vant'
+import { closeToast, showFailToast } from 'vant'
 import { Toast } from 'tdesign-mobile-vue'
 const showGonggaoOverlay = ref(false)
 const handleGonggaoConfirm = () => {
@@ -547,15 +547,15 @@ const loadShort = (type) => {
         return
       }
       // loadInteraction()
-      Toast({
-        theme: 'loading',
-        message: '加载中...',
+      showLoadingToast({
+        forbidClick: true,
+        loadingType: 'spinner',
         duration: 0
       })
       let arr = [reqAdvertisingCount(), reqAdvertisingSinglePrice()]
       Promise.all(arr)
         .then((res) => {
-          Toast.clear()
+          closeToast()
           let todayCount = res[0]?.data?.ordinary
           let price = res[1]?.data?.price
           if (res[0].code !== 200) {
@@ -599,9 +599,9 @@ const shareFriend = () => {
 
 const handleGame = () => {
   // router.push('/quanminlaibaojiang')
-  Toast({
-    theme: 'loading',
-    message: '加载中...',
+  showLoadingToast({
+    forbidClick: true,
+    loadingType: 'spinner',
     duration: 0
   })
   reqNgPlay({})
@@ -614,7 +614,7 @@ const handleGame = () => {
       }
     })
     .finally(() => {
-      Toast.clear()
+      closeToast()
     })
 }
 onActivated(() => {
@@ -650,9 +650,9 @@ onActivated(() => {
 //   })
 // })
 const toGame = (plat) => {
-  Toast({
-    theme: 'loading',
-    message: '加载中...',
+  showLoadingToast({
+    forbidClick: true,
+    loadingType: 'spinner',
     duration: 0
   })
   // reqNgPlay(code)
@@ -672,7 +672,7 @@ const toGame = (plat) => {
       }
     })
     .finally(() => {
-      Toast.clear()
+      closeToast()
     })
 }
 </script>
@@ -682,7 +682,7 @@ const toGame = (plat) => {
   font-size: 14px;
   width: 100%;
   height: 100%;
-  background: #fff;
+  background: #1f203d;
 
   overflow: hidden;
   position: absolute;
@@ -808,25 +808,7 @@ const toGame = (plat) => {
         }
       }
     }
-    .big-title {
-      font-size: 20px;
-      color: #000;
-      font-weight: bolder;
-      padding: 5px 20px 0;
-      position: relative;
-      &:before {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        content: '';
-        display: block;
-        width: 12px;
-        height: 6px;
-        background-color: #ccc;
-        margin-bottom: 10px;
-        background-image: linear-gradient(135deg, #6a78f0 10%, #8999f0 100%);
-      }
-    }
+
     .shouyi-list {
       display: flex;
       padding: 10px 5px;

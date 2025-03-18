@@ -6,7 +6,6 @@
       fixed
       placeholder
       @click-left="router.back()"
-      left-text="返回"
       left-arrow
     >
       <template #right>
@@ -117,7 +116,7 @@
       <!--      <van-search v-model="searchInfo.phone" placeholder="请输入要查询的手机号码" />-->
       <!--      <van-button color="#01c5f0" style="width: 100%; border-radius: 20px">直推人员列表</van-button>-->
       <div style="padding: 10px">
-        <div style="font-size: 22px; color: #000; font-weight: bolder">团队列表</div>
+        <div style="font-size: 22px; color: #fff; font-weight: bolder">团队列表</div>
         <!--        <van-tabs-->
         <!--          v-model:active="active"-->
         <!--          title-active-color="#01c5f0"-->
@@ -128,11 +127,23 @@
         <!--          <van-tab :title="'二级(' + (teamIds['two']?.length || 0) + ')'" name="two" />-->
         <!--          <van-tab :title="'三级(' + (teamIds['three']?.length || 0) + ')'" name="three" />-->
         <!--        </van-tabs>-->
-        <t-tabs default-value="one" theme="tag" :space-evenly="false" @change="tabChange">
-          <t-tab-panel value="one" :label="'一级直推(' + (teamIds['one']?.length || 0) + ')'" />
-          <t-tab-panel value="two" :label="'二级直推(' + (teamIds['two']?.length || 0) + ')'" />
-          <t-tab-panel value="three" :label="'三级直推(' + (teamIds['three']?.length || 0) + ')'" />
-        </t-tabs>
+        <div style="background-color: #1f203d; margin: 10px; border-radius: 10px; overflow: hidden">
+          <t-tabs
+            default-value="one"
+            style="background-color: transparent; border-radius: 10px"
+            theme="tag"
+            :space-evenly="false"
+            @change="tabChange"
+          >
+            <t-tab-panel value="one" :label="'一级直推(' + (teamIds['one']?.length || 0) + ')'" />
+            <t-tab-panel value="two" :label="'二级直推(' + (teamIds['two']?.length || 0) + ')'" />
+            <t-tab-panel
+              value="three"
+              :label="'三级直推(' + (teamIds['three']?.length || 0) + ')'"
+            />
+          </t-tabs>
+        </div>
+
         <van-list
           style="margin-top: 20px"
           v-model:loading="loading"
@@ -167,7 +178,7 @@
                         <span
                           style="
                             margin-bottom: 10px;
-                            color: #000;
+                            color: #fff;
                             font-weight: bolder;
                             font-size: 16px;
                           "
@@ -178,14 +189,15 @@
                               : '') || item.nickname
                           }}</span
                         >
-                        <span style="font-size: 14px">
+                        <span style="font-size: 14px; color: #ccc">
                           {{ utils.timeToDate(item.create_time, 'Y-M-D') }}
                         </span>
                       </div>
                       <span
                         style="
                           font-size: 14px;
-                          border: 1px solid #999;
+                          border: 1px solid #ccc;
+                          color: #ccc;
                           border-radius: 10px;
                           padding: 2px 5px;
                         "
@@ -474,8 +486,8 @@ onActivated(() => {
 }
 
 .container {
-  color: #000;
-  background-color: #edecfa;
+  color: #fff;
+  //background-color: #edecfa;
   .num-box {
     padding: 16px;
     display: flex;
@@ -485,7 +497,7 @@ onActivated(() => {
       width: 45%;
 
       & > div:nth-child(1) {
-        color: #666;
+        color: #ccc;
         font-size: 16px;
       }
 
@@ -503,7 +515,7 @@ onActivated(() => {
         width: 50%;
         & > div:nth-child(1) {
           font-size: 14px;
-          color: #666;
+          color: #ccc;
         }
 
         & > div:nth-child(2) {
@@ -559,6 +571,7 @@ onActivated(() => {
         margin-top: 10px;
         font-size: 24px;
         font-weight: bolder;
+        color: #000;
 
         .unit {
           font-weight: normal;
@@ -578,5 +591,10 @@ onActivated(() => {
       //}
     }
   }
+}
+</style>
+<style>
+.t-tabs__wrapper {
+  background-color: transparent !important;
 }
 </style>

@@ -4,13 +4,14 @@
     <div class="info">
       <div class="avatar" @click="renzheng(userInfo.avatar)">
         <img :src="userInfo.avatar || defaultAvatar" />
+        <div v-if="!userInfo.avatar" style="color: #999">点击更改头像</div>
       </div>
-      <p
-        v-if="showRenzheng"
-        style="color: red; width: 100%; text-align: center; transform: translateY(-8px)"
-      >
-        点击头像可更换微信微信头像
-      </p>
+      <!--      <p-->
+      <!--        v-if="showRenzheng"-->
+      <!--        style="color: red; width: 100%; text-align: center; transform: translateY(-8px)"-->
+      <!--      >-->
+      <!--        点击头像可更换微信微信头像-->
+      <!--      </p>-->
       <div class="info-r">
         <div class="t">
           <template v-if="userInfo.nickname"> {{ userInfo.nickname }}</template>
@@ -22,12 +23,12 @@
             }}</template
           >
         </div>
+        <div class="c">
+          <!--          <p>上级会员ID : {{ userInfo?.invite_id }}</p>-->
+          <p>我的ID : {{ userInfo?.id }}</p>
+        </div>
         <div class="b">
-          <div>
-            <!--          <p>上级会员ID : {{ userInfo?.invite_id }}</p>-->
-            <p>我的ID : {{ userInfo?.id }}</p>
-          </div>
-          <p style="margin-left: 40px">我的邀请码 : {{ userInfo?.result?.invite?.code }}</p>
+          <p>我的邀请码 : {{ userInfo?.result?.invite?.code }}</p>
         </div>
       </div>
     </div>
@@ -57,14 +58,19 @@
           </div>
         </div>
         <div class="border"></div>
+        <div class="border2"></div>
         <div class="money-info">
           <p>
-            <span class="title">今日收益(元)</span>
-            <span class="num">{{ userIncomeInfo.today || 0 }}</span>
+            <span class="title">今日收益</span>
+            <span class="num">{{ (userIncomeInfo.today || 0).toFixed(2) }}</span>
           </p>
           <p>
-            <span class="title">累计收益(元)</span>
-            <span class="num">{{ userIncomeInfo.total || 0 }}</span>
+            <span class="title">累计收益</span>
+            <span class="num">{{ (userIncomeInfo.total || 0).toFixed(2) }}</span>
+          </p>
+          <p>
+            <span class="title">充值余额</span>
+            <span class="num">{{ walletInfo?.amount || 0 }}</span>
           </p>
           <!--          <p>-->
           <!--            <span>{{ walletInfo?.amount || 0 }}</span>-->
@@ -74,15 +80,16 @@
       </div>
 
       <div class="chongzhiandtixian">
-        <div class="chongzhiyue">
-          充值余额(元)&nbsp;&nbsp;
-          <div class="num">{{ walletInfo?.amount || 0 }}</div>
-        </div>
+        <!--        <div class="chongzhiyue">-->
+        <!--          充值余额(元)&nbsp;&nbsp;-->
+        <!--          <div class="num">{{ walletInfo?.amount || 0 }}</div>-->
+        <!--        </div>-->
+        <div></div>
         <div class="btn-box">
           <van-button
             @click="go('recharge')"
             class="btn"
-            color="linear-gradient(to right, #A9DDFD, #1D9AE8)"
+            color="linear-gradient(to right, #fb5b4b, #9c38e5)"
           >
             充值
           </van-button>
@@ -181,8 +188,9 @@
           class="list-item"
           :icon="item.icon"
           :title="item.label"
-          @click="item.fn"
+          style="color: #c3b6ba"
           is-link
+          @click="item.fn"
         >
           <template #icon>
             <i class="menu-icon" v-if="index === 0">
@@ -754,9 +762,10 @@
           width: 100%;
           border-radius: 15px;
           margin-top: 10px !important;
-          color: #666;
-          background-color: #fff;
-          border: 1px solid #ccc !important;
+          color: #fff;
+          background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+
+          border: 1px solid transparent !important;
         "
         type="primary"
         @click="logout"
@@ -819,7 +828,7 @@ import { loadInteraction, wxLogin } from '@/utils/ad'
 import { _notice } from '@/utils'
 import { useRouter } from 'vue-router'
 import weimaiquan from '@/assets/img/weimaiquan.jpg'
-import { showDialog } from 'vant'
+import { closeToast, showDialog } from 'vant'
 import { getSerialName } from '../../utils/getSerialName'
 import { Toast } from 'tdesign-mobile-vue'
 import bus from '@/utils/bus'
@@ -855,11 +864,18 @@ const list = [
       goDownload()
     }
   },
+  // {
+  //   label: '每周奖池大奖',
+  //   icon: 'like-o',
+  //   fn() {
+  //     router.push('/fenhong')
+  //   }
+  // },
   {
-    label: '每周奖池大奖',
+    label: '晋级奖励',
     icon: 'like-o',
     fn() {
-      router.push('/fenhong')
+      router.push('/jiangliguize')
     }
   },
   // {
@@ -877,7 +893,7 @@ const list = [
     }
   },
   {
-    label: '推广收入表（月入十万）',
+    label: '分享赚钱',
     icon: 'coupon-o',
     fn() {
       router.push('/demo')
@@ -943,41 +959,8 @@ const getMyStaff = () => {
     }
   })
 }
-const getPullNew = () => {
-  // showDialog({
-  //   message: '完成任务后，进入官方qq群找客服领取奖励！'
-  // })
-  Toast({
-    theme: 'loading',
-    message: '加载中...',
-    duration: 0
-  })
-  reqPullNewLite().then((res) => {
-    Toast.clear()
 
-    showDialog({
-      message: res.msg
-    })
-  })
-}
-const getPullNew2 = () => {
-  Toast({
-    theme: 'loading',
-    message: '轻提示文字内容'
-  })
-  reqPullNew().then((res) => {
-    Toast.clear()
-
-    showDialog({
-      message: res.msg
-    })
-  })
-}
 const getShouyi = () => {
-  Toast({
-    theme: 'loading',
-    message: '轻提示文字内容'
-  })
   if (!userInfo.value?.result?.staff?.id) {
     Toast.clear()
 
@@ -1117,9 +1100,9 @@ const toMySub = () => {
 const showTotal = ref(false)
 
 const handleEyeClick = () => {
-  Toast({
-    theme: 'loading',
-    message: '加载中...',
+  showLoadingToast({
+    forbidClick: true,
+    loadingType: 'spinner',
     duration: 0
   })
   reqNgTransfer({ plat: 'ky' }).then((res) => {
@@ -1128,7 +1111,7 @@ const handleEyeClick = () => {
   reqNgTransfer().finally(() => {
     getUserIncome(() => {
       showTotal.value = true
-      Toast.clear()
+      closeToast()
     })
   })
 }
@@ -1156,7 +1139,7 @@ onDeactivated(() => {
   //background-image: url('@/assets/img/bg.png');
   //background-size: 100% auto;
   color: #666;
-  background-color: #fff;
+  background-color: #1f203d;
 
   overflow-y: auto;
 
@@ -1164,34 +1147,34 @@ onDeactivated(() => {
     display: flex;
     padding: 0 20px;
     .avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      overflow: hidden;
       img {
-        width: 100%;
-        height: 100%;
+        width: 100px;
+        border-radius: 50%;
+        height: 100px;
       }
     }
     .info-r {
       margin-left: 15px;
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: space-evenly;
       .t {
-        color: #0a0a0a;
+        color: #fff;
         font-size: 16px;
+      }
+      .c {
+        color: #fff;
       }
       .b {
         display: flex;
-        color: #999999;
+        color: #fff;
         fonnt-size: 12px;
       }
     }
   }
 
   .container {
-    background-color: #fff;
+    background-color: #1f203d;
     position: relative;
     border: 1px solid transparent;
     padding: 20px 20px 0;
@@ -1199,6 +1182,8 @@ onDeactivated(() => {
     .money-box {
       background-repeat: no-repeat;
       background-image: url('./images/money-bg.png');
+      //background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+
       background-size: 100% 100%;
       height: 150px;
       overflow: hidden;
@@ -1229,7 +1214,16 @@ onDeactivated(() => {
         width: 1px;
         background-color: #eee;
         position: absolute;
-        left: 50%;
+        left: 33%;
+        transform: translateX(-50%);
+        bottom: 30px;
+      }
+      .border2 {
+        height: 35px;
+        width: 1px;
+        background-color: #eee;
+        position: absolute;
+        left: 66%;
         transform: translateX(-50%);
         bottom: 30px;
       }
@@ -1298,7 +1292,7 @@ onDeactivated(() => {
       .chongzhiyue {
         flex: 1;
         font-size: 16px;
-        color: #000;
+        color: #fff;
         display: flex;
         align-items: center;
         .num {
@@ -1365,6 +1359,14 @@ onDeactivated(() => {
       background-color: rgba(26, 62, 84, 0.7);
 
       border: none;
+    }
+  }
+
+  :deep(.van-cell) {
+    border-bottom: 1px solid #4d536a !important;
+    padding-bottom: 5px;
+    &::after {
+      border: none !important;
     }
   }
 }

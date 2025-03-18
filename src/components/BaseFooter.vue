@@ -28,15 +28,15 @@
     <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">会员专享</div>-->
     <!--      </div>-->
     <!--    </div>-->
-    <div class="l-button" @click="$router.push('/gameList')">
-      <div class="add-ctn">
-        <div class="img-box">
-          <img src="@/assets/icon/3-active.png" alt="" class="add" v-if="currentTab === 2" />
-          <img src="@/assets/icon/3.png" alt="" class="add" v-else />
-        </div>
-        <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">大拇指娱乐</div>-->
-      </div>
-    </div>
+    <!--    <div class="l-button" @click="$router.push('/gameList')">-->
+    <!--      <div class="add-ctn">-->
+    <!--        <div class="img-box">-->
+    <!--          <img src="@/assets/icon/3-active.png" alt="" class="add" v-if="currentTab === 2" />-->
+    <!--          <img src="@/assets/icon/3.png" alt="" class="add" v-else />-->
+    <!--        </div>-->
+    <!--        &lt;!&ndash;        <div :style="{ color: currentTab === 2 ? '#666' : '' }">大拇指娱乐</div>&ndash;&gt;-->
+    <!--      </div>-->
+    <!--    </div>-->
     <div class="l-button" @click="tab(5)">
       <div class="add-ctn">
         <div class="img-box">
@@ -121,15 +121,15 @@ export default {
             return
           }
           // loadInteraction()
-          Toast({
-            theme: 'loading',
-            message: '加载中...',
+          showLoadingToast({
+            forbidClick: true,
+            loadingType: 'spinner',
             duration: 0
           })
           let arr = [reqAdvertisingCount(), reqAdvertisingSinglePrice()]
           Promise.all(arr)
             .then((res) => {
-              Toast.clear()
+              closeToast()
               let todayCount = res[0]?.data?.ordinary
               let price = res[1]?.data?.price
               if (res[0].code !== 200) {
@@ -147,7 +147,7 @@ export default {
               })
             })
             .catch(() => {
-              Toast.clear()
+              closeToast()
 
               nextTick(() => {
                 loadShortVideo({

@@ -2,12 +2,10 @@
   <div class="wallet-page">
     <van-nav-bar
       title="收支明细"
-      safe-area-inset-top
-      fixed
-      placeholder
       :class="{ inApp: getIsInApp() }"
       @click-left="router.back()"
       left-text="返回"
+      style="background-color: transparent"
       left-arrow
     >
       <template #right>
@@ -16,69 +14,17 @@
     </van-nav-bar>
     <Loading v-if="loading" />
 
-    <div class="balance-info" v-if="false">
-      <div style="display: flex; justify-content: space-evenly">
-        <div>
-          <div class="balance-text">充值余额</div>
-          <div class="balance-amount">￥{{ method.format(state.wallet?.amount || 0) }}</div>
-        </div>
-        <div>
-          <div class="balance-text">可提现余额</div>
-          <div class="balance-amount">￥{{ method.format(state.wallet?.money || 0) }}</div>
-        </div>
-      </div>
-      <div class="balance-actions">
-        <!-- <van-button type="primary" plain icon="plus" class="action-button">充值</van-button> -->
-        <van-button
-          type="primary"
-          icon="balance-list-o"
-          class="action-button"
-          @click="go('recharge')"
-          color="#1989FA"
-          >购买</van-button
-        >
-        <van-button
-          type="primary"
-          icon="balance-list-o"
-          class="action-button"
-          @click="go('/dep')"
-          color="#1989FA"
-          >提现</van-button
-        >
-
-        <!-- <van-image :src="imageSrc" width="100" height="100%"   fit="fill" class="action-button"></van-image> -->
-      </div>
-    </div>
-    <div style="background-color: #fff">
-      <t-tabs default-value="团队分红" theme="tag" :space-evenly="false" @change="tabChange">
-        <t-tab-panel value="团队分红" label="团队分红" />
+    <div style="background-color: #1f203d; margin: 10px; border-radius: 10px; overflow: hidden">
+      <t-tabs default-value="收入" theme="tag" :space-evenly="false" @change="tabChange">
+        <t-tab-panel value="收入" label="收入" />
         <!--      <t-tab-panel value="排行榜奖励" label="奖池发放" />-->
         <t-tab-panel value="认购返利" label="认购返利" />
         <t-tab-panel value="支出" label="支出" />
         <t-tab-panel value="提现" label="提现" />
       </t-tabs>
     </div>
-    <!--    <van-tabs v-model:active="activeTab" background="transparent" color="#01c5f0">-->
-    <!--      <van-tab title="团队分红  " name="团队分红"></van-tab>-->
-    <!--      <van-tab title="奖池发放  " name="排行榜奖励"></van-tab>-->
-    <!--      <van-tab title="认购返利" name="认购返利"></van-tab>-->
-    <!--      <van-tab title="支出" name="支出"></van-tab>-->
-    <!--      <van-tab title="提现" name="提现"></van-tab>-->
-    <!--    </van-tabs>-->
-    <!--    <div class="tab">-->
-    <!--      <div class="tab-item" :class="{ active: activeTab === '团队分红  ' }" @click="activeTab = '团队分红  '">-->
-    <!--        团队分红  -->
-    <!--      </div>-->
-    <!--      <div class="tab-item" :class="{ active: activeTab === '支出' }" @click="activeTab = '支出'">-->
-    <!--        支出-->
-    <!--      </div>-->
-    <!--      <div class="tab-item" :class="{ active: activeTab === '提现' }" @click="activeTab = '提现'">-->
-    <!--        提现-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <van-tabs v-model:active="activeTab" @change="change">-->
-    <!--      <van-tab title="小额分红明细" name="团队分红  ">-->
-    <wallet-income v-if="activeTab === '团队分红'"></wallet-income>
+
+    <wallet-income v-if="activeTab === '收入'"></wallet-income>
     <!--      </van-tab>-->
     <!--      <van-tab title="支出明细" name="支出">-->
     <wallet-expense v-if="activeTab === '支出'"></wallet-expense>
@@ -99,64 +45,18 @@ import WalletExpense from './wallet/expense.vue'
 import WalletWithdraw from './wallet/withdraw.vue'
 import rengoufanli from './wallet/rengoufanli.vue'
 import modzz from '../login/model.vue'
-import { axiosInstance as axios } from '@/utils/myrequest'
 import { getIsInApp } from '@/utils/getTopPadding'
 import Paihangjiangli from '@/pages/me/wallet/paihangjiangli.vue'
 
 const router = useRouter()
 const service = ref(false)
-const activeTab = ref('团队分红')
+const activeTab = ref('收入')
 const tabChange = (a) => {
   console.log(a)
   activeTab.value = a
 }
-const state = reactive({
-  wallet: {},
-  tabs: {
-    value: 0,
-    list: [
-      { name: '团队分红  ' },
-      { name: '支出', badge: { isDot: true } },
-      { name: '提现' }
-      // , disabled: true
-    ],
-    lineBg:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAOCAYAAABdC15GAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFxSURBVHgBzZNRTsJAEIb/WTW+lpiY+FZPIDew3ABP4GJ8hxsI9zBpOYHeQDwBPQI+mRiRvpLojtPdYhCorQqF/6GdbGd2vvwzBXZcNAt4oj1ANeUoAT5iqkUjbEFLHNmhD1YPEvpZ3ghkGlVDCkc94/BmHMq998I5ONiY1ZBfpKAyuOtgAc5yOEDmYEWNh32BHF91sGHZHmwW4azciN9aQwnz3SJEgOmte+R2tdLprTYoa50mvuomlLpD4Y3oQZnov6D2RzCqI93bWOHaEmAGqQUyRBlZR1WfarcD/EJ2z8DtzDGvsMCwpm8XOCfDUsVOCYhiqRxI/CTQo4UOvjzO7Pow18vfywneuUHHUUxLn55lLw5JFpZ8bEUcY8oXdOLWiHLTxvoGpLqoUmy6dBT15o/ox3znpoycAmxUsiJTbs1cmxeVKp+0zmFIS7bGWiVghC7Vwse8jFKAX9eljh4ggKLLv7uaQvG9/F59Oo2SouxPu7OTCxN/s8wAAAAASUVORK5CYII='
-  },
-  modal: {
-    service: false
-  }
-})
+
 const loading = ref(false)
-function change(e) {
-  console.log(e)
-}
-function go(e) {
-  router.push(e)
-}
-const method = {
-  init: async () => {
-    await method.wallet()
-  },
-  // 获取钱包信息
-  wallet: async () => {
-    loading.value = true
-    const { code, data } = await axios.get('/api/wallet/query')
-    loading.value = false
-    if (code !== 200) return
-
-    state.wallet = data
-  },
-
-  // 跳转
-  // 格式化数字
-  format: (price = 0) => {
-    let result = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-    return result === '0' ? '0.00' : result
-  }
-}
-
-onMounted(() => method.init())
 </script>
 
 <style lang="less" scoped>
@@ -168,7 +68,7 @@ onMounted(() => method.init())
 }
 
 .wallet-page {
-  background-color: #ebecee;
+  background-color: #1f203d;
 
   height: 100%;
   overflow-y: auto;

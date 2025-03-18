@@ -1,8 +1,8 @@
 <template>
   <div class="forgetClass">
     <div class="logo-box">
+      <img src="@/assets/img/logo.png" alt="" />
       <div class="logo-box-content">
-        <img src="@/assets/img/logo.png" alt="" />
         <div class="info">
           <p>大拇指视频</p>
           <p>the big thumb video</p>
@@ -23,20 +23,10 @@
           "
         >
           <van-cell-group style="width: 100%">
-            <van-field
-              v-model="state.struct.social"
-              placeholder="请输入手机号码"
-              left-icon="user-o"
-            />
-
-            <van-field
-              v-model="state.struct.code"
-              center
-              clearable
-              placeholder="请输入短信验证码"
-              style="margin-top: 10px"
-              left-icon="label-o"
-            >
+            <div class="common-input-title">手机号码</div>
+            <van-field v-model="state.struct.social" placeholder="请输入手机号码" />
+            <div class="common-input-title" style="margin-top: 10px">短信验证码</div>
+            <van-field v-model="state.struct.code" center clearable placeholder="请输入短信验证码">
               <template #button>
                 <div @click="SendCode" style="color: #999">
                   <span v-if="!state.status.code">发送验证码</span>
@@ -44,25 +34,24 @@
                 </div>
               </template>
             </van-field>
+            <div class="common-input-title" style="margin-top: 10px">密码</div>
+
             <van-field
-              style="margin-top: 10px"
               v-model="state.struct.password"
               clearable
               placeholder="请输入密码"
-              left-icon="shield-o"
               type="password"
             />
+            <div class="common-input-title" style="margin-top: 10px">确认密码</div>
 
             <van-field
-              style="margin-top: 10px"
               v-model="state.struct.AgainPassword"
               clearable
               placeholder="请再次输入密码"
-              left-icon="shield-o"
               type="password"
             />
           </van-cell-group>
-          <div style="text-align: right; width: 100%; margin: 10px 10px 20px 0">
+          <div style="text-align: right; width: 100%; margin: 10px 10px 20px 0; color: #fc5c47">
             <span @click="$router.push('/common/sign-in')"> 去登录 </span>
           </div>
           <el-button
@@ -73,7 +62,8 @@
             style="
               border-radius: 15px;
               color: #fff;
-              background-image: linear-gradient(to bottom, #723efe, #ac24f5);
+              background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+              font-weight: bolder;
             "
             color="#01c5f0"
             class="w-100"
@@ -219,21 +209,24 @@ watch(
   width: 100%;
   height: 100vh;
   color: #666;
-  background-repeat: no-repeat;
-  background-image: url('@/assets/img/bg.png');
-  background-size: 100% auto;
+  background-color: #1f203d;
+  overflow-y: auto;
+  //background-repeat: no-repeat;
+  //background-image: url('@/assets/img/bg.png');
+  //background-size: 100% auto;
 
   .container {
-    width: 95%;
-    margin: 110px auto 0;
-    background-color: #fff;
-    padding: 20px 40px;
+    flex-direction: column;
+    width: 80%;
+    margin: 20px auto 0;
+    background-color: #2e3350;
+    padding: 20px 20px;
     border-radius: 20px;
     //box-shadow: 0 0 10px #0000001f;
   }
 }
 :deep(.van-cell) {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #4d536a;
   padding: 10px 0;
   &::after {
     border: none !important;
@@ -241,7 +234,10 @@ watch(
 
   .van-field__body {
     input {
-      color: #666 !important;
+      color: #fff !important;
+      &::placeholder {
+        color: #fff !important;
+      }
     }
   }
 }
@@ -259,10 +255,16 @@ watch(
 }
 
 .logo-box {
-  margin-top: 100px;
+  margin-top: 30px;
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  & > img {
+    width: 100px;
+  }
   .logo-box-content {
     display: flex;
     img {
@@ -273,7 +275,7 @@ watch(
       margin-left: 16px;
       text-align: center;
       p:nth-child(1) {
-        font-size: 30px;
+        font-size: 26px;
         letter-spacing: 8px;
       }
     }

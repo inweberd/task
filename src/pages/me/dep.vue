@@ -6,20 +6,41 @@
       @click-left="$router.back()"
       style="background-color: transparent"
     />
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <!--      <van-swipe-item>-->
-      <!--        <img src="@/pages/home/images/banner7.jpg" alt="" />-->
-      <!--      </van-swipe-item>-->
-      <van-swipe-item>
-        <img src="@/pages/home/images/banner9.jpg" alt="" />
-      </van-swipe-item>
-      <van-swipe-item>
-        <img src="@/pages/home/images/banner10.jpg" alt="" />
-      </van-swipe-item>
-    </van-swipe>
+    <!--    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">-->
+    <!--      &lt;!&ndash;      <van-swipe-item>&ndash;&gt;-->
+    <!--      &lt;!&ndash;        <img src="@/pages/home/images/banner7.jpg" alt="" />&ndash;&gt;-->
+    <!--      &lt;!&ndash;      </van-swipe-item>&ndash;&gt;-->
+    <!--      <van-swipe-item>-->
+    <!--        <img src="@/pages/home/images/banner9.jpg" alt="" />-->
+    <!--      </van-swipe-item>-->
+    <!--      <van-swipe-item>-->
+    <!--        <img src="@/pages/home/images/banner10.jpg" alt="" />-->
+    <!--      </van-swipe-item>-->
+    <!--    </van-swipe>-->
     <Loading v-if="loading" />
     <!--    <van-image :src="tixian" width="100%" height="100%;"></van-image>-->
 
+    <div class="fangshi-box" @click="showPicker = true">
+      <div>提现方式</div>
+
+      <div style="display: flex; align-items: center">
+        <template v-if="pay_card_id">
+          <img :src="getImg" alt="" />
+        </template>
+        <template v-else> 请选择 </template>
+        <van-icon name="arrow" size="20" color="#ccc" />
+      </div>
+    </div>
+    <div class="jine-box">
+      <div
+        class="jine-item"
+        :class="{ active: item.value === money }"
+        v-for="item of columns"
+        @click="money = item.value"
+      >
+        ￥{{ item.text }}
+      </div>
+    </div>
     <van-action-sheet v-model:show="checked" title="选择提现方式">
       <van-radio-group v-model="pay_card_id" disabled>
         <van-card
@@ -46,50 +67,72 @@
       </van-radio-group>
     </van-action-sheet>
 
-    <van-field
-      v-model="money"
-      label="选择提现"
-      placeholder="请选择提现金额"
-      @click="showPicker = true"
-      is-link
-      readonly
-    />
-    <van-popup v-model:show="showPicker" destroy-on-close round position="bottom">
-      <van-picker :columns="columns" @cancel="showPicker = false" @confirm="onConfirm" />
-    </van-popup>
-    <p style="color: #000; margin: 10px" v-if="!state?.select?.card?.length">
-      <van-icon name="warning" />
-      暂无提现方式，请添加！
-    </p>
-    <van-radio-group v-model="pay_card_id">
-      <van-cell-group inset>
-        <van-cell
-          v-for="(item, index) of state.select.card"
-          :title="item.card_no"
-          clickable
-          @click="onSelect(item)"
+    <!--    <van-field-->
+    <!--      v-model="money"-->
+    <!--      label="选择提现"-->
+    <!--      placeholder="请选择提现金额"-->
+    <!--      @click="showPicker = true"-->
+    <!--      is-link-->
+    <!--      readonly-->
+    <!--    />-->
+    <van-popup
+      v-model:show="showPicker"
+      destroy-on-close
+      round
+      position="bottom"
+      closeable
+      theme-mode="dark"
+    >
+      <div style="color: #ccc; padding-top: 35px; padding-bottom: 20px">
+        <p
+          style="color: #ccc; margin: 10px; text-align: center; height: 100px; line-height: 100px"
+          v-if="!state?.select?.card?.length"
         >
-          <template #icon>
-            <div style="display: flex; align-items: center">
-              <van-icon
-                name="delete-o"
-                size="20"
-                style="margin-right: 4px"
-                @click="deleteCard(item, index)"
-              />
-              <img
-                style="width: 25px; height: 25px; margin-right: 6px"
-                :src="getThumb(item.mode)"
-                alt=""
-              />
-            </div>
-          </template>
-          <template #right-icon>
-            <van-radio :name="item.id" />
-          </template>
-        </van-cell>
-      </van-cell-group>
-    </van-radio-group>
+          <van-icon name="warning" />
+          暂无提现方式，<span style="color: #1e83d3" @click="$router.push('/binddep')"
+            >去添加！</span
+          >
+        </p>
+        <van-radio-group v-model="pay_card_id">
+          <van-cell-group inset>
+            <van-cell
+              style="color: #fff"
+              v-for="(item, index) of state.select.card"
+              :title="item.card_no"
+              clickable
+              @click="onSelect(item)"
+            >
+              <template #icon>
+                <div style="display: flex; align-items: center">
+                  <!--                  <van-icon-->
+                  <!--                    name="delete-o"-->
+                  <!--                    size="20"-->
+                  <!--                    style="margin-right: 4px"-->
+                  <!--                    @click="deleteCard(item, index)"-->
+                  <!--                  />-->
+                  <img
+                    style="width: 25px; height: 25px; margin-right: 6px"
+                    :src="getThumb(item.mode)"
+                    alt=""
+                  />
+                </div>
+              </template>
+              <template #right-icon>
+                <van-radio :name="item.id" />
+              </template>
+            </van-cell>
+          </van-cell-group>
+        </van-radio-group>
+        <p
+          v-if="state?.select?.card?.length"
+          style="text-align: center; color: #1e83d3"
+          @click="$router.push('/binddep')"
+        >
+          继续添加提现方式！
+        </p>
+      </div>
+      <!--      <van-picker :columns="columns" @cancel="showPicker = false" @confirm="onConfirm" />-->
+    </van-popup>
 
     <div
       style="
@@ -107,32 +150,32 @@
         size="large"
         style="
           border: none;
-          width: 80%;
+          width: 85%;
           border-radius: 15px;
           color: #fff;
-          background-image: linear-gradient(to right, #ff8b6e, #ff625c);
+          background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
         "
         type="primary"
         @click="goPay"
         >申请提现
       </el-button>
-      <span></span>
-      <el-button
-        class="w-100"
-        color="#00f7c4"
-        size="large"
-        style="
-          width: 80%;
-          border-radius: 15px;
-          margin-top: 20px !important;
-          color: #fff;
-          background-image: linear-gradient(to right, #ff8b6e, #ff625c);
-          border: 1px solid #ccc !important;
-        "
-        type="primary"
-        @click="$router.push('/binddep')"
-        >添加提现方式
-      </el-button>
+      <!--      <span></span>-->
+      <!--      <el-button-->
+      <!--        class="w-100"-->
+      <!--        color="#00f7c4"-->
+      <!--        size="large"-->
+      <!--        style="-->
+      <!--          width: 80%;-->
+      <!--          border-radius: 15px;-->
+      <!--          margin-top: 20px !important;-->
+      <!--          color: #fff;-->
+      <!--          background-image: linear-gradient(to right, #ff8b6e, #ff625c);-->
+      <!--          border: 1px solid #ccc !important;-->
+      <!--        "-->
+      <!--        type="primary"-->
+      <!--        @click="$router.push('/binddep')"-->
+      <!--        >添加提现方式-->
+      <!--      </el-button>-->
     </div>
 
     <!--        <van-button-->
@@ -147,53 +190,7 @@
     <!--          :disabled="tixianLoading"-->
     <!--          >申请提现</van-button-->
     <!--        >-->
-    <div class="desc">
-      <!--<div class="desc-title">提现流程</div>-->
-      <p style="margin-bottom: 10px">
-        <span class="index">1.</span> 提现20元起提，手续费固定5%，提现时间上午11点--晚上21点！
-      </p>
-      <!--      <p style="margin-bottom: 10px">-->
-      <!--        <span class="index">2.</span>-->
-      <!--        余额互转10元起，余额互转，免手续费，支持全平台用户互转！-->
-      <!--      </p>-->
-      <!--      <p style="margin-bottom: 10px">-->
-      <!--        <span class="index">2.</span>-->
-      <!--        你无需充值，你也可以使用余额转账功能，将你得余额出售给有会员的用户！-->
-      <!--      </p>-->
-      <p style="margin-bottom: 10px">
-        <span class="index">2.</span>
-        你无需充值，你的每日收益余额，也可以直接在APP内用来购买会员抵扣费用使用！
-      </p>
-      <!--      <p style="background-color: #666; color: #fff">-->
-      <!--        <span class="index">3.</span>-->
-      <!--        使用jd钱包充值，单笔冲100额外送100元，单笔冲5000额外送200元-->
-      <!--        使用jd钱包单笔提现100元，可在jd钱包内轮盘抽奖中现金！-->
-      <!--      </p>-->
-      <!--          <p>-->
-      <!--            <span class="index">6.</span>-->
-      <!--            推荐优先使用K豆钱包和JD钱包充提，永不风控，钱包里面内置支付宝，微信，银行卡，USDT等多种到账方式，自由转换，安全，方便快捷-->
-      <!--          </p>-->
-    </div>
-    <!--        <van-image style="margin-top: 10px" :src="tixian" width="100%"></van-image>-->
 
-    <div
-      style="
-        margin: 10px;
-        background-color: #ff625c;
-        border-radius: 10px;
-        padding: 6px;
-        color: #fff;
-        line-height: 1.6;
-        font-size: 16px;
-      "
-    >
-      <!--      <p style="margin-bottom: 8px">-->
-      <!--        使用jd钱包充值，首次单笔冲1000额外送100元，首次单笔冲5000额外送200元-->
-      <!--      </p>-->
-      <!--      <p>使用365钱包充值，首次注册365钱包送58，单笔充365值钱包400元送88元.到365钱包账户内</p>-->
-      <p>使用jd钱包，k豆钱包，365钱包提现，免除手续费！</p>
-      <!--      <p>长期稳定，信誉，正规企业，合法合规!</p>-->
-    </div>
     <TipDialog
       v-model="showGonggaoOverlay"
       @confirm="handleGonggaoConfirm"
@@ -257,8 +254,7 @@ const router = useRouter()
 const active = ref('')
 const selectName = ref('')
 const checked = ref(false)
-const money = ref('')
-const pay_card_id = ref('111')
+const pay_card_id = ref('')
 let user
 let alipay =
   'data:image/svg+xml;charset=utf-8,%3Csvg%20t%3D%221714383521253%22%20class%3D%22icon%22%20viewBox%3D%220%200%201024%201024%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20p-id%3D%224435%22%20width%3D%22200%22%20height%3D%22200%22%3E%3Cpath%20d%3D%22M860.16%200C950.272%200%201024%2073.889684%201024%20164.163368v531.509895s-32.768-4.122947-180.224-53.355789c-40.96-14.362947-96.256-34.896842-157.696-57.478737%2036.864-63.595789%2065.536-137.485474%2086.016-215.444211h-202.752v-71.841684h247.808V256.512h-247.808V135.437474h-100.352c-18.432%200-18.432%2018.458947-18.432%2018.458947v104.663579H200.704v41.040842h249.856v69.793684H243.712v41.013895H645.12c-14.336%2051.307789-34.816%2098.519579-57.344%20141.608421-129.024-43.115789-268.288-77.985684-356.352-55.403789-55.296%2014.362947-92.16%2038.992842-112.64%2063.595789-96.256%20116.978526-26.624%20295.504842%20176.128%20295.504842%20120.832%200%20237.568-67.718737%20327.68-178.526316C757.76%20742.858105%201024%20853.692632%201024%20853.692632v6.144C1024%20950.110316%20950.272%201024%20860.16%201024H163.84C73.728%201024%200%20950.137263%200%20859.836632V164.163368C0%2073.889684%2073.728%200%20163.84%200h696.32zM268.126316%20553.121684c93.049263-10.374737%20180.062316%2026.974316%20283.270737%2078.874948-74.886737%2095.501474-165.941895%20155.701895-256.970106%20155.701894-157.830737%200-204.368842-126.652632-125.466947-197.200842%2026.300632-22.851368%2072.838737-35.301053%2099.166316-37.376z%22%20fill%3D%22%2300A0EA%22%20p-id%3D%224436%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E'
@@ -280,6 +276,7 @@ const shareFriend = () => {
 onActivated(() => {
   user = JSON.parse(window.localStorage.getItem('userInfo'))
 })
+
 const state = reactive({
   sheet: {
     show: false,
@@ -327,6 +324,7 @@ const onSelect = (item) => {
     card_name = 'JD钱包'
   }
   selectName.value = card_name + item.name
+  showPicker.value = false
 }
 const bank = async () => {
   const { data: item } = await bank_list()
@@ -365,7 +363,7 @@ const bank = async () => {
     }
   })
 }
-const columns = [
+const columns = ref([
   { text: '20', value: '20' },
   { text: '40', value: '40' },
   { text: '50', value: '50' },
@@ -374,20 +372,10 @@ const columns = [
   { text: '100', value: '100' },
   { text: '150', value: '150' },
   { text: '200', value: '200' },
-  { text: '250', value: '250' },
-  { text: '300', value: '300' },
-  { text: '350', value: '350' },
-  { text: '400', value: '400' },
-  { text: '450', value: '450' },
-  { text: '500', value: '500' },
-  { text: '550', value: '550' },
-  { text: '1000', value: '1000' },
-  { text: '2000', value: '2000' },
-  { text: '3000', value: '3000' },
-  { text: '4000', value: '4000' },
-  { text: '5000', value: '5000' },
-  { text: '10000', value: '10000' }
-]
+  { text: '250', value: '250' }
+])
+const money = ref(columns.value[0].value)
+
 const showPicker = ref(false)
 const loading = ref(false)
 const bindLoading = ref(false)
@@ -643,6 +631,17 @@ const getThumb = (mode) => {
     return alipay
   }
 }
+
+const getImg = computed(() => {
+  if (pay_card_id.value) {
+    const findItem = state.select.card.find((item) => {
+      return item.id === pay_card_id.value
+    })
+    return getThumb(findItem.mode)
+  } else {
+    return ''
+  }
+})
 const onAreaConfirm = (values) => {
   areaText.value = values.name + ',' + values.subname
   // areaText.value = values.map((item) => item.text).join(' ');
@@ -684,27 +683,51 @@ const deleteCard = (item, index) => {
 
 .withdraw-page {
   height: 100%;
+  background-color: #1f203d;
+
+  .fangshi-box {
+    background-color: #2e3350;
+    margin: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px 10px 20px;
+
+    img {
+      margin-right: 10px;
+      width: 25px;
+    }
+  }
+
+  .jine-box {
+    background-color: #2e3350;
+    margin: 10px 20px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    color: #fff;
+
+    .jine-item {
+      background-color: #1d1e3a;
+      margin: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0;
+      font-size: 16px;
+      border-radius: 10px;
+      &.active {
+        background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+      }
+    }
+  }
 }
 
 .content {
   padding: 16px 16px 160px;
 }
 
-.desc {
-  margin-top: 10px;
-  padding: 10px 40px;
-  color: #000;
-  .desc-title {
-    font-size: 16px;
-    font-weight: bolder;
-  }
-  p {
-    line-height: 22px;
-    .index {
-      font-weight: bolder;
-    }
-  }
-}
 .my-swipe .van-swipe-item {
   color: #fff;
   font-size: 20px;

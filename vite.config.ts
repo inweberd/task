@@ -1,219 +1,219 @@
-import { defineConfig, PluginOption, UserConfig } from 'vite'
+import {defineConfig, PluginOption, UserConfig} from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
-import { visualizer } from 'rollup-plugin-visualizer'
-import { Plugin as importToCDN } from 'vite-plugin-cdn-import'
-import { fileURLToPath, URL } from 'node:url'
-import { getLastCommit } from 'git-last-commit'
+import {visualizer} from 'rollup-plugin-visualizer'
+import {Plugin as importToCDN} from 'vite-plugin-cdn-import'
+import {fileURLToPath, URL} from 'node:url'
+import {getLastCommit} from 'git-last-commit'
 import VueMacros from 'unplugin-vue-macros/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { VantResolver } from '@vant/auto-import-resolver'
+import {VantResolver} from '@vant/auto-import-resolver'
 import legacy from '@vitejs/plugin-legacy'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import {ElementPlusResolver} from 'unplugin-vue-components/resolvers'
 
 const lifecycle = process.env.npm_lifecycle_event
 
 export default defineConfig((): Promise<UserConfig> => {
-  let latestCommitHash = ''
+    let latestCommitHash = ''
 
-  return new Promise((resolve) => {
-    getLastCommit((err, commit) => {
-      if (!err) {
-        latestCommitHash = commit.shortHash
-      }
-      resolve({
-        base: './',
-        envDir: 'env',
-        plugins: [
-          legacy({
-            targets: [
-              'last 2 versions',
-              'iOS >= 10',
-              'Android >= 6',
-              'Chrome >= 49',
-              'Safari >= 10',
-              'Samsung >= 5',
-              'OperaMobile >= 46'
-            ],
-            // 其他特定版本或者范围
-            additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
-            renderLegacyChunks: true,
-            polyfills: [
-              'es.symbol',
-              'es.array.filter',
-              'es.promise',
-              'es.promise.finally',
-              'es/map',
-              'es/set',
-              'es.array.for-each',
-              'es.object.define-properties',
-              'es.object.define-property',
-              'es.object.get-own-property-descriptor',
-              'es.object.get-own-property-descriptors',
-              'es.object.keys',
-              'es.object.to-string',
-              'web.dom-collections.for-each',
-              'esnext.global-this',
-              'esnext.string.match-all'
-            ]
-          }),
-          AutoImport({
-            imports: ['vue', 'vue-router', 'pinia'],
-            resolvers: [VantResolver(), ElementPlusResolver()]
-          }),
-          Components({
-            resolvers: [VantResolver(), ElementPlusResolver()]
-          }),
-          // visualizer({ open: true }),
-
-          VueMacros({
-            plugins: {
-              vue: Vue(),
-              vueJsx: VueJsx() // if needed
+    return new Promise((resolve) => {
+        getLastCommit((err, commit) => {
+            if (!err) {
+                latestCommitHash = commit.shortHash
             }
-            // betterDefine: true,
-            // reactivityTransform: {
-            //   exclude: [/node_modules/, /jQuery\.js/]
-            // }
-          }),
-          // Vue(),
-          // VueJsx(),
-          lifecycle === 'report' ? (visualizer({ open: false }) as any as PluginOption) : null,
-          importToCDN({
-            modules: [
-              // {
-              //   name: 'vue',
-              //   var: 'Vue',
-              //   path: `https://lib.baomitu.com/vue/3.4.21/vue.runtime.global.prod.min.js`
-              // },
-              // {
-              //   name: 'vue-router',
-              //   var: 'VueRouter',
-              //   path: 'https://lib.baomitu.com/vue-router/4.3.0/vue-router.global.prod.min.js'
-              // },
-              // {
-              //   name: 'vue-demi',
-              //   var: 'VueDemi',
-              //   path: 'https://lib.baomitu.com/vue-demi/0.14.7/index.iife.min.js'
-              // },
-              // {
-              //   name: 'mockjs',
-              //   var: 'Mock',
-              //   path: 'https://lib.baomitu.com/Mock.js/1.0.1-beta3/mock-min.js'
-              // }
-            ]
-          })
-          // viteCompression({
-          //   verbose: false,
-          //   disable: false,
-          //   threshold: 10240,
-          //   algorithm: 'brotliCompress',
-          // }),
-          // viteCompression({
-          //   verbose: false,
-          //   disable: false,
-          //   algorithm: 'gzip',
-          //   threshold: 10240,
-          // }),
-          // viteImagemin({
-          //   gifsicle: {
-          //     optimizationLevel: 7,
-          //     interlaced: false,
-          //   },
-          //   optipng: {
-          //     optimizationLevel: 7,
-          //   },
-          //   mozjpeg: {
-          //     quality: 20,
-          //   },
-          //   pngquant: {
-          //     quality: [0.8, 0.9],
-          //     speed: 4,
-          //   },
-          //   svgo: {
-          //     plugins: [
-          //       {
-          //         name: 'removeViewBox',
-          //       },
-          //       {
-          //         name: 'removeEmptyAttrs',
-          //         active: false,
-          //       },
-          //     ],
-          //   },
-          // }),
-        ],
-        resolve: {
-          alias: {
-            '@': fileURLToPath(new URL('./src', import.meta.url))
-          },
-          extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
-        },
-        build: {
-          sourcemap: false,
-          rollupOptions: {
-            // https://rollupjs.org/guide/en/#outputmanualchunks
-            output: {
-              manualChunks(id: string, { getModuleInfo }: any) {
-                const reg = /(.*)\/src\/components\/(.*)/
-                if (reg.test(id)) {
-                  const importersLen = getModuleInfo(id)?.importers.length ?? 0
-                  // 被多处引用
-                  if (importersLen > 1) return 'common'
+            resolve({
+                base: './',
+                envDir: 'env',
+                plugins: [
+                    legacy({
+                        targets: [
+                            'last 2 versions',
+                            'iOS >= 10',
+                            'Android >= 6',
+                            'Chrome >= 49',
+                            'Safari >= 10',
+                            'Samsung >= 5',
+                            'OperaMobile >= 46'
+                        ],
+                        // 其他特定版本或者范围
+                        additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
+                        renderLegacyChunks: true,
+                        polyfills: [
+                            'es.symbol',
+                            'es.array.filter',
+                            'es.promise',
+                            'es.promise.finally',
+                            'es/map',
+                            'es/set',
+                            'es.array.for-each',
+                            'es.object.define-properties',
+                            'es.object.define-property',
+                            'es.object.get-own-property-descriptor',
+                            'es.object.get-own-property-descriptors',
+                            'es.object.keys',
+                            'es.object.to-string',
+                            'web.dom-collections.for-each',
+                            'esnext.global-this',
+                            'esnext.string.match-all'
+                        ]
+                    }),
+                    AutoImport({
+                        imports: ['vue', 'vue-router', 'pinia'],
+                        resolvers: [VantResolver(), ElementPlusResolver()]
+                    }),
+                    Components({
+                        resolvers: [VantResolver(), ElementPlusResolver()]
+                    }),
+                    // visualizer({ open: true }),
+
+                    VueMacros({
+                        plugins: {
+                            vue: Vue(),
+                            vueJsx: VueJsx() // if needed
+                        }
+                        // betterDefine: true,
+                        // reactivityTransform: {
+                        //   exclude: [/node_modules/, /jQuery\.js/]
+                        // }
+                    }),
+                    // Vue(),
+                    // VueJsx(),
+                    lifecycle === 'report' ? (visualizer({open: false}) as any as PluginOption) : null,
+                    importToCDN({
+                        modules: [
+                            // {
+                            //   name: 'vue',
+                            //   var: 'Vue',
+                            //   path: `https://lib.baomitu.com/vue/3.4.21/vue.runtime.global.prod.min.js`
+                            // },
+                            // {
+                            //   name: 'vue-router',
+                            //   var: 'VueRouter',
+                            //   path: 'https://lib.baomitu.com/vue-router/4.3.0/vue-router.global.prod.min.js'
+                            // },
+                            // {
+                            //   name: 'vue-demi',
+                            //   var: 'VueDemi',
+                            //   path: 'https://lib.baomitu.com/vue-demi/0.14.7/index.iife.min.js'
+                            // },
+                            // {
+                            //   name: 'mockjs',
+                            //   var: 'Mock',
+                            //   path: 'https://lib.baomitu.com/Mock.js/1.0.1-beta3/mock-min.js'
+                            // }
+                        ]
+                    })
+                    // viteCompression({
+                    //   verbose: false,
+                    //   disable: false,
+                    //   threshold: 10240,
+                    //   algorithm: 'brotliCompress',
+                    // }),
+                    // viteCompression({
+                    //   verbose: false,
+                    //   disable: false,
+                    //   algorithm: 'gzip',
+                    //   threshold: 10240,
+                    // }),
+                    // viteImagemin({
+                    //   gifsicle: {
+                    //     optimizationLevel: 7,
+                    //     interlaced: false,
+                    //   },
+                    //   optipng: {
+                    //     optimizationLevel: 7,
+                    //   },
+                    //   mozjpeg: {
+                    //     quality: 20,
+                    //   },
+                    //   pngquant: {
+                    //     quality: [0.8, 0.9],
+                    //     speed: 4,
+                    //   },
+                    //   svgo: {
+                    //     plugins: [
+                    //       {
+                    //         name: 'removeViewBox',
+                    //       },
+                    //       {
+                    //         name: 'removeEmptyAttrs',
+                    //         active: false,
+                    //       },
+                    //     ],
+                    //   },
+                    // }),
+                ],
+                resolve: {
+                    alias: {
+                        '@': fileURLToPath(new URL('./src', import.meta.url))
+                    },
+                    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
+                },
+                build: {
+                    sourcemap: false,
+                    rollupOptions: {
+                        // https://rollupjs.org/guide/en/#outputmanualchunks
+                        output: {
+                            manualChunks(id: string, {getModuleInfo}: any) {
+                                const reg = /(.*)\/src\/components\/(.*)/
+                                if (reg.test(id)) {
+                                    const importersLen = getModuleInfo(id)?.importers.length ?? 0
+                                    // 被多处引用
+                                    if (importersLen > 1) return 'common'
+                                }
+                                if (id.includes('node_modules')) return 'vendor'
+                            },
+                            chunkFileNames: 'js/[name]-[hash].js', // 引入文件名的名称
+                            entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
+                            assetFileNames: 'assets/[name]-[hash].[ext]' // 资源文件像 字体，图片等
+                        }
+                    },
+                    assetsInlineLimit: 2048
+                },
+                define: {
+                    LATEST_COMMIT_HASH: JSON.stringify(
+                        latestCommitHash + (process.env.NODE_ENV === 'production' ? '' : ' (dev)')
+                    )
+                },
+                esbuild: {
+                    // drop: ['console', 'debugger']
+                },
+                server: {
+                    port: 3000,
+                    open: true,
+                    host: '0.0.0.0',
+                    fs: {
+                        strict: false
+                    },
+                    cors: true, // 允许跨域
+                    proxy: {
+                        '/api/': {
+                            // target: 'https://tc.q18m.cc/api',
+                            target: 'https://api.fadc902.com/api',
+                            changeOrigin: true,
+                            rewrite: (path) => path.replace(new RegExp('^' + '/api/'), '')
+                        },
+                        '/dev/': {
+                            // target: 'https://tc.q18m.cc/api',
+                            target: 'https://api.fadc902.com/dev',
+                            changeOrigin: true,
+                            rewrite: (path) => path.replace(new RegExp('^' + '/dev/'), '')
+                        },
+                        '/json/': {
+                            // target: 'http://111.180.196.127:8642/api',
+                            // target: 'https://wwc.gengshangpin.com/api',
+                            // target: 'https://wvvw.weimeihuang.com/json',
+                            target: 'https://api.fadc902.com/json',
+                            changeOrigin: true,
+                            rewrite: (path) => path.replace(new RegExp('^' + '/json/'), '')
+                        }
+                    }
+                },
+                preview: {
+                    port: 5555
                 }
-                if (id.includes('node_modules')) return 'vendor'
-              },
-              chunkFileNames: 'js/[name]-[hash].js', // 引入文件名的名称
-              entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
-              assetFileNames: 'assets/[name]-[hash].[ext]' // 资源文件像 字体，图片等
-            }
-          },
-          assetsInlineLimit: 2048
-        },
-        define: {
-          LATEST_COMMIT_HASH: JSON.stringify(
-            latestCommitHash + (process.env.NODE_ENV === 'production' ? '' : ' (dev)')
-          )
-        },
-        esbuild: {
-          // drop: ['console', 'debugger']
-        },
-        server: {
-          port: 3000,
-          open: true,
-          host: '0.0.0.0',
-          fs: {
-            strict: false
-          },
-          cors: true, // 允许跨域
-          proxy: {
-            '/api/': {
-              // target: 'https://tc.q18m.cc/api',
-              target: 'https://api.fadc902.com/api',
-              changeOrigin: true,
-              rewrite: (path) => path.replace(new RegExp('^' + '/api/'), '')
-            },
-            '/dev/': {
-              // target: 'https://tc.q18m.cc/api',
-              target: 'https://api.fadc902.com/dev',
-              changeOrigin: true,
-              rewrite: (path) => path.replace(new RegExp('^' + '/dev/'), '')
-            },
-            '/json/': {
-              // target: 'http://111.180.196.127:8642/api',
-              // target: 'https://wwc.gengshangpin.com/api',
-              // target: 'https://afx.chenfukang.com/json',
-              target: 'https://api.fadc902.com/json',
-              changeOrigin: true,
-              rewrite: (path) => path.replace(new RegExp('^' + '/json/'), '')
-            }
-          }
-        },
-        preview: {
-          port: 5555
-        }
-      })
+            })
+        })
     })
-  })
 })

@@ -4,8 +4,8 @@
             <img alt="" src="@/assets/img/logo.png"/>
             <div class="logo-box-content">
                 <div class="info">
-                    <p>大拇指视频</p>
-                    <p>the big thumb video</p>
+                    <p>汇盈传媒</p>
+                    <!--                    <p>the big thumb video</p>-->
                 </div>
             </div>
         </div>

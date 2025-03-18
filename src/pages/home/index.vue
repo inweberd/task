@@ -31,7 +31,7 @@
                     color="#fff"
                     left-icon="volume-o"
                     style="border-radius: 10px; height: 40px; border: 1px solid #fff"
-                    text="指尖网络欢迎您，邀请好友赚翻天，现金奖励无上限！"
+                    text="汇盈传媒欢迎您，邀请好友赚翻天，现金奖励无上限！"
                 >
                 </van-notice-bar>
 
@@ -82,7 +82,7 @@
             <div class="bg"></div>
             <!--      <van-notice-bar-->
             <!--        left-icon="volume-o"-->
-            <!--        text="指尖网络欢迎您，邀请好友赚翻天，现金奖励无上限！"-->
+            <!--        text="汇盈传媒欢迎您，邀请好友赚翻天，现金奖励无上限！"-->
             <!--      />-->
 
             <div v-show="activeTab === 0" class="app-list" style="margin-top: 120px">
@@ -352,7 +352,7 @@ const appList = ref([
     },
     // {
     //   name: '操作说明',
-    //   desc: '大拇指视频，精彩短视频。期待您的加入',
+    //   desc: '汇盈传媒，精彩短视频。期待您的加入',
     //   logo: 'hk',
     //   btnLabel: '查看',
     //   btnCb() {

@@ -25,7 +25,7 @@
         <!--            >{{ total || '0.00' }}</span-->
         <!--            >-->
         <!--            <img src="./images/fenhong.png" style="width: 100px; height: 120px"/>-->
-        <!--            <p style="position: absolute; text-align: center; width: 100%; bottom: 15px">大拇指视频</p>-->
+        <!--            <p style="position: absolute; text-align: center; width: 100%; bottom: 15px">汇盈传媒</p>-->
         <!--        </div>-->
         <van-overlay :show="showOverlayer" :z-index="99999999">
             <div class="wrapper" @click.stop="getRed">

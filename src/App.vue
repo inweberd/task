@@ -422,7 +422,7 @@ onMounted(() => {
     if (isWeChatBrowser) {
         // loadWx(() => {
         //   wx.onMenuShareTimeline({
-        //     title: '大拇指视频',
+        //     title: '汇盈传媒',
         //     // link: 'http://movie.douban.com/subject/25785114asd/',
         //     imgUrl: 'http://tc.izakq.com/media/logo2.png',
         //     trigger: function (res) {

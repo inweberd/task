@@ -6,7 +6,7 @@
           <img src="@/assets/icon/1-active.png" alt="" class="add" v-if="currentTab === 1" />
           <img src="@/assets/icon/1.png" alt="" class="add" v-else />
         </div>
-        <!--        <div :style="{ color: currentTab === 1 ? '#666' : '' }">首页</div>-->
+        <div :style="{ color: currentTab === 1 ? '#fff' : '' }">主页</div>
       </div>
     </div>
     <!--    <div class="l-button" @click="refresh(2)">-->
@@ -43,7 +43,7 @@
           <img src="@/assets/icon/4-active.png" alt="" class="add" v-if="currentTab === 5" />
           <img src="@/assets/icon/4.png" alt="" class="add" v-else />
         </div>
-        <!--        <div :style="{ color: currentTab === 5 ? '#666' : '' }">会员</div>-->
+        <div :style="{ color: currentTab === 5 ? '#fff' : '' }">特权加速</div>
       </div>
     </div>
     <div class="l-button" @click="tab(6)">
@@ -52,7 +52,7 @@
           <img src="@/assets/icon/5-active.png" alt="" class="add" v-if="currentTab === 6" />
           <img src="@/assets/icon/5.png" alt="" class="add" v-else />
         </div>
-        <!--        <div :style="{ color: currentTab === 6 ? '#666' : '' }">我的</div>-->
+        <div :style="{ color: currentTab === 6 ? '#fff' : '' }">我</div>
       </div>
       <!-- <div class="badge">2</div> -->
     </div>
@@ -291,6 +291,7 @@ export default {
       & > div {
         white-space: nowrap;
         color: #9f8b8b;
+        margin-top: 4px;
         font-size: 12px;
       }
     }

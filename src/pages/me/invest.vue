@@ -63,26 +63,28 @@
           <img src="./images/vip-icon.png" alt="" />
           <div>{{ item.name }}</div>
           <div><span class="fuhao">￥</span>{{ item.price }}</div>
-          <div>{{ item.days }}天版权</div>
+          <div style="font-size: 12px">永久循环收益</div>
         </div>
       </div>
     </div>
-    <div class="tip">
-      <p>用户成为”短视频创作者合伙人"，投资平台精选的优质短广告商进行广告投放，</p>
-      <p>按比享受创作者和广告商的商业收益(广告+电商+打赏)，平台中间赚取服务费。</p>
-      <p>【视频掘金计划:五档会员加速器，投得多赚得多!】</p>
-      <p>会员收益逻辑图解:</p>
-      <p style="color: #fff; font-weight: bolder">你的「刷视频收益」可自由选择加速档位</p>
-      <p>投入越多，广告分成权重越高，每日收益越多!</p>
-      <p>五档黄金会员权益(会员费全额用于广告合作)</p>
-      <p>会员收益逻辑图解:</p>
-      <p>你的投资 - 注入平台广告合作资金池 → 吸引更多品牌投放 →</p>
-      <p>广告总收益按比例分配 →(投入越多→ 占股比例越高一每日产生广告投放收益分钱!)</p>
-      <p>广告总收益分配比例：2%-0.5%每日根据热门程度逐渐衰减。</p>
-      <p>每轮广告20天收益周期，到期全额返还到账户余额，</p>
-      <p>返还余额可以继续用来购买会员，继续产生收益相当于一次购买，永久有效！</p>
-      <p>档位专属特权(以黑金会员为例)</p>
-    </div>
+    <van-image :src="vipInfo" width="100%" @click="showImage"></van-image>
+
+    <!--    <div class="tip">-->
+    <!--      <p>用户成为”短视频创作者合伙人"，投资平台精选的优质短广告商进行广告投放，</p>-->
+    <!--      <p>按比享受创作者和广告商的商业收益(广告+电商+打赏)，平台中间赚取服务费。</p>-->
+    <!--      <p>【视频掘金计划:五档会员加速器，投得多赚得多!】</p>-->
+    <!--      <p>会员收益逻辑图解:</p>-->
+    <!--      <p style="color: #fff; font-weight: bolder">你的「刷视频收益」可自由选择加速档位</p>-->
+    <!--      <p>投入越多，广告分成权重越高，每日收益越多!</p>-->
+    <!--      <p>五档黄金会员权益(会员费全额用于广告合作)</p>-->
+    <!--      <p>会员收益逻辑图解:</p>-->
+    <!--      <p>你的投资 - 注入平台广告合作资金池 → 吸引更多品牌投放 →</p>-->
+    <!--      <p>广告总收益按比例分配 →(投入越多→ 占股比例越高一每日产生广告投放收益分钱!)</p>-->
+    <!--      <p>广告总收益分配比例：2%-0.5%每日根据热门程度逐渐衰减。</p>-->
+    <!--      <p>每轮广告20天收益周期，到期全额返还到账户余额，</p>-->
+    <!--      <p>返还余额可以继续用来购买会员，继续产生收益相当于一次购买，永久有效！</p>-->
+    <!--      <p>档位专属特权(以黑金会员为例)</p>-->
+    <!--    </div>-->
     <van-button
       type="danger"
       round
@@ -91,7 +93,7 @@
       style="margin: 20px auto; width: 90%; height: 40px; position: fixed; left: 5%; bottom: 40px"
       @click="buy"
     >
-      开通
+      开通加速卡
     </van-button>
     <p
       v-if="false"
@@ -497,11 +499,17 @@ import dayjs from 'dayjs'
 import BaseFooter from '@/components/BaseFooter.vue'
 import defaultAvatar from '@/assets/img/logo.png'
 import { getSerialName } from '../../utils/getSerialName'
+import shareholder from '@/assets/img/jiangliguize.jpg'
+
+import vipInfo from './images/vip-info.jpg'
+import { showImagePreview } from 'vant'
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
 defineOptions({
   name: 'invest'
 })
-
+const showImage = () => {
+  showImagePreview([vipInfo])
+}
 const activeIndex = ref(0)
 const containerStyle = computed(() => {
   if (window.android && !window.android.hideBar) {
@@ -510,6 +518,7 @@ const containerStyle = computed(() => {
     return {}
   }
 })
+
 const count = ref(1)
 const userIncomeInfo = ref({})
 const shouyiArrDay = [5, 20, 40, 80, 120, 160, 200, 400]
@@ -900,7 +909,7 @@ const speed = ref(0.5) //滚动速度
       .v-list-item {
         flex: 0 0 auto;
 
-        width: 100px;
+        width: 110px;
         float: left;
         margin: 10px;
         display: flex;

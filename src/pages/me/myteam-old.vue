@@ -29,17 +29,33 @@
           </div>
         </div>
       </div>
-
-      <div class="tuandui">
-        <div class="tuandui-item">
-          <p>团队总业绩</p>
-          <p>{{ memberInfo.team?.deposit || 0 }} <span class="unit">元</span></p>
+      <div class="num-box">
+        <div>
+          <div>团队总业绩</div>
+          <div>{{ memberInfo.team?.deposit || 0 }}</div>
         </div>
-        <div class="tuandui-item">
-          <p>团队总提现</p>
-          <p>{{ memberInfo.team?.withdraw || 0 }} <span class="unit">元</span></p>
+        <div>
+          <div>
+            <div>团队总提现</div>
+            <div>{{ memberInfo.team?.withdraw || 0 }}元</div>
+          </div>
+          <div>
+            <div>直推总人数</div>
+            <div>{{ memberInfo.first?.total || 0 }}</div>
+          </div>
         </div>
       </div>
+
+      <!--      <div class="tuandui">-->
+      <!--        <div class="tuandui-item">-->
+      <!--          <p>团队总业绩</p>-->
+      <!--          <p>{{ memberInfo.team?.deposit || 0 }} <span class="unit">元</span></p>-->
+      <!--        </div>-->
+      <!--        <div class="tuandui-item">-->
+      <!--          <p>团队总提现</p>-->
+      <!--          <p>{{ memberInfo.team?.withdraw || 0 }} <span class="unit">元</span></p>-->
+      <!--        </div>-->
+      <!--      </div>-->
 
       <div v-if="false" class="tuandui">
         <div class="tuandui-item">

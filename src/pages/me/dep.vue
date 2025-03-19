@@ -364,6 +364,7 @@ const bank = async () => {
   })
 }
 const columns = ref([
+  { text: '10', value: '10' },
   { text: '20', value: '20' },
   { text: '40', value: '40' },
   { text: '50', value: '50' },
@@ -371,8 +372,7 @@ const columns = ref([
   { text: '90', value: '90' },
   { text: '100', value: '100' },
   { text: '150', value: '150' },
-  { text: '200', value: '200' },
-  { text: '250', value: '250' }
+  { text: '200', value: '200' }
 ])
 const money = ref(columns.value[0].value)
 

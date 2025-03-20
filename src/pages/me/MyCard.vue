@@ -9,6 +9,12 @@
         mode="light"
         @click="$router.back()"
       />
+      <van-icon
+        @click="share"
+        size="30"
+        name="share"
+        style="position: fixed; right: 10px; top: 20px; z-index: 3"
+      />
       <div
         style="
           display: flex;
@@ -24,12 +30,12 @@
       <!--  <van-image :src="weixin" width="60" height="60" fit="fill" @click="share"></van-image>-->
       <!--  <van-image :src="pengyouquan" width="50" height="50" fit="fill" @click="share"></van-image>-->
     </div>
-    <div class="contact" @click="share">
-      <img alt="" src="@/assets/img/share2.png" />
-      <!--<div>-->
-      <!--  <div style="padding: 5px 8px; border: 1px solid #ee5151; color: #ee5151">一键分享</div>-->
-      <!--</div>-->
-    </div>
+    <!--    <div class="contact" @click="share">-->
+    <!--      <img alt="" src="@/assets/img/share2.png" />-->
+    <!--      &lt;!&ndash;<div>&ndash;&gt;-->
+    <!--      &lt;!&ndash;  <div style="padding: 5px 8px; border: 1px solid #ee5151; color: #ee5151">一键分享</div>&ndash;&gt;-->
+    <!--      &lt;!&ndash;</div>&ndash;&gt;-->
+    <!--    </div>-->
     <!--&lt;!&ndash;<van-image :src="imageSrc" width="100%" height="100%" fit="cover"></van-image>&ndash;&gt;-->
   </div>
 </template>
@@ -80,7 +86,7 @@ const generatePoster = async () => {
   image.onload = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
 
-    const qrCodeSize = 100 // 调整二维码的大小
+    const qrCodeSize = 160 // 调整二维码的大小
     const qrCodeMarginBottom = 25 // 调整二维码距离底部的距离
     const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
       width: qrCodeSize,
@@ -92,8 +98,8 @@ const generatePoster = async () => {
     qrCodeImage.src = qrCodeDataURL
     qrCodeImage.onload = () => {
       // 在海报上绘制二维码，位置在正中心下方
-      const qrCodeX = canvasWidth.value - 130
-      const qrCodeY = canvasHeight.value - 150
+      const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
+      const qrCodeY = canvasHeight.value / 2 - qrCodeSize / 2 + 55
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }
     const avatarImage = new Image()
@@ -107,12 +113,12 @@ const generatePoster = async () => {
       const qrCodeX = canvasWidth.value / 2
       const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
 
-      ctx.drawImage(avatarImage, 15, canvasHeight.value - 90, 50, 55)
+      ctx.drawImage(avatarImage, 15, canvasHeight.value - 115, 50, 55)
     }
 
     ctx.font = '18px Arial'
     // 设置填充颜色
-    ctx.fillStyle = 'black'
+    ctx.fillStyle = '#fff'
     const qrCodeX = canvasWidth.value / 2
     const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
     // 绘制文本
@@ -120,13 +126,13 @@ const generatePoster = async () => {
     if (userInfo.nickname) {
       name = userInfo.nickname
     }
-    ctx.fillText(name, 75, canvasHeight.value - 70)
+    ctx.fillText(name, 75, canvasHeight.value - 90)
     ctx.font = '16px Arial'
 
-    ctx.fillText('邀请码：', 75, canvasHeight.value - 40)
-    ctx.fillStyle = '#EA591F'
+    ctx.fillText('邀请码：', 75, canvasHeight.value - 65)
+    ctx.fillStyle = '#fff'
     ctx.font = '18px Arial'
-    ctx.fillText(userInfo?.result?.invite?.code, 135, canvasHeight.value - 40)
+    ctx.fillText(userInfo?.result?.invite?.code, 135, canvasHeight.value - 65)
   }
 }
 

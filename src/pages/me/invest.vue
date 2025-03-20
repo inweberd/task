@@ -49,7 +49,7 @@
           }}</template
         >
       </div>
-      <span class="vip-info">{{ userInfo?.result?.staff?.name || '暂无会员' }}</span>
+      <span class="vip-info">{{ userInfo?.result?.staff?.name || '暂无加速卡' }}</span>
     </div>
 
     <div class="v-list-box">
@@ -67,7 +67,17 @@
         </div>
       </div>
     </div>
-    <van-image :src="vipInfo" width="100%" @click="showImage"></van-image>
+    <van-button
+      type="danger"
+      round
+      block
+      color=" linear-gradient(to right, #fb5b4b, #9c38e5)"
+      style="margin: 20px auto; width: 90%; height: 40px"
+      @click="buy"
+    >
+      开通加速卡
+    </van-button>
+    <van-image :src="vipInfo" width="100%"></van-image>
 
     <!--    <div class="tip">-->
     <!--      <p>用户成为”短视频创作者合伙人"，投资平台精选的优质短广告商进行广告投放，</p>-->
@@ -85,16 +95,7 @@
     <!--      <p>返还余额可以继续用来购买会员，继续产生收益相当于一次购买，永久有效！</p>-->
     <!--      <p>档位专属特权(以黑金会员为例)</p>-->
     <!--    </div>-->
-    <van-button
-      type="danger"
-      round
-      block
-      color=" linear-gradient(to right, #fb5b4b, #9c38e5)"
-      style="margin: 20px auto; width: 90%; height: 40px; position: fixed; left: 5%; bottom: 40px"
-      @click="buy"
-    >
-      开通加速卡
-    </van-button>
+
     <p
       v-if="false"
       style="

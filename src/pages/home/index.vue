@@ -322,13 +322,12 @@ const router = useRouter()
 const activeTab = ref(0)
 const appList = ref([
   {
-    name: '分享赚钱',
-    desc: '点击查看返佣海报！',
-    logo: '8',
+    name: '参与方式 ',
+    desc: '点击查看每周分红奖池！',
+    logo: '6',
     btnLabel: '查看',
     btnCb() {
-      // router.push('/zhubofuchizhengce')
-      router.push('/demo')
+      router.push('/canyufangshi')
     }
   },
   {
@@ -351,6 +350,16 @@ const appList = ref([
     btnLabel: '查看',
     btnCb() {
       router.push('/invest')
+    }
+  },
+  {
+    name: '分享收入表',
+    desc: '点击查看返佣海报！',
+    logo: '8',
+    btnLabel: '查看',
+    btnCb() {
+      // router.push('/zhubofuchizhengce')
+      router.push('/demo')
     }
   }
   // {

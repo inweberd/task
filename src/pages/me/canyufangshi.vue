@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%; overflow: auto">
     <van-nav-bar
-      title="分享收入表"
+      title="参与方式"
       safe-area-inset-top
       fixed
       :class="{ inApp: getIsInApp() }"
@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import shareholder from '@/assets/img/shareholder3.jpg'
+import shareholder from '@/assets/img/canyufangshi.jpg'
 // import rule from '@/assets/img/rule.jpg'
 import { getIsInApp } from '@/utils/getTopPadding'
 import { showImagePreview } from 'vant'

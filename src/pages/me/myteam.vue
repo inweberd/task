@@ -30,6 +30,12 @@
         <div class="b">
           <p>我的邀请码 : {{ userInfo?.result?.invite?.code }}</p>
         </div>
+        <div class="b">
+          <p>我的团队等级 : 暂无等级</p>
+        </div>
+        <div class="b">
+          <p>我的加速卡等级 : {{ userInfo?.result?.staff?.name || '暂无加速卡' }}</p>
+        </div>
       </div>
     </div>
 
@@ -895,14 +901,14 @@ const list = [
   //   }
   // },
   {
-    label: '分享好友二维码',
+    label: '月入十万',
     icon: 'star-o',
     fn() {
       router.push('/me/my-card')
     }
   },
   {
-    label: '分享赚钱',
+    label: '分享收入表',
     icon: 'coupon-o',
     fn() {
       router.push('/demo')

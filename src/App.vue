@@ -120,14 +120,32 @@
   <!--      </p>-->
   <!--    </div>-->
   <!--  </van-floating-bubble>-->
-
+  <TipDialog
+    v-model="showGonggaoOverlay"
+    confirm-text="点击下载微脉圈扫码进群"
+    @confirm="handleGonggaoConfirm"
+  >
+    <p
+      style="
+        transform: translateY(10px);
+        text-align: center;
+        font-size: 18px;
+        color: #fff;
+        font-weight: bolder;
+      "
+    >
+      请使用微脉圈APP扫码进官方群
+    </p>
+    <div style="padding: 20px">
+      <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
+    </div>
+  </TipDialog>
   <van-floating-bubble
     axis="xy"
     icon="chat"
     magnetic="x"
     style="background: transparent; overflow: auto; width: 60px; height: 100px"
-    @click="goDownload"
-    v-if="isShowDownload"
+    @click="showGonggaoOverlay = true"
   >
     <div style="color: #fff; width: 100%; height: 100%; font-size: 14px">
       <!--      <img src="@/assets/img/update.png" alt="" />-->
@@ -144,7 +162,11 @@ import { useRoute, useRouter } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import { loadWx } from '@/utils/loadWx'
 import wx from 'weixin-js-sdk'
-
+const showGonggaoOverlay = ref(false)
+const handleGonggaoConfirm = () => {
+  showGonggaoOverlay.value = false
+  window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
+}
 const keepAliveBlackList = [
   'wallet',
   'shortPlayDetail',
@@ -310,7 +332,7 @@ const generatePoster = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
     const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
 
-    const qrCodeSize = 100 // 调整二维码的大小
+    const qrCodeSize = 160 // 调整二维码的大小
     const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
       width: qrCodeSize,
       height: qrCodeSize,
@@ -320,8 +342,8 @@ const generatePoster = async () => {
     qrCodeImage.src = qrCodeDataURL
     qrCodeImage.onload = () => {
       // 在海报上绘制二维码，位置在正中心下方
-      const qrCodeX = canvasWidth.value - 130
-      const qrCodeY = canvasHeight.value - 150
+      const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
+      const qrCodeY = canvasHeight.value / 2 - qrCodeSize / 2 + 55
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }
     const avatarImage = new Image()
@@ -340,7 +362,7 @@ const generatePoster = async () => {
             const base64 = e.target.result
             avatarImage.src = base64
             avatarImage.onload = () => {
-              ctx.drawImage(avatarImage, 15, canvasHeight.value - 90, 50, 55)
+              ctx.drawImage(avatarImage, 15, canvasHeight.value - 115, 50, 55)
               closeToast()
             }
             // console.log(base64);
@@ -358,19 +380,19 @@ const generatePoster = async () => {
 
     ctx.font = '18px Arial'
     // 设置填充颜色
-    ctx.fillStyle = 'black'
+    ctx.fillStyle = '#fff'
     // 绘制文本
     let name = userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
     if (userInfo.nickname) {
       name = userInfo.nickname
     }
-    ctx.fillText(name, 75, canvasHeight.value - 70)
+    ctx.fillText(name, 75, canvasHeight.value - 90)
     ctx.font = '16px Arial'
 
-    ctx.fillText('邀请码：', 75, canvasHeight.value - 40)
-    ctx.fillStyle = '#EA591F'
+    ctx.fillText('邀请码：', 75, canvasHeight.value - 65)
+    ctx.fillStyle = '#fff'
     ctx.font = '18px Arial'
-    ctx.fillText(userInfo?.result?.invite?.code, 135, canvasHeight.value - 40)
+    ctx.fillText(userInfo?.result?.invite?.code, 135, canvasHeight.value - 65)
     // ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
     //
     // const qrCodeSize = canvasWidth.value * 0.33 // 调整二维码的大小

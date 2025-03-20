@@ -1,43 +1,52 @@
 <template>
-  <div class="login" v-if="false">
+  <div class="login">
     <!-- <dy-back mode="light" img="back" @click="router.back()" class="fixed-back" direction="left" /> -->
     <van-nav-bar
       title="余额互转"
       safe-area-inset-top
       :class="{ inApp: getIsInApp() }"
-      fixed
       placeholder
       left-text="返回"
       left-arrow
       @click-left="router.back()"
     />
+    <div class="logo-box">
+      <img alt="" src="@/assets/img/logo.png" />
+      <div class="logo-box-content">
+        <div class="info">
+          <p>汇盈传媒</p>
+          <!--                    <p>the big thumb video</p>-->
+        </div>
+      </div>
+    </div>
     <div class="content">
       <div class="desc">
         <!--<van-image width="100" height="100" :src="imgg" />-->
       </div>
       <van-form @submit="onSubmit">
+        <div class="common-input-title">团队成员手机号</div>
         <van-field
           v-model="data.phone"
-          label=""
-          name="团队成员手机号"
           placeholder="请输入对方手机号"
           :rules="[{ required: true, message: '请输入团队成员手机号' }]"
         />
+        <div class="common-input-title" style="margin-top: 10px">转账金额</div>
+
         <van-field
           v-model="data.amount"
           type="number"
           name="金额"
-          label=""
-          placeholder="转账金额"
+          placeholder="请输入转账金额"
           :rules="[{ required: true, message: '请输入转账金额' }]"
         />
+        <div class="common-input-title" style="margin-top: 10px">短信验证码</div>
         <van-field
           v-model="data.code"
           center
           clearable
           label=""
           name="验证码"
-          placeholder="(必填) 验证码"
+          placeholder="请输入短信验证码"
         >
           <template #button>
             <!--            <van-button-->
@@ -59,31 +68,29 @@
           </template>
         </van-field>
 
-        <van-divider />
-
-        <div style="margin: 16px">
+        <div style="width: 100%">
           <van-button
             round
             block
             type="primary"
             native-type="submit"
             style="border: none"
-            color="linear-gradient(to right, #ff8b6e, #ff625c)"
+            color="linear-gradient(to right, #fb5b4b, #9c38e5)"
           >
             转账
           </van-button>
         </div>
       </van-form>
-      <p style="color: #000">1、余额互转20元起，互转免手续费,全平台用户可以互相转！</p>
-      <!--      <p style="color: #000; margin-top: 10px">-->
-      <!--        2、前期小代理，低等级会员，0撸用户，可以通过余额互转来实现余额流通，可以卖给上级，也可以在群内卖给收余额的用户，或者在APP内收别人的余额，用来凑够50元在APP发起提现。-->
+      <!--      <p style="color: #fff">1、余额互转20元起，互转免手续费,全平台用户可以互相转！</p>-->
+      <!--      &lt;!&ndash;      <p style="color: #000; margin-top: 10px">&ndash;&gt;-->
+      <!--      &lt;!&ndash;        2、前期小代理，低等级会员，0撸用户，可以通过余额互转来实现余额流通，可以卖给上级，也可以在群内卖给收余额的用户，或者在APP内收别人的余额，用来凑够50元在APP发起提现。&ndash;&gt;-->
+      <!--      &lt;!&ndash;      </p>&ndash;&gt;-->
+      <!--      <p style="color: #fff; margin-top: 10px">-->
+      <!--        2、余额可以直接用来购买会员！余额也可以直接进行游戏，游戏过程中，有中奖赢钱，满足20元，可以在APP内发起提现。-->
       <!--      </p>-->
-      <p style="color: #000; margin-top: 10px">
-        2、余额可以直接用来购买会员！余额也可以直接进行游戏，游戏过程中，有中奖赢钱，满足20元，可以在APP内发起提现。
-      </p>
-      <p style="color: #000; margin-top: 10px">
-        3、余额互转功能，谁发起转账，谁需要拥有会员，接收方无需会员可接收
-      </p>
+      <!--      <p style="color: #fff; margin-top: 10px">-->
+      <!--        3、余额互转功能，谁发起转账，谁需要拥有会员，接收方无需会员可接收-->
+      <!--      </p>-->
       <!--      <p style="color: red; text-align: center; margin-top: 10px; font-size: 16px">-->
       <!--        全平台用户可以互相转-->
       <!--      </p>-->
@@ -240,9 +247,8 @@ function onSubmit() {
   width: 100%;
   height: 100vh;
   color: #666;
-  background-repeat: no-repeat;
-  background-image: url('@/assets/img/bg.png');
-  background-size: 100% auto;
+  background-color: #1f203d;
+  overflow-y: auto;
   // background: linear-gradient(45deg, #fdfbfb 10%, #FFFFFF 48%, #ebedee 100%) !important;
   .van-divider {
     color: white;
@@ -251,11 +257,11 @@ function onSubmit() {
   .content {
     box-sizing: border-box;
     padding: 0 30px 30px;
-    width: 90%;
-    margin: 110px auto 0;
+    width: 80%;
+    margin: 20px auto 0;
     box-shadow: 0 0 10px #0000001f;
     border-radius: 20px;
-    background-color: #fff;
+    background-color: #2e3350;
 
     .desc {
       margin-top: 10px;
@@ -268,6 +274,56 @@ function onSubmit() {
     .button {
       width: 100%;
       margin-bottom: 5px;
+    }
+  }
+}
+.logo-box {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  & > img {
+    width: 100px;
+  }
+
+  .logo-box-content {
+    display: flex;
+
+    img {
+      width: 60px;
+    }
+
+    .info {
+      color: #fff;
+      margin-left: 16px;
+      text-align: center;
+
+      p:nth-child(1) {
+        font-size: 26px;
+        letter-spacing: 8px;
+      }
+    }
+  }
+}
+
+:deep(.van-cell) {
+  border-bottom: 1px solid #4d536a;
+  padding: 10px 0;
+
+  &::after {
+    border: none !important;
+  }
+
+  .van-field__body {
+    input {
+      color: #fff !important;
+
+      &::placeholder {
+        color: #fff !important;
+      }
     }
   }
 }

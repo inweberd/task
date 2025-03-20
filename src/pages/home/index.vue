@@ -107,19 +107,22 @@
 
         <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
-      <div class="big-title" style="margin-top: 10px">特色理财</div>
+      <div class="big-title" style="margin-top: 10px">广告投放与创作者分成</div>
 
       <div class="shouyi-list">
         <div v-if="!isIos" class="item" @click="loadShort(1)">
           <div class="item-box">
-            <div>普通用户视频</div>
-            <div>看视频赚收益</div>
+            <div>普通用户广告投放收益</div>
+            <div>特权：无特权</div>
+            <div>日收益：固定0.5元</div>
           </div>
         </div>
         <div class="item" @click="loadShort(3)">
           <div class="item-box">
-            <div>会员加速卡视频</div>
-            <div>高额收益</div>
+            <div>会员用户广告投放收益</div>
+            <div>特权1：会员免看广告</div>
+            <div>特权2： 享受4-10倍加速收益</div>
+            <div>日收益：每日0.5-2%浮动</div>
           </div>
         </div>
         <!--        <div class="item" @click="$router.push('/gameList')">-->
@@ -849,7 +852,7 @@ const toGame = (plat) => {
         .item-box {
           border-radius: 10px;
           width: 100%;
-          height: 150px;
+          height: 180px;
           background: url('./images/home-icon2.png') no-repeat;
           background-size: 100% 100%;
           padding: 10px;

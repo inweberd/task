@@ -266,7 +266,7 @@
                 </defs>
               </svg>
             </i>
-            <i v-if="index === 1" class="menu-icon">
+            <i v-if="index === 1 || index === 2" class="menu-icon">
               <svg
                 fill="none"
                 height="62"
@@ -384,7 +384,7 @@
                 </defs>
               </svg>
             </i>
-            <i v-if="index === 2" class="menu-icon">
+            <i v-if="index === 3" class="menu-icon">
               <svg
                 fill="none"
                 height="58"
@@ -466,7 +466,7 @@
                 </defs>
               </svg>
             </i>
-            <i v-if="index === 3" class="menu-icon">
+            <i v-if="index === 4" class="menu-icon">
               <svg
                 fill="none"
                 height="58"
@@ -528,7 +528,7 @@
                 </defs>
               </svg>
             </i>
-            <i v-if="index === 4" class="menu-icon">
+            <i v-if="index === 5" class="menu-icon">
               <svg
                 fill="none"
                 height="58"
@@ -589,7 +589,7 @@
                 </defs>
               </svg>
             </i>
-            <i v-if="index === 5" class="menu-icon">
+            <i v-if="index === 6" class="menu-icon">
               <svg
                 fill="none"
                 height="62"
@@ -893,6 +893,13 @@ const list = [
       router.push('/jiangliguize')
     }
   },
+  {
+    label: '佣金互转',
+    icon: 'like-o',
+    fn() {
+      router.push('/conversion')
+    }
+  },
   // {
   //   label: '官方不禁言交流群（微脉圈）',
   //   icon: 'like-o',
@@ -901,14 +908,14 @@ const list = [
   //   }
   // },
   {
-    label: '月入十万',
+    label: '邀请好友二维码',
     icon: 'star-o',
     fn() {
       router.push('/me/my-card')
     }
   },
   {
-    label: '分享收入表',
+    label: '月入十万',
     icon: 'coupon-o',
     fn() {
       router.push('/demo')

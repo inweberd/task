@@ -15,33 +15,33 @@
     <div class="container">
       <div class="num-box">
         <div>
-          <div>总人数</div>
+          <div>团队总人数</div>
           <div>{{ memberInfo.team?.total || 0 }}</div>
         </div>
         <div>
           <div>
-            <div>会员人数</div>
-            <div>{{ memberInfo.team?.vip || 0 }}</div>
+            <div>直推总人数</div>
+            <div>{{ memberInfo.first?.total || 0 }}</div>
           </div>
           <div>
-            <div>直推会员</div>
-            <div>{{ memberInfo.first?.vip || 0 }}</div>
+            <div>团队总业绩</div>
+            <div>{{ memberInfo.team?.deposit || 0 }}</div>
           </div>
         </div>
       </div>
       <div class="num-box">
         <div>
-          <div>团队总业绩</div>
-          <div>{{ memberInfo.team?.deposit || 0 }}</div>
+          <div>团队会员人数</div>
+          <div>{{ memberInfo.team?.vip || 0 }}</div>
         </div>
         <div>
           <div>
-            <div>团队总提现</div>
-            <div>{{ memberInfo.team?.withdraw || 0 }}元</div>
+            <div>直推会员数</div>
+            <div>{{ memberInfo.first?.vip || 0 }}</div>
           </div>
           <div>
-            <div>直推总人数</div>
-            <div>{{ memberInfo.first?.total || 0 }}</div>
+            <div>团队总提现</div>
+            <div>{{ memberInfo.team?.withdraw || 0 }}元</div>
           </div>
         </div>
       </div>

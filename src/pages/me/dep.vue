@@ -194,19 +194,16 @@
     <TipDialog
       v-model="showGonggaoOverlay"
       @confirm="handleGonggaoConfirm"
-      confirm-text="去看看"
+      confirm-text="点击去开通"
       title="重要公告"
     >
       <div style="padding: 20px">
         <p>
-          1：避免大批量0撸，机刷工作室捣乱，首次发起提现的用户，需要成为任意会员。方可提现，后续无任何要求。
+          系统检测，你不是特权卡用户，请开通任意特权卡之后，再次发起申请提现。提现时间为10-30分到账，节假日无休！
         </p>
         <!--        <p style="margin-top: 10px">-->
         <!--          2: 你无需充值，你也可以使用余额转账功能，将你的余额出售给有会员的用户！-->
         <!--        </p>-->
-        <p style="margin-top: 10px">
-          2: 你无需充值，你的每日收益余额，也可以直接在APP内用来购买会员抵扣费用使用！
-        </p>
       </div>
     </TipDialog>
     <TipDialog

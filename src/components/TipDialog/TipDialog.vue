@@ -9,7 +9,7 @@
         <van-button
           v-if="showConfirm"
           color="linear-gradient(to right, #fb5b4b, #9c38e5)"
-          style="border-radius: 20px; width: 80%"
+          style="border-radius: 20px; width: 80%;color: #fff"
           @click="handleConfirm"
         >
           {{ confirmText }}

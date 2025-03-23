@@ -173,7 +173,7 @@ export const loadFeed = () => {
         window.android.loadFeed(adIdMap.feed, 'feedCb')
     }
 }
-export const loadShortVideo = ({todayCount, price, isVip}) => {
+export const loadShortVideo = ({todayCount, price, isVip,today}) => {
     const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
     const userId = userInfo?.id
     const serial = userInfo?.result?.staff?.serial
@@ -385,6 +385,7 @@ export const loadShortVideo = ({todayCount, price, isVip}) => {
                     m: '今日权益卡生效：获得',
                     v: !!serial && isVip,
                     t: todayCount,
+                    today,
                     c: price,
                     q: q,
                     b: b,

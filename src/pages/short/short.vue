@@ -120,7 +120,7 @@ const getRed = () => {
         // bus.emit('updateTotal', res.data.count)
         // showNotify({
         //   color: '#fff',
-        //   background: '#01c5f0',
+        //   ba+ckground: '#01c5f0',
         //   message: '今日已领取' + res.data.count * price + '元'
         // })
         if (res.msg?.length) {

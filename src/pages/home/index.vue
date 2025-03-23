@@ -129,6 +129,7 @@
                           <div class="item-box">
                             <div>全网分红</div>
                             <div>排行榜！</div>
+                            <div style="position:absolute;left: 15px;bottom: 20px;font-size: 22px">等待开启</div>
                           </div>
                         </div>
             </div>
@@ -853,6 +854,7 @@ const toGame = (plat) => {
             padding: 10px 5px;
 flex-wrap: wrap;
             .item {
+                position: relative;
                 flex: 0 0 45%;
                 padding: 5px;
 

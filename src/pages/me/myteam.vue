@@ -67,11 +67,11 @@
                 <div class="border2"></div>
                 <div class="money-info">
                     <p>
-                        <span class="title">今日收益</span>
+                        <span class="title">今日佣金</span>
                         <span class="num">{{ (userIncomeInfo.today || 0).toFixed(2) }}</span>
                     </p>
                     <p>
-                        <span class="title">累计收益</span>
+                        <span class="title">累计佣金</span>
                         <span class="num">{{ (userIncomeInfo.total || 0).toFixed(2) }}</span>
                     </p>
                     <p>
@@ -98,7 +98,7 @@
                             style="color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1; width: 100%"
                             @click="go('/invest')"
                         >
-                            开启特权加速卡
+                            点击开通会员特权
                         </van-button>
                     </div>
                     <van-button
@@ -935,13 +935,13 @@ const list = [
             router.push('/teamStat')
         }
     },
-    {
-        label: '资质证照',
-        icon: 'user-o',
-        fn() {
-            router.push('/zizhizhengzhao')
-        }
-    }
+    // {
+    //     label: '资质证照',
+    //     icon: 'user-o',
+    //     fn() {
+    //         router.push('/zizhizhengzhao')
+    //     }
+    // }
     // {
     //   label: '收入排行榜',
     //   icon: 'notes-o',

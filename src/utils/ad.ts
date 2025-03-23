@@ -391,7 +391,7 @@ export const loadShortVideo = ({todayCount, price, isVip,today}) => {
                     b: b,
                     ll: 0.025,
                     dayCount: 20, // 每日最高次数
-                    vipDayCount: 20,
+                    vipDayCount: 10,
                     serial: serial,
                     showMsg: true,
                     h: {

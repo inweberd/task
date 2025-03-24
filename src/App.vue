@@ -140,19 +140,19 @@
       <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
     </div>
   </TipDialog>
-  <van-floating-bubble
-    axis="xy"
-    icon="chat"
-    magnetic="x"
-    style="background: transparent; overflow: auto; width: 60px; height: 100px"
-    @click="showGonggaoOverlay = true"
-  >
-    <div style="color: #fff; width: 100%; height: 100%; font-size: 14px">
-      <!--      <img src="@/assets/img/update.png" alt="" />-->
-      <img src="@/assets/img/kefu.webp" alt="" style="width: 100%; border-radius: 50%" />
-      <p>联系客服</p>
-    </div>
-  </van-floating-bubble>
+  <!--  <van-floating-bubble-->
+  <!--    axis="xy"-->
+  <!--    icon="chat"-->
+  <!--    magnetic="x"-->
+  <!--    style="background: transparent; overflow: auto; width: 60px; height: 100px"-->
+  <!--    @click="showGonggaoOverlay = true"-->
+  <!--  >-->
+  <!--    <div style="color: #fff; width: 100%; height: 100%; font-size: 14px">-->
+  <!--      &lt;!&ndash;      <img src="@/assets/img/update.png" alt="" />&ndash;&gt;-->
+  <!--      <img src="@/assets/img/kefu.webp" alt="" style="width: 100%; border-radius: 50%" />-->
+  <!--      <p>联系客服</p>-->
+  <!--    </div>-->
+  <!--  </van-floating-bubble>-->
 </template>
 <script lang="ts" setup>
 import routes from './router/routes'

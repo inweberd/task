@@ -87,14 +87,14 @@
         <!--      </van-divider>-->
         <div style="display: flex; justify-content: space-evenly; align-items: center; width: 100%">
           <a style="font-size: 16px; color: #fff" @click="goDownload">下载app</a>
-          <!--                    <a style="font-size: 16px; color: #fff" @click="jumpToQQ2">官方交流群 </a>-->
+          <a style="font-size: 16px; color: #fff" @click="jumpToQQ2">官方交流群 </a>
         </div>
       </div>
     </div>
 
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击下载微脉圈扫码进群"
+      confirm-text="点击下载土豆聊天扫码进群"
       @confirm="handleGonggaoConfirm"
     >
       <p
@@ -102,11 +102,11 @@
           transform: translateY(10px);
           text-align: center;
           font-size: 18px;
-          color: #f1361e;
+          color: #fff;
           font-weight: bolder;
         "
       >
-        请使用微脉圈APP扫码进官方群
+        请使用土豆APP扫码进官方群
       </p>
       <div style="padding: 20px">
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
@@ -132,7 +132,8 @@ const showGonggaoOverlay = ref(false)
 
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
-  window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
+  // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
+  window.location.href = 'https://www.potato186.org/dl'
 }
 const user = useUsers()
 const router = useRouter()
@@ -200,7 +201,7 @@ const SignUp = async () => {
   for (let i in state.struct) state.struct[i] = ''
 
   showToast('注册成功')
-  // window.location.href = `https://wvvw.weimeihuang.com/download`
+  // window.location.href = `https://weaw.shunyigong.com/download`
   // 跳转到首页
   router.push({ path: '/' })
 }
@@ -242,7 +243,7 @@ watch(
 
 function goDownload() {
   try {
-    window.location.href = `https://wvvw.weimeihuang.com/download`
+    window.location.href = `https://weaw.shunyigong.com/download`
   } catch (e) {
     _notice('下载失败')
   }

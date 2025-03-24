@@ -122,7 +122,7 @@
   <!--  </van-floating-bubble>-->
   <TipDialog
     v-model="showGonggaoOverlay"
-    confirm-text="点击下载微脉圈扫码进群"
+    confirm-text="点击下载土豆聊天扫码进群"
     @confirm="handleGonggaoConfirm"
   >
     <p
@@ -134,7 +134,7 @@
         font-weight: bolder;
       "
     >
-      请使用微脉圈APP扫码进官方群
+      请使用土豆APP扫码进官方群
     </p>
     <div style="padding: 20px">
       <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
@@ -165,7 +165,8 @@ import wx from 'weixin-js-sdk'
 const showGonggaoOverlay = ref(false)
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
-  window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
+  // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
+  window.location.href = 'https://www.potato186.org/dl'
 }
 const keepAliveBlackList = [
   'wallet',
@@ -212,7 +213,7 @@ const showOverlay = ref(false)
 
 const goDownload = () => {
   try {
-    window.location.href = `https://wvvw.weimeihuang.com/download`
+    window.location.href = `https://weaw.shunyigong.com/download`
   } catch (e) {
     _notice('下载失败')
   }
@@ -288,6 +289,7 @@ function resetVhAndPx() {
   document.documentElement.style.setProperty('--vh', `${vh}px`)
   //document.documentElement.style.fontSize = document.documentElement.clientWidth / 375 + 'px'
 }
+const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
 
 const canvas = ref()
 const canvasWidth = ref(window.innerWidth)
@@ -296,10 +298,13 @@ const canvasHeight = ref(window.innerWidth / (1242 / 2208))
 const qrCodeText = ref('')
 
 const generatePoster = async () => {
+  if (isIos || !(window.android && window.android.getVersionCode)) {
+    return
+  }
   qrCodeText.value =
-    'http://bbbwx0318aaaf11.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+    'http://bbbwx0318aaaf13.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     // encodeURIComponent(
-    'https://bfx.muyichang.com/#/signUp?invite=' +
+    'https://weaw.shunyigong.com/#/signUp?invite=' +
     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
   // )
   canvas.value.width = canvasWidth.value
@@ -372,7 +377,7 @@ const generatePoster = async () => {
     } else {
       avatarImage.src = avatar
       avatarImage.onload = () => {
-        ctx.drawImage(avatarImage, 15, canvasHeight.value - 90, 50, 55)
+        ctx.drawImage(avatarImage, 15, canvasHeight.value - 115, 50, 55)
 
         closeToast()
       }
@@ -438,13 +443,13 @@ function clipboardCopy(content) {
 }
 
 const toDownload = () => {
-  window.android.openBrowser('https://wvvw.weimeihuang.com/download/android.apk')
+  window.android.openBrowser('https://weaw.shunyigong.com/download/android.apk')
 
-  // window.location.href = `https://wvvw.weimeihuang.com/download/android.apk`
+  // window.location.href = `https://weaw.shunyigong.com/download/android.apk`
 }
 
 const upGrade = () => {
-  window.android.openBrowser('https://wvvw.weimeihuang.com/download/android.apk')
+  window.android.openBrowser('https://weaw.shunyigong.com/download/android.apk')
   // clipboardCopy('')
   // navigator.clipboard.writeText('12312').then(() => {
   //   alert('复制成功')

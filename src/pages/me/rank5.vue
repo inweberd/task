@@ -1,27 +1,50 @@
 <template>
-  <div class="rank" v-if="false">
-    <!--    <van-nav-bar-->
-    <!--      title="排行榜"-->
-    <!--      safe-area-inset-top-->
-    <!--      :class="{ inApp: getIsInApp() }"-->
-    <!--      placeholder-->
-    <!--      left-text="返回"-->
-    <!--      left-arrow-->
-    <!--      @click-left="$router.back()"-->
-    <!--    />-->
-
+  <div class="rank">
+    <van-nav-bar
+      title="排行榜"
+      safe-area-inset-top
+      :class="{ inApp: getIsInApp() }"
+      placeholder
+      left-text="返回"
+      left-arrow
+      @click-left="$router.back()"
+    />
+    <!--    <van-swipe-->
+    <!--      style="transform: translateY(120px)"-->
+    <!--      class="my-swipe"-->
+    <!--      :autoplay="3000"-->
+    <!--      indicator-color="white"-->
+    <!--    >-->
+    <!--      &lt;!&ndash;          <van-swipe-item>&ndash;&gt;-->
+    <!--      &lt;!&ndash;            <img src="./images/banner3.png" alt="" />&ndash;&gt;-->
+    <!--      &lt;!&ndash;          </van-swipe-item>&ndash;&gt;-->
+    <!--      &lt;!&ndash;          <van-swipe-item>&ndash;&gt;-->
+    <!--      &lt;!&ndash;            <img src="./images/banner4.png" alt="" />&ndash;&gt;-->
+    <!--      &lt;!&ndash;          </van-swipe-item>&ndash;&gt;-->
+    <!--      <van-swipe-item>-->
+    <!--        <van-image :src="imageSrc1" width="100%" height="200" fit="fill"></van-image>-->
+    <!--      </van-swipe-item>-->
+    <!--      <van-swipe-item>-->
+    <!--        <van-image :src="imageSrc4" width="100%" height="200" fit="fill"></van-image>-->
+    <!--      </van-swipe-item>-->
+    <!--    </van-swipe>-->
+    <div style="display: flex; justify-content: center; margin-top: 10px">
+      <img src="./images/rank-bg2.png" style="width: 95%" alt="" />
+    </div>
     <div class="fenhong">
-      <div class="title">
-        <!--        本次周期分红总金额 <br />-->
-        <!--          （每X天进行一轮分红） <br />-->
-        <div>本轮奖池金额</div>
+      <div>
+        <div class="title">
+          <!--        本次周期分红总金额 <br />-->
+          <!--          （每X天进行一轮分红） <br />-->
+          <div>本周（第七周）奖池金额</div>
+        </div>
+        <div class="money">￥{{ total }}</div>
       </div>
-      <div class="money">￥{{ total }}</div>
-      <!--      <van-divider style="border-color: #bababa"></van-divider>-->
-      <!--      <div style="text-align: center; margin-top: 10px">-->
-      <!--        <div class="" style="font-size: 24px; font-weight: bolder">本轮奖池金额发放倒计时</div>-->
-      <!--        <div class="money" style="font-size: 22px; color: #000">{{ timeTxt }}</div>-->
-      <!--      </div>-->
+      <van-divider style="border-color: #bababa"></van-divider>
+      <div style="text-align: center; margin-top: 10px">
+        <div class="" style="font-size: 24px; font-weight: bolder">本轮奖池金额发放倒计时</div>
+        <div class="money" style="font-size: 22px; color: #000">{{ timeTxt }}</div>
+      </div>
     </div>
     <div class="qiansan">
       <div class="one">
@@ -34,7 +57,7 @@
         <div class="info">
           <p>{{ rankList?.[0]?.nickname || getPhone(rankList?.[0]?.phone) || '--' }}</p>
 
-          <!--          <p>￥{{ rankList?.[0]?.total || '&#45;&#45;' }}</p>-->
+          <p>￥{{ rankList?.[0]?.total || '--' }}</p>
         </div>
       </div>
       <div class="two">
@@ -47,7 +70,7 @@
         </div>
         <div class="info">
           <p>{{ rankList?.[1]?.nickname || getPhone(rankList?.[1]?.phone) || '--' }}</p>
-          <!--          <p>￥{{ rankList?.[1]?.total || '&#45;&#45;' }}</p>-->
+          <p>￥{{ rankList?.[1]?.total || '--' }}</p>
         </div>
       </div>
       <div class="three">
@@ -60,7 +83,7 @@
         <div class="info">
           <p>{{ rankList?.[2]?.nickname || getPhone(rankList?.[2]?.phone) || '--' }}</p>
 
-          <!--          <p>￥{{ rankList?.[2]?.total || '&#45;&#45;' }}</p>-->
+          <p>￥{{ rankList?.[2]?.total || '--' }}</p>
         </div>
       </div>
     </div>
@@ -80,6 +103,9 @@
       <!--        </div>-->
       <!--      </div>-->
       <div class="list-container">
+        <div v-if="!rankListCom?.length" style="text-align: center; line-height: 200px">
+          暂无数据
+        </div>
         <div class="list-item" v-for="(item, index) of rankListCom">
           <div>{{ index + 4 }}</div>
           <section>
@@ -139,40 +165,40 @@ const getRank = () => {
     Toast.clear()
     console.log('getWalletRank', res)
     rankList.value = res.data?.list || []
-    rankList.value = [
-      {
-        avatar:
-          'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
-        id: 1,
-        nickname: '暴走兔',
-        phone: '',
-        total: 101
-      },
-      { avatar: '', id: 2, nickname: '', phone: '18743133130', total: 102 },
-      {
-        avatar:
-          'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
-        id: 3,
-        nickname: '暴走兔',
-        phone: '',
-        total: 103
-      },
-      { avatar: '', id: 4, nickname: '暴走兔', phone: '', total: 104 },
-      { avatar: '', id: 5, nickname: '暴走兔', phone: '', total: 105 },
-      {
-        avatar:
-          'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
-        id: 6,
-        nickname: '暴走兔',
-        phone: '',
-        total: 106
-      },
-      { avatar: '', id: 7, nickname: '暴走兔', phone: '', total: 107 },
-      { avatar: '', id: 8, nickname: '暴走兔', phone: '', total: 108 },
-      { avatar: '', id: 9, nickname: '暴走兔', phone: '', total: 109 },
-      { avatar: '', id: 10, nickname: '暴走兔', phone: '', total: 110 },
-      { avatar: '', id: 11, nickname: '暴走兔', phone: '', total: 111 }
-    ]
+    // rankList.value = [
+    //   {
+    //     avatar:
+    //       'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
+    //     id: 1,
+    //     nickname: '暴走兔',
+    //     phone: '',
+    //     total: 101
+    //   },
+    //   { avatar: '', id: 2, nickname: '', phone: '18743133130', total: 102 },
+    //   {
+    //     avatar:
+    //       'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
+    //     id: 3,
+    //     nickname: '暴走兔',
+    //     phone: '',
+    //     total: 103
+    //   },
+    //   { avatar: '', id: 4, nickname: '暴走兔', phone: '', total: 104 },
+    //   { avatar: '', id: 5, nickname: '暴走兔', phone: '', total: 105 },
+    //   {
+    //     avatar:
+    //       'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
+    //     id: 6,
+    //     nickname: '暴走兔',
+    //     phone: '',
+    //     total: 106
+    //   },
+    //   { avatar: '', id: 7, nickname: '暴走兔', phone: '', total: 107 },
+    //   { avatar: '', id: 8, nickname: '暴走兔', phone: '', total: 108 },
+    //   { avatar: '', id: 9, nickname: '暴走兔', phone: '', total: 109 },
+    //   { avatar: '', id: 10, nickname: '暴走兔', phone: '', total: 110 },
+    //   { avatar: '', id: 11, nickname: '暴走兔', phone: '', total: 111 }
+    // ]
   })
 }
 
@@ -258,8 +284,9 @@ onBeforeUnmount(() => {
 .rank {
   width: 100%;
   height: 100vh;
-  background-color: #e5f4f2;
 
+  background-image: url('@/assets/img/bg.png');
+  background-size: 100% 100%;
   overflow: auto;
   border: 1px solid transparent;
   .list {
@@ -280,19 +307,15 @@ onBeforeUnmount(() => {
     .list-container {
       flex: 1;
       overflow-y: auto;
-      margin: -50px 15px 0;
     }
     .list-item {
       //width: 70%;
-      margin-bottom: 10px;
-      border-radius: 15px;
-      color: #000;
+      margin: auto;
+      color: #fff;
       display: flex;
       //border-bottom: 1px dotted #fff;
-      //box-shadow: inset 0px -1px 1px -1px #fff;
+      box-shadow: inset 0px -1px 1px -1px #fff;
       padding-top: 5px;
-      background-color: #fff;
-
       & > div {
         height: 60px;
         line-height: 60px;
@@ -300,7 +323,7 @@ onBeforeUnmount(() => {
         text-align: center;
 
         &:nth-child(1) {
-          color: #000;
+          color: #fff;
           //background-image: url('./images/four.png');
           background-repeat: no-repeat;
           width: 20%;
@@ -308,6 +331,7 @@ onBeforeUnmount(() => {
           background-position: center 5px;
         }
         &:nth-child(4) {
+          color: #ece11f;
           font-size: 14px;
           font-weight: bolder;
         }
@@ -319,28 +343,25 @@ onBeforeUnmount(() => {
           height: 50px !important;
         }
       }
-      &:nth-child(1) {
-        color: #fff;
-        background-color: #f2a304;
-
-        & > div:first-child {
-          color: #fff;
-        }
-      }
       &:nth-child(2) {
-        color: #fff;
-        background-color: #44d7b6;
-
-        & > div:first-child {
-          color: #fff;
+        & > div:nth-child(1) {
+          //background-image: url('./images/one.png');
+          background-position: center 5px;
+          background-size: 32px auto;
         }
       }
       &:nth-child(3) {
-        color: #fff;
-        background-color: #32c5ff;
-
-        & > div:first-child {
-          color: #fff;
+        & > div:nth-child(1) {
+          //background-image: url('./images/two.png');
+          background-position: center 5px;
+          background-size: 32px auto;
+        }
+      }
+      &:nth-child(4) {
+        & > div:nth-child(1) {
+          //background-image: url('./images/three.png');
+          background-position: center 5px;
+          background-size: 32px auto;
         }
       }
     }
@@ -380,18 +401,14 @@ onBeforeUnmount(() => {
 }
 
 .qiansan {
-  background-image: url('@/assets/img/rank-bg.png');
-  background-size: 100% 100%;
-
-  background-repeat: no-repeat;
   width: 100%;
-  height: 400px;
+  height: 180px;
   position: relative;
   .one,
   .two,
   .three {
     position: absolute;
-    //background: url('./images/rank-avatar-bg.png');
+    background: url('./images/rank-avatar-bg.png');
     background-size: 100% 100%;
     top: 0;
     display: flex;
@@ -410,18 +427,17 @@ onBeforeUnmount(() => {
 
       p {
         position: absolute;
-        bottom: -20px;
+        bottom: -10px;
         left: 50%;
         transform: translateX(-50%);
         background-color: #fff;
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         color: #000;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
-        border: 2px solid #143140;
       }
     }
     .info {
@@ -453,7 +469,7 @@ onBeforeUnmount(() => {
   }
   .two,
   .three {
-    top: 180px;
+    top: 30px;
     width: 95px;
     height: 80px;
     .info {
@@ -461,21 +477,10 @@ onBeforeUnmount(() => {
     }
   }
   .one {
-    top: 170px;
     left: 50%;
     transform: translateX(-50%);
     width: 120px;
     height: 100px;
-    .box {
-      width: 120px;
-      height: 120px;
-      .img-box {
-        border: 2px solid #f2a304;
-      }
-      p {
-        background-color: #f2a304;
-      }
-    }
     .info {
       font-size: 16px;
       bottom: -50px;
@@ -483,25 +488,9 @@ onBeforeUnmount(() => {
   }
   .two {
     left: 5%;
-    .box {
-      p {
-        background-color: #44d7b6;
-      }
-      .img-box {
-        border: 2px solid #44d7b6;
-      }
-    }
   }
   .three {
     right: 5%;
-    .box {
-      p {
-        background-color: #32c5ff;
-      }
-      .img-box {
-        border: 2px solid #32c5ff;
-      }
-    }
   }
 }
 .linear {
@@ -512,23 +501,17 @@ onBeforeUnmount(() => {
   color: transparent;
 }
 .fenhong {
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-
   //display: flex;
   //justify-content: center;
   //background: url('./images/square.png') no-repeat center center/ 100% 100%;
   overflow: hidden;
   .title {
-    width: 100%;
     text-align: center;
     font-size: 24px;
     font-weight: bolder;
     margin-top: 10px;
   }
   .money {
-    width: 100%;
     text-align: center;
     font-size: 32px;
     color: #ff1300;

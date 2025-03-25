@@ -1,163 +1,163 @@
 <template>
-    <div class="recharge rechargeClass">
-        <van-nav-bar
-            left-arrow
-            style="background-color: transparent"
-            title="充值"
-            @click-left="$router.back()"
-        />
-        <!--    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">-->
-        <!--      &lt;!&ndash;      <van-swipe-item>&ndash;&gt;-->
-        <!--      &lt;!&ndash;        <img src="@/pages/home/images/banner7.jpg" alt="" />&ndash;&gt;-->
-        <!--      &lt;!&ndash;      </van-swipe-item>&ndash;&gt;-->
-        <!--      <van-swipe-item>-->
-        <!--        <img src="@/pages/home/images/banner9.jpg" alt="" />-->
-        <!--      </van-swipe-item>-->
-        <!--      <van-swipe-item>-->
-        <!--        <img src="@/pages/home/images/banner10.jpg" alt="" />-->
-        <!--      </van-swipe-item>-->
-        <!--    </van-swipe>-->
+  <div class="recharge rechargeClass">
+    <van-nav-bar
+      left-arrow
+      style="background-color: transparent"
+      title="充值"
+      @click-left="$router.back()"
+    />
+    <!--    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">-->
+    <!--      &lt;!&ndash;      <van-swipe-item>&ndash;&gt;-->
+    <!--      &lt;!&ndash;        <img src="@/pages/home/images/banner7.jpg" alt="" />&ndash;&gt;-->
+    <!--      &lt;!&ndash;      </van-swipe-item>&ndash;&gt;-->
+    <!--      <van-swipe-item>-->
+    <!--        <img src="@/pages/home/images/banner9.jpg" alt="" />-->
+    <!--      </van-swipe-item>-->
+    <!--      <van-swipe-item>-->
+    <!--        <img src="@/pages/home/images/banner10.jpg" alt="" />-->
+    <!--      </van-swipe-item>-->
+    <!--    </van-swipe>-->
 
-        <Loading v-if="loading"></Loading>
-        <div class="fangshi-box" @click="method.sheet.open()">
-            <div>充值方式</div>
+    <Loading v-if="loading"></Loading>
+    <div class="fangshi-box" @click="method.sheet.open()">
+      <div>充值方式</div>
 
-            <div style="display: flex; align-items: center">
-                <!--        <template v-if="pay_card_id">-->
-                <!--          <img :src="getImg" alt="" />-->
-                <!--        </template>-->
-                <template v-if="state.item.pay?.id">
-                    <img
-                        v-if="state.item.pay?.data?.type == 'wechat'"
-                        src="@/assets/img/recharge/wechat.png"
-                    />
-                    <img
-                        v-else-if="state.item.pay?.data?.type == 'bank'"
-                        src="@/assets/img/recharge/bank2.png"
-                    />
-                    <img
-                        v-else-if="state.item.pay?.data?.key == 'jdpay'"
-                        src="@/assets/img/recharge/jd.jpg"
-                    />
-                    <img
-                        v-else-if="state.item.pay?.data?.key == 'kdpay'"
-                        src="@/assets/img/recharge/kd.jpg"
-                    />
-                    <img v-else-if="state.item.pay?.data?.key == 'bs'" src="@/assets/img/recharge/usdt.png"/>
-                    <img v-else src="@/assets/img/recharge/alipay.png"/>
-                </template>
-                <template v-else> 请选择</template>
-                <van-icon color="#ccc" name="arrow" size="20"/>
-            </div>
-        </div>
-        <div v-if="state.item.pay?.id" style="text-indent: 30px; color: #ccc; font-size: 12px">
-            <div class="recharge-info-center-t">
+      <div style="display: flex; align-items: center">
+        <!--        <template v-if="pay_card_id">-->
+        <!--          <img :src="getImg" alt="" />-->
+        <!--        </template>-->
+        <template v-if="state.item.pay?.id">
+          <img
+            v-if="state.item.pay?.data?.type == 'wechat'"
+            src="@/assets/img/recharge/wechat.png"
+          />
+          <img
+            v-else-if="state.item.pay?.data?.type == 'bank'"
+            src="@/assets/img/recharge/bank2.png"
+          />
+          <img
+            v-else-if="state.item.pay?.data?.key == 'jdpay'"
+            src="@/assets/img/recharge/jd.jpg"
+          />
+          <img
+            v-else-if="state.item.pay?.data?.key == 'kdpay'"
+            src="@/assets/img/recharge/kd.jpg"
+          />
+          <img v-else-if="state.item.pay?.data?.key == 'bs'" src="@/assets/img/recharge/usdt.png" />
+          <img v-else src="@/assets/img/recharge/alipay.png" />
+        </template>
+        <template v-else> 请选择</template>
+        <van-icon color="#ccc" name="arrow" size="20" />
+      </div>
+    </div>
+    <div v-if="state.item.pay?.id" style="text-indent: 30px; color: #ccc; font-size: 12px">
+      <div class="recharge-info-center-t">
         <span
-        >{{ state.item.pay?.data?.name }} （{{ state.item.pay?.data?.min }} -
+          >{{ state.item.pay?.data?.name }} （{{ state.item.pay?.data?.min }} -
           {{ state.item.pay?.data?.max }} ￥）</span
         >
-            </div>
-        </div>
+      </div>
+    </div>
 
-        <div class="jine-box">
-            <div
-                v-for="item of columns"
-                :class="{ active: item.value == state.struct.amount }"
-                class="jine-item"
-                @click="state.struct.amount = item.value"
-            >
-                ￥{{ item.text }}
-            </div>
-        </div>
-        <div v-if="false" class="container">
-            <!--      <div-->
-            <!--        style="-->
-            <!--          margin-left: 20px;-->
-            <!--          margin-top: 10px;-->
-            <!--          font-size: 16px;-->
-            <!--          font-weight: bolder;-->
-            <!--          color: #fff;-->
-            <!--        "-->
-            <!--      >-->
-            <!--        充值方式-->
-            <!--      </div>-->
+    <div class="jine-box">
+      <div
+        v-for="item of columns"
+        :class="{ active: item.value == state.struct.amount }"
+        class="jine-item"
+        @click="state.struct.amount = item.value"
+      >
+        ￥{{ item.text }}
+      </div>
+    </div>
+    <div v-if="false" class="container">
+      <!--      <div-->
+      <!--        style="-->
+      <!--          margin-left: 20px;-->
+      <!--          margin-top: 10px;-->
+      <!--          font-size: 16px;-->
+      <!--          font-weight: bolder;-->
+      <!--          color: #fff;-->
+      <!--        "-->
+      <!--      >-->
+      <!--        充值方式-->
+      <!--      </div>-->
 
-            <div class="recharge-info" @click="method.sheet.open()">
-                <div class="recharge-info-left">
-                    <template v-if="state.item.pay?.id">
-                        <img
-                            v-if="state.item.pay?.data?.type == 'wechat'"
-                            src="@/assets/img/recharge/wechat.png"
-                        />
-                        <img
-                            v-else-if="state.item.pay?.data?.type == 'bank'"
-                            src="@/assets/img/recharge/bank2.png"
-                        />
-                        <img
-                            v-else-if="state.item.pay?.data?.key == 'jdpay'"
-                            src="@/assets/img/recharge/jd.jpg"
-                        />
-                        <img
-                            v-else-if="state.item.pay?.data?.key == 'kdpay'"
-                            src="@/assets/img/recharge/kd.jpg"
-                        />
-                        <img
-                            v-else-if="state.item.pay?.data?.key == 'bs'"
-                            src="@/assets/img/recharge/usdt.png"
-                        />
-                        <img v-else src="@/assets/img/recharge/alipay.png"/>
-                    </template>
-                </div>
-                <div class="recharge-info-center">
-                    <template v-if="state.item.pay?.id">
-                        <div class="recharge-info-center-t">
-                            <span>{{ state.item.pay?.data?.name }}</span>
-                        </div>
-                        <div class="recharge-info-center-b">
-                            <span>（{{ state.item.pay?.data?.min }} - {{ state.item.pay?.data?.max }} ￥）</span>
-                        </div>
-                    </template>
-                    <template v-else>
-                        <!--            <p style="font-size: 18px; color: #ccc; margin-left: 20px">请选择充值方式</p>-->
-                        <p
-                            style="
+      <div class="recharge-info" @click="method.sheet.open()">
+        <div class="recharge-info-left">
+          <template v-if="state.item.pay?.id">
+            <img
+              v-if="state.item.pay?.data?.type == 'wechat'"
+              src="@/assets/img/recharge/wechat.png"
+            />
+            <img
+              v-else-if="state.item.pay?.data?.type == 'bank'"
+              src="@/assets/img/recharge/bank2.png"
+            />
+            <img
+              v-else-if="state.item.pay?.data?.key == 'jdpay'"
+              src="@/assets/img/recharge/jd.jpg"
+            />
+            <img
+              v-else-if="state.item.pay?.data?.key == 'kdpay'"
+              src="@/assets/img/recharge/kd.jpg"
+            />
+            <img
+              v-else-if="state.item.pay?.data?.key == 'bs'"
+              src="@/assets/img/recharge/usdt.png"
+            />
+            <img v-else src="@/assets/img/recharge/alipay.png" />
+          </template>
+        </div>
+        <div class="recharge-info-center">
+          <template v-if="state.item.pay?.id">
+            <div class="recharge-info-center-t">
+              <span>{{ state.item.pay?.data?.name }}</span>
+            </div>
+            <div class="recharge-info-center-b">
+              <span>（{{ state.item.pay?.data?.min }} - {{ state.item.pay?.data?.max }} ￥）</span>
+            </div>
+          </template>
+          <template v-else>
+            <!--            <p style="font-size: 18px; color: #ccc; margin-left: 20px">请选择充值方式</p>-->
+            <p
+              style="
                 font-size: 22px;
                 font-weight: bolder;
                 padding-bottom: 0;
                 color: #fff;
                 background-color: transparent;
               "
-                        >
-                            请选择充值方式
-                        </p>
-                    </template>
-                </div>
-                <div class="recharge-info-right">
-                    <van-icon color="#fff" name="arrow" size="20"/>
-                </div>
-            </div>
-            <div class="recharge-money">
-                <div class="txt">充值金额</div>
-                <div class="money-box">
-                    <div class="input-content">
-                        <div class="input-content-icon">￥</div>
-                        <div class="input-field">
-                            <!--              <input-->
-                            <!--                type="number"-->
-                            <!--                :value="state.struct.amount"-->
-                            <!--                @input="-->
-                            <!--                  (e) => {-->
-                            <!--                    console.log('e.data', e)-->
-                            <!--                    state.struct.amount = parseInt(e.target.value)-->
-                            <!--                  }-->
-                            <!--                "-->
-                            <!--              />-->
-                            <van-field
-                                v-model="state.struct.amount"
-                                class="unp"
-                                label=""
-                                placeholder="请输入充值金额"
-                                style="
+            >
+              请选择充值方式
+            </p>
+          </template>
+        </div>
+        <div class="recharge-info-right">
+          <van-icon color="#fff" name="arrow" size="20" />
+        </div>
+      </div>
+      <div class="recharge-money">
+        <div class="txt">充值金额</div>
+        <div class="money-box">
+          <div class="input-content">
+            <div class="input-content-icon">￥</div>
+            <div class="input-field">
+              <!--              <input-->
+              <!--                type="number"-->
+              <!--                :value="state.struct.amount"-->
+              <!--                @input="-->
+              <!--                  (e) => {-->
+              <!--                    console.log('e.data', e)-->
+              <!--                    state.struct.amount = parseInt(e.target.value)-->
+              <!--                  }-->
+              <!--                "-->
+              <!--              />-->
+              <van-field
+                v-model="state.struct.amount"
+                class="unp"
+                label=""
+                placeholder="请输入充值金额"
+                style="
                   font-size: 22px;
                   font-weight: bolder;
                   padding-bottom: 0;
@@ -165,134 +165,167 @@
                   color: #fff !important;
                   background-color: transparent;
                 "
-                                type="number"
-                                @input="
+                type="number"
+                @input="
                   () => {
                     state.struct.amount = parseInt(state.struct.amount)
                   }
                 "
-                            />
-                        </div>
-                    </div>
-                </div>
-                <!--        <button class="btn" v-on:click="method.emit" :disabled="loading">-->
-                <!--          &lt;!&ndash;          <div class="img-box">&ndash;&gt;-->
-                <!--          &lt;!&ndash;            <img src="@/assets/img/recharge/recharge.png" />&ndash;&gt;-->
-                <!--          &lt;!&ndash;          </div>&ndash;&gt;-->
-                <!--          <span>确认 </span>-->
-                <!--          <van-loading size="20" v-if="loading" />-->
-                <!--        </button>-->
-                <div
-                    v-if="false"
-                    style="margin-top: 20px; font-size: 16px; font-weight: bolder; color: #333"
-                >
-                    充值方式
-                </div>
-                <!--        <div-->
-                <!--          style="-->
-                <!--            margin: 6px 0 0 0px;-->
-                <!--            background-color: #ff625c;-->
-                <!--            border-radius: 10px;-->
-                <!--            padding: 6px;-->
-                <!--            color: #fff;-->
-                <!--            line-height: 1.6;-->
-                <!--            font-size: 14px;-->
-                <!--          "-->
-                <!--        >-->
-                <!--          <p style="font-size: 16px; color: #fff">-->
-                <!--            (每天0点到23点开放充值，每天23点-0点，公司1小时出账期停充！)-->
-                <!--          </p>-->
-                <!--          <p style="font-size: 16px; color: #fff; margin-top: 6px">-->
-                <!--            (首次注册使用JD钱包单笔充值1000元赠送100，充5000赠送200元 )-->
-                <!--          </p>-->
-                <!--          <p style="font-size: 16px; color: #fff; margin-top: 6px">-->
-                <!--            (首次注册使用365钱包注册送58元，单笔充值400赠送88元，首次365钱包总共送146元 )-->
-                <!--          </p>-->
-                <!--        </div>-->
-                <div v-if="false" class="chongzhiList">
-                    <div
-                        v-for="item of state.select.pay"
-                        :class="{
+              />
+            </div>
+          </div>
+        </div>
+        <!--        <button class="btn" v-on:click="method.emit" :disabled="loading">-->
+        <!--          &lt;!&ndash;          <div class="img-box">&ndash;&gt;-->
+        <!--          &lt;!&ndash;            <img src="@/assets/img/recharge/recharge.png" />&ndash;&gt;-->
+        <!--          &lt;!&ndash;          </div>&ndash;&gt;-->
+        <!--          <span>确认 </span>-->
+        <!--          <van-loading size="20" v-if="loading" />-->
+        <!--        </button>-->
+        <div
+          v-if="false"
+          style="margin-top: 20px; font-size: 16px; font-weight: bolder; color: #333"
+        >
+          充值方式
+        </div>
+        <!--        <div-->
+        <!--          style="-->
+        <!--            margin: 6px 0 0 0px;-->
+        <!--            background-color: #ff625c;-->
+        <!--            border-radius: 10px;-->
+        <!--            padding: 6px;-->
+        <!--            color: #fff;-->
+        <!--            line-height: 1.6;-->
+        <!--            font-size: 14px;-->
+        <!--          "-->
+        <!--        >-->
+        <!--          <p style="font-size: 16px; color: #fff">-->
+        <!--            (每天0点到23点开放充值，每天23点-0点，公司1小时出账期停充！)-->
+        <!--          </p>-->
+        <!--          <p style="font-size: 16px; color: #fff; margin-top: 6px">-->
+        <!--            (首次注册使用JD钱包单笔充值1000元赠送100，充5000赠送200元 )-->
+        <!--          </p>-->
+        <!--          <p style="font-size: 16px; color: #fff; margin-top: 6px">-->
+        <!--            (首次注册使用365钱包注册送58元，单笔充值400赠送88元，首次365钱包总共送146元 )-->
+        <!--          </p>-->
+        <!--        </div>-->
+        <div v-if="false" class="chongzhiList">
+          <div
+            v-for="item of state.select.pay"
+            :class="{
               active: state.item.pay?.id == item.id
             }"
-                        class="chongzhiList-item"
-                        @click="payItemClick(item.id)"
-                    >
-                        <img :src="getIcon(item)"/>
-                        <div style="width: 100%; text-align: center">
-                            <span> {{ item.name }}</span>
-                            <p>（{{ item.min }} - {{ item.max }}￥）</p>
-                        </div>
-                    </div>
-                </div>
+            class="chongzhiList-item"
+            @click="payItemClick(item.id)"
+          >
+            <img :src="getIcon(item)" />
+            <div style="width: 100%; text-align: center">
+              <span> {{ item.name }}</span>
+              <p>（{{ item.min }} - {{ item.max }}￥）</p>
             </div>
-
-            <van-cell
-                v-for="item of downloadList"
-                :title="item.label"
-                is-link
-                @click="openDownload(item.url)"
-            />
+          </div>
         </div>
-        <div
-            style="
+      </div>
+
+      <van-cell
+        v-for="item of downloadList"
+        :title="item.label"
+        is-link
+        @click="openDownload(item.url)"
+      />
+    </div>
+    <div
+      style="
         margin-top: 20px;
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
       "
-        >
-            <el-button
-                :loading="loading"
-                class="w-100"
-                color="#01c5f0"
-                size="large"
-                style="
+    >
+      <el-button
+        :loading="loading"
+        class="w-100"
+        color="#01c5f0"
+        size="large"
+        style="
           border: none;
           width: 85%;
           border-radius: 15px;
           color: #fff;
           background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
         "
-                type="primary"
-                @click="method.emit"
-            >充值
-            </el-button>
-        </div>
-
-        <!--      <van-image :src="pay2" width="100%" height="100%;"></van-image>-->
-        <div class="container">
-            <van-popup v-model:show="state.sheet.show" closeable position="bottom" round>
-                <div class="select-wrap">
-                    <div class="title">{{ state.sheet.title }}</div>
-                    <ul class="method-list">
-                        <li
-                            v-for="item of state.select.pay"
-                            class="method-list-item"
-                            @click="payItemClick(item.id)"
-                        >
-                            <div class="method-list-item-l">
-                                <div class="icon-box">
-                                    <!--                  <img :src="getIcon(item.icon)" />-->
-                                    <img :src="getIcon(item)"/>
-                                </div>
-                                <div class="info">
-                                    <div>
-                                        {{ item.name }}
-                                    </div>
-                                    <div>单笔支付限额 {{ item.min }} - {{ item.max }} ￥</div>
-                                </div>
-                            </div>
-                            <div class="method-list-item-r">
-                                <van-icon v-if="state.item.pay.id === item.id" color="#78D244" name="success"/>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </van-popup>
-        </div>
+        type="primary"
+        @click="method.emit"
+        >充值
+      </el-button>
     </div>
+
+    <!--      <van-image :src="pay2" width="100%" height="100%;"></van-image>-->
+    <div class="container">
+      <van-popup v-model:show="state.sheet.show" closeable position="bottom" round>
+        <div class="select-wrap">
+          <div class="title">{{ state.sheet.title }}</div>
+          <ul class="method-list">
+            <li
+              v-for="item of state.select.pay"
+              class="method-list-item"
+              @click="payItemClick(item.id)"
+            >
+              <div class="method-list-item-l">
+                <div class="icon-box">
+                  <!--                  <img :src="getIcon(item.icon)" />-->
+                  <img :src="getIcon(item)" />
+                </div>
+                <div class="info">
+                  <div>
+                    {{ item.name }}
+                  </div>
+                  <div>单笔支付限额 {{ item.min }} - {{ item.max }} ￥</div>
+                </div>
+              </div>
+              <div class="method-list-item-r">
+                <van-icon v-if="state.item.pay.id === item.id" color="#78D244" name="success" />
+              </div>
+            </li>
+          </ul>
+        </div>
+      </van-popup>
+    </div>
+    <van-floating-bubble
+      axis="xy"
+      icon="chat"
+      magnetic="x"
+      style="background: transparent; overflow: auto; width: 60px; height: 100px"
+      @click="showGonggaoOverlay = true"
+    >
+      <div style="color: #fff; width: 100%; height: 100%; font-size: 14px">
+        <!--      <img src="@/assets/img/update.png" alt="" />-->
+        <img src="@/assets/img/kefu.webp" alt="" style="width: 100%; border-radius: 50%" />
+        <p>联系客服</p>
+      </div>
+    </van-floating-bubble>
+    <TipDialog
+      v-model="showGonggaoOverlay"
+      confirm-text="点击下载土豆聊天扫码进群"
+      @confirm="handleGonggaoConfirm"
+    >
+      <p
+        style="
+          transform: translateY(10px);
+          text-align: center;
+          font-size: 18px;
+          color: #fff;
+          font-weight: bolder;
+        "
+      >
+        请使用土豆APP扫码进官方群
+      </p>
+      <div style="padding: 20px">
+        <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
+      </div>
+    </TipDialog>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -306,13 +339,14 @@
 import tixian from '@/assets/img/recharge/texian2.jpg'
 
 defineOptions({
-    name: 'recharge'
+  name: 'recharge'
 })
 
-import {reactive, onMounted, watch, getCurrentInstance, ref} from 'vue'
-import {reqCreateOrder, reqRechargeColumn} from '@/api/myApi'
-import {showFailToast} from 'vant'
-import {_notice} from '@/utils'
+const showGonggaoOverlay = ref(false)
+import { reactive, onMounted, watch, getCurrentInstance, ref } from 'vue'
+import { reqCreateOrder, reqRechargeColumn } from '@/api/myApi'
+import { showFailToast } from 'vant'
+import { _notice } from '@/utils'
 import Loading from '@/components/Loading.vue'
 // const user = useUserStore()
 import alipayLarge from '@/assets/img/recharge/alipayLarge.png'
@@ -327,254 +361,259 @@ import pay1 from '@/assets/img/recharge/pay1.jpg'
 import ysf from '@/assets/img/recharge/ysf.png'
 import pay2 from '@/assets/img/recharge/pay2.jpg'
 import shouxia from '@/assets/img/shouxia.png'
-import {load} from '@fingerprintjs/fingerprintjs'
+import { load } from '@fingerprintjs/fingerprintjs'
 import imageSrc6 from '@/pages/me/images/banner6.jpg'
 
 const loading = ref(false)
 
 const downloadList = [
-    // {
-    //   label: 'K豆钱包安卓下载地址',
-    //   url: 'https://kd002.com'
-    // },
-    // {
-    //   label: 'K豆钱包苹果下载地址',
-    //   url: 'https://mgi3m.aneeyx.com/L4eXiggS/yjfhzjflnm'
-    // },
-    // {
-    //   label: 'JD钱包安卓下载地址',
-    //   url: 'https://s20w2la.foton-autoparts.com/32763431746c6f'
-    // },
-    // {
-    //   label: 'JD钱包苹果下载地址',
-    //   url: 'https://mgyyz.ieslabsd.com/PpNV6In/n2i3ody0yt'
-    // },
-    // {
-    //   label: 'K豆钱包卖卖视频教程',
-    //   url: 'https://kdzfxz.kdzf2345.com/home/#/transactionFlow'
-    // },
-    // {
-    //   label: 'jd钱包买卖视频教程',
-    //   url: 'https://www.jdpay01.com/#/transactionFlow'
-    // }
-    // {
-    //   label: 'KD充值视频教程',
-    //   url: '/data/video/buy.mp4'
-    // },
-    // {
-    //   label: 'KD提现视频教程',
-    //   url: '/data/video/sell.mp4'
-    // },
-    // {
-    //   label: 'JD充值视频教程',
-    //   url: '/data/video/buy.mp4'
-    // },
-    // {
-    //   label: 'JD提现视频教程',
-    //   url: '/data/video/sell.mp4'
-    // }
+  // {
+  //   label: 'K豆钱包安卓下载地址',
+  //   url: 'https://kd002.com'
+  // },
+  // {
+  //   label: 'K豆钱包苹果下载地址',
+  //   url: 'https://mgi3m.aneeyx.com/L4eXiggS/yjfhzjflnm'
+  // },
+  // {
+  //   label: 'JD钱包安卓下载地址',
+  //   url: 'https://s20w2la.foton-autoparts.com/32763431746c6f'
+  // },
+  // {
+  //   label: 'JD钱包苹果下载地址',
+  //   url: 'https://mgyyz.ieslabsd.com/PpNV6In/n2i3ody0yt'
+  // },
+  // {
+  //   label: 'K豆钱包卖卖视频教程',
+  //   url: 'https://kdzfxz.kdzf2345.com/home/#/transactionFlow'
+  // },
+  // {
+  //   label: 'jd钱包买卖视频教程',
+  //   url: 'https://www.jdpay01.com/#/transactionFlow'
+  // }
+  // {
+  //   label: 'KD充值视频教程',
+  //   url: '/data/video/buy.mp4'
+  // },
+  // {
+  //   label: 'KD提现视频教程',
+  //   url: '/data/video/sell.mp4'
+  // },
+  // {
+  //   label: 'JD充值视频教程',
+  //   url: '/data/video/buy.mp4'
+  // },
+  // {
+  //   label: 'JD提现视频教程',
+  //   url: '/data/video/sell.mp4'
+  // }
 ]
 const openDownload = (url) => {
-    location.href = url
+  location.href = url
+}
+const handleGonggaoConfirm = () => {
+  showGonggaoOverlay.value = false
+  // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
+  window.location.href = 'https://www.potato186.org/dl'
 }
 const payItemClick = (id) => {
-    state.item.pay.id = id
-    method.sheet.close()
+  state.item.pay.id = id
+  method.sheet.close()
 }
 const columns = ref([
-    {text: '50', value: '50'},
-    {text: '100', value: '100'},
-    {text: '200', value: '200'},
-    {text: '500', value: '500'},
-    {text: '800', value: '800'},
-    {text: '1000', value: '1000'},
-    {text: '1500', value: '1500'},
-    {text: '2000', value: '2000'},
-    {text: '3000', value: '3000'},
-    {text: '5000', value: '5000'}
+  { text: '50', value: '50' },
+  { text: '100', value: '100' },
+  { text: '200', value: '200' },
+  { text: '500', value: '500' },
+  { text: '800', value: '800' },
+  { text: '1000', value: '1000' },
+  { text: '1500', value: '1500' },
+  { text: '2000', value: '2000' },
+  { text: '3000', value: '3000' },
+  { text: '5000', value: '5000' }
 ])
 const getIcon = (item) => {
-    if (item.type === 'alipay') {
-        return alipayLarge
-    } else if (item.type === 'bank') {
-        return bankLarge
-    } else if (item.type === 'wechat') {
-        return wechatLarge
-        // return ysf
-    } else if (item.type === 'custom') {
-        if (item.key === 'jdpay') {
-            return jd
-        } else if (item.key === 'kdpay') {
-            return kd
-        } else if (item.key === 'bs') {
-            return usdt
-        } else if (item.key === 'bishengusdt') {
-            return usdt2
-        } else if (item.key === '365') {
-            return img365
-        }
+  if (item.type === 'alipay') {
+    return alipayLarge
+  } else if (item.type === 'bank') {
+    return bankLarge
+  } else if (item.type === 'wechat') {
+    return wechatLarge
+    // return ysf
+  } else if (item.type === 'custom') {
+    if (item.key === 'jdpay') {
+      return jd
+    } else if (item.key === 'kdpay') {
+      return kd
+    } else if (item.key === 'bs') {
+      return usdt
+    } else if (item.key === 'bishengusdt') {
+      return usdt2
+    } else if (item.key === '365') {
+      return img365
     }
+  }
 }
 const state = reactive({
-    sheet: {
-        show: false,
-        title: '选择充值方式'
-    },
-    item: {
-        pay: {
-            id: null,
-            data: null
-        }
-    },
-    struct: {
-        amount: 50
-    },
-    modal: {
-        service: false
-    },
-    select: {
-        pay: [
-            // {
-            //   id: 5,
-            //   key: 'kdpay',
-            //   type: 'kd',
-            //   name: 'K豆钱包（提现免手续费）',
-            //   min: 10,
-            //   max: 30000,
-            //   code: 8277,
-            //   icon: kd
-            // },
-            // {
-            //   id: 4,
-            //   key: 'jdpay',
-            //   type: 'jd',
-            //   name: 'JD钱包',
-            //   min: 10,
-            //   max: 30000,
-            //   code: 827,
-            //   icon: jd
-            // },
-            // {
-            //   id: 2,
-            //   key: 'ltzf',
-            //   type: 'alipay',
-            //   name: '支付宝(支持花呗)',
-            //   min: 100,
-            //   max: 5000,
-            //   code: 828,
-            //   icon: alipayLarge
-            // },
-            // {
-            //   id: 3,
-            //   key: 'ltzf',
-            //   type: 'bank',
-            //   name: '手机银行',
-            //   min: 100,
-            //   max: 2000,
-            //   code: 805,
-            //   icon: bankLarge
-            // }
-            // {
-            //   id: 1,
-            //   key: 'ltzf',
-            //   type: 'wechat',
-            //   name: ' 微信',
-            //   min: 100,
-            //   max: 2000,
-            //   code: 827,
-            //   icon: wechatLarge
-            // }
-        ]
+  sheet: {
+    show: false,
+    title: '选择充值方式'
+  },
+  item: {
+    pay: {
+      id: null,
+      data: null
     }
+  },
+  struct: {
+    amount: 50
+  },
+  modal: {
+    service: false
+  },
+  select: {
+    pay: [
+      // {
+      //   id: 5,
+      //   key: 'kdpay',
+      //   type: 'kd',
+      //   name: 'K豆钱包（提现免手续费）',
+      //   min: 10,
+      //   max: 30000,
+      //   code: 8277,
+      //   icon: kd
+      // },
+      // {
+      //   id: 4,
+      //   key: 'jdpay',
+      //   type: 'jd',
+      //   name: 'JD钱包',
+      //   min: 10,
+      //   max: 30000,
+      //   code: 827,
+      //   icon: jd
+      // },
+      // {
+      //   id: 2,
+      //   key: 'ltzf',
+      //   type: 'alipay',
+      //   name: '支付宝(支持花呗)',
+      //   min: 100,
+      //   max: 5000,
+      //   code: 828,
+      //   icon: alipayLarge
+      // },
+      // {
+      //   id: 3,
+      //   key: 'ltzf',
+      //   type: 'bank',
+      //   name: '手机银行',
+      //   min: 100,
+      //   max: 2000,
+      //   code: 805,
+      //   icon: bankLarge
+      // }
+      // {
+      //   id: 1,
+      //   key: 'ltzf',
+      //   type: 'wechat',
+      //   name: ' 微信',
+      //   min: 100,
+      //   max: 2000,
+      //   code: 827,
+      //   icon: wechatLarge
+      // }
+    ]
+  }
 })
 // const { ctx, proxy } = getCurrentInstance()
 //
 const method = {
-    init: async () => {
-        reqRechargeColumn({
-            order: 'indexes desc'
-        }).then((res) => {
-            console.log('reqRechargeColumn', res)
-            if (res.code !== 200) _notice('获取充值方式失败，请联系客服')
-            state.select.pay = res.data.filter((item) => item.status === 1)
-            method.setPay()
-        })
-    },
-    // 选择支付方式
-    setPay: () => {
-        const id = state.item.pay.id
-        state.item.pay.data = state.select.pay.find((item) => item.id == id)
-        method.sheet.close()
-    },
-    emit: async () => {
-        if (!state.struct.amount) {
-            return _notice('请输入充值金额！')
-        }
-        if (!state.item.pay.data) {
-            return _notice('请选择充值方式！')
-            // method.sheet.open()
-            // return
-        }
+  init: async () => {
+    reqRechargeColumn({
+      order: 'indexes desc'
+    }).then((res) => {
+      console.log('reqRechargeColumn', res)
+      if (res.code !== 200) _notice('获取充值方式失败，请联系客服')
+      state.select.pay = res.data.filter((item) => item.status === 1)
+      method.setPay()
+    })
+  },
+  // 选择支付方式
+  setPay: () => {
+    const id = state.item.pay.id
+    state.item.pay.data = state.select.pay.find((item) => item.id == id)
+    method.sheet.close()
+  },
+  emit: async () => {
+    if (!state.struct.amount) {
+      return _notice('请输入充值金额！')
+    }
+    if (!state.item.pay.data) {
+      return _notice('请选择充值方式！')
+      // method.sheet.open()
+      // return
+    }
 
-        if (state.struct.amount < state.item.pay?.data?.min) {
-            return _notice('最小金额为' + state.item.pay?.data?.min)
-        } else if (state.struct.amount > state.item.pay?.data?.max) {
-            return _notice('最大金额为' + state.item.pay?.data?.max)
-        }
-        loading.value = true
-        reqCreateOrder({
-            key: state.item.pay.data.key,
-            code: state.item.pay.data.code,
-            amount: state.struct.amount,
-            return: `${method.domain()}/#/me`
-        })
-            .then((res: any) => {
-                loading.value = false
-                if (res.code !== 200) return _notice(res.msg)
-                window.location.href = decodeURIComponent(res.data.url)
-            })
-            .catch((err) => {
-                loading.value = false
-                _notice('请求超时，请稍后重试')
-            })
-        // axios.post('/api/order/create', {
-        //   key: state.item.pay.data.key,
-        //   code: state.item.pay.data.code,
-        //   amount: state.struct.amount,
-        //   return: `${method.domain()}/#/pages/index/wallet`
-        // })
+    if (state.struct.amount < state.item.pay?.data?.min) {
+      return _notice('最小金额为' + state.item.pay?.data?.min)
+    } else if (state.struct.amount > state.item.pay?.data?.max) {
+      return _notice('最大金额为' + state.item.pay?.data?.max)
+    }
+    loading.value = true
+    reqCreateOrder({
+      key: state.item.pay.data.key,
+      code: state.item.pay.data.code,
+      amount: state.struct.amount,
+      return: `${method.domain()}/#/me`
+    })
+      .then((res: any) => {
+        loading.value = false
+        if (res.code !== 200) return _notice(res.msg)
+        window.location.href = decodeURIComponent(res.data.url)
+      })
+      .catch((err) => {
+        loading.value = false
+        _notice('请求超时，请稍后重试')
+      })
+    // axios.post('/api/order/create', {
+    //   key: state.item.pay.data.key,
+    //   code: state.item.pay.data.code,
+    //   amount: state.struct.amount,
+    //   return: `${method.domain()}/#/pages/index/wallet`
+    // })
 
-        // if (code !== 200) return method.notify(msg, 'error')
-        //
-        // method.jump('/pages/index/jump?url=' + encodeURIComponent(item.url))
-        // method.jump('/pages/index/web-view?url=' + item.payUrl)
+    // if (code !== 200) return method.notify(msg, 'error')
+    //
+    // method.jump('/pages/index/jump?url=' + encodeURIComponent(item.url))
+    // method.jump('/pages/index/web-view?url=' + item.payUrl)
+  },
+  // 获取当前域名和端口号
+  domain: () => {
+    return location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
+  },
+  // 打开抽屉
+  sheet: {
+    open: () => {
+      state.sheet.show = true
     },
-    // 获取当前域名和端口号
-    domain: () => {
-        return location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '')
-    },
-    // 打开抽屉
-    sheet: {
-        open: () => {
-            state.sheet.show = true
-        },
-        close: () => (state.sheet.show = false)
-    },
-    // 跳转
-    jump: (url) => uni.redirectTo({url}),
-    // 格式化数字
-    format: (price = 0) => {
-        let result = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-        return result === '0' ? '0.00' : result
-    },
-    // 通知
-    notify: (msg, type = 'warning') => proxy.$refs['notify'][type](msg)
+    close: () => (state.sheet.show = false)
+  },
+  // 跳转
+  jump: (url) => uni.redirectTo({ url }),
+  // 格式化数字
+  format: (price = 0) => {
+    let result = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    return result === '0' ? '0.00' : result
+  },
+  // 通知
+  notify: (msg, type = 'warning') => proxy.$refs['notify'][type](msg)
 }
 watch(
-    () => state.item.pay.id,
-    (id) => {
-        method.setPay()
-    }
+  () => state.item.pay.id,
+  (id) => {
+    method.setPay()
+  }
 )
 
 onMounted(() => method.init())
@@ -590,7 +629,7 @@ onMounted(() => method.init())
 
 <style lang="less" scoped>
 :deep(.van-hairline--bottom:after) {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 //:deep(.van-nav-bar__arrow) {
@@ -601,295 +640,296 @@ onMounted(() => method.init())
 //}
 
 .rechargeClass {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
 
-    .container {
-        margin-top: -1px;
+  .container {
+    margin-top: -1px;
 
-        .recharge-info {
-            //background-image: url('./images/2c757d7e9de442d6159ae953d60359a1.png');
-            //background-size: 100% auto;
-            //background-repeat: no-repeat;
-            //background-color: transparent;
-            margin: 0 20px;
-            font-size: 16px;
-            display: flex;
-            padding: 20px 0;
-            border-bottom: 1px solid #4d536a;
-            color: #fff;
-            background-color: #1f203d;
-            align-items: center;
+    .recharge-info {
+      //background-image: url('./images/2c757d7e9de442d6159ae953d60359a1.png');
+      //background-size: 100% auto;
+      //background-repeat: no-repeat;
+      //background-color: transparent;
+      margin: 0 20px;
+      font-size: 16px;
+      display: flex;
+      padding: 20px 0;
+      border-bottom: 1px solid #4d536a;
+      color: #fff;
+      background-color: #1f203d;
+      align-items: center;
 
-            &-left {
-                img {
-                    margin-right: 6px;
-                    width: 40px;
-                    height: 40px;
-                }
-            }
+      &-left {
+        img {
+          margin-right: 6px;
+          width: 40px;
+          height: 40px;
+        }
+      }
 
-            &-center {
-                color: #fff;
-                flex: 1;
-                //margin-left: 20px;
-                &-t {
-                    display: flex;
-                    align-items: center;
-                    font-size: 14px;
-                }
-
-                &-b {
-                    margin-top: 6px;
-                    font-size: 14px;
-                    //color: #fff;
-                }
-            }
-
-            &-right {
-                margin-top: 10px;
-                width: 30px;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
+      &-center {
+        color: #fff;
+        flex: 1;
+        //margin-left: 20px;
+        &-t {
+          display: flex;
+          align-items: center;
+          font-size: 14px;
         }
 
-        .recharge-money {
-            color: #fff;
-            padding: 30px 20px;
-            //background-color: #fff;
-            .txt {
-                font-size: 16px;
-                font-weight: bolder;
-                color: #fff;
-            }
-
-            .money-box {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                flex: 1;
-                border-bottom: 1px solid #4d536a;
-                height: 50px;
-
-                .input-content {
-                    flex: 1;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: space-between;
-
-                    .input-content-icon {
-                        margin-right: 4px;
-                        font-weight: 700;
-                        font-size: 26px;
-                    }
-                }
-
-                .input-field {
-                    position: relative;
-                    display: flex;
-                    flex-direction: row;
-                    margin: 0;
-                    flex: 1;
-                    line-height: 26px;
-
-                    input,
-                    .inp {
-                        height: 100%;
-                        opacity: 1;
-                        font: inherit;
-                        outline: none;
-                        border: none;
-                        padding: 0;
-                        width: 100%;
-                        font-size: 32px;
-                    }
-                }
-            }
-
-            .btn {
-                display: flex;
-                justify-content: center;
-                align-content: center;
-                margin-top: 25px;
-                flex-wrap: wrap;
-                width: 100%;
-                height: 40px;
-                line-height: 40px;
-                border: 1px solid transparent !important;
-                color: #fff;
-                //background: rgba(255, 255, 255, calc(1.5 * 0.65));
-                background: #01c5f0;
-                //backdrop-filter: blur(10px) saturate(160%);
-                box-shadow: 0 5px 40px rgb(17 58 93 / 10%) !important;
-                border-radius: 100px;
-                letter-spacing: 6px;
-
-                &:active {
-                    background-color: #fff;
-                    box-shadow: 0 0 #0000001a,
-                    0 0 #fffc,
-                    inset 18px 18px 30px #0000000f,
-                        inset -18px -18px 30px #ffffff4d !important;
-                    transition: 0.2s ease-out;
-                }
-
-                .img-box {
-                    margin-top: 3px;
-                    margin-right: 8px;
-                    width: 16px;
-
-                    img {
-                        width: 100%;
-                    }
-                }
-            }
+        &-b {
+          margin-top: 6px;
+          font-size: 14px;
+          //color: #fff;
         }
+      }
 
-        .select-wrap {
-            .title {
-                width: 100%;
-                text-align: center;
-                font-size: 18px;
-                font-weight: bolder;
-                margin-top: 15px;
-            }
-
-            .method-list {
-                margin-top: 20px;
-
-                .method-list-item {
-                    & + .method-list-item {
-                        margin-top: 6px;
-                    }
-
-                    padding: 16px;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-
-                    &-l {
-                        display: flex;
-
-                        .icon-box {
-                            display: flex;
-                            align-items: center;
-                            margin-right: 20px;
-                            width: 30px;
-
-                            img {
-                                width: 100%;
-                            }
-                        }
-
-                        .info {
-                            div:nth-child(1) {
-                                font-weight: 400;
-                                font-size: 16px;
-                                color: #fff;
-                            }
-
-                            div:nth-child(2) {
-                                margin-top: 8px;
-                                font-size: 13px;
-                                color: #fff;
-                            }
-                        }
-                    }
-
-                    &-r {
-                        padding-right: 8px;
-                    }
-                }
-            }
-        }
-
-        .chongzhiList {
-            margin-top: 10px;
-            //display: flex;
-            //flex-wrap: wrap;
-            .chongzhiList-item {
-                margin-bottom: 10px;
-                margin-right: 10px;
-                display: flex;
-                border-radius: 15px;
-                align-items: center;
-                background-color: #f5f5f5;
-                padding: 10px 14px;
-
-                img {
-                    width: 22px;
-                    height: 22px;
-                }
-
-                span {
-                    padding-left: 8px;
-                    font-size: 14px;
-                }
-
-                &.active {
-                    color: #fff;
-                    background-color: #ff896d;
-                }
-            }
-        }
-    }
-}
-
-.my-swipe .van-swipe-item {
-    color: #fff;
-    font-size: 20px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-
-    img {
-        width: 100%;
-        height: 200px;
-    }
-}
-
-.fangshi-box {
-    background-color: #2e3350;
-    margin: 10px 20px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 10px 10px 20px;
-
-    img {
-        margin-right: 10px;
-        width: 25px;
-    }
-}
-
-.jine-box {
-    background-color: #2e3350;
-    margin: 10px 20px;
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    color: #fff;
-
-    .jine-item {
-        background-color: #1d1e3a;
-        margin: 10px;
+      &-right {
+        margin-top: 10px;
+        width: 30px;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 10px 0;
+      }
+    }
+
+    .recharge-money {
+      color: #fff;
+      padding: 30px 20px;
+      //background-color: #fff;
+      .txt {
         font-size: 16px;
-        border-radius: 10px;
+        font-weight: bolder;
+        color: #fff;
+      }
+
+      .money-box {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex: 1;
+        border-bottom: 1px solid #4d536a;
+        height: 50px;
+
+        .input-content {
+          flex: 1;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+
+          .input-content-icon {
+            margin-right: 4px;
+            font-weight: 700;
+            font-size: 26px;
+          }
+        }
+
+        .input-field {
+          position: relative;
+          display: flex;
+          flex-direction: row;
+          margin: 0;
+          flex: 1;
+          line-height: 26px;
+
+          input,
+          .inp {
+            height: 100%;
+            opacity: 1;
+            font: inherit;
+            outline: none;
+            border: none;
+            padding: 0;
+            width: 100%;
+            font-size: 32px;
+          }
+        }
+      }
+
+      .btn {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        margin-top: 25px;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid transparent !important;
+        color: #fff;
+        //background: rgba(255, 255, 255, calc(1.5 * 0.65));
+        background: #01c5f0;
+        //backdrop-filter: blur(10px) saturate(160%);
+        box-shadow: 0 5px 40px rgb(17 58 93 / 10%) !important;
+        border-radius: 100px;
+        letter-spacing: 6px;
+
+        &:active {
+          background-color: #fff;
+          box-shadow:
+            0 0 #0000001a,
+            0 0 #fffc,
+            inset 18px 18px 30px #0000000f,
+            inset -18px -18px 30px #ffffff4d !important;
+          transition: 0.2s ease-out;
+        }
+
+        .img-box {
+          margin-top: 3px;
+          margin-right: 8px;
+          width: 16px;
+
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .select-wrap {
+      .title {
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bolder;
+        margin-top: 15px;
+      }
+
+      .method-list {
+        margin-top: 20px;
+
+        .method-list-item {
+          & + .method-list-item {
+            margin-top: 6px;
+          }
+
+          padding: 16px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          &-l {
+            display: flex;
+
+            .icon-box {
+              display: flex;
+              align-items: center;
+              margin-right: 20px;
+              width: 30px;
+
+              img {
+                width: 100%;
+              }
+            }
+
+            .info {
+              div:nth-child(1) {
+                font-weight: 400;
+                font-size: 16px;
+                color: #fff;
+              }
+
+              div:nth-child(2) {
+                margin-top: 8px;
+                font-size: 13px;
+                color: #fff;
+              }
+            }
+          }
+
+          &-r {
+            padding-right: 8px;
+          }
+        }
+      }
+    }
+
+    .chongzhiList {
+      margin-top: 10px;
+      //display: flex;
+      //flex-wrap: wrap;
+      .chongzhiList-item {
+        margin-bottom: 10px;
+        margin-right: 10px;
+        display: flex;
+        border-radius: 15px;
+        align-items: center;
+        background-color: #f5f5f5;
+        padding: 10px 14px;
+
+        img {
+          width: 22px;
+          height: 22px;
+        }
+
+        span {
+          padding-left: 8px;
+          font-size: 14px;
+        }
 
         &.active {
-            background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+          color: #fff;
+          background-color: #ff896d;
         }
+      }
     }
+  }
+}
+
+.my-swipe .van-swipe-item {
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+.fangshi-box {
+  background-color: #2e3350;
+  margin: 10px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px 10px 20px;
+
+  img {
+    margin-right: 10px;
+    width: 25px;
+  }
+}
+
+.jine-box {
+  background-color: #2e3350;
+  margin: 10px 20px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  color: #fff;
+
+  .jine-item {
+    background-color: #1d1e3a;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    font-size: 16px;
+    border-radius: 10px;
+
+    &.active {
+      background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+    }
+  }
 }
 </style>

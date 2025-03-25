@@ -240,7 +240,7 @@
     <BaseFooter :is-white="true" v-bind:init-tab="1" />
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击下载土豆聊天扫码进群"
+      confirm-text="点击下载68扫码进群"
       @confirm="handleGonggaoConfirm"
     >
       <p
@@ -252,7 +252,7 @@
           font-weight: bolder;
         "
       >
-        请使用土豆APP扫码进官方群
+        请使用68APP扫码进官方群
       </p>
       <div style="padding: 20px">
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
@@ -319,7 +319,7 @@ const showGonggaoOverlay = ref(false)
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
   // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
-  window.location.href = 'https://www.potato186.org/dl'
+  window.location.href = 'https://68chat5.com/cn/'
 }
 const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
 

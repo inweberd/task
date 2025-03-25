@@ -260,7 +260,23 @@
         >充值
       </el-button>
     </div>
-
+      <div style="margin: 20px;color: #ccc">
+        <div>
+            365钱包活动：首次使用365钱包充值454元，实际到账600元余额
+            <span style="text-decoration: underline;color: #1e83d3" @click="$router.push({
+                path:'downloadInfo',
+                type:'365'
+            })">点击下载安装365钱包</span>
+        </div>
+        <div style="margin-top: 20px">
+            JD钱包活动：首次使用JD钱包充值1000元，实际到账1100元余额
+            首次使JD钱包充值5000元，实际到账5300元
+            <span style="text-decoration: underline;color: #1e83d3" @click="$router.push({
+                path:'downloadInfo',
+                type:'jd'
+            })">点击下载安装JD钱包</span>
+        </div>
+      </div>
     <!--      <van-image :src="pay2" width="100%" height="100%;"></van-image>-->
     <div class="container">
       <van-popup v-model:show="state.sheet.show" closeable position="bottom" round>
@@ -421,6 +437,7 @@ const payItemClick = (id) => {
   method.sheet.close()
 }
 const columns = ref([
+  { text: '10', value: '10' },
   { text: '50', value: '50' },
   { text: '100', value: '100' },
   { text: '200', value: '200' },
@@ -466,7 +483,7 @@ const state = reactive({
     }
   },
   struct: {
-    amount: 50
+    amount: 10
   },
   modal: {
     service: false

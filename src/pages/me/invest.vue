@@ -36,20 +36,34 @@
       </van-swipe>
     </div>
     <div class="top-box">
-      <div class="avatar" @click="renzheng(userInfo.avatar)">
-        <img :src="userInfo.avatar || defaultAvatar" />
-      </div>
-      <div class="name">
-        <template v-if="userInfo.nickname"> {{ userInfo.nickname }}</template>
-        <template v-else>
-          {{
-            userInfo.phone
-              ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
-              : ''
-          }}
-        </template>
-      </div>
-      <span class="vip-info">{{ userInfo?.result?.staff?.name || '暂无加速卡' }}</span>
+        <div style="align-items: center">
+
+          <div class="avatar" @click="renzheng(userInfo.avatar)">
+            <img :src="userInfo.avatar || defaultAvatar" />
+          </div>
+          <div class="name">
+            <template v-if="userInfo.nickname"> {{ userInfo.nickname }}</template>
+            <template v-else>
+              {{
+                userInfo.phone
+                  ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
+                  : ''
+              }}
+            </template>
+          </div>
+          <span class="vip-info">{{ userInfo?.result?.staff?.name || '暂无加速卡' }}</span>
+        </div>
+        <div style="margin-top: 50px;padding-right: 15px;box-sizing: border-box;text-align: center;width: 100%;">
+            当前可免费兑换会员余额
+            <br>
+            <span style="font-size: 22px">{{ userIncomeInfo?.wallet?.money || 0 }}</span>
+            <div style="margin-top: 15px"></div>
+            当前充值余额
+            <br>
+            <span style="font-size: 22px">{{  walletInfo?.amount || 0  }}</span>
+            <p style="margin-top: 5px">以上两种余额可用于购买会员抵扣使用</p>
+        </div>
+
     </div>
 
     <div class="v-list-box">
@@ -486,7 +500,7 @@
   <BaseFooter :is-white="false" v-bind:init-tab="5" />
 </template>
 <script lang="ts" setup>
-import { ref, reactive, onMounted, onUnmounted, computed } from 'vue'
+import {ref, reactive, onMounted, onUnmounted, computed, onActivated} from 'vue'
 import {
   reqAllStaff,
   reqCreateShareLog,
@@ -508,6 +522,7 @@ import shareholder from '@/assets/img/jiangliguize.jpg'
 
 import vipInfo from './images/vip-info.jpg'
 import { showImagePreview } from 'vant'
+import bus from "@/utils/bus";
 
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
 defineOptions({
@@ -659,7 +674,9 @@ const getAllStaff = () => {
   loading.value = true
 
   reqAllStaff(searchInfo).then((res: any) => {
-    staffList.value = res.data.data
+    staffList.value = res.data.data.filter(item=>{
+        return item.serial!==10
+    })
     loading.value = false
     // res.data.data.forEach((item, index) => {
     //   for (const itemKey in item) {
@@ -810,9 +827,23 @@ const getMyStaff = () => {
     }
   })
 }
+
+
+const walletInfo = ref({ credit: 0 })
+const getUserInfo=()=>{
+    reqWalletInfo().then((res) => {
+        if (res.code !== 200) return
+        walletInfo.value = res.data
+    })
+    reqUserIncome().then((res) => {
+        // loading.value = false
+        userIncomeInfo.value = res.data
+    })
+}
 onMounted(() => {
   getAllStaff()
   getMyStaff()
+    getUserInfo()
   // getUserIncome()
 })
 
@@ -857,6 +888,8 @@ const timerfir = ref()
 const timerfir2 = ref()
 const scrollY = ref(20) //滚动距离
 const speed = ref(0.5) //滚动速度
+
+
 </script>
 
 <style lang="less" scoped>
@@ -870,12 +903,18 @@ const speed = ref(0.5) //滚动速度
 
   .top-box {
     display: flex;
-    flex-direction: column;
     align-items: center;
     height: 220px;
     background-image: url('./images/vip-bg.png');
     background-repeat: no-repeat;
     background-size: 100% 220px;
+&>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    //align-items: center;
+    flex: 1;
+}
 
     .avatar {
       margin: 50px auto 0;
@@ -898,6 +937,7 @@ const speed = ref(0.5) //滚动速度
     }
 
     .vip-info {
+        width: fit-content;
       color: #ccc;
       padding: 2px 10px;
       border: 1px solid #ccc;

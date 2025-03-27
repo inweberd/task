@@ -36,34 +36,40 @@
       </van-swipe>
     </div>
     <div class="top-box">
-        <div style="align-items: center">
-
-          <div class="avatar" @click="renzheng(userInfo.avatar)">
-            <img :src="userInfo.avatar || defaultAvatar" />
-          </div>
-          <div class="name">
-            <template v-if="userInfo.nickname"> {{ userInfo.nickname }}</template>
-            <template v-else>
-              {{
-                userInfo.phone
-                  ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
-                  : ''
-              }}
-            </template>
-          </div>
-          <span class="vip-info">{{ userInfo?.result?.staff?.name || '暂无加速卡' }}</span>
+      <div style="align-items: center">
+        <div class="avatar" @click="renzheng(userInfo.avatar)">
+          <img :src="userInfo.avatar || defaultAvatar" />
         </div>
-        <div style="margin-top: 50px;padding-right: 15px;box-sizing: border-box;text-align: center;width: 100%;">
-            当前可免费兑换会员余额
-            <br>
-            <span style="font-size: 22px">{{ userIncomeInfo?.wallet?.money || 0 }}</span>
-            <div style="margin-top: 15px"></div>
-            当前充值余额
-            <br>
-            <span style="font-size: 22px">{{  walletInfo?.amount || 0  }}</span>
-            <p style="margin-top: 5px">以上两种余额可用于购买会员抵扣使用</p>
+        <div class="name">
+          <template v-if="userInfo.nickname"> {{ userInfo.nickname }}</template>
+          <template v-else>
+            {{
+              userInfo.phone
+                ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
+                : ''
+            }}
+          </template>
         </div>
-
+        <span class="vip-info">{{ userInfo?.result?.staff?.name || '暂无加速卡' }}</span>
+      </div>
+      <div
+        style="
+          margin-top: 50px;
+          padding-right: 15px;
+          box-sizing: border-box;
+          text-align: center;
+          width: 100%;
+        "
+      >
+        当前可免费兑换会员余额
+        <br />
+        <span style="font-size: 22px">{{ userIncomeInfo?.wallet?.money || 0 }}</span>
+        <div style="margin-top: 15px"></div>
+        当前充值余额
+        <br />
+        <span style="font-size: 22px">{{ walletInfo?.amount || 0 }}</span>
+        <p style="margin-top: 5px">以上两种余额可用于购买会员抵扣使用</p>
+      </div>
     </div>
 
     <div class="v-list-box">
@@ -74,10 +80,36 @@
           class="v-list-item"
           @click="activeIndex = index"
         >
-          <img alt="" src="./images/vip-icon.png" />
+          <template v-if="item.serial === 0">
+            <img alt="" src="./images/v0.png" />
+          </template>
+          <template v-else-if="item.serial === 1">
+            <img alt="" src="./images/v1.png" />
+          </template>
+          <template v-else-if="item.serial === 2">
+            <img alt="" src="./images/v2.png" />
+          </template>
+          <template v-else-if="item.serial === 3">
+            <img alt="" src="./images/v3.png" />
+          </template>
+          <template v-else-if="item.serial === 4">
+            <img alt="" src="./images/v4.png" />
+          </template>
+          <template v-else-if="item.serial === 5">
+            <img alt="" src="./images/v5.png" />
+          </template>
+          <template v-else-if="item.serial === 6">
+            <img alt="" src="./images/v6.png" />
+          </template>
           <div>{{ item.name }}</div>
           <div><span class="fuhao">￥</span>{{ item.price }}</div>
-          <div style="font-size: 12px">永久循环收益</div>
+          <div style="font-size: 12px; text-align: center">
+            <span v-if="item.serial === 0">
+              <div>30天有效期</div>
+              <div>到期续费</div>
+            </span>
+            <span v-else>永久循环收益</span>
+          </div>
         </div>
       </div>
     </div>
@@ -500,7 +532,7 @@
   <BaseFooter :is-white="false" v-bind:init-tab="5" />
 </template>
 <script lang="ts" setup>
-import {ref, reactive, onMounted, onUnmounted, computed, onActivated} from 'vue'
+import { ref, reactive, onMounted, onUnmounted, computed, onActivated } from 'vue'
 import {
   reqAllStaff,
   reqCreateShareLog,
@@ -519,10 +551,18 @@ import BaseFooter from '@/components/BaseFooter.vue'
 import defaultAvatar from '@/assets/img/logo.png'
 import { getSerialName } from '../../utils/getSerialName'
 import shareholder from '@/assets/img/jiangliguize.jpg'
+import v0 from './images/v0.png'
+import v1 from './images/v1.png'
+import v2 from './images/v2.png'
+import v3 from './images/v3.png'
+import v4 from './images/v4.png'
+import v5 from './images/v5.png'
+import v6 from './images/v6.png'
 
 import vipInfo from './images/vip-info.jpg'
 import { showImagePreview } from 'vant'
-import bus from "@/utils/bus";
+import bus from '@/utils/bus'
+import { getIsVip } from '@/utils/getIsVip'
 
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
 defineOptions({
@@ -674,9 +714,7 @@ const getAllStaff = () => {
   loading.value = true
 
   reqAllStaff(searchInfo).then((res: any) => {
-    staffList.value = res.data.data.filter(item=>{
-        return item.serial!==10
-    })
+    staffList.value = res.data.data
     loading.value = false
     // res.data.data.forEach((item, index) => {
     //   for (const itemKey in item) {
@@ -728,26 +766,28 @@ const buy = () => {
   // const finallyCount = customCount || count.value
   if (myStaffList.value.includes(item.id)) {
     showToast({
-      message: '您已拥有此会员！',
+      message: '您已拥有此特权！',
       icon: 'warning'
     })
     return
   }
 
-  // if(){
-  //
-  // }
-  if (userInfo.value.result.staff.id == 0 && item.serial != 1) {
+  if (userInfo.value.result.staff.id == 0 && item.serial != 0) {
     return showToast({
       message: '请逐级开通！',
       icon: 'warning'
     })
   }
-  if (userInfo.value.result.staff.serial + 1 != item.serial) {
-    return showToast({
-      message: '请逐级开通！',
-      icon: 'warning'
-    })
+  if (
+    userInfo.value.result.staff.serial + 1 != item.serial &&
+    userInfo.value.result.staff.id !== 0
+  ) {
+    if (item.serial !== 0) {
+      return showToast({
+        message: '请逐级开通！',
+        icon: 'warning'
+      })
+    }
   }
 
   loading.value = true
@@ -828,22 +868,21 @@ const getMyStaff = () => {
   })
 }
 
-
 const walletInfo = ref({ credit: 0 })
-const getUserInfo=()=>{
-    reqWalletInfo().then((res) => {
-        if (res.code !== 200) return
-        walletInfo.value = res.data
-    })
-    reqUserIncome().then((res) => {
-        // loading.value = false
-        userIncomeInfo.value = res.data
-    })
+const getUserInfo = () => {
+  reqWalletInfo().then((res) => {
+    if (res.code !== 200) return
+    walletInfo.value = res.data
+  })
+  reqUserIncome().then((res) => {
+    // loading.value = false
+    userIncomeInfo.value = res.data
+  })
 }
 onMounted(() => {
   getAllStaff()
   getMyStaff()
-    getUserInfo()
+  getUserInfo()
   // getUserIncome()
 })
 
@@ -888,8 +927,6 @@ const timerfir = ref()
 const timerfir2 = ref()
 const scrollY = ref(20) //滚动距离
 const speed = ref(0.5) //滚动速度
-
-
 </script>
 
 <style lang="less" scoped>
@@ -908,13 +945,13 @@ const speed = ref(0.5) //滚动速度
     background-image: url('./images/vip-bg.png');
     background-repeat: no-repeat;
     background-size: 100% 220px;
-&>div{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    //align-items: center;
-    flex: 1;
-}
+    & > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      //align-items: center;
+      flex: 1;
+    }
 
     .avatar {
       margin: 50px auto 0;
@@ -937,7 +974,7 @@ const speed = ref(0.5) //滚动速度
     }
 
     .vip-info {
-        width: fit-content;
+      width: fit-content;
       color: #ccc;
       padding: 2px 10px;
       border: 1px solid #ccc;

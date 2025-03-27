@@ -112,14 +112,14 @@
       <div class="shouyi-list">
         <div v-if="!isIos" class="item" @click="loadShort(1)">
           <div class="item-box">
-            <div>普通用户广告投放收益</div>
+            <div>普通用户广告投放</div>
             <div>特权：无特权</div>
             <div>日收益：固定0.5元</div>
           </div>
         </div>
         <div class="item" @click="loadShort(3)">
           <div class="item-box">
-            <div>会员用户广告投放收益</div>
+            <div>会员用户广告投放</div>
             <div>特权1：会员免看广告</div>
             <div>特权2： 享受4-10倍加速收益</div>
             <div>日收益：每日0.5-2%浮动</div>
@@ -260,7 +260,7 @@
     </TipDialog>
     <TipDialog
       v-model="buyDialogShow"
-      confirm-text="去看看"
+      confirm-text="去开通"
       @confirm="
         () => {
           buyDialogShow = false
@@ -269,7 +269,8 @@
       "
     >
       <div style="padding: 20px; color: #fff; text-align: center">
-        <p>请先开通会员特权加速卡，再进行观看浏览！</p>
+        <p style="font-size: 18px; font-weight: bolder; margin-bottom: 10px">请先开通学徒特权！</p>
+        <p>会员广告收入是普通广告的5-10倍加速收益，最低学徒特权可以进行加速收益！</p>
       </div>
     </TipDialog>
 
@@ -347,19 +348,19 @@ const appList = ref([
       router.push('/canyufangshi')
     }
   },
-  {
-    name: '团队晋级奖励',
-    desc: '点击查看代理佣金排行榜！',
-    logo: '9',
-    btnLabel: '加入',
-    btnCb() {
-      // showImagePreview({
-      //   images: [weimaiquan]
-      // })
-      // window.location.href = 'https://api.onxxm900.cn/download/android.apk'
-      router.push('/jiangliguize')
-    }
-  },
+  // {
+  //   name: '团队晋级奖励',
+  //   desc: '点击查看代理佣金排行榜！',
+  //   logo: '9',
+  //   btnLabel: '加入',
+  //   btnCb() {
+  //     // showImagePreview({
+  //     //   images: [weimaiquan]
+  //     // })
+  //     // window.location.href = 'https://api.onxxm900.cn/download/android.apk'
+  //     router.push('/jiangliguize')
+  //   }
+  // },
   {
     name: '开通加速卡 ',
     desc: '点击查看每周分红奖池！',

@@ -302,7 +302,7 @@ const generatePoster = async () => {
     return
   }
   qrCodeText.value =
-    'http://bbbwx0318aaaf14.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+    'http://bbbwx0318aaaf15.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     // encodeURIComponent(
     'https://weaw.shunyigong.com/#/signUp?invite=' +
     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
@@ -642,6 +642,8 @@ onMounted(() => {
   --van-nav-bar-background: #1f203d !important;
 
   --van-active-color: #1f203d !important;
+
+  --van-field-label-color: #fff;
 }
 
 .big-title {
@@ -751,9 +753,9 @@ onMounted(() => {
 //  background-color: #0e0f13 !important;
 //  color: #fff !important;
 //}
-//.van-field__label {
-//  color: #fff !important;
-//}
+.van-field__label {
+  font-weight: normal;
+}
 .van-field__control {
   color: #fff !important;
 }

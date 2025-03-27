@@ -58,7 +58,34 @@
         >
       </div>
     </div>
-
+    <div
+      style="
+        background-color: #2e3350;
+        margin: 20px;
+        border-radius: 10px;
+        font-size: 16px;
+        line-height: 24px;
+      "
+    >
+      <van-field
+        v-model="state.struct.amount"
+        class="unp"
+        label="充值金额"
+        placeholder="请输入充值金额"
+        style="
+          font-weight: bolder;
+          margin-bottom: 10px;
+          color: #fff !important;
+          background-color: transparent;
+        "
+        type="number"
+        @input="
+          () => {
+            state.struct.amount = parseInt(state.struct.amount)
+          }
+        "
+      />
+    </div>
     <div class="jine-box">
       <div
         v-for="item of columns"
@@ -260,23 +287,40 @@
         >充值
       </el-button>
     </div>
-      <div style="margin: 20px;color: #ccc">
-        <div>
-            365钱包活动：首次使用365钱包充值454元，实际到账600元余额
-            <span style="text-decoration: underline;color: #1e83d3" @click="$router.push({
-                path:'downloadInfo',
-                type:'365'
-            })">点击下载安装365钱包</span>
-        </div>
-        <div style="margin-top: 20px">
-            JD钱包活动：首次使用JD钱包充值1000元，实际到账1100元余额
-            首次使JD钱包充值5000元，实际到账5300元
-            <span style="text-decoration: underline;color: #1e83d3" @click="$router.push({
-                path:'downloadInfo',
-                type:'jd'
-            })">点击下载安装JD钱包</span>
-        </div>
+    <div style="margin: 20px; color: #ccc">
+      <div>
+        365钱包活动：首次使用365钱包充值454元，实际到账600元余额
+        <span
+          style="text-decoration: underline; color: #1e83d3"
+          @click="
+            $router.push({
+              path: 'downloadInfo',
+              type: '365'
+            })
+          "
+          >点击下载安装365钱包</span
+        >
       </div>
+      <div style="margin-top: 20px">
+        JD钱包活动：首次使用JD钱包充值1000元，实际到账1100元余额
+        首次使JD钱包充值5000元，实际到账5300元
+        <span
+          style="text-decoration: underline; color: #1e83d3"
+          @click="
+            $router.push({
+              path: 'downloadInfo',
+              type: 'jd'
+            })
+          "
+          >点击下载安装JD钱包</span
+        >
+      </div>
+    </div>
+
+    <div style="background-color: #2e3350; padding: 10px; margin: 20px; border-radius: 10px">
+      <van-icon name="warning-o" color="red" size="25" />
+      使用微信或者支付宝充值过程中，如遇到无法支付的情况，请关闭这个页面。从新点充值按钮，重新拉起新的订单，每次拉起订单，都是不同的最新的收款码。重新拉起新订单即可正常支付付款！
+    </div>
     <!--      <van-image :src="pay2" width="100%" height="100%;"></van-image>-->
     <div class="container">
       <van-popup v-model:show="state.sheet.show" closeable position="bottom" round>
@@ -441,6 +485,7 @@ const columns = ref([
   { text: '50', value: '50' },
   { text: '100', value: '100' },
   { text: '200', value: '200' },
+  { text: '300', value: '300' },
   { text: '500', value: '500' },
   { text: '800', value: '800' },
   { text: '1000', value: '1000' },

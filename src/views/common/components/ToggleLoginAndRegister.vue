@@ -58,7 +58,7 @@ const list = ref([
       .list-item {
         &.active {
           position: relative;
-          color: #815bff;
+          color: red;
           font-weight: bolder;
 
           &:after {

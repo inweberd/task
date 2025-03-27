@@ -216,7 +216,7 @@ export function reqQuickReceive() {
 
 // 排行榜
 export function getWalletRank(params = {}) {
-  return axiosInstance({ url: '/api/wallet-log/rank', method: 'get', params })
+  return axiosInstance({ url: '/api/wallet-logs/rank', method: 'get', params })
 }
 
 // 会员领取

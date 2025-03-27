@@ -1,5 +1,5 @@
 <template>
-  <div class="rank" v-if="false">
+  <div class="rank" >
     <!--    <van-nav-bar-->
     <!--      title="排行榜"-->
     <!--      safe-area-inset-top-->
@@ -9,25 +9,36 @@
     <!--      left-arrow-->
     <!--      @click-left="$router.back()"-->
     <!--    />-->
-
-    <div class="fenhong">
-      <div class="title">
-        <!--        本次周期分红总金额 <br />-->
-        <!--          （每X天进行一轮分红） <br />-->
-        <div>本轮奖池金额</div>
-      </div>
-      <div class="money">￥{{ total }}</div>
-      <!--      <van-divider style="border-color: #bababa"></van-divider>-->
-      <!--      <div style="text-align: center; margin-top: 10px">-->
-      <!--        <div class="" style="font-size: 24px; font-weight: bolder">本轮奖池金额发放倒计时</div>-->
-      <!--        <div class="money" style="font-size: 22px; color: #000">{{ timeTxt }}</div>-->
-      <!--      </div>-->
-    </div>
+      <van-nav-bar
+          style="position: fixed;top: 0;left: 0;z-index: 9;width: 100%;background-color:#143140;"
+          left-arrow
+          placeholder
+          title="排行榜"
+          @click-left="router.back()"
+      >
+          <template #right>
+              <!--        <van-icon name="friends-o" size="18" @click="service = true" />-->
+          </template>
+      </van-nav-bar>
     <div class="qiansan">
+<!--    <div class="fenhong">-->
+<!--      <div class="title">-->
+<!--        &lt;!&ndash;        本次周期分红总金额 <br />&ndash;&gt;-->
+<!--        &lt;!&ndash;          （每X天进行一轮分红） <br />&ndash;&gt;-->
+<!--        <div>本轮奖池金额</div>-->
+<!--      </div>-->
+<!--      <div class="money">￥{{ total }}</div>-->
+<!--      &lt;!&ndash;      <van-divider style="border-color: #bababa"></van-divider>&ndash;&gt;-->
+<!--      &lt;!&ndash;      <div style="text-align: center; margin-top: 10px">&ndash;&gt;-->
+<!--      &lt;!&ndash;        <div class="" style="font-size: 24px; font-weight: bolder">本轮奖池金额发放倒计时</div>&ndash;&gt;-->
+<!--      &lt;!&ndash;        <div class="money" style="font-size: 22px; color: #000">{{ timeTxt }}</div>&ndash;&gt;-->
+<!--      &lt;!&ndash;      </div>&ndash;&gt;-->
+<!--    </div>-->
       <div class="one">
         <div class="box">
           <div class="img-box">
-            <img :src="rankList?.[0]?.avatar || headImg" style="width: 100%; height: 100%" alt="" />
+              <img style="width: 100%;height: 100%;" v-if="rankList?.[0]?.avatar" :src="rankList?.[1]?.avatar" alt="" />
+              <img style="width: 80%;height: 80%;" v-else :src=" headImg" alt="" />
           </div>
           <p>1</p>
         </div>
@@ -40,7 +51,8 @@
       <div class="two">
         <div class="box">
           <div class="img-box">
-            <img :src="rankList?.[1]?.avatar || headImg" style="width: 100%; height: 100%" alt="" />
+            <img style="width: 100%;height: 100%;" v-if="rankList?.[1]?.avatar" :src="rankList?.[1]?.avatar" alt="" />
+            <img style="width: 80%;height: 80%;" v-else :src=" headImg" alt="" />
           </div>
 
           <p>2</p>
@@ -53,7 +65,9 @@
       <div class="three">
         <div class="box">
           <div class="img-box">
-            <img :src="rankList?.[2]?.avatar || headImg" style="width: 100%; height: 100%" alt="" />
+              <img style="width: 100%;height: 100%;" v-if="rankList?.[2]?.avatar" :src="rankList?.[1]?.avatar" alt="" />
+              <img style="width: 80%;height: 80%;" v-else :src=" headImg" alt="" />
+
           </div>
           <p>3</p>
         </div>
@@ -80,12 +94,17 @@
       <!--        </div>-->
       <!--      </div>-->
       <div class="list-container">
-        <div class="list-item" v-for="(item, index) of rankListCom">
-          <div>{{ index + 4 }}</div>
+        <div class="list-item" v-for="(item, index) of rankList">
+          <div>{{ index + 1 }}</div>
           <section>
             <img :src="item.avatar || headImg" style="width: 100%; height: 100%" alt="" />
           </section>
-          <div>{{ item.nickname || getPhone(item.phone) }}</div>
+          <div>
+              <img src="./images/icon-rz.png" alt="">
+            <span>
+              {{ item.nickname || getPhone(item.phone) }}
+            </span>
+          </div>
           <div>￥{{ item.total }}</div>
         </div>
       </div>
@@ -109,7 +128,7 @@ import { Toast } from 'tdesign-mobile-vue'
 import { computed, onBeforeUnmount, ref } from 'vue'
 import imageSrc1 from './images/rank1.png'
 import imageSrc4 from './images/rank2.png'
-import headImg from '@/assets/img/logo.png'
+import headImg from '@/assets/img/white-logo.jpg'
 
 const getPhone = (phone) => {
   if (!phone) {
@@ -138,41 +157,41 @@ const getRank = () => {
   }).then((res) => {
     Toast.clear()
     console.log('getWalletRank', res)
-    rankList.value = res.data?.list || []
-    rankList.value = [
-      {
-        avatar:
-          'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
-        id: 1,
-        nickname: '暴走兔',
-        phone: '',
-        total: 101
-      },
-      { avatar: '', id: 2, nickname: '', phone: '18743133130', total: 102 },
-      {
-        avatar:
-          'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
-        id: 3,
-        nickname: '暴走兔',
-        phone: '',
-        total: 103
-      },
-      { avatar: '', id: 4, nickname: '暴走兔', phone: '', total: 104 },
-      { avatar: '', id: 5, nickname: '暴走兔', phone: '', total: 105 },
-      {
-        avatar:
-          'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
-        id: 6,
-        nickname: '暴走兔',
-        phone: '',
-        total: 106
-      },
-      { avatar: '', id: 7, nickname: '暴走兔', phone: '', total: 107 },
-      { avatar: '', id: 8, nickname: '暴走兔', phone: '', total: 108 },
-      { avatar: '', id: 9, nickname: '暴走兔', phone: '', total: 109 },
-      { avatar: '', id: 10, nickname: '暴走兔', phone: '', total: 110 },
-      { avatar: '', id: 11, nickname: '暴走兔', phone: '', total: 111 }
-    ]
+    rankList.value = res.data || []
+    // rankList.value = [
+    //   {
+    //     avatar:
+    //       'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
+    //     id: 1,
+    //     nickname: '暴走兔',
+    //     phone: '',
+    //     total: 101
+    //   },
+    //   { avatar: '', id: 2, nickname: '', phone: '18743133130', total: 102 },
+    //   {
+    //     avatar:
+    //       'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
+    //     id: 3,
+    //     nickname: '暴走兔',
+    //     phone: '',
+    //     total: 103
+    //   },
+    //   { avatar: '', id: 4, nickname: '暴走兔', phone: '', total: 104 },
+    //   { avatar: '', id: 5, nickname: '暴走兔', phone: '', total: 105 },
+    //   {
+    //     avatar:
+    //       'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
+    //     id: 6,
+    //     nickname: '暴走兔',
+    //     phone: '',
+    //     total: 106
+    //   },
+    //   { avatar: '', id: 7, nickname: '暴走兔', phone: '', total: 107 },
+    //   { avatar: '', id: 8, nickname: '暴走兔', phone: '', total: 108 },
+    //   { avatar: '', id: 9, nickname: '暴走兔', phone: '', total: 109 },
+    //   { avatar: '', id: 10, nickname: '暴走兔', phone: '', total: 110 },
+    //   { avatar: '', id: 11, nickname: '暴走兔', phone: '', total: 111 }
+    // ]
   })
 }
 
@@ -280,7 +299,7 @@ onBeforeUnmount(() => {
     .list-container {
       flex: 1;
       overflow-y: auto;
-      margin: -50px 15px 0;
+      margin: -110px 15px 0;
     }
     .list-item {
       //width: 70%;
@@ -307,7 +326,19 @@ onBeforeUnmount(() => {
           background-size: 26px auto;
           background-position: center 5px;
         }
+          &:nth-child(3) {
+
+              display: flex;
+              align-items: center;
+              text-align: left;
+              white-space: nowrap;
+              img{
+                  margin: 0 5px 0 20px;
+                  width: 18px;
+              }
+          }
         &:nth-child(4) {
+            //width: 30%;
           font-size: 14px;
           font-weight: bolder;
         }
@@ -382,6 +413,7 @@ onBeforeUnmount(() => {
 .qiansan {
   background-image: url('@/assets/img/rank-bg.png');
   background-size: 100% 100%;
+    background-position-y:-50px ;
 
   background-repeat: no-repeat;
   width: 100%;
@@ -406,6 +438,11 @@ onBeforeUnmount(() => {
         height: 100%;
         border-radius: 50%;
         overflow: hidden;
+          background-color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
       }
 
       p {
@@ -453,7 +490,7 @@ onBeforeUnmount(() => {
   }
   .two,
   .three {
-    top: 180px;
+    top: 130px;
     width: 95px;
     height: 80px;
     .info {
@@ -461,7 +498,7 @@ onBeforeUnmount(() => {
     }
   }
   .one {
-    top: 170px;
+    top: 120px;
     left: 50%;
     transform: translateX(-50%);
     width: 120px;
@@ -512,7 +549,7 @@ onBeforeUnmount(() => {
   color: transparent;
 }
 .fenhong {
-  position: absolute;
+  //position: absolute;
   z-index: 2;
   width: 100%;
 

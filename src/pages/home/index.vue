@@ -125,13 +125,13 @@
             <div>日收益：每日0.5-2%浮动</div>
           </div>
         </div>
-        <div class="item">
+        <div class="item" @click="$router.push('/rank')">
           <div class="item-box">
             <div>全网分红</div>
             <div>排行榜！</div>
-            <div style="position: absolute; left: 15px; bottom: 20px; font-size: 22px">
-              等待开启
-            </div>
+<!--            <div style="position: absolute; left: 15px; bottom: 20px; font-size: 22px">-->
+<!--              等待开启-->
+<!--            </div>-->
           </div>
         </div>
         <div class="item">

@@ -13,7 +13,67 @@
       </template>
     </van-nav-bar>
     <div class="container">
-      <div class="num-box">
+        <div class="info">
+            <div class="avatar" @click="renzheng(userInfo.avatar)">
+                <img :src="userInfo.avatar || defaultAvatar" />
+                <div v-if="!userInfo.avatar" style="color: #999">点击更改头像</div>
+            </div>
+            <!--      <p-->
+            <!--        v-if="showRenzheng"-->
+            <!--        style="color: red; width: 100%; text-align: center; transform: translateY(-8px)"-->
+            <!--      >-->
+            <!--        点击头像可更换微信微信头像-->
+            <!--      </p>-->
+            <div class="info-r">
+                <div class="t">
+                    <img src="./images/icon-rz.png" alt="">
+                    <template v-if="userInfo.nickname"> {{ userInfo.nickname }}</template>
+                    <template v-else>
+                        {{
+                            userInfo.phone
+                                ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
+                                : ''
+                        }}
+                    </template>
+                </div>
+<!--                <div class="c">-->
+<!--                    &lt;!&ndash;          <p>上级会员ID : {{ userInfo?.invite_id }}</p>&ndash;&gt;-->
+<!--                    <p>我的ID : {{ userInfo?.id }}</p>-->
+<!--                </div>-->
+                <div class="b">
+                    <p>邀请码 : {{ userInfo?.result?.invite?.code }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="num-info">
+            <div class="top">
+                <img src="./images/team-users.png" alt="">
+                <span>团队总人数：{{ memberInfo.team?.total || 0 }}</span>
+                <span style="margin-left: 10px">团队会员：{{ memberInfo.team?.vip || 0 }}</span>
+            </div>
+            <div class="bottom">
+                <div>
+                    <div>{{ memberInfo.first?.total || 0 }}</div>
+                    <div>直推人数</div>
+                </div>
+                <div>
+                    <div>{{ memberInfo.first?.vip || 0 }}</div>
+                    <div>有效直推</div>
+                </div>
+                <div>
+                    <div>{{ memberInfo.team?.deposit || 0 }}</div>
+                    <div>团队业绩</div>
+                </div>
+                <div>
+                    <div>{{ memberInfo.team?.withdraw || 0 }}</div>
+                    <div>团队提现</div>
+                </div>
+            </div>
+        </div>
+
+
+      <div class="num-box" v-if="false">
         <div>
           <div>团队总人数</div>
           <div>{{ memberInfo.team?.total || 0 }}</div>
@@ -29,7 +89,7 @@
           </div>
         </div>
       </div>
-      <div class="num-box">
+      <div class="num-box" v-if="false">
         <div>
           <div>团队会员人数</div>
           <div>{{ memberInfo.team?.vip || 0 }}</div>
@@ -67,7 +127,6 @@
           <p>{{ memberInfo.first?.vip || 0 }}</p>
         </div>
       </div>
-    </div>
     <!--    <Loading v-if="loading" />-->
     <div>
       <!--      <div class="summary">-->
@@ -131,34 +190,34 @@
       </div>
       <!--      <van-search v-model="searchInfo.phone" placeholder="请输入要查询的手机号码" />-->
       <!--      <van-button color="#01c5f0" style="width: 100%; border-radius: 20px">直推人员列表</van-button>-->
-      <div style="padding: 10px">
-        <div style="font-size: 22px; color: #fff; font-weight: bolder">团队列表</div>
-        <!--        <van-tabs-->
-        <!--          v-model:active="active"-->
-        <!--          title-active-color="#01c5f0"-->
-        <!--          color="#01c5f0"-->
-        <!--          @change="tabChange"-->
-        <!--        >-->
-        <!--          <van-tab :title="'一级(' + (teamIds['one']?.length || 0) + ')'" name="one" />-->
-        <!--          <van-tab :title="'二级(' + (teamIds['two']?.length || 0) + ')'" name="two" />-->
-        <!--          <van-tab :title="'三级(' + (teamIds['three']?.length || 0) + ')'" name="three" />-->
-        <!--        </van-tabs>-->
-        <div style="background-color: #1f203d; margin: 10px; border-radius: 10px; overflow: hidden">
-          <t-tabs
-            :space-evenly="false"
-            default-value="one"
-            style="background-color: transparent; border-radius: 10px"
-            theme="tag"
-            @change="tabChange"
-          >
-            <t-tab-panel :label="'直推下级(' + (teamIds['one']?.length || 0) + ')'" value="one" />
-            <t-tab-panel :label="'间推下级(' + (teamIds['two']?.length || 0) + ')'" value="two" />
-            <!--                        <t-tab-panel-->
-            <!--                            :label="'三级直推(' + (teamIds['three']?.length || 0) + ')'"-->
-            <!--                            value="three"-->
-            <!--                        />-->
-          </t-tabs>
-        </div>
+      <div style="padding: 10px;background-color: #fff;margin: 15px;border-radius: 15px">
+<!--        <div style="font-size: 22px; color: #fff; font-weight: bolder">团队列表</div>-->
+                <van-tabs
+                  v-model:active="active"
+                  title-active-color="#000"
+                  color="#2a84c3"
+                  @change="tabChange"
+                >
+                  <van-tab :title="'直推下级(' + (teamIds['one']?.length || 0) + ')'" name="one" />
+                  <van-tab :title="'间推下级(' + (teamIds['two']?.length || 0) + ')'" name="two" />
+<!--                  <van-tab :title="'三级(' + (teamIds['three']?.length || 0) + ')'" name="three" />-->
+                </van-tabs>
+<!--        <div style="background-color: #1f203d; margin: 10px; border-radius: 10px; overflow: hidden">-->
+<!--          <t-tabs-->
+<!--            :space-evenly="false"-->
+<!--            default-value="one"-->
+<!--            style="background-color: transparent; border-radius: 10px"-->
+<!--            theme="tag"-->
+<!--            @change="tabChange"-->
+<!--          >-->
+<!--            <t-tab-panel :label="'直推下级(' + (teamIds['one']?.length || 0) + ')'" value="one" />-->
+<!--            <t-tab-panel :label="'间推下级(' + (teamIds['two']?.length || 0) + ')'" value="two" />-->
+<!--            &lt;!&ndash;                        <t-tab-panel&ndash;&gt;-->
+<!--            &lt;!&ndash;                            :label="'三级直推(' + (teamIds['three']?.length || 0) + ')'"&ndash;&gt;-->
+<!--            &lt;!&ndash;                            value="three"&ndash;&gt;-->
+<!--            &lt;!&ndash;                        />&ndash;&gt;-->
+<!--          </t-tabs>-->
+<!--        </div>-->
 
         <van-list
           v-model:loading="loading"
@@ -168,10 +227,10 @@
           @load="getDataList"
         >
           <div v-for="item in dataList" class="card">
-            <div class="card-body d-flex justify-content-between flex-row align-items-center">
-              <div class="d-flex flex-row" style="width: 100%; align-items: center">
-                <div class="u-avatar u-avatar--circle avatar-shadow">
-                  <van-image :src="headImg" height="40" width="40" />
+            <div class="card-body d-flex justify-content-between  align-items-center">
+              <div class="d-flex flex-row" style="width: 100%; align-items: center;border-bottom: 1px solid #ddd;padding-bottom: 10px">
+                <div class="u-avatar u-avatar--circle avatar-shadow" style="border: 1px solid #ccc;border-radius: 50%;overflow: hidden" >
+                  <van-image :src="headImg" height="50" width="50"  />
                 </div>
                 <div class="d-flex flex-column justify-content-center ms-2" style="flex: 1">
                   <div class="d-flex flex-row align-items-center">
@@ -191,29 +250,35 @@
                           justify-content: space-between;
                         "
                       >
-                        <span
-                          style="
-                            margin-bottom: 10px;
-                            color: #fff;
+                          <div style="display: flex;align-items: center;justify-content: center">
+                              <img src="./images/icon-rz.png" style="width: 15px;" alt="">
+
+                              <span
+                                  style="
+                            color: #000;
+                            padding-left: 4px;
                             font-weight: bolder;
-                            font-size: 16px;
+                            font-size: 15px;
                           "
-                        >
+                              >
                           {{
-                            (item.phone
-                              ? item.phone.substring(0, 3) + '****' + item.phone.substring(7)
-                              : '') || item.nickname
-                          }}</span
-                        >
-                        <span style="font-size: 14px; color: #ccc">
-                          {{ utils.timeToDate(item.create_time, 'Y-M-D') }}
+                                      (item.phone
+                                          ? item.phone.substring(0, 3) + '****' + item.phone.substring(7)
+                                          : '') || item.nickname
+                                  }}</span
+                              >
+                          </div>
+                        <span style="padding: 2px 4px;border-radius: 5px;font-size: 14px;width: fit-content; color: #666;background-color: #e5f2f9;margin-top: 8px">
+                            团队星级：{{item?.result?.wallet?.star||0}}星
+<!--                          {{ utils.timeToDate(item.create_time, 'Y-M-D H:i') }}-->
                         </span>
                       </div>
                       <span
                         style="
                           font-size: 14px;
                           border: 1px solid #ccc;
-                          color: #ccc;
+                          background-color: #ff8b19;
+                          color: #fff;
                           border-radius: 10px;
                           padding: 2px 5px;
                         "
@@ -227,6 +292,9 @@
                   <!--                </div>-->
                 </div>
               </div>
+                <div style="width: 100%;text-align: left;padding-top: 8px;font-size: 12px;color: #999">
+                    注册时间： {{ utils.timeToDate(item.create_time, 'Y-M-D H:i') }}
+                </div>
               <!--            <div class="money">￥{{ parseFloat(item?.result?.staff?.money || 0).toFixed(2) }}</div>-->
               <div class="money">
                 <!--              ￥{{ parseFloat(item?.result?.wallet?.today?.profit || 0).toFixed(2) }}-->
@@ -235,6 +303,7 @@
           </div>
         </van-list>
       </div>
+    </div>
     </div>
 
     <modzz v-model="service"></modzz>
@@ -258,7 +327,7 @@ import { _notice } from '@/utils'
 import { getSerialName } from '../../utils/getSerialName'
 import { getIsInApp } from '@/utils/getTopPadding'
 import dayjs from 'dayjs'
-import headImg from '@/assets/img/logo.png'
+import headImg from '@/assets/img/white-logo.jpg'
 
 const router = useRouter()
 let user
@@ -269,6 +338,8 @@ const memberInfo = ref({})
 const dataList = ref([])
 const userIncomeInfo = ref({})
 const active = ref('one')
+const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
+
 const format = (price = 0) => {
   let result = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   return result === '0' ? '0.00' : result
@@ -365,6 +436,19 @@ onActivated(() => {
 .team-benefits {
   height: 100%;
   overflow-y: auto;
+    background-color: #f7fcfa;
+    :deep(.van-nav-bar ){
+        .van-icon{
+            color:#000 !important;
+        }
+    }
+
+    :deep(.van-nav-bar__content){
+        background-color: #fff;
+        .van-nav-bar__title{
+            color:#000 !important;
+        }
+    }
 }
 
 .summary {
@@ -427,23 +511,26 @@ onActivated(() => {
 }
 
 .card {
-  padding: 10px;
   //box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 40px;
-  margin-bottom: 20px;
+  border-radius: 10px;
+    overflow: hidden;
+  margin-bottom: 10px;
   //background-color: #646060;
   color: #666;
 }
 
 .card-body {
+    padding: 10px;
+    background-color: #f6fafb;
   display: flex;
+    flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 
 .u-avatar {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   background-color: transparent;
   margin-right: 2px;
 }
@@ -505,12 +592,94 @@ onActivated(() => {
 .container {
   color: #fff;
   //background-color: #edecfa;
+    background: url("./images/team_bg.png") no-repeat left top / 120% 300px;
+
+    .info {
+        display: flex;
+        padding: 20px 20px 0;
+
+        .avatar {
+            img {
+                width: 60px;
+                border-radius: 50%;
+                height: 60px;
+            }
+        }
+
+        .info-r {
+            margin-left: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+            .t {
+                display: flex;
+                align-items: center;
+                color: #fff;
+                font-size: 22px;
+                img{
+                    margin-right: 8px;
+                    width: 20px;
+                }
+            }
+
+            .c {
+                color: #fff;
+            }
+
+            .b {
+                display: flex;
+                color: #fff;
+                fonnt-size: 12px;
+            }
+        }
+    }
+    .num-info{
+        margin: 14px;
+        background: url("./images/team_bg.jpg") no-repeat;
+        background-size: 100% 100%;
+        border-radius: 10px;
+        padding: 15px;
+        color: #3c4c64;
+        .top{
+            display: flex;
+            font-weight: bolder;
+            img{
+                width: 20px;
+            }
+            span{
+                font-size: 16px;
+                padding-left: 10px;
+            }
+        }
+
+        .bottom{
+            border-top: 1px solid rgba(123, 174, 217, 0.4);
+            padding: 15px 5px 0;
+            margin-top: 15px;
+            display: flex;
+
+            &>div{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                flex: 1;
+
+                &>div:first-child{
+                    font-weight: bolder;
+                    font-size: 16px;
+                }
+            }
+
+        }
+
+    }
   .num-box {
     padding: 16px;
     display: flex;
     align-items: center;
 
-    & > div:nth-child(1) {
+      & > div:nth-child(1) {
       width: 35%;
 
       & > div:nth-child(1) {

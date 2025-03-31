@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%; overflow: auto">
     <van-nav-bar
-      title="企业资质证照"
+      title="奖励发放规则"
       safe-area-inset-top
       fixed
       :class="{ inApp: getIsInApp() }"
@@ -10,10 +10,7 @@
       left-text="返回"
       left-arrow
     ></van-nav-bar>
-    <van-image :src="zizhizhengzhao1" width="100%"></van-image>
-    <van-image :src="zizhizhengzhao2" width="100%"></van-image>
-    <van-image :src="zizhizhengzhao3" width="100%"></van-image>
-    <van-image :src="zizhizhengzhao4" width="100%"></van-image>
+    <van-image :src="shareholder" width="100%" @click="showImage"></van-image>
     <!--<van-image-->
     <!--  :src="rule"-->
     <!--  width="94%"-->
@@ -24,16 +21,13 @@
 </template>
 
 <script lang="ts" setup>
-import zizhizhengzhao1 from '@/assets/img/zizhizhengzhao1.jpg'
-import zizhizhengzhao2 from '@/assets/img/zizhizhengzhao2.jpg'
-import zizhizhengzhao3 from '@/assets/img/zizhizhengzhao3.jpg'
-import zizhizhengzhao4 from '@/assets/img/zizhizhengzhao4.jpg'
+import shareholder from '@/assets/img/rankIntroduce.jpg'
 // import rule from '@/assets/img/rule.jpg'
 import { getIsInApp } from '@/utils/getTopPadding'
 import { showImagePreview } from 'vant'
-// const showImage = () => {
-//   showImagePreview([shareholder])
-// }
+const showImage = () => {
+  showImagePreview([shareholder])
+}
 </script>
 <style scoped>
 html {

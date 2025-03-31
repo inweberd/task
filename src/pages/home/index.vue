@@ -85,7 +85,7 @@
       <!--        text="汇盈传媒欢迎您，邀请好友赚翻天，现金奖励无上限！"-->
       <!--      />-->
 
-      <div v-show="activeTab === 0" class="app-list" style="margin-top: 120px">
+      <div v-show="activeTab === 0" class="app-list" style="margin-top: 80px">
         <div v-for="(item, index) of appList" class="app-list-item" @click="item.btnCb">
           <div class="l">
             <div class="logo">
@@ -115,6 +115,17 @@
             <div>普通用户广告投放</div>
             <div>特权：无特权</div>
             <div>日收益：固定0.5元</div>
+            <div
+              style="
+                position: absolute;
+                left: 15px;
+                bottom: 20px;
+                font-size: 22px;
+                text-shadow: 5px 5px 5px #081831;
+              "
+            >
+              点击开始赚钱
+            </div>
           </div>
         </div>
         <div class="item" @click="loadShort(3)">
@@ -123,23 +134,52 @@
             <div>特权1：会员免看广告</div>
             <div>特权2： 享受4-10倍加速收益</div>
             <div>日收益：每日0.5-2%浮动</div>
+            <div
+              style="
+                position: absolute;
+                left: 15px;
+                bottom: 20px;
+                font-size: 22px;
+                text-shadow: 5px 5px 5px #081831;
+              "
+            >
+              点击开始赚钱
+            </div>
           </div>
         </div>
         <div class="item" @click="$router.push('/rank')">
           <div class="item-box">
             <div>全网分红</div>
-            <div>排行榜！</div>
-<!--            <div style="position: absolute; left: 15px; bottom: 20px; font-size: 22px">-->
-<!--              等待开启-->
-<!--            </div>-->
+            <div>每周发放！</div>
+            <div>排行榜奖励！</div>
+            <div
+              style="
+                position: absolute;
+                left: 15px;
+                bottom: 20px;
+                font-size: 22px;
+                text-shadow: 5px 5px 5px #081831;
+              "
+            >
+              进入查看
+            </div>
           </div>
         </div>
-        <div class="item">
+        <div class="item" @click="$router.push('/yongjinjiajiang')">
           <div class="item-box">
             <div>佣金嘉奖</div>
-            <div>每日佣金双倍奖！</div>
-            <div style="position: absolute; left: 15px; bottom: 20px; font-size: 22px">
-              等待开启
+            <div>每天发放！</div>
+            <div>收入双倍！</div>
+            <div
+              style="
+                position: absolute;
+                left: 15px;
+                bottom: 20px;
+                font-size: 22px;
+                text-shadow: 5px 5px 5px #081831;
+              "
+            >
+              进入查看
             </div>
           </div>
         </div>
@@ -260,7 +300,7 @@
     </TipDialog>
     <TipDialog
       v-model="buyDialogShow"
-      confirm-text="去开通"
+      confirm-text="去购买"
       @confirm="
         () => {
           buyDialogShow = false
@@ -269,7 +309,7 @@
       "
     >
       <div style="padding: 20px; color: #fff; text-align: center">
-        <p style="font-size: 18px; font-weight: bolder; margin-bottom: 10px">请先开通学徒特权！</p>
+        <p style="font-size: 18px; font-weight: bolder; margin-bottom: 10px">请先购买学徒特权！</p>
         <p>会员广告收入是普通广告的5-10倍加速收益，最低学徒特权可以进行加速收益！</p>
       </div>
     </TipDialog>
@@ -362,7 +402,7 @@ const appList = ref([
   //   }
   // },
   {
-    name: '开通加速卡 ',
+    name: '购买加速卡 ',
     desc: '点击查看每周分红奖池！',
     logo: '7',
     btnLabel: '查看',
@@ -378,6 +418,19 @@ const appList = ref([
     btnCb() {
       // router.push('/zhubofuchizhengce')
       router.push('/demo')
+    }
+  },
+  {
+    name: '排行榜',
+    desc: '点击查看代理佣金排行榜！',
+    logo: '9',
+    btnLabel: '加入',
+    btnCb() {
+      // showImagePreview({
+      //   images: [weimaiquan]
+      // })
+      // window.location.href = 'https://api.onxxm900.cn/download/android.apk'
+      router.push('/rank')
     }
   }
   // {
@@ -869,7 +922,8 @@ const toGame = (plat) => {
       flex-wrap: wrap;
       .item {
         position: relative;
-        flex: 0 0 45%;
+        flex: 0 0 50%;
+        box-sizing: border-box;
         padding: 5px;
 
         .item-box {
@@ -880,6 +934,7 @@ const toGame = (plat) => {
           background-size: 100% 100%;
           padding: 10px;
           box-sizing: border-box;
+          color: #fff;
 
           & > div {
             &:nth-child(1) {
@@ -888,7 +943,7 @@ const toGame = (plat) => {
 
             &:nth-child(2) {
               font-size: 14px;
-              opacity: 0.8;
+              //opacity: 0.8;
               margin-top: 5px;
             }
           }
@@ -896,7 +951,7 @@ const toGame = (plat) => {
 
         &:nth-child(2) {
           .item-box {
-            background: url('./images/home-icon3.png') no-repeat;
+            background: url('./images/home-icon1.png') no-repeat;
             background-size: 100% 100%;
           }
         }
@@ -904,6 +959,12 @@ const toGame = (plat) => {
         &:nth-child(3) {
           .item-box {
             background: url('./images/home-icon1.png') no-repeat;
+            background-size: 100% 100%;
+          }
+        }
+        &:nth-child(4) {
+          .item-box {
+            background: url('./images/home-icon2.png') no-repeat;
             background-size: 100% 100%;
           }
         }

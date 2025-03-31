@@ -528,7 +528,7 @@ const state = reactive({
     }
   },
   struct: {
-    amount: 10
+    amount: null
   },
   modal: {
     service: false

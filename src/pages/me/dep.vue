@@ -199,13 +199,13 @@
 
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击去开通"
+      confirm-text="点击去购买"
       title="重要公告"
       @confirm="handleGonggaoConfirm"
     >
       <div style="padding: 20px">
         <p style="color: #fff; text-align: center">
-          请开通新手特权卡，再发起提现，提现时间为上午11点---晚上20点，提现30分钟内到账，每天不限制提现次数。
+          请购买新手特权卡，再发起提现，提现时间为上午11点---晚上20点，提现30分钟内到账，每天不限制提现次数。
         </p>
         <!--        <p style="margin-top: 10px">-->
         <!--          2: 你无需充值，你也可以使用余额转账功能，将你的余额出售给有会员的用户！-->

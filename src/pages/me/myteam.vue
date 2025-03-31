@@ -84,7 +84,34 @@
           <!--          </p>-->
         </div>
       </div>
-
+      <div class="chongzhiandtixian">
+        <!--        <div class="chongzhiyue">-->
+        <!--          充值余额(元)&nbsp;&nbsp;-->
+        <!--          <div class="num">{{ walletInfo?.amount || 0 }}</div>-->
+        <!--        </div>-->
+        <div></div>
+        <div class="btn-box">
+          <div style="margin-right: 10px">
+            <!--            <van-button-->
+            <!--              class="btn"-->
+            <!--              style="color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1; width: 100%"-->
+            <!--            >-->
+            <!--              今日新增佣金嘉奖:{{ bonus }}元 &nbsp;-->
+            <!--            </van-button>-->
+            <span style="color: #fff; font-size: 16px; font-weight: bolder">
+              今日新增佣金嘉奖:{{ bonus }}元
+            </span>
+          </div>
+          <van-button
+            style="flex: 1"
+            class="btn"
+            color="linear-gradient(to right, #fb5b4b, #9c38e5)"
+            @click="go('/yongjinjiajiang')"
+          >
+            点击领取
+          </van-button>
+        </div>
+      </div>
       <div class="chongzhiandtixian">
         <!--        <div class="chongzhiyue">-->
         <!--          充值余额(元)&nbsp;&nbsp;-->
@@ -98,7 +125,7 @@
               style="color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1; width: 100%"
               @click="go('/invest')"
             >
-              点击开通会员特权
+              点击购买会员特权
             </van-button>
           </div>
           <van-button
@@ -134,6 +161,7 @@
           <!--          </van-button>-->
         </div>
       </div>
+
       <!--      <div class="vipcount" style="color: red; margin-top: 10px; font-size: 16px">-->
       <!--        &lt;!&ndash;          会员等级: {{ getSerialName(userInfo?.result?.staff?.serial)&ndash;&gt;-->
       <!--        &lt;!&ndash;          }}{{ myStaffList?.length ? myStaffList?.length + '份' : '' }}&ndash;&gt;-->
@@ -827,6 +855,7 @@ import {
   logout as fnlogout,
   reqAdvertisingCount,
   reqAdvertisingSinglePrice,
+  reqBonusInvite,
   reqMyStaff,
   reqNgTransfer,
   reqPullNew,
@@ -934,14 +963,14 @@ const list = [
     fn() {
       router.push('/teamStat')
     }
+  },
+  {
+    label: '企业资质证照',
+    icon: 'user-o',
+    fn() {
+      router.push('/zizhizhengzhao')
+    }
   }
-  // {
-  //     label: '资质证照',
-  //     icon: 'user-o',
-  //     fn() {
-  //         router.push('/zizhizhengzhao')
-  //     }
-  // }
   // {
   //   label: '收入排行榜',
   //   icon: 'notes-o',
@@ -1148,9 +1177,21 @@ const handleEyeClick = () => {
     })
   })
 }
+
+const bonus = ref(0)
+const getRed = () => {
+  reqBonusInvite('query')
+    .then((res) => {
+      bonus.value = res.data.bonus || 0
+    })
+    .finally(() => {
+      closeToast()
+    })
+}
 onActivated(() => {
   userInfo.value = JSON.parse(window.localStorage.getItem('userInfo'))
   init()
+  getRed()
   getNewUserInfo()
   getMyStaff()
   bus.on('userInfoChange', (data) => {
@@ -1236,7 +1277,6 @@ onDeactivated(() => {
         justify-content: center;
 
         .txt1 {
-          line-height: 32px;
           font-size: 16px;
         }
 

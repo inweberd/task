@@ -116,7 +116,7 @@
     </div>
     <TipDialog
       v-model="showGonggaoOverlay2"
-      confirm-text="去开通"
+      confirm-text="去购买"
       @confirm="
         () => {
           $router.push('/invest')

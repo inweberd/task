@@ -61,7 +61,7 @@
           width: 100%;
         "
       >
-        当前可免费兑换会员余额
+        当前可免费购买会员余额
         <br />
         <span style="font-size: 22px">{{ userIncomeInfo?.wallet?.money || 0 }}</span>
         <div style="margin-top: 15px"></div>
@@ -106,16 +106,20 @@
           <div style="font-size: 12px; text-align: center">
             <span v-if="item.serial === 0">
               <div>30天有效期</div>
-              <div>到期续费</div>
+              <div>开通提现权限</div>
+              <div>无其他用途</div>
             </span>
-            <span v-else>永久循环收益</span>
+            <template v-else>
+              <div>永久有效期</div>
+              <div>永久循环收益</div>
+            </template>
           </div>
         </div>
       </div>
     </div>
     <div style="text-align: center; font-size: 20px">
       <div>注意：你的推广佣金，余额所有收入</div>
-      <div style="color: #ff3826; font-weight: bolder">都可以免费兑换会员</div>
+      <div style="color: #ff3826; font-weight: bolder">都可以免费购买会员</div>
     </div>
     <van-button
       block
@@ -125,7 +129,7 @@
       type="danger"
       @click="buy"
     >
-      开通加速卡
+      购买加速卡
     </van-button>
     <van-image :src="vipInfo" width="100%"></van-image>
 
@@ -236,7 +240,7 @@
                 "
                 type="primary"
                 @click="buyBase"
-                >0撸余额 <br />免费兑换
+                >0撸余额 <br />免费购买
               </el-button>
               <span></span>
               <el-button
@@ -288,7 +292,7 @@
                 "
                 type="primary"
                 @click="buy(item, item.count)"
-                >0撸余额 <br />免费兑换
+                >0撸余额 <br />免费购买
               </el-button>
               <span></span>
               <el-button
@@ -784,7 +788,7 @@ const buy = () => {
   ) {
     if (item.serial !== 0) {
       return showToast({
-        message: '请逐级开通！',
+        message: '请逐级购买！',
         icon: 'warning'
       })
     }

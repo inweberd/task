@@ -302,7 +302,7 @@ const generatePoster = async () => {
     return
   }
   qrCodeText.value =
-    'http://bbbwx0318aaaf15.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+    'http://bbbwx0318aaaf17.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     // encodeURIComponent(
     'https://weaw.shunyigong.com/#/signUp?invite=' +
     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code

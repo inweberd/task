@@ -1,5 +1,5 @@
 <template>
-  <div class="rank" >
+  <div class="rank">
     <!--    <van-nav-bar-->
     <!--      title="排行榜"-->
     <!--      safe-area-inset-top-->
@@ -9,36 +9,47 @@
     <!--      left-arrow-->
     <!--      @click-left="$router.back()"-->
     <!--    />-->
-      <van-nav-bar
-          style="position: fixed;top: 0;left: 0;z-index: 9;width: 100%;background-color:#143140;"
-          left-arrow
-          placeholder
-          title="排行榜"
-          @click-left="router.back()"
-      >
-          <template #right>
-              <!--        <van-icon name="friends-o" size="18" @click="service = true" />-->
-          </template>
-      </van-nav-bar>
-    <div class="qiansan">
-<!--    <div class="fenhong">-->
-<!--      <div class="title">-->
-<!--        &lt;!&ndash;        本次周期分红总金额 <br />&ndash;&gt;-->
-<!--        &lt;!&ndash;          （每X天进行一轮分红） <br />&ndash;&gt;-->
-<!--        <div>本轮奖池金额</div>-->
-<!--      </div>-->
-<!--      <div class="money">￥{{ total }}</div>-->
-<!--      &lt;!&ndash;      <van-divider style="border-color: #bababa"></van-divider>&ndash;&gt;-->
-<!--      &lt;!&ndash;      <div style="text-align: center; margin-top: 10px">&ndash;&gt;-->
-<!--      &lt;!&ndash;        <div class="" style="font-size: 24px; font-weight: bolder">本轮奖池金额发放倒计时</div>&ndash;&gt;-->
-<!--      &lt;!&ndash;        <div class="money" style="font-size: 22px; color: #000">{{ timeTxt }}</div>&ndash;&gt;-->
-<!--      &lt;!&ndash;      </div>&ndash;&gt;-->
-<!--    </div>-->
+    <van-nav-bar
+      style="position: fixed; top: 0; left: 0; z-index: 9; width: 100%; background-color: #e5f4f2"
+      left-arrow
+      placeholder
+      title="排行榜"
+      @click-left="$router.back()"
+    >
+      <template #right>
+        <span style="color: #1e83d3" @click="$router.push('/rankIntroduce')"> 奖励发放规则 </span>
+        <!--        <van-icon name="friends-o" size="18" @click="service = true" />-->
+      </template>
+    </van-nav-bar>
+    <div class="fenhong">
+      <div class="title">
+        <!--        本次周期分红总金额 <br />-->
+        <!--          （每X天进行一轮分红） <br />-->
+        <!--          <div style="display: flex; align-items: center">-->
+        <span>当前奖金</span>
+        <span class="money">￥{{ total * 10 }}</span>
+        <!--          </div>-->
+      </div>
+
+      <!--        <van-divider style="border-color: #bababa"></van-divider>-->
+      <div style="text-align: center; margin-top: 10px">
+        <div class="" style="font-size: 20px; font-weight: bolder">
+          奖金发放倒计时：{{ timeTxt }}
+        </div>
+        <!--          <div class="money" style="font-size: 22px; color: #000">{{ timeTxt }}</div>-->
+      </div>
+    </div>
+    <div class="qiansan" v-if="false">
       <div class="one">
         <div class="box">
           <div class="img-box">
-              <img style="width: 100%;height: 100%;" v-if="rankList?.[0]?.avatar" :src="rankList?.[1]?.avatar" alt="" />
-              <img style="width: 80%;height: 80%;" v-else :src=" headImg" alt="" />
+            <img
+              style="width: 100%; height: 100%"
+              v-if="rankList?.[0]?.avatar"
+              :src="rankList?.[1]?.avatar"
+              alt=""
+            />
+            <img style="width: 80%; height: 80%" v-else :src="headImg" alt="" />
           </div>
           <p>1</p>
         </div>
@@ -51,8 +62,13 @@
       <div class="two">
         <div class="box">
           <div class="img-box">
-            <img style="width: 100%;height: 100%;" v-if="rankList?.[1]?.avatar" :src="rankList?.[1]?.avatar" alt="" />
-            <img style="width: 80%;height: 80%;" v-else :src=" headImg" alt="" />
+            <img
+              style="width: 100%; height: 100%"
+              v-if="rankList?.[1]?.avatar"
+              :src="rankList?.[1]?.avatar"
+              alt=""
+            />
+            <img style="width: 80%; height: 80%" v-else :src="headImg" alt="" />
           </div>
 
           <p>2</p>
@@ -65,9 +81,13 @@
       <div class="three">
         <div class="box">
           <div class="img-box">
-              <img style="width: 100%;height: 100%;" v-if="rankList?.[2]?.avatar" :src="rankList?.[1]?.avatar" alt="" />
-              <img style="width: 80%;height: 80%;" v-else :src=" headImg" alt="" />
-
+            <img
+              style="width: 100%; height: 100%"
+              v-if="rankList?.[2]?.avatar"
+              :src="rankList?.[1]?.avatar"
+              alt=""
+            />
+            <img style="width: 80%; height: 80%" v-else :src="headImg" alt="" />
           </div>
           <p>3</p>
         </div>
@@ -99,13 +119,18 @@
           <section>
             <img :src="item.avatar || headImg" style="width: 100%; height: 100%" alt="" />
           </section>
-          <div>
-              <img src="./images/icon-rz.png" alt="">
-            <span>
-              {{ item.nickname || getPhone(item.phone) }}
-            </span>
+          <div style="position: relative; top: -14px">
+            <img src="./images/icon-rz.png" alt="" />
+            <div style="display: flex; flex-direction: column; position: relative">
+              <span style="line-height: 16px">
+                {{ item.nickname || getPhone(item.phone) }}
+              </span>
+              <div style="line-height: 16px; position: absolute; top: 22px; color: red">
+                等级：{{ item?.vip?.name || '暂无特权' }}
+              </div>
+            </div>
           </div>
-          <div>￥{{ item.total }}</div>
+          <div>￥{{ +item.total.toFixed(4) }}</div>
         </div>
       </div>
     </div>
@@ -227,7 +252,7 @@ function getCountdown() {
 
   // 如果当前时间已经超过本周日23:59:59，计算下周日的倒计时
   if (diff < 0) {
-    nextSunday.setDate(nextSunday.getDate() + 7)
+    nextSunday.setDate(nextSunday.getDate())
     const newDiff = nextSunday - now
     return formatCountdown(newDiff)
   }
@@ -299,7 +324,7 @@ onBeforeUnmount(() => {
     .list-container {
       flex: 1;
       overflow-y: auto;
-      margin: -110px 15px 0;
+      margin: 0px 15px 0;
     }
     .list-item {
       //width: 70%;
@@ -326,19 +351,18 @@ onBeforeUnmount(() => {
           background-size: 26px auto;
           background-position: center 5px;
         }
-          &:nth-child(3) {
-
-              display: flex;
-              align-items: center;
-              text-align: left;
-              white-space: nowrap;
-              img{
-                  margin: 0 5px 0 20px;
-                  width: 18px;
-              }
+        &:nth-child(3) {
+          display: flex;
+          align-items: center;
+          text-align: left;
+          white-space: nowrap;
+          img {
+            margin: 0 5px 0 20px;
+            width: 18px;
           }
+        }
         &:nth-child(4) {
-            //width: 30%;
+          //width: 30%;
           font-size: 14px;
           font-weight: bolder;
         }
@@ -380,15 +404,15 @@ onBeforeUnmount(() => {
   :deep(.van-nav-bar) {
     background: transparent;
     .van-nav-bar__title {
-      color: #fff;
+      color: #000 !important;
     }
 
     .van-nav-bar__text {
-      color: #fff;
+      color: #000 !important;
     }
 
     .van-icon {
-      color: #fff;
+      color: #000;
     }
   }
   :deep(.van-hairline--bottom) {
@@ -413,7 +437,7 @@ onBeforeUnmount(() => {
 .qiansan {
   background-image: url('@/assets/img/rank-bg.png');
   background-size: 100% 100%;
-    background-position-y:-50px ;
+  //background-position-y: -50px;
 
   background-repeat: no-repeat;
   width: 100%;
@@ -438,11 +462,10 @@ onBeforeUnmount(() => {
         height: 100%;
         border-radius: 50%;
         overflow: hidden;
-          background-color: #fff;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       p {
@@ -490,7 +513,7 @@ onBeforeUnmount(() => {
   }
   .two,
   .three {
-    top: 130px;
+    top: 180px;
     width: 95px;
     height: 80px;
     .info {
@@ -498,7 +521,7 @@ onBeforeUnmount(() => {
     }
   }
   .one {
-    top: 120px;
+    top: 170px;
     left: 50%;
     transform: translateX(-50%);
     width: 120px;
@@ -552,6 +575,8 @@ onBeforeUnmount(() => {
   //position: absolute;
   z-index: 2;
   width: 100%;
+  margin-top: 40px;
+  color: #000;
 
   //display: flex;
   //justify-content: center;

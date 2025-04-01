@@ -1,5 +1,5 @@
 <template>
-  <div class="gameList gameListClass" v-if="false">
+  <div class="gameList gameListClass">
     <van-nav-bar
       title="游戏大厅"
       safe-area-inset-top

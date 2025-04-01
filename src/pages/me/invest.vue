@@ -104,15 +104,15 @@
           <div>{{ item.name }}</div>
           <div><span class="fuhao">￥</span>{{ item.price }}</div>
           <div style="font-size: 12px; text-align: center">
-            <span v-if="item.serial === 0">
-              <div>30天有效期</div>
-              <div>开通提现权限</div>
-              <div>无其他用途</div>
-            </span>
-            <template v-else>
-              <div>永久有效期</div>
-              <div>永久循环收益</div>
-            </template>
+            <!--            <span v-if="item.serial === 0">-->
+            <!--              <div>30天有效期</div>-->
+            <!--              <div>开通提现权限</div>-->
+            <!--              <div>无其他用途</div>-->
+            <!--            </span>-->
+            <!--            <template v-else>-->
+            <div>永久有效期</div>
+            <div>永久循环收益</div>
+            <!--            </template>-->
           </div>
         </div>
       </div>
@@ -778,7 +778,7 @@ const buy = () => {
 
   if (userInfo.value.result.staff.id == 0 && item.serial != 0) {
     return showToast({
-      message: '请逐级开通！',
+      message: '请逐级购买！',
       icon: 'warning'
     })
   }
@@ -786,7 +786,7 @@ const buy = () => {
     userInfo.value.result.staff.serial + 1 != item.serial &&
     userInfo.value.result.staff.id !== 0
   ) {
-    if (item.serial !== 0) {
+    if (item.serial !== 0 && item.serial !== 1) {
       return showToast({
         message: '请逐级购买！',
         icon: 'warning'

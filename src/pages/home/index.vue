@@ -114,7 +114,10 @@
           <div class="item-box">
             <div>普通用户广告投放</div>
             <div>特权：无特权</div>
-            <div>日收益：固定0.5元</div>
+            <div>日收益：1-99元</div>
+            <div style="position: relative; top: 10px; color: red; font-size: 16px">
+              每日可无限次观看
+            </div>
             <div
               style="
                 position: absolute;
@@ -379,15 +382,15 @@ const loading = ref(false)
 const router = useRouter()
 const activeTab = ref(0)
 const appList = ref([
-  {
-    name: '参与方式 ',
-    desc: '点击查看每周分红奖池！',
-    logo: '6',
-    btnLabel: '查看',
-    btnCb() {
-      router.push('/canyufangshi')
-    }
-  },
+  // {
+  //   name: '参与方式 ',
+  //   desc: '点击查看每周分红奖池！',
+  //   logo: '6',
+  //   btnLabel: '查看',
+  //   btnCb() {
+  //     router.push('/canyufangshi')
+  //   }
+  // },
   // {
   //   name: '团队晋级奖励',
   //   desc: '点击查看代理佣金排行榜！',

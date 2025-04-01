@@ -17,6 +17,7 @@
     <div style="background-color: #1f203d; margin: 10px; border-radius: 10px; overflow: hidden">
       <t-tabs :space-evenly="false" default-value="收入" theme="tag" @change="tabChange">
         <t-tab-panel label="收入" value="收入" />
+        <t-tab-panel label="佣金嘉奖" value="佣金嘉奖" />
         <!--      <t-tab-panel value="排行榜奖励" label="奖池发放" />-->
         <t-tab-panel value="新手特权奖励" label="新手特权奖励" />
         <t-tab-panel label="支出" value="支出" />
@@ -25,6 +26,7 @@
     </div>
 
     <wallet-income v-if="activeTab === '收入'"></wallet-income>
+    <yongjinjiajiang v-if="activeTab === '佣金嘉奖'"></yongjinjiajiang>
     <!--      </van-tab>-->
     <!--      <van-tab title="支出明细" name="支出">-->
     <wallet-expense v-if="activeTab === '支出'"></wallet-expense>
@@ -44,6 +46,7 @@ import WalletIncome from './wallet/income.vue'
 import WalletExpense from './wallet/expense.vue'
 import WalletWithdraw from './wallet/withdraw.vue'
 import rengoufanli from './wallet/rengoufanli.vue'
+import yongjinjiajiang from './wallet/yongjinjiajiang.vue'
 import modzz from '../login/model.vue'
 import { getIsInApp } from '@/utils/getTopPadding'
 import Paihangjiangli from '@/pages/me/wallet/paihangjiangli.vue'

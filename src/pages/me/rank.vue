@@ -26,7 +26,7 @@
         <!--        本次周期分红总金额 <br />-->
         <!--          （每X天进行一轮分红） <br />-->
         <!--          <div style="display: flex; align-items: center">-->
-        <span>当前奖金</span>
+        <span>本周总提现</span>
         <span class="money">￥{{ total * 10 }}</span>
         <!--          </div>-->
       </div>
@@ -125,7 +125,9 @@
               <span style="line-height: 16px">
                 {{ item.nickname || getPhone(item.phone) }}
               </span>
-              <div style="line-height: 16px; position: absolute; top: 22px; color: red">
+              <div
+                style="line-height: 16px; position: absolute; top: 24px; left: -22px; color: red"
+              >
                 等级：{{ item?.vip?.name || '暂无特权' }}
               </div>
             </div>

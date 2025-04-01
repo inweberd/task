@@ -76,6 +76,9 @@ export function reqUserIncome() {
 
 // 购买会员
 export function reqEnterStaff(data) {
+  // return Promise.resolve({
+  //   code: 200
+  // })
   // return axiosInstance({ url: 'api/staff-entry/ok', method: 'post', data })
   return axiosInstance({ url: 'api/staff-entry/rent', method: 'post', data })
 }

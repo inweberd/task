@@ -286,8 +286,8 @@ export function reqNgPlayCode() {
 
 // 额度转换
 export function reqNgTransfer(data = {}) {
-  // return axiosInstance({ url: 'api/ng-game/transfer', method: 'post', data })
-  return Promise.resolve({ code: 200 })
+  return axiosInstance({ url: 'api/ng-game/transfer', method: 'post', data })
+  // return Promise.resolve({ code: 200 })
 }
 
 // 额度转换

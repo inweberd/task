@@ -282,20 +282,20 @@
                               </template>
                             </span>
                           </div>
-                          <span
-                            style="
-                              padding: 2px 4px;
-                              border-radius: 5px;
-                              font-size: 14px;
-                              width: fit-content;
-                              color: #666;
-                              background-color: #e5f2f9;
-                              margin-top: 8px;
-                            "
-                          >
-                            团队星级：{{ item?.result?.wallet?.star || 0 }}星
-                            <!--                          {{ utils.timeToDate(item.create_time, 'Y-M-D H:i') }}-->
-                          </span>
+                          <!--                          <span-->
+                          <!--                            style="-->
+                          <!--                              padding: 2px 4px;-->
+                          <!--                              border-radius: 5px;-->
+                          <!--                              font-size: 14px;-->
+                          <!--                              width: fit-content;-->
+                          <!--                              color: #666;-->
+                          <!--                              background-color: #e5f2f9;-->
+                          <!--                              margin-top: 8px;-->
+                          <!--                            "-->
+                          <!--                          >-->
+                          <!--                            团队星级：{{ item?.result?.wallet?.star || 0 }}星-->
+                          <!--                            &lt;!&ndash;                          {{ utils.timeToDate(item.create_time, 'Y-M-D H:i') }}&ndash;&gt;-->
+                          <!--                          </span>-->
                         </div>
                         <span
                           style="

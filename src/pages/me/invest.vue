@@ -101,25 +101,37 @@
           <template v-else-if="item.serial === 6">
             <img alt="" src="./images/v6.png" />
           </template>
+          <template v-else-if="item.serial === 7">
+            <img alt="" src="./images/v7.png" />
+          </template>
+          <template v-else-if="item.serial === 8">
+            <img alt="" src="./images/v8.png" />
+          </template>
           <div>{{ item.name }}</div>
           <div><span class="fuhao">￥</span>{{ item.price }}</div>
           <div style="font-size: 12px; text-align: center">
-            <!--            <span v-if="item.serial === 0">-->
-            <!--              <div>30天有效期</div>-->
-            <!--              <div>开通提现权限</div>-->
-            <!--              <div>无其他用途</div>-->
-            <!--            </span>-->
-            <!--            <template v-else>-->
-            <div>永久有效期</div>
-            <div>永久循环收益</div>
-            <!--            </template>-->
+            <span v-if="item.serial === 0">
+              <div>永久有效期</div>
+              <div>功能：广告每天无限刷</div>
+            </span>
+
+            <template v-else>
+              <div>
+                日收益:<span style="font-weight: bolder"
+                  >{{ item.price / 100 }}~{{ item.price / 50 }}元浮动</span
+                >
+              </div>
+              <div>有效期:永久</div>
+            </template>
           </div>
         </div>
       </div>
     </div>
     <div style="text-align: center; font-size: 20px">
-      <div>注意：你的推广佣金，余额所有收入</div>
-      <div style="color: #ff3826; font-weight: bolder">都可以免费购买会员</div>
+      <div>注意：你的所有收入，账户佣金，可以抵扣，免费兑换会员特权</div>
+      <div style="color: #ff3826; font-weight: bolder">
+        同时拥有多个会员，所有等级收益叠加生效！一次开通，永久有效！
+      </div>
     </div>
     <van-button
       block
@@ -131,7 +143,7 @@
     >
       购买加速卡
     </van-button>
-    <van-image :src="vipInfo" width="100%"></van-image>
+    <!--    <van-image :src="vipInfo" width="100%"></van-image>-->
 
     <!--    <div class="tip">-->
     <!--      <p>用户成为”短视频创作者合伙人"，投资平台精选的优质短广告商进行广告投放，</p>-->
@@ -992,22 +1004,23 @@ const speed = ref(0.5) //滚动速度
     width: 100%;
 
     .v-list {
-      overflow-x: auto;
+      //overflow-x: auto;
       display: flex;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       //display: flex;
       margin: 0 auto;
 
       .v-list-item {
-        flex: 0 0 auto;
+        flex: 0 0 calc(33% - 10px);
+        box-sizing: border-box;
 
         width: 110px;
         float: left;
-        margin: 10px;
+        margin: 5px;
         display: flex;
         align-items: center;
         flex-direction: column;
-        padding: 15px 0;
+        padding: 10px 0 10px;
 
         background-color: #eeeeee;
         color: #616161;

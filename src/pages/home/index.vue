@@ -404,6 +404,19 @@ const appList = ref([
   //     router.push('/jiangliguize')
   //   }
   // },
+  // {
+  //   name: '游戏专区',
+  //   desc: '点击查看代理佣金排行榜！',
+  //   logo: '6',
+  //   btnLabel: '加入',
+  //   btnCb() {
+  //     // showImagePreview({
+  //     //   images: [weimaiquan]
+  //     // })
+  //     // window.location.href = 'https://api.onxxm900.cn/download/android.apk'
+  //     router.push('/gameList')
+  //   }
+  // },
   {
     name: '购买加速卡 ',
     desc: '点击查看每周分红奖池！',

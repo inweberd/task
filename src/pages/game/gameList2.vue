@@ -1,5 +1,5 @@
 <template>
-  <div class="gameList gameListClass" v-if="false">
+  <div class="gameList gameListClass">
     <van-nav-bar
       title="游戏大厅"
       safe-area-inset-top
@@ -14,7 +14,133 @@
         <!--        <van-icon name="friends-o" size="18" @click="service = true" />-->
       </template>
     </van-nav-bar>
-    <section class="MEvhpqJsUzf5ML0TIC7Lx">
+    <div class="big-title" style="margin-top: 10px">PG电子</div>
+
+    <div
+      @click="toGame('pg')"
+      style="display: flex; flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; margin: 10px"
+    >
+      <div
+        v-for="item of pgList.slice(0, 18)"
+        style="
+          height: 100px;
+          width: 100px;
+          flex: 0 0 auto;
+          background-color: #fff;
+          margin-right: 10px;
+          border-radius: 6px;
+          overflow: hidden;
+          box-shadow: 0 2px 14px 0 rgba(65, 70, 92, 0.3);
+        "
+      >
+        <img style="width: 100%; height: 100%" :src="item.icon" alt="" />
+      </div>
+    </div>
+    <div
+      @click="toGame('pg')"
+      style="display: flex; flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; margin: 10px"
+    >
+      <div
+        v-for="item of pgList.slice(18)"
+        style="
+          height: 100px;
+          width: 100px;
+          flex: 0 0 auto;
+          margin-right: 10px;
+          border-radius: 6px;
+          overflow: hidden;
+          box-shadow: 0 2px 14px 0 rgba(65, 70, 92, 0.3);
+        "
+      >
+        <img style="width: 100%; height: 100%" :src="item.icon" alt="" />
+      </div>
+    </div>
+
+    <div class="big-title" style="margin-top: 10px">开元棋牌</div>
+
+    <div
+      @click="toGame('ky')"
+      style="display: flex; flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; margin: 10px"
+    >
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/220.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/510.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/620.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/830.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/910.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/2011.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/950.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/630.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/900.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/1960.webp" alt="" />
+      </div>
+    </div>
+    <div
+      @click="toGame('ky')"
+      style="display: flex; flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; margin: 10px"
+    >
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/201.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/204.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/203.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/205.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/206.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/207.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/208.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/209.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/210.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/211.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/213.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/215.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/216.webp" alt="" />
+      </div>
+      <div class="scroll-x-item">
+        <img src="@/pages/me/images/quanminlaibaojiang/217.webp" alt="" />
+      </div>
+    </div>
+    <section class="MEvhpqJsUzf5ML0TIC7Lx" v-if="false">
       <div class="_3GSCwNQRJwIJZ58cybgYLW">
         <div class="_3fjli6OU5bBO5wMUslOt_c">
           <div
@@ -494,9 +620,8 @@ import img1671262 from '@/pages/me/images/quanminlaibaojiang/1671262.webp'
 import img1682240 from '@/pages/me/images/quanminlaibaojiang/1682240.webp'
 import img98 from '@/pages/me/images/quanminlaibaojiang/98.jpg'
 import emptyImg from './images/empty.png'
-import { Toast } from 'tdesign-mobile-vue'
 import { reqNgPlay, reqNgTransfer } from '@/api/myApi'
-import { showFailToast } from 'vant'
+import { closeToast, showFailToast } from 'vant'
 
 const activeName = ref('1')
 
@@ -847,9 +972,9 @@ const pgList = [
   }
 ]
 const toGame = (plat) => {
-  Toast({
-    theme: 'loading',
-    message: '加载中...',
+  showLoadingToast({
+    forbidClick: true,
+    loadingType: 'spinner',
     duration: 0
   })
   // reqNgPlay(code)
@@ -869,20 +994,20 @@ const toGame = (plat) => {
       }
     })
     .finally(() => {
-      Toast.clear()
+      closeToast()
     })
 }
 onActivated(() => {
-  Toast({
-    theme: 'loading',
-    message: '加载中...',
+  showLoadingToast({
+    forbidClick: true,
+    loadingType: 'spinner',
     duration: 0
   })
   reqNgTransfer().then((res) => {
-    Toast.clear()
+    closeToast()
   })
   reqNgTransfer({ plat: 'ky' }).then((res) => {
-    Toast.clear()
+    closeToast()
   })
 })
 </script>
@@ -892,7 +1017,18 @@ onActivated(() => {
   color: red;
   height: 100%;
 }
-
+.scroll-x-item {
+  height: 100px;
+  width: 100px;
+  flex: 0 0 auto;
+  margin-right: 10px;
+  border-radius: 6px;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
 .MEvhpqJsUzf5ML0TIC7Lx {
   padding: 14px;
   height: calc(100% - 60px);

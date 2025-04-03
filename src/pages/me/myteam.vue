@@ -916,7 +916,7 @@ const list = [
   //   }
   // },
   {
-    label: '晋级奖励',
+    label: '晋升星级团队奖励',
     icon: 'like-o',
     fn() {
       router.push('/jiangliguize')

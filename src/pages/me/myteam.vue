@@ -915,13 +915,13 @@ const list = [
   //     router.push('/fenhong')
   //   }
   // },
-  {
-    label: '晋升星级团队奖励',
-    icon: 'like-o',
-    fn() {
-      router.push('/jiangliguize')
-    }
-  },
+  // {
+  //   label: '晋升星级团队奖励',
+  //   icon: 'like-o',
+  //   fn() {
+  //     router.push('/jiangliguize')
+  //   }
+  // },
   {
     label: '佣金互转',
     icon: 'like-o',

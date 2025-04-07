@@ -114,7 +114,11 @@
               <div>永久有效期</div>
               <div>功能：广告每天无限刷</div>
             </span>
-
+            <span v-else-if="item.serial === 1">
+              <div>每日收益；5元</div>
+              <div>有效期：30天</div>
+              <div>累计收益150元</div>
+            </span>
             <template v-else>
               <div>
                 日收益:<span style="font-weight: bolder"
@@ -730,7 +734,7 @@ const getAllStaff = () => {
   loading.value = true
 
   reqAllStaff(searchInfo).then((res: any) => {
-    staffList.value = res.data.data
+    staffList.value = res.data.data.filter((item) => item.serial)
     loading.value = false
     // res.data.data.forEach((item, index) => {
     //   for (const itemKey in item) {
@@ -788,22 +792,17 @@ const buy = () => {
     return
   }
 
-  if (userInfo.value.result.staff.id == 0 && item.serial != 0) {
+  if (userInfo.value.result.staff.id == 0 && item.serial != 1) {
     return showToast({
       message: '请逐级购买！',
       icon: 'warning'
     })
   }
-  if (
-    userInfo.value.result.staff.serial + 1 != item.serial &&
-    userInfo.value.result.staff.id !== 0
-  ) {
-    if (item.serial !== 0 && item.serial !== 1) {
-      return showToast({
-        message: '请逐级购买！',
-        icon: 'warning'
-      })
-    }
+  if (userInfo.value.result.staff.serial + 1 != item.serial) {
+    return showToast({
+      message: '请逐级购买！',
+      icon: 'warning'
+    })
   }
 
   loading.value = true

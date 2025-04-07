@@ -283,7 +283,7 @@
     <BaseFooter :is-white="true" v-bind:init-tab="1" />
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击下载68扫码进群"
+      confirm-text="点击下载微脉圈扫码进群"
       @confirm="handleGonggaoConfirm"
     >
       <p
@@ -295,7 +295,7 @@
           font-weight: bolder;
         "
       >
-        请使用68APP扫码进官方群
+        请使用微脉圈APP扫码进官方群
       </p>
       <div style="padding: 20px">
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
@@ -312,8 +312,8 @@
       "
     >
       <div style="padding: 20px; color: #fff; text-align: center">
-        <p style="font-size: 18px; font-weight: bolder; margin-bottom: 10px">请先购买学徒特权！</p>
-        <p>会员广告收入是普通广告的5-10倍加速收益，最低学徒特权可以进行加速收益！</p>
+        <p style="font-size: 18px; font-weight: bolder; margin-bottom: 10px">请先购买体验卡！</p>
+        <p>会员广告收入是普通广告的5-10倍加速收益！</p>
       </div>
     </TipDialog>
 
@@ -363,7 +363,7 @@ const showGonggaoOverlay = ref(false)
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
   // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
-  window.location.href = 'https://68chat5.com/cn/'
+  window.location.href = 'http://fir.edujia.com/wmq'
 }
 const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
 

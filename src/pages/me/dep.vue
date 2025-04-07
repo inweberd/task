@@ -205,7 +205,7 @@
     >
       <div style="padding: 20px">
         <p style="color: #fff; text-align: center">
-          请购买新手特权卡，再发起提现，提现时间为上午11点---晚上20点，提现30分钟内到账，每天不限制提现次数。
+          请购买特权卡，再发起提现，提现时间为上午11点---晚上20点，提现30分钟内到账，每天不限制提现次数。
         </p>
         <!--        <p style="margin-top: 10px">-->
         <!--          2: 你无需充值，你也可以使用余额转账功能，将你的余额出售给有会员的用户！-->
@@ -447,12 +447,13 @@ async function goPay() {
   }
 
   const myStaffRes = await reqMyStaff()
-  const findItem = (myStaffRes?.data || []).find((item) => {
-    return item?.result?.staff?.id === 176
-  })
-  // const serial = user?.result?.staff?.serial
-  // if (!serial && user?.result?.staff?.id !== 176) {
-  if (!findItem) {
+  // const findItem = (myStaffRes?.data || []).find((item) => {
+  //   return item?.result?.staff?.id === 176
+  // })
+  const serial = user?.result?.staff?.serial
+  // if (!serial) {
+  if (!myStaffRes?.data?.length) {
+    // if (!findItem) {
     showGonggaoOverlay.value = true
     // showDialog({
     //   title: '重要公告',

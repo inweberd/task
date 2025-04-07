@@ -36,7 +36,7 @@
       </van-swipe>
     </div>
     <div class="top-box">
-      <div style="align-items: center">
+      <div style="align-items: center" @click="$router.push('/yiyouhuiyuan')">
         <div class="avatar" @click="renzheng(userInfo.avatar)">
           <img :src="userInfo.avatar || defaultAvatar" />
         </div>

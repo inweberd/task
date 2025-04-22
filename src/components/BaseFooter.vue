@@ -6,7 +6,7 @@
           <img src="@/assets/icon/1-active.png" alt="" class="add" v-if="currentTab === 1" />
           <img src="@/assets/icon/1.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 1 ? '#fff' : '' }">主页</div>
+        <div :style="{ color: currentTab === 1 ? '#fff' : '' }">赚钱</div>
       </div>
     </div>
     <!--    <div class="l-button" @click="refresh(2)">-->
@@ -19,31 +19,37 @@
     <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">零撸专区</div>-->
     <!--      </div>-->
     <!--    </div>-->
-    <!--    <div class="l-button" @click="loadShort(3)">-->
-    <!--      <div class="add-ctn">-->
-    <!--        <div class="img-box">-->
-    <!--          <img src="@/assets/icon/6.png" alt="" class="add" v-if="currentTab === 2" />-->
-    <!--          <img src="@/assets/icon/6.png" alt="" class="add" v-else />-->
-    <!--        </div>-->
-    <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">会员专享</div>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="l-button" @click="$router.push('/gameList')">-->
-    <!--      <div class="add-ctn">-->
-    <!--        <div class="img-box">-->
-    <!--          <img src="@/assets/icon/3-active.png" alt="" class="add" v-if="currentTab === 2" />-->
-    <!--          <img src="@/assets/icon/3.png" alt="" class="add" v-else />-->
-    <!--        </div>-->
-    <!--        &lt;!&ndash;        <div :style="{ color: currentTab === 2 ? '#666' : '' }">大拇指娱乐</div>&ndash;&gt;-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <div class="l-button" @click="$router.push('/gameList')">
+      <div class="add-ctn">
+        <div class="img-box">
+          <!--          <img src="@/assets/icon/2-active.png" alt="" class="add" v-if="currentTab === 2" />-->
+          <!--          <img src="@/assets/icon/2.png" alt="" class="add" v-else />-->
+          <img src="@/assets/icon/11.png" alt="" class="add" v-if="currentTab === 2" />
+          <img src="@/assets/icon/11.png" alt="" class="add" v-else />
+        </div>
+        <div :style="{ color: currentTab === 2 ? '#666' : '' }">棋牌娱乐</div>
+      </div>
+    </div>
+    <div class="l-button" @click="$router.push('/jubaopen')">
+      <div class="add-ctn">
+        <div class="img-box">
+          <!--          <img src="@/assets/icon/3-active.png" alt="" class="add" v-if="currentTab === 2" />-->
+          <!--          <img src="@/assets/icon/3.png" alt="" class="add" v-else />-->
+          <img src="@/assets/icon/10.png" alt="" class="add" v-if="currentTab === 2" />
+          <img src="@/assets/icon/10.png" alt="" class="add" v-else />
+        </div>
+        <div :style="{ color: currentTab === 2 ? '#666' : '' }">聚宝盆</div>
+      </div>
+    </div>
     <div class="l-button" @click="tab(5)">
       <div class="add-ctn">
         <div class="img-box">
-          <img src="@/assets/icon/4-active.png" alt="" class="add" v-if="currentTab === 5" />
-          <img src="@/assets/icon/4.png" alt="" class="add" v-else />
+          <!--          <img src="@/assets/icon/4-active.png" alt="" class="add" v-if="currentTab === 5" />-->
+          <!--          <img src="@/assets/icon/i4.png" alt="" class="add" v-else />-->
+          <img src="@/assets/icon/12.png" alt="" class="add" v-if="currentTab === 2" />
+          <img src="@/assets/icon/12.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 5 ? '#fff' : '' }">特权加速</div>
+        <div :style="{ color: currentTab === 5 ? '#fff' : '' }">会员</div>
       </div>
     </div>
     <div class="l-button" @click="tab(6)">

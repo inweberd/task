@@ -86,16 +86,16 @@
         "
       />
     </div>
-    <div class="jine-box">
-      <div
-        v-for="item of columns"
-        :class="{ active: item.value == state.struct.amount }"
-        class="jine-item"
-        @click="state.struct.amount = item.value"
-      >
-        ￥{{ item.text }}
-      </div>
-    </div>
+    <!--    <div class="jine-box">-->
+    <!--      <div-->
+    <!--        v-for="item of columns"-->
+    <!--        :class="{ active: item.value == state.struct.amount }"-->
+    <!--        class="jine-item"-->
+    <!--        @click="state.struct.amount = item.value"-->
+    <!--      >-->
+    <!--        ￥{{ item.text }}-->
+    <!--      </div>-->
+    <!--    </div>-->
     <div v-if="false" class="container">
       <!--      <div-->
       <!--        style="-->
@@ -367,7 +367,7 @@
     </van-floating-bubble>
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击下载土豆聊天扫码进群"
+      confirm-text="点击下载68聊天扫码进群"
       @confirm="handleGonggaoConfirm"
     >
       <p
@@ -379,7 +379,7 @@
           font-weight: bolder;
         "
       >
-        请使用土豆APP扫码进官方群
+        请使68聊天APP扫码进官方群
       </p>
       <div style="padding: 20px">
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
@@ -474,7 +474,7 @@ const openDownload = (url) => {
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
   // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
-  window.location.href = 'https://www.potato186.org/dl'
+  window.location.href = 'https://68chat.com/cn/'
 }
 const payItemClick = (id) => {
   state.item.pay.id = id

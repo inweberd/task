@@ -1,7 +1,7 @@
 <template>
-  <div class="gameList gameListClass" v-if="false">
+  <div class="gameList gameListClass">
     <van-nav-bar
-      title="游戏大厅"
+      title="推广下级玩游戏，得超高返利"
       safe-area-inset-top
       fixed
       placeholder
@@ -24,17 +24,24 @@
             @click="activeName = item.value"
           >
             <div class="SHA_z4ugAD8lQYQU372Rk" :class="[item.className]"></div>
-            <span>{{ item.label }}</span>
+            <span v-if="item.value != 8">{{ item.label }}</span>
+            <span style="margin-top: -6px" v-else>{{ item.label }}</span>
           </div>
         </div>
         <div class="_1IuUKlAGMrH1UXGdM1loCa">
           <div
-            @click="toGame('pg')"
             :class="{ show: activeName === '1' }"
             class="_2C3QU_iJVaQd5AF-Xs_Khp gameItem gameItem-ky"
           >
-            <div v-for="item of pgList" class="_3oaripjZ52OOjBDUAHwulJ">
+            <div
+              v-for="item of pgList"
+              @click="toGame('pg', item.code)"
+              class="_3oaripjZ52OOjBDUAHwulJ"
+            >
               <img :src="item.icon" alt="" />
+              <p style="width: 100%; text-align: center; color: #ddd; font-size: 12px">
+                {{ item.name }}
+              </p>
             </div>
           </div>
           <div
@@ -363,10 +370,28 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                color: #000;
+                font-size: 22px;
+                color: #fff;
               "
             >
-              <van-empty :image="emptyImg" image-size="80" description="开发中，敬请期待！" />
+              等待上架中！
+              <!--              <van-empty :image="emptyImg" image-size="80" description="等待上架中！" />-->
+            </div>
+          </div>
+          <div
+            :class="{ show: ['8'].includes(activeName) }"
+            class="_2C3QU_iJVaQd5AF-Xs_Khp gameItem"
+          >
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img-->
+            <!--                src="https://net.ng-demo.xyz/Areas/Wap11/Content/images/BIimg/live/AG.png"-->
+            <!--                alt=""-->
+            <!--              />-->
+            <!--            </div>-->
+            <div style="width: 100%; display: flex; align-items: center; justify-content: center">
+              <img src="./images/youxibankuai.jpg" style="width: 100%" alt="" />
+
+              <!--              <van-empty :image="emptyImg" image-size="80" description="等待上架中！" />-->
             </div>
           </div>
           <div
@@ -496,7 +521,7 @@ import img98 from '@/pages/me/images/quanminlaibaojiang/98.jpg'
 import emptyImg from './images/empty.png'
 import { Toast } from 'tdesign-mobile-vue'
 import { reqNgPlay, reqNgTransfer } from '@/api/myApi'
-import { showFailToast } from 'vant'
+import { closeToast, showFailToast } from 'vant'
 
 const activeName = ref('1')
 
@@ -522,19 +547,24 @@ const tabList = ref([
   //   className: '_2ktsXc1lo5cTtZpxZKiYF6'
   // },
   {
-    label: '真人棋牌',
+    label: '体育',
     value: '5',
     className: 'Bh10iLHOD3fbD3yimQB8U'
   },
   {
-    label: '彩票游戏',
+    label: '彩票',
     value: '6',
     className: '_2lfeI7Rs4oq01GCTjdQYcz'
   },
   {
-    label: '体育游戏',
+    label: '真人棋牌',
     value: '7',
     className: '_2lfeI7Rs4oq01GCTjdQYcz'
+  },
+  {
+    label: '游戏板块\n' + '推广挣钱',
+    value: '8',
+    className: '_2ktsXc1lo5cTtZpxZKiYF6'
   }
 ])
 
@@ -621,7 +651,7 @@ const pgList = [
     code: '87'
   },
   {
-    name: '摇钱树',
+    name: '黄金摇钱树',
     online: Math.floor(Math.random() * 1000 + 1000),
     icon: img26,
     value: '50000',
@@ -764,15 +794,7 @@ const pgList = [
     return: '96.50%',
     code: '132'
   },
-  {
-    name: '黄金摇钱树',
-    online: Math.floor(Math.random() * 1000 + 1000),
-    icon: img1312883,
-    value: '90000',
-    rtp: '中',
-    return: '96.63%',
-    code: '1312883'
-  },
+
   {
     name: '夏威夷探奇',
     online: Math.floor(Math.random() * 1000 + 1000),
@@ -792,7 +814,7 @@ const pgList = [
     code: '1420892'
   },
   {
-    name: '金秋射手',
+    name: '金球射手',
     online: Math.floor(Math.random() * 1000 + 1000),
     icon: img1489936,
     value: '50000',
@@ -844,12 +866,586 @@ const pgList = [
     rtp: '中',
     return: '96.41%',
     code: '98'
+  },
+  {
+    name: '街头涂鸦',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/graffiti-rush/WGBG-dcae39fe.webp',
+    code: '1804577'
+  },
+  {
+    name: '宝藏大冒险',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/mr-treas-fort/WGBG-abacaefa.webp',
+    code: '1799745'
+  },
+  {
+    name: '幸运草之恋',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/lucky-clover/WGBG-c14c5743.jpg',
+    code: '1601012'
+  },
+  {
+    name: '印加奇迹',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/incan-wonders/WGBG-6797bfcf.webp',
+    code: '1850016'
+  },
+  {
+    name: '金蛇招财',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/fortune-snake/WGBG-0ff7b563.webp',
+    code: '1879752'
+  },
+  {
+    name: '艺伎之刃',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/geisha-revenge/WGBG-f60d7eeb.webp',
+    code: '1702123'
+  },
+  {
+    name: '真爱巧克力',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/choc-deluxe/WGBG-4cddc0c1.webp',
+    code: '1666445'
+  },
+  {
+    name: '里约嘉年华',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/rio-fantasia/WGBG-96211ea2.webp',
+    code: '1786529'
+  },
+  {
+    name: '世界珍宝馆',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/museum-mystery/WGBG-80ca9c12.webp',
+    code: '1755623'
+  },
+  {
+    name: '美食夏日祭',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/oishi-delights/WGBG-dab3ef8e.webp',
+    code: '1815268'
+  },
+  {
+    name: '三只疯狂小猪',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/three-cz-pigs/WGBG-4ad14e24.webp',
+    code: '1727711'
+  },
+  {
+    name: '南美之翼',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/wings-iguazu/WGBG-b655663b.webp',
+    code: '1747549'
+  },
+  {
+    name: '极道荣耀',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/yakuza-honor/WGBG-d8cb46dc.webp',
+    code: '1760238'
+  },
+  {
+    name: '鲨鱼赏金',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/shark-bounty/WGBG-14592919.webp',
+    code: '1648578'
+  },
+  {
+    name: '热血足球',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/futebol-fever/WGBG-d7c09adb.webp',
+    code: '1778752'
+  },
+  {
+    name: '小鸡跑酷',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/chicky-run/WGBG-a8333781.jpg',
+    code: '1738001'
+  },
+  {
+    name: '丧尸危机',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/zombie-outbrk/WGBG-646a274d.webp',
+    code: '1635221'
+  },
+  {
+    name: '阿努比斯',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/anubis-wrath/WGBG-b5794c23.jpg',
+    code: '1623475'
+  },
+  {
+    name: '魔法药水',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/mystic-potions/WGBG-a09ee14c.webp',
+    code: '1717688'
+  },
+  {
+    name: '墨西哥狂欢',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/pinata-wins/WGBG-ebc64a3a.jpg',
+    code: '1492288'
+  },
+  {
+    name: '猿宇宙#3258',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/wild-ape-3258/WGBG-0b185d0e.jpg',
+    code: '1508783'
+  },
+  {
+    name: '金龙送宝',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/fortune-dragon/WGBG-78525c39.jpg',
+    code: '1695365'
+  },
+  {
+    name: '寻龙探宝2',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/dragon-hatch2/WGBG-f748ba66.jpg',
+    code: '1451122'
+  },
+  {
+    name: '狼人传奇',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/werewolf-hunt/WGBG-b5a6b92e.jpg',
+    code: '1615454'
+  },
+  {
+    name: '黑帮风云',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/mafia-mayhem/WGBG-ad954edc.jpg',
+    code: '1580541'
+  },
+  {
+    name: '铸造大师',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/forge-wealth/WGBG-24ebaad9.jpg',
+    code: '1555350'
+  },
+  {
+    name: '怪盗神偷',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/wild-heist-co/WGBG-a373f9d3.jpg',
+    code: '1568554'
+  },
+  {
+    name: '忍者小浣熊',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/ninja-raccoon/WGBG-7ddf70cc.jpg',
+    code: '1529867'
+  },
+  {
+    name: '角斗士荣耀',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/gladi-glory/WGBG-d14bb74a.jpg',
+    code: '1572362'
+  },
+  {
+    name: '皇家游轮',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/cruise-royale/WGBG-245188e4.jpg',
+    code: '1473388'
+  },
+  {
+    name: '水果甜心',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/fruity-candy/WGBG-779625ce.jpg',
+    code: '1397455'
+  },
+  {
+    name: '超级高尔夫',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/spr-golf-drive/WGBG-400548fd.jpg',
+    code: '1513328'
+  },
+  {
+    name: '元素精灵',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/myst-spirits/WGBG-4ee575d4.jpg',
+    code: '1432733'
+  },
+  {
+    name: '泰嗨泼水节',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/songkran-spl/WGBG-26faa3c5.jpg',
+    code: '1448762'
+  },
+  {
+    name: '烘焙总动员',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/bakery-bonanza/WGBG-53e16c1f.jpg',
+    code: '1418544'
+  },
+  {
+    name: '金钱兔',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/fortune-rabbit/WGBG-824e242f.jpg',
+    code: '1543462'
+  },
+  {
+    name: '点石成金',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/midas-fortune/WGBG-2cf611e2.jpg',
+    code: '1402846'
+  },
+  {
+    name: '美食美刻',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/diner-delights/WGBG-1d3489a9.jpg',
+    code: '1372643'
+  },
+  {
+    name: '炼金工坊',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/alchemy-gold/WGBG-ac326465.jpg',
+    code: '1368367'
+  },
+  {
+    name: '维京纪元',
+    icon: 'https://public.x1skf.com/pages/static/image/zh/NewWebGameBg/asgardian-rs/WGBG-fda6c086.jpg',
+    code: '1340277'
+  },
+  {
+    name: '图腾奇迹',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/totem-wonders/WGBG-05786d26.jpg',
+    code: '1338274'
+  },
+  {
+    name: '极速赢家',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/speed-winner/WGBG-ff4c958a.jpg',
+    code: '127'
+  },
+  {
+    name: '珀尔修斯传奇',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/legend-perseus/WGBG-a4d12900.jpg',
+    code: '128'
+  },
+  {
+    name: '发财鱼虾蟹',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/win-win-fpc/WGBG-0e9e8132.jpg',
+    code: '129'
+  },
+  {
+    name: '蝶恋花',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/btrfly-blossom/WGBG-357ca4ea.jpg',
+    code: '125'
+  },
+  {
+    name: '电玩金猪',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/lucky-piggy/WGBG-067d0bc9.jpg',
+    code: '130'
+  },
+  {
+    name: '斗鸡',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/rooster-rbl/WGBG-7440f895.jpg',
+    code: '123'
+  },
+  {
+    name: '绝地大逃杀',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/battleground/WGBG-7a2235e0.jpg',
+    code: '124'
+  },
+  {
+    name: '虎虎生财',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/fortune-tiger/WGBG-8a0ee67c.jpg',
+    code: '126'
+  },
+  {
+    name: '神鹰宝石',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/garuda-gems/WGBG-a4e9b367.jpg',
+    code: '122'
+  },
+  {
+    name: '日月星辰',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/dest-sun-moon/WGBG-2f8c4d8a.jpg',
+    code: '121'
+  },
+  {
+    name: '假面嘉年华',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/mask-carnival/WGBG-58a5548e.jpg',
+    code: '118'
+  },
+  {
+    name: '韩宫御宴',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/queen-banquet/WGBG-2b28f462.jpg',
+    code: '120'
+  },
+  {
+    name: '江山美景图',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/oriental-pros/WGBG-3eb34640.jpg',
+    code: '112'
+  },
+  {
+    name: '百鬼夜行',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/spirit-wonder/WGBG-540eab3e.jpg',
+    code: '119'
+  },
+  {
+    name: '夜醉佳人',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/cocktail-nite/WGBG-786234c0.jpg',
+    code: '117'
+  },
+  {
+    name: '钞级表情包',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/emoji-riches/WGBG-5da29a8c.jpg',
+    code: '114'
+  },
+  {
+    name: '超市大血拼',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/sprmkt-spree/WGBG-d6615dc8.jpg',
+    code: '115'
+  },
+  {
+    name: '丽影奇兵之探秘埃及',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/crypt-fortune/WGBG-f3d5f284.jpg',
+    code: '113'
+  },
+  {
+    name: '恐龙帝国',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/jurassic-kdm/WGBG-852af55e.jpg',
+    code: '110'
+  },
+  {
+    name: '人鱼公主',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/mermaid-riches/WGBG-b2db9c50.jpg',
+    code: '102'
+  },
+  {
+    name: '宝石传奇',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/majestic-ts/WGBG-3fe594a6.jpg',
+    code: '95'
+  },
+  {
+    name: '太阳神传说',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/rise-of-apollo/WGBG-97017650.jpg',
+    code: '101'
+  },
+  {
+    name: '糖心风暴',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/candy-bonanza/WGBG-65e00f30.jpg',
+    code: '100'
+  },
+  {
+    name: '冰锋奇侠',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/jack-frosts/WGBG-3c2dabf2.png',
+    code: '97'
+  },
+  {
+    name: '冰火双娇',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/gdn-ice-fire/WGBG-4d347c26.jpg',
+    code: '91'
+  },
+  {
+    name: '巴厘之旅',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/bali-vacation/WGBG-bb6de09c.png',
+    code: '94'
+  },
+  {
+    name: '新国粹',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/opera-dynasty/WGBG-3df179bd.jpg',
+    code: '93'
+  },
+  {
+    name: '金玉满堂',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/jewels-prosper/WGBG-74984401.jpg',
+    code: '88'
+  },
+  {
+    name: '艳后之谜',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/sct-cleopatra/WGBG-5a571ba0.jpg',
+    code: '90'
+  },
+  {
+    name: '德古拉女爵',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/vampires-charm/WGBG-e1ece64c.jpg',
+    code: '58'
+  },
+  {
+    name: '星旅淘金',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/galactic-gems/WGBG-7d43912c.jpg',
+    code: '86'
+  },
+  {
+    name: '欢乐嘉年华',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/circus-delight/WGBG-6f1268e7.jpg',
+    code: '80'
+  },
+  {
+    name: '澳门壕梦',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/dreams-of-macau/WGBG-4d0666af.jpg',
+    code: '79'
+  },
+  {
+    name: '凤凰传奇',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/phoenix-rises/WGBG-d75b447c.jpg',
+    code: '82'
+  },
+  {
+    name: '福运象财神',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/ganesha-fortune/WGBG-591278b7.jpg',
+    code: '75'
+  },
+  {
+    name: '糖果连连爆',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/candy-burst/WGBG-3b16fea6.jpg',
+    code: '70'
+  },
+  {
+    name: '少林足球',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/shaolin-soccer/WGBG-f7ef7ecf.jpg',
+    code: '67'
+  },
+  {
+    name: '鼠鼠福福',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/fortune-mouse/WGBG-da1aece4.jpg',
+    code: '68'
+  },
+  {
+    name: '亲爱的',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/reel-love/WGBG-e1188ab6.jpg',
+    code: '20'
+  },
+  {
+    name: '龙虎争霸',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/dragon-tiger-luck/WGBG-6b0882f9.jpg',
+    code: '63'
+  },
+  {
+    name: '拳霸',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/muay-thai-champion/WGBG-662422d0.jpg',
+    code: '64'
+  },
+  {
+    name: '宝石侠 - 宝藏征途',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/gem-saviour-conquest/WGBG-cd7fe5e8.jpg',
+    code: '62'
+  },
+  {
+    name: '唐伯虎点秋香',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/flirting-scholar/WGBG-7c2b8537.jpg',
+    code: '61'
+  },
+  {
+    name: '爱尔兰精灵',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/leprechaun-riches/WGBG-ad01f87a.jpg',
+    code: '60'
+  },
+  {
+    name: '忍者vs武侍',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/ninja-vs-samurai/WGBG-7e386636.jpg',
+    code: '59'
+  },
+  {
+    name: '冰雪大冲关',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/the-great-icescape/WGBG-d23ec608.jpg',
+    code: '53'
+  },
+  {
+    name: '双囍临门',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/double-fortune/WGBG-84cabc82.jpg',
+    code: '48'
+  },
+  {
+    name: '嘻游记',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/journey-to-the-wealth/WGBG-9276a38a.jpg',
+    code: '50'
+  },
+  {
+    name: '皇上吉祥',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/emperors-favour/WGBG-a6528b1d.jpg',
+    code: '44'
+  },
+  {
+    name: '水果丛林',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/jungle-delight/WGBG-cf279187.jpg',
+    code: '40'
+  },
+  {
+    name: '象财神',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/ganesha-gold/WGBG-85ae7954.jpg',
+    code: '42'
+  },
+  {
+    name: '金猪报财',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/piggy-gold/WGBG-3000b0f3.jpg',
+    code: '39'
+  },
+  {
+    name: '宝石侠 - 大宝剑',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/gem-saviour-sword/WGBG-70f6fd91.jpg',
+    code: '38'
+  },
+  {
+    name: '至尊百家乐',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/baccarat-deluxe/WGBG-c1637441.jpg',
+    code: '31'
+  },
+  {
+    name: '横财来啦',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/fortune-gods/WGBG-870a6149.jpg',
+    code: '3'
+  },
+  {
+    name: '摇钱树',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/fortune-tree/WGBG-113e6966.jpg',
+    code: '26'
+  },
+  {
+    name: '嘻哈熊猫',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/hip-hop-panda/WGBG-903e5c24.jpg',
+    code: '33'
+  },
+  {
+    name: '舞狮进宝',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/prosperity-lion/WGBG-096d0597.jpg',
+    code: '36'
+  },
+  {
+    name: '后羿射日',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/legend-of-hou-yi/WGBG-875d659c.jpg',
+    code: '34'
+  },
+  {
+    name: '万胜狂欢夜',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/mr-hallow-win/WGBG-881725d0.jpg',
+    code: '35'
+  },
+  {
+    name: '逆袭的小红帽',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/hood-wolf/WGBG-9b6ff939.jpg',
+    code: '18'
+  },
+  {
+    name: '麻辣火锅',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/hotpot/WGBG-82707b6f.jpg',
+    code: '28'
+  },
+  {
+    name: '鱼跃龙门',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/dragon-legend/WGBG-235ef9bc.jpg',
+    code: '29'
+  },
+  {
+    name: '宝石侠',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/gem-saviour/WGBG-7a955da6.jpg',
+    code: '2'
+  },
+  {
+    name: '抓抓乐',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/plushie-frenzy/WGBG-2ba81075.jpg',
+    code: '25'
+  },
+  {
+    name: '美杜莎： 雅典娜的诅咒',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/medusa/WGBG-d1bcce38.jpg',
+    code: '7'
+  },
+  {
+    name: '美杜莎2：珀修斯的任务',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/medusa2/WGBG-7d9891d3.jpg',
+    code: '6'
+  },
+  {
+    name: '旺旺旺',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/win-win-won/WGBG-8bff8092.jpg',
+    code: '24'
+  },
+  {
+    name: '夜戏貂蝉',
+    icon: 'https://public.x1skf.com/pages/static/image/en/NewWebGameBg/diaochan/WGBG-a6ce657b.jpg',
+    code: '1'
   }
 ]
-const toGame = (plat) => {
-  Toast({
-    theme: 'loading',
-    message: '加载中...',
+
+// let sum = 0
+// const arr = []
+// for (const p2item of pgList2) {
+//   const f = pgList.find((item) => item.code === p2item.code)
+//   if (f) sum++
+// }
+// alert(sum)
+// for (const pitem of pgList) {
+//   const f = pgList2.find((item) => item.code === pitem.code)
+//   if (f) sum++
+//   arr.push(f)
+// }
+// console.log(arr)
+//
+// // for (let i = pgList2.length-1; i >=0; i--) {
+// //   const f=pgList2.findIndex(item=>)
+// // }
+// alert(sum)
+const toGame = (plat, code) => {
+  // Toast({
+  //   theme: 'loading',
+  //   message: '加载中...',
+  //   duration: 0
+  // })
+  showLoadingToast({
+    forbidClick: true,
+    loadingType: 'spinner',
     duration: 0
   })
   // reqNgPlay(code)
@@ -857,7 +1453,7 @@ const toGame = (plat) => {
   //   console.log('reqNgPlayCode', res)
   // })
   reqNgPlay({
-    // code: '',
+    code,
     plat
   })
     .then((res) => {
@@ -869,20 +1465,28 @@ const toGame = (plat) => {
       }
     })
     .finally(() => {
-      Toast.clear()
+      closeToast()
+      // Toast.clear()
     })
 }
 onActivated(() => {
-  Toast({
-    theme: 'loading',
-    message: '加载中...',
+  // Toast({
+  //   theme: 'loading',
+  //   message: '加载中...',
+  //   duration: 0
+  // })
+  showLoadingToast({
+    forbidClick: true,
+    loadingType: 'spinner',
     duration: 0
   })
   reqNgTransfer().then((res) => {
-    Toast.clear()
+    closeToast()
+    // Toast.clear()
   })
   reqNgTransfer({ plat: 'ky' }).then((res) => {
-    Toast.clear()
+    closeToast()
+    // Toast.clear()
   })
 })
 </script>
@@ -906,7 +1510,7 @@ onActivated(() => {
 
     ._3fjli6OU5bBO5wMUslOt_c {
       ._2TcTCnWhzfeNsB8LpQM5pV {
-        color: #263440;
+        color: #000;
         margin: 0;
         padding: 0;
         outline: 0;
@@ -974,7 +1578,7 @@ onActivated(() => {
           width: 46px;
           text-align: center;
           font-size: 10px;
-          color: #9aa4c2;
+          color: #374777;
           position: absolute;
           right: 2px;
           top: 13px;

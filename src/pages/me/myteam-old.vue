@@ -307,7 +307,7 @@
                             padding: 2px 5px;
                           "
                         >
-                          {{ getSerialName(item?.result?.staff?.serial) }}
+                          {{ item?.result?.staff?.name || '暂无特权' }}
                         </span>
                       </div>
                     </div>

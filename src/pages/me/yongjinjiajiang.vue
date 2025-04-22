@@ -76,7 +76,48 @@
       </div>
     </van-overlay>
     <van-image @click="showOverlay = false" width="100%" :src="shareholder"></van-image>
-
+    <TipDialog
+      v-model="showGonggaoOverlay"
+      confirm-text="已阅"
+      :show-close="false"
+      @confirm="showGonggaoOverlay = false"
+    >
+      <p
+        style="
+          text-align: center;
+          font-size: 22px;
+          color: #fff;
+          font-weight: bolder;
+          margin-top: 10px;
+        "
+      >
+        领取失败
+      </p>
+      <p style="text-align: center; color: #fff; padding: 10px; margin: 10px 0; font-size: 18px">
+        暂无可领取红包，请积极推广，奖励红包，多多领取！
+      </p>
+    </TipDialog>
+    <TipDialog
+      v-model="successOverlay"
+      confirm-text="已阅"
+      :show-close="false"
+      @confirm="successOverlay = false"
+    >
+      <p
+        style="
+          text-align: center;
+          font-size: 22px;
+          color: #fff;
+          font-weight: bolder;
+          margin-top: 10px;
+        "
+      >
+        领取成功
+      </p>
+      <p style="text-align: center; color: #fff; padding: 10px; margin: 10px 0; font-size: 18px">
+        恭喜您领取汇盈集团奖上奖红包！请继续积极推广，再接再厉。每日红包大奖送不停
+      </p>
+    </TipDialog>
     <!--  width="94%"-->
     <!--  height="100%"-->
     <!--  style="margin-left: 3%; margin-top: -140px"-->
@@ -85,7 +126,7 @@
 </template>
 
 <script lang="ts" setup>
-import shareholder from '@/assets/img/yongjinjiajiang.jpg'
+import shareholder from '@/assets/img/yongjinjiajiang.png'
 // import rule from '@/assets/img/rule.jpg'
 import { getIsInApp } from '@/utils/getTopPadding'
 import { closeToast, showImagePreview, showToast } from 'vant'
@@ -96,6 +137,8 @@ const showImage = () => {
 }
 
 const showOverlay = ref(false)
+const showGonggaoOverlay = ref(false)
+const successOverlay = ref(false)
 
 const money = ref(0)
 
@@ -106,25 +149,29 @@ const getRed = (showLoading = true) => {
       loadingType: 'spinner',
       duration: 0
     })
-  reqBonusInvite('query')
-    .then((res) => {
-      money.value = res.data.bonus || 0
-    })
-    .finally(() => {
-      closeToast()
-    })
+  reqBonusInvite('query').then((res) => {
+    closeToast()
+    money.value = res.data.bonus || 0
+  })
 }
 
 const reqGetMoney = () => {
+  if (!money.value) {
+    showGonggaoOverlay.value = true
+    return
+  }
   showLoadingToast({
     forbidClick: true,
     loadingType: 'spinner',
     duration: 0
   })
   reqBonusInvite('take').then((res) => {
-    closeToast()
-    showToast(res.msg)
-    getRed(false)
+    if (res.code === 200) {
+      successOverlay.value = true
+      getRed(false)
+    } else {
+      showToast(res.msg)
+    }
   })
 }
 

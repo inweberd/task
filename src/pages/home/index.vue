@@ -84,15 +84,78 @@
       <!--        left-icon="volume-o"-->
       <!--        text="汇盈传媒欢迎您，邀请好友赚翻天，现金奖励无上限！"-->
       <!--      />-->
-
-      <div v-show="activeTab === 0" class="app-list" style="margin-top: 80px">
+      <div style="text-align: center; font-size: 22px; text-shadow: 5px 5px 5px #081831">
+        <div>汇盈传媒已经稳定运行</div>
+        <div>{{ timeStr }}</div>
+      </div>
+      <!--      <div-->
+      <!--        style="-->
+      <!--          text-align: center;-->
+      <!--          font-size: 15px;-->
+      <!--          text-shadow: 5px 5px 5px #081831;-->
+      <!--          margin-top: 10px;-->
+      <!--        "-->
+      <!--      >-->
+      <!--        广告板块→游戏板块→直播板块→电商板块→绿色生态-->
+      <!--        <div>即将陆续开发上线</div>-->
+      <!--      </div>-->
+      <div v-show="activeTab === 0" class="app-list" style="margin-top: 20px">
         <div v-for="(item, index) of appList" class="app-list-item" @click="item.btnCb">
           <div class="l">
             <div class="logo">
-              <img :src="convertImgUrl(item.logo)" alt="" />
+              <div
+                v-if="item.logo === '10'"
+                style="
+                  width: 80px;
+                  height: 80px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <div
+                  style="
+                    border-radius: 50%;
+                    overflow: hidden;
+                    width: 55px;
+                    height: 55px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transform: translateY(-3px);
+                  "
+                >
+                  <img :src="convertImgUrl(item.logo)" alt="" style="width: 55px; height: 55px" />
+                </div>
+              </div>
+              <div
+                v-else-if="item.logo === '11' || item.logo === '12' || item.logo === '13'"
+                style="
+                  width: 80px;
+                  height: 80px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <div
+                  style="
+                    width: 65px;
+                    height: 65px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transform: translateY(-3px);
+                  "
+                >
+                  <img :src="convertImgUrl(item.logo)" alt="" style="width: 50px; height: 50px" />
+                </div>
+              </div>
+              <img v-else :src="convertImgUrl(item.logo)" alt="" />
             </div>
-            <div class="info">
+            <div class="info" style="height: 30px">
               <div class="name">{{ item.name }}</div>
+              <!--              <div class="name" v-if="!index">（可免费兑换）</div>-->
               <!--              <div class="desc">-->
               <!--                &lt;!&ndash;                :style="{ color: index === appList?.length - 1 ? '#9d9d9d' : 'red' }"&ndash;&gt;-->
               <!--                {{ item.desc }}-->
@@ -107,17 +170,18 @@
 
         <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
-      <div class="big-title" style="margin-top: 10px">广告投放与创作者分成</div>
-
+      <!--      <div class="big-title" style="margin-top: 10px">视频板块（只看视频不养机/分分钟挣大钱）</div>-->
+      <img src="./images/bankuai1.png" alt="" style="height: 30px; margin-top: 10px" />
       <div class="shouyi-list">
-        <div v-if="!isIos" class="item" @click="loadShort(1)">
+        <div v-show="!isIos" class="item" @click="loadShort(1)">
           <div class="item-box">
-            <div>普通用户广告投放</div>
+            <div>普通用户看视频赚钱</div>
             <div>特权：无特权</div>
-            <div>日收益：1-99元</div>
-            <div style="position: relative; top: 10px; color: red; font-size: 16px">
-              每日可无限次观看
-            </div>
+            <!--            <div style="color: red; font-weight: bolder">日收益：保底1元~99元</div>-->
+            <!--            <div style="position: relative; top: 10px; color: red; font-size: 16px">-->
+            <!--              <div style="font-weight: bolder">限一机一号一ip</div>-->
+            <!--              <div style="font-weight: bolder">视频允许无限刷</div>-->
+            <!--            </div>-->
             <div
               style="
                 position: absolute;
@@ -133,10 +197,10 @@
         </div>
         <div class="item" @click="loadShort(3)">
           <div class="item-box">
-            <div>会员用户广告投放</div>
+            <div>会员用户看视频赚钱</div>
             <div>特权1：会员免看广告</div>
-            <div>特权2： 享受4-10倍加速收益</div>
-            <div>日收益：每日0.5-2%浮动</div>
+            <div>特权2：享受多倍分红加成</div>
+            <!--            <div style="color: red; font-weight: bolder">日收益：保底5元~1万元</div>-->
             <div
               style="
                 position: absolute;
@@ -150,9 +214,25 @@
             </div>
           </div>
         </div>
+        <!--        <p class="big-title" style="margin-top: 10px">核心进阶玩法：超级暴利《聚宝盆》</p>-->
+        <img src="./images/bankuai2.png" alt="" style="height: 30px; margin: 10px 0" />
+
+        <div class="item" @click="$router.push('/gameList')">
+          <div class="item-box">
+            <!--            <div>游戏专区</div>-->
+          </div>
+        </div>
+        <div class="item" @click="$router.push('/jubaopen')">
+          <div class="item-box">
+            <!--            <div>聚宝盆</div>-->
+          </div>
+        </div>
+        <!--        <p class="big-title" style="margin-top: 10px">推广奖上奖（双重福利，排行榜+奖上奖红包</p>-->
+        <img src="./images/bankuai3.png" alt="" style="height: 30px; margin: 10px 0" />
+
         <div class="item" @click="$router.push('/rank')">
           <div class="item-box">
-            <div>全网分红</div>
+            <div style="font-size: 18px">全网分红</div>
             <div>每周发放！</div>
             <div>排行榜奖励！</div>
             <div
@@ -170,7 +250,7 @@
         </div>
         <div class="item" @click="$router.push('/yongjinjiajiang')">
           <div class="item-box">
-            <div>佣金嘉奖</div>
+            <div style="font-size: 18px">推广奖上奖</div>
             <div>每天发放！</div>
             <div>收入双倍！</div>
             <div
@@ -281,9 +361,10 @@
     </div>
 
     <BaseFooter :is-white="true" v-bind:init-tab="1" />
+
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击下载微脉圈扫码进群"
+      confirm-text="点击下载68聊天扫码进群"
       @confirm="handleGonggaoConfirm"
     >
       <p
@@ -295,10 +376,35 @@
           font-weight: bolder;
         "
       >
-        请使用微脉圈APP扫码进官方群
+        请使68聊天APP扫码进官方群
       </p>
       <div style="padding: 20px">
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
+      </div>
+    </TipDialog>
+    <TipDialog
+      v-model="updateOverlay"
+      confirm-text="已阅"
+      @confirm="handleUpdateOverlayConfirm"
+      :show-close="false"
+    >
+      <p
+        style="
+          text-align: center;
+          font-size: 18px;
+          color: #fff;
+          font-weight: bolder;
+          margin-top: 10px;
+        "
+      >
+        已为您自动更新以下内容
+      </p>
+      <div style="color: #ddd; padding: 18px">
+        <p>1、优化解决0撸用户看普通视频间歇性无收益问题。</p>
+        <p>2、优化会员等级界面显示ui</p>
+        <p style="font-weight: bolder; color: #fff">3、广告旺季来临，提高会员日收入</p>
+        <p>4、陆续增加游戏板块</p>
+        <p>5、代理推广提升，推广8代奖励，星级无限代奖励</p>
       </div>
     </TipDialog>
     <TipDialog
@@ -313,7 +419,7 @@
     >
       <div style="padding: 20px; color: #fff; text-align: center">
         <p style="font-size: 18px; font-weight: bolder; margin-bottom: 10px">请先购买体验卡！</p>
-        <p>会员广告收入是普通广告的5-10倍加速收益！</p>
+        <p>会员用户的日收入，大约是普通0撸用户的5~130倍，开通会员免看广告，直接进入每天领分红！</p>
       </div>
     </TipDialog>
 
@@ -359,11 +465,18 @@ import dayjs from 'dayjs'
 import { closeToast, showFailToast } from 'vant'
 import { Toast } from 'tdesign-mobile-vue'
 
+const updateOverlay = ref(false)
 const showGonggaoOverlay = ref(false)
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
   // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
-  window.location.href = 'http://fir.edujia.com/wmq'
+  window.location.href = 'https://68chat.com/cn/'
+}
+const handleUpdateOverlayConfirm = () => {
+  updateOverlay.value = false
+  showGonggaoOverlay.value = true
+  // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
+  // window.location.href = 'https://68chat.com/cn/'
 }
 const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
 
@@ -381,6 +494,31 @@ const containerStyle = computed(() => {
 const loading = ref(false)
 const router = useRouter()
 const activeTab = ref(0)
+
+const timeStr = ref('')
+function updateTime() {
+  // 设置目标时间为 2024 年 3 月 24 日
+  const targetDate = new Date('2025-03-24T00:00:00')
+
+  // 获取当前时间
+  const currentDate = new Date()
+
+  // 计算时间差，单位为毫秒
+  const timeDifference = currentDate - targetDate
+
+  // 计算天、小时、分钟、秒
+  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
+  const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60))
+  const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000)
+
+  // 显示结果
+  timeStr.value = `${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`
+}
+
+// 每秒更新一次
+setInterval(updateTime, 1000)
+updateTime()
 const appList = ref([
   // {
   //   name: '参与方式 ',
@@ -417,36 +555,47 @@ const appList = ref([
   //     router.push('/gameList')
   //   }
   // },
+
   {
-    name: '购买加速卡 ',
+    name: '棋牌娱乐',
+    desc: '汇盈传媒，精彩短视频。期待您的加入',
+    logo: '11',
+    btnLabel: '查看',
+    btnCb() {
+      router.push('/gameList')
+    }
+  },
+  {
+    name: '购买会员',
     desc: '点击查看每周分红奖池！',
-    logo: '7',
+    logo: '12',
     btnLabel: '查看',
     btnCb() {
       router.push('/invest')
     }
   },
   {
-    name: '分享收入表',
+    name: '聚宝盆',
     desc: '点击查看返佣海报！',
-    logo: '8',
+    logo: '10',
     btnLabel: '查看',
     btnCb() {
       // router.push('/zhubofuchizhengce')
-      router.push('/demo')
+      // router.push('/demo')
+      router.push('/jubaopen')
     }
   },
   {
-    name: '排行榜',
+    name: '推广奖上奖',
     desc: '点击查看代理佣金排行榜！',
-    logo: '9',
+    logo: '13',
     btnLabel: '加入',
     btnCb() {
       // showImagePreview({
       //   images: [weimaiquan]
       // })
       // window.location.href = 'https://api.onxxm900.cn/download/android.apk'
-      router.push('/rank')
+      router.push('/yongjinjiajiang')
     }
   }
   // {
@@ -469,15 +618,6 @@ const appList = ref([
   //   }
   // },
 
-  // {
-  //   name: '操作说明',
-  //   desc: '汇盈传媒，精彩短视频。期待您的加入',
-  //   logo: 'hk',
-  //   btnLabel: '查看',
-  //   btnCb() {
-  //     router.push('/caozuoshuoming')
-  //   }
-  // },
   // {
   //   name: '合作单位',
   //   desc: '如遇老群被封禁，请移步新群！',
@@ -730,6 +870,7 @@ const handleGame = () => {
 onActivated(() => {
   reqAdvertisingCount()
   showGonggaoOverlay.value = true
+  // updateOverlay.value = true
   reqNgTransfer().then((res) => {
     console.log('res', res)
   })
@@ -954,7 +1095,7 @@ const toGame = (plat) => {
 
           & > div {
             &:nth-child(1) {
-              font-size: 18px;
+              font-size: 16px;
             }
 
             &:nth-child(2) {
@@ -965,22 +1106,22 @@ const toGame = (plat) => {
           }
         }
 
-        &:nth-child(2) {
-          .item-box {
-            background: url('./images/home-icon1.png') no-repeat;
-            background-size: 100% 100%;
-          }
-        }
-
-        &:nth-child(3) {
-          .item-box {
-            background: url('./images/home-icon1.png') no-repeat;
-            background-size: 100% 100%;
-          }
-        }
+        //&:nth-child(2) {
+        //  .item-box {
+        //    background: url('./images/home-icon1.png') no-repeat;
+        //    background-size: 100% 100%;
+        //  }
+        //}
+        //
         &:nth-child(4) {
           .item-box {
-            background: url('./images/home-icon2.png') no-repeat;
+            background: url('./images/home-icon4.png') no-repeat;
+            background-size: 100% 100%;
+          }
+        }
+        &:nth-child(5) {
+          .item-box {
+            background: url('./images/home-icon5.png') no-repeat;
             background-size: 100% 100%;
           }
         }
@@ -1035,7 +1176,7 @@ const toGame = (plat) => {
           }
 
           .info {
-            flex: 1;
+            flex: 1 1 30px;
             margin-left: 6px;
             padding: 0 2px;
             margin-top: -5px;
@@ -1044,6 +1185,7 @@ const toGame = (plat) => {
             justify-content: space-between;
 
             .name {
+              text-align: center;
               font-size: 14px;
               color: #000;
               font-weight: bolder;

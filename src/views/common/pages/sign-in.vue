@@ -34,8 +34,13 @@
               type="password"
             />
           </van-cell-group>
-          <div style="text-align: right; width: 100%; margin: 10px 10px 20px 0; color: #fc5c47">
-            <span @click="$router.push('/common/sign-forget')"> 忘记密码 </span>
+          <div style="text-align: right; width: 100%; margin: 10px 10px 20px 0; color: #fff">
+            <span
+              @click="$router.push('/common/sign-forget')"
+              style="background-color: #888; padding: 4px 12px; border-radius: 8px"
+            >
+              忘记密码
+            </span>
           </div>
 
           <el-button
@@ -63,14 +68,34 @@
         <!--        其他-->
         <!--      </van-divider>-->
         <div style="display: flex; justify-content: space-evenly; align-items: center; width: 100%">
-          <a style="font-size: 16px; color: #fff" @click="goDownload">下载app</a>
-          <a style="font-size: 16px; color: #fff" @click="jumpToQQ2">官方交流群 </a>
+          <a
+            style="
+              font-size: 16px;
+              color: #fff;
+              background-color: #888;
+              padding: 4px 12px;
+              border-radius: 8px;
+            "
+            @click="goDownload"
+            >下载app</a
+          >
+          <a
+            style="
+              font-size: 16px;
+              color: #fff;
+              background-color: #888;
+              padding: 4px 12px;
+              border-radius: 8px;
+            "
+            @click="jumpToQQ2"
+            >官方交流群
+          </a>
           <!--          <a style="font-size: 16px; color: #fff" @click="jumpToQQ2">官方交流群 </a>-->
         </div>
       </div>
       <TipDialog
         v-model="showGonggaoOverlay"
-        confirm-text="点击下载微脉圈扫码进群"
+        confirm-text="点击下载68聊天扫码进群"
         @confirm="handleGonggaoConfirm"
       >
         <p
@@ -82,7 +107,7 @@
             font-weight: bolder;
           "
         >
-          请使用微脉圈APP扫码进官方群
+          请使68聊天APP扫码进官方群
         </p>
         <div style="padding: 20px">
           <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
@@ -123,7 +148,7 @@ const showGonggaoOverlay = ref(false)
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
   // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
-  window.location.href = 'http://fir.edujia.com/wmq'
+  window.location.href = 'https://68chat.com/cn/'
 }
 const router = useRouter()
 const state = reactive({
@@ -163,13 +188,12 @@ const SignIn = async () => {
 
   let unix
 
-  const { code: timeCode, data: timeData } = await axios.get('/dev/info/time')
-  if (timeCode !== 200) {
+  const res = await axios.get('/dev/info/time')
+  if (res.data.code !== 200) {
     unix = Math.round(new Date().getTime() / 1000)
   } else {
-    unix = timeData.unix
+    unix = res.data?.data?.unix
   }
-
   const iv = aesToken('inis-iv', 16, 'aes')
   const key = aesToken('inis-key', 16, 'aes')
   const item = new AES(key, iv)

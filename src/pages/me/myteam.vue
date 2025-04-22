@@ -71,7 +71,7 @@
             <span class="num">{{ (userIncomeInfo.today || 0).toFixed(4) }}</span>
           </p>
           <p>
-            <span class="title">累计佣金</span>
+            <span class="title">已挣得佣金</span>
             <span class="num">{{ (userIncomeInfo.total || 0).toFixed(4) }}</span>
           </p>
           <p>
@@ -99,7 +99,7 @@
             <!--              今日新增佣金嘉奖:{{ bonus }}元 &nbsp;-->
             <!--            </van-button>-->
             <span style="color: #fff; font-size: 16px; font-weight: bolder">
-              今日新增佣金嘉奖:{{ bonus }}元
+              推广奖上奖 :{{ bonus }}元
             </span>
           </div>
           <van-button
@@ -112,6 +112,30 @@
           </van-button>
         </div>
       </div>
+      <!--      <div style="flex: 1; margin-top: 10px">-->
+      <!--        <van-button-->
+      <!--          class="btn"-->
+      <!--          style="color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1; width: 100%; font-size: 18px"-->
+      <!--          @click="go('/invest')"-->
+      <!--        >-->
+      <!--          <div style="display: flex; align-items: center; justify-content: center">-->
+      <!--            <img src="./images/icon-rz.png" style="width: 20px; margin-right: 9px" alt="" />-->
+      <!--            免费兑换会员特权，越赚越多-->
+      <!--          </div>-->
+      <!--        </van-button>-->
+      <!--      </div>-->
+      <div style="flex: 1; margin-top: 10px">
+        <van-button
+          class="btn"
+          style="color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1; width: 100%; font-size: 18px"
+          @click="go('/invest')"
+        >
+          <div style="display: flex; align-items: center; justify-content: center">
+            <img src="./images/icon-rz.png" style="width: 20px; margin-right: 9px" alt="" />
+            购买会员特权，越赚越多
+          </div>
+        </van-button>
+      </div>
       <div class="chongzhiandtixian">
         <!--        <div class="chongzhiyue">-->
         <!--          充值余额(元)&nbsp;&nbsp;-->
@@ -119,26 +143,18 @@
         <!--        </div>-->
         <div></div>
         <div class="btn-box">
-          <div style="flex: 1; margin-right: 10px">
-            <van-button
-              class="btn"
-              style="color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1; width: 100%"
-              @click="go('/invest')"
-            >
-              点击购买会员特权
-            </van-button>
-          </div>
           <van-button
             class="btn"
             color="linear-gradient(to right, #fb5b4b, #9c38e5)"
             @click="go('recharge')"
+            style="flex: 1"
           >
             充值
           </van-button>
           <van-button
             class="btn"
             color="#fff"
-            style="margin-left: 10px; color: #1d9ae8; border: 1px solid #1d9ae8"
+            style="margin-left: 10px; color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1"
             @click="go('/dep')"
           >
             提现
@@ -826,7 +842,7 @@
     <!--    </div>-->
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击下载微脉圈扫码进群"
+      confirm-text="点击下载68聊天扫码进群"
       @confirm="handleGonggaoConfirm"
     >
       <p
@@ -838,7 +854,7 @@
           font-weight: bolder;
         "
       >
-        请使用微脉圈APP扫码进官方群
+        请使68聊天APP扫码进官方群
       </p>
       <div style="padding: 20px">
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
@@ -915,15 +931,22 @@ const list = [
   //     router.push('/fenhong')
   //   }
   // },
-  // {
-  //   label: '晋升星级团队奖励',
-  //   icon: 'like-o',
-  //   fn() {
-  //     router.push('/jiangliguize')
-  //   }
-  // },
   {
-    label: '佣金互转',
+    label: '团队升星奖励',
+    icon: 'like-o',
+    fn() {
+      router.push('/jiangliguize')
+    }
+  },
+  {
+    label: '玩法介绍',
+    icon: 'like-o',
+    fn() {
+      router.push('/caozuoshuoming')
+    }
+  },
+  {
+    label: '佣金互转（免手续费，官方群68聊天群大团队保底回收佣金）',
     icon: 'like-o',
     fn() {
       router.push('/conversion')
@@ -937,14 +960,14 @@ const list = [
   //   }
   // },
   {
-    label: '邀请好友二维码',
+    label: '分享赚钱二维码',
     icon: 'star-o',
     fn() {
       router.push('/me/my-card')
     }
   },
   {
-    label: '月入十万',
+    label: '推广收入详情',
     icon: 'coupon-o',
     fn() {
       router.push('/demo')
@@ -963,14 +986,14 @@ const list = [
     fn() {
       router.push('/teamStat')
     }
-  },
-  {
-    label: '企业资质证照',
-    icon: 'user-o',
-    fn() {
-      router.push('/zizhizhengzhao')
-    }
   }
+  // {
+  //   label: '企业资质证照',
+  //   icon: 'user-o',
+  //   fn() {
+  //     router.push('/zizhizhengzhao')
+  //   }
+  // }
   // {
   //   label: '收入排行榜',
   //   icon: 'notes-o',

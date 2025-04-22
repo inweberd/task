@@ -302,7 +302,7 @@ const generatePoster = async () => {
     return
   }
   qrCodeText.value =
-    'http://bbbwx0318aaaf18.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+    'http://bbbwx0318aaaf110.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     // encodeURIComponent(
     'https://weaw.shunyigong.com/#/signUp?invite=' +
     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
@@ -647,7 +647,7 @@ onMounted(() => {
 }
 
 .big-title {
-  font-size: 20px;
+  font-size: 16px;
   color: #fff;
   font-weight: bolder;
   padding: 5px 20px 0;

@@ -43,9 +43,11 @@
                 >+ {{ item.money || 0 }}元</span
               >
             </div>
-            <!--            <div style="margin-top: 6px">-->
-            <!--              <span>{{ method.toDate(item.create_time) }}</span>-->
-            <!--            </div>-->
+            <div style="margin-top: 6px">
+              <span style="font-size: 12px; color: #aaa">{{
+                method.toDate(item.create_time)
+              }}</span>
+            </div>
           </div>
         </div>
       </div>

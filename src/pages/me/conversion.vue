@@ -83,8 +83,21 @@
       </van-form>
       <p style="color: #ccc; margin-top: 10px">佣金互转10元起，互转无手续费！</p>
       <p style="color: #ccc; margin-top: 10px">
-        发起转账方自身需有任意特权加速卡，方可使用转账。接收方无门槛接收！
+        发起转账方自身需有任意会员，方可使用转账。接收方无门槛接收！
       </p>
+      <p
+        style="
+          margin-top: 10px;
+          background-color: #fff;
+          color: #000;
+          border-radius: 10px;
+          padding: 5px;
+        "
+      >
+        每日提现的用户，强烈推荐大家进入汇盈官方68聊天群使用佣金互转出售给收佣金的商人，佣金互转免手续费，这样相当于可以省去每天提现的5%手续费！
+        日积月累下来，能省下很多费用！
+      </p>
+
       <!--            <p style="color: #fff; margin-top: 10px">-->
       <!--                2、余额可以直接用来购买会员！余额也可以直接进行游戏，游戏过程中，有中奖赢钱，满足20元，可以在APP内发起提现。-->
       <!--            </p>-->
@@ -129,7 +142,7 @@
           transform: translateY(10px);
           text-align: center;
           font-size: 18px;
-          color: #f1361e;
+          color: #fff;
           font-weight: bolder;
           padding: 20px 0 40px;
         "

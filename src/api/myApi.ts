@@ -299,3 +299,23 @@ export function getRankRecord() {
 export function reqBonusInvite(mode) {
   return axiosInstance({ url: '/api/wallet/bonus-invite?mode=' + mode, method: 'post' })
 }
+
+// 聚宝盆分页
+export function reqTreasureBasinPage() {
+  return axiosInstance({ url: '/api/treasure-basin/find?limit=20', method: 'get' })
+}
+
+// 聚宝盆购买
+export function reqTreasureBasinBuy(id) {
+  return axiosInstance({ url: '/api/treasure-basin/buy?id=' + id, method: 'post' })
+}
+
+// 查询聚宝盆
+export function getAlreadyBuyTreasureBasin() {
+  return axiosInstance({ url: '/api/treasure-basin/order?limit=30&finished=0', method: 'get' })
+}
+
+// 个人聚宝盆信息汇总
+export function reqTreasureBasinSummary() {
+  return axiosInstance({ url: '/api/treasure-basin/summary', method: 'get' })
+}

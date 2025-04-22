@@ -51,27 +51,35 @@
           </template>
         </div>
         <span class="vip-info">{{ userInfo?.result?.staff?.name || '暂无加速卡' }}</span>
+        <span style="text-decoration: underline; margin-top: 5px">点击查看剩余有效期</span>
       </div>
-      <div
-        style="
-          margin-top: 50px;
-          padding-right: 15px;
-          box-sizing: border-box;
-          text-align: center;
-          width: 100%;
-        "
-      >
-        当前可免费购买会员余额
-        <br />
-        <span style="font-size: 22px">{{ userIncomeInfo?.wallet?.money || 0 }}</span>
-        <div style="margin-top: 15px"></div>
-        当前充值余额
-        <br />
-        <span style="font-size: 22px">{{ walletInfo?.amount || 0 }}</span>
-        <p style="margin-top: 5px">以上两种余额可用于购买会员抵扣使用</p>
-      </div>
+      <!--      <div-->
+      <!--        style="-->
+      <!--          margin-top: 0px;-->
+      <!--          padding-right: 15px;-->
+      <!--          box-sizing: border-box;-->
+      <!--          text-align: center;-->
+      <!--          width: 100%;-->
+      <!--        "-->
+      <!--      >-->
+      <!--        当前可免费购买会员余额-->
+      <!--        <br />-->
+      <!--        <span style="font-size: 22px">{{ userIncomeInfo?.wallet?.money || 0 }}</span>-->
+      <!--        <div style="margin-top: 15px"></div>-->
+      <!--        当前充值余额-->
+      <!--        <br />-->
+      <!--        <span style="font-size: 22px">{{ walletInfo?.amount || 0 }}</span>-->
+      <!--        <p style="margin-top: 5px">以上两种余额可用于购买会员抵扣使用</p>-->
+      <!--      </div>-->
     </div>
-
+    <div style="font-size: 18px; padding: 0 10px">
+      <!--      <div>注:购买会员请逐级从低到高购买，同时购买多个会员收入叠加生效！</div>-->
+      <div>当前已拥有的最高会员等级界面，显示的总收益，即是叠加后的当日总收益！</div>
+      <div>100元体验卡到期可再次续购！</div>
+      <!--      <div style="color: #ff3826; font-weight: bolder">-->
+      <!--        同时拥有多个会员，所有等级收益叠加生效！一次开通，永久有效！-->
+      <!--      </div>-->
+    </div>
     <div class="v-list-box">
       <div class="v-list">
         <div
@@ -107,46 +115,178 @@
           <template v-else-if="item.serial === 8">
             <img alt="" src="./images/v8.png" />
           </template>
-          <div>{{ item.name }}</div>
-          <div><span class="fuhao">￥</span>{{ item.price }}</div>
-          <div style="font-size: 12px; text-align: center">
-            <span v-if="item.serial === 0">
+          <template v-else-if="item.serial === 9">
+            <img alt="" src="./images/v9.png" />
+          </template>
+          <template v-else-if="item.serial === 10">
+            <img alt="" src="./images/v10.png" />
+          </template>
+          <div style="font-size: 14px">{{ item.name }}</div>
+          <!--                    <div><span class="fuhao">￥</span>{{ item.price }}</div>-->
+          <div></div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+              font-weight: bolder;
+              padding: 0 4px;
+              box-sizing: border-box;
+            "
+          >
+            <span>会员价格</span>
+            <span v-if="item.price == 10000">1万元</span>
+            <span v-else-if="item.price == 20000">2万元</span>
+            <span v-else>{{ item.price }}元</span>
+          </div>
+          <template v-if="item.serial === 0">
+            <span>
               <div>永久有效期</div>
               <div>功能：广告每天无限刷</div>
             </span>
-            <span v-else-if="item.serial === 1">
-              <div>每日收益；5元</div>
-              <div>有效期：30天</div>
-              <div>累计收益150元</div>
-            </span>
-            <template v-else>
-              <div>
-                日收益:<span style="font-weight: bolder"
-                  >{{ item.price / 100 }}~{{ item.price / 50 }}元浮动</span
-                >
-              </div>
-              <div>有效期:永久</div>
-            </template>
+          </template>
+          <template v-else-if="item.serial === 1">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 4px;
+                box-sizing: border-box;
+              "
+            >
+              <span>日收益</span>
+              <span>5元</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 4px;
+                box-sizing: border-box;
+              "
+            >
+              <span>有效期</span>
+              <span>30天</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 4px;
+                box-sizing: border-box;
+              "
+            >
+              <span>累计收益</span>
+              <span>150元</span>
+            </div>
+          </template>
+          <template v-else>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 4px;
+                box-sizing: border-box;
+              "
+            >
+              <span>日收益</span>
+              <span v-if="index === 1">7元</span>
+              <span v-if="index === 2">12元</span>
+              <span v-if="index === 3">20元</span>
+              <span v-if="index === 4">35元</span>
+              <span v-if="index === 5">55元</span>
+              <span v-if="index === 6">85元</span>
+              <span v-if="index === 7">135元</span>
+              <span v-if="index === 8">235元</span>
+              <span v-if="index === 9">435元</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 4px;
+                box-sizing: border-box;
+              "
+            >
+              <span>有效期</span>
+              <span>365天</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 4px;
+                box-sizing: border-box;
+              "
+            >
+              <span>累计收益</span>
+              <span v-if="index === 1">{{ 365 * 7 }}元</span>
+              <span v-if="index === 2">{{ 365 * 12 }}元</span>
+              <span v-if="index === 3">{{ 365 * 20 }}</span>
+              <span v-if="index === 4">{{ 365 * 35 }}</span>
+              <span v-if="index === 5">{{ 365 * 55 }}</span>
+              <span v-if="index === 6">{{ 365 * 85 }}</span>
+              <span v-if="index === 7">{{ 365 * 135 }}</span>
+              <span v-if="index === 8">{{ 365 * 235 }}</span>
+              <span v-if="index === 9">{{ 365 * 435 }}</span>
+            </div>
+          </template>
+          <div
+            style="
+              width: 100%;
+              background-color: #f3d848;
+              background-image: linear-gradient(to right, #f8f06a, #f2c536);
+              color: #000;
+              margin-top: 10px;
+              line-height: 32px;
+              text-align: center;
+              font-weight: bolder;
+            "
+            @click="buy"
+          >
+            立即购买
           </div>
+        </div>
+        <div
+          @click="$router.push('/jubaopen')"
+          class="v-list-item"
+          style="padding: 0 !important; background-color: transparent"
+        >
+          <img
+            src="@/pages/home/images/home-icon5.png"
+            style="width: 150%; height: 100%; transform: translateX(30px); margin-bottom: 0"
+          />
         </div>
       </div>
     </div>
-    <div style="text-align: center; font-size: 20px">
-      <div>注意：你的所有收入，账户佣金，可以抵扣，免费兑换会员特权</div>
-      <div style="color: #ff3826; font-weight: bolder">
-        同时拥有多个会员，所有等级收益叠加生效！一次开通，永久有效！
-      </div>
-    </div>
-    <van-button
-      block
-      color=" linear-gradient(to right, #fb5b4b, #9c38e5)"
-      round
-      style="margin: 20px auto; width: 90%; height: 40px"
-      type="danger"
-      @click="buy"
-    >
-      购买加速卡
-    </van-button>
+    <!--    <div style="text-align: center; font-size: 20px">-->
+    <!--      <div>注:会员特权收入请逐级购买，以最高等级显示为实际总当日收益，</div>-->
+    <!--      &lt;!&ndash;      <div style="color: #ff3826; font-weight: bolder">&ndash;&gt;-->
+    <!--      &lt;!&ndash;        同时拥有多个会员，所有等级收益叠加生效！一次开通，永久有效！&ndash;&gt;-->
+    <!--      &lt;!&ndash;      </div>&ndash;&gt;-->
+    <!--    </div>-->
+    <!--    <van-button-->
+    <!--      block-->
+    <!--      color=" linear-gradient(to right, #fb5b4b, #9c38e5)"-->
+    <!--      style="-->
+    <!--        margin: 20px auto;-->
+    <!--        width: 100%;-->
+    <!--        height: 50px;-->
+    <!--        position: fixed;-->
+    <!--        bottom: 35px;-->
+    <!--        font-size: 16px;-->
+    <!--      "-->
+    <!--      type="danger"-->
+    <!--      @click="buy"-->
+    <!--    >-->
+    <!--      购买会员特权卡（可免费兑换）-->
+    <!--    </van-button>-->
     <!--    <van-image :src="vipInfo" width="100%"></van-image>-->
 
     <!--    <div class="tip">-->
@@ -583,6 +723,7 @@ import vipInfo from './images/vip-info.jpg'
 import { showImagePreview } from 'vant'
 import bus from '@/utils/bus'
 import { getIsVip } from '@/utils/getIsVip'
+import { debounce, throttle } from 'lodash'
 
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
 defineOptions({
@@ -780,7 +921,7 @@ const buyBase = (item, customCount) => {
     }
   })
 }
-const buy = () => {
+const buy = throttle(() => {
   const item = staffList.value[activeIndex.value]
   console.log('item', item)
   // const finallyCount = customCount || count.value
@@ -799,10 +940,16 @@ const buy = () => {
     })
   }
   if (userInfo.value.result.staff.serial + 1 != item.serial) {
-    return showToast({
-      message: '请逐级购买！',
-      icon: 'warning'
-    })
+    // alert(item.serial)
+    // if (item.serial != 1 && !myStaffList.value.includes('171')) {
+    //   alert(myStaffList.value.join(','))
+    // }
+    if (item.serial != 1) {
+      return showToast({
+        message: '请逐级购买！',
+        icon: 'warning'
+      })
+    }
   }
 
   loading.value = true
@@ -827,7 +974,8 @@ const buy = () => {
       })
     }
   })
-}
+}, 1000)
+
 const getUserIncome = () => {
   // loading.value = true
   reqUserIncome().then((res) => {
@@ -956,10 +1104,10 @@ const speed = ref(0.5) //滚动速度
   .top-box {
     display: flex;
     align-items: center;
-    height: 220px;
+    height: 180px;
     background-image: url('./images/vip-bg.png');
     background-repeat: no-repeat;
-    background-size: 100% 220px;
+    background-size: 100% 180px;
     & > div {
       display: flex;
       flex-direction: column;
@@ -969,7 +1117,7 @@ const speed = ref(0.5) //滚动速度
     }
 
     .avatar {
-      margin: 50px auto 0;
+      margin: 0px auto 0;
       width: 80px;
       height: 80px;
       border-radius: 50%;
@@ -999,7 +1147,7 @@ const speed = ref(0.5) //滚动速度
   }
 
   .v-list-box {
-    margin-top: 10px;
+    margin-top: 5px;
     width: 100%;
 
     .v-list {
@@ -1019,14 +1167,14 @@ const speed = ref(0.5) //滚动速度
         display: flex;
         align-items: center;
         flex-direction: column;
-        padding: 10px 0 10px;
+        padding: 10px 0 0px;
 
         background-color: #eeeeee;
         color: #616161;
 
         img {
           width: 40%;
-          margin-bottom: 15px;
+          margin-bottom: 5px;
         }
 
         .fuhao {

@@ -313,7 +313,7 @@
     <!--    </TipDialog>-->
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击下载微脉圈扫码进群"
+      confirm-text="点击下载68聊天扫码进群"
       @confirm="handleGonggaoConfirm"
     >
       <p
@@ -325,7 +325,7 @@
           font-weight: bolder;
         "
       >
-        请使用微脉圈APP扫码进官方群
+        请使68聊天APP扫码进官方群
       </p>
       <div style="padding: 20px">
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />

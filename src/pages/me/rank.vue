@@ -27,7 +27,7 @@
         <!--          （每X天进行一轮分红） <br />-->
         <!--          <div style="display: flex; align-items: center">-->
         <span>本周总提现</span>
-        <span class="money">￥{{ total * 10 }}</span>
+        <span class="money">￥{{ (total * 10).toFixed(2) }}</span>
         <!--          </div>-->
       </div>
 
@@ -184,7 +184,9 @@ const getRank = () => {
   }).then((res) => {
     Toast.clear()
     console.log('getWalletRank', res)
-    rankList.value = res.data || []
+    rankList.value = (res.data || []).filter((item) => {
+      return !['185****1537', '185****0630'].includes(item.phone)
+    })
     // rankList.value = [
     //   {
     //     avatar:

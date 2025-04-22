@@ -17,9 +17,9 @@
     <div style="background-color: #1f203d; margin: 10px; border-radius: 10px; overflow: hidden">
       <t-tabs :space-evenly="false" default-value="收入" theme="tag" @change="tabChange">
         <t-tab-panel label="收入" value="收入" />
-        <t-tab-panel label="佣金嘉奖" value="佣金嘉奖" />
+        <!--        <t-tab-panel label="佣金嘉奖" value="佣金嘉奖" />-->
         <!--      <t-tab-panel value="排行榜奖励" label="奖池发放" />-->
-        <t-tab-panel value="新手特权奖励" label="新手特权奖励" />
+        <t-tab-panel value="金牌推荐奖" label="金牌推荐奖" />
         <t-tab-panel label="支出" value="支出" />
         <t-tab-panel label="提现" value="提现" />
       </t-tabs>
@@ -33,7 +33,7 @@
     <!--      </van-tab>-->
     <!--      <van-tab title="提现记录" name="提现">-->
     <wallet-withdraw v-if="activeTab === '提现'"></wallet-withdraw>
-    <rengoufanli v-if="activeTab === '新手特权奖励'"></rengoufanli>
+    <rengoufanli v-if="activeTab === '金牌推荐奖'"></rengoufanli>
     <paihangjiangli v-if="activeTab === '排行榜奖励'"></paihangjiangli>
     <!--      </van-tab>-->
     <!--    </van-tabs>-->

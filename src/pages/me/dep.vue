@@ -31,16 +31,44 @@
         <van-icon color="#ccc" name="arrow" size="20" />
       </div>
     </div>
-    <div class="jine-box">
-      <div
-        v-for="item of columns"
-        :class="{ active: item.value === money }"
-        class="jine-item"
-        @click="money = item.value"
-      >
-        ￥{{ item.text }}
-      </div>
+    <div
+      style="
+        background-color: #2e3350;
+        margin: 20px;
+        border-radius: 10px;
+        font-size: 16px;
+        line-height: 24px;
+      "
+    >
+      <van-field
+        v-model="money"
+        class="unp"
+        label="提现金额"
+        placeholder="请输入提现金额"
+        style="
+          font-weight: bolder;
+          margin-bottom: 10px;
+          color: #fff !important;
+          background-color: transparent;
+        "
+        type="number"
+        @input="
+          () => {
+            money = parseInt(money)
+          }
+        "
+      />
     </div>
+    <!--    <div class="jine-box">-->
+    <!--      <div-->
+    <!--        v-for="item of columns"-->
+    <!--        :class="{ active: item.value === money }"-->
+    <!--        class="jine-item"-->
+    <!--        @click="money = item.value"-->
+    <!--      >-->
+    <!--        ￥{{ item.text }}-->
+    <!--      </div>-->
+    <!--    </div>-->
     <van-action-sheet v-model:show="checked" title="选择提现方式">
       <van-radio-group v-model="pay_card_id" disabled>
         <van-card
@@ -159,11 +187,17 @@
         @click="goPay"
         >申请提现
       </el-button>
-      <div style="padding: 10px 30px; font-size: 12px">
-        <p>提现要求：持有特权加速卡的用户，每日可进行提现</p>
-        <p>提现时间：上午11点-晚上20点，10元起提，到账时间为10-30分钟！</p>
-        <p>提现手续费为固定5%</p>
-        <p>节假日正常提现，不受节日影响!</p>
+      <div style="padding: 10px 30px; font-size: 15px">
+        <p style="margin-bottom: 6px">提现要求：</p>
+        <p style="margin-bottom: 6px">非会员用户满足50元提现！</p>
+        <p style="margin-bottom: 6px">会员用户满足10元起提现！</p>
+        <p style="margin-bottom: 6px">提现时间，上午11点~~晚上20点，可发起提现！</p>
+        <p style="margin-bottom: 6px">提现手续费：提现金额的5%！进68聊天群，提现免手续费！</p>
+        <p style="margin-bottom: 6px">节假日正常提现，全年无休！</p>
+        <p style="background-color: #fff; color: #000; border-radius: 10px; padding: 5px">
+          每日提现的用户，强烈推荐大家进入汇盈官方68聊天群使用佣金互转出售给收佣金的商人，佣金互转免手续费，这样相当于可以省去每天提现的5%手续费！
+          日积月累下来，能省下很多费用！
+        </p>
       </div>
       <!--      <span></span>-->
       <!--      <el-button-->
@@ -199,17 +233,16 @@
 
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击去购买"
+      confirm-text="点击去购买（可免费兑换）"
       title="重要公告"
       @confirm="handleGonggaoConfirm"
     >
       <div style="padding: 20px">
-        <p style="color: #fff; text-align: center">
-          请购买特权卡，再发起提现，提现时间为上午11点---晚上20点，提现30分钟内到账，每天不限制提现次数。
+        <p style="color: #fff; text-align: center">非会员用户收入满50元可发起提现！</p>
+        <p style="margin-top: 10px; color: #fff; text-align: center">会员用户满10元可发起提现！</p>
+        <p style="margin-top: 10px; color: #fff; text-align: center">
+          会员用户为机器人自动打款，秒到账！
         </p>
-        <!--        <p style="margin-top: 10px">-->
-        <!--          2: 你无需充值，你也可以使用余额转账功能，将你的余额出售给有会员的用户！-->
-        <!--        </p>-->
       </div>
     </TipDialog>
     <TipDialog
@@ -387,7 +420,8 @@ const columns = ref([
   { text: '8000', value: '8000' },
   { text: '10000', value: '10000' }
 ])
-const money = ref(columns.value[0].value)
+// const money = ref(columns.value[0].value)
+const money = ref()
 
 const showPicker = ref(false)
 const loading = ref(false)
@@ -452,19 +486,29 @@ async function goPay() {
   // })
   const serial = user?.result?.staff?.serial
   // if (!serial) {
+  if (myStaffRes?.data?.length) {
+    if (money.value < 10) {
+      showGonggaoOverlay.value = true
+      return
+    }
+  }
   if (!myStaffRes?.data?.length) {
-    // if (!findItem) {
-    showGonggaoOverlay.value = true
-    // showDialog({
-    //   title: '重要公告',
-    //   message:
-    //     '为保障平台的公平与可持续发展，抵制工作室刷子的批量违规行为，公司决定，零撸用户玩家需购买一份股权后，才可进行出款操作。这一举措旨在维护广大用户的长远利益，确保平台能够长久稳定运营，感谢大家的理解与支持。' +
-    //     '\n购买股权后，后续出款将无需审核，款项将在 30 分钟内到账，让您的资金流转更加便捷高效。',
-    //   confirmButtonText: '去购买'
-    // }).then(() => {
-    //   router.push('/invest')
-    // })
-    return
+    if (money.value < 50) {
+      showGonggaoOverlay.value = true
+      return
+    }
+    //   // if (!findItem) {
+    //   showGonggaoOverlay.value = true
+    //   // showDialog({
+    //   //   title: '重要公告',
+    //   //   message:
+    //   //     '为保障平台的公平与可持续发展，抵制工作室刷子的批量违规行为，公司决定，零撸用户玩家需购买一份股权后，才可进行出款操作。这一举措旨在维护广大用户的长远利益，确保平台能够长久稳定运营，感谢大家的理解与支持。' +
+    //   //     '\n购买股权后，后续出款将无需审核，款项将在 30 分钟内到账，让您的资金流转更加便捷高效。',
+    //   //   confirmButtonText: '去购买'
+    //   // }).then(() => {
+    //   //   router.push('/invest')
+    //   // })
+    //   return
   }
 
   // if (!sessionStorage.seeVideoWithdrawal) {

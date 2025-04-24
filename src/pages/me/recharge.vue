@@ -321,6 +321,19 @@
       <van-icon name="warning-o" color="red" size="25" />
       使用微信或者支付宝充值过程中，如遇到无法支付的情况，请关闭这个页面。从新点充值按钮，重新拉起新的订单，每次拉起订单，都是不同的最新的收款码。重新拉起新订单即可正常支付付款！
     </div>
+
+    <p
+      style="
+        background-color: #2e3350;
+        padding: 10px;
+        margin: 20px;
+        border-radius: 10px;
+        font-weight: bolder;
+      "
+    >
+      每次充值，每次拉起订单都是不同的最新的二维码，切勿重复支付给已经付款过的码
+      。都以每次弹出的最新的码为准
+    </p>
     <!--      <van-image :src="pay2" width="100%" height="100%;"></van-image>-->
     <div class="container">
       <van-popup v-model:show="state.sheet.show" closeable position="bottom" round>

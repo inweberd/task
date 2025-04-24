@@ -171,7 +171,7 @@
         <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
       <!--      <div class="big-title" style="margin-top: 10px">视频板块（只看视频不养机/分分钟挣大钱）</div>-->
-      <!--      <img src="./images/bankuai1.png" alt="" style="height: 30px; margin-top: 10px" />-->
+      <img src="./images/bankuai1.png" alt="" style="height: 30px; margin-top: 10px" />
       <div class="shouyi-list">
         <div v-show="!isIos" class="item">
           <!--          <div class="item-box">-->
@@ -214,24 +214,48 @@
           </div>
         </div>
         <div class="item" @click="loadShort(3)">
-          <div class="item-box">
-            <div>会员用户看视频赚钱</div>
-            <div>特权1：会员免看广告</div>
-            <div>特权2：享受多倍分红加成</div>
-            <!--            <div style="color: red; font-weight: bolder">日收益：保底5元~1万元</div>-->
-            <div
-              style="
-                position: absolute;
-                left: 15px;
-                bottom: 20px;
-                font-size: 22px;
-                text-shadow: 5px 5px 5px #081831;
-              "
-            >
-              点击开始赚钱
+          <div
+            style="
+              width: 100%;
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div @click="loadShort(3)">
+              <img style="width: 100%; height: 40px" src="./lingluImage/huiyuan_title.png" alt="" />
+              <img style="width: 100%" src="./lingluImage/huiyuan.png" alt="" />
+            </div>
+            <div @click="$router.push('/rank')">
+              <img
+                style="width: 100%; height: 40px"
+                src="./lingluImage/paihangbang-title.png"
+                alt=""
+              />
+              <img style="width: 100%; height: 52px" src="./lingluImage/paihangbang.png" alt="" />
             </div>
           </div>
         </div>
+        <!--        <div class="item" @click="loadShort(3)">-->
+        <!--          <div class="item-box">-->
+        <!--            <div>会员用户看视频赚钱</div>-->
+        <!--            <div>特权1：会员免看广告</div>-->
+        <!--            <div>特权2：享受多倍分红加成</div>-->
+        <!--            &lt;!&ndash;            <div style="color: red; font-weight: bolder">日收益：保底5元~1万元</div>&ndash;&gt;-->
+        <!--            <div-->
+        <!--              style="-->
+        <!--                position: absolute;-->
+        <!--                left: 15px;-->
+        <!--                bottom: 20px;-->
+        <!--                font-size: 22px;-->
+        <!--                text-shadow: 5px 5px 5px #081831;-->
+        <!--              "-->
+        <!--            >-->
+        <!--              点击开始赚钱-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
         <!--        <p class="big-title" style="margin-top: 10px">核心进阶玩法：超级暴利《聚宝盆》</p>-->
         <img src="./images/bankuai2.png" alt="" style="height: 30px; margin: 10px 0" />
 
@@ -246,44 +270,44 @@
           </div>
         </div>
         <!--        <p class="big-title" style="margin-top: 10px">推广奖上奖（双重福利，排行榜+奖上奖红包</p>-->
-        <img src="./images/bankuai3.png" alt="" style="height: 30px; margin: 10px 0" />
+        <!--        <img src="./images/bankuai3.png" alt="" style="height: 30px; margin: 10px 0" />-->
 
-        <div class="item" @click="$router.push('/rank')">
-          <div class="item-box">
-            <div style="font-size: 18px">全网分红</div>
-            <div>每周发放！</div>
-            <div>排行榜奖励！</div>
-            <div
-              style="
-                position: absolute;
-                left: 15px;
-                bottom: 20px;
-                font-size: 22px;
-                text-shadow: 5px 5px 5px #081831;
-              "
-            >
-              进入查看
-            </div>
-          </div>
-        </div>
-        <div class="item" @click="$router.push('/yongjinjiajiang')">
-          <div class="item-box">
-            <div style="font-size: 18px">推广奖上奖</div>
-            <div>每天发放！</div>
-            <div>收入双倍！</div>
-            <div
-              style="
-                position: absolute;
-                left: 15px;
-                bottom: 20px;
-                font-size: 22px;
-                text-shadow: 5px 5px 5px #081831;
-              "
-            >
-              进入查看
-            </div>
-          </div>
-        </div>
+        <!--        <div class="item" @click="$router.push('/rank')">-->
+        <!--          <div class="item-box">-->
+        <!--            <div style="font-size: 18px">全网分红</div>-->
+        <!--            <div>每周发放！</div>-->
+        <!--            <div>排行榜奖励！</div>-->
+        <!--            <div-->
+        <!--              style="-->
+        <!--                position: absolute;-->
+        <!--                left: 15px;-->
+        <!--                bottom: 20px;-->
+        <!--                font-size: 22px;-->
+        <!--                text-shadow: 5px 5px 5px #081831;-->
+        <!--              "-->
+        <!--            >-->
+        <!--              进入查看-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <!--        <div class="item" @click="$router.push('/yongjinjiajiang')">-->
+        <!--          <div class="item-box">-->
+        <!--            <div style="font-size: 18px">推广奖上奖</div>-->
+        <!--            <div>每天发放！</div>-->
+        <!--            <div>收入双倍！</div>-->
+        <!--            <div-->
+        <!--              style="-->
+        <!--                position: absolute;-->
+        <!--                left: 15px;-->
+        <!--                bottom: 20px;-->
+        <!--                font-size: 22px;-->
+        <!--                text-shadow: 5px 5px 5px #081831;-->
+        <!--              "-->
+        <!--            >-->
+        <!--              进入查看-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
       </div>
       <div v-if="false" class="shulist">
         <!--        <div class="shu-item">-->
@@ -786,7 +810,13 @@ onMounted(() => {
   // })
 })
 const loadXuanShang = () => {
-  showToast('等待开启！')
+  if (!window?.android?.initQie) {
+    return showToast('请下载最新版本APP体验！')
+  }
+
+  const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+  const userId = userInfo?.id
+  window?.android?.initQie(userId, '汇盈悬赏赚钱大厅-24小时可做')
 }
 const loadShort = (type) => {
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))

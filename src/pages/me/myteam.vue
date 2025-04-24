@@ -91,24 +91,24 @@
         <!--        </div>-->
         <div></div>
         <div class="btn-box">
-          <div style="margin-right: 10px">
-            <!--            <van-button-->
-            <!--              class="btn"-->
-            <!--              style="color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1; width: 100%"-->
-            <!--            >-->
-            <!--              今日新增佣金嘉奖:{{ bonus }}元 &nbsp;-->
-            <!--            </van-button>-->
-            <span style="color: #fff; font-size: 16px; font-weight: bolder">
-              推广奖上奖 :{{ bonus }}元
-            </span>
-          </div>
+          <!--          <div style="margin-right: 10px">-->
+          <!--            &lt;!&ndash;            <van-button&ndash;&gt;-->
+          <!--            &lt;!&ndash;              class="btn"&ndash;&gt;-->
+          <!--            &lt;!&ndash;              style="color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1; width: 100%"&ndash;&gt;-->
+          <!--            &lt;!&ndash;            >&ndash;&gt;-->
+          <!--            &lt;!&ndash;              今日新增佣金嘉奖:{{ bonus }}元 &nbsp;&ndash;&gt;-->
+          <!--            &lt;!&ndash;            </van-button>&ndash;&gt;-->
+          <!--            <span style="color: #fff; font-size: 16px; font-weight: bolder">-->
+          <!--              -->
+          <!--            </span>-->
+          <!--          </div>-->
           <van-button
             style="flex: 1"
             class="btn"
             color="linear-gradient(to right, #fb5b4b, #9c38e5)"
             @click="go('/yongjinjiajiang')"
           >
-            点击领取
+            推广奖上奖 :{{ bonus }}元宝 点击领取
           </van-button>
         </div>
       </div>

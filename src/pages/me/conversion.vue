@@ -85,6 +85,7 @@
       <p style="color: #ccc; margin-top: 10px">
         发起转账方自身需有任意会员，方可使用转账。接收方无门槛接收！
       </p>
+      <!--      <p style="color: #ccc; margin-top: 10px">元宝互转交易时间为每天早上8点至晚上19点！</p>-->
       <p
         style="
           margin-top: 10px;
@@ -94,7 +95,7 @@
           padding: 5px;
         "
       >
-        每日提现的用户，强烈推荐大家进入汇盈官方68聊天群使用元宝互转出售给收元宝的商人，元宝互转免手续费，这样相当于可以省去每天提现的5%手续费！
+        每日提现的用户，强烈推荐大家进入汇盈官方聊天群使用元宝互转出售给收元宝的商人，元宝互转免手续费，这样相当于可以省去每天提现的5%手续费！
         日积月累下来，能省下很多费用！
       </p>
 
@@ -162,6 +163,9 @@ import FingerprintJS from '@fingerprintjs/fingerprintjs'
 import { useRoute } from 'vue-router'
 import { onMounted, ref } from 'vue'
 import { getIsInApp } from '@/utils/getTopPadding'
+import dayjs from 'dayjs'
+import isBetween from 'dayjs//plugin/isBetween'
+import { showToast } from 'vant'
 
 const showGonggaoOverlay2 = ref(false)
 
@@ -199,6 +203,26 @@ function go(path) {
 }
 
 function getCode() {
+  // 获取今天的日期
+  // dayjs.extend(isBetween)
+  // const today = dayjs().startOf('day')
+  //
+  // // 获取今天 8 点和 19 点的时间
+  // const morning8 = today.add(8, 'hour')
+  // const evening7 = today.add(19, 'hour')
+  //
+  // // 获取当前时间
+  // const now = dayjs()
+  // // 判断当前时间是否在 8 点到 19 点之间
+  // const isbetween = now.isBetween(morning8, evening7, null, '[]')
+  //
+  // if (!isbetween) {
+  //   showToast({
+  //     duration: 5000,
+  //     message: '元宝互转交易时间为每天早上8点至晚上19点'
+  //   })
+  //   return
+  // }
   const serial = JSON.parse(window.localStorage.getItem('userInfo'))?.result?.staff?.serial
   if (!serial) {
     showGonggaoOverlay2.value = true

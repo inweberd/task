@@ -26,6 +26,7 @@
         {{ timeTxt }}
         <!--        </span>-->
       </p>
+      <div style="font-size: 14px; color: #999">注：奖励发放时间可能会提前或延后15分钟。</div>
 
       <p style="margin-top: 6px; display: flex; align-items: center; padding-left: 5%">
         <img src="./images/touru.png" alt="" style="height: 40px" />
@@ -202,6 +203,39 @@ const transfer = (num) => {
 }
 let timer
 const getMyStaff = () => {
+  // getAlreadyBuyTreasureBasin().then((res) => {
+  //   if (!res.data?.data.length) {
+  //     return
+  //   }
+  //   clearInterval(timer)
+  //   res.data.data = (res.data?.data || []).filter((item) => item.finished === 0)
+  //   const arr = []
+  //   ;(res.data?.data || []).forEach((item) => {
+  //     const dateStr =
+  //       dayjs(item.create_time * 1000)
+  //         .add(2, 'day')
+  //         .format('YYYY-MM-DD') + ' 00:00:00'
+  //     // arr.push(dayjs(dateStr).valueOf())
+  //     arr.push(item.create_time * 1000)
+  //   })
+  //   arr.sort((a, b) => {
+  //     return a - b
+  //   })
+  //   console.log(arr)
+  //   const dateStr = dayjs(arr[0]).add(2, 'day').format('YYYY-MM-DD') + ' 00:00:00'
+  //
+  //   const countdown = getCountdown(dayjs(dateStr).valueOf())
+  //   console.log(countdown)
+  //
+  //   timeTxt.value = `${countdown.days}天 ${transfer(countdown.hours)} : ${transfer(countdown.minutes)} : ${transfer(countdown.seconds)}`
+  //
+  //   timer = setInterval(() => {
+  //     const countdown = getCountdown(dayjs(dateStr).valueOf())
+  //     timeTxt.value = `${countdown.days}天 ${transfer(countdown.hours)} : ${transfer(countdown.minutes)} : ${transfer(countdown.seconds)}`
+  //   }, 1000)
+  //
+  //   myDataList.value = (res.data?.data || []).map((item) => item.bind_id)
+  // })
   getAlreadyBuyTreasureBasin().then((res) => {
     if (!res.data?.data.length) {
       return
@@ -210,12 +244,7 @@ const getMyStaff = () => {
     res.data.data = (res.data?.data || []).filter((item) => item.finished === 0)
     const arr = []
     ;(res.data?.data || []).forEach((item) => {
-      const dateStr =
-        dayjs(item.create_time * 1000)
-          .add(2, 'day')
-          .format('YYYY-MM-DD') + ' 00:00:00'
-      // arr.push(dayjs(dateStr).valueOf())
-      arr.push(item.create_time * 1000)
+      arr.push(item.rebate_time * 1000)
     })
     arr.sort((a, b) => {
       return a - b
@@ -223,13 +252,14 @@ const getMyStaff = () => {
     console.log(arr)
     const dateStr = dayjs(arr[0]).add(2, 'day').format('YYYY-MM-DD') + ' 00:00:00'
 
-    const countdown = getCountdown(dayjs(dateStr).valueOf())
+    // const countdown = getCountdown(dayjs(dateStr).valueOf()
+    const countdown = getCountdown(arr[0])
     console.log(countdown)
 
     timeTxt.value = `${countdown.days}天 ${transfer(countdown.hours)} : ${transfer(countdown.minutes)} : ${transfer(countdown.seconds)}`
 
     timer = setInterval(() => {
-      const countdown = getCountdown(dayjs(dateStr).valueOf())
+      const countdown = getCountdown(arr[0])
       timeTxt.value = `${countdown.days}天 ${transfer(countdown.hours)} : ${transfer(countdown.minutes)} : ${transfer(countdown.seconds)}`
     }, 1000)
 

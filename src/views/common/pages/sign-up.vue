@@ -114,7 +114,7 @@
 
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击下载68聊天扫码进群"
+      confirm-text="点击下钉钉扫码进群"
       @confirm="handleGonggaoConfirm"
     >
       <p
@@ -126,7 +126,7 @@
           font-weight: bolder;
         "
       >
-        请使68聊天APP扫码进官方群
+        请使用钉钉APP扫码进官方群
       </p>
       <div style="padding: 20px">
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
@@ -153,7 +153,8 @@ const showGonggaoOverlay = ref(false)
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
   // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
-  window.location.href = 'https://68chat.com/cn/'
+  window.location.href =
+    'https://www.dingtalk.com/download?spm=a2o5v.m_dingtalk_com_index.0.0.5f7771e1HZUmoI'
 }
 const user = useUsers()
 const router = useRouter()

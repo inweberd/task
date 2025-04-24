@@ -273,7 +273,7 @@ function getData() {
               @click="go('/conversion', true)"
             >
               <img class="image_5" src="./images/money.png" />
-              <span class="font_2 text_7 mt-5">佣金互转</span>
+              <span class="font_2 text_7 mt-5">元宝互转</span>
             </div>
           </div>
         </div>

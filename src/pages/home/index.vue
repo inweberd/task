@@ -171,27 +171,45 @@
         <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
       <!--      <div class="big-title" style="margin-top: 10px">视频板块（只看视频不养机/分分钟挣大钱）</div>-->
-      <img src="./images/bankuai1.png" alt="" style="height: 30px; margin-top: 10px" />
+      <!--      <img src="./images/bankuai1.png" alt="" style="height: 30px; margin-top: 10px" />-->
       <div class="shouyi-list">
-        <div v-show="!isIos" class="item" @click="loadShort(1)">
-          <div class="item-box">
-            <div>普通用户看视频赚钱</div>
-            <div>特权：无特权</div>
-            <!--            <div style="color: red; font-weight: bolder">日收益：保底1元~99元</div>-->
-            <!--            <div style="position: relative; top: 10px; color: red; font-size: 16px">-->
-            <!--              <div style="font-weight: bolder">限一机一号一ip</div>-->
-            <!--              <div style="font-weight: bolder">视频允许无限刷</div>-->
-            <!--            </div>-->
-            <div
-              style="
-                position: absolute;
-                left: 15px;
-                bottom: 20px;
-                font-size: 22px;
-                text-shadow: 5px 5px 5px #081831;
-              "
-            >
-              点击开始赚钱
+        <div v-show="!isIos" class="item">
+          <!--          <div class="item-box">-->
+          <!--            <div>普通用户看视频赚钱</div>-->
+          <!--            <div>特权：无特权</div>-->
+          <!--            &lt;!&ndash;            <div style="color: red; font-weight: bolder">日收益：保底1元~99元</div>&ndash;&gt;-->
+          <!--            &lt;!&ndash;            <div style="position: relative; top: 10px; color: red; font-size: 16px">&ndash;&gt;-->
+          <!--            &lt;!&ndash;              <div style="font-weight: bolder">限一机一号一ip</div>&ndash;&gt;-->
+          <!--            &lt;!&ndash;              <div style="font-weight: bolder">视频允许无限刷</div>&ndash;&gt;-->
+          <!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+          <!--            <div-->
+          <!--              style="-->
+          <!--                position: absolute;-->
+          <!--                left: 15px;-->
+          <!--                bottom: 20px;-->
+          <!--                font-size: 22px;-->
+          <!--                text-shadow: 5px 5px 5px #081831;-->
+          <!--              "-->
+          <!--            >-->
+          <!--              点击开始赚钱-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <div
+            style="
+              width: 100%;
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div @click="loadShort(1)">
+              <img style="width: 100%; height: 40px" src="./lingluImage/linglu1-title.png" alt="" />
+              <img style="width: 100%" src="./lingluImage/linglu1.png" alt="" />
+            </div>
+            <div @click="loadXuanShang()">
+              <img style="width: 100%; height: 40px" src="./lingluImage/linglu2-title.png" alt="" />
+              <img style="width: 100%" src="./lingluImage/linglu2.png" alt="" />
             </div>
           </div>
         </div>
@@ -364,7 +382,7 @@
 
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击下载68聊天扫码进群"
+      confirm-text="点击下钉钉扫码进群"
       @confirm="handleGonggaoConfirm"
     >
       <p
@@ -376,7 +394,7 @@
           font-weight: bolder;
         "
       >
-        请使68聊天APP扫码进官方群
+        请使用钉钉APP扫码进官方群
       </p>
       <div style="padding: 20px">
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
@@ -470,13 +488,14 @@ const showGonggaoOverlay = ref(false)
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
   // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
-  window.location.href = 'https://68chat.com/cn/'
+  window.location.href =
+    'https://www.dingtalk.com/download?spm=a2o5v.m_dingtalk_com_index.0.0.5f7771e1HZUmoI'
 }
 const handleUpdateOverlayConfirm = () => {
   updateOverlay.value = false
   showGonggaoOverlay.value = true
   // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
-  // window.location.href = 'https://68chat.com/cn/'
+  // window.location.href = 'https://www.dingtalk.com/download?spm=a2o5v.m_dingtalk_com_index.0.0.5f7771e1HZUmoI'
 }
 const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
 
@@ -766,7 +785,9 @@ onMounted(() => {
   //     })
   // })
 })
-
+const loadXuanShang = () => {
+  showToast('等待开启！')
+}
 const loadShort = (type) => {
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
   const userId = userInfo?.id

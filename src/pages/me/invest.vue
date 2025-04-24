@@ -50,7 +50,10 @@
             }}
           </template>
         </div>
-        <span class="vip-info">{{ userInfo?.result?.staff?.name || '暂无加速卡' }}</span>
+        <van-button class="btn" color="linear-gradient(to right, #fb5b4b, #9c38e5)" style="flex: 1">
+          {{ userInfo?.result?.staff?.name || '暂无加速卡' }}
+        </van-button>
+        <!--        <span class="vip-info">{{ userInfo?.result?.staff?.name || '暂无加速卡' }}</span>-->
         <span style="text-decoration: underline; margin-top: 5px">点击查看剩余有效期</span>
       </div>
       <!--      <div-->
@@ -135,9 +138,9 @@
             "
           >
             <span>会员价格</span>
-            <span v-if="item.price == 10000">1万元</span>
-            <span v-else-if="item.price == 20000">2万元</span>
-            <span v-else>{{ item.price }}元</span>
+            <span v-if="item.price == 10000">1万</span>
+            <span v-else-if="item.price == 20000">2万</span>
+            <span v-else>{{ item.price }}</span>
           </div>
           <template v-if="item.serial === 0">
             <span>
@@ -156,7 +159,7 @@
               "
             >
               <span>日收益</span>
-              <span>5元</span>
+              <span>5元宝</span>
             </div>
             <div
               style="
@@ -179,8 +182,8 @@
                 box-sizing: border-box;
               "
             >
-              <span>累计收益</span>
-              <span>150元</span>
+              <span>总收益</span>
+              <span>150元宝</span>
             </div>
           </template>
           <template v-else>
@@ -194,15 +197,15 @@
               "
             >
               <span>日收益</span>
-              <span v-if="index === 1">7元</span>
-              <span v-if="index === 2">12元</span>
-              <span v-if="index === 3">20元</span>
-              <span v-if="index === 4">35元</span>
-              <span v-if="index === 5">55元</span>
-              <span v-if="index === 6">85元</span>
-              <span v-if="index === 7">135元</span>
-              <span v-if="index === 8">235元</span>
-              <span v-if="index === 9">435元</span>
+              <span v-if="index === 1">5~7</span>
+              <span v-if="index === 2">12~20</span>
+              <span v-if="index === 3">20~40</span>
+              <span v-if="index === 4">35~70</span>
+              <span v-if="index === 5">55~105</span>
+              <span v-if="index === 6">85~165</span>
+              <span v-if="index === 7">135~265</span>
+              <span v-if="index === 8">235~470</span>
+              <span v-if="index === 9">435~870</span>
             </div>
             <div
               style="
@@ -225,9 +228,9 @@
                 box-sizing: border-box;
               "
             >
-              <span>累计收益</span>
-              <span v-if="index === 1">{{ 365 * 7 }}元</span>
-              <span v-if="index === 2">{{ 365 * 12 }}元</span>
+              <span>总收益</span>
+              <span v-if="index === 1">{{ 365 * 7 }}</span>
+              <span v-if="index === 2">{{ 365 * 12 }}</span>
               <span v-if="index === 3">{{ 365 * 20 }}</span>
               <span v-if="index === 4">{{ 365 * 35 }}</span>
               <span v-if="index === 5">{{ 365 * 55 }}</span>

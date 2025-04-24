@@ -42,7 +42,7 @@
     <div class="container">
       <div class="money-box">
         <div class="total">
-          <div class="txt1">可提现佣金(元)</div>
+          <div class="txt1">可提现元宝</div>
           <div class="txt2">
             {{ userIncomeInfo?.wallet?.money || 0 }}
             <!--            <template v-if="showTotal">-->
@@ -67,11 +67,11 @@
         <div class="border2"></div>
         <div class="money-info">
           <p>
-            <span class="title">今日佣金</span>
+            <span class="title">今日元宝</span>
             <span class="num">{{ (userIncomeInfo.today || 0).toFixed(4) }}</span>
           </p>
           <p>
-            <span class="title">已挣得佣金</span>
+            <span class="title">已挣得元宝</span>
             <span class="num">{{ (userIncomeInfo.total || 0).toFixed(4) }}</span>
           </p>
           <p>
@@ -768,7 +768,7 @@
         <!--      <li>-->
         <!--        <a href="javascript:void(0)" @click="$router.push('/conversion')"-->
         <!--          ><img src="./images/6.png" />-->
-        <!--          <p>佣金互转</p></a-->
+        <!--          <p>元宝互转</p></a-->
         <!--        >-->
         <!--      </li>-->
         <li>
@@ -842,7 +842,7 @@
     <!--    </div>-->
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击下载68聊天扫码进群"
+      confirm-text="点击下钉钉扫码进群"
       @confirm="handleGonggaoConfirm"
     >
       <p
@@ -854,7 +854,7 @@
           font-weight: bolder;
         "
       >
-        请使68聊天APP扫码进官方群
+        请使用钉钉APP扫码进官方群
       </p>
       <div style="padding: 20px">
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
@@ -946,7 +946,7 @@ const list = [
     }
   },
   {
-    label: '佣金互转（免手续费，官方群68聊天群大团队保底回收佣金）',
+    label: '元宝互转（官方群商人保底回收元宝，互转免手续费）',
     icon: 'like-o',
     fn() {
       router.push('/conversion')

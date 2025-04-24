@@ -13,9 +13,9 @@
         <t-tab-panel :value="0" label="银行卡" />
         <!--      <t-tab-panel value="排行榜奖励" label="奖池发放" />-->
         <t-tab-panel :value="1" label="支付宝" />
-<!--        <t-tab-panel :value="2" label="K豆钱包" />-->
+        <!--        <t-tab-panel :value="2" label="K豆钱包" />-->
         <t-tab-panel :value="3" label="JD钱包" />
-        <t-tab-panel :value="4" label="365钱包" />
+        <!--        <t-tab-panel :value="4" label="365钱包" />-->
       </t-tabs>
     </div>
     <div

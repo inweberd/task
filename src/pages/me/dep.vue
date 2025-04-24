@@ -43,8 +43,8 @@
       <van-field
         v-model="money"
         class="unp"
-        label="提现金额"
-        placeholder="请输入提现金额"
+        label="提现元宝"
+        placeholder="请输入提现元宝"
         style="
           font-weight: bolder;
           margin-bottom: 10px;
@@ -189,13 +189,13 @@
       </el-button>
       <div style="padding: 10px 30px; font-size: 15px">
         <p style="margin-bottom: 6px">提现要求：</p>
-        <p style="margin-bottom: 6px">非会员用户满足50元提现！</p>
-        <p style="margin-bottom: 6px">会员用户满足10元起提现！</p>
+        <p style="margin-bottom: 6px">非会员用户满足50元宝提现！</p>
+        <p style="margin-bottom: 6px">会员用户满足10元宝起提现！</p>
         <p style="margin-bottom: 6px">提现时间，上午11点~~晚上20点，可发起提现！</p>
         <p style="margin-bottom: 6px">提现手续费：提现金额的5%！进68聊天群，提现免手续费！</p>
         <p style="margin-bottom: 6px">节假日正常提现，全年无休！</p>
         <p style="background-color: #fff; color: #000; border-radius: 10px; padding: 5px">
-          每日提现的用户，强烈推荐大家进入汇盈官方68聊天群使用佣金互转出售给收佣金的商人，佣金互转免手续费，这样相当于可以省去每天提现的5%手续费！
+          每日提现的用户，强烈推荐大家进入汇盈官方68聊天群使用元宝互转出售给收元宝的商人，元宝互转免手续费，这样相当于可以省去每天提现的5%手续费！
           日积月累下来，能省下很多费用！
         </p>
       </div>

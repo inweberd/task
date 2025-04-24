@@ -1,7 +1,7 @@
 <template>
   <div class="yongjinjiajiang" style="height: 100%; overflow: auto">
     <van-nav-bar
-      title="佣金嘉奖"
+      title="元宝嘉奖"
       safe-area-inset-top
       fixed
       :class="{ inApp: getIsInApp() }"
@@ -44,7 +44,7 @@
             top: 175px;
           "
         >
-          佣金加奖
+          元宝嘉奖
         </span>
         <span
           style="

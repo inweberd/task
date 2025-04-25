@@ -43,7 +43,7 @@
       </p>
     </div>
     <div style="position: relative">
-      <van-image width="100%" height="1300" lazy-load :src="jubaopen">
+      <van-image width="100%" height="2800" lazy-load :src="jubaopen">
         <template v-slot:loading>
           <van-loading type="spinner" size="20" />
         </template>

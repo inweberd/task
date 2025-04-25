@@ -12,7 +12,16 @@
       <!--      >-->
       <!--        点击头像可更换微信微信头像-->
       <!--      </p>-->
-      <div class="info-r">
+      <div class="info-r" style="position: relative">
+        <div class="edit" style="position: absolute; right: -30px; top: 0px; color: #fff">
+          <van-button
+            color="linear-gradient(to right, #fb5b4b, #9c38e5)"
+            @click="go('/editInfo')"
+            style="height: 25px"
+          >
+            修改昵称
+          </van-button>
+        </div>
         <div class="t">
           <template v-if="userInfo.nickname"> {{ userInfo.nickname }}</template>
           <template v-else>
@@ -34,7 +43,7 @@
           <p>我的团队等级 : {{ walletInfo?.star || 0 }}星</p>
         </div>
         <div class="b">
-          <p>我的加速卡等级 : {{ userInfo?.result?.staff?.name || '暂无加速卡' }}</p>
+          <p>我的会员等级 : {{ userInfo?.result?.staff?.name || '暂无会员' }}</p>
         </div>
       </div>
     </div>
@@ -42,7 +51,7 @@
     <div class="container">
       <div class="money-box">
         <div class="total">
-          <div class="txt1">可提现元宝</div>
+          <div class="txt1">可提现或互转元宝数量:</div>
           <div class="txt2">
             {{ userIncomeInfo?.wallet?.money || 0 }}
             <!--            <template v-if="showTotal">-->
@@ -1298,6 +1307,7 @@ onDeactivated(() => {
         text-align: center;
         display: flex;
         justify-content: center;
+        align-items: center;
 
         .txt1 {
           font-size: 16px;

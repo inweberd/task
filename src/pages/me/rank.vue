@@ -119,20 +119,26 @@
           <section>
             <img :src="item.avatar || headImg" style="width: 100%; height: 100%" alt="" />
           </section>
-          <div style="position: relative; top: -14px">
+          <div style="position: relative">
             <img src="./images/icon-rz.png" alt="" />
             <div style="display: flex; flex-direction: column; position: relative">
               <span style="line-height: 16px">
                 {{ item.nickname || getPhone(item.phone) }}
               </span>
-              <div
-                style="line-height: 16px; position: absolute; top: 24px; left: -22px; color: red"
-              >
+              <div style="line-height: 16px; color: red; margin-top: 5px">
                 等级：{{ item?.vip?.name || '暂无特权' }}
               </div>
+              <span style="line-height: 16px; margin-top: 5px; font-weight: bolder">
+                本周已挣元宝：{{ +item.total.toFixed(4) }}
+              </span>
+              <!--              <div-->
+              <!--                style="line-height: 16px; position: absolute; top: 24px; left: -22px; color: red"-->
+              <!--              >-->
+              <!--                等级：{{ item?.vip?.name || '暂无特权' }}-->
+              <!--              </div>-->
             </div>
           </div>
-          <div>￥{{ +item.total.toFixed(4) }}</div>
+          <!--          <div>￥{{ +item.total.toFixed(4) }}</div>-->
         </div>
       </div>
     </div>
@@ -342,8 +348,8 @@ onBeforeUnmount(() => {
       background-color: #fff;
 
       & > div {
-        height: 60px;
-        line-height: 60px;
+        height: 80px;
+        line-height: 80px;
         width: 40%;
         text-align: center;
 
@@ -351,7 +357,7 @@ onBeforeUnmount(() => {
           color: #000;
           //background-image: url('./images/four.png');
           background-repeat: no-repeat;
-          width: 20%;
+          width: 10%;
           background-size: 26px auto;
           background-position: center 5px;
         }
@@ -372,6 +378,8 @@ onBeforeUnmount(() => {
         }
       }
       & > section {
+        display: flex;
+        align-items: center;
         img {
           border-radius: 50%;
           width: 50px !important;

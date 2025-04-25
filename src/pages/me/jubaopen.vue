@@ -48,7 +48,7 @@
           <van-loading type="spinner" size="20" />
         </template>
       </van-image>
-      <template v-for="(item, index) of btnList" :key="index">
+      <template v-for="(item, index) of staffList" :key="index">
         <template v-if="myDataList.includes(index + 1)">
           <span
             style="
@@ -60,7 +60,7 @@
               padding: 3px 10px;
               border-radius: 14px;
             "
-            :style="{ top: item.top + 'px' }"
+            :style="{ top: index*76 + 26 + 'px' }"
             >已拥有</span
           >
         </template>
@@ -68,8 +68,8 @@
           v-else
           style="width: 70px; position: absolute; right: 15px; margin-left: -35px"
           :src="btn"
-          :style="{ top: item.top + 'px' }"
-          @click="buy(index + 1)"
+          :style="{ top: index*76 + 26 + 'px' }"
+          @click="buy(item.id,index)"
           alt=""
         />
       </template>
@@ -130,7 +130,7 @@ import jubaopenTitle from './images/jubaopen-title.jpg'
 import jubaopen from './images/jubaopen.jpg'
 import btn from './images/jubaopen-btn.png'
 import { Toast } from 'tdesign-mobile-vue'
-import { onActivated, onMounted, ref } from 'vue'
+import {onActivated, onDeactivated, onMounted, ref} from 'vue'
 import {
   getAlreadyBuyTreasureBasin,
   reqMyStaff,
@@ -237,37 +237,45 @@ const getMyStaff = () => {
   //   myDataList.value = (res.data?.data || []).map((item) => item.bind_id)
   // })
   getAlreadyBuyTreasureBasin().then((res) => {
+    clearInterval(timer)
     if (!res.data?.data.length) {
       return
     }
-    clearInterval(timer)
-    res.data.data = (res.data?.data || []).filter((item) => item.finished === 0)
-    const arr = []
+      myDataList.value = (res.data?.data || []).map((item) => item.bind_id)
+      // res.data.data[0].rebate_time=1745591200
+      res.data.data = (res.data?.data || []).filter((item) => item.finished === 0&&item.rebate_time * 1000>new Date().getTime())
+        console.log(res.data.data)
+      const arr = []
     ;(res.data?.data || []).forEach((item) => {
       arr.push(item.rebate_time * 1000)
     })
     arr.sort((a, b) => {
       return a - b
     })
-    console.log(arr)
+    // console.log(arr)
     const dateStr = dayjs(arr[0]).add(2, 'day').format('YYYY-MM-DD') + ' 00:00:00'
 
     // const countdown = getCountdown(dayjs(dateStr).valueOf()
     const countdown = getCountdown(arr[0])
-    console.log(countdown)
+    // console.log(countdown)
 
     timeTxt.value = `${countdown.days}天 ${transfer(countdown.hours)} : ${transfer(countdown.minutes)} : ${transfer(countdown.seconds)}`
 
     timer = setInterval(() => {
       const countdown = getCountdown(arr[0])
+        // console.log((arr[0] - new Date().getTime())/1000/60)
+        if(arr[0] <new Date().getTime()){
+            getMyStaff()
+            clearInterval(timer)
+            return
+        }
       timeTxt.value = `${countdown.days}天 ${transfer(countdown.hours)} : ${transfer(countdown.minutes)} : ${transfer(countdown.seconds)}`
     }, 1000)
 
-    myDataList.value = (res.data?.data || []).map((item) => item.bind_id)
   })
 }
 
-const buy = (id) => {
+const buy = (id,index) => {
   // showGonggaoOverlay.value = true
   // return
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
@@ -287,16 +295,15 @@ const buy = (id) => {
     return
   }
 
-  if (!myDataList.value?.length && id !== 1) {
+  if (!myDataList.value?.length && index !== 0) {
     return showToast({
       message: '请逐级购买！',
       icon: 'warning'
     })
   }
-
   const arr = []
-  for (let i = 1; i < id; i++) {
-    arr.push(i)
+  for (let i = 0; i < index; i++) {
+    arr.push(staffList.value[i].id)
   }
 
   const flag = arr.every((item) => {
@@ -370,10 +377,11 @@ function updateTime() {
   // 显示结果
   timeStr.value = `${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`
 }
-
+const staffList=ref([])
 onMounted(() => {
   reqTreasureBasinPage().then((res) => {
     console.log('reqTreasureBasinPage', res)
+      staffList.value=res.data?.data||[]
   })
 })
 const jubaopenInfo = ref({
@@ -386,6 +394,9 @@ onActivated(() => {
   reqTreasureBasinSummary().then((res) => {
     jubaopenInfo.value = res.data
   })
+})
+onDeactivated(()=>{
+    clearInterval(timer)
 })
 </script>
 <style scoped>

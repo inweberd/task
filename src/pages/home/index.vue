@@ -940,7 +940,7 @@ const handleGame = () => {
 onActivated(() => {
   reqAdvertisingCount()
   // showGonggaoOverlay.value = true
-  updateOverlay.value = true
+  // updateOverlay.value = true
   reqNgTransfer().then((res) => {
     console.log('res', res)
   })

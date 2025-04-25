@@ -302,7 +302,7 @@ export function reqBonusInvite(mode) {
 
 // 聚宝盆分页
 export function reqTreasureBasinPage() {
-  return axiosInstance({ url: '/api/treasure-basin/find?limit=20', method: 'get' })
+  return axiosInstance({ url: '/api/treasure-basin/find?limit=50&order= serial asc', method: 'get' })
 }
 
 // 聚宝盆购买

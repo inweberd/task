@@ -869,6 +869,50 @@
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
       </div>
     </TipDialog>
+      <TipDialog
+          v-model="updateOverlay"
+          confirm-text="进入官方群"
+          @confirm="handleUpdateOverlayConfirm"
+          :show-close="false"
+      >
+          <!--      <p-->
+          <!--        style="-->
+          <!--          text-align: center;-->
+          <!--          font-size: 18px;-->
+          <!--          color: #fff;-->
+          <!--          font-weight: bolder;-->
+          <!--          margin-top: 10px;-->
+          <!--        "-->
+          <!--      >-->
+          <!--        已为您自动更新以下内容-->
+          <!--      </p>-->
+          <!--      <div style="color: #ddd; padding: 18px">-->
+          <!--        <p>1、优化解决0撸用户看普通视频间歇性无收益问题。</p>-->
+          <!--        <p>2、优化会员等级界面显示ui</p>-->
+          <!--        <p style="font-weight: bolder; color: #fff">3、广告旺季来临，提高会员日收入</p>-->
+          <!--        <p>4、陆续增加游戏板块</p>-->
+          <!--        <p>5、代理推广提升，推广8代奖励，星级无限代奖励</p>-->
+          <!--      </div>-->
+          <p
+              style="
+          text-align: center;
+          font-size: 18px;
+          color: #fff;
+          font-weight: bolder;
+          margin-top: 10px;
+        "
+          >
+              重要公告
+          </p>
+          <div style="color: #ddd; padding: 18px">
+              <p>
+                  官方群大量团队长，老板24小时不间断收元宝，进入官方群，元宝互转交易<span
+                  style="font-weight: bolder; color: #fff"
+              >为您免去每日提现的手续费！
+          </span>
+              </p>
+          </div>
+      </TipDialog>
   </div>
 </template>
 
@@ -921,6 +965,7 @@ const renzheng = (avatar) => {
 }
 const showGonggaoOverlay = ref(false)
 
+const updateOverlay = ref(false)
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
   window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
@@ -1150,7 +1195,12 @@ function goDownload() {
     // proxy.$refs['notify'].error('下载失败，请稍后再试！')
   }
 }
-
+const handleUpdateOverlayConfirm = () => {
+    updateOverlay.value = false
+    showGonggaoOverlay.value = true
+    // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
+    // window.location.href = 'https://www.dingtalk.com/download?spm=a2o5v.m_dingtalk_com_index.0.0.5f7771e1HZUmoI'
+}
 const goFenHong = () => {
   router.push('/fenhong')
 }
@@ -1221,6 +1271,8 @@ const getRed = () => {
     })
 }
 onActivated(() => {
+    // showGonggaoOverlay.value = true
+    updateOverlay.value = true
   userInfo.value = JSON.parse(window.localStorage.getItem('userInfo'))
   init()
   getRed()

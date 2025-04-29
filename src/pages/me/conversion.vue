@@ -24,11 +24,11 @@
         <!--<van-image width="100" height="100" :src="imgg" />-->
       </div>
       <van-form @submit="onSubmit">
-        <div class="common-input-title">团队成员手机号</div>
+        <div class="common-input-title">团队成员ID</div>
         <van-field
-          v-model="data.phone"
-          :rules="[{ required: true, message: '请输入团队成员手机号' }]"
-          placeholder="请输入对方手机号"
+          v-model="data.uid"
+          :rules="[{ required: true, message: '请输入团队成员ID' }]"
+          placeholder="请输入对方ID"
         />
         <div class="common-input-title" style="margin-top: 10px">转账金额</div>
 
@@ -95,7 +95,7 @@
           padding: 5px;
         "
       >
-        每日提现的用户，强烈推荐大家进入汇盈官方聊天群使用元宝互转出售给收元宝的商人，元宝互转免手续费，这样相当于可以省去每天提现的5%手续费！
+        每日提现的用户，强烈推荐大家进入汇盈官方聊天群使用元宝互转出售给收元宝的商人，元宝互转免手续费，这样相当于可以省去每天提现的10%手续费！
         日积月累下来，能省下很多费用！
       </p>
 
@@ -173,7 +173,7 @@ const isVip = ref(JSON.parse(window.localStorage.getItem('userInfo'))?.result?.s
 const route = useRoute()
 const time = ref()
 const data = reactive({
-  phone: '',
+  uid: '',
   code: '',
   amount: ''
   // fingerprint: ''
@@ -229,8 +229,8 @@ function getCode() {
 
     return
   }
-  if (!data.phone) {
-    return _notice('请输入团队成员手机号')
+  if (!data.uid) {
+    return _notice('请输入团队成员ID')
   }
 
   reqWalletTransfer(data).then((e) => {
@@ -246,13 +246,13 @@ function onSubmit() {
   if (data.amount < 10) {
     return _notice('余额互转10元起！')
   }
-  if (!data.phone || !data.code) {
+  if (!data.code) {
     return _notice('请输入验证码！')
   }
   reqWalletTransfer(data).then((e) => {
     _notice(e.msg)
     if (e.code === 200) {
-      data.phone = ''
+      data.uid = ''
       data.code = ''
       data.amount = ''
     }

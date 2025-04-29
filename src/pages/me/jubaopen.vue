@@ -49,7 +49,7 @@
         </template>
       </van-image>
       <template v-for="(item, index) of staffList" :key="index">
-        <template v-if="myDataList.includes(index + 1)">
+        <template v-if="myDataList.includes(item.id)">
           <span
             style="
               position: absolute;
@@ -60,7 +60,7 @@
               padding: 3px 10px;
               border-radius: 14px;
             "
-            :style="{ top: index*76 + 26 + 'px' }"
+            :style="{ top: index * 76 + 26 + 'px' }"
             >已拥有</span
           >
         </template>
@@ -68,8 +68,8 @@
           v-else
           style="width: 70px; position: absolute; right: 15px; margin-left: -35px"
           :src="btn"
-          :style="{ top: index*76 + 26 + 'px' }"
-          @click="buy(item.id,index)"
+          :style="{ top: index * 76 + 26 + 'px' }"
+          @click="buy(item.id, index)"
           alt=""
         />
       </template>
@@ -130,7 +130,7 @@ import jubaopenTitle from './images/jubaopen-title.jpg'
 import jubaopen from './images/jubaopen.jpg'
 import btn from './images/jubaopen-btn.png'
 import { Toast } from 'tdesign-mobile-vue'
-import {onActivated, onDeactivated, onMounted, ref} from 'vue'
+import { onActivated, onDeactivated, onMounted, ref } from 'vue'
 import {
   getAlreadyBuyTreasureBasin,
   reqMyStaff,
@@ -241,11 +241,13 @@ const getMyStaff = () => {
     if (!res.data?.data.length) {
       return
     }
-      myDataList.value = (res.data?.data || []).map((item) => item.bind_id)
-      // res.data.data[0].rebate_time=1745591200
-      res.data.data = (res.data?.data || []).filter((item) => item.finished === 0&&item.rebate_time * 1000>new Date().getTime())
-        console.log(res.data.data)
-      const arr = []
+    myDataList.value = (res.data?.data || []).map((item) => item.bind_id)
+    // res.data.data[0].rebate_time=1745591200
+    res.data.data = (res.data?.data || []).filter(
+      (item) => item.finished === 0 && item.rebate_time * 1000 > new Date().getTime()
+    )
+    console.log(res.data.data)
+    const arr = []
     ;(res.data?.data || []).forEach((item) => {
       arr.push(item.rebate_time * 1000)
     })
@@ -263,19 +265,18 @@ const getMyStaff = () => {
 
     timer = setInterval(() => {
       const countdown = getCountdown(arr[0])
-        // console.log((arr[0] - new Date().getTime())/1000/60)
-        if(arr[0] <new Date().getTime()){
-            getMyStaff()
-            clearInterval(timer)
-            return
-        }
+      // console.log((arr[0] - new Date().getTime())/1000/60)
+      if (arr[0] < new Date().getTime()) {
+        getMyStaff()
+        clearInterval(timer)
+        return
+      }
       timeTxt.value = `${countdown.days}天 ${transfer(countdown.hours)} : ${transfer(countdown.minutes)} : ${transfer(countdown.seconds)}`
     }, 1000)
-
   })
 }
 
-const buy = (id,index) => {
+const buy = (id, index) => {
   // showGonggaoOverlay.value = true
   // return
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
@@ -377,11 +378,11 @@ function updateTime() {
   // 显示结果
   timeStr.value = `${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`
 }
-const staffList=ref([])
+const staffList = ref([])
 onMounted(() => {
   reqTreasureBasinPage().then((res) => {
     console.log('reqTreasureBasinPage', res)
-      staffList.value=res.data?.data||[]
+    staffList.value = res.data?.data || []
   })
 })
 const jubaopenInfo = ref({
@@ -395,8 +396,8 @@ onActivated(() => {
     jubaopenInfo.value = res.data
   })
 })
-onDeactivated(()=>{
-    clearInterval(timer)
+onDeactivated(() => {
+  clearInterval(timer)
 })
 </script>
 <style scoped>

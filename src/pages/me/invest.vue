@@ -197,7 +197,7 @@
               "
             >
               <span>日收益</span>
-              <span v-if="index === 1">5~7</span>
+              <span v-if="index === 1">7~9</span>
               <span v-if="index === 2">12~20</span>
               <span v-if="index === 3">20~40</span>
               <span v-if="index === 4">35~70</span>

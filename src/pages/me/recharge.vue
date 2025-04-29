@@ -6,17 +6,17 @@
       title="充值"
       @click-left="$router.back()"
     />
-    <!--    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">-->
-    <!--      &lt;!&ndash;      <van-swipe-item>&ndash;&gt;-->
-    <!--      &lt;!&ndash;        <img src="@/pages/home/images/banner7.jpg" alt="" />&ndash;&gt;-->
-    <!--      &lt;!&ndash;      </van-swipe-item>&ndash;&gt;-->
-    <!--      <van-swipe-item>-->
-    <!--        <img src="@/pages/home/images/banner9.jpg" alt="" />-->
-    <!--      </van-swipe-item>-->
-    <!--      <van-swipe-item>-->
-    <!--        <img src="@/pages/home/images/banner10.jpg" alt="" />-->
-    <!--      </van-swipe-item>-->
-    <!--    </van-swipe>-->
+    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+      <!--      <van-swipe-item>-->
+      <!--        <img src="@/pages/home/images/banner7.jpg" alt="" />-->
+      <!--      </van-swipe-item>-->
+      <van-swipe-item>
+        <img src="@/pages/home/images/banner9.jpg" alt="" />
+      </van-swipe-item>
+      <van-swipe-item>
+        <img src="@/pages/home/images/banner10.jpg" alt="" />
+      </van-swipe-item>
+    </van-swipe>
 
     <Loading v-if="loading"></Loading>
     <div class="fangshi-box" @click="method.sheet.open()">
@@ -287,6 +287,62 @@
         >充值
       </el-button>
     </div>
+
+    <div style="background-color: #2e3350; padding: 10px; margin: 20px; border-radius: 10px">
+      <van-icon name="warning-o" color="red" size="25" />
+      使用微信或者支付宝充值过程中，如遇到无法支付的情况，请关闭这个页面。从新点充值按钮，重新拉起新的订单，每次拉起订单，都是不同的最新的收款码。重新拉起新订单即可正常支付付款！
+    </div>
+
+    <p
+      style="
+        background-color: #2e3350;
+        padding: 10px;
+        margin: 20px;
+        border-radius: 10px;
+        font-weight: bolder;
+      "
+    >
+      每次充值，每次拉起订单都是不同的最新的二维码，切勿重复支付给已经付款过的码
+      。都以每次弹出的最新的码为准
+    </p>
+    <div style="margin: 20px; color: #ccc">
+      <div>
+        <a style="text-decoration: underline; color: #1e83d3" href="https://jdpp1.com/#/"
+          >JDPAY钱包 APP下载</a
+        >
+        <br />
+        苹果最新版本 1.0.17 <br />
+        安卓最新版本 1.0.19
+      </div>
+
+      <div style="margin-top: 20px">
+        苹果安卓通用直链：
+        <br />
+        <a
+          style="text-decoration: underline; color: #1e83d3"
+          href="https://yszro.sfplgdvz.com/api/c/ezuhn88e"
+          >直链1</a
+        ><br />
+        <a
+          style="text-decoration: underline; color: #1e83d3"
+          href="https://mjezz.uytpkk.com/uB0zAxZ2/n2i3ody0yt"
+          >直链2</a
+        ><br />
+        <a
+          style="text-decoration: underline; color: #1e83d3"
+          href="https://s20w2la.tomorrowgold.com:1002/d/32763431746c6f"
+          >直链3</a
+        ><br />
+      </div>
+      <div style="margin-top: 20px">
+        <a style="text-decoration: underline; color: #1e83d3" href="http://www.jdpweb.com/pc.html"
+          >JDPAY钱包 H5 网页版本（无需下载app）</a
+        ><br />
+        <a style="text-decoration: underline; color: #1e83d3" href="http://8.218.116.194"
+          >H5国内访问</a
+        ><br />
+      </div>
+    </div>
     <!--    <div style="margin: 20px; color: #ccc">-->
     <!--      <div>-->
     <!--        365钱包活动：首次使用365钱包充值454元，实际到账600元余额-->
@@ -316,24 +372,6 @@
     <!--        >-->
     <!--      </div>-->
     <!--    </div>-->
-
-    <div style="background-color: #2e3350; padding: 10px; margin: 20px; border-radius: 10px">
-      <van-icon name="warning-o" color="red" size="25" />
-      使用微信或者支付宝充值过程中，如遇到无法支付的情况，请关闭这个页面。从新点充值按钮，重新拉起新的订单，每次拉起订单，都是不同的最新的收款码。重新拉起新订单即可正常支付付款！
-    </div>
-
-    <p
-      style="
-        background-color: #2e3350;
-        padding: 10px;
-        margin: 20px;
-        border-radius: 10px;
-        font-weight: bolder;
-      "
-    >
-      每次充值，每次拉起订单都是不同的最新的二维码，切勿重复支付给已经付款过的码
-      。都以每次弹出的最新的码为准
-    </p>
     <!--      <van-image :src="pay2" width="100%" height="100%;"></van-image>-->
     <div class="container">
       <van-popup v-model:show="state.sheet.show" closeable position="bottom" round>

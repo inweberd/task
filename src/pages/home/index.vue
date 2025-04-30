@@ -171,7 +171,12 @@
         <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
       <!--      <div class="big-title" style="margin-top: 10px">视频板块（只看视频不养机/分分钟挣大钱）</div>-->
-      <img src="./images/bankuai1.png" alt="" style="height: 30px; margin-top: 10px" />
+      <img
+        src="./images/bankuai1.png"
+        v-show="!isIos"
+        alt=""
+        style="height: 30px; margin-top: 10px"
+      />
       <div class="shouyi-list">
         <!--        <div v-show="!isIos" class="item">-->
         <!--          <div class="item-box">-->
@@ -199,12 +204,12 @@
         <!--            </div>-->
         <!--          </div>-->
         <!--        </div>-->
-        <div class="item" @click="loadShort(1)">
+        <div class="item" @click="loadShort(1)" v-show="!isIos">
           <div class="item-box">
             <!--            <div>游戏专区</div>-->
           </div>
         </div>
-        <div class="item" @click="loadXuanShang()">
+        <div class="item" @click="loadXuanShang()" v-show="!isIos">
           <div class="item-box">
             <!--            <div>游戏专区</div>-->
           </div>

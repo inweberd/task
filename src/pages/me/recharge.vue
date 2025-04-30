@@ -305,73 +305,73 @@
       每次充值，每次拉起订单都是不同的最新的二维码，切勿重复支付给已经付款过的码
       。都以每次弹出的最新的码为准
     </p>
-    <div style="margin: 20px; color: #ccc">
-      <div>
-        <a style="text-decoration: underline; color: #1e83d3" href="https://jdpp1.com/#/"
-          >JDPAY钱包 APP下载</a
-        >
-        <br />
-        苹果最新版本 1.0.17 <br />
-        安卓最新版本 1.0.19
-      </div>
-
-      <div style="margin-top: 20px">
-        苹果安卓通用直链：
-        <br />
-        <a
-          style="text-decoration: underline; color: #1e83d3"
-          href="https://yszro.sfplgdvz.com/api/c/ezuhn88e"
-          >直链1</a
-        ><br />
-        <a
-          style="text-decoration: underline; color: #1e83d3"
-          href="https://mjezz.uytpkk.com/uB0zAxZ2/n2i3ody0yt"
-          >直链2</a
-        ><br />
-        <a
-          style="text-decoration: underline; color: #1e83d3"
-          href="https://s20w2la.tomorrowgold.com:1002/d/32763431746c6f"
-          >直链3</a
-        ><br />
-      </div>
-      <div style="margin-top: 20px">
-        <a style="text-decoration: underline; color: #1e83d3" href="http://www.jdpweb.com/pc.html"
-          >JDPAY钱包 H5 网页版本（无需下载app）</a
-        ><br />
-        <a style="text-decoration: underline; color: #1e83d3" href="http://8.218.116.194"
-          >H5国内访问</a
-        ><br />
-      </div>
-    </div>
     <!--    <div style="margin: 20px; color: #ccc">-->
     <!--      <div>-->
-    <!--        365钱包活动：首次使用365钱包充值454元，实际到账600元余额-->
-    <!--        <span-->
-    <!--          style="text-decoration: underline; color: #1e83d3"-->
-    <!--          @click="-->
-    <!--            $router.push({-->
-    <!--              path: 'downloadInfo',-->
-    <!--              type: '365'-->
-    <!--            })-->
-    <!--          "-->
-    <!--          >点击下载安装365钱包</span-->
+    <!--        <a style="text-decoration: underline; color: #1e83d3" href="https://jdpp1.com/#/"-->
+    <!--          >JDPAY钱包 APP下载</a-->
     <!--        >-->
+    <!--        <br />-->
+    <!--        苹果最新版本 1.0.17 <br />-->
+    <!--        安卓最新版本 1.0.19-->
+    <!--      </div>-->
+
+    <!--      <div style="margin-top: 20px">-->
+    <!--        苹果安卓通用直链：-->
+    <!--        <br />-->
+    <!--        <a-->
+    <!--          style="text-decoration: underline; color: #1e83d3"-->
+    <!--          href="https://yszro.sfplgdvz.com/api/c/ezuhn88e"-->
+    <!--          >直链1</a-->
+    <!--        ><br />-->
+    <!--        <a-->
+    <!--          style="text-decoration: underline; color: #1e83d3"-->
+    <!--          href="https://mjezz.uytpkk.com/uB0zAxZ2/n2i3ody0yt"-->
+    <!--          >直链2</a-->
+    <!--        ><br />-->
+    <!--        <a-->
+    <!--          style="text-decoration: underline; color: #1e83d3"-->
+    <!--          href="https://s20w2la.tomorrowgold.com:1002/d/32763431746c6f"-->
+    <!--          >直链3</a-->
+    <!--        ><br />-->
     <!--      </div>-->
     <!--      <div style="margin-top: 20px">-->
-    <!--        JD钱包活动：首次使用JD钱包充值1000元，实际到账1100元余额-->
-    <!--        首次使JD钱包充值5000元，实际到账5300元-->
-    <!--        <span-->
-    <!--          style="text-decoration: underline; color: #1e83d3"-->
-    <!--          @click="-->
-    <!--            $router.push({-->
-    <!--              path: 'downloadInfo',-->
-    <!--              type: 'jd'-->
-    <!--            })-->
-    <!--          "-->
-    <!--          >点击下载安装JD钱包</span-->
-    <!--        >-->
+    <!--        <a style="text-decoration: underline; color: #1e83d3" href="http://www.jdpweb.com/pc.html"-->
+    <!--          >JDPAY钱包 H5 网页版本（无需下载app）</a-->
+    <!--        ><br />-->
+    <!--        <a style="text-decoration: underline; color: #1e83d3" href="http://8.218.116.194"-->
+    <!--          >H5国内访问</a-->
+    <!--        ><br />-->
     <!--      </div>-->
     <!--    </div>-->
+    <div style="margin: 20px; color: #ccc">
+      <!--      <div>-->
+      <!--        365钱包活动：首次使用365钱包充值454元，实际到账600元余额-->
+      <!--        <span-->
+      <!--          style="text-decoration: underline; color: #1e83d3"-->
+      <!--          @click="-->
+      <!--            $router.push({-->
+      <!--              path: 'downloadInfo',-->
+      <!--              type: '365'-->
+      <!--            })-->
+      <!--          "-->
+      <!--          >点击下载安装365钱包</span-->
+      <!--        >-->
+      <!--      </div>-->
+      <div style="margin-top: 20px">
+        JD钱包活动：首次使用JD钱包充值1000元，实际到账1100元余额
+        首次使JD钱包充值5000元，实际到账5200元
+        <span
+          style="text-decoration: underline; color: #1e83d3"
+          @click="
+            $router.push({
+              path: 'downloadInfo',
+              type: 'jd'
+            })
+          "
+          >点击下载安装JD钱包</span
+        >
+      </div>
+    </div>
     <!--      <van-image :src="pay2" width="100%" height="100%;"></van-image>-->
     <div class="container">
       <van-popup v-model:show="state.sheet.show" closeable position="bottom" round>

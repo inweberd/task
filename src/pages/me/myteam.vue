@@ -1033,7 +1033,8 @@ const goJiangshangjiangOverlay = ref(false)
 const goDepOverlay = ref(false)
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
-  window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
+  window.location.href =
+    'https://www.dingtalk.com/download?spm=a2o5v.m_dingtalk_com_index.0.0.5f7771e1HZUmoI'
 }
 const list = [
   {
@@ -1051,7 +1052,7 @@ const list = [
   //   }
   // },
   {
-    label: '团队升星奖励（奖励元宝）',
+    label: '团队升星奖励',
     icon: 'like-o',
     fn() {
       router.push('/jiangliguize')
@@ -1065,7 +1066,7 @@ const list = [
     }
   },
   {
-    label: '元宝互转（官方群商人保底回收元宝，互转免手续费）',
+    label: '元宝互转',
     icon: 'like-o',
     fn() {
       router.push('/conversion')
@@ -1086,7 +1087,7 @@ const list = [
     }
   },
   {
-    label: '推广收入详情（奖励元宝）',
+    label: '推广收入详情',
     icon: 'coupon-o',
     fn() {
       router.push('/demo')

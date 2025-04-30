@@ -173,70 +173,67 @@
       <!--      <div class="big-title" style="margin-top: 10px">视频板块（只看视频不养机/分分钟挣大钱）</div>-->
       <img src="./images/bankuai1.png" alt="" style="height: 30px; margin-top: 10px" />
       <div class="shouyi-list">
-        <div v-show="!isIos" class="item">
-          <!--          <div class="item-box">-->
-          <!--            <div>普通用户看视频赚钱</div>-->
-          <!--            <div>特权：无特权</div>-->
-          <!--            &lt;!&ndash;            <div style="color: red; font-weight: bolder">日收益：保底1元~99元</div>&ndash;&gt;-->
-          <!--            &lt;!&ndash;            <div style="position: relative; top: 10px; color: red; font-size: 16px">&ndash;&gt;-->
-          <!--            &lt;!&ndash;              <div style="font-weight: bolder">限一机一号一ip</div>&ndash;&gt;-->
-          <!--            &lt;!&ndash;              <div style="font-weight: bolder">视频允许无限刷</div>&ndash;&gt;-->
-          <!--            &lt;!&ndash;            </div>&ndash;&gt;-->
-          <!--            <div-->
-          <!--              style="-->
-          <!--                position: absolute;-->
-          <!--                left: 15px;-->
-          <!--                bottom: 20px;-->
-          <!--                font-size: 22px;-->
-          <!--                text-shadow: 5px 5px 5px #081831;-->
-          <!--              "-->
-          <!--            >-->
-          <!--              点击开始赚钱-->
-          <!--            </div>-->
-          <!--          </div>-->
-          <div
-            style="
-              width: 100%;
-              height: 100%;
-              display: flex;
-              flex-direction: column;
-              justify-content: space-between;
-            "
-          >
-            <div @click="loadShort(1)">
-              <img style="width: 100%; height: 40px" src="./lingluImage/linglu1-title.png" alt="" />
-              <img style="width: 100%" src="./lingluImage/linglu1.png" alt="" />
-            </div>
-            <div @click="loadXuanShang()">
-              <img style="width: 100%; height: 40px" src="./lingluImage/linglu2-title.png" alt="" />
-              <img style="width: 100%" src="./lingluImage/linglu2.png" alt="" />
-            </div>
+        <!--        <div v-show="!isIos" class="item">-->
+        <!--          <div class="item-box">-->
+        <!--            <div>普通用户看视频赚钱</div>-->
+        <!--            <div>特权：无特权</div>-->
+        <!--            &lt;!&ndash;            <div style="color: red; font-weight: bolder">日收益：保底1元~99元</div>&ndash;&gt;-->
+        <!--            &lt;!&ndash;            <div style="position: relative; top: 10px; color: red; font-size: 16px">&ndash;&gt;-->
+        <!--            &lt;!&ndash;              <div style="font-weight: bolder">限一机一号一ip</div>&ndash;&gt;-->
+        <!--            &lt;!&ndash;              <div style="font-weight: bolder">视频允许无限刷</div>&ndash;&gt;-->
+        <!--            &lt;!&ndash;            </div>&ndash;&gt;-->
+        <!--            <div-->
+        <!--              style="-->
+        <!--                position: absolute;-->
+        <!--                left: 15px;-->
+        <!--                bottom: 20px;-->
+        <!--                font-size: 22px;-->
+        <!--                text-shadow: 5px 5px 5px #081831;-->
+        <!--              "-->
+        <!--            >-->
+        <!--              点击开始赚钱-->
+        <!--            </div>-->
+        <!--            <div @click="loadXuanShang()">-->
+        <!--              <img style="width: 100%; height: 40px" src="./lingluImage/linglu2-title.png" alt="" />-->
+        <!--              <img style="width: 100%" src="./lingluImage/linglu2.png" alt="" />-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <div class="item" @click="loadShort(1)">
+          <div class="item-box">
+            <!--            <div>游戏专区</div>-->
           </div>
         </div>
-        <div class="item">
-          <div
-            style="
-              width: 100%;
-              height: 100%;
-              display: flex;
-              flex-direction: column;
-              justify-content: space-between;
-            "
-          >
-            <div @click="loadShort(3)">
-              <img style="width: 100%; height: 40px" src="./lingluImage/huiyuan_title.png" alt="" />
-              <img style="width: 100%" src="./lingluImage/huiyuan.png" alt="" />
-            </div>
-            <div @click="$router.push('/rank')">
-              <img
-                style="width: 100%; height: 40px"
-                src="./lingluImage/paihangbang-title.png"
-                alt=""
-              />
-              <img style="width: 100%; height: 52px" src="./lingluImage/paihangbang.png" alt="" />
-            </div>
+        <div class="item" @click="loadXuanShang()">
+          <div class="item-box">
+            <!--            <div>游戏专区</div>-->
           </div>
         </div>
+
+        <!--        <div class="item">-->
+        <!--          <div-->
+        <!--            style="-->
+        <!--              width: 100%;-->
+        <!--              height: 100%;-->
+        <!--              display: flex;-->
+        <!--              flex-direction: column;-->
+        <!--              justify-content: space-between;-->
+        <!--            "-->
+        <!--          >-->
+        <!--            <div @click="loadShort(3)">-->
+        <!--              <img style="width: 100%; height: 40px" src="./lingluImage/huiyuan_title.png" alt="" />-->
+        <!--              <img style="width: 100%" src="./lingluImage/huiyuan.png" alt="" />-->
+        <!--            </div>-->
+        <!--            <div @click="$router.push('/rank')">-->
+        <!--              <img-->
+        <!--                style="width: 100%; height: 40px"-->
+        <!--                src="./lingluImage/paihangbang-title.png"-->
+        <!--                alt=""-->
+        <!--              />-->
+        <!--              <img style="width: 100%; height: 52px" src="./lingluImage/paihangbang.png" alt="" />-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
         <!--        <div class="item" @click="loadShort(3)">-->
         <!--          <div class="item-box">-->
         <!--            <div>会员用户看视频赚钱</div>-->
@@ -259,7 +256,7 @@
         <!--        <p class="big-title" style="margin-top: 10px">核心进阶玩法：超级暴利《聚宝盆》</p>-->
         <img src="./images/bankuai2.png" alt="" style="height: 30px; margin: 10px 0" />
 
-        <div class="item" @click="$router.push('/gameList')">
+        <div class="item" @click="loadShort(3)">
           <div class="item-box">
             <!--            <div>游戏专区</div>-->
           </div>
@@ -270,8 +267,17 @@
           </div>
         </div>
         <!--        <p class="big-title" style="margin-top: 10px">推广奖上奖（双重福利，排行榜+奖上奖红包</p>-->
-        <!--        <img src="./images/bankuai3.png" alt="" style="height: 30px; margin: 10px 0" />-->
-
+        <img src="./images/bankuai3.png" alt="" style="height: 30px; margin: 10px 0" />
+        <div class="item" @click="$router.push('/gameList')">
+          <div class="item-box">
+            <!--            <div>游戏专区</div>-->
+          </div>
+        </div>
+        <div class="item" @click="$router.push('/rank')">
+          <div class="item-box">
+            <!--            <div>游戏专区</div>-->
+          </div>
+        </div>
         <!--        <div class="item" @click="$router.push('/rank')">-->
         <!--          <div class="item-box">-->
         <!--            <div style="font-size: 18px">全网分红</div>-->
@@ -308,92 +314,6 @@
         <!--            </div>-->
         <!--          </div>-->
         <!--        </div>-->
-      </div>
-      <div v-if="false" class="shulist">
-        <!--        <div class="shu-item">-->
-        <!--          <div class="l">-->
-        <!--            <div class="img-box">-->
-        <!--              <img src="@/assets/img/up/CA.png" alt="" />-->
-        <!--            </div>-->
-        <!--            <div>-->
-        <!--              <div>下载App</div>-->
-        <!--              <div>点击下载，获取更高收益！</div>-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--          <div class="r">-->
-        <!--            <div @click="goDownload">下载</div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-        <div class="shu-item">
-          <div class="l">
-            <div class="img-box">
-              <img alt="" src="@/assets/img/up/CA.png" />
-            </div>
-            <div>
-              <div>每周现金分红排行榜</div>
-              <div>点击查看每周现金分红排行榜！</div>
-            </div>
-          </div>
-          <div class="r">
-            <div @click="$router.push('/rank')">详情</div>
-          </div>
-        </div>
-        <div v-if="!isIos" class="shu-item">
-          <div class="l">
-            <div class="img-box">
-              <img alt="" src="@/assets/img/up/CA.png" />
-            </div>
-            <div>
-              <div>普通视频（0撸只刷视频,不养鸡）</div>
-              <div>遇到广告直接X掉或跳过，每日获得1元！</div>
-            </div>
-          </div>
-          <div class="r">
-            <div @click="loadShort(1)">观看</div>
-          </div>
-        </div>
-        <div class="shu-item">
-          <div class="l">
-            <div class="img-box">
-              <img alt="" src="@/assets/img/up/CA.png" />
-            </div>
-            <div>
-              <div>会员视频 <span style="color: red">（每日2.5 - 5000元）</span></div>
-              <div>购买会员刷视频无广告，2分钟极速完成！</div>
-            </div>
-          </div>
-          <div class="r">
-            <div @click="loadShort(3)">观看</div>
-          </div>
-        </div>
-        <div class="shu-item">
-          <div class="l">
-            <div class="img-box">
-              <img alt="" src="@/assets/img/up/CA.png" />
-            </div>
-            <div>
-              <div>一夜暴富--pg电子</div>
-              <div>PG电子---拼手气---一夜暴富！</div>
-            </div>
-          </div>
-          <div class="r">
-            <div @click="handleGame">详情</div>
-          </div>
-        </div>
-        <div class="shu-item">
-          <div class="l">
-            <div class="img-box">
-              <img alt="" src="@/assets/img/up/CA.png" />
-            </div>
-            <div>
-              <div>每周奖池分红规则</div>
-              <div>点击查看每周奖池分红规则！</div>
-            </div>
-          </div>
-          <div class="r">
-            <div @click="$router.push('/fenhong')">详情</div>
-          </div>
-        </div>
       </div>
 
       <!--      <div class="playing" v-show="activeTab === 1">-->
@@ -1157,7 +1077,7 @@ const toGame = (plat) => {
           border-radius: 10px;
           width: 100%;
           height: 180px;
-          background: url('./images/home-icon2.png') no-repeat;
+          background: url('./images/home-icon1.png') no-repeat;
           background-size: 100% 100%;
           padding: 10px;
           box-sizing: border-box;
@@ -1176,22 +1096,34 @@ const toGame = (plat) => {
           }
         }
 
-        //&:nth-child(2) {
-        //  .item-box {
-        //    background: url('./images/home-icon1.png') no-repeat;
-        //    background-size: 100% 100%;
-        //  }
-        //}
-        //
+        &:nth-child(2) {
+          .item-box {
+            background: url('./images/home-icon6.png') no-repeat;
+            background-size: 100% 100%;
+          }
+        }
+
         &:nth-child(4) {
           .item-box {
-            background: url('./images/home-icon4.png') no-repeat;
+            background: url('./images/home-icon2.png') no-repeat;
             background-size: 100% 100%;
           }
         }
         &:nth-child(5) {
           .item-box {
             background: url('./images/home-icon5.png') no-repeat;
+            background-size: 100% 100%;
+          }
+        }
+        &:nth-child(7) {
+          .item-box {
+            background: url('./images/home-icon4.png') no-repeat;
+            background-size: 100% 100%;
+          }
+        }
+        &:nth-child(8) {
+          .item-box {
+            background: url('./images/home-icon7.png') no-repeat;
             background-size: 100% 100%;
           }
         }

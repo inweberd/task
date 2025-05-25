@@ -9,7 +9,13 @@
       safe-area-inset-top
       title="元宝互转"
       @click-left="router.back()"
-    />
+    >
+      <template #right>
+        <span style="color: #1e83d3; font-size: 18px" @click="$router.push('/conversionRecord')">
+          元宝互转记录
+        </span>
+      </template>
+    </van-nav-bar>
     <div class="logo-box">
       <img alt="" src="@/assets/img/logo.png" />
       <div class="logo-box-content">

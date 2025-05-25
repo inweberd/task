@@ -271,7 +271,14 @@
                               "
                             >
                               <template v-if="active === 'one'">
-                                {{ item.nickname || item.phone }}
+                                <div @click="copyToClipboard(item.nickname || item.phone)">
+                                  <div>
+                                    {{ item.nickname || item.phone }}
+                                  </div>
+                                  <div>
+                                    <span style="color: #999; font-size: 12px">点击复制</span>
+                                  </div>
+                                </div>
                               </template>
                               <template v-else>
                                 {{
@@ -360,6 +367,7 @@ import { getSerialName } from '../../utils/getSerialName'
 import { getIsInApp } from '@/utils/getTopPadding'
 import dayjs from 'dayjs'
 import headImg from '@/assets/img/white-logo.jpg'
+import { copyToClipboard } from '@/utils/copyToClipboard'
 
 const router = useRouter()
 let user

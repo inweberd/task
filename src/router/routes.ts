@@ -32,6 +32,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/signUp', redirect: '/common/sign-up' },
   { path: '/forget', redirect: '/common/sign-forget' },
   { path: '/conversion', component: () => import('@/pages/me/conversion.vue') },
+  { path: '/conversionRecord', component: () => import('@/pages/me/conversionRecord.vue') },
   { path: '/rank', component: () => import('@/pages/me/rank.vue') },
   { path: '/invest', component: () => import('@/pages/me/invest.vue') },
   { path: '/myServe', component: () => import('@/pages/me/myServe.vue') },

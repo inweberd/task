@@ -31,19 +31,19 @@
       <p style="margin-top: 6px; display: flex; align-items: center; padding-left: 5%">
         <img src="./images/touru.png" alt="" style="height: 40px" />
         <!--        <span style="font-family: 'DS-DIGI'; font-weight: bolder; font-size: 32px">-->
-        {{ jubaopenInfo.unFinish + jubaopenInfo.finished }}
+        {{ (jubaopenInfo.unFinish + jubaopenInfo.finished).toFixed(2) }}
         <!--        </span>-->
       </p>
 
       <p style="margin-top: 6px; display: flex; align-items: center; padding-left: 5%">
         <img src="./images/leiji.png" alt="" style="height: 40px" />
         <!--        <span style="font-family: 'DS-DIGI'; font-weight: bolder; font-size: 32px">-->
-        {{ jubaopenInfo.finished }}
+        {{ jubaopenInfo.finished.toFixed(2) }}
         <!--        </span>-->
       </p>
     </div>
     <div style="position: relative">
-      <van-image width="100%" height="2800" lazy-load :src="jubaopen">
+      <van-image width="100%" height="3145" lazy-load :src="jubaopen">
         <template v-slot:loading>
           <van-loading type="spinner" size="20" />
         </template>
@@ -60,7 +60,7 @@
               padding: 3px 10px;
               border-radius: 14px;
             "
-            :style="{ top: index * 76 + 26 + 'px' }"
+            :style="{ top: index * 68 + 26 + 'px' }"
             >已拥有</span
           >
         </template>
@@ -68,7 +68,7 @@
           v-else
           style="width: 70px; position: absolute; right: 15px; margin-left: -35px"
           :src="btn"
-          :style="{ top: index * 76 + 26 + 'px' }"
+          :style="{ top: index * 68 + 26 + 'px' }"
           @click="buy(item.id, index)"
           alt=""
         />
@@ -257,6 +257,10 @@ const getMyStaff = () => {
     // console.log(arr)
     const dateStr = dayjs(arr[0]).add(2, 'day').format('YYYY-MM-DD') + ' 00:00:00'
 
+    if (!arr[0]) {
+      timeTxt.value = '奖励结算发放中'
+      return
+    }
     // const countdown = getCountdown(dayjs(dateStr).valueOf()
     const countdown = getCountdown(arr[0])
     // console.log(countdown)
@@ -282,11 +286,11 @@ const buy = (id, index) => {
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
   const serial = userInfo?.result?.staff?.serial
 
-  if (!serial) {
-    buyDialogShow.value = true
-
-    return
-  }
+  // if (!serial) {
+  //   buyDialogShow.value = true
+  //
+  //   return
+  // }
 
   if (myDataList.value.includes(id)) {
     showToast({

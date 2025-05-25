@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%; overflow: auto">
     <van-nav-bar
-      title="操作说明"
+      title="玩法介绍"
       safe-area-inset-top
       fixed
       :class="{ inApp: getIsInApp() }"

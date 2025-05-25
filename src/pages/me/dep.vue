@@ -189,8 +189,8 @@
       </el-button>
       <div style="padding: 10px 30px; font-size: 15px">
         <p style="margin-bottom: 6px">提现要求：</p>
-        <p style="margin-bottom: 6px">非会员用户满足50元宝提现！</p>
-        <p style="margin-bottom: 6px">会员用户满足10元宝起提现！</p>
+        <p style="margin-bottom: 6px">满10元宝可以发起提现!</p>
+        <p style="margin-bottom: 6px">提现，元宝互转，参与聚宝盆，必须是任意会员！</p>
         <p style="margin-bottom: 6px">提现时间，上午11点~~晚上20点，可发起提现！</p>
         <p style="margin-bottom: 6px">
           提现手续费：提现金额的10%！进主页官方聊天群，提现免手续费！
@@ -240,8 +240,10 @@
       @confirm="handleGonggaoConfirm"
     >
       <div style="padding: 20px">
-        <p style="color: #fff; text-align: center">非会员用户收入满50元可发起提现！</p>
-        <p style="margin-top: 10px; color: #fff; text-align: center">会员用户满10元可发起提现！</p>
+        <p style="color: #fff; text-align: center">满10元宝可以发起提现！</p>
+        <p style="margin-top: 10px; color: #fff; text-align: center">
+          提现，元宝互转，参与聚宝盆，必须是任意会员!
+        </p>
         <p style="margin-top: 10px; color: #fff; text-align: center">
           会员用户为机器人自动打款，秒到账！
         </p>
@@ -495,10 +497,10 @@ async function goPay() {
     }
   }
   if (!myStaffRes?.data?.length) {
-    if (money.value < 50) {
-      showGonggaoOverlay.value = true
-      return
-    }
+    showGonggaoOverlay.value = true
+    // if (money.value < 10) {
+    //   return
+    // }
     //   // if (!findItem) {
     //   showGonggaoOverlay.value = true
     //   // showDialog({

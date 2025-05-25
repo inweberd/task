@@ -115,7 +115,7 @@
             style="flex: 1"
             class="btn"
             color="linear-gradient(to right, #fb5b4b, #9c38e5)"
-            @click="goJiangshangjiangOverlay = true"
+            @click="goJiangshangjiang"
           >
             推广奖上奖 :{{ bonus }}元宝 点击领取
           </van-button>
@@ -164,7 +164,7 @@
             class="btn"
             color="#fff"
             style="margin-left: 10px; color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1"
-            @click="goDepOverlay = true"
+            @click="goDep"
           >
             提现
           </van-button>
@@ -851,7 +851,7 @@
     <!--    </div>-->
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击下钉钉扫码进群"
+      confirm-text="点击下68App扫码进群"
       @confirm="handleGonggaoConfirm"
     >
       <p
@@ -863,7 +863,7 @@
           font-weight: bolder;
         "
       >
-        请使用钉钉APP扫码进官方群
+        请使用68APP扫码进官方群
       </p>
       <div style="padding: 20px">
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
@@ -916,7 +916,7 @@
 
     <TipDialog
       v-model="goJiangshangjiangOverlay"
-      confirm-text="进入官方群"
+      confirm-text="已阅"
       @confirm="
         () => {
           goJiangshangjiangOverlay = false
@@ -947,7 +947,7 @@
     </TipDialog>
     <TipDialog
       v-model="goDepOverlay"
-      confirm-text="进入官方群"
+      confirm-text="已阅"
       @confirm="
         () => {
           goDepOverlay = false
@@ -981,7 +981,7 @@
 
 <script lang="ts" setup>
 import BaseFooter from '@/components/BaseFooter.vue'
-import { computed, onActivated, onDeactivated, ref } from 'vue'
+import { computed, onActivated, onDeactivated, onMounted, ref } from 'vue'
 import defaultAvatar from '@/assets/img/logo.png'
 import {
   logout as fnlogout,
@@ -1033,8 +1033,7 @@ const goJiangshangjiangOverlay = ref(false)
 const goDepOverlay = ref(false)
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
-  window.location.href =
-    'https://www.dingtalk.com/download?spm=a2o5v.m_dingtalk_com_index.0.0.5f7771e1HZUmoI'
+  window.location.href = 'https://68chat5.com/cn/'
 }
 const list = [
   {
@@ -1087,7 +1086,7 @@ const list = [
     }
   },
   {
-    label: '推广收入详情',
+    label: '推荐奖励',
     icon: 'coupon-o',
     fn() {
       router.push('/demo')
@@ -1152,6 +1151,26 @@ const showWeimaiquan = () => {
     images: [weimaiquan]
   })
 }
+const goDep = () => {
+  const firstClickDep = sessionStorage.getItem('firstClickDep')
+  if (!firstClickDep) {
+    sessionStorage.setItem('firstClickDep', '1')
+    goDepOverlay.value = true
+  } else {
+    go('/dep')
+  }
+}
+
+const goJiangshangjiang = () => {
+  const firstClickJiang = sessionStorage.getItem('firstClickJiang')
+  if (!firstClickJiang) {
+    sessionStorage.setItem('firstClickJiang', '1')
+    goJiangshangjiangOverlay.value = true
+  } else {
+    go('/yongjinjiajiang')
+  }
+}
+
 const getMyStaff = () => {
   myStaffList.value = []
   reqMyStaff().then((res) => {
@@ -1265,7 +1284,7 @@ const handleUpdateOverlayConfirm = () => {
   updateOverlay.value = false
   showGonggaoOverlay.value = true
   // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
-  // window.location.href = 'https://www.dingtalk.com/download?spm=a2o5v.m_dingtalk_com_index.0.0.5f7771e1HZUmoI'
+  // window.location.href = 'https://68chat5.com/cn/'
 }
 const goFenHong = () => {
   router.push('/fenhong')
@@ -1338,7 +1357,7 @@ const getRed = () => {
 }
 onActivated(() => {
   // showGonggaoOverlay.value = true
-  updateOverlay.value = true
+  // updateOverlay.value = true
   userInfo.value = JSON.parse(window.localStorage.getItem('userInfo'))
   init()
   getRed()
@@ -1347,6 +1366,9 @@ onActivated(() => {
   bus.on('userInfoChange', (data) => {
     userInfo.value = data
   })
+})
+onMounted(() => {
+  updateOverlay.value = true
 })
 onDeactivated(() => {
   showTotal.value = false

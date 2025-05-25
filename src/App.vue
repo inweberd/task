@@ -180,7 +180,8 @@ const keepAliveBlackList = [
   'short',
   'myCard',
   'signIn',
-  'iframeCom'
+  'iframeCom',
+  'conversionRecord'
 ]
 import {
   androidUpdate,

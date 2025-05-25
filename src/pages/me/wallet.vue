@@ -19,7 +19,9 @@
         <t-tab-panel label="收入" value="收入" />
         <!--        <t-tab-panel label="佣金嘉奖" value="佣金嘉奖" />-->
         <!--      <t-tab-panel value="排行榜奖励" label="奖池发放" />-->
-        <t-tab-panel value="金牌推荐奖" label="金牌推荐奖" />
+        <t-tab-panel value="推荐奖" label="推荐奖" />
+        <t-tab-panel value="游戏" label="游戏" />
+        <t-tab-panel value="聚宝盆" label="聚宝盆" />
         <t-tab-panel label="支出" value="支出" />
         <t-tab-panel label="提现" value="提现" />
       </t-tabs>
@@ -33,8 +35,10 @@
     <!--      </van-tab>-->
     <!--      <van-tab title="提现记录" name="提现">-->
     <wallet-withdraw v-if="activeTab === '提现'"></wallet-withdraw>
-    <rengoufanli v-if="activeTab === '金牌推荐奖'"></rengoufanli>
+    <rengoufanli v-if="activeTab === '推荐奖'"></rengoufanli>
     <paihangjiangli v-if="activeTab === '排行榜奖励'"></paihangjiangli>
+    <youxilog v-if="activeTab === '游戏'"></youxilog>
+    <jubaopenlog v-if="activeTab === '聚宝盆'"></jubaopenlog>
     <!--      </van-tab>-->
     <!--    </van-tabs>-->
     <modzz v-model="service"></modzz>
@@ -47,6 +51,8 @@ import WalletExpense from './wallet/expense.vue'
 import WalletWithdraw from './wallet/withdraw.vue'
 import rengoufanli from './wallet/rengoufanli.vue'
 import yongjinjiajiang from './wallet/yongjinjiajiang.vue'
+import youxilog from './wallet/youxilog.vue'
+import jubaopenlog from './wallet/jubaopenlog.vue'
 import modzz from '../login/model.vue'
 import { getIsInApp } from '@/utils/getTopPadding'
 import Paihangjiangli from '@/pages/me/wallet/paihangjiangli.vue'

@@ -85,7 +85,7 @@
     <!--      &lt;!&ndash;        同时拥有多个会员，所有等级收益叠加生效！一次开通，永久有效！&ndash;&gt;-->
     <!--      &lt;!&ndash;      </div>&ndash;&gt;-->
     <!--    </div>-->
-    <img src="./images/invest-banner.jpg" style="width: 100%; margin-top: 10px" alt="" />
+    <!--    <img src="./images/invest-banner.jpg" style="width: 100%; margin-top: 10px" alt="" />-->
     <div class="v-list-box">
       <div class="v-list">
         <div
@@ -128,170 +128,182 @@
           <!--          <template v-else-if="item.serial === 10">-->
           <!--            <img alt="" src="./images/v10.png" />-->
           <!--          </template>-->
-          <template v-if="item.serial === 0">
-            <img alt="" src="./images/vip-bg1.png" />
-          </template>
-          <template v-else-if="item.serial === 1">
-            <img alt="" src="./images/vip-bg1.png" />
-          </template>
-          <template v-else-if="item.serial === 2">
-            <img alt="" src="./images/vip-bg2.png" />
-          </template>
-          <template v-else-if="item.serial === 3">
-            <img alt="" src="./images/vip-bg3.png" />
-          </template>
-          <template v-else-if="item.serial === 4">
-            <img alt="" src="./images/vip-bg4.png" />
-          </template>
-          <template v-else-if="item.serial === 5">
-            <img alt="" src="./images/vip-bg5.png" />
-          </template>
-          <template v-else-if="item.serial === 6">
-            <img alt="" src="./images/vip-bg6.png" />
-          </template>
-          <template v-else-if="item.serial === 7">
-            <img alt="" src="./images/vip-bg7.png" />
-          </template>
-          <template v-else-if="item.serial === 8">
-            <img alt="" src="./images/vip-bg8.png" />
-          </template>
-          <template v-else-if="item.serial === 9">
-            <img alt="" src="./images/vip-bg9.png" />
-          </template>
-          <template v-else-if="item.serial === 10">
-            <img alt="" src="./images/vip-bg10.png" />
-          </template>
-          <!--          <div style="font-size: 14px">{{ item.name }}</div>-->
-          <!--          &lt;!&ndash;                    <div><span class="fuhao">￥</span>{{ item.price }}</div>&ndash;&gt;-->
-          <!--          <div></div>-->
-          <!--          <div-->
-          <!--            style="-->
-          <!--              display: flex;-->
-          <!--              justify-content: space-between;-->
-          <!--              width: 100%;-->
-          <!--              font-weight: bolder;-->
-          <!--              padding: 0 4px;-->
-          <!--              box-sizing: border-box;-->
-          <!--            "-->
-          <!--          >-->
-          <!--            <span>会员价格</span>-->
-          <!--            <span v-if="item.price == 10000">1万</span>-->
-          <!--            <span v-else-if="item.price == 20000">2万</span>-->
-          <!--            <span v-else>{{ item.price }}</span>-->
-          <!--          </div>-->
           <!--          <template v-if="item.serial === 0">-->
-          <!--            <span>-->
-          <!--              <div>永久有效期</div>-->
-          <!--              <div>功能：广告每天无限刷</div>-->
-          <!--            </span>-->
+          <!--            <img alt="" src="./images/vip-bg1.png" />-->
           <!--          </template>-->
           <!--          <template v-else-if="item.serial === 1">-->
-          <!--            <div-->
-          <!--              style="-->
-          <!--                display: flex;-->
-          <!--                justify-content: space-between;-->
-          <!--                width: 100%;-->
-          <!--                padding: 0 4px;-->
-          <!--                box-sizing: border-box;-->
-          <!--              "-->
-          <!--            >-->
-          <!--              <span>日收益</span>-->
-          <!--              <span>5元宝</span>-->
-          <!--            </div>-->
-          <!--            <div-->
-          <!--              style="-->
-          <!--                display: flex;-->
-          <!--                justify-content: space-between;-->
-          <!--                width: 100%;-->
-          <!--                padding: 0 4px;-->
-          <!--                box-sizing: border-box;-->
-          <!--              "-->
-          <!--            >-->
-          <!--              <span>有效期</span>-->
-          <!--              <span>30天</span>-->
-          <!--            </div>-->
-          <!--            <div-->
-          <!--              style="-->
-          <!--                display: flex;-->
-          <!--                justify-content: space-between;-->
-          <!--                width: 100%;-->
-          <!--                padding: 0 4px;-->
-          <!--                box-sizing: border-box;-->
-          <!--              "-->
-          <!--            >-->
-          <!--              <span>总收益</span>-->
-          <!--              <span>150元宝</span>-->
-          <!--            </div>-->
+          <!--            <img alt="" src="./images/vip-bg1.png" />-->
           <!--          </template>-->
-          <!--          <template v-else>-->
-          <!--            <div-->
-          <!--              style="-->
-          <!--                display: flex;-->
-          <!--                justify-content: space-between;-->
-          <!--                width: 100%;-->
-          <!--                padding: 0 4px;-->
-          <!--                box-sizing: border-box;-->
-          <!--              "-->
-          <!--            >-->
-          <!--              <span>日收益</span>-->
-          <!--              <span v-if="index === 1">7~9</span>-->
-          <!--              <span v-if="index === 2">12~20</span>-->
-          <!--              <span v-if="index === 3">20~40</span>-->
-          <!--              <span v-if="index === 4">35~70</span>-->
-          <!--              <span v-if="index === 5">55~105</span>-->
-          <!--              <span v-if="index === 6">85~165</span>-->
-          <!--              <span v-if="index === 7">135~265</span>-->
-          <!--              <span v-if="index === 8">235~470</span>-->
-          <!--              <span v-if="index === 9">435~870</span>-->
-          <!--            </div>-->
-          <!--            <div-->
-          <!--              style="-->
-          <!--                display: flex;-->
-          <!--                justify-content: space-between;-->
-          <!--                width: 100%;-->
-          <!--                padding: 0 4px;-->
-          <!--                box-sizing: border-box;-->
-          <!--              "-->
-          <!--            >-->
-          <!--              <span>有效期</span>-->
-          <!--              <span>365天</span>-->
-          <!--            </div>-->
-          <!--            <div-->
-          <!--              style="-->
-          <!--                display: flex;-->
-          <!--                justify-content: space-between;-->
-          <!--                width: 100%;-->
-          <!--                padding: 0 4px;-->
-          <!--                box-sizing: border-box;-->
-          <!--              "-->
-          <!--            >-->
-          <!--              <span>总收益</span>-->
-          <!--              <span v-if="index === 1">{{ 365 * 7 }}</span>-->
-          <!--              <span v-if="index === 2">{{ 365 * 12 }}</span>-->
-          <!--              <span v-if="index === 3">{{ 365 * 20 }}</span>-->
-          <!--              <span v-if="index === 4">{{ 365 * 35 }}</span>-->
-          <!--              <span v-if="index === 5">{{ 365 * 55 }}</span>-->
-          <!--              <span v-if="index === 6">{{ 365 * 85 }}</span>-->
-          <!--              <span v-if="index === 7">{{ 365 * 135 }}</span>-->
-          <!--              <span v-if="index === 8">{{ 365 * 235 }}</span>-->
-          <!--              <span v-if="index === 9">{{ 365 * 435 }}</span>-->
-          <!--            </div>-->
+          <!--          <template v-else-if="item.serial === 2">-->
+          <!--            <img alt="" src="./images/vip-bg2.png" />-->
           <!--          </template>-->
-          <!--          <div-->
-          <!--            style="-->
-          <!--              width: 100%;-->
-          <!--              background-color: #f3d848;-->
-          <!--              background-image: linear-gradient(to right, #f8f06a, #f2c536);-->
-          <!--              color: #000;-->
-          <!--              margin-top: 10px;-->
-          <!--              line-height: 32px;-->
-          <!--              text-align: center;-->
-          <!--              font-weight: bolder;-->
-          <!--            "-->
-          <!--            @click="buy(index)"-->
-          <!--          >-->
-          <!--            立即购买-->
-          <!--          </div>-->
+          <!--          <template v-else-if="item.serial === 3">-->
+          <!--            <img alt="" src="./images/vip-bg3.png" />-->
+          <!--          </template>-->
+          <!--          <template v-else-if="item.serial === 4">-->
+          <!--            <img alt="" src="./images/vip-bg4.png" />-->
+          <!--          </template>-->
+          <!--          <template v-else-if="item.serial === 5">-->
+          <!--            <img alt="" src="./images/vip-bg5.png" />-->
+          <!--          </template>-->
+          <!--          <template v-else-if="item.serial === 6">-->
+          <!--            <img alt="" src="./images/vip-bg6.png" />-->
+          <!--          </template>-->
+          <!--          <template v-else-if="item.serial === 7">-->
+          <!--            <img alt="" src="./images/vip-bg7.png" />-->
+          <!--          </template>-->
+          <!--          <template v-else-if="item.serial === 8">-->
+          <!--            <img alt="" src="./images/vip-bg8.png" />-->
+          <!--          </template>-->
+          <!--          <template v-else-if="item.serial === 9">-->
+          <!--            <img alt="" src="./images/vip-bg9.png" />-->
+          <!--          </template>-->
+          <!--          <template v-else-if="item.serial === 10">-->
+          <!--            <img alt="" src="./images/vip-bg10.png" />-->
+          <!--          </template>-->
+          <!--          <template v-else-if="item.serial === 11">-->
+          <!--            <img alt="" src="./images/vip-bg11.png" />-->
+          <!--          </template>-->
+          <!--          <template v-else-if="item.serial === 12">-->
+          <!--            <img alt="" src="./images/vip-bg12.png" />-->
+          <!--          </template>-->
+          <div style="font-size: 14px">{{ item.name }}</div>
+          <!--                    <div><span class="fuhao">￥</span>{{ item.price }}</div>-->
+          <div></div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+              font-weight: bolder;
+              padding: 0 4px;
+              box-sizing: border-box;
+            "
+          >
+            <span>会员价格</span>
+            <span v-if="item.price == 10000">1万</span>
+            <span v-else-if="item.price == 20000">2万</span>
+            <span v-else-if="item.price == 30000">3万</span>
+            <span v-else-if="item.price == 50000">5万</span>
+            <span v-else>{{ item.price }}</span>
+          </div>
+          <template v-if="item.serial === 0">
+            <span>
+              <div>永久有效期</div>
+              <div>功能：广告每天无限刷</div>
+            </span>
+          </template>
+          <template v-else-if="item.serial === 1">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 4px;
+                box-sizing: border-box;
+              "
+            >
+              <span>日收益</span>
+              <span>10元宝</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 4px;
+                box-sizing: border-box;
+              "
+            >
+              <span>有效期</span>
+              <span>30天</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 4px;
+                box-sizing: border-box;
+              "
+            >
+              <span>总收益</span>
+              <span>300</span>
+            </div>
+          </template>
+          <template v-else>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 4px;
+                box-sizing: border-box;
+              "
+            >
+              <span>日收益</span>
+              <span v-if="index === 1">20</span>
+              <span v-if="index === 2">50</span>
+              <span v-if="index === 3">80</span>
+              <span v-if="index === 4">150</span>
+              <span v-if="index === 5">200</span>
+              <span v-if="index === 6">300</span>
+              <span v-if="index === 7">500</span>
+              <span v-if="index === 8">1000</span>
+              <span v-if="index === 9">2000</span>
+              <span v-if="index === 10">3000</span>
+              <span v-if="index === 11">5000</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 4px;
+                box-sizing: border-box;
+              "
+            >
+              <span>有效期</span>
+              <span>30天</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0 4px;
+                box-sizing: border-box;
+              "
+            >
+              <span>总收益</span>
+              <span v-if="index === 1">{{ 30 * 20 }}</span>
+              <span v-if="index === 2">{{ 30 * 50 }}</span>
+              <span v-if="index === 3">{{ 30 * 80 }}</span>
+              <span v-if="index === 4">{{ 30 * 150 }}</span>
+              <span v-if="index === 5">{{ 30 * 200 }}</span>
+              <span v-if="index === 6">{{ 30 * 300 }}</span>
+              <span v-if="index === 7">{{ 30 * 500 }}</span>
+              <span v-if="index === 8">{{ 30 * 1000 }}</span>
+              <span v-if="index === 9">{{ 30 * 2000 }}</span>
+              <span v-if="index === 10">{{ 30 * 3000 }}</span>
+              <span v-if="index === 11">{{ 30 * 5000 }}</span>
+            </div>
+          </template>
+          <div
+            style="
+              width: 100%;
+              background-color: #f3d848;
+              background-image: linear-gradient(to right, #f8f06a, #f2c536);
+              color: #000;
+              margin-top: 10px;
+              line-height: 32px;
+              text-align: center;
+              font-weight: bolder;
+            "
+            @click="buy(index)"
+          >
+            立即购买
+          </div>
         </div>
         <div
           @click="$router.push('/jubaopen')"
@@ -1201,7 +1213,7 @@ const speed = ref(0.5) //滚动速度
       width: 96%;
 
       .v-list-item {
-        flex: 0 0 calc(50% - 10px);
+        flex: 0 0 calc(33% - 10px);
         box-sizing: border-box;
 
         width: 110px;
@@ -1210,9 +1222,9 @@ const speed = ref(0.5) //滚动速度
         display: flex;
         align-items: center;
         flex-direction: column;
-        padding: 0px 0 0px;
+        padding: 18px 0 0px;
 
-        //background-color: #eeeeee;
+        background-color: #eeeeee;
         color: #616161;
 
         min-height: 150px;
@@ -1273,8 +1285,8 @@ const speed = ref(0.5) //滚动速度
 
           &:before {
             position: absolute;
-            top: 8px;
-            right: 6px;
+            top: 6px;
+            left: -20px;
             width: 74px;
             height: 20px;
             font-size: 12px;
@@ -1282,7 +1294,7 @@ const speed = ref(0.5) //滚动速度
             text-align: center;
             background-color: #ff5722;
             content: '已拥有';
-            //transform: rotate(45deg);
+            transform: rotate(-45deg);
           }
         }
       }

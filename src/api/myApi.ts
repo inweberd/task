@@ -302,7 +302,10 @@ export function reqBonusInvite(mode) {
 
 // 聚宝盆分页
 export function reqTreasureBasinPage() {
-  return axiosInstance({ url: '/api/treasure-basin/find?limit=50&order= serial asc', method: 'get' })
+  return axiosInstance({
+    url: '/api/treasure-basin/find?limit=50&order= serial asc',
+    method: 'get'
+  })
 }
 
 // 聚宝盆购买
@@ -318,4 +321,13 @@ export function getAlreadyBuyTreasureBasin() {
 // 个人聚宝盆信息汇总
 export function reqTreasureBasinSummary() {
   return axiosInstance({ url: '/api/treasure-basin/summary', method: 'get' })
+}
+
+// 用户佣金互转记录
+export function reqTransferLogs(params) {
+  return axiosInstance({
+    url: '/api/wallet-logs/find',
+    method: 'get',
+    params
+  })
 }

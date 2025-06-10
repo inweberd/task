@@ -27,12 +27,12 @@
         <div style="display: flex; justify-content: space-between; align-items: center">
           <div style="width: 60%">
             <div>
-              <span style="font-size: 14px; font-weight: bolder; color: #fff">{{
+              <span style="font-size: 14px; font-weight: bolder; color: #000">{{
                 item.content
               }}</span>
             </div>
             <div>
-              <span style="font-size: 12px; color: #aaa">{{ item.remark }}</span>
+              <span style="font-size: 12px; color: #000">{{ item.remark }}</span>
             </div>
           </div>
           <div style="flex: 1; text-align: right">
@@ -40,11 +40,11 @@
               <span
                 style="font-size: 16px; color: #f6202b; font-weight: bolder"
                 class="text-warning"
-                >+ {{ item.money || 0 }}元</span
+                >+ {{ item.money || 0 }}钻石</span
               >
             </div>
             <div style="margin-top: 6px">
-              <span style="font-size: 12px; color: #aaa">{{
+              <span style="font-size: 12px; color: #000">{{
                 method.toDate(item.create_time)
               }}</span>
             </div>
@@ -85,7 +85,8 @@ const getDataList = () => {
     limit: searchInfo.limit,
     order: 'id desc',
     uid: userInfo.value.id,
-    bind_type: 'staff-award'
+    // bind_type: 'staff-award'
+    bind_type: 'first-staff-award'
     // where: [
     //   ['bind_type', '=', 'staff-award'],
     //   ['uid', '=', userInfo.value.id]
@@ -124,7 +125,7 @@ onMounted(() => {
   margin-top: 10px;
 }
 .container {
-  background-color: #2e3350;
+  background-color: #fff;
   margin: 10px;
   border-radius: 10px;
   color: #000;

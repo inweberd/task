@@ -140,6 +140,16 @@
       <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
     </div>
   </TipDialog>
+  <TipDialog
+    v-model="shareDialogShow"
+    :show-close="false"
+    confirm-text="去分享"
+    @confirm="shareFriendFn"
+  >
+    <div style="padding: 20px; color: #fff; text-align: center">
+      <p>请先分享邀请海报到朋友圈，再进行下一步操作！ 钻石乐园，您的创业首选，财富不打烊！</p>
+    </div>
+  </TipDialog>
   <!--  <van-floating-bubble-->
   <!--    axis="xy"-->
   <!--    icon="chat"-->
@@ -163,6 +173,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import { loadWx } from '@/utils/loadWx'
 import wx from 'weixin-js-sdk'
 const showGonggaoOverlay = ref(false)
+const shareDialogShow = ref(false)
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
   // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
@@ -214,7 +225,7 @@ const showOverlay = ref(false)
 
 const goDownload = () => {
   try {
-    window.location.href = `https://weaw.shunyigong.com/download`
+    window.location.href = `https://wmaw.lnyzd.com/download`
   } catch (e) {
     _notice('下载失败')
   }
@@ -303,9 +314,9 @@ const generatePoster = async () => {
     return
   }
   qrCodeText.value =
-    'http://bbbwx0418uutrbg12.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+    'http://bbbuyuwx0530ffxxjkf14.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     // encodeURIComponent(
-    'https://weaw.shunyigong.com/#/signUp?invite=' +
+    'https://wmaw.lnyzd.com/#/signUp?invite=' +
     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
   // )
   canvas.value.width = canvasWidth.value
@@ -338,7 +349,7 @@ const generatePoster = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
     const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
 
-    const qrCodeSize = 160 // 调整二维码的大小
+    const qrCodeSize = 120 // 调整二维码的大小
     const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
       width: qrCodeSize,
       height: qrCodeSize,
@@ -349,7 +360,7 @@ const generatePoster = async () => {
     qrCodeImage.onload = () => {
       // 在海报上绘制二维码，位置在正中心下方
       const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
-      const qrCodeY = canvasHeight.value / 2 - qrCodeSize / 2 + 55
+      const qrCodeY = canvasHeight.value / 2 - qrCodeSize / 2 + 125
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }
     const avatarImage = new Image()
@@ -378,27 +389,30 @@ const generatePoster = async () => {
     } else {
       avatarImage.src = avatar
       avatarImage.onload = () => {
-        ctx.drawImage(avatarImage, 15, canvasHeight.value - 115, 50, 55)
+        ctx.drawImage(avatarImage, 80, canvasHeight.value - 120, 50, 55)
 
         closeToast()
       }
     }
 
-    ctx.font = '18px Arial'
+    ctx.fillStyle = '#fff' // 设置填充颜色
+    ctx.fillRect(50, canvasHeight.value - 130, canvasWidth.value - 100, 80) // 绘制填充矩形
+
+    ctx.font = '16px Arial'
     // 设置填充颜色
-    ctx.fillStyle = '#fff'
+    ctx.fillStyle = '#000'
     // 绘制文本
     let name = userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
     if (userInfo.nickname) {
       name = userInfo.nickname
     }
-    ctx.fillText(name, 75, canvasHeight.value - 90)
+    ctx.fillText(name, 150, canvasHeight.value - 100)
     ctx.font = '16px Arial'
 
-    ctx.fillText('邀请码：', 75, canvasHeight.value - 65)
-    ctx.fillStyle = '#fff'
-    ctx.font = '18px Arial'
-    ctx.fillText(userInfo?.result?.invite?.code, 135, canvasHeight.value - 65)
+    ctx.fillText('邀请码：', 150, canvasHeight.value - 75)
+    ctx.fillStyle = '#000'
+    ctx.font = '16px Arial'
+    ctx.fillText(userInfo?.result?.invite?.code, 210, canvasHeight.value - 75)
     // ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
     //
     // const qrCodeSize = canvasWidth.value * 0.33 // 调整二维码的大小
@@ -444,17 +458,21 @@ function clipboardCopy(content) {
 }
 
 const toDownload = () => {
-  window.android.openBrowser('https://weaw.shunyigong.com/download/android.apk')
+  window.android.openBrowser('https://wmaw.lnyzd.com/download/android.apk')
 
-  // window.location.href = `https://weaw.shunyigong.com/download/android.apk`
+  // window.location.href = `https://wmaw.lnyzd.com/download/android.apk`
 }
 
 const upGrade = () => {
-  window.android.openBrowser('https://weaw.shunyigong.com/download/android.apk')
+  window.android.openBrowser('https://wmaw.lnyzd.com/download/android.apk')
   // clipboardCopy('')
   // navigator.clipboard.writeText('12312').then(() => {
   //   alert('复制成功')
   // })
+}
+const shareFriendFn = () => {
+  shareDialogShow.value = false
+  window.shareFriend()
 }
 onMounted(() => {
   window.android?.closeLoadImg?.()
@@ -465,7 +483,7 @@ onMounted(() => {
   if (isWeChatBrowser) {
     // loadWx(() => {
     //   wx.onMenuShareTimeline({
-    //     title: '汇盈传媒',
+    //     title: '钻石乐园',
     //     // link: 'http://movie.douban.com/subject/25785114asd/',
     //     imgUrl: 'http://tc.izakq.com/media/logo2.png',
     //     trigger: function (res) {
@@ -569,6 +587,10 @@ onMounted(() => {
     router.push('/invest')
   }
 
+  window.showShareFriend = function () {
+    shareDialogShow.value = true
+  }
+
   window.shareFriend = function () {
     console.log(canvas.value.toDataURL('image/png'))
     wechatShareImg(canvas.value.toDataURL('image/png'), 1)
@@ -638,9 +660,9 @@ onMounted(() => {
   //--van-nav-bar-background: #0e0f13 !important;
   --van-cell-group-background: transparent !important;
   --van-cell-background: transparent !important;
-  --van-popup-background: #2e3350 !important;
+  --van-popup-background: #257cf3 !important;
 
-  --van-nav-bar-background: #1f203d !important;
+  --van-nav-bar-background: #fff !important;
 
   --van-active-color: #1f203d !important;
 
@@ -730,7 +752,7 @@ onMounted(() => {
 //  background-color: #0e0f13 !important;
 //}
 .van-nav-bar__title {
-  color: #fff !important;
+  color: #000 !important;
 }
 
 //.van-nav-bar__content:after {
@@ -840,11 +862,11 @@ onMounted(() => {
 
 .t-tabs,
 .t-tabs__wrapper {
-  background-color: #2e3350 !important;
+  background-color: #fff !important;
 }
 
 .t-tabs__scroll--top::after {
-  background-color: #2e3350 !important;
+  background-color: #fff !important;
 }
 
 .t-tabs__item-inner--tag {

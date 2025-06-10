@@ -7,7 +7,7 @@
       left-text="返回"
       placeholder
       safe-area-inset-top
-      title="元宝互转记录"
+      title="转赠记录"
       @click-left="$router.back()"
     >
       <!--      <template #right>-->
@@ -49,7 +49,7 @@
           <div style="display: flex; justify-content: space-between; align-items: center">
             <div style="width: 60%">
               <div>
-                <span style="font-size: 14px; font-weight: bolder; color: #fff">{{
+                <span style="font-size: 14px; font-weight: bolder; color: #000">{{
                   item.content
                 }}</span>
               </div>
@@ -143,9 +143,35 @@ onMounted(() => {
   margin-top: 10px;
 }
 .container {
-  background-color: #2e3350;
+  background-color: #fff;
   margin: 10px;
   border-radius: 10px;
   color: #000;
+}
+
+.login {
+  background: url('@/assets/img/main-bg.jpg');
+  background-size: 100% 100%;
+  height: 100%;
+  overflow-y: auto;
+  :deep(.van-nav-bar) {
+    background: transparent !important;
+    .van-nav-bar__title {
+      color: #ffffff !important;
+    }
+
+    .van-nav-bar__text {
+      color: #fff !important;
+    }
+
+    .van-icon {
+      color: #fff;
+    }
+  }
+  :deep(.van-hairline--bottom) {
+    &:after {
+      border-bottom: none;
+    }
+  }
 }
 </style>

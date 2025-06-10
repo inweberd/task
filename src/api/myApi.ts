@@ -1,6 +1,7 @@
 import { axiosInstance } from '@/utils/myrequest'
 import { AES, token as aesToken } from '@/utils/AES'
 import CryptoJS from 'crypto-js'
+import dayjs from 'dayjs'
 export function login(data) {
   return axiosInstance({ url: 'api/comm/login', method: 'post', data })
 }
@@ -139,7 +140,7 @@ export function reqWalletLog(params) {
   // return axiosInstance({ url: 'api/wallet-log/all', method: 'get', params })
 }
 
-// 提现日志
+// 兑换日志
 export function reqWalletFetch(params) {
   return axiosInstance({ url: 'api/wallet-fetch/all', method: 'get', params })
 }
@@ -173,7 +174,7 @@ export function reqWalletTransfer(data) {
   return axiosInstance({ url: 'api/wallet/transfer', method: 'post', data })
 }
 
-// 删除提现方式
+// 删除兑换方式
 export function reqDeleteCard(params) {
   return axiosInstance({ url: 'api/pay-card/delete', method: 'delete', params })
 }
@@ -303,7 +304,7 @@ export function reqBonusInvite(mode) {
 // 聚宝盆分页
 export function reqTreasureBasinPage() {
   return axiosInstance({
-    url: '/api/treasure-basin/find?limit=50&order= serial asc',
+    url: '/api/treasure-basin/find?limit=100&order= serial asc',
     method: 'get'
   })
 }
@@ -314,8 +315,29 @@ export function reqTreasureBasinBuy(id) {
 }
 
 // 查询聚宝盆
+// export function getAlreadyBuyTreasureBasin() {
+//   return axiosInstance({ url: '/api/treasure-basin/order?limit=100&finished=0', method: 'get' })
+//   // return axiosInstance({ url: '/api/treasure-basin/order?limit=100', method: 'get' })
+// }
+
 export function getAlreadyBuyTreasureBasin() {
-  return axiosInstance({ url: '/api/treasure-basin/order?limit=30&finished=0', method: 'get' })
+  // return axiosInstance({ url: '/api/treasure-basin/order?limit=30&finished=0', method: 'get' })
+
+  // 今天开始的时间戳（00:00:00）
+  let startOfDay = dayjs().startOf('day').valueOf()
+  startOfDay = parseInt(startOfDay / 1000)
+  // startOfDay = 1749351703
+  // startOfDay = 1749352530
+  // 今天结束的时间戳（23:59:59.999）
+  let endOfDay = dayjs().endOf('day').valueOf()
+  endOfDay = parseInt(endOfDay / 1000)
+
+  console.log('今天开始的时间戳:', startOfDay)
+  console.log('今天结束的时间戳:', endOfDay)
+  return axiosInstance({
+    url: `/api/treasure-basin/order?limit=100&create_time=${startOfDay},${endOfDay}`,
+    method: 'get'
+  })
 }
 
 // 个人聚宝盆信息汇总
@@ -330,4 +352,14 @@ export function reqTransferLogs(params) {
     method: 'get',
     params
   })
+}
+
+// 会员一键领取
+export function reqStaffSettle() {
+  return axiosInstance({ url: '/api/staff/settle', method: 'post' })
+}
+
+// 会员查询可领取余额
+export function reqGetStaffSettle() {
+  return axiosInstance({ url: '/api/staff/settle', method: 'get' })
 }

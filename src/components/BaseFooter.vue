@@ -1,12 +1,19 @@
 <template>
-  <div v-if="visible" class="footer" :class="{ isWhite }">
+  <div
+    v-if="visible"
+    class="footer"
+    :class="{ isWhite }"
+    :style="{ background: currentTab === 1 ? '#527cc4' : '#fff' }"
+  >
     <div class="l-button" @click="refresh(1)">
       <div class="add-ctn">
         <div class="img-box">
           <img src="@/assets/icon/1-active.png" alt="" class="add" v-if="currentTab === 1" />
           <img src="@/assets/icon/1.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 1 ? '#fff' : '' }">赚钱</div>
+        <div :style="{ color: currentTab === 1 ? (currentTab === 1 ? '#fff' : '#000') : '' }">
+          首页
+        </div>
       </div>
     </div>
     <!--    <div class="l-button" @click="refresh(2)">-->
@@ -19,46 +26,48 @@
     <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">零撸专区</div>-->
     <!--      </div>-->
     <!--    </div>-->
-    <div class="l-button" @click="$router.push('/gameList')">
-      <div class="add-ctn">
-        <div class="img-box">
-          <!--          <img src="@/assets/icon/2-active.png" alt="" class="add" v-if="currentTab === 2" />-->
-          <!--          <img src="@/assets/icon/2.png" alt="" class="add" v-else />-->
-          <img src="@/assets/icon/11.png" alt="" class="add" v-if="currentTab === 2" />
-          <img src="@/assets/icon/11.png" alt="" class="add" v-else />
-        </div>
-        <div :style="{ color: currentTab === 2 ? '#666' : '' }">棋牌娱乐</div>
-      </div>
-    </div>
-    <div class="l-button" @click="$router.push('/jubaopen')">
-      <div class="add-ctn">
-        <div class="img-box">
-          <!--          <img src="@/assets/icon/3-active.png" alt="" class="add" v-if="currentTab === 2" />-->
-          <!--          <img src="@/assets/icon/3.png" alt="" class="add" v-else />-->
-          <img src="@/assets/icon/10.png" alt="" class="add" v-if="currentTab === 2" />
-          <img src="@/assets/icon/10.png" alt="" class="add" v-else />
-        </div>
-        <div :style="{ color: currentTab === 2 ? '#666' : '' }">聚宝盆</div>
-      </div>
-    </div>
-    <div class="l-button" @click="tab(5)">
-      <div class="add-ctn">
-        <div class="img-box">
-          <!--          <img src="@/assets/icon/4-active.png" alt="" class="add" v-if="currentTab === 5" />-->
-          <!--          <img src="@/assets/icon/i4.png" alt="" class="add" v-else />-->
-          <img src="@/assets/icon/12.png" alt="" class="add" v-if="currentTab === 2" />
-          <img src="@/assets/icon/12.png" alt="" class="add" v-else />
-        </div>
-        <div :style="{ color: currentTab === 5 ? '#fff' : '' }">会员</div>
-      </div>
-    </div>
+    <!--    <div class="l-button" @click="$router.push('/gameList')">-->
+    <!--      <div class="add-ctn">-->
+    <!--        <div class="img-box">-->
+    <!--          &lt;!&ndash;          <img src="@/assets/icon/2-active.png" alt="" class="add" v-if="currentTab === 2" />&ndash;&gt;-->
+    <!--          &lt;!&ndash;          <img src="@/assets/icon/2.png" alt="" class="add" v-else />&ndash;&gt;-->
+    <!--          <img src="@/assets/icon/11.png" alt="" class="add" v-if="currentTab === 2" />-->
+    <!--          <img src="@/assets/icon/11.png" alt="" class="add" v-else />-->
+    <!--        </div>-->
+    <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">棋牌娱乐</div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--    <div class="l-button" @click="$router.push('/jubaopen')">-->
+    <!--      <div class="add-ctn">-->
+    <!--        <div class="img-box">-->
+    <!--          &lt;!&ndash;          <img src="@/assets/icon/3-active.png" alt="" class="add" v-if="currentTab === 2" />&ndash;&gt;-->
+    <!--          &lt;!&ndash;          <img src="@/assets/icon/3.png" alt="" class="add" v-else />&ndash;&gt;-->
+    <!--          <img src="@/assets/icon/10.png" alt="" class="add" v-if="currentTab === 2" />-->
+    <!--          <img src="@/assets/icon/10.png" alt="" class="add" v-else />-->
+    <!--        </div>-->
+    <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">聚宝盆</div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--    <div class="l-button" @click="tab(5)">-->
+    <!--      <div class="add-ctn">-->
+    <!--        <div class="img-box">-->
+    <!--          &lt;!&ndash;          <img src="@/assets/icon/4-active.png" alt="" class="add" v-if="currentTab === 5" />&ndash;&gt;-->
+    <!--          &lt;!&ndash;          <img src="@/assets/icon/i4.png" alt="" class="add" v-else />&ndash;&gt;-->
+    <!--          <img src="@/assets/icon/12.png" alt="" class="add" v-if="currentTab === 2" />-->
+    <!--          <img src="@/assets/icon/12.png" alt="" class="add" v-else />-->
+    <!--        </div>-->
+    <!--        <div :style="{ color: currentTab === 5 ? '#fff' : '' }">会员</div>-->
+    <!--      </div>-->
+    <!--    </div>-->
     <div class="l-button" @click="tab(6)">
       <div class="add-ctn">
         <div class="img-box">
           <img src="@/assets/icon/5-active.png" alt="" class="add" v-if="currentTab === 6" />
           <img src="@/assets/icon/5.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 6 ? '#fff' : '' }">我</div>
+        <div :style="{ color: currentTab === 6 ? (currentTab === 1 ? '#fff' : '#000') : '' }">
+          我
+        </div>
       </div>
       <!-- <div class="badge">2</div> -->
     </div>

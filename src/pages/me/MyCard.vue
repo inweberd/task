@@ -14,6 +14,7 @@
         size="30"
         name="share"
         style="position: fixed; right: 10px; top: 20px; z-index: 3"
+        color="#ee1504"
       />
       <div
         style="
@@ -55,9 +56,9 @@ const canvasWidth = ref(window.innerWidth)
 const canvasHeight = ref(window.innerWidth / (1242 / 2208))
 
 const qrCodeText = ref(
-  'http://bbbwx0418uutrbg12.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+  'http://bbbuyuwx0530ffxxjkf14.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     // encodeURIComponent(
-    'https://weaw.shunyigong.com/#/signUp?invite=' +
+    'https://wmaw.lnyzd.com/#/signUp?invite=' +
     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
   // )
 )
@@ -86,7 +87,7 @@ const generatePoster = async () => {
   image.onload = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
 
-    const qrCodeSize = 160 // 调整二维码的大小
+    const qrCodeSize = 120 // 调整二维码的大小
     const qrCodeMarginBottom = 25 // 调整二维码距离底部的距离
     const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
       width: qrCodeSize,
@@ -99,7 +100,7 @@ const generatePoster = async () => {
     qrCodeImage.onload = () => {
       // 在海报上绘制二维码，位置在正中心下方
       const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
-      const qrCodeY = canvasHeight.value / 2 - qrCodeSize / 2 + 55
+      const qrCodeY = canvasHeight.value / 2 - qrCodeSize / 2 + 125
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }
     const avatarImage = new Image()
@@ -113,12 +114,15 @@ const generatePoster = async () => {
       const qrCodeX = canvasWidth.value / 2
       const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
 
-      ctx.drawImage(avatarImage, 15, canvasHeight.value - 115, 50, 55)
+      ctx.drawImage(avatarImage, 80, canvasHeight.value - 120, 50, 55)
     }
 
-    ctx.font = '18px Arial'
+    ctx.fillStyle = '#fff' // 设置填充颜色
+    ctx.fillRect(50, canvasHeight.value - 130, canvasWidth.value - 100, 80) // 绘制填充矩形
+
+    ctx.font = '16px Arial'
     // 设置填充颜色
-    ctx.fillStyle = '#fff'
+    ctx.fillStyle = '#000'
     const qrCodeX = canvasWidth.value / 2
     const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
     // 绘制文本
@@ -126,13 +130,13 @@ const generatePoster = async () => {
     if (userInfo.nickname) {
       name = userInfo.nickname
     }
-    ctx.fillText(name, 75, canvasHeight.value - 90)
+    ctx.fillText(name, 150, canvasHeight.value - 100)
     ctx.font = '16px Arial'
 
-    ctx.fillText('邀请码：', 75, canvasHeight.value - 65)
-    ctx.fillStyle = '#fff'
-    ctx.font = '18px Arial'
-    ctx.fillText(userInfo?.result?.invite?.code, 135, canvasHeight.value - 65)
+    ctx.fillText('邀请码：', 150, canvasHeight.value - 75)
+    ctx.fillStyle = '#000'
+    ctx.font = '16px Arial'
+    ctx.fillText(userInfo?.result?.invite?.code, 210, canvasHeight.value - 75)
   }
 }
 

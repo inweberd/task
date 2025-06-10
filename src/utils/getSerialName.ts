@@ -22,17 +22,13 @@ const serialNameMap = {
 }
 export const getSerialName = (val) => {
   if (!val) {
-    return '暂无特权'
-  } else if (val ===1) {
-    return '学徒特权'
-  } else if (val===2) {
-    return '文员特权'
-  } else if (val===3) {
-    return '组长特权'
-  } else if (val===4) {
-    return '经理特权'
-  } else if (val ===5) {
-    return '总裁特权'
+    return '暂无会员'
+  } else if (val === 1) {
+    return '蓝钻会员'
+  } else if (val === 2) {
+    return '黄钻会员'
+  } else if (val === 3) {
+    return '紫钻会员'
   }
   // return serialNameMap[val] || '--'
 }

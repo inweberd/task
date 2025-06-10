@@ -51,7 +51,7 @@
           @click="go('/forget')"
           style="display: inline-block"
         />
-        <!--				<van-button style='flex: 1;' plain type="success" @click="go('/forget')">忘记密码</van-button>-->
+        <!--				<van-button style='flex: 1;' plain type="success" @click="go('/forget')">找回密码</van-button>-->
         <!--				<van-button style='flex: 1;' type="primary" @click="qqq">下载app</van-button>-->
         <van-image
           width="100"

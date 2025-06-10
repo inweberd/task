@@ -56,7 +56,7 @@
             font-size: 26px;
           "
         >
-          {{ money }}元
+          {{ money }}钻石
         </span>
       </div>
     </div>
@@ -115,7 +115,7 @@
         领取成功
       </p>
       <p style="text-align: center; color: #fff; padding: 10px; margin: 10px 0; font-size: 18px">
-        恭喜您领取汇盈集团奖上奖红包！请继续积极推广，再接再厉。每日红包大奖送不停
+        恭喜您领取红包！请继续积极推广，再接再厉。每日红包大奖送不停
       </p>
     </TipDialog>
     <!--  width="94%"-->

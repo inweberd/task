@@ -98,7 +98,7 @@
           style="flex: 1; background: #f46d16; border: none"
           type="primary"
           @click="go('/forget')"
-          >忘记密码
+          >找回密码
         </van-button>
       </view>
     </div>
@@ -175,7 +175,7 @@ function onSubmit() {
       data.password2 = ''
       data.invite = ''
       // router.replace('/login')
-      window.location.href = `https://weaw.shunyigong.com/download`
+      window.location.href = `https://wmaw.lnyzd.com/download`
     }
   })
 }

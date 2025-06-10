@@ -79,7 +79,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://weaw.shunyigong.com/download`
+    window.location.href = `https://wmaw.lnyzd.com/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false
@@ -193,7 +193,7 @@ function getData() {
       </div>
       <div class="flex-col group_3">
         <div class="flex-col justify-start items-center self-end relative text-wrapper">
-          <span class="font_2 text_3">提现</span>
+          <span class="font_2 text_3">兑换</span>
         </div>
         <div class="flex-row justify-between equal-division group_4">
           <div class="flex-col items-start equal-division-item_2" @click="go('/dep', true)">
@@ -214,7 +214,7 @@ function getData() {
 
           <div class="flex-col items-start equal-division-item_2" @click="go('/dep', true)">
             <span class="font_3">{{ format(walletInfo?.money || 0) }}</span>
-            <span class="font_4 text_1 mt-12">可提现</span>
+            <span class="font_4 text_1 mt-12">可兑换</span>
           </div>
         </div>
       </div>

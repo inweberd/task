@@ -4,12 +4,12 @@
       <img alt="" src="@/assets/img/logo.png" />
       <div class="logo-box-content">
         <div class="info">
-          <p>汇盈传媒</p>
+          <!--          <p>钻石乐园</p>-->
           <!--                    <p>the big thumb video</p>-->
         </div>
       </div>
     </div>
-    <ToggleLoginAndRegister :active="1" style="margin-top: 50px"></ToggleLoginAndRegister>
+    <!--    <ToggleLoginAndRegister :active="1" style="margin-top: 50px"></ToggleLoginAndRegister>-->
 
     <div class="container d-flex justify-content-around user-select-none">
       <div class="right card backdrop-filter" style="width: 100%">
@@ -24,10 +24,12 @@
           "
         >
           <van-cell-group style="width: 100%">
-            <div class="common-input-title">手机号码</div>
             <van-field v-model="state.struct.social" placeholder="请输入手机号码" />
-            <div class="common-input-title" style="margin-top: 10px">短信验证码</div>
-            <van-field v-model="state.struct.code" clearable placeholder="请输入短信验证码">
+            <van-field
+              style="margin-top: 20px"
+              v-model="state.struct.code"
+              placeholder="请输入短信验证码"
+            >
               <template #button>
                 <div style="color: #999" @click="SendCode">
                   <span v-if="!state.status.code">发送验证码</span>
@@ -35,30 +37,28 @@
                 </div>
               </template>
             </van-field>
-            <div class="common-input-title" style="margin-top: 10px">密码</div>
             <van-field
+              style="margin-top: 20px"
               v-model="state.struct.password"
-              clearable
               placeholder="请输入密码"
               type="password"
             />
-            <div class="common-input-title" style="margin-top: 10px">确认密码</div>
             <van-field
               v-model="state.struct.AgainPassword"
-              clearable
               placeholder="请再次输入密码"
               type="password"
+              style="margin-top: 20px"
             />
-            <div class="common-input-title" style="margin-top: 10px">邀请码</div>
 
             <van-field
+              style="margin-top: 20px"
               v-model="state.struct.invite"
               :disabled="route.query.invite"
               placeholder="请输入邀请码"
             />
           </van-cell-group>
           <!--          <div style="text-align: right; width: 100%; margin: 10px 10px 20px 0">-->
-          <!--            <span @click="$router.push('/common/sign-forget')"> 忘记密码 </span>-->
+          <!--            <span @click="$router.push('/common/sign-forget')"> 找回密码 </span>-->
           <!--          </div>-->
           <el-button
             :loading="state.status.wait"
@@ -68,8 +68,8 @@
             style="
               margin-top: 20px;
               border-radius: 15px;
-              color: #fff;
-              background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+              color: #0775f1;
+              background-color: #bfd8d8;
               font-weight: bolder;
             "
             type="primary"
@@ -87,24 +87,12 @@
         <!--      </van-divider>-->
         <div style="display: flex; justify-content: space-evenly; align-items: center; width: 100%">
           <a
-            style="
-              font-size: 16px;
-              color: #fff;
-              background-color: #888;
-              padding: 4px 12px;
-              border-radius: 8px;
-            "
+            style="font-size: 16px; color: #fff; padding: 4px 12px; border-radius: 8px"
             @click="goDownload"
             >下载app</a
           >
           <a
-            style="
-              font-size: 16px;
-              color: #fff;
-              background-color: #888;
-              padding: 4px 12px;
-              border-radius: 8px;
-            "
+            style="font-size: 16px; color: #fff; padding: 4px 12px; border-radius: 8px"
             @click="jumpToQQ2"
             >官方交流群
           </a>
@@ -114,20 +102,20 @@
 
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击下68App扫码进群"
+      confirm-text="点击进入官方群"
       @confirm="handleGonggaoConfirm"
     >
-      <p
-        style="
-          transform: translateY(10px);
-          text-align: center;
-          font-size: 18px;
-          color: #fff;
-          font-weight: bolder;
-        "
-      >
-        请使用68APP扫码进官方群
-      </p>
+      <!--      <p-->
+      <!--        style="-->
+      <!--          transform: translateY(10px);-->
+      <!--          text-align: center;-->
+      <!--          font-size: 18px;-->
+      <!--          color: #000;-->
+      <!--          font-weight: bolder;-->
+      <!--        "-->
+      <!--      >-->
+      <!--        请使用68APP扫码进官方群-->
+      <!--      </p>-->
       <div style="padding: 20px">
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
       </div>
@@ -153,7 +141,7 @@ const showGonggaoOverlay = ref(false)
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
   // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
-  window.location.href = 'https://68chat5.com/cn/'
+  window.location.href = 'https://www.haiouchat.com'
 }
 const user = useUsers()
 const router = useRouter()
@@ -221,7 +209,7 @@ const SignUp = async () => {
   for (let i in state.struct) state.struct[i] = ''
 
   showToast('注册成功')
-  // window.location.href = `https://weaw.shunyigong.com/download`
+  // window.location.href = `https://wmaw.lnyzd.com/download`
   // 跳转到首页
   router.push({ path: '/' })
 }
@@ -263,7 +251,7 @@ watch(
 
 function goDownload() {
   try {
-    window.location.href = `https://weaw.shunyigong.com/download`
+    window.location.href = `https://wmaw.lnyzd.com/download`
   } catch (e) {
     _notice('下载失败')
   }
@@ -344,7 +332,8 @@ body {
   height: 100vh;
   overflow-y: auto;
   color: #666;
-  background-color: #1f203d;
+  background: url('../assets/images/login-bg.png') no-repeat;
+  background-size: 100% 100%;
   //background-repeat: no-repeat;
   //background-image: url('@/assets/img/bg.png');
   //background-size: 100% auto;
@@ -352,7 +341,7 @@ body {
     flex-direction: column;
     width: 80%;
     margin: 20px auto 0;
-    background-color: #2e3350;
+    //background-color: #2e3350;
     padding: 20px 20px;
     border-radius: 20px;
     //box-shadow: 0 0 10px #0000001f;
@@ -361,7 +350,8 @@ body {
 
 :deep(.van-cell) {
   border-bottom: 1px solid #4d536a;
-  padding: 10px 0;
+  background: #3b82f2;
+  border-radius: 10px;
 
   &::after {
     border: none !important;
@@ -369,6 +359,7 @@ body {
 
   .van-field__body {
     input {
+      text-align: center;
       color: #fff !important;
 
       &::placeholder {

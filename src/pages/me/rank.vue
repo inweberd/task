@@ -13,11 +13,11 @@
       style="position: fixed; top: 0; left: 0; z-index: 9; width: 100%; background-color: #e5f4f2"
       left-arrow
       placeholder
-      title="排行榜"
+      title="每周钻石奖励分红榜"
       @click-left="$router.back()"
     >
       <template #right>
-        <span style="color: #1e83d3" @click="$router.push('/rankIntroduce')"> 奖励发放规则 </span>
+        <span style="color: #fff" @click="$router.push('/rankIntroduce')"> 奖励发放规则 </span>
         <!--        <van-icon name="friends-o" size="18" @click="service = true" />-->
       </template>
     </van-nav-bar>
@@ -26,18 +26,18 @@
         <!--        本次周期分红总金额 <br />-->
         <!--          （每X天进行一轮分红） <br />-->
         <!--          <div style="display: flex; align-items: center">-->
-        <span>本周总提现</span>
-        <span class="money">￥{{ (total * 10).toFixed(2) }}</span>
+        <span>本周奖池总钻石</span>
+        <div class="money">{{ (total * 10).toFixed(2) }}</div>
         <!--          </div>-->
       </div>
 
       <!--        <van-divider style="border-color: #bababa"></van-divider>-->
-      <div style="text-align: center; margin-top: 10px">
-        <div class="" style="font-size: 20px; font-weight: bolder">
-          奖金发放倒计时：{{ timeTxt }}
-        </div>
-        <!--          <div class="money" style="font-size: 22px; color: #000">{{ timeTxt }}</div>-->
-      </div>
+      <!--      <div style="text-align: center; margin-top: 10px">-->
+      <!--        <div class="" style="font-size: 20px; font-weight: bolder">-->
+      <!--          奖金发放倒计时：{{ timeTxt }}-->
+      <!--        </div>-->
+      <!--        &lt;!&ndash;          <div class="money" style="font-size: 22px; color: #000">{{ timeTxt }}</div>&ndash;&gt;-->
+      <!--      </div>-->
     </div>
     <div class="qiansan" v-if="false">
       <div class="one">
@@ -120,17 +120,20 @@
             <img :src="item.avatar || headImg" style="width: 100%; height: 100%" alt="" />
           </section>
           <div style="position: relative">
-            <img src="./images/icon-rz.png" alt="" />
-            <div style="display: flex; flex-direction: column; position: relative">
-              <span style="line-height: 16px">
+            <!--            <img src="./images/icon-rz.png" alt="" />-->
+            <!--            <div style="display: flex; flex-direction: column; position: relative">-->
+            <div
+              style="width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap"
+            >
+              <span style="width: 100%; line-height: 16px; margin-left: 10px">
                 {{ item.nickname || getPhone(item.phone) }}
               </span>
-              <div style="line-height: 16px; color: red; margin-top: 5px">
-                等级：{{ item?.vip?.name || '暂无特权' }}
-              </div>
-              <span style="line-height: 16px; margin-top: 5px; font-weight: bolder">
-                本周已挣元宝：{{ +item.total.toFixed(4) }}
-              </span>
+              <!--              <div style="line-height: 16px; color: red; margin-top: 5px">-->
+              <!--                等级：{{ item?.vip?.name || '暂无特权' }}-->
+              <!--              </div>-->
+              <!--              <span style="line-height: 16px; margin-top: 5px; font-weight: bolder">-->
+              <!--                本周已挣元宝：{{ +item.total.toFixed(4) }}-->
+              <!--              </span>-->
               <!--              <div-->
               <!--                style="line-height: 16px; position: absolute; top: 24px; left: -22px; color: red"-->
               <!--              >-->
@@ -138,7 +141,7 @@
               <!--              </div>-->
             </div>
           </div>
-          <!--          <div>￥{{ +item.total.toFixed(4) }}</div>-->
+          <div>￥{{ +item.total.toFixed(4) }}</div>
         </div>
       </div>
     </div>
@@ -312,7 +315,8 @@ onBeforeUnmount(() => {
 .rank {
   width: 100%;
   height: 100vh;
-  background-color: #e5f4f2;
+  //background-color: #e5f4f2;
+  background-image: linear-gradient(45deg, #68b742, #63b53d); /* 标准语法 */
 
   overflow: auto;
   border: 1px solid transparent;
@@ -340,12 +344,12 @@ onBeforeUnmount(() => {
       //width: 70%;
       margin-bottom: 10px;
       border-radius: 15px;
-      color: #000;
+      color: #fff;
       display: flex;
       //border-bottom: 1px dotted #fff;
       //box-shadow: inset 0px -1px 1px -1px #fff;
       padding-top: 5px;
-      background-color: #fff;
+      background-color: #248c29;
 
       & > div {
         height: 80px;
@@ -354,7 +358,7 @@ onBeforeUnmount(() => {
         text-align: center;
 
         &:nth-child(1) {
-          color: #000;
+          color: #fff;
           //background-image: url('./images/four.png');
           background-repeat: no-repeat;
           width: 10%;
@@ -386,45 +390,45 @@ onBeforeUnmount(() => {
           height: 50px !important;
         }
       }
-      &:nth-child(1) {
-        color: #fff;
-        background-color: #f2a304;
-
-        & > div:first-child {
-          color: #fff;
-        }
-      }
-      &:nth-child(2) {
-        color: #fff;
-        background-color: #44d7b6;
-
-        & > div:first-child {
-          color: #fff;
-        }
-      }
-      &:nth-child(3) {
-        color: #fff;
-        background-color: #32c5ff;
-
-        & > div:first-child {
-          color: #fff;
-        }
-      }
+      //&:nth-child(1) {
+      //  color: #fff;
+      //  background-color: #f2a304;
+      //
+      //  & > div:first-child {
+      //    color: #fff;
+      //  }
+      //}
+      //&:nth-child(2) {
+      //  color: #fff;
+      //  background-color: #44d7b6;
+      //
+      //  & > div:first-child {
+      //    color: #fff;
+      //  }
+      //}
+      //&:nth-child(3) {
+      //  color: #fff;
+      //  background-color: #32c5ff;
+      //
+      //  & > div:first-child {
+      //    color: #fff;
+      //  }
+      //}
     }
   }
 
   :deep(.van-nav-bar) {
-    background: transparent;
+    background: #65b63f !important;
     .van-nav-bar__title {
-      color: #000 !important;
+      color: #ffffff !important;
     }
 
     .van-nav-bar__text {
-      color: #000 !important;
+      color: #fff !important;
     }
 
     .van-icon {
-      color: #000;
+      color: #fff;
     }
   }
   :deep(.van-hairline--bottom) {
@@ -577,8 +581,8 @@ onBeforeUnmount(() => {
   }
 }
 .linear {
-  background-image: -webkit-linear-gradient(45deg, #f3debb, #fcf6ed); /* Chrome, Safari */
-  background-image: linear-gradient(45deg, #f3debb, #fcf6ed); /* 标准语法 */
+  background-image: -webkit-linear-gradient(45deg, #68b742, #63b53d); /* Chrome, Safari */
+  background-image: linear-gradient(45deg, #68b742, #63b53d); /* 标准语法 */
   -webkit-background-clip: text; /* Chrome, Safari */
   background-clip: text;
   color: transparent;

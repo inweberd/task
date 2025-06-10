@@ -14,16 +14,16 @@
     </van-nav-bar>
     <Loading v-if="loading" />
 
-    <div style="background-color: #1f203d; margin: 10px; border-radius: 10px; overflow: hidden">
-      <t-tabs :space-evenly="false" default-value="收入" theme="tag" @change="tabChange">
+    <div style="background-color: #fff; margin: 10px; border-radius: 10px; overflow: hidden">
+      <t-tabs :space-evenly="false" default-value="天梯明细" @change="tabChange">
         <t-tab-panel label="收入" value="收入" />
         <!--        <t-tab-panel label="佣金嘉奖" value="佣金嘉奖" />-->
-        <!--      <t-tab-panel value="排行榜奖励" label="奖池发放" />-->
+        <!--        <t-tab-panel value="排行榜奖励" label="排行榜" />-->
         <t-tab-panel value="推荐奖" label="推荐奖" />
-        <t-tab-panel value="游戏" label="游戏" />
-        <t-tab-panel value="聚宝盆" label="聚宝盆" />
+        <!--        <t-tab-panel value="游戏" label="游戏" />-->
+        <t-tab-panel value="天梯明细" label="天梯明细" />
         <t-tab-panel label="支出" value="支出" />
-        <t-tab-panel label="提现" value="提现" />
+        <t-tab-panel label="兑换" value="兑换" />
       </t-tabs>
     </div>
 
@@ -33,12 +33,12 @@
     <!--      <van-tab title="支出明细" name="支出">-->
     <wallet-expense v-if="activeTab === '支出'"></wallet-expense>
     <!--      </van-tab>-->
-    <!--      <van-tab title="提现记录" name="提现">-->
-    <wallet-withdraw v-if="activeTab === '提现'"></wallet-withdraw>
+    <!--      <van-tab title="兑换记录" name="兑换">-->
+    <wallet-withdraw v-if="activeTab === '兑换'"></wallet-withdraw>
     <rengoufanli v-if="activeTab === '推荐奖'"></rengoufanli>
     <paihangjiangli v-if="activeTab === '排行榜奖励'"></paihangjiangli>
     <youxilog v-if="activeTab === '游戏'"></youxilog>
-    <jubaopenlog v-if="activeTab === '聚宝盆'"></jubaopenlog>
+    <jubaopenlog v-if="activeTab === '天梯明细'"></jubaopenlog>
     <!--      </van-tab>-->
     <!--    </van-tabs>-->
     <modzz v-model="service"></modzz>
@@ -59,7 +59,7 @@ import Paihangjiangli from '@/pages/me/wallet/paihangjiangli.vue'
 
 const router = useRouter()
 const service = ref(false)
-const activeTab = ref('收入')
+const activeTab = ref('天梯明细')
 const tabChange = (a) => {
   console.log(a)
   activeTab.value = a
@@ -78,9 +78,30 @@ const loading = ref(false)
 
 .wallet-page {
   background-color: #1f203d;
-
+  background: url('@/assets/img/main-bg.jpg');
+  background-size: 100% 100%;
   height: 100%;
   overflow-y: auto;
+
+  :deep(.van-nav-bar) {
+    //background: #65b63f !important;
+    .van-nav-bar__title {
+      color: #ffffff !important;
+    }
+
+    .van-nav-bar__text {
+      color: #fff !important;
+    }
+
+    .van-icon {
+      color: #fff;
+    }
+  }
+  :deep(.van-hairline--bottom) {
+    &:after {
+      border-bottom: none;
+    }
+  }
 }
 
 .balance-info {

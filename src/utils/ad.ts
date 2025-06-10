@@ -444,6 +444,8 @@ export const wechatShareLink = (str, scene) => {
 }
 
 export const wechatShareImg = (base64Str?, scene) => {
+  // console.log(base64Str)
+  // return
   // window.android.wxLogin()
   // return
   if (isIos) {

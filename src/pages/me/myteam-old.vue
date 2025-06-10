@@ -39,26 +39,29 @@
           <!--                    &lt;!&ndash;          <p>上级会员ID : {{ userInfo?.invite_id }}</p>&ndash;&gt;-->
           <!--                    <p>我的ID : {{ userInfo?.id }}</p>-->
           <!--                </div>-->
+          <!--          <div class="b">-->
+          <!--            <p>邀请码 : {{ userInfo?.result?.invite?.code }}</p>-->
+          <!--          </div>-->
           <div class="b">
-            <p>邀请码 : {{ userInfo?.result?.invite?.code }}</p>
+            <p>代理等级 : {{ userInfo?.result?.staff?.name || '暂无会员' }}</p>
           </div>
         </div>
       </div>
 
-      <div class="num-info">
+      <div class="num-info" v-if="false">
         <div class="top">
           <img src="./images/team-users.png" alt="" />
           <span>团队总人数：{{ memberInfo.team?.total || 0 }}</span>
-          <span style="margin-left: 10px">团队会员：{{ memberInfo.team?.vip || 0 }}</span>
+          <span style="margin-left: 10px">团队会员人数：{{ memberInfo.team?.vip || 0 }}</span>
         </div>
         <div class="bottom">
           <div>
             <div>{{ memberInfo.first?.total || 0 }}</div>
-            <div>直推人数</div>
+            <div>直推会员人数</div>
           </div>
           <div>
             <div>{{ memberInfo.first?.vip || 0 }}</div>
-            <div>有效直推</div>
+            <div>有效会员</div>
           </div>
           <div>
             <div>{{ memberInfo.team?.deposit || 0 }}</div>
@@ -66,7 +69,7 @@
           </div>
           <div>
             <div>{{ memberInfo.team?.withdraw || 0 }}</div>
-            <div>团队提现</div>
+            <div>团队兑换</div>
           </div>
         </div>
       </div>
@@ -98,7 +101,7 @@
             <div>{{ memberInfo.first?.vip || 0 }}</div>
           </div>
           <div>
-            <div>团队总提现</div>
+            <div>团队总兑换</div>
             <div>{{ memberInfo.team?.withdraw || 0 }}</div>
           </div>
         </div>
@@ -110,7 +113,7 @@
       <!--          <p>{{ memberInfo.team?.deposit || 0 }} <span class="unit">元</span></p>-->
       <!--        </div>-->
       <!--        <div class="tuandui-item">-->
-      <!--          <p>团队总提现</p>-->
+      <!--          <p>团队总兑换</p>-->
       <!--          <p>{{ memberInfo.team?.withdraw || 0 }} <span class="unit">元</span></p>-->
       <!--        </div>-->
       <!--      </div>-->
@@ -134,11 +137,11 @@
         <!--        </div>-->
         <!--        <div class="summary-item">-->
         <!--          <div class="amount">￥{{ format(memberInfo?.wallet?.withdraw?.money) }}</div>-->
-        <!--          <div class="label">团队总提现（元）</div>-->
+        <!--          <div class="label">团队总兑换（元）</div>-->
         <!--        </div>-->
         <!--      </div>-->
 
-        <div v-if="false" class="stats">
+        <div class="stats">
           <div class="stat-item">
             <div class="label">团队总人数</div>
             <div class="number">
@@ -146,15 +149,26 @@
             </div>
           </div>
           <div class="stat-item">
-            <div class="label">团队有效人数</div>
+            <div class="label">团队会员人数</div>
             <div class="number">{{ memberInfo.team?.vip || 0 }}</div>
+          </div>
+          <div class="stat-item">
+            <div class="label">团队有效人数</div>
+            <div class="label">下级参与天梯到7级视为有效</div>
+            <div class="number">{{ memberInfo.team?.users || 0 }}人</div>
+          </div>
+          <div class="stat-item">
+            <div class="label">直推有效下级</div>
+            <div class="label" style="color: #fff">下级参与天梯到7级视为有效</div>
+            <div class="number">{{ memberInfo.team?.direct || 0 }}人</div>
+            <!--            <div class="number">(待更新)</div>-->
           </div>
           <div class="stat-item">
             <div class="label">直推总人数</div>
             <div class="number">{{ memberInfo.first?.total || 0 }}</div>
           </div>
           <div class="stat-item">
-            <div class="label">直推有效人数</div>
+            <div class="label">直推会员人数</div>
             <div class="number">{{ memberInfo.first?.vip || 0 }}</div>
           </div>
           <!--        <div class="stat-item">-->
@@ -166,16 +180,16 @@
           <!--          <div class="label">团队总收益</div>-->
           <!--        </div>-->
           <div class="stat-item">
-            <div class="label">团队总充值(元)</div>
+            <div class="label">团队总业绩(钻石)</div>
             <div class="number">{{ memberInfo.team?.deposit || 0 }}</div>
           </div>
           <div class="stat-item">
-            <div class="label">团队总提现(元)</div>
+            <div class="label">团队总兑换(钻石)</div>
             <div class="number">{{ memberInfo.team?.withdraw || 0 }}</div>
           </div>
           <div class="stat-item" style="width: 100%">
-            <div class="label">今日收益</div>
-            <div class="number">￥{{ userIncomeInfo.today || 0 }}</div>
+            <div class="label">今日我的收益</div>
+            <div class="number">{{ userIncomeInfo.today || 0 }}钻石</div>
           </div>
           <!--        <div class="stat-item">-->
           <!--          <div class="number">{{ userIncomeInfo.total || 0 }}</div>-->
@@ -314,7 +328,7 @@
                             padding: 2px 5px;
                           "
                         >
-                          {{ item?.result?.staff?.name || '暂无特权' }}
+                          {{ item?.result?.staff?.name || '暂无会员' }}
                         </span>
                       </div>
                     </div>
@@ -366,7 +380,7 @@ import { _notice } from '@/utils'
 import { getSerialName } from '../../utils/getSerialName'
 import { getIsInApp } from '@/utils/getTopPadding'
 import dayjs from 'dayjs'
-import headImg from '@/assets/img/white-logo.jpg'
+import headImg from '@/assets/img/logo.png'
 import { copyToClipboard } from '@/utils/copyToClipboard'
 
 const router = useRouter()
@@ -477,6 +491,8 @@ onActivated(() => {
   height: 100%;
   overflow-y: auto;
   background-color: #f7fcfa;
+  background: url('@/assets/img/main-bg.jpg') no-repeat left top / 100% 100%;
+
   :deep(.van-nav-bar) {
     .van-icon {
       color: #000 !important;
@@ -528,19 +544,26 @@ onActivated(() => {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: 15px;
 }
 
 .stat-item {
-  background-color: rgba(26, 62, 84, 0.7);
+  //background-color: rgba(26, 62, 84, 0.7);
+  background-color: #fff;
   border-radius: 8px;
   padding: 10px;
   width: 43%;
   margin-bottom: 10px;
   text-align: center;
+
+  .label {
+    color: #000;
+    font-weight: bolder;
+  }
 }
 
 .number {
-  color: #d1e562;
+  color: #628be5;
   font-size: 24px;
 }
 
@@ -632,7 +655,7 @@ onActivated(() => {
 .container {
   color: #fff;
   //background-color: #edecfa;
-  background: url('./images/team_bg.png') no-repeat left top / 120% 300px;
+  //background: url('./images/team_bg.png') no-repeat left top / 120% 300px;
 
   .info {
     display: flex;

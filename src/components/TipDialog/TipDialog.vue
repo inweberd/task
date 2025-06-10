@@ -8,8 +8,8 @@
         </div>
         <van-button
           v-if="showConfirm"
-          color="linear-gradient(to right, #fb5b4b, #9c38e5)"
-          style="border-radius: 20px; width: 80%;color: #fff"
+          color="linear-gradient(to right, #bfd8d8, #bfd8d8)"
+          style="border-radius: 20px; width: 80%; color: #0775f1; font-weight: bolder"
           @click="handleConfirm"
         >
           {{ confirmText }}
@@ -73,8 +73,10 @@ const handleConfirm = () => {
   flex-direction: column;
   position: relative;
   width: 80%;
-  background-color: #202022;
-  background-image: linear-gradient(to bottom, #9c38e5 0%, #1f203d 30%, #1f203d 100%);
+  //background-color: #202022;
+  //background-image: linear-gradient(to bottom, #4e76bc 0%, #4e76bc 30%, #4e76bc 100%);
+  background: url('@/assets/img/main-bg.jpg');
+  background-size: 100% 100%;
   border-radius: 15px;
   padding: 0px 0 20px;
   color: #000;

@@ -4,7 +4,7 @@
     <div class="info">
       <div class="avatar" @click="renzheng(userInfo.avatar)">
         <img :src="userInfo.avatar || defaultAvatar" />
-        <div v-if="!userInfo.avatar" style="color: #999">点击更改头像</div>
+        <!--        <div v-if="!userInfo.avatar" style="color: #999">点击更改头像</div>-->
       </div>
       <!--      <p-->
       <!--        v-if="showRenzheng"-->
@@ -13,15 +13,15 @@
       <!--        点击头像可更换微信微信头像-->
       <!--      </p>-->
       <div class="info-r" style="position: relative">
-        <div class="edit" style="position: absolute; right: -30px; top: 0px; color: #fff">
-          <van-button
-            color="linear-gradient(to right, #fb5b4b, #9c38e5)"
-            @click="go('/editInfo')"
-            style="height: 25px"
-          >
-            修改昵称
-          </van-button>
-        </div>
+        <!--        <div class="edit" style="position: absolute; right: -30px; top: 0px; color: #fff">-->
+        <!--          <van-button-->
+        <!--            color="linear-gradient(to right, #fb5b4b, #9c38e5)"-->
+        <!--            @click="go('/editInfo')"-->
+        <!--            style="height: 25px"-->
+        <!--          >-->
+        <!--            修改昵称-->
+        <!--          </van-button>-->
+        <!--        </div>-->
         <div class="t">
           <template v-if="userInfo.nickname"> {{ userInfo.nickname }}</template>
           <template v-else>
@@ -39,52 +39,117 @@
         <div class="b">
           <p>我的邀请码 : {{ userInfo?.result?.invite?.code }}</p>
         </div>
+        <!--        <div class="b">-->
+        <!--          <p>我的团队等级 : {{ walletInfo?.star || 0 }}星</p>-->
+        <!--        </div>-->
         <div class="b">
-          <p>我的团队等级 : {{ walletInfo?.star || 0 }}星</p>
-        </div>
-        <div class="b">
-          <p>我的会员等级 : {{ userInfo?.result?.staff?.name || '暂无会员' }}</p>
+          <p>代理等级 : {{ userInfo?.result?.staff?.name || '暂无会员' }}</p>
         </div>
       </div>
     </div>
-
-    <div class="container">
+    <div
+      style="
+        padding: 0 10px;
+        box-sizing: border-box;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 120px;
+        z-index: 2;
+      "
+    >
       <div class="money-box">
         <div class="total">
-          <div class="txt1">可提现或互转元宝数量:</div>
-          <div class="txt2">
-            {{ userIncomeInfo?.wallet?.money || 0 }}
-            <!--            <template v-if="showTotal">-->
-            <!--              {{ userIncomeInfo?.wallet?.money || 0 }}-->
-            <!--            </template>-->
-            <!--            <template v-else> ****** </template>-->
+          <div class="l">
+            <div class="txt1">通用钻石:</div>
+            <div class="txt2">
+              {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}
+            </div>
+          </div>
+          <div class="r">
+            <!--            <van-button-->
+            <!--              class="btn"-->
+            <!--              color="#fff"-->
+            <!--              style="-->
+            <!--                color: #1d9ae8;-->
+            <!--                border: 1px solid #1d9ae8;-->
+            <!--                width: 80px;-->
+            <!--                border-radius: 30px;-->
+            <!--                height: 30px;-->
+            <!--              "-->
+            <!--              @click="goDep"-->
+            <!--            >-->
+            <!--              兑换-->
+            <!--            </van-button>-->
             <!--            <img-->
-            <!--              class="eye"-->
-            <!--              @click.stop="showTotal = false"-->
-            <!--              v-if="showTotal"-->
-            <!--              src="@/assets/img/eye-show.png"-->
+            <!--              src="./images/zhuanzeng.png"-->
+            <!--              style="height: 30px"-->
+            <!--              alt=""-->
+            <!--              @click="$router.push('/conversion')"-->
             <!--            />-->
             <!--            <img-->
-            <!--              class="eye"-->
-            <!--              @click.stop="handleEyeClick"-->
-            <!--              v-else-->
-            <!--              src="@/assets/img/eye-hidden.png"-->
+            <!--              src="./images/duihuan.png"-->
+            <!--              style="height: 30px"-->
+            <!--              alt=""-->
+            <!--              @click="$router.push('/dep')"-->
             <!--            />-->
           </div>
         </div>
-        <div class="border"></div>
-        <div class="border2"></div>
-        <div class="money-info">
+        <div class="total">
+          <div class="l">
+            <div class="txt1">今日已获得钻石:</div>
+            <div class="txt2">
+              {{ (userIncomeInfo.today || 0).toFixed(2) }}
+            </div>
+          </div>
+          <!--          <div class="r">-->
+          <!--            <img src="./images/zhuanzeng.png" style="height: 30px" alt="" />-->
+          <!--          </div>-->
+        </div>
+        <div class="total">
+          <div class="l">
+            <div class="txt1">历史累计获得钻石:</div>
+            <div class="txt2">
+              {{ (userIncomeInfo.total || 0).toFixed(4) }}
+            </div>
+          </div>
+        </div>
+        <div class="total">
+          <div class="l">
+            <div class="txt1">绑钻数量:</div>
+            <div class="txt2">
+              {{ walletInfo?.amount || 0 }}
+            </div>
+          </div>
+          <div class="r">
+            <el-button
+              @click="$router.push('/recharge')"
+              style="border-radius: 15px; color: #fff; font-weight: bolder"
+              type="primary"
+            >
+              购买绑钻
+            </el-button>
+            <el-button
+              @click="$router.push('/invest')"
+              style="border-radius: 15px; color: #fff; font-weight: bolder"
+              type="primary"
+              >兑换会员
+            </el-button>
+          </div>
+        </div>
+        <div class="border" v-if="false"></div>
+        <div class="border2" v-if="false"></div>
+        <div class="money-info" v-if="false">
           <p>
-            <span class="title">今日元宝</span>
+            <span class="title">今日已获得钻石</span>
             <span class="num">{{ (userIncomeInfo.today || 0).toFixed(4) }}</span>
           </p>
           <p>
-            <span class="title">已挣得元宝</span>
+            <span class="title">历史累计获得钻石</span>
             <span class="num">{{ (userIncomeInfo.total || 0).toFixed(4) }}</span>
           </p>
           <p>
-            <span class="title">充值余额</span>
+            <span class="title">绑钻数量</span>
             <span class="num">{{ walletInfo?.amount || 0 }}</span>
           </p>
           <!--          <p>-->
@@ -92,34 +157,136 @@
           <!--            <span>充值余额</span>-->
           <!--          </p>-->
         </div>
+        <div>
+          <img src="" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <img
+        src="./images/fenxiangzhuanqian.png"
+        alt=""
+        style="width: 100%"
+        @click="$router.push('/me/my-card')"
+      />
+      <div style="position: relative; margin-top: 10px" @click="yijianlingqu">
+        <span
+          style="
+            position: absolute;
+            top: 50%;
+            left: 40px;
+            transform: translateY(-50%);
+            font-weight: bolder;
+          "
+        >
+          今日预估钻石收入:{{ keLingQuYue }}
+        </span>
+        <img src="./images/yijianlingqu.png" alt="" style="width: 100%" />
+      </div>
+      <!--      <div class="huiyuanquanyi">-->
+      <!--        <div class="title">钻石会员</div>-->
+      <!--        <div class="list">-->
+      <!--          &lt;!&ndash;          <div class="item">&ndash;&gt;-->
+      <!--          &lt;!&ndash;            <img src="./images/zhekoushangcheng.png" alt="" />&ndash;&gt;-->
+      <!--          &lt;!&ndash;            <span>折扣商城</span>&ndash;&gt;-->
+      <!--          &lt;!&ndash;          </div>&ndash;&gt;-->
+      <!--          &lt;!&ndash;          <div class="item">&ndash;&gt;-->
+      <!--          &lt;!&ndash;            <img src="./images/jifenduihuan.png" alt="" />&ndash;&gt;-->
+      <!--          &lt;!&ndash;            <span>积分兑换</span>&ndash;&gt;-->
+      <!--          &lt;!&ndash;          </div>&ndash;&gt;-->
+      <!--          <div class="item">-->
+      <!--            <img src="./images/zhanghubaozhang.png" alt="" />-->
+      <!--            <span>账户保障</span>-->
+      <!--          </div>-->
+      <!--          <div class="item" @click="$router.push('/invest')">-->
+      <!--            <img src="./images/huiyuantequan.png" alt="" />-->
+      <!--            <span>会员特权</span>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <div class="shionggongju">
+        <div class="title">实用工具</div>
+        <div class="list">
+          <!--          <div class="item">-->
+          <!--            <img src="./images/11.png" alt="" @click="$router.push('/caozuoshuoming')" />-->
+          <!--            <span>玩法介绍</span>-->
+          <!--          </div>-->
+
+          <!--          <div class="item">-->
+          <!--            <img src="./images/33.png" alt="" @click="$router.push('/demo')" />-->
+          <!--            <span>账户保障</span>-->
+          <!--          </div>-->
+
+          <!--          <div class="item">-->
+          <!--            <img src="./images/55.png" alt="" />-->
+          <!--            <span>会员特权</span>-->
+          <!--          </div>-->
+          <div class="item" @click="$router.push('/jubaopen')">
+            <img src="./images/33.png" alt="" />
+            <span>钻石天梯</span>
+          </div>
+          <div class="item" @click="$router.push('/invest')">
+            <img src="./images/huiyuantequan.png" alt="" />
+            <span>会员特权</span>
+          </div>
+          <div class="item">
+            <img src="./images/66.png" alt="" @click="$router.push('/teamStat')" />
+            <span>我的团队</span>
+          </div>
+          <div class="item">
+            <img src="./images/77.png" alt="" @click="$router.push('/wallet')" />
+            <span>收入明细</span>
+          </div>
+          <div class="item" @click="$router.push('/conversion')">
+            <img src="./images/22.png" alt="" />
+            <span>转赠</span>
+          </div>
+          <div class="item">
+            <img src="./images/44.png" alt="" @click="$router.push('/dep')" />
+            <span>兑换</span>
+          </div>
+          <div class="item">
+            <img src="./images/99.png" alt="" @click="goDownload" />
+            <span>下载APP</span>
+          </div>
+
+          <div class="item" @click="showGonggaoOverlay = true">
+            <img src="./images/jiaoliu.png" alt="" />
+            <span>官方大群</span>
+          </div>
+          <!--          <div class="item">-->
+          <!--            <img src="./images/88.png" alt="" />-->
+          <!--            <span>会员特权</span>-->
+          <!--          </div>-->
+        </div>
       </div>
       <div class="chongzhiandtixian">
         <!--        <div class="chongzhiyue">-->
         <!--          充值余额(元)&nbsp;&nbsp;-->
         <!--          <div class="num">{{ walletInfo?.amount || 0 }}</div>-->
         <!--        </div>-->
-        <div></div>
-        <div class="btn-box">
-          <!--          <div style="margin-right: 10px">-->
-          <!--            &lt;!&ndash;            <van-button&ndash;&gt;-->
-          <!--            &lt;!&ndash;              class="btn"&ndash;&gt;-->
-          <!--            &lt;!&ndash;              style="color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1; width: 100%"&ndash;&gt;-->
-          <!--            &lt;!&ndash;            >&ndash;&gt;-->
-          <!--            &lt;!&ndash;              今日新增佣金嘉奖:{{ bonus }}元 &nbsp;&ndash;&gt;-->
-          <!--            &lt;!&ndash;            </van-button>&ndash;&gt;-->
-          <!--            <span style="color: #fff; font-size: 16px; font-weight: bolder">-->
-          <!--              -->
-          <!--            </span>-->
-          <!--          </div>-->
-          <van-button
-            style="flex: 1"
-            class="btn"
-            color="linear-gradient(to right, #fb5b4b, #9c38e5)"
-            @click="goJiangshangjiang"
-          >
-            推广奖上奖 :{{ bonus }}元宝 点击领取
-          </van-button>
-        </div>
+        <!--        <div class="btn-box">-->
+        <!--          &lt;!&ndash;          <div style="margin-right: 10px">&ndash;&gt;-->
+        <!--          &lt;!&ndash;            &lt;!&ndash;            <van-button&ndash;&gt;&ndash;&gt;-->
+        <!--          &lt;!&ndash;            &lt;!&ndash;              class="btn"&ndash;&gt;&ndash;&gt;-->
+        <!--          &lt;!&ndash;            &lt;!&ndash;              style="color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1; width: 100%"&ndash;&gt;&ndash;&gt;-->
+        <!--          &lt;!&ndash;            &lt;!&ndash;            >&ndash;&gt;&ndash;&gt;-->
+        <!--          &lt;!&ndash;            &lt;!&ndash;              今日新增佣金嘉奖:{{ bonus }}元 &nbsp;&ndash;&gt;&ndash;&gt;-->
+        <!--          &lt;!&ndash;            &lt;!&ndash;            </van-button>&ndash;&gt;&ndash;&gt;-->
+        <!--          &lt;!&ndash;            <span style="color: #fff; font-size: 16px; font-weight: bolder">&ndash;&gt;-->
+        <!--          &lt;!&ndash;              &ndash;&gt;-->
+        <!--          &lt;!&ndash;            </span>&ndash;&gt;-->
+        <!--          &lt;!&ndash;          </div>&ndash;&gt;-->
+        <!--          <van-button-->
+        <!--            style="flex: 1"-->
+        <!--            class="btn"-->
+        <!--            color="linear-gradient(to right, #fb5b4b, #9c38e5)"-->
+        <!--            @click="goJiangshangjiang"-->
+        <!--          >-->
+        <!--            推广奖上奖 :{{ bonus }}元宝 点击领取-->
+        <!--          </van-button>-->
+        <!--        </div>-->
       </div>
       <!--      <div style="flex: 1; margin-top: 10px">-->
       <!--        <van-button-->
@@ -133,59 +300,59 @@
       <!--          </div>-->
       <!--        </van-button>-->
       <!--      </div>-->
-      <div style="flex: 1; margin-top: 10px">
-        <van-button
-          class="btn"
-          style="color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1; width: 100%; font-size: 18px"
-          @click="go('/invest')"
-        >
-          <div style="display: flex; align-items: center; justify-content: center">
-            <img src="./images/icon-rz.png" style="width: 20px; margin-right: 9px" alt="" />
-            购买会员特权，越赚越多
-          </div>
-        </van-button>
-      </div>
-      <div class="chongzhiandtixian">
-        <!--        <div class="chongzhiyue">-->
-        <!--          充值余额(元)&nbsp;&nbsp;-->
-        <!--          <div class="num">{{ walletInfo?.amount || 0 }}</div>-->
-        <!--        </div>-->
-        <div></div>
-        <div class="btn-box">
-          <van-button
-            class="btn"
-            color="linear-gradient(to right, #fb5b4b, #9c38e5)"
-            @click="go('recharge')"
-            style="flex: 1"
-          >
-            充值
-          </van-button>
-          <van-button
-            class="btn"
-            color="#fff"
-            style="margin-left: 10px; color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1"
-            @click="goDep"
-          >
-            提现
-          </van-button>
-          <!--          <van-button-->
-          <!--            @click="go('/invest')"-->
-          <!--            class="btn"-->
-          <!--            color="linear-gradient(to right, #F6CEEC, #D939CD)"-->
-          <!--            style="margin-left: 10px"-->
-          <!--          >-->
-          <!--            购买会员-->
-          <!--          </van-button>-->
-          <!--          <van-button-->
-          <!--            @click="go('/invest')"-->
-          <!--            class="btn"-->
-          <!--            color="linear-gradient(to right,#FFA8A8, #2376DD)"-->
-          <!--            style="margin-left: 10px"-->
-          <!--          >-->
-          <!--            免费兑 <br />换会员-->
-          <!--          </van-button>-->
-        </div>
-      </div>
+      <!--      <div style="flex: 1; margin-top: 10px">-->
+      <!--        <van-button-->
+      <!--          class="btn"-->
+      <!--          style="color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1; width: 100%; font-size: 18px"-->
+      <!--          @click="go('/invest')"-->
+      <!--        >-->
+      <!--          <div style="display: flex; align-items: center; justify-content: center">-->
+      <!--            <img src="./images/icon-rz.png" style="width: 20px; margin-right: 9px" alt="" />-->
+      <!--            购买会员特权，越赚越多-->
+      <!--          </div>-->
+      <!--        </van-button>-->
+      <!--      </div>-->
+      <!--      <div class="chongzhiandtixian">-->
+      <!--        &lt;!&ndash;        <div class="chongzhiyue">&ndash;&gt;-->
+      <!--        &lt;!&ndash;          充值余额(元)&nbsp;&nbsp;&ndash;&gt;-->
+      <!--        &lt;!&ndash;          <div class="num">{{ walletInfo?.amount || 0 }}</div>&ndash;&gt;-->
+      <!--        &lt;!&ndash;        </div>&ndash;&gt;-->
+      <!--        <div></div>-->
+      <!--        <div class="btn-box">-->
+      <!--          <van-button-->
+      <!--            class="btn"-->
+      <!--            color="linear-gradient(to right, #fb5b4b, #9c38e5)"-->
+      <!--            @click="go('recharge')"-->
+      <!--            style="flex: 1"-->
+      <!--          >-->
+      <!--            充值-->
+      <!--          </van-button>-->
+      <!--          <van-button-->
+      <!--            class="btn"-->
+      <!--            color="#fff"-->
+      <!--            style="margin-left: 10px; color: #1d9ae8; border: 1px solid #1d9ae8; flex: 1"-->
+      <!--            @click="goDep"-->
+      <!--          >-->
+      <!--            兑换-->
+      <!--          </van-button>-->
+      <!--          &lt;!&ndash;          <van-button&ndash;&gt;-->
+      <!--          &lt;!&ndash;            @click="go('/invest')"&ndash;&gt;-->
+      <!--          &lt;!&ndash;            class="btn"&ndash;&gt;-->
+      <!--          &lt;!&ndash;            color="linear-gradient(to right, #F6CEEC, #D939CD)"&ndash;&gt;-->
+      <!--          &lt;!&ndash;            style="margin-left: 10px"&ndash;&gt;-->
+      <!--          &lt;!&ndash;          >&ndash;&gt;-->
+      <!--          &lt;!&ndash;            购买会员&ndash;&gt;-->
+      <!--          &lt;!&ndash;          </van-button>&ndash;&gt;-->
+      <!--          &lt;!&ndash;          <van-button&ndash;&gt;-->
+      <!--          &lt;!&ndash;            @click="go('/invest')"&ndash;&gt;-->
+      <!--          &lt;!&ndash;            class="btn"&ndash;&gt;-->
+      <!--          &lt;!&ndash;            color="linear-gradient(to right,#FFA8A8, #2376DD)"&ndash;&gt;-->
+      <!--          &lt;!&ndash;            style="margin-left: 10px"&ndash;&gt;-->
+      <!--          &lt;!&ndash;          >&ndash;&gt;-->
+      <!--          &lt;!&ndash;            免费兑 <br />换会员&ndash;&gt;-->
+      <!--          &lt;!&ndash;          </van-button>&ndash;&gt;-->
+      <!--        </div>-->
+      <!--      </div>-->
 
       <!--      <div class="vipcount" style="color: red; margin-top: 10px; font-size: 16px">-->
       <!--        &lt;!&ndash;          会员等级: {{ getSerialName(userInfo?.result?.staff?.serial)&ndash;&gt;-->
@@ -203,7 +370,7 @@
       <!--        <div class="top" @click="$router.push('/teamStat')">-->
       <!--          <div class="left">-->
       <!--            <img class="qianbao" src="./images/qianbao.png" alt="" />-->
-      <!--            <span> 可提现余额 </span>-->
+      <!--            <span> 可兑换余额 </span>-->
       <!--            <img-->
       <!--              class="eye"-->
       <!--              @click.stop="showTotal = false"-->
@@ -744,12 +911,6 @@
           >
         </li>
 
-        <li>
-          <a href="javascript:void(0)" @click="$router.push('/teamStat')"
-            ><img alt="" src="./images/5.png" />
-            <p>我的团队</p></a
-          >
-        </li>
         <!--      <li>-->
         <!--        <a href="javascript:void(0)" @click="$router.push('/fenhong')"-->
         <!--          ><img src="./images/fhjc.png" alt="" />-->
@@ -822,24 +983,24 @@
         <!--        >-->
         <!--      </li>-->
       </ul>
-      <el-button
-        class="w-100"
-        color="#00f7c4"
-        size="large"
-        style="
-          width: 100%;
-          border-radius: 15px;
-          margin-top: 10px !important;
-          color: #fff;
-          background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+      <!--      <el-button-->
+      <!--        class="w-100"-->
+      <!--        color="#00f7c4"-->
+      <!--        size="large"-->
+      <!--        style="-->
+      <!--          width: 100%;-->
+      <!--          border-radius: 15px;-->
+      <!--          margin-top: 10px !important;-->
+      <!--          color: #fff;-->
+      <!--          background-image: linear-gradient(to right, #fb5b4b, #9c38e5);-->
 
-          border: 1px solid transparent !important;
-        "
-        type="primary"
-        @click="logout"
-      >
-        退出登录
-      </el-button>
+      <!--          border: 1px solid transparent !important;-->
+      <!--        "-->
+      <!--        type="primary"-->
+      <!--        @click="logout"-->
+      <!--      >-->
+      <!--        退出登录-->
+      <!--      </el-button>-->
     </div>
     <!--    <p style="text-align: center; color: #888; width: 100%">京ICP备12025439号</p>-->
     <BaseFooter :is-white="false" v-bind:init-tab="6" />
@@ -851,20 +1012,20 @@
     <!--    </div>-->
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击下68App扫码进群"
+      confirm-text="点击进入官方群"
       @confirm="handleGonggaoConfirm"
     >
-      <p
-        style="
-          transform: translateY(10px);
-          text-align: center;
-          font-size: 18px;
-          color: #f1361e;
-          font-weight: bolder;
-        "
-      >
-        请使用68APP扫码进官方群
-      </p>
+      <!--      <p-->
+      <!--        style="-->
+      <!--          transform: translateY(10px);-->
+      <!--          text-align: center;-->
+      <!--          font-size: 18px;-->
+      <!--          color: #000;-->
+      <!--          font-weight: bolder;-->
+      <!--        "-->
+      <!--      >-->
+      <!--        请使用68APP扫码进官方群-->
+      <!--      </p>-->
       <div style="padding: 20px">
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
       </div>
@@ -908,7 +1069,7 @@
         <p>
           官方群大量团队长，老板24小时不间断收元宝，进入官方群，元宝互转交易<span
             style="font-weight: bolder; color: #fff"
-            >为您免去每日提现的手续费！
+            >为您免去每日兑换的手续费！
           </span>
         </p>
       </div>
@@ -940,7 +1101,7 @@
         <p>
           官方群大量团队长，老板24小时不间断收元宝，进入官方群，元宝互转交易<span
             style="font-weight: bolder; color: #fff"
-            >为您免去每日提现的手续费！
+            >为您免去每日兑换的手续费！
           </span>
         </p>
       </div>
@@ -971,7 +1132,7 @@
         <p>
           官方群大量团队长，老板24小时不间断收元宝，进入官方群，元宝互转交易<span
             style="font-weight: bolder; color: #fff"
-            >为您免去每日提现的手续费！
+            >为您免去每日兑换的手续费！
           </span>
         </p>
       </div>
@@ -988,11 +1149,13 @@ import {
   reqAdvertisingCount,
   reqAdvertisingSinglePrice,
   reqBonusInvite,
+  reqGetStaffSettle,
   reqMyStaff,
   reqNgTransfer,
   reqPullNew,
   reqPullNewLite,
   reqQuickReceive,
+  reqStaffSettle,
   reqUserCount,
   reqUserIncome,
   reqUserInfo,
@@ -1004,7 +1167,7 @@ import { loadInteraction, wxLogin } from '@/utils/ad'
 import { _notice } from '@/utils'
 import { useRouter } from 'vue-router'
 import weimaiquan from '@/assets/img/weimaiquan.jpg'
-import { closeToast, showDialog } from 'vant'
+import { closeToast, showDialog, showToast } from 'vant'
 import { getSerialName } from '../../utils/getSerialName'
 import { Toast } from 'tdesign-mobile-vue'
 import bus from '@/utils/bus'
@@ -1021,9 +1184,9 @@ const showRenzheng = computed(() => {
   }
 })
 const renzheng = (avatar) => {
-  if (avatar) {
-    return
-  }
+  // if (avatar) {
+  //   return
+  // }
   wxLogin()
 }
 const showGonggaoOverlay = ref(false)
@@ -1033,16 +1196,16 @@ const goJiangshangjiangOverlay = ref(false)
 const goDepOverlay = ref(false)
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
-  window.location.href = 'https://68chat5.com/cn/'
+  window.location.href = 'https://www.haiouchat.com'
 }
 const list = [
-  {
-    label: 'APP下载',
-    icon: 'link-o',
-    fn() {
-      goDownload()
-    }
-  },
+  // {
+  //   label: 'APP下载',
+  //   icon: 'link-o',
+  //   fn() {
+  //     goDownload()
+  //   }
+  // }
   // {
   //   label: '每周奖池大奖',
   //   icon: 'like-o',
@@ -1050,62 +1213,6 @@ const list = [
   //     router.push('/fenhong')
   //   }
   // },
-  {
-    label: '团队升星奖励',
-    icon: 'like-o',
-    fn() {
-      router.push('/jiangliguize')
-    }
-  },
-  {
-    label: '玩法介绍',
-    icon: 'like-o',
-    fn() {
-      router.push('/caozuoshuoming')
-    }
-  },
-  {
-    label: '元宝互转',
-    icon: 'like-o',
-    fn() {
-      router.push('/conversion')
-    }
-  },
-  // {
-  //   label: '官方不禁言交流群（微脉圈）',
-  //   icon: 'like-o',
-  //   fn() {
-  //     jumpToQQ()
-  //   }
-  // },
-  {
-    label: '分享赚钱二维码',
-    icon: 'star-o',
-    fn() {
-      router.push('/me/my-card')
-    }
-  },
-  {
-    label: '推荐奖励',
-    icon: 'coupon-o',
-    fn() {
-      router.push('/demo')
-    }
-  },
-  {
-    label: '收入明细',
-    icon: 'gold-coin-o',
-    fn() {
-      router.push('/wallet')
-    }
-  },
-  {
-    label: '我的团队',
-    icon: 'user-o',
-    fn() {
-      router.push('/teamStat')
-    }
-  }
   // {
   //   label: '企业资质证照',
   //   icon: 'user-o',
@@ -1273,7 +1380,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://weaw.shunyigong.com/download`
+    window.location.href = `https://wmaw.lnyzd.com/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false
@@ -1284,7 +1391,7 @@ const handleUpdateOverlayConfirm = () => {
   updateOverlay.value = false
   showGonggaoOverlay.value = true
   // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
-  // window.location.href = 'https://68chat5.com/cn/'
+  // window.location.href = 'https://www.haiouchat.com'
 }
 const goFenHong = () => {
   router.push('/fenhong')
@@ -1321,6 +1428,28 @@ const getNewUserInfo = () => {
   })
 }
 
+const yijianlingqu = () => {
+  const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+  const userId = userInfo?.id
+  const serial = userInfo?.result?.staff?.serial
+  if (!serial) {
+    showDialog({
+      message: '成为代理，每天收益不间断!'
+    }).then(() => {
+      router.push('/invest')
+    })
+    return
+  }
+  reqStaffSettle().then((res) => {
+    keLingQuYue.value = 0
+    console.log('res')
+    if (!res.data.money) {
+      showToast('已领取过今日收益！')
+    } else {
+      showToast(`已领取${res.data.money}钻石`)
+    }
+  })
+}
 const toMySub = () => {
   // loadInteraction()
   router.push('/mysub')
@@ -1355,20 +1484,28 @@ const getRed = () => {
       closeToast()
     })
 }
+const keLingQuYue = ref(0)
+const getKeLingqu = () => {
+  reqGetStaffSettle().then((res) => {
+    keLingQuYue.value = res.data?.money || 0
+  })
+}
 onActivated(() => {
-  // showGonggaoOverlay.value = true
+  showGonggaoOverlay.value = true
   // updateOverlay.value = true
   userInfo.value = JSON.parse(window.localStorage.getItem('userInfo'))
   init()
   getRed()
   getNewUserInfo()
   getMyStaff()
+  getKeLingqu()
   bus.on('userInfoChange', (data) => {
     userInfo.value = data
   })
 })
 onMounted(() => {
-  updateOverlay.value = true
+  updateOverlay.value = false
+  // showGonggaoOverlay.value = true
 })
 onDeactivated(() => {
   showTotal.value = false
@@ -1377,27 +1514,31 @@ onDeactivated(() => {
 
 <style lang="less" scoped>
 .investClass {
+  position: relative;
   width: 100vw;
   height: calc(100% - 56px);
-  padding-top: 20px;
   box-sizing: border-box;
   //background-repeat: no-repeat;
   //background-image: url('@/assets/img/bg.png');
   //background-size: 100% auto;
   color: #666;
-  background-color: #1f203d;
+  background-color: #f5f5f5;
 
   overflow-y: auto;
 
   .info {
+    //background-color: #43465c;
+    background: url('@/assets/img/main-bg.jpg') no-repeat;
+    background-size: 100% 100%;
+
     display: flex;
-    padding: 0 20px;
+    padding: 20px 20px 130px;
 
     .avatar {
       img {
-        width: 120px;
+        width: 80px;
         border-radius: 50%;
-        height: 120px;
+        height: 80px;
       }
     }
 
@@ -1409,46 +1550,41 @@ onDeactivated(() => {
 
       .t {
         color: #fff;
-        font-size: 16px;
+        font-size: 18px;
       }
 
       .c {
-        color: #fff;
+        color: #ccc;
       }
 
       .b {
         display: flex;
-        color: #fff;
+        color: #ccc;
         fonnt-size: 12px;
       }
     }
   }
+  .money-box {
+    z-index: 9;
+    background-repeat: no-repeat;
+    background-image: url('./images/money-bg.png');
+    //background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
 
-  .container {
-    background-color: #1f203d;
-    position: relative;
-    border: 1px solid transparent;
-    padding: 20px 20px 0;
+    background-size: 100% 100%;
+    //height: 150px;
+    overflow: hidden;
+    border-radius: 10px;
 
-    .money-box {
-      background-repeat: no-repeat;
-      background-image: url('./images/money-bg.png');
-      //background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
-
-      background-size: 100% 100%;
-      height: 150px;
-      overflow: hidden;
-      border-radius: 10px;
-      position: relative;
-
-      .total {
-        color: #fff;
-        margin-top: 20px;
-        text-align: center;
+    .total {
+      color: #fff;
+      margin-top: 20px;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 10px;
+      .l {
         display: flex;
-        justify-content: center;
-        align-items: center;
-
         .txt1 {
           font-size: 16px;
         }
@@ -1463,50 +1599,59 @@ onDeactivated(() => {
           }
         }
       }
-
-      .border {
-        height: 35px;
-        width: 1px;
-        background-color: #eee;
-        position: absolute;
-        left: 33%;
-        transform: translateX(-50%);
-        bottom: 30px;
+      .r {
       }
+    }
 
-      .border2 {
-        height: 35px;
-        width: 1px;
-        background-color: #eee;
-        position: absolute;
-        left: 66%;
-        transform: translateX(-50%);
-        bottom: 30px;
-      }
+    .border {
+      height: 35px;
+      width: 1px;
+      background-color: #eee;
+      position: absolute;
+      left: 33%;
+      transform: translateX(-50%);
+      bottom: 30px;
+    }
 
-      .money-info {
-        margin-top: 20px;
+    .border2 {
+      height: 35px;
+      width: 1px;
+      background-color: #eee;
+      position: absolute;
+      left: 66%;
+      transform: translateX(-50%);
+      bottom: 30px;
+    }
+
+    .money-info {
+      margin-top: 20px;
+      display: flex;
+      color: #fff;
+      justify-content: space-around;
+      width: 100%;
+
+      & > p {
+        width: 52%;
         display: flex;
-        color: #fff;
-        justify-content: space-around;
-        width: 100%;
+        flex-direction: column;
+        text-align: center;
 
-        & > p {
-          width: 52%;
-          display: flex;
-          flex-direction: column;
-          text-align: center;
+        .title {
+          margin-bottom: 10px;
+        }
 
-          .title {
-            margin-bottom: 10px;
-          }
-
-          .num {
-            font-size: 20px;
-          }
+        .num {
+          font-size: 20px;
         }
       }
     }
+  }
+
+  .container {
+    background-color: #f5f5f5;
+    position: relative;
+    border: 1px solid transparent;
+    padding: 110px 10px 0;
 
     .total-box {
       margin-top: 10px;
@@ -1576,6 +1721,87 @@ onDeactivated(() => {
           height: 35px;
           border-radius: 8px;
           padding: 2px 15px;
+        }
+      }
+    }
+
+    .huiyuanquanyi {
+      width: 100%;
+      background-color: #fff;
+      padding: 10px 10px;
+      border-radius: 10px;
+      margin-top: 10px;
+      box-sizing: border-box;
+
+      .title {
+        font-size: 16px;
+        color: #8c8c8c;
+        font-weight: bolder;
+        line-height: 30px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .list {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+
+        .item {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          img {
+            width: 20px;
+            height: 20px;
+          }
+          span {
+            margin-top: 10px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .shionggongju {
+      width: 100%;
+      background-color: #fff;
+      padding: 10px 10px;
+      border-radius: 10px;
+      margin-top: 10px;
+      box-sizing: border-box;
+
+      .title {
+        font-size: 16px;
+        color: #8c8c8c;
+        font-weight: bolder;
+        line-height: 30px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .list {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        .item {
+          flex: 0 0 25%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          &:nth-child(n + 5) {
+            margin-top: 25px;
+          }
+
+          img {
+            width: 20px;
+            height: 20px;
+          }
+          span {
+            margin-top: 10px;
+            font-size: 12px;
+            text-align: center;
+          }
         }
       }
     }

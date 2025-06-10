@@ -83,7 +83,7 @@ const routes: RouteRecordRaw[] = [
         name: 'sign-forget',
         path: 'sign-forget',
         component: CommonSignForget,
-        meta: { title: '忘记密码' }
+        meta: { title: '找回密码' }
       }
     ]
   }

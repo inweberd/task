@@ -3,7 +3,7 @@
     <van-nav-bar
       left-arrow
       style="background-color: transparent"
-      title="提现"
+      title="兑换"
       @click-left="$router.back()"
     />
     <!--    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">-->
@@ -21,7 +21,7 @@
     <!--    <van-image :src="tixian" width="100%" height="100%;"></van-image>-->
 
     <div class="fangshi-box" @click="showPicker = true">
-      <div>提现方式</div>
+      <div>兑换方式</div>
 
       <div style="display: flex; align-items: center">
         <template v-if="pay_card_id">
@@ -33,7 +33,7 @@
     </div>
     <div
       style="
-        background-color: #2e3350;
+        background-color: #3b82f2;
         margin: 20px;
         border-radius: 10px;
         font-size: 16px;
@@ -43,8 +43,8 @@
       <van-field
         v-model="money"
         class="unp"
-        label="提现元宝"
-        placeholder="请输入提现元宝"
+        label="兑换数量"
+        placeholder="请输入兑换数量"
         style="
           font-weight: bolder;
           margin-bottom: 10px;
@@ -69,7 +69,7 @@
     <!--        ￥{{ item.text }}-->
     <!--      </div>-->
     <!--    </div>-->
-    <van-action-sheet v-model:show="checked" title="选择提现方式">
+    <van-action-sheet v-model:show="checked" title="选择兑换方式">
       <van-radio-group v-model="pay_card_id" disabled>
         <van-card
           v-for="(item, index) in state.select.card"
@@ -97,8 +97,8 @@
 
     <!--    <van-field-->
     <!--      v-model="money"-->
-    <!--      label="选择提现"-->
-    <!--      placeholder="请选择提现金额"-->
+    <!--      label="选择兑换"-->
+    <!--      placeholder="请选择兑换金额"-->
     <!--      @click="showPicker = true"-->
     <!--      is-link-->
     <!--      readonly-->
@@ -117,7 +117,7 @@
           style="color: #ccc; margin: 10px; text-align: center; height: 100px; line-height: 100px"
         >
           <van-icon name="warning" />
-          暂无提现方式，<span style="color: #1e83d3" @click="$router.push('/binddep')"
+          暂无兑换方式，<span style="color: #1e83d3" @click="$router.push('/binddep')"
             >去添加！</span
           >
         </p>
@@ -153,15 +153,14 @@
         </van-radio-group>
         <p
           v-if="state?.select?.card?.length"
-          style="text-align: center; color: #1e83d3"
+          style="text-align: center; color: #000"
           @click="$router.push('/binddep')"
         >
-          继续添加提现方式！
+          继续添加兑换方式！
         </p>
       </div>
       <!--      <van-picker :columns="columns" @cancel="showPicker = false" @confirm="onConfirm" />-->
     </van-popup>
-
     <div
       style="
         margin-top: 20px;
@@ -180,26 +179,55 @@
           border: none;
           width: 85%;
           border-radius: 15px;
-          color: #fff;
-          background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+          color: #0775f1;
+          background-color: #bfd8d8;
+          font-weight: bolder;
+        "
+        type="primary"
+        @click="$router.push('/binddep')"
+        >添加兑换方式
+      </el-button>
+    </div>
+    <div
+      style="
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      "
+    >
+      <el-button
+        :loading="tixianLoading"
+        class="w-100"
+        color="#01c5f0"
+        size="large"
+        style="
+          border: none;
+          width: 85%;
+          border-radius: 15px;
+          color: #0775f1;
+          background-color: #bfd8d8;
+          font-weight: bolder;
         "
         type="primary"
         @click="goPay"
-        >申请提现
+        >申请兑换
       </el-button>
       <div style="padding: 10px 30px; font-size: 15px">
-        <p style="margin-bottom: 6px">提现要求：</p>
-        <p style="margin-bottom: 6px">满10元宝可以发起提现!</p>
-        <p style="margin-bottom: 6px">提现，元宝互转，参与聚宝盆，必须是任意会员！</p>
-        <p style="margin-bottom: 6px">提现时间，上午11点~~晚上20点，可发起提现！</p>
+        <p style="margin-bottom: 6px">兑换要求：</p>
+        <p style="margin-bottom: 6px">非会员兑换，需要50%手续费，手续费预留在账户，打款到账扣除</p>
         <p style="margin-bottom: 6px">
-          提现手续费：提现金额的10%！进主页官方聊天群，提现免手续费！
+          会员用户兑换，需要10%手续费，手续费预留在账户，打款到账扣除
         </p>
-        <p style="margin-bottom: 6px">节假日正常提现，全年无休！</p>
-        <p style="background-color: #fff; color: #000; border-radius: 10px; padding: 5px">
-          每日提现的用户，强烈推荐大家进入主页官方聊天群使用元宝互转出售给收元宝的商人，元宝互转免手续费，这样相当于可以省去每天提现的10%手续费！
-          日积月累下来，能省下很多费用！
-        </p>
+        <p style="margin-bottom: 6px">兑换时间：中午12点--下午17点。</p>
+        <p style="margin-bottom: 6px">兑换到账时间：1--2小时审核过后，自动到账！</p>
+        <p style="margin-bottom: 6px">10个钻石起兑换，账户预留手续费！</p>
+        <!--        <p style="margin-bottom: 6px">节假日正常兑换，全年无休！</p>-->
+        <!--        <p style="background-color: #fff; color: #000; border-radius: 10px; padding: 5px">-->
+        <!--          每日兑换的用户，强烈推荐大家进入主页官方聊天群使用元宝互转出售给收元宝的商人，元宝互转免手续费，这样相当于可以省去每天兑换的10%手续费！-->
+        <!--          日积月累下来，能省下很多费用！-->
+        <!--        </p>-->
       </div>
       <!--      <span></span>-->
       <!--      <el-button-->
@@ -216,7 +244,7 @@
       <!--        "-->
       <!--        type="primary"-->
       <!--        @click="$router.push('/binddep')"-->
-      <!--        >添加提现方式-->
+      <!--        >添加兑换方式-->
       <!--      </el-button>-->
     </div>
 
@@ -230,7 +258,7 @@
     <!--          :loading="tixianLoading"-->
     <!--          loading-text="加载中..."-->
     <!--          :disabled="tixianLoading"-->
-    <!--          >申请提现</van-button-->
+    <!--          >申请兑换</van-button-->
     <!--        >-->
 
     <TipDialog
@@ -240,9 +268,9 @@
       @confirm="handleGonggaoConfirm"
     >
       <div style="padding: 20px">
-        <p style="color: #fff; text-align: center">满10元宝可以发起提现！</p>
+        <p style="color: #fff; text-align: center">满10元宝可以发起兑换！</p>
         <p style="margin-top: 10px; color: #fff; text-align: center">
-          提现，元宝互转，参与聚宝盆，必须是任意会员!
+          兑换，元宝互转，参与聚宝盆，必须是任意会员!
         </p>
         <p style="margin-top: 10px; color: #fff; text-align: center">
           会员用户为机器人自动打款，秒到账！
@@ -256,7 +284,7 @@
       @confirm="shareFriend"
     >
       <div style="padding: 20px; color: #fff">
-        <p>先分享微信朋友圈，再进行提现!</p>
+        <p>先分享微信朋友圈，再进行兑换!</p>
       </div>
     </TipDialog>
   </div>
@@ -282,10 +310,11 @@ import kdImgSrc from '@/assets/img/recharge/kd.jpg'
 import jdImgSrc from '@/assets/img/recharge/jd.jpg'
 import img365ImgSrc from '@/assets/img/recharge/365.jpg'
 import tixian from '@/assets/img/jdhd.jpg'
-import { showConfirmDialog, showDialog } from 'vant'
+import { showConfirmDialog, showDialog, showToast } from 'vant'
 import { loadInteraction, loadPlayRewardVideo, wxLogin } from '@/utils/ad'
 import dayjs from 'dayjs'
 import { useRouter } from 'vue-router'
+import isBetween from 'dayjs//plugin/isBetween'
 
 defineOptions({
   name: 'dep'
@@ -321,7 +350,7 @@ onActivated(() => {
 const state = reactive({
   sheet: {
     show: false,
-    title: '选择提现方式'
+    title: '选择兑换方式'
   },
   item: {
     card: {
@@ -460,22 +489,45 @@ const card = async () => {
 }
 
 async function goPay() {
-  // loadInteraction()
-  if (!money.value) {
-    return _notice('请选择提现金额')
-  }
-  if (!sessionStorage.isShared && window.android && window.android.shareImg) {
-    shareDialogShow.value = true
-    // showDialog({
-    //   message: '先分享微信朋友圈，再进行提现!'
-    // }).then(() => {
-    //   // on close
-    //
-    //   sessionStorage.isShared = true
-    //   window.shareFriend()
-    // })
+  // if (!sessionStorage.isShared && window.android && window.android.shareImg) {
+  // if (!sessionStorage.isShared && window.android && window.android.shareImg) {
+  //   // shareDialogShow.value = true
+  //   window.showShareFriend()
+  //   // showDialog({
+  //   //   message: '先分享微信朋友圈，再进行兑换!'
+  //   // }).then(() => {
+  //   //   // on close
+  //   //
+  //   sessionStorage.isShared = true
+  //   //   window.shareFriend()
+  //   // })
+  //   return
+  // }
+  // 获取今天的日期
+  dayjs.extend(isBetween)
+  const today = dayjs().startOf('day')
+
+  // 获取今天 8 点和 19 点的时间
+  const morning8 = today.add(12, 'hour')
+  const evening7 = today.add(17, 'hour')
+
+  // 获取当前时间
+  const now = dayjs()
+  const isbetween = now.isBetween(morning8, evening7, null, '[]')
+
+  if (!isbetween) {
+    showToast({
+      duration: 5000,
+      message: '兑换时间为中午12点到下午17点'
+    })
     return
   }
+
+  // loadInteraction()
+  if (!money.value) {
+    return _notice('请输入兑换金额')
+  }
+
   const walletRes = await reqWalletInfo()
 
   if (money.value > walletRes.data.amount + walletRes.data.money) {
@@ -489,35 +541,39 @@ async function goPay() {
   //   return item?.result?.staff?.id === 176
   // })
   const serial = user?.result?.staff?.serial
+  if (money.value < 10) {
+    showToast('10个钻石起提！')
+    return
+  }
   // if (!serial) {
-  if (myStaffRes?.data?.length) {
-    if (money.value < 10) {
-      showGonggaoOverlay.value = true
-      return
-    }
-  }
-  if (!myStaffRes?.data?.length) {
-    showGonggaoOverlay.value = true
-    // if (money.value < 10) {
-    //   return
-    // }
-    //   // if (!findItem) {
-    //   showGonggaoOverlay.value = true
-    //   // showDialog({
-    //   //   title: '重要公告',
-    //   //   message:
-    //   //     '为保障平台的公平与可持续发展，抵制工作室刷子的批量违规行为，公司决定，零撸用户玩家需购买一份股权后，才可进行出款操作。这一举措旨在维护广大用户的长远利益，确保平台能够长久稳定运营，感谢大家的理解与支持。' +
-    //   //     '\n购买股权后，后续出款将无需审核，款项将在 30 分钟内到账，让您的资金流转更加便捷高效。',
-    //   //   confirmButtonText: '去购买'
-    //   // }).then(() => {
-    //   //   router.push('/invest')
-    //   // })
-    //   return
-  }
+  // if (myStaffRes?.data?.length) {
+  //   if (money.value < 10) {
+  //     showGonggaoOverlay.value = true
+  //     return
+  //   }
+  // }
+  // if (!myStaffRes?.data?.length) {
+  //   showGonggaoOverlay.value = true
+  //   // if (money.value < 10) {
+  //   //   return
+  //   // }
+  //   //   // if (!findItem) {
+  //   //   showGonggaoOverlay.value = true
+  //   //   // showDialog({
+  //   //   //   title: '重要公告',
+  //   //   //   message:
+  //   //   //     '为保障平台的公平与可持续发展，抵制工作室刷子的批量违规行为，公司决定，零撸用户玩家需购买一份股权后，才可进行出款操作。这一举措旨在维护广大用户的长远利益，确保平台能够长久稳定运营，感谢大家的理解与支持。' +
+  //   //   //     '\n购买股权后，后续出款将无需审核，款项将在 30 分钟内到账，让您的资金流转更加便捷高效。',
+  //   //   //   confirmButtonText: '去购买'
+  //   //   // }).then(() => {
+  //   //   //   router.push('/invest')
+  //   //   // })
+  //   //   return
+  // }
 
   // if (!sessionStorage.seeVideoWithdrawal) {
   //   showDialog({
-  //     message: '观看激励视频进行提现！遇到问题请及时联系客服！'
+  //     message: '观看激励视频进行兑换！遇到问题请及时联系客服！'
   //   }).then(() => {
   //     // on close
   //     loadPlayRewardVideo(() => {
@@ -753,10 +809,32 @@ const deleteCard = (item, index) => {
 
 .withdraw-page {
   height: 100%;
-  background-color: #1f203d;
+  //background-color: #1f203d;
+  background: url('@/assets/img/main-bg.jpg') no-repeat;
+  background-size: 100% 100%;
+
+  :deep(.van-nav-bar) {
+    //background: #65b63f !important;
+    .van-nav-bar__title {
+      color: #ffffff !important;
+    }
+
+    .van-nav-bar__text {
+      color: #fff !important;
+    }
+
+    .van-icon {
+      color: #fff;
+    }
+  }
+  :deep(.van-hairline--bottom) {
+    &:after {
+      border-bottom: none;
+    }
+  }
 
   .fangshi-box {
-    background-color: #2e3350;
+    background-color: #3b82f2;
     margin: 10px 20px;
     border-radius: 10px;
     display: flex;

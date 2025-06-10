@@ -3,7 +3,7 @@
     <!-- <dy-back mode="light" img="back" @click="router.back()" class="fixed-back" direction="left" /> -->
 
     <van-nav-bar
-      title="忘记密码"
+      title="找回密码"
       safe-area-inset-top
       fixed
       placeholder
@@ -91,7 +91,7 @@
           style="flex: 1; background: #f46d16; border: none"
           type="primary"
           @click="go('/signUp')"
-          >忘记密码</van-button
+          >找回密码</van-button
         >
       </view>
     </div>

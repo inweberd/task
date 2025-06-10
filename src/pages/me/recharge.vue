@@ -3,24 +3,24 @@
     <van-nav-bar
       left-arrow
       style="background-color: transparent"
-      title="充值"
+      title="购买钻石"
       @click-left="$router.back()"
     />
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <!--      <van-swipe-item>-->
-      <!--        <img src="@/pages/home/images/banner7.jpg" alt="" />-->
-      <!--      </van-swipe-item>-->
-      <van-swipe-item>
-        <img src="@/pages/home/images/banner9.jpg" alt="" />
-      </van-swipe-item>
-      <van-swipe-item>
-        <img src="@/pages/home/images/banner10.jpg" alt="" />
-      </van-swipe-item>
-    </van-swipe>
+    <!--    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">-->
+    <!--      &lt;!&ndash;      <van-swipe-item>&ndash;&gt;-->
+    <!--      &lt;!&ndash;        <img src="@/pages/home/images/banner7.jpg" alt="" />&ndash;&gt;-->
+    <!--      &lt;!&ndash;      </van-swipe-item>&ndash;&gt;-->
+    <!--      <van-swipe-item>-->
+    <!--        <img src="@/pages/home/images/banner9.jpg" alt="" />-->
+    <!--      </van-swipe-item>-->
+    <!--      <van-swipe-item>-->
+    <!--        <img src="@/pages/home/images/banner10.jpg" alt="" />-->
+    <!--      </van-swipe-item>-->
+    <!--    </van-swipe>-->
 
     <Loading v-if="loading"></Loading>
     <div class="fangshi-box" @click="method.sheet.open()">
-      <div>充值方式</div>
+      <div>购买方式</div>
 
       <div style="display: flex; align-items: center">
         <!--        <template v-if="pay_card_id">-->
@@ -60,7 +60,7 @@
     </div>
     <div
       style="
-        background-color: #2e3350;
+        background-color: #3b82f2;
         margin: 20px;
         border-radius: 10px;
         font-size: 16px;
@@ -70,8 +70,8 @@
       <van-field
         v-model="state.struct.amount"
         class="unp"
-        label="充值金额"
-        placeholder="请输入充值金额"
+        label="购买钻石数量"
+        placeholder="请输入购买钻石数量"
         style="
           font-weight: bolder;
           margin-bottom: 10px;
@@ -106,7 +106,7 @@
       <!--          color: #fff;-->
       <!--        "-->
       <!--      >-->
-      <!--        充值方式-->
+      <!--        购买方式-->
       <!--      </div>-->
 
       <div class="recharge-info" @click="method.sheet.open()">
@@ -145,7 +145,7 @@
             </div>
           </template>
           <template v-else>
-            <!--            <p style="font-size: 18px; color: #ccc; margin-left: 20px">请选择充值方式</p>-->
+            <!--            <p style="font-size: 18px; color: #ccc; margin-left: 20px">请选择购买方式</p>-->
             <p
               style="
                 font-size: 22px;
@@ -155,7 +155,7 @@
                 background-color: transparent;
               "
             >
-              请选择充值方式
+              请选择购买方式
             </p>
           </template>
         </div>
@@ -164,7 +164,7 @@
         </div>
       </div>
       <div class="recharge-money">
-        <div class="txt">充值金额</div>
+        <div class="txt">购买钻石数量</div>
         <div class="money-box">
           <div class="input-content">
             <div class="input-content-icon">￥</div>
@@ -213,7 +213,7 @@
           v-if="false"
           style="margin-top: 20px; font-size: 16px; font-weight: bolder; color: #333"
         >
-          充值方式
+          购买方式
         </div>
         <!--        <div-->
         <!--          style="-->
@@ -279,32 +279,33 @@
           border: none;
           width: 85%;
           border-radius: 15px;
-          color: #fff;
-          background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+          color: #0775f1;
+          background-color: #bfd8d8;
+          font-weight: bolder;
         "
         type="primary"
         @click="method.emit"
-        >充值
+        >购买
       </el-button>
     </div>
 
-    <div style="background-color: #2e3350; padding: 10px; margin: 20px; border-radius: 10px">
-      <van-icon name="warning-o" color="red" size="25" />
-      使用微信或者支付宝充值过程中，如遇到无法支付的情况，请关闭这个页面。从新点充值按钮，重新拉起新的订单，每次拉起订单，都是不同的最新的收款码。重新拉起新订单即可正常支付付款！
-    </div>
+    <!--    <div style="background-color: #2e3350; padding: 10px; margin: 20px; border-radius: 10px">-->
+    <!--      <van-icon name="warning-o" color="red" size="25" />-->
+    <!--      使用微信或者支付宝充值过程中，如遇到无法支付的情况，请关闭这个页面。从新点充值按钮，重新拉起新的订单，每次拉起订单，都是不同的最新的收款码。重新拉起新订单即可正常支付付款！-->
+    <!--    </div>-->
 
-    <p
-      style="
-        background-color: #2e3350;
-        padding: 10px;
-        margin: 20px;
-        border-radius: 10px;
-        font-weight: bolder;
-      "
-    >
-      每次充值，每次拉起订单都是不同的最新的二维码，切勿重复支付给已经付款过的码
-      。都以每次弹出的最新的码为准
-    </p>
+    <!--    <p-->
+    <!--      style="-->
+    <!--        background-color: #2e3350;-->
+    <!--        padding: 10px;-->
+    <!--        margin: 20px;-->
+    <!--        border-radius: 10px;-->
+    <!--        font-weight: bolder;-->
+    <!--      "-->
+    <!--    >-->
+    <!--      每次充值，每次拉起订单都是不同的最新的二维码，切勿重复支付给已经付款过的码-->
+    <!--      。都以每次弹出的最新的码为准-->
+    <!--    </p>-->
     <!--    <div style="margin: 20px; color: #ccc">-->
     <!--      <div>-->
     <!--        <a style="text-decoration: underline; color: #1e83d3" href="https://jdpp1.com/#/"-->
@@ -357,20 +358,20 @@
       <!--          >点击下载安装365钱包</span-->
       <!--        >-->
       <!--      </div>-->
-      <div style="margin-top: 20px">
-        JD钱包活动：首次使用JD钱包充值1000元，实际到账1100元余额
-        首次使JD钱包充值5000元，实际到账5200元
-        <span
-          style="text-decoration: underline; color: #1e83d3"
-          @click="
-            $router.push({
-              path: 'downloadInfo',
-              type: 'jd'
-            })
-          "
-          >点击下载安装JD钱包</span
-        >
-      </div>
+      <!--      <div style="margin-top: 20px">-->
+      <!--        JD钱包活动：首次使用JD钱包充值1000元，实际到账1100元余额-->
+      <!--        首次使JD钱包充值5000元，实际到账5200元-->
+      <!--        <span-->
+      <!--          style="text-decoration: underline; color: #1e83d3"-->
+      <!--          @click="-->
+      <!--            $router.push({-->
+      <!--              path: 'downloadInfo',-->
+      <!--              type: 'jd'-->
+      <!--            })-->
+      <!--          "-->
+      <!--          >点击下载安装JD钱包</span-->
+      <!--        >-->
+      <!--      </div>-->
     </div>
     <!--      <van-image :src="pay2" width="100%" height="100%;"></van-image>-->
     <div class="container">
@@ -403,35 +404,35 @@
         </div>
       </van-popup>
     </div>
-    <van-floating-bubble
-      axis="xy"
-      icon="chat"
-      magnetic="x"
-      style="background: transparent; overflow: auto; width: 60px; height: 100px"
-      @click="showGonggaoOverlay = true"
-    >
-      <div style="color: #fff; width: 100%; height: 100%; font-size: 14px">
-        <!--      <img src="@/assets/img/update.png" alt="" />-->
-        <img src="@/assets/img/kefu.webp" alt="" style="width: 100%; border-radius: 50%" />
-        <p>联系客服</p>
-      </div>
-    </van-floating-bubble>
+    <!--    <van-floating-bubble-->
+    <!--      axis="xy"-->
+    <!--      icon="chat"-->
+    <!--      magnetic="x"-->
+    <!--      style="background: transparent; overflow: auto; width: 60px; height: 100px"-->
+    <!--      @click="showGonggaoOverlay = true"-->
+    <!--    >-->
+    <!--      <div style="color: #fff; width: 100%; height: 100%; font-size: 14px">-->
+    <!--        &lt;!&ndash;      <img src="@/assets/img/update.png" alt="" />&ndash;&gt;-->
+    <!--        <img src="@/assets/img/kefu.webp" alt="" style="width: 100%; border-radius: 50%" />-->
+    <!--        <p>联系客服</p>-->
+    <!--      </div>-->
+    <!--    </van-floating-bubble>-->
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击下68App扫码进群"
+      confirm-text="点击进入官方群"
       @confirm="handleGonggaoConfirm"
     >
-      <p
-        style="
-          transform: translateY(10px);
-          text-align: center;
-          font-size: 18px;
-          color: #fff;
-          font-weight: bolder;
-        "
-      >
-        请使用68APP扫码进官方群
-      </p>
+      <!--      <p-->
+      <!--        style="-->
+      <!--          transform: translateY(10px);-->
+      <!--          text-align: center;-->
+      <!--          font-size: 18px;-->
+      <!--          color: #000;-->
+      <!--          font-weight: bolder;-->
+      <!--        "-->
+      <!--      >-->
+      <!--        请使用68APP扫码进官方群-->
+      <!--      </p>-->
       <div style="padding: 20px">
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
       </div>
@@ -507,7 +508,7 @@ const downloadList = [
   //   url: '/data/video/buy.mp4'
   // },
   // {
-  //   label: 'KD提现视频教程',
+  //   label: 'KD兑换视频教程',
   //   url: '/data/video/sell.mp4'
   // },
   // {
@@ -515,7 +516,7 @@ const downloadList = [
   //   url: '/data/video/buy.mp4'
   // },
   // {
-  //   label: 'JD提现视频教程',
+  //   label: 'JD兑换视频教程',
   //   url: '/data/video/sell.mp4'
   // }
 ]
@@ -525,7 +526,7 @@ const openDownload = (url) => {
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
   // window.location.href = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.edujia.weimai'
-  window.location.href = 'https://68chat5.com/cn/'
+  window.location.href = 'https://www.haiouchat.com'
 }
 const payItemClick = (id) => {
   state.item.pay.id = id
@@ -570,7 +571,7 @@ const getIcon = (item) => {
 const state = reactive({
   sheet: {
     show: false,
-    title: '选择充值方式'
+    title: '选择购买方式'
   },
   item: {
     pay: {
@@ -590,7 +591,7 @@ const state = reactive({
       //   id: 5,
       //   key: 'kdpay',
       //   type: 'kd',
-      //   name: 'K豆钱包（提现免手续费）',
+      //   name: 'K豆钱包（兑换免手续费）',
       //   min: 10,
       //   max: 30000,
       //   code: 8277,
@@ -647,7 +648,7 @@ const method = {
       order: 'indexes desc'
     }).then((res) => {
       console.log('reqRechargeColumn', res)
-      if (res.code !== 200) _notice('获取充值方式失败，请联系客服')
+      if (res.code !== 200) _notice('获取购买方式失败，请联系客服')
       state.select.pay = res.data.filter((item) => item.status === 1)
       method.setPay()
     })
@@ -660,10 +661,10 @@ const method = {
   },
   emit: async () => {
     if (!state.struct.amount) {
-      return _notice('请输入充值金额！')
+      return _notice('请输入钻石数量！')
     }
     if (!state.item.pay.data) {
-      return _notice('请选择充值方式！')
+      return _notice('请选择购买方式！')
       // method.sheet.open()
       // return
     }
@@ -756,7 +757,27 @@ onMounted(() => method.init())
   width: 100%;
   height: 100%;
   overflow-y: auto;
+  background: url('@/assets/img/main-bg.jpg') no-repeat;
+  background-size: 100% 100%;
+  :deep(.van-nav-bar) {
+    //background: #65b63f !important;
+    .van-nav-bar__title {
+      color: #ffffff !important;
+    }
 
+    .van-nav-bar__text {
+      color: #fff !important;
+    }
+
+    .van-icon {
+      color: #fff;
+    }
+  }
+  :deep(.van-hairline--bottom) {
+    &:after {
+      border-bottom: none;
+    }
+  }
   .container {
     margin-top: -1px;
 
@@ -771,7 +792,7 @@ onMounted(() => method.init())
       padding: 20px 0;
       border-bottom: 1px solid #4d536a;
       color: #fff;
-      background-color: #1f203d;
+      background-color: #3b82f2;
       align-items: center;
 
       &-left {
@@ -1008,7 +1029,7 @@ onMounted(() => method.init())
 }
 
 .fangshi-box {
-  background-color: #2e3350;
+  background-color: #3b82f2;
   margin: 10px 20px;
   border-radius: 10px;
   display: flex;
@@ -1023,7 +1044,7 @@ onMounted(() => method.init())
 }
 
 .jine-box {
-  background-color: #2e3350;
+  background-color: #3b82f2;
   margin: 10px 20px;
   border-radius: 10px;
   display: grid;
@@ -1031,7 +1052,7 @@ onMounted(() => method.init())
   color: #fff;
 
   .jine-item {
-    background-color: #1d1e3a;
+    background-color: #3b82f2;
     margin: 10px;
     display: flex;
     align-items: center;

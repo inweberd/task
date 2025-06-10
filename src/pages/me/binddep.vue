@@ -1,7 +1,7 @@
 <template>
   <div class="withdraw-page">
     <van-nav-bar
-      title="提现"
+      title="兑换方式"
       left-arrow
       @click-left="$router.back()"
       style="background-color: transparent"
@@ -9,38 +9,54 @@
     <Loading v-if="loading" />
     <!--    <van-image :src="tixian" width="100%" height="100%;"></van-image>-->
     <div style="background-color: #1f203d; margin: 10px; border-radius: 10px; overflow: hidden">
-      <t-tabs :default-value="0" theme="tag" :space-evenly="false" @change="tabChange">
+      <t-tabs :default-value="0" :space-evenly="false" @change="tabChange">
         <t-tab-panel :value="0" label="银行卡" />
         <!--      <t-tab-panel value="排行榜奖励" label="奖池发放" />-->
         <t-tab-panel :value="1" label="支付宝" />
         <!--        <t-tab-panel :value="2" label="K豆钱包" />-->
-        <t-tab-panel :value="3" label="JD钱包" />
+        <!--        <t-tab-panel :value="3" label="JD钱包" />-->
         <!--        <t-tab-panel :value="4" label="365钱包" />-->
       </t-tabs>
     </div>
-    <div
-      style="
-        background-color: #2e3350;
-        margin: 10px;
-        border-radius: 10px;
-        overflow: hidden;
-        padding: 20px 20px 20px;
-      "
-    >
+    <div style="margin: 10px; border-radius: 10px; overflow: hidden; padding: 20px 0px 20px">
       <template v-if="active_ == 0">
-        <div class="common-input-title">姓名</div>
-        <van-field v-model="bank_value.name" placeholder="请输入姓名" />
-        <div class="common-input-title" style="margin-top: 20px">卡号</div>
-
-        <van-field v-model="bank_value.card_no" placeholder="请输入卡号" />
-
-        <div class="common-input-title" style="margin-top: 20px">请选择银行</div>
-
-        <van-cell style="color: #fff" title="选择银行" is-link @click="showArea = true">
-          <template #value>
-            <span>{{ areaText }}</span>
-          </template>
-        </van-cell>
+        <div
+          style="
+            background-color: #3b82f2;
+            margin: 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            line-height: 24px;
+          "
+        >
+          <van-field v-model="bank_value.name" label="姓名" placeholder="请输入姓名" />
+        </div>
+        <div
+          style="
+            background-color: #3b82f2;
+            margin: 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            line-height: 24px;
+          "
+        >
+          <van-field label="卡号" v-model="bank_value.card_no" placeholder="请输入卡号" />
+        </div>
+        <div
+          style="
+            background-color: #3b82f2;
+            margin: 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            line-height: 24px;
+          "
+        >
+          <van-cell style="color: #fff" title="选择银行" is-link @click="showArea = true">
+            <template #value>
+              <span>{{ areaText }}</span>
+            </template>
+          </van-cell>
+        </div>
         <div style="display: flex; justify-content: center">
           <el-button
             :loading="bindLoading"
@@ -48,12 +64,12 @@
             color="#01c5f0"
             size="large"
             style="
-              margin-top: 30px;
               border: none;
-              width: 90%;
+              width: 85%;
               border-radius: 15px;
-              color: #fff;
-              background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+              color: #0775f1;
+              background-color: #bfd8d8;
+              font-weight: bolder;
             "
             type="primary"
             @click="save('bank')"
@@ -64,10 +80,28 @@
         <van-action-sheet v-model:show="showArea" :actions="actions" @select="onAreaConfirm" />
       </template>
       <template v-if="active_ == 1">
-        <div class="common-input-title">姓名</div>
-        <van-field v-model="ali_value.name" placeholder="请输入姓名" />
-        <div class="common-input-title" style="margin-top: 20px">账号</div>
-        <van-field v-model="ali_value.card_no" placeholder="请输入账号" />
+        <div
+          style="
+            background-color: #3b82f2;
+            margin: 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            line-height: 24px;
+          "
+        >
+          <van-field label="姓名" v-model="ali_value.name" placeholder="请输入姓名" />
+        </div>
+        <div
+          style="
+            background-color: #3b82f2;
+            margin: 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            line-height: 24px;
+          "
+        >
+          <van-field label="账号" v-model="ali_value.card_no" placeholder="请输入账号" />
+        </div>
         <div style="display: flex; justify-content: center">
           <el-button
             :loading="bindLoading"
@@ -75,12 +109,12 @@
             color="#01c5f0"
             size="large"
             style="
-              margin-top: 30px;
               border: none;
-              width: 90%;
+              width: 85%;
               border-radius: 15px;
-              color: #fff;
-              background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+              color: #0775f1;
+              background-color: #bfd8d8;
+              font-weight: bolder;
             "
             type="primary"
             @click="save('ali')"
@@ -193,7 +227,7 @@
       <!--          "-->
       <!--          type="primary"-->
       <!--          @click="$router.push('/dep')"-->
-      <!--          >去提现-->
+      <!--          >去兑换-->
       <!--        </el-button>-->
       <!--      </div>-->
     </div>
@@ -244,7 +278,7 @@ const active = ref(0)
 const state = reactive({
   sheet: {
     show: false,
-    title: '选择提现方式'
+    title: '选择兑换方式'
   },
   item: {
     card: {
@@ -556,21 +590,42 @@ const deleteCard = (item, index) => {
 
 .withdraw-page {
   height: 100%;
+  background: url('@/assets/img/main-bg.jpg') no-repeat;
+  background-size: 100% 100%;
+  :deep(.van-nav-bar) {
+    //background: #65b63f !important;
+    .van-nav-bar__title {
+      color: #ffffff !important;
+    }
+
+    .van-nav-bar__text {
+      color: #fff !important;
+    }
+
+    .van-icon {
+      color: #fff;
+    }
+  }
+  :deep(.van-hairline--bottom) {
+    &:after {
+      border-bottom: none;
+    }
+  }
   :deep(.van-cell) {
-    border-bottom: 1px solid #4d536a;
-    padding: 10px 0;
+    //border-bottom: 1px solid #4d536a;
+    //padding: 10px 0;
     &::after {
       border: none !important;
     }
 
-    .van-field__body {
-      input {
-        color: #fff !important;
-        &::placeholder {
-          color: #fff !important;
-        }
-      }
-    }
+    //.van-field__body {
+    //  input {
+    //    color: #fff !important;
+    //    &::placeholder {
+    //      color: #fff !important;
+    //    }
+    //  }
+    //}
   }
 }
 

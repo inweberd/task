@@ -30,18 +30,16 @@
         <div class="name">
           {{ item?.result?.staff?.name }}
         </div>
-        <div>
-          有效期：<span>{{ item?.result?.staff?.serial == 1 ? '30天' : '一年' }}</span>
-        </div>
+        <div>有效期：<span>30天</span></div>
         <div>
           购买时间：<span>{{ getExpireTimeStr(item.entry_time) }}</span>
         </div>
-        <div v-if="item?.result?.staff?.serial == 1">
-          剩余时间：<span>{{ getShengyuTimeStr(item.expire_time) }}</span>
-        </div>
-        <div v-if="item?.result?.staff?.serial == 1">
-          过期时间：<span>{{ getExpireTimeStr(item.expire_time) }}</span>
-        </div>
+        <!--        <div v-if="item?.result?.staff?.serial == 1">-->
+        <!--          剩余时间：<span>{{ getShengyuTimeStr(item.expire_time) }}</span>-->
+        <!--        </div>-->
+        <!--        <div v-if="item?.result?.staff?.serial == 1">-->
+        <!--          过期时间：<span>{{ getExpireTimeStr(item.expire_time) }}</span>-->
+        <!--        </div>-->
       </div>
     </div>
   </div>
@@ -102,11 +100,12 @@ onActivated(() => {
   margin: 15px;
   .list-item {
     border-radius: 5px;
-    background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
+    //background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
     padding: 10px;
     margin-bottom: 15px;
     color: #ddd;
-
+    background-image: url('@/assets/img/main-bg.jpg');
+    background-size: 100% 100%;
     & > div {
       margin-top: 5px;
     }

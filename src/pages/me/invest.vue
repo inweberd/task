@@ -111,7 +111,7 @@
               />
               <div style="position: absolute; right: 0; bottom: 40px; color: #000; font-size: 12px">
                 <div>限量发售：抢完为止</div>
-                <div>总量：1000名额</div>
+                <div>总量：752名额</div>
               </div>
             </div>
           </template>
@@ -127,7 +127,7 @@
               />
               <div style="position: absolute; right: 0; bottom: 40px; color: #000; font-size: 12px">
                 <div>限量发售：抢完为止</div>
-                <div>总量：1000名额</div>
+                <div>总量：815名额</div>
               </div>
             </div>
           </template>
@@ -143,7 +143,7 @@
               />
               <div style="position: absolute; right: 0; bottom: 40px; color: #000; font-size: 12px">
                 <div>限量发售：抢完为止</div>
-                <div>总量：1000名额</div>
+                <div>总量：885名额</div>
               </div>
             </div>
           </template>
@@ -181,19 +181,22 @@
       <!--      说明：每份会员有效期30天-->
       温馨提示： 每张会员卡可以使用365天！
     </p>
-    <div style="color: #222; padding-left: 15px; font-size: 14px; font-weight: bolder">
-      <!--      可重复购买，达到数量后，系统将自动为您提升等级，享受更高收益！-->
-      <p></p>
-      <!--      <p style="color: red">-->
-      <!--        绑钻和通用钻石可以组合使用，若数量满足，点击兑换，奖为您自动抵扣兑换！-->
-      <!--      </p>-->
-      <p style="margin-top: 6px; font-size: 14px; padding-right: 6px">
-        绑钻和通用钻石可以组合使用，若数量满足，点击兑换，奖为您自动抵扣兑换！
-      </p>
-      <p style="margin-top: 6px; font-size: 14px; padding-right: 6px">
-        会员收入的每日钻石可以直接兑换，也可以参与钻石天梯，获得更多收入！
-      </p>
+    <div style="padding: 10px; box-sizing: border-box; border-radius: 15px; overflow: hidden">
+      <img src="./images/huiyuanmianshouxufei.png" alt="" style="width: 100%" />
     </div>
+    <!--    <div style="color: #222; padding-left: 15px; font-size: 14px; font-weight: bolder">-->
+    <!--      &lt;!&ndash;      可重复购买，达到数量后，系统将自动为您提升等级，享受更高收益！&ndash;&gt;-->
+    <!--      <p></p>-->
+    <!--      &lt;!&ndash;      <p style="color: red">&ndash;&gt;-->
+    <!--      &lt;!&ndash;        绑钻和通用钻石可以组合使用，若数量满足，点击兑换，奖为您自动抵扣兑换！&ndash;&gt;-->
+    <!--      &lt;!&ndash;      </p>&ndash;&gt;-->
+    <!--      <p style="margin-top: 6px; font-size: 14px; padding-right: 6px">-->
+    <!--        绑钻和通用钻石可以组合使用，若数量满足，点击兑换，奖为您自动抵扣兑换！-->
+    <!--      </p>-->
+    <!--      <p style="margin-top: 6px; font-size: 14px; padding-right: 6px">-->
+    <!--        会员收入的每日钻石可以直接兑换，也可以参与钻石天梯，获得更多收入！-->
+    <!--      </p>-->
+    <!--    </div>-->
   </div>
 
   <!--  <BaseFooter :is-white="false" v-bind:init-tab="5" />-->

@@ -261,7 +261,7 @@ function jumpToQQ2() {
   // router.push('/weimaiquanDetail')
   showGonggaoOverlay.value = true
 
-  // window.location.href = decodeURIComponent('https://qm.qq.com/q/oVkcjwfykS')
+  // window.location.href = decodeURIComponent('https://qm.qq.com/q/3zT9teK65O')
 }
 </script>
 

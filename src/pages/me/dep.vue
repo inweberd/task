@@ -1,5 +1,5 @@
 <template>
-  <div class="withdraw-page">
+  <div class="withdraw-page" v-if="false">
     <van-nav-bar
       left-arrow
       style="background-color: transparent"
@@ -214,39 +214,66 @@
         @click="goPay"
         >申请兑换
       </el-button>
-      <div style="padding: 10px 30px; font-size: 15px">
-        <p style="margin-bottom: 6px">兑换要求：</p>
-        <p style="margin-bottom: 6px">非会员兑换，需要50%手续费，手续费预留在账户，打款到账扣除</p>
-        <p style="margin-bottom: 6px">
-          会员用户兑换，需要10%手续费，手续费预留在账户，打款到账扣除
-        </p>
-        <p style="margin-bottom: 6px">兑换时间：中午12点--下午17点。</p>
-        <p style="margin-bottom: 6px">兑换到账时间：1--2小时审核过后，自动到账！</p>
-        <p style="margin-bottom: 6px">10个钻石起兑换，账户预留手续费！</p>
-        <!--        <p style="margin-bottom: 6px">节假日正常兑换，全年无休！</p>-->
-        <!--        <p style="background-color: #fff; color: #000; border-radius: 10px; padding: 5px">-->
-        <!--          每日兑换的用户，强烈推荐大家进入主页官方聊天群使用元宝互转出售给收元宝的商人，元宝互转免手续费，这样相当于可以省去每天兑换的10%手续费！-->
-        <!--          日积月累下来，能省下很多费用！-->
-        <!--        </p>-->
-      </div>
-      <!--      <span></span>-->
-      <!--      <el-button-->
-      <!--        class="w-100"-->
-      <!--        color="#00f7c4"-->
-      <!--        size="large"-->
-      <!--        style="-->
-      <!--          width: 80%;-->
-      <!--          border-radius: 15px;-->
-      <!--          margin-top: 20px !important;-->
-      <!--          color: #fff;-->
-      <!--          background-image: linear-gradient(to right, #ff8b6e, #ff625c);-->
-      <!--          border: 1px solid #ccc !important;-->
-      <!--        "-->
-      <!--        type="primary"-->
-      <!--        @click="$router.push('/binddep')"-->
-      <!--        >添加兑换方式-->
-      <!--      </el-button>-->
     </div>
+    <div
+      style="
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      "
+    >
+      <el-button
+        class="w-100"
+        color="#01c5f0"
+        size="large"
+        style="
+          border: none;
+          width: 85%;
+          border-radius: 15px;
+          color: #0775f1;
+          background-color: #bfd8d8;
+          font-weight: bolder;
+        "
+        type="primary"
+        @click="$router.push('/invest')"
+        >成为会员(降低手续费)
+      </el-button>
+    </div>
+    <div style="padding: 10px; box-sizing: border-box; border-radius: 15px; overflow: hidden">
+      <img src="./images/duihuanyaoqiu.png" alt="" style="width: 100%" />
+    </div>
+    <!--    <div style="padding: 10px 30px; font-size: 15px">-->
+    <!--      <p style="margin-bottom: 6px">兑换要求：</p>-->
+    <!--      <p style="margin-bottom: 6px">非会员兑换，需要50%手续费，手续费预留在账户，打款到账扣除</p>-->
+    <!--      <p style="margin-bottom: 6px">会员用户兑换，需要10%手续费，手续费预留在账户，打款到账扣除</p>-->
+    <!--      <p style="margin-bottom: 6px">兑换时间：中午12点&#45;&#45;下午17点。</p>-->
+    <!--      <p style="margin-bottom: 6px">兑换到账时间：1&#45;&#45;2小时审核过后，自动到账！</p>-->
+    <!--      <p style="margin-bottom: 6px">10个钻石起兑换，账户预留手续费！</p>-->
+    <!--      &lt;!&ndash;        <p style="margin-bottom: 6px">节假日正常兑换，全年无休！</p>&ndash;&gt;-->
+    <!--      &lt;!&ndash;        <p style="background-color: #fff; color: #000; border-radius: 10px; padding: 5px">&ndash;&gt;-->
+    <!--      &lt;!&ndash;          每日兑换的用户，强烈推荐大家进入主页官方聊天群使用元宝互转出售给收元宝的商人，元宝互转免手续费，这样相当于可以省去每天兑换的10%手续费！&ndash;&gt;-->
+    <!--      &lt;!&ndash;          日积月累下来，能省下很多费用！&ndash;&gt;-->
+    <!--      &lt;!&ndash;        </p>&ndash;&gt;-->
+    <!--    </div>-->
+    <!--      <span></span>-->
+    <!--      <el-button-->
+    <!--        class="w-100"-->
+    <!--        color="#00f7c4"-->
+    <!--        size="large"-->
+    <!--        style="-->
+    <!--          width: 80%;-->
+    <!--          border-radius: 15px;-->
+    <!--          margin-top: 20px !important;-->
+    <!--          color: #fff;-->
+    <!--          background-image: linear-gradient(to right, #ff8b6e, #ff625c);-->
+    <!--          border: 1px solid #ccc !important;-->
+    <!--        "-->
+    <!--        type="primary"-->
+    <!--        @click="$router.push('/binddep')"-->
+    <!--        >添加兑换方式-->
+    <!--      </el-button>-->
 
     <!--        <van-button-->
     <!--          style="margin-top: 100px; margin: 50px auto 30px; width: 80vw"-->

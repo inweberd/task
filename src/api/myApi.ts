@@ -189,6 +189,11 @@ export function reqWalletStat() {
   return axiosInstance({ url: '/api/config/one?key=BONUS_POOL', method: 'get' })
 }
 
+// 手续费排行榜金额总计
+export function reqWalletStatShouxufei() {
+  return axiosInstance({ url: '/api/config/one?key=BONUS_POOL_TRANSFER', method: 'get' })
+}
+
 // 查询用户数量
 export function reqUserCount() {
   return axiosInstance({ url: 'api/users/count', method: 'get' })
@@ -220,7 +225,14 @@ export function reqQuickReceive() {
 
 // 排行榜
 export function getWalletRank(params = {}) {
-  return axiosInstance({ url: '/api/wallet-logs/rank', method: 'get', params })
+  // return axiosInstance({ url: '/api/wallet-logs/rank', method: 'get', params })
+  return axiosInstance({ url: '/api/treasure-basin/rank', method: 'get', params })
+}
+
+// 手续费排行榜
+export function getWalletRankByVip(params = {}) {
+  // return axiosInstance({ url: '/api/wallet-logs/rank', method: 'get', params })
+  return axiosInstance({ url: '/api/treasure-basin/rank-by-vip', method: 'get', params })
 }
 
 // 会员领取

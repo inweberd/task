@@ -152,14 +152,14 @@
             <div class="label">团队会员人数</div>
             <div class="number">{{ memberInfo.team?.vip || 0 }}</div>
           </div>
-          <div class="stat-item">
-            <div class="label">团队有效人数</div>
-            <div class="label">下级参与天梯到7级视为有效</div>
-            <div class="number">{{ memberInfo.team?.users || 0 }}人</div>
-          </div>
-          <div class="stat-item">
+          <!--          <div class="stat-item">-->
+          <!--            <div class="label">团队有效人数</div>-->
+          <!--            <div class="label">下级参与天梯到7级视为有效</div>-->
+          <!--            <div class="number">{{ memberInfo.team?.users || 0 }}人</div>-->
+          <!--          </div>-->
+          <div class="stat-item" style="width: 100%">
             <div class="label">直推有效下级</div>
-            <div class="label" style="color: #fff">下级参与天梯到7级视为有效</div>
+            <div class="label">下级参与天梯到7级视为有效</div>
             <div class="number">{{ memberInfo.team?.direct || 0 }}人</div>
             <!--            <div class="number">(待更新)</div>-->
           </div>
@@ -210,8 +210,9 @@
             color="#2a84c3"
             @change="tabChange"
           >
-            <van-tab :title="'直推下级(' + (teamIds['one']?.length || 0) + ')'" name="one" />
-            <van-tab :title="'间推下级(' + (teamIds['two']?.length || 0) + ')'" name="two" />
+            <van-tab :title="'1代(' + (teamIds['one']?.length || 0) + ')'" name="one" />
+            <van-tab :title="'2代(' + (teamIds['two']?.length || 0) + ')'" name="two" />
+            <van-tab :title="'3代(' + (teamIds['three']?.length || 0) + ')'" name="three" />
             <!--                  <van-tab :title="'三级(' + (teamIds['three']?.length || 0) + ')'" name="three" />-->
           </van-tabs>
           <!--        <div style="background-color: #1f203d; margin: 10px; border-radius: 10px; overflow: hidden">-->
@@ -230,7 +231,7 @@
           <!--            &lt;!&ndash;                        />&ndash;&gt;-->
           <!--          </t-tabs>-->
           <!--        </div>-->
-
+          <van-search v-model="searchId" placeholder="请输入下级ID" @search="onSearch" />
           <van-list
             v-model:loading="loading"
             :finished="finished"
@@ -285,21 +286,44 @@
                               "
                             >
                               <template v-if="active === 'one'">
-                                <div @click="copyToClipboard(item.nickname || item.phone)">
+                                <div>
                                   <div>
                                     {{ item.nickname || item.phone }}
                                   </div>
                                   <div>
-                                    <span style="color: #999; font-size: 12px">点击复制</span>
+                                    <span style="color: #999; font-size: 12px"
+                                      >天梯等级：
+                                      {{
+                                        item?.result?.treasure?.bind_id
+                                          ? item?.result?.treasure?.bind_id + '级'
+                                          : '暂无'
+                                      }}</span
+                                    >
                                   </div>
                                 </div>
                               </template>
                               <template v-else>
-                                {{
-                                  (item.phone
-                                    ? item.phone.substring(0, 3) + '****' + item.phone.substring(7)
-                                    : '') || item.nickname
-                                }}
+                                <div>
+                                  <div>
+                                    {{
+                                      (item.phone
+                                        ? item.phone.substring(0, 3) +
+                                          '****' +
+                                          item.phone.substring(7)
+                                        : '') || item.nickname
+                                    }}
+                                  </div>
+                                  <div>
+                                    <span style="color: #999; font-size: 12px"
+                                      >天梯等级：
+                                      {{
+                                        item?.result?.treasure?.bind_id
+                                          ? item?.result?.treasure?.bind_id + '级'
+                                          : '暂无'
+                                      }}</span
+                                    >
+                                  </div>
+                                </div>
                               </template>
                             </span>
                           </div>
@@ -394,6 +418,15 @@ const userIncomeInfo = ref({})
 const active = ref('one')
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
 
+const searchId = ref('')
+
+const onSearch = () => {
+  dataList.value = []
+  finished.value = false
+  searchInfo.page = 0
+  // getDataList()
+}
+
 const format = (price = 0) => {
   let result = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   return result === '0' ? '0.00' : result
@@ -419,18 +452,32 @@ const searchInfo = reactive({
 })
 const teamIds = ref({})
 let isHaveIds = false
-const getDataList = async (index = 'one') => {
+const getDataList = async () => {
+  // debugger
   if (!isHaveIds) {
     const idsRes = await reqUserMemberTeamIds()
     teamIds.value = idsRes.data
     isHaveIds = true
   }
+  loading.value = true
+
+  let ids = teamIds.value[active.value]
+  if (searchId.value) {
+    if (ids.includes(searchId.value * 1)) {
+      ids = [searchId.value]
+    } else {
+      loading.value = false
+
+      finished.value = true
+      return
+    }
+  }
   searchInfo.page++
 
-  loading.value = true
   // const { code, msg, data } = await reqUserDistribution({
   const { code, msg, data } = await reqUserMemberTeamList({
-    ids: teamIds.value[active.value],
+    // ids: teamIds.value[active.value],
+    ids: ids,
     page: searchInfo.page,
     limit: searchInfo.limit
   })
@@ -442,8 +489,8 @@ const getDataList = async (index = 'one') => {
   }
   // 数据全部加载完成
   dataList.value.push(...data.data)
-  console.log('data.data ', data.data)
-  console.log('data.data ', dataList.value.length, data.count)
+  // console.log('data.data ', data.data)
+  // console.log('data.data ', dataList.value.length, data.count)
   if ((data.data || []).length === 0 || dataList.value.length >= data.count) {
     finished.value = true
   }
@@ -454,6 +501,7 @@ const init = async () => {
 }
 const tabChange = (a) => {
   active.value = a
+  searchId.value = ''
   dataList.value = []
   finished.value = false
   searchInfo.page = 0
@@ -504,6 +552,10 @@ onActivated(() => {
     .van-nav-bar__title {
       color: #000 !important;
     }
+  }
+
+  :deep(.van-field__control) {
+    color: #000 !important;
   }
 }
 

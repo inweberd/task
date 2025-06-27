@@ -45,7 +45,7 @@ const canvasWidth = ref(window.innerWidth)
 const canvasHeight = ref(window.innerWidth / (2000 / 3556))
 
 const qrCodeText = ref(
-  'http://bbbuyuwx0530ffxxjkf14.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+  'http://bbbuyuwx0530ffxxjkf19.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     // encodeURIComponent(
     'https://bfx.muyichang.com/#/signUp?invite=' +
     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code

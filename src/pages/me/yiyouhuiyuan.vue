@@ -30,7 +30,7 @@
         <div class="name">
           {{ item?.result?.staff?.name }}
         </div>
-        <div>有效期：<span>30天</span></div>
+        <div>有效期：<span>永久</span></div>
         <div>
           购买时间：<span>{{ getExpireTimeStr(item.entry_time) }}</span>
         </div>

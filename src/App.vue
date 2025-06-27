@@ -314,7 +314,7 @@ const generatePoster = async () => {
     return
   }
   qrCodeText.value =
-    'http://bbbuyuwx0530ffxxjkf14.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+    'http://bbbuyuwx0530ffxxjkf19.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     // encodeURIComponent(
     'https://wmaw.lnyzd.com/#/signUp?invite=' +
     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
@@ -379,7 +379,7 @@ const generatePoster = async () => {
             const base64 = e.target.result
             avatarImage.src = base64
             avatarImage.onload = () => {
-              ctx.drawImage(avatarImage, 15, canvasHeight.value - 115, 50, 55)
+              ctx.drawImage(avatarImage, 80, canvasHeight.value - 120, 50, 55)
               closeToast()
             }
             // console.log(base64);

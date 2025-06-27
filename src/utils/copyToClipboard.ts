@@ -1,6 +1,6 @@
-import { showFailToast, showSuccessToast } from 'vant'
+import { showFailToast, showToast } from 'vant'
 
-export function copyToClipboard(text) {
+export function copyToClipboard(text, successMsg?) {
   const textArea = document.createElement('textarea')
   textArea.value = text
 
@@ -15,7 +15,7 @@ export function copyToClipboard(text) {
     const successful = document.execCommand('copy')
     const msg = successful ? '复制成功!' : '复制失败!'
     console.log(msg)
-    showSuccessToast(msg)
+    showToast(successMsg || msg)
   } catch (err) {
     showFailToast('复制失败！')
     console.error('无法执行复制操作', err)

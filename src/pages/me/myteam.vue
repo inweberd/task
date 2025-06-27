@@ -45,6 +45,16 @@
         <div class="b">
           <p>代理等级 : {{ userInfo?.result?.staff?.name || '暂无会员' }}</p>
         </div>
+        <div class="b">
+          <p>
+            天梯等级 :
+            {{
+              userInfo?.result?.treasure?.bind_id
+                ? userInfo?.result?.treasure?.bind_id + '级'
+                : '暂无'
+            }}
+          </p>
+        </div>
       </div>
     </div>
     <div
@@ -58,6 +68,14 @@
         z-index: 2;
       "
     >
+      <van-notice-bar
+        background="transparent"
+        color="#fff"
+        left-icon="volume-o"
+        style="border-radius: 10px; height: 30px; border: 1px solid #fff; margin: 0px 4px 8px"
+        text="钻石乐园拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3钻石，达标自动发放！"
+      >
+      </van-notice-bar>
       <div class="money-box">
         <div class="total">
           <div class="l">
@@ -170,20 +188,20 @@
         style="width: 100%"
         @click="$router.push('/me/my-card')"
       />
-      <div style="position: relative; margin-top: 10px" @click="yijianlingqu">
-        <span
-          style="
-            position: absolute;
-            top: 50%;
-            left: 40px;
-            transform: translateY(-50%);
-            font-weight: bolder;
-          "
-        >
-          今日预估钻石收入:{{ keLingQuYue }}
-        </span>
-        <img src="./images/yijianlingqu.png" alt="" style="width: 100%" />
-      </div>
+      <!--      <div style="position: relative; margin-top: 10px" @click="yijianlingqu">-->
+      <!--        <span-->
+      <!--          style="-->
+      <!--            position: absolute;-->
+      <!--            top: 50%;-->
+      <!--            left: 40px;-->
+      <!--            transform: translateY(-50%);-->
+      <!--            font-weight: bolder;-->
+      <!--          "-->
+      <!--        >-->
+      <!--          今日预估钻石收入:{{ keLingQuYue }}-->
+      <!--        </span>-->
+      <!--        <img src="./images/yijianlingqu.png" alt="" style="width: 100%" />-->
+      <!--      </div>-->
       <!--      <div class="huiyuanquanyi">-->
       <!--        <div class="title">钻石会员</div>-->
       <!--        <div class="list">-->
@@ -218,10 +236,6 @@
           <!--            <span>账户保障</span>-->
           <!--          </div>-->
 
-          <!--          <div class="item">-->
-          <!--            <img src="./images/55.png" alt="" />-->
-          <!--            <span>会员特权</span>-->
-          <!--          </div>-->
           <div class="item" @click="$router.push('/jubaopen')">
             <img src="./images/33.png" alt="" />
             <span>钻石天梯</span>
@@ -242,10 +256,10 @@
             <img src="./images/22.png" alt="" />
             <span>转赠</span>
           </div>
-          <div class="item">
-            <img src="./images/44.png" alt="" @click="$router.push('/dep')" />
-            <span>兑换</span>
-          </div>
+          <!--          <div class="item">-->
+          <!--            <img src="./images/44.png" alt="" @click="$router.push('/dep')" />-->
+          <!--            <span>兑换</span>-->
+          <!--          </div>-->
           <div class="item">
             <img src="./images/99.png" alt="" @click="goDownload" />
             <span>下载APP</span>
@@ -253,7 +267,21 @@
 
           <div class="item" @click="showGonggaoOverlay = true">
             <img src="./images/jiaoliu.png" alt="" />
-            <span>官方大群</span>
+            <span>官方海鸥群</span>
+          </div>
+          <div class="item">
+            <img src="./images/55.png" alt="" @click="goQQ" />
+            <span>钻石qq黑市交易</span>
+          </div>
+
+          <div class="item" style="flex: 0 0 35%">
+            <img
+              style="width: 100%; height: 90%; margin-left: 10px"
+              @click="$router.push('/me/my-card')"
+              src="./images/fenxianganniu.png"
+              alt=""
+            />
+            <!--            <span>QQ黑市交易群</span>-->
           </div>
           <!--          <div class="item">-->
           <!--            <img src="./images/88.png" alt="" />-->
@@ -1012,7 +1040,7 @@
     <!--    </div>-->
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="点击进入官方群"
+      confirm-text="点击下载海鸥"
       @confirm="handleGonggaoConfirm"
     >
       <!--      <p-->
@@ -1028,6 +1056,11 @@
       <!--      </p>-->
       <div style="padding: 20px">
         <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
+        <p style="color: red; width: 100%; text-align: center">
+          如遇到无法下载海鸥，<span style="text-decoration: underline" @click="copy"
+            >点我复制下载链接</span
+          >
+        </p>
       </div>
     </TipDialog>
     <TipDialog
@@ -1172,6 +1205,7 @@ import { getSerialName } from '../../utils/getSerialName'
 import { Toast } from 'tdesign-mobile-vue'
 import bus from '@/utils/bus'
 import { getIsInApp } from '@/utils/getTopPadding'
+import { copyToClipboard } from '@/utils/copyToClipboard'
 
 const router = useRouter()
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
@@ -1189,6 +1223,9 @@ const renzheng = (avatar) => {
   // }
   wxLogin()
 }
+const goQQ = () => {
+  window.location.href = 'https://qm.qq.com/q/oeeMCZOkrC'
+}
 const showGonggaoOverlay = ref(false)
 
 const updateOverlay = ref(false)
@@ -1197,6 +1234,10 @@ const goDepOverlay = ref(false)
 const handleGonggaoConfirm = () => {
   showGonggaoOverlay.value = false
   window.location.href = 'https://www.haiouchat.com'
+}
+const copy = () => {
+  copyToClipboard('https://www.haiouchat.com', '复制成功，请在浏览器打开此链接！')
+  showGonggaoOverlay.value = false
 }
 const list = [
   // {
@@ -1651,7 +1692,7 @@ onDeactivated(() => {
     background-color: #f5f5f5;
     position: relative;
     border: 1px solid transparent;
-    padding: 110px 10px 0;
+    padding: 140px 10px 0;
 
     .total-box {
       margin-top: 10px;

@@ -1,7 +1,7 @@
 <template>
   <div class="gameList gameListClass">
     <van-nav-bar
-      title="推广下级玩游戏，得超高返利"
+      title="钻石消耗游戏"
       safe-area-inset-top
       fixed
       placeholder
@@ -16,7 +16,7 @@
     </van-nav-bar>
     <section class="MEvhpqJsUzf5ML0TIC7Lx">
       <div class="_3GSCwNQRJwIJZ58cybgYLW">
-        <div class="_3fjli6OU5bBO5wMUslOt_c">
+        <div v-if="false" class="_3fjli6OU5bBO5wMUslOt_c">
           <div
             v-for="item of tabList"
             class="_2TcTCnWhzfeNsB8LpQM5pV"
@@ -33,95 +33,102 @@
             :class="{ show: activeName === '1' }"
             class="_2C3QU_iJVaQd5AF-Xs_Khp gameItem gameItem-ky"
           >
+            <!--              @click="toGame('pg', item.code)"-->
             <div
-              v-for="item of pgList"
-              @click="toGame('pg', item.code)"
+              v-for="item of pgList.slice(0, 12)"
+              @click="toGame('pg')"
               class="_3oaripjZ52OOjBDUAHwulJ"
             >
               <img :src="item.icon" alt="" />
               <p style="width: 100%; text-align: center; color: #ddd; font-size: 12px">
-                {{ item.name }}
+                <!--                {{ item.name }}-->
               </p>
             </div>
           </div>
+          <!--            @click="toGame('ky')"-->
           <div
-            @click="toGame('ky')"
             :class="{ show: activeName === '2' }"
             class="_2C3QU_iJVaQd5AF-Xs_Khp gameItem gameItem-ky"
           >
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/220.webp" alt="" />
+            <div
+              class="_3oaripjZ52OOjBDUAHwulJ"
+              v-for="item of kyList"
+              @click="toGame('ky', item.gameCode)"
+            >
+              <img :src="getIconPath(item.gameCode)" alt="" />
             </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/510.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/620.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/830.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/910.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/2011.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/950.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/630.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/900.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/1960.webp" alt="" />
-            </div>
-
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/201.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/204.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/203.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/205.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/206.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/207.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/208.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/209.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/210.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/211.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/213.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/215.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/216.webp" alt="" />
-            </div>
-            <div class="_3oaripjZ52OOjBDUAHwulJ">
-              <img src="@/pages/me/images/quanminlaibaojiang/217.webp" alt="" />
-            </div>
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/220.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/510.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/620.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/830.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/910.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/2011.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/950.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/630.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/900.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/1960.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/201.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/204.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/203.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/205.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/206.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/207.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/208.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/209.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/210.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/211.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/213.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/215.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/216.webp" alt="" />-->
+            <!--            </div>-->
+            <!--            <div class="_3oaripjZ52OOjBDUAHwulJ">-->
+            <!--              <img src="@/pages/me/images/quanminlaibaojiang/217.webp" alt="" />-->
+            <!--            </div>-->
           </div>
           <div
             v-if="false"
@@ -520,7 +527,7 @@ import img1682240 from '@/pages/me/images/quanminlaibaojiang/1682240.webp'
 import img98 from '@/pages/me/images/quanminlaibaojiang/98.jpg'
 import emptyImg from './images/empty.png'
 import { Toast } from 'tdesign-mobile-vue'
-import { reqNgPlay, reqNgTransfer } from '@/api/myApi'
+import { reqNgPlay, reqNgPlayCode, reqNgTransfer } from '@/api/myApi'
 import { closeToast, showFailToast } from 'vant'
 
 const activeName = ref('1')
@@ -1419,6 +1426,713 @@ const pgList = [
   }
 ]
 
+const getIconPath = (icon) => {
+  return new URL(`./images/ky/${icon}.png`, import.meta.url).href
+}
+const kyList = [
+  {
+    gameCode: '900',
+    gameName: {
+      en: 'Dragon-Tiger',
+      'zh-hans': '押庄龙虎'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '押庄龙虎'
+  },
+  {
+    gameCode: '1890',
+    gameName: {
+      en: 'Fruit Machine',
+      'zh-hans': '水果机'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '水果机'
+  },
+  {
+    gameCode: '950',
+    gameName: {
+      en: 'Red&Black War',
+      'zh-hans': '红黑大战'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '红黑大战'
+  }
+]
+const kyList2 = [
+  {
+    gameCode: '900',
+    gameName: {
+      en: 'Dragon-Tiger',
+      'zh-hans': '押庄龙虎'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '押庄龙虎'
+  },
+  {
+    gameCode: '950',
+    gameName: {
+      en: 'Red&Black War',
+      'zh-hans': '红黑大战'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '红黑大战'
+  },
+  {
+    gameCode: '620',
+    gameName: {
+      en: "Texas Hold'em Poker",
+      'zh-hans': '德州扑克'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '德州扑克'
+  },
+  {
+    gameCode: '2002',
+    gameName: {
+      en: 'All-In or Fold',
+      'zh-hans': '梭哈德州扑克'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '梭哈德州扑克'
+  },
+  {
+    gameCode: '2008',
+    gameName: {
+      en: 'Ultimate Texas',
+      'zh-hans': '终极德州扑克'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '终极德州扑克'
+  },
+  {
+    gameCode: '830',
+    gameName: {
+      en: 'Banker Bull-Bull',
+      'zh-hans': '抢庄牛牛'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '抢庄牛牛'
+  },
+  {
+    gameCode: '930',
+    gameName: {
+      en: 'Niu–niu for thousands person',
+      'zh-hans': '百人牛牛'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '百人牛牛'
+  },
+
+  {
+    gameCode: '890',
+    gameName: {
+      en: 'Banker Bull-Bull After Check Card',
+      'zh-hans': '看牌抢庄牛牛'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '看牌抢庄牛牛'
+  },
+  {
+    gameCode: '1990',
+    gameName: {
+      en: 'Golden Bull',
+      'zh-hans': '炸金牛'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '炸金牛'
+  },
+  {
+    gameCode: '931',
+    gameName: {
+      en: 'Black Myth Hundreds People of Bull',
+      'zh-hans': '黑神话百人牛牛'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '黑神话百人牛牛'
+  },
+  {
+    gameCode: '2010',
+    gameName: {
+      en: 'Lezi Niu Niu',
+      'zh-hans': '癞子牛牛'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '癞子牛牛'
+  },
+  {
+    gameCode: '220',
+    gameName: {
+      en: 'Golden Flower',
+      'zh-hans': '炸金花'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '炸金花'
+  },
+  {
+    gameCode: '230',
+    gameName: {
+      en: 'Speed Golden Flower',
+      'zh-hans': '极速炸金花'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '极速炸金花'
+  },
+  {
+    gameCode: '1950',
+    gameName: {
+      en: 'Golden Flower for thousands person',
+      'zh-hans': '万人炸金花'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '万人炸金花'
+  },
+  {
+    gameCode: '600',
+    gameName: {
+      en: 'Black Jack',
+      'zh-hans': '21点'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '21点'
+  },
+  {
+    gameCode: '2007',
+    gameName: {
+      en: 'Lightning BlackJack',
+      'zh-hans': '闪电21点'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '闪电21点'
+  },
+  {
+    gameCode: '630',
+    gameName: {
+      en: 'Pineapple Poker',
+      'zh-hans': '十三水'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '十三水'
+  },
+  {
+    gameCode: '740',
+    gameName: {
+      en: '2 Persons’ Mahjong',
+      'zh-hans': '二人麻将'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '二人麻将'
+  },
+  {
+    gameCode: '2013',
+    gameName: {
+      en: 'OKEY',
+      'zh-hans': '土耳其麻将'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '土耳其麻将'
+  },
+  {
+    gameCode: '910',
+    gameName: {
+      en: 'Baccarat',
+      'zh-hans': '百家乐'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '百家乐'
+  },
+  {
+    gameCode: '3001',
+    gameName: {
+      en: 'Speed Baccarat',
+      'zh-hans': '极速百家乐'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '极速百家乐'
+  },
+  {
+    gameCode: '3011',
+    gameName: {
+      en: 'Macau Baccarat Lucky Six',
+      'zh-hans': '澳门百家乐幸运六'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '澳门百家乐幸运六'
+  },
+  {
+    gameCode: '1960',
+    gameName: {
+      en: 'Benz & BMW',
+      'zh-hans': '奔驰宝马'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '奔驰宝马'
+  },
+  {
+    gameCode: '610',
+    gameName: {
+      en: 'Landlord',
+      'zh-hans': '斗地主'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '斗地主'
+  },
+  {
+    gameCode: '720',
+    gameName: {
+      en: 'Two-Eight Bar',
+      'zh-hans': '二八杠'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '二八杠'
+  },
+
+  {
+    gameCode: '860',
+    gameName: {
+      en: 'Three-Facecard',
+      'zh-hans': '三公'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '三公'
+  },
+
+  {
+    gameCode: '870',
+    gameName: {
+      en: 'Casino Bull-Bull',
+      'zh-hans': '通比牛牛'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '通比牛牛'
+  },
+
+  {
+    gameCode: '730',
+    gameName: {
+      en: 'Paigow',
+      'zh-hans': '抢庄牌九'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '抢庄牌九'
+  },
+
+  {
+    gameCode: '920',
+    gameName: {
+      en: 'Forest Party',
+      'zh-hans': '森林舞会'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '森林舞会'
+  },
+
+  {
+    gameCode: '650',
+    gameName: {
+      en: 'Bleeding Mahjong',
+      'zh-hans': '血流成河'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '血流成河'
+  },
+
+  {
+    gameCode: '1350',
+    gameName: {
+      en: 'Lucky Dial',
+      'zh-hans': '幸运转盘'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '幸运转盘'
+  },
+  {
+    gameCode: '1940',
+    gameName: {
+      en: 'Gold Shark & Silver Shark',
+      'zh-hans': '金鲨银鲨'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '金鲨银鲨'
+  },
+
+  {
+    gameCode: '1980',
+    gameName: {
+      en: 'Sic Bo',
+      'zh-hans': '百人骰宝'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '百人骰宝'
+  },
+  {
+    gameCode: '1810',
+    gameName: {
+      en: '1v1 Bull-Bull',
+      'zh-hans': '单挑牛牛'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '单挑牛牛'
+  },
+
+  {
+    gameCode: '1850',
+    gameName: {
+      en: 'Bet 3 Players Bull-Bull',
+      'zh-hans': '押宝抢庄牛牛'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '押宝抢庄牛牛'
+  },
+  {
+    gameCode: '510',
+    gameName: {
+      en: 'Fishing',
+      'zh-hans': '红包捕鱼'
+    },
+    gameType: '6',
+    ingress: '3',
+    platType: 'ky',
+    label: '红包捕鱼'
+  },
+
+  {
+    gameCode: '1970',
+    gameName: {
+      en: 'Five Stars',
+      'zh-hans': '五星宏辉'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '五星宏辉'
+  },
+  {
+    gameCode: '1860',
+    gameName: {
+      en: 'Casino Poker',
+      'zh-hans': '赌场扑克'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '赌场扑克'
+  },
+  {
+    gameCode: '1370',
+    gameName: {
+      en: 'Hong Kong Stud',
+      'zh-hans': '港式梭哈'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '港式梭哈'
+  },
+  {
+    gameCode: '1690',
+    gameName: {
+      en: 'Karmic SicBo',
+      'zh-hans': '血战骰宝'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '血战骰宝'
+  },
+  {
+    gameCode: '1890',
+    gameName: {
+      en: 'Fruit Machine',
+      'zh-hans': '水果机'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '水果机'
+  },
+  {
+    gameCode: '1610',
+    gameName: {
+      en: 'Lucky Treasure',
+      'zh-hans': '幸运夺宝'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '幸运夺宝'
+  },
+  {
+    gameCode: '1930',
+    gameName: {
+      en: 'Fish-Prawn-Crab Dice',
+      'zh-hans': '鱼虾蟹'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '鱼虾蟹'
+  },
+  {
+    gameCode: '8130',
+    gameName: {
+      en: 'Run Fast',
+      'zh-hans': '跑得快'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '跑得快'
+  },
+
+  {
+    gameCode: '840',
+    gameName: {
+      en: 'Crazy Banker Bull-Bull',
+      'zh-hans': '疯狂抢庄牛牛'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '疯狂抢庄牛牛'
+  },
+  {
+    gameCode: '520',
+    gameName: {
+      en: 'LK Fishing',
+      'zh-hans': '李逵劈鱼'
+    },
+    gameType: '6',
+    ingress: '3',
+    platType: 'ky',
+    label: '李逵劈鱼'
+  },
+  {
+    gameCode: '530',
+    gameName: {
+      en: 'ChinYuan Fishing',
+      'zh-hans': '金元捕鱼'
+    },
+    gameType: '6',
+    ingress: '3',
+    platType: 'ky',
+    label: '金元捕鱼'
+  },
+
+  {
+    gameCode: '2890',
+    gameName: {
+      en: 'Three-Facecard After Check Card',
+      'zh-hans': '看牌抢庄三公'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '看牌抢庄三公'
+  },
+
+  {
+    gameCode: '3002',
+    gameName: {
+      en: 'World Cup Golden Ball',
+      'zh-hans': '金球银球'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '金球银球'
+  },
+  {
+    gameCode: '3003',
+    gameName: {
+      en: 'Ten Times Bull-Bul',
+      'zh-hans': '十倍牛牛'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '十倍牛牛'
+  },
+  {
+    gameCode: '550',
+    gameName: {
+      en: 'Golden Dragon',
+      'zh-hans': '富贵金龙'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '富贵金龙'
+  },
+  {
+    gameCode: '3005',
+    gameName: {
+      en: 'European Roulette',
+      'zh-hans': '欧式轮盘'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '欧式轮盘'
+  },
+  {
+    gameCode: '2005',
+    gameName: {
+      en: 'Three Card Poker',
+      'zh-hans': '富贵三张'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '富贵三张'
+  },
+  {
+    gameCode: '3006',
+    gameName: {
+      en: 'H-baccarat',
+      'zh-hans': '官人坏坏百J乐'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '官人坏坏百J乐'
+  },
+
+  {
+    gameCode: '2011',
+    gameName: {
+      en: 'GuanDan',
+      'zh-hans': '摜蛋'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '摜蛋'
+  },
+
+  {
+    gameCode: '2012',
+    gameName: {
+      en: 'TikTok Bull-Bull',
+      'zh-hans': '抖音牛牛'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '抖音牛牛'
+  },
+  {
+    gameCode: '1602',
+    gameName: {
+      en: 'Escape from Wuzhishan',
+      'zh-hans': '逃离五指山'
+    },
+    gameType: '2',
+    ingress: '3',
+    platType: 'ky',
+    label: '逃离五指山'
+  },
+
+  {
+    gameCode: '2015',
+    gameName: {
+      en: 'HI-LO',
+      'zh-hans': '比大小'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '比大小'
+  },
+
+  {
+    gameCode: '2014',
+    gameName: {
+      en: 'Speed Bull-Bull',
+      'zh-hans': '极速牛牛'
+    },
+    gameType: '7',
+    ingress: '3',
+    platType: 'ky',
+    label: '极速牛牛'
+  }
+]
+
 // let sum = 0
 // const arr = []
 // for (const p2item of pgList2) {
@@ -1452,6 +2166,7 @@ const toGame = (plat, code) => {
   // reqNgPlayCode().then((res) => {
   //   console.log('reqNgPlayCode', res)
   // })
+  // return
   reqNgPlay({
     code,
     plat
@@ -1484,10 +2199,10 @@ onActivated(() => {
     closeToast()
     // Toast.clear()
   })
-  reqNgTransfer({ plat: 'ky' }).then((res) => {
-    closeToast()
-    // Toast.clear()
-  })
+  // reqNgTransfer({ plat: 'ky' }).then((res) => {
+  //   closeToast()
+  //   // Toast.clear()
+  // })
 })
 </script>
 
@@ -1589,7 +2304,7 @@ onActivated(() => {
       position: relative;
       z-index: 0;
       flex: 1;
-      padding-left: 11px;
+      //padding-left: 11px;
       height: 100%;
       overflow: scroll;
 

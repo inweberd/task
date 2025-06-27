@@ -18,7 +18,7 @@
       <t-tabs :space-evenly="false" default-value="天梯明细" @change="tabChange">
         <t-tab-panel label="收入" value="收入" />
         <!--        <t-tab-panel label="佣金嘉奖" value="佣金嘉奖" />-->
-        <!--        <t-tab-panel value="排行榜奖励" label="排行榜" />-->
+        <t-tab-panel value="排行榜奖励" label="排行榜" />
         <t-tab-panel value="推荐奖" label="推荐奖" />
         <!--        <t-tab-panel value="游戏" label="游戏" />-->
         <t-tab-panel value="天梯明细" label="天梯明细" />

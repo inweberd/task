@@ -160,6 +160,20 @@
         <p>聚宝盆板块为会员进阶福利玩法，检测到您不是会员用户，请先购买任意会员!</p>
       </div>
     </TipDialog>
+
+    <van-overlay :show="shareDialogOverlay" :z-index="99999999">
+      <div
+        style="
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+        "
+      >
+        <img @click="share" src="./images/jubaopenfenxiang.png" alt="" style="width: 80%" />
+      </div>
+    </van-overlay>
     <!--    <div v-html="articleInfo.content" style="padding: 10px"></div>-->
   </div>
 </template>
@@ -188,6 +202,7 @@ import dayjs from 'dayjs'
 import { loadShortVideo } from '@/utils/ad'
 
 const showGonggaoOverlay = ref(false)
+const shareDialogOverlay = ref(false)
 
 const timeTxt = ref('')
 const buyDialogShow = ref(false)
@@ -568,15 +583,19 @@ const getMyStaff = () => {
   })
 }
 
+const share = () => {
+  localStorage.isTiantiShare = dayjs().format('YYYY-MM-DD')
+  shareDialogOverlay.value = false
+  window.shareFriend()
+}
+
 const buy = (id, index) => {
-  // if (
-  //   localStorage.isTiantiShare !== dayjs().format('YYYY-MM-DD') &&
-  //   window.android &&
-  //   window.android.shareImg
-  // ) {
-  //   localStorage.isTiantiShare = dayjs().format('YYYY-MM-DD')
-  //   window.showShareFriend()
-  // }
+  if (localStorage.isTiantiShare !== dayjs().format('YYYY-MM-DD') && window.android) {
+    shareDialogOverlay.value = true
+    return
+    // localStorage.isTiantiShare = dayjs().format('YYYY-MM-DD')
+    // window.showShareFriend()
+  }
   // showGonggaoOverlay.value = true
   // return
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))

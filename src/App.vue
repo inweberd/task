@@ -772,15 +772,12 @@ onMounted(() => {
 //.van-tabs__nav {
 //  background-color: #0e0f13 !important;
 //}
-//.van-cell {
-//  background-color: #0e0f13 !important;
-//  color: #fff !important;
-//}
+
 .van-field__label {
   font-weight: normal;
 }
 .van-field__control {
-  color: #fff !important;
+  //color: #fff !important;
 }
 
 //.van-popup {

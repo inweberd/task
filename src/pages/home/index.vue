@@ -1,61 +1,131 @@
 <template>
   <div class="home-index">
-    <!--    <div class="top-box">-->
-    <!--      <img src="./images/bangzuan.png" alt="" @click="$router.push('/invest')" />-->
-    <!--      <img src="./images/tongyongzuanshi.png" alt="" @click="$router.push('/invest')" />-->
-    <!--    </div>-->
-    <div class="top-box">
-      <div @click="$router.push('/recharge')">
-        <div>
-          绑钻
-          <img src="./images/zuanshi.png" alt="" />
-        </div>
-        <div>{{ walletInfo?.amount || 0 }}</div>
-        <div>
-          <img src="./images/jiahao.png" alt="" />
-        </div>
-      </div>
-      <div @click="$router.push('/myteam')">
-        <div>
-          通用钻石
-          <img src="./images/zuanshi.png" alt="" />
-        </div>
-        <div>
-          {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}
-        </div>
-        <div>
-          <img src="./images/jiahao.png" alt="" />
-        </div>
-      </div>
-      <!--      <img src="./images/bangzuan.png" alt="" @click="$router.push('/invest')" />-->
-      <!--      <img src="./images/tongyongzuanshi.png" alt="" @click="$router.push('/invest')" />-->
-    </div>
     <van-notice-bar
       background="transparent"
-      color="#fff"
+      color="#303133"
       left-icon="volume-o"
-      style="border-radius: 10px; height: 30px; border: 1px solid #fff; margin: 8px 8px 0"
+      style="border-radius: 10px; height: 30px; border: 1px solid #303133; margin: 8px 8px 0"
       text="钻石乐园拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3钻石，达标自动发放！"
     >
     </van-notice-bar>
+    <div class="info-banenr">
+      <div class="one-box">
+        <div class="title">我的余额： <span>0.00</span>元</div>
+        <div class="btns">
+          <div class="btn1 btn" style="background-color: rgb(247, 228, 144)">余额明细</div>
+          <div class="btn2 btn">提现</div>
+        </div>
+      </div>
+      <div class="two-box">
+        <div class="title">
+          今日收益：
+          <span>0.00</span>
+          元
+        </div>
+        <div class="title">累计收益 ： <span>0.00</span> 元</div>
+      </div>
+    </div>
+    <div class="menuList">
+      <div class="menu">
+        <div style="height: 40px">
+          <img
+            src="https://lx.aosenn.com/uploads/20221225/1d7e27a10dde72f7aae357871724e031.png"
+            draggable="false"
+          />
+        </div>
+        <span>天天抽奖</span>
+      </div>
+      <div class="menu">
+        <div style="height: 40px">
+          <img
+            src="https://lx.aosenn.com/uploads/20221225/ceffbcc032b1af6c8f1517a08bfb489e.png"
+            draggable="false"
+          />
+        </div>
+        <span>排行榜</span>
+      </div>
+      <div class="menu">
+        <div style="height: 40px">
+          <img
+            src="https://lx.aosenn.com/uploads/20221225/d041ab71bb5e53c781738179ef61216d.png"
+            draggable="false"
+          />
+        </div>
+        <span>充场大厅</span>
+      </div>
+      <div class="menu">
+        <div style="height: 38px">
+          <img
+            src="https://lx.aosenn.com/uploads/20221225/a9f4cef239d1c9b5154678150c5fd4e0.png"
+            draggable="false"
+          />
+        </div>
+        <span>邀请好友</span>
+      </div>
+    </div>
+    <!--    <div class="top-box">-->
+    <!--      <div @click="$router.push('/recharge')">-->
+    <!--        <div>-->
+    <!--          绑钻-->
+    <!--          <img src="./images/zuanshi.png" alt="" />-->
+    <!--        </div>-->
+    <!--        <div>{{ walletInfo?.amount || 0 }}</div>-->
+    <!--        <div>-->
+    <!--          <img src="./images/jiahao.png" alt="" />-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--      <div @click="$router.push('/myteam')">-->
+    <!--        <div>-->
+    <!--          通用钻石-->
+    <!--          <img src="./images/zuanshi.png" alt="" />-->
+    <!--        </div>-->
+    <!--        <div>-->
+    <!--          {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}-->
+    <!--        </div>-->
+    <!--        <div>-->
+    <!--          <img src="./images/jiahao.png" alt="" />-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
 
-    <div class="title-img-box" @click="$router.push('/me/my-card')">
-      <img src="./images/title-bg.png" alt="" />
-    </div>
-    <div class="linglu-box" v-if="!isIos">
-      <img src="./images/k1.png" alt="" @click="loadXiangwan()" />
-      <img src="./images/k2.png" alt="" @click="loadXiangwan()" />
-      <img src="./images/k4.png" alt="" @click="loadXuanShang()" />
-      <img src="./images/k3.png" alt="" @click="$router.push('/rank')" />
-      <!--      <img src="./images/k3.png" alt="" @click="loadXiangwan()" />-->
-    </div>
-    <div class="dailifenhong-box">
-      <img src="./images/dailipaihangios.png" @click="$router.push('/rank')" alt="" v-if="isIos" />
-      <!--      <img src="./images/dailipaihangios.png" @click="loadXiangwan()" alt="" v-if="isIos" />-->
-      <img src="./images/zuanshitiantileyuan.png" @click="$router.push('/jubaopen')" alt="" />
-      <img src="./images/chenwgeidailifenhong.png" alt="" @click="$router.push('/invest')" />
-      <img src="./images/zuanshixiaohaoyouxi.png" alt="" @click="goXiaoHaoGame" />
-    </div>
+    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+      <van-swipe-item>
+        <img
+          src="https://lx.aosenn.com/uploads/20240312/6f74eaa2565ff52321bc7693d0bf0c52.jpg"
+          alt=""
+        />
+      </van-swipe-item>
+      <van-swipe-item>
+        <img
+          src="https://lx.aosenn.com/uploads/20240312/97d6df84900ad010c7eeed904e69fc91.jpg"
+          alt=""
+      /></van-swipe-item>
+      <van-swipe-item>
+        <img
+          src="https://lx.aosenn.com/uploads/20240312/6809ccd8b532c297ba7b02a203704339.jpg"
+          alt=""
+      /></van-swipe-item>
+      <van-swipe-item>
+        <img
+          src="https://lx.aosenn.com/uploads/20250221/174612a980e31bb308943876dc6c2bdd.jpg"
+          alt=""
+      /></van-swipe-item>
+    </van-swipe>
+
+    <!--    <div class="linglu-box" v-if="!isIos">-->
+    <!--      <img src="./images/k1.png" alt="" @click="loadXiangwan()" />-->
+    <!--      <img src="./images/k2.png" alt="" @click="loadXiangwan()" />-->
+    <!--      <img src="./images/k4.png" alt="" @click="loadXuanShang()" />-->
+    <!--      <img src="./images/k3.png" alt="" @click="$router.push('/rank')" />-->
+    <!--      &lt;!&ndash;      <img src="./images/k3.png" alt="" @click="loadXiangwan()" />&ndash;&gt;-->
+    <!--    </div>-->
+    <!--    <div class="dailifenhong-box">-->
+    <!--      <img src="./images/dailipaihangios.png" @click="$router.push('/rank')" alt="" v-if="isIos" />-->
+    <!--      &lt;!&ndash;      <img src="./images/dailipaihangios.png" @click="loadXiangwan()" alt="" v-if="isIos" />&ndash;&gt;-->
+    <!--      <img src="./images/zuanshitiantileyuan.png" @click="$router.push('/jubaopen')" alt="" />-->
+    <!--      <img src="./images/chenwgeidailifenhong.png" alt="" @click="$router.push('/invest')" />-->
+    <!--      <img src="./images/zuanshixiaohaoyouxi.png" alt="" @click="goXiaoHaoGame" />-->
+    <!--    </div>-->
     <BaseFooter :is-white="true" v-bind:init-tab="1" />
     <TipDialog
       v-model="showGonggaoOverlay"
@@ -168,9 +238,8 @@ onActivated(() => {
 <style lang="less" scoped>
 .home-index {
   height: calc(100vh - 56px);
+  background-color: #f8f8f8;
   width: 100%;
-  background: url('./images/index-bg.png') no-repeat;
-  background-size: 100% 100%;
   overflow: auto;
   .top-box {
     display: flex;
@@ -218,15 +287,103 @@ onActivated(() => {
       }
     }
   }
-  .title-img-box {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    img {
-      transform: translateX(-8%);
-      width: 70%;
+
+  .info-banenr {
+    background: #fec408;
+    padding: 20px 15px;
+    margin: 20px 10px 0;
+    position: relative;
+    z-index: 99;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #fec408;
+    color: #333;
+    .one-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .title {
+        font-size: 12px;
+        span {
+          color: #000;
+          font-size: 19px;
+        }
+      }
+      .btns {
+        display: flex;
+        align-items: center;
+
+        .btn {
+          width: 60px;
+          height: 30px;
+          font-size: 13px;
+          text-align: center;
+          line-height: 30px;
+          border-radius: 30px;
+        }
+        .btn1 {
+        }
+        .btn2 {
+          background: #f94f26;
+          margin-left: 10px;
+          color: #fff;
+        }
+      }
+    }
+
+    .two-box {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+
+      .title {
+        font-size: 12px;
+        margin-right: 30px;
+
+        span {
+          color: #333;
+          font-size: 12px;
+        }
+      }
     }
   }
+
+  .menuList {
+    display: flex;
+    padding: 2px 10px;
+    box-sizing: border-box;
+    margin: 20px 10px 0;
+    border-radius: 10px;
+    background: #fff;
+    color: #333;
+    font-size: 12px;
+    .menu {
+      width: 25%;
+      text-align: center;
+      padding: 10px 0;
+      display: inline-block;
+
+      & > div {
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+  .my-swipe {
+    margin: 20px 10px 0;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .van-swipe-item {
+      height: 130px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
   .linglu-box {
     display: flex;
     flex-wrap: wrap;

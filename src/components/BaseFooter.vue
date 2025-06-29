@@ -3,15 +3,15 @@
     v-if="visible"
     class="footer"
     :class="{ isWhite }"
-    :style="{ background: currentTab === 1 ? '#527cc4' : '#fff' }"
+    :style="{ background: currentTab === 1 ? '#fff' : '#fff' }"
   >
     <div class="l-button" @click="refresh(1)">
       <div class="add-ctn">
         <div class="img-box">
-          <img src="@/assets/icon/1-active.png" alt="" class="add" v-if="currentTab === 1" />
-          <img src="@/assets/icon/1.png" alt="" class="add" v-else />
+          <img src="https://lx.aosenn.com/h5/static/tabbar/qw11.png" v-if="currentTab === 1" />
+          <img src="https://lx.aosenn.com/h5/static/tabbar/q11.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 1 ? (currentTab === 1 ? '#fff' : '#000') : '' }">
+        <div :style="{ color: currentTab === 1 ? (currentTab === 1 ? '#ccc' : '#fed61f') : '' }">
           首页
         </div>
       </div>
@@ -62,10 +62,15 @@
     <div class="l-button" @click="tab(6)">
       <div class="add-ctn">
         <div class="img-box">
-          <img src="@/assets/icon/5-active.png" alt="" class="add" v-if="currentTab === 6" />
-          <img src="@/assets/icon/5.png" alt="" class="add" v-else />
+          <img
+            src="https://lx.aosenn.com/h5/static/tabbar/qqqw4.png"
+            alt=""
+            class="add"
+            v-if="currentTab === 6"
+          />
+          <img src="https://lx.aosenn.com/h5/static/tabbar/qw4.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 6 ? (currentTab === 1 ? '#fff' : '#000') : '' }">
+        <div :style="{ color: currentTab === 6 ? (currentTab === 1 ? '#ccc' : '#fed61f') : '' }">
           我
         </div>
       </div>

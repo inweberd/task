@@ -14,7 +14,7 @@
     </van-nav-bar>
     <Loading v-if="loading" />
 
-    <div style="background-color: #fff; margin: 10px; border-radius: 10px; overflow: hidden">
+    <div style="background-color: #fdfae9; margin: 10px; border-radius: 10px; overflow: hidden">
       <t-tabs :space-evenly="false" default-value="天梯明细" @change="tabChange">
         <t-tab-panel label="收入" value="收入" />
         <!--        <t-tab-panel label="佣金嘉奖" value="佣金嘉奖" />-->
@@ -77,9 +77,9 @@ const loading = ref(false)
 }
 
 .wallet-page {
-  background-color: #1f203d;
-  background: url('@/assets/img/main-bg.jpg');
-  background-size: 100% 100%;
+  background-color: #f7d598;
+  //background: url('@/assets/img/main-bg.jpg');
+  //background-size: 100% 100%;
   height: 100%;
   overflow-y: auto;
 
@@ -100,6 +100,15 @@ const loading = ref(false)
   :deep(.van-hairline--bottom) {
     &:after {
       border-bottom: none;
+    }
+  }
+
+  :deep(.t-tabs__nav) {
+    .t-tabs__wrapper {
+      background-color: #fdfae9 !important;
+    }
+    .t-tabs__scroll {
+      background-color: #fdfae9 !important;
     }
   }
 }

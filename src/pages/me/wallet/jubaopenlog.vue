@@ -133,7 +133,7 @@ onMounted(() => {
 }
 
 .container {
-  background-color: #fff;
+  background-color: #fdfae9;
   margin: 10px;
   border-radius: 10px;
   color: #000;

@@ -22,6 +22,8 @@ const routes: RouteRecordRaw[] = [
   { path: '/CreditScoreInfo', component: () => import('@/pages/me/CreditScoreInfo.vue') },
   { path: '/choujiangDetail', component: () => import('@/pages/me/choujiangDetail.vue') },
   { path: '/weimaiquanDetail', component: () => import('@/pages/me/weimaiquanDetail.vue') },
+  { path: '/moneybag', component: () => import('@/pages/moneybag/moneybag.vue') },
+  { path: '/publish', component: () => import('@/pages/publish/publish.vue') },
 
   { path: '/me/my-card', name: 'myCard', component: () => import('@/pages/me/MyCard.vue') },
 

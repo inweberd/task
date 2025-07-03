@@ -119,7 +119,7 @@ onMounted(() => {
   margin-top: 10px;
 }
 .container {
-  background-color: #fff;
+  background-color: var(--wallet-bg);
   margin: 10px;
   border-radius: 10px;
   color: #fff;

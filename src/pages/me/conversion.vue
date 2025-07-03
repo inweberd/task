@@ -33,14 +33,29 @@
       <div class="desc">
         <!--<van-image width="100" height="100" :src="imgg" />-->
       </div>
-      <van-form @submit="onSubmit">
+      <van-form>
         <!--        <div class="common-input-title">团队成员ID</div>-->
+        <!--        <van-field-->
+        <!--          v-model="data.uid"-->
+        <!--          :rules="[{ required: true, message: '请输入团队成员ID' }]"-->
+        <!--          placeholder="请输入对方ID"-->
+        <!--        />-->
+        <!--        <div class="common-input-title" style="margin-top: 10px">转账金额</div>-->
+
         <van-field
+          left-icon="user"
           v-model="data.uid"
           :rules="[{ required: true, message: '请输入团队成员ID' }]"
+          clearable
           placeholder="请输入对方ID"
-        />
-        <!--        <div class="common-input-title" style="margin-top: 10px">转账金额</div>-->
+        >
+          <template #left-icon>
+            <img
+              src="https://lx.aosenn.com/h5/static/login/icon_name.png"
+              style="width: 15px; height: 16px"
+            />
+          </template>
+        </van-field>
 
         <van-field
           v-model="data.amount"
@@ -48,7 +63,14 @@
           name="金额"
           placeholder="请输入转赠数量"
           type="number"
-        />
+        >
+          <template #left-icon>
+            <img
+              src="https://lx.aosenn.com/h5/static/login/icon_name.png"
+              style="width: 15px; height: 16px"
+            />
+          </template>
+        </van-field>
         <!--        <div class="common-input-title" style="margin-top: 10px">短信验证码</div>-->
         <van-field
           v-model="data.code"
@@ -69,22 +91,53 @@
             <!--            >-->
             <!--              {{ countdown ? countdown + 's重新发送' : '发送验证码' }}-->
             <!--            </van-button>-->
-            <p v-if="!time" style="color: #fff" @click="getCode">
+            <p
+              v-if="!time"
+              style="
+                width: 80px;
+                height: 28px;
+                line-height: 28px;
+                text-align: center;
+                border-radius: 20px;
+                background-color: #fcd323;
+                font-size: 12px;
+                color: #000;
+              "
+              @click="getCode"
+            >
               {{ countdown ? countdown + 's重新发送' : '发送验证码' }}
             </p>
-            <div v-else>
+            <div
+              style="
+                width: 80px;
+                height: 28px;
+                line-height: 28px;
+                text-align: center;
+                border-radius: 20px;
+                background-color: #fcd323;
+                font-size: 12px;
+                color: #000;
+              "
+              v-else
+            >
               {{ time }}
             </div>
+          </template>
+          <template #left-icon>
+            <img
+              src="https://lx.aosenn.com/h5/static/login/icon_name.png"
+              style="width: 15px; height: 16px"
+            />
           </template>
         </van-field>
 
         <div style="width: 100%">
           <van-button
             block
-            color="#bfd8d8"
-            native-type="submit"
+            color="#fcd323"
+            @click="onSubmit"
             round
-            style="border: none; color: #0775f1; font-weight: bolder"
+            style="border: none; color: #444; font-weight: bolder"
             type="primary"
           >
             确认转赠
@@ -94,9 +147,9 @@
           <van-button
             block
             @click="$router.push('/invest')"
-            color="#bfd8d8"
+            color="#fcd323"
             round
-            style="border: none; color: #0775f1; font-weight: bolder"
+            style="border: none; color: #444; font-weight: bolder"
             type="primary"
           >
             成为会员(降低手续费)
@@ -310,6 +363,16 @@ function onSubmit() {
     // return
   }
 
+  if (!data.uid) {
+    return showToast('请输入团队成员ID')
+  }
+  if (!data.amount) {
+    return showToast('请输入转赠数量')
+  }
+  if (!data.code) {
+    return showToast('请输入短信验证码')
+  }
+
   // 获取今天的日期
   dayjs.extend(isBetween)
   const today = dayjs().startOf('day')
@@ -386,8 +449,10 @@ onActivated(() => {
   height: 100vh;
   color: #666;
   //background-color: #1f203d;
-  background: url('@/assets/img/main-bg.jpg') no-repeat;
-  background-size: 100% 100%;
+  background: url('https://lx.aosenn.com/h5/static/login/bolang.png') no-repeat;
+  //background-color: rgb(247, 213, 152);
+  background-size: 250px;
+  background-position: 100% 0;
   overflow-y: auto;
   // background: linear-gradient(45deg, #fdfbfb 10%, #FFFFFF 48%, #ebedee 100%) !important;
   .van-divider {
@@ -456,7 +521,7 @@ onActivated(() => {
     }
 
     .info {
-      color: #fff;
+      color: #000;
       margin-left: 16px;
       text-align: center;
 
@@ -467,23 +532,10 @@ onActivated(() => {
   }
 }
 :deep(.van-cell) {
-  border-bottom: 1px solid #4d536a;
-  background: #3b82f2;
-  border-radius: 10px;
-
-  &::after {
-    border: none !important;
-  }
-
-  .van-field__body {
-    input {
-      text-align: center;
-      color: #fff !important;
-
-      &::placeholder {
-        color: #fff !important;
-      }
-    }
+  border-radius: 25px;
+  box-shadow: 0 0 10px #eee;
+  .van-field__control {
+    text-indent: 20px;
   }
 }
 </style>

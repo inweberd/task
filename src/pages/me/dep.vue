@@ -1,9 +1,10 @@
 <template>
-  <div class="withdraw-page" v-if="false">
+  <div class="withdraw-page">
     <van-nav-bar
       left-arrow
       style="background-color: transparent"
-      title="兑换"
+      fixed
+      title="提现"
       @click-left="$router.back()"
     />
     <!--    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">-->
@@ -19,46 +20,105 @@
     <!--    </van-swipe>-->
     <Loading v-if="loading" />
     <!--    <van-image :src="tixian" width="100%" height="100%;"></van-image>-->
-
-    <div class="fangshi-box" @click="showPicker = true">
-      <div>兑换方式</div>
-
-      <div style="display: flex; align-items: center">
-        <template v-if="pay_card_id">
-          <img :src="getImg" alt="" />
-        </template>
-        <template v-else> 请选择</template>
-        <van-icon color="#ccc" name="arrow" size="20" />
+    <div class="user-money">
+      <div class="user-money-item1">
+        <div class="user-money-item11">可提现金额（元）</div>
+        <div class="user-money-item12">0.00</div>
+      </div>
+      <div class="user-money-item2">提现记录</div>
+    </div>
+    <div class="withdraw-container">
+      <div class="withdraw-price">
+        <div class="title">提现金额</div>
+        <div class="input-price">
+          <div class="div-wrapper">
+            <input
+              v-model="money"
+              maxlength="140"
+              autocomplete="off"
+              type="number"
+              class="uni-input-input"
+              placeholder="请输入金额"
+            />
+          </div>
+        </div>
+        <div class="price-icon">￥</div>
+        <div class="price-btn">全部提现</div>
+      </div>
+      <div style="display: flex; margin: 19px auto">
+        <div>提现至</div>
+        <div
+          @click="showPicker = true"
+          style="margin-left: auto; color: rgb(153, 153, 153); display: flex; align-items: center"
+        >
+          <template v-if="pay_card_id">
+            <img style="width: 20px" :src="getImg" alt="" />
+          </template>
+          <template v-else> 请选择提现方式 </template>
+          <van-icon
+            style="color: rgb(153, 153, 153); font-size: 18px"
+            color="#ccc"
+            name="arrow"
+            size="20"
+          />
+        </div>
+      </div>
+      <div
+        style="
+          width: 90%;
+          height: 35px;
+          background-image: linear-gradient(90deg, #fed620, #fed721);
+          line-height: 35px;
+          border-radius: 40px;
+          margin: 0 auto;
+          text-align: center;
+          font-size: 16px;
+          font-weight: 600;
+        "
+        @click="goPay"
+      >
+        立即提现
       </div>
     </div>
-    <div
-      style="
-        background-color: #3b82f2;
-        margin: 20px;
-        border-radius: 10px;
-        font-size: 16px;
-        line-height: 24px;
-      "
-    >
-      <van-field
-        v-model="money"
-        class="unp"
-        label="兑换数量"
-        placeholder="请输入兑换数量"
-        style="
-          font-weight: bolder;
-          margin-bottom: 10px;
-          color: #fff !important;
-          background-color: transparent;
-        "
-        type="number"
-        @input="
-          () => {
-            money = parseInt(money)
-          }
-        "
-      />
-    </div>
+    <!--    <div class="fangshi-box" @click="showPicker = true">-->
+    <!--      <div>兑换方式</div>-->
+
+    <!--      <div style="display: flex; align-items: center">-->
+    <!--        <template v-if="pay_card_id">-->
+    <!--          <img :src="getImg" alt="" />-->
+    <!--        </template>-->
+    <!--        <template v-else> 请选择</template>-->
+    <!--        <van-icon color="#ccc" name="arrow" size="20" />-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--    <div-->
+    <!--      style="-->
+    <!--        background-color: #3b82f2;-->
+    <!--        margin: 20px;-->
+    <!--        border-radius: 10px;-->
+    <!--        font-size: 16px;-->
+    <!--        line-height: 24px;-->
+    <!--      "-->
+    <!--    >-->
+    <!--      <van-field-->
+    <!--        v-model="money"-->
+    <!--        class="unp"-->
+    <!--        label="兑换数量"-->
+    <!--        placeholder="请输入兑换数量"-->
+    <!--        style="-->
+    <!--          font-weight: bolder;-->
+    <!--          margin-bottom: 10px;-->
+    <!--          color: #fff !important;-->
+    <!--          background-color: transparent;-->
+    <!--        "-->
+    <!--        type="number"-->
+    <!--        @input="-->
+    <!--          () => {-->
+    <!--            money = parseInt(money)-->
+    <!--          }-->
+    <!--        "-->
+    <!--      />-->
+    <!--    </div>-->
     <!--    <div class="jine-box">-->
     <!--      <div-->
     <!--        v-for="item of columns"-->
@@ -111,7 +171,19 @@
       round
       theme-mode="dark"
     >
-      <div style="color: #ccc; padding-top: 35px; padding-bottom: 20px">
+      <div
+        style="
+          height: 50px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          padding: 0 15px;
+          font-size: 16px;
+        "
+      >
+        请选择提现方式
+      </div>
+      <div style="color: #ccc; padding-top: 5px; padding-bottom: 20px">
         <p
           v-if="!state?.select?.card?.length"
           style="color: #ccc; margin: 10px; text-align: center; height: 100px; line-height: 100px"
@@ -121,13 +193,12 @@
             >去添加！</span
           >
         </p>
-        <van-radio-group v-model="pay_card_id">
+        <van-radio-group v-model="pay_card_id" checked-color="#ffce42">
           <van-cell-group inset>
             <van-cell
               v-for="(item, index) of state.select.card"
               :title="item.card_no"
               clickable
-              style="color: #fff"
               @click="onSelect(item)"
             >
               <template #icon>
@@ -153,15 +224,33 @@
         </van-radio-group>
         <p
           v-if="state?.select?.card?.length"
-          style="text-align: center; color: #000"
+          style="text-align: center; color: #303133; text-decoration: underline"
           @click="$router.push('/binddep')"
         >
           继续添加兑换方式！
         </p>
+        <div
+          style="
+            margin: 10px auto 0;
+            width: 92%;
+            height: 40px;
+            background-color: #fed61f;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            font-size: 15px;
+            border-radius: 40px;
+            color: #303133;
+          "
+          @click="showPicker = false"
+        >
+          确定
+        </div>
       </div>
       <!--      <van-picker :columns="columns" @cancel="showPicker = false" @confirm="onConfirm" />-->
     </van-popup>
     <div
+      v-if="false"
       style="
         margin-top: 20px;
         display: flex;
@@ -189,6 +278,7 @@
       </el-button>
     </div>
     <div
+      v-if="false"
       style="
         margin-top: 20px;
         display: flex;
@@ -216,6 +306,7 @@
       </el-button>
     </div>
     <div
+      v-if="false"
       style="
         margin-top: 20px;
         display: flex;
@@ -241,52 +332,51 @@
         >成为会员(降低手续费)
       </el-button>
     </div>
-    <div style="padding: 10px; box-sizing: border-box; border-radius: 15px; overflow: hidden">
+    <div
+      style="padding: 10px; box-sizing: border-box; border-radius: 15px; overflow: hidden"
+      v-if="false"
+    >
       <img src="./images/duihuanyaoqiu.png" alt="" style="width: 100%" />
     </div>
-    <!--    <div style="padding: 10px 30px; font-size: 15px">-->
-    <!--      <p style="margin-bottom: 6px">兑换要求：</p>-->
-    <!--      <p style="margin-bottom: 6px">非会员兑换，需要50%手续费，手续费预留在账户，打款到账扣除</p>-->
-    <!--      <p style="margin-bottom: 6px">会员用户兑换，需要10%手续费，手续费预留在账户，打款到账扣除</p>-->
-    <!--      <p style="margin-bottom: 6px">兑换时间：中午12点&#45;&#45;下午17点。</p>-->
-    <!--      <p style="margin-bottom: 6px">兑换到账时间：1&#45;&#45;2小时审核过后，自动到账！</p>-->
-    <!--      <p style="margin-bottom: 6px">10个钻石起兑换，账户预留手续费！</p>-->
-    <!--      &lt;!&ndash;        <p style="margin-bottom: 6px">节假日正常兑换，全年无休！</p>&ndash;&gt;-->
-    <!--      &lt;!&ndash;        <p style="background-color: #fff; color: #000; border-radius: 10px; padding: 5px">&ndash;&gt;-->
-    <!--      &lt;!&ndash;          每日兑换的用户，强烈推荐大家进入主页官方聊天群使用元宝互转出售给收元宝的商人，元宝互转免手续费，这样相当于可以省去每天兑换的10%手续费！&ndash;&gt;-->
-    <!--      &lt;!&ndash;          日积月累下来，能省下很多费用！&ndash;&gt;-->
-    <!--      &lt;!&ndash;        </p>&ndash;&gt;-->
-    <!--    </div>-->
-    <!--      <span></span>-->
-    <!--      <el-button-->
-    <!--        class="w-100"-->
-    <!--        color="#00f7c4"-->
-    <!--        size="large"-->
-    <!--        style="-->
-    <!--          width: 80%;-->
-    <!--          border-radius: 15px;-->
-    <!--          margin-top: 20px !important;-->
-    <!--          color: #fff;-->
-    <!--          background-image: linear-gradient(to right, #ff8b6e, #ff625c);-->
-    <!--          border: 1px solid #ccc !important;-->
-    <!--        "-->
-    <!--        type="primary"-->
-    <!--        @click="$router.push('/binddep')"-->
-    <!--        >添加兑换方式-->
-    <!--      </el-button>-->
-
-    <!--        <van-button-->
-    <!--          style="margin-top: 100px; margin: 50px auto 30px; width: 80vw"-->
-    <!--          round-->
-    <!--          block-->
-    <!--          type="primary"-->
-    <!--          color="#01c5f0"-->
-    <!--          @click="goPay"-->
-    <!--          :loading="tixianLoading"-->
-    <!--          loading-text="加载中..."-->
-    <!--          :disabled="tixianLoading"-->
-    <!--          >申请兑换</van-button-->
-    <!--        >-->
+    <div
+      class="margin-top-20rpx"
+      style="
+        margin: 10px 15px 0px;
+        line-height: 25px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        padding: 10px;
+      "
+    >
+      <div>提现说明</div>
+      <div style="line-height: 10px">
+        <h5 style="color: rgb(0, 0, 0)">
+          <font face="Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif"
+            ><span style="font-size: 13px"><b>1、平台手续费</b></span></font
+          >
+        </h5>
+        <h5 style="color: rgb(0, 0, 0)">
+          <font face="Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif"
+            ><span style="font-size: 13px"><b>2、平台每日提现次数</b></span></font
+          >
+        </h5>
+        <h5 style="color: rgb(0, 0, 0)">
+          <font face="Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif"
+            ><span style="font-size: 13px"><b>3、最低提现金额</b></span></font
+          >
+        </h5>
+        <h5 style="color: rgb(0, 0, 0)">
+          <font face="Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif"
+            ><span style="font-size: 13px"><b>4、提现时间</b></span></font
+          >
+        </h5>
+        <h5 style="color: rgb(0, 0, 0)">
+          <font face="Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif"
+            ><span style="font-size: 13px"><b>5、后台添加编辑内容</b></span></font
+          >
+        </h5>
+      </div>
+    </div>
 
     <TipDialog
       v-model="showGonggaoOverlay"
@@ -421,7 +511,6 @@ const onSelect = (item) => {
     card_name = 'JD钱包'
   }
   selectName.value = card_name + item.name
-  showPicker.value = false
 }
 const bank = async () => {
   const { data: item } = await bank_list()
@@ -837,26 +926,133 @@ const deleteCard = (item, index) => {
 .withdraw-page {
   height: 100%;
   //background-color: #1f203d;
-  background: url('@/assets/img/main-bg.jpg') no-repeat;
-  background-size: 100% 100%;
+  //background: url('@/assets/img/main-bg.jpg') no-repeat;
+  background: #f4f4f4 url('https://lx.aosenn.com/h5/static/shouye/homepage_nav_bg_img@.png')
+    no-repeat;
+  background-size: 100% auto;
+  color: #303133;
+  padding-top: 50px;
 
   :deep(.van-nav-bar) {
-    //background: #65b63f !important;
+    background-color: #fed61f !important;
     .van-nav-bar__title {
-      color: #ffffff !important;
+      //color: #ffffff !important;
     }
 
     .van-nav-bar__text {
-      color: #fff !important;
+      //color: #fff !important;
     }
 
     .van-icon {
-      color: #fff;
+      color: #000 !important;
+      font-size: 18px !important;
     }
   }
   :deep(.van-hairline--bottom) {
     &:after {
       border-bottom: none;
+    }
+  }
+
+  .user-money {
+    margin: 15px 16px 14px 16px;
+    display: flex;
+    color: #000;
+    align-items: center;
+    position: relative;
+    .user-money-item1 {
+      display: flex;
+      flex-direction: column;
+
+      .user-money-item11 {
+        font-size: 13px;
+        margin-bottom: 4px;
+      }
+      .user-money-item12 {
+        font-size: 23px;
+        font-weight: 700;
+      }
+    }
+
+    .user-money-item2 {
+      margin-left: auto;
+      padding: 4px 15px;
+      border: 1px solid #000;
+      border-radius: 50px;
+    }
+  }
+
+  .withdraw-container {
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 15px;
+    margin: 10px 15px 0 15px;
+    position: relative;
+    .withdraw-price {
+      position: relative;
+      border-bottom: 1px solid hsla(0, 0%, 46.7%, 0.25);
+      margin-bottom: 10px;
+
+      .title {
+        font-size: 15px;
+        font-weight: 700;
+        text-align: left;
+      }
+
+      .input-price {
+        margin-top: 20px;
+        height: 25px;
+        padding-left: 33px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        .div-wrapper {
+          display: flex;
+          position: relative;
+          width: 100%;
+          height: 100%;
+          flex-direction: column;
+          justify-content: center;
+
+          input {
+            width: 100%;
+            position: relative;
+            display: block;
+            height: 100%;
+            background: none;
+            color: inherit;
+            opacity: 1;
+            font: inherit;
+            line-height: inherit;
+            letter-spacing: inherit;
+            text-align: inherit;
+            text-indent: inherit;
+            text-transform: inherit;
+            text-shadow: inherit;
+            outline: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            text-decoration: inherit;
+          }
+        }
+      }
+
+      .price-icon {
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        font-size: 20px;
+        height: 25px;
+        line-height: 25px;
+        color: #000;
+      }
+      .price-btn {
+        position: absolute;
+        bottom: 5px;
+        right: 0;
+        font-size: 14px;
+      }
     }
   }
 

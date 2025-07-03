@@ -364,8 +364,7 @@ export function _notice(val) {
   // }, 2000)
 
   showToast({
-    message: val,
-    icon: 'warning'
+    message: val
   })
 }
 

@@ -590,7 +590,9 @@ const deleteCard = (item, index) => {
 
 .withdraw-page {
   height: 100%;
-  background: url('@/assets/img/main-bg.jpg') no-repeat;
+  //background: url('@/assets/img/main-bg.jpg') no-repeat;
+  background-color: #f7d598;
+
   background-size: 100% 100%;
   :deep(.van-nav-bar) {
     //background: #65b63f !important;
@@ -604,6 +606,14 @@ const deleteCard = (item, index) => {
 
     .van-icon {
       color: #fff;
+    }
+  }
+  :deep(.t-tabs__nav) {
+    .t-tabs__wrapper {
+      background-color: #fdfae9 !important;
+    }
+    .t-tabs__scroll {
+      background-color: #fdfae9 !important;
     }
   }
   :deep(.van-hairline--bottom) {

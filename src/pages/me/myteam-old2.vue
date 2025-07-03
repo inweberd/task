@@ -25,7 +25,7 @@
         <!--      </p>-->
         <div class="info-r">
           <div class="t">
-            <!--            <img src="./images/icon-rz.png" alt="" />-->
+            <img src="./images/icon-rz.png" alt="" />
             <template v-if="userInfo.nickname"> {{ userInfo.nickname }}</template>
             <template v-else>
               {{
@@ -43,82 +43,171 @@
           <!--            <p>邀请码 : {{ userInfo?.result?.invite?.code }}</p>-->
           <!--          </div>-->
           <div class="b">
-            <p>{{ userInfo?.result?.staff?.name || '暂无会员' }}</p>
+            <p>代理等级 : {{ userInfo?.result?.staff?.name || '暂无会员' }}</p>
           </div>
         </div>
       </div>
 
-      <div class="sycontent">
-        <div class="sycontent-tltle">
-          <div class="sycontent-tltle1">账户信息</div>
-          <div class="sycontent-tltle2" @click="$router.push('/wallet')">
-            查看明细<van-icon name="arrow" />
-          </div>
+      <div class="num-info" v-if="false">
+        <div class="top">
+          <img src="./images/team-users.png" alt="" />
+          <span>团队总人数：{{ memberInfo.team?.total || 0 }}</span>
+          <span style="margin-left: 10px">团队会员人数：{{ memberInfo.team?.vip || 0 }}</span>
         </div>
-        <div class="table">
+        <div class="bottom">
           <div>
-            <p style="color: rgb(203, 166, 126); font-size: 13px">团队总业绩</p>
-            <p style="color: rgb(105, 46, 4); font-size: 22px">
-              {{ memberInfo.team?.deposit || 0 }}
-            </p>
+            <div>{{ memberInfo.first?.total || 0 }}</div>
+            <div>直推会员人数</div>
           </div>
           <div>
-            <p style="color: rgb(203, 166, 126); font-size: 13px">团队人数</p>
-            <p style="color: rgb(105, 46, 4); font-size: 22px">{{ memberInfo.team?.total || 0 }}</p>
+            <div>{{ memberInfo.first?.vip || 0 }}</div>
+            <div>有效会员</div>
           </div>
           <div>
-            <p style="color: rgb(203, 166, 126); font-size: 13px">今日收益</p>
-            <p style="color: rgb(105, 46, 4); font-size: 22px">{{ userIncomeInfo.today || 0 }}</p>
+            <div>{{ memberInfo.team?.deposit || 0 }}</div>
+            <div>团队业绩</div>
           </div>
-        </div>
-      </div>
-      <div class="team-box-b">
-        <div class="team-box-tle">今日团队订单数据</div>
-        <div class="team-box-list">
-          <div class="team-box-list-item">
-            <div class="team-box-list-item1">团队会员</div>
-            <div class="team-box-list-item2">{{ memberInfo.team?.vip || 0 }}</div>
+          <div>
+            <div>{{ memberInfo.team?.withdraw || 0 }}</div>
+            <div>团队兑换</div>
           </div>
-          <div class="team-box-list-item">
-            <div class="team-box-list-item1">直推总人数</div>
-            <div class="team-box-list-item2">{{ memberInfo.first?.total || 0 }}</div>
-          </div>
-          <div class="team-box-list-item">
-            <div class="team-box-list-item1">直推会员人数</div>
-            <div class="team-box-list-item2">{{ memberInfo.first?.vip || 0 }}</div>
-          </div>
-          <div class="team-box-list-item">
-            <div class="team-box-list-item1">团队总兑换</div>
-            <div class="team-box-list-item2">{{ memberInfo.team?.withdraw || 0 }}</div>
-          </div>
-          <div class="team-box-list-item">
-            <div class="team-box-list-item1">直推有效下级</div>
-            <div class="team-box-list-item2">{{ memberInfo.team?.direct || 0 }}</div>
-          </div>
-          <!--          <div class="team-box-list-item">-->
-          <!--            <div class="team-box-list-item1">收益(元)</div>-->
-          <!--            <div class="team-box-list-item2">0</div>-->
-          <!--          </div>-->
         </div>
       </div>
 
+      <div class="num-box" v-if="false">
+        <div>
+          <div>团队总人数</div>
+          <div>{{ memberInfo.team?.total || 0 }}</div>
+        </div>
+        <div>
+          <div>
+            <div>直推总人数</div>
+            <div>{{ memberInfo.first?.total || 0 }}</div>
+          </div>
+          <div>
+            <div>团队总业绩</div>
+            <div>{{ memberInfo.team?.deposit || 0 }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="num-box" v-if="false">
+        <div>
+          <div>团队会员人数</div>
+          <div>{{ memberInfo.team?.vip || 0 }}</div>
+        </div>
+        <div>
+          <div>
+            <div>直推会员数</div>
+            <div>{{ memberInfo.first?.vip || 0 }}</div>
+          </div>
+          <div>
+            <div>团队总兑换</div>
+            <div>{{ memberInfo.team?.withdraw || 0 }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!--      <div class="tuandui">-->
+      <!--        <div class="tuandui-item">-->
+      <!--          <p>团队总业绩</p>-->
+      <!--          <p>{{ memberInfo.team?.deposit || 0 }} <span class="unit">元</span></p>-->
+      <!--        </div>-->
+      <!--        <div class="tuandui-item">-->
+      <!--          <p>团队总兑换</p>-->
+      <!--          <p>{{ memberInfo.team?.withdraw || 0 }} <span class="unit">元</span></p>-->
+      <!--        </div>-->
+      <!--      </div>-->
+
+      <div v-if="false" class="tuandui">
+        <div class="tuandui-item">
+          <p>直推总人数</p>
+          <p>{{ memberInfo.first?.total || 0 }}</p>
+        </div>
+        <div class="tuandui-item">
+          <p>直推会员人数</p>
+          <p>{{ memberInfo.first?.vip || 0 }}</p>
+        </div>
+      </div>
+      <!--    <Loading v-if="loading" />-->
       <div>
-        <div class="stats"></div>
+        <!--      <div class="summary">-->
+        <!--        <div class="summary-item">-->
+        <!--          <div class="amount">￥{{ format(memberInfo?.wallet?.deposit?.money) }}</div>-->
+        <!--          <div class="label">团队总充值（元）</div>-->
+        <!--        </div>-->
+        <!--        <div class="summary-item">-->
+        <!--          <div class="amount">￥{{ format(memberInfo?.wallet?.withdraw?.money) }}</div>-->
+        <!--          <div class="label">团队总兑换（元）</div>-->
+        <!--        </div>-->
+        <!--      </div>-->
+
+        <div class="stats">
+          <div class="stat-item">
+            <div class="label">团队总人数</div>
+            <div class="number">
+              {{ memberInfo.team?.total || 0 }}
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="label">团队会员人数</div>
+            <div class="number">{{ memberInfo.team?.vip || 0 }}</div>
+          </div>
+          <!--          <div class="stat-item">-->
+          <!--            <div class="label">团队有效人数</div>-->
+          <!--            <div class="label">下级参与天梯到7级视为有效</div>-->
+          <!--            <div class="number">{{ memberInfo.team?.users || 0 }}人</div>-->
+          <!--          </div>-->
+          <div class="stat-item" style="width: 100%">
+            <div class="label">直推有效下级</div>
+            <div class="label">下级参与天梯到7级视为有效</div>
+            <div class="number">{{ memberInfo.team?.direct || 0 }}人</div>
+            <!--            <div class="number">(待更新)</div>-->
+          </div>
+          <div class="stat-item">
+            <div class="label">直推总人数</div>
+            <div class="number">{{ memberInfo.first?.total || 0 }}</div>
+          </div>
+          <div class="stat-item">
+            <div class="label">直推会员人数</div>
+            <div class="number">{{ memberInfo.first?.vip || 0 }}</div>
+          </div>
+          <!--        <div class="stat-item">-->
+          <!--          <div class="number">{{ memberInfo.first?.rebate || 0 }}</div>-->
+          <!--          <div class="label">直推总收益</div>-->
+          <!--        </div>-->
+          <!--        <div class="stat-item">-->
+          <!--          <div class="number">{{ memberInfo.team?.rebate || 0 }}</div>-->
+          <!--          <div class="label">团队总收益</div>-->
+          <!--        </div>-->
+          <div class="stat-item">
+            <div class="label">团队总业绩(钻石)</div>
+            <div class="number">{{ memberInfo.team?.deposit || 0 }}</div>
+          </div>
+          <div class="stat-item">
+            <div class="label">团队总兑换(钻石)</div>
+            <div class="number">{{ memberInfo.team?.withdraw || 0 }}</div>
+          </div>
+          <div class="stat-item" style="width: 100%">
+            <div class="label">今日我的收益</div>
+            <div class="number">{{ userIncomeInfo.today || 0 }}钻石</div>
+          </div>
+          <!--        <div class="stat-item">-->
+          <!--          <div class="number">{{ userIncomeInfo.total || 0 }}</div>-->
+          <!--          <div class="label">历史收益</div>-->
+          <!--        </div>-->
+          <!--        <div class="stat-item">-->
+          <!--          <div class="number">{{ 0 }}</div>-->
+          <!--          <div class="label">股东晋级奖励</div>-->
+          <!--        </div>-->
+        </div>
         <!--      <van-search v-model="searchInfo.phone" placeholder="请输入要查询的手机号码" />-->
         <!--      <van-button color="#01c5f0" style="width: 100%; border-radius: 20px">直推人员列表</van-button>-->
-        <div
-          style="
-            padding: 10px;
-            background-color: #ffefd6;
-            margin: 15px;
-            border-radius: 15px 10px 0 0;
-          "
-        >
+        <div style="padding: 10px; background-color: #fff; margin: 15px; border-radius: 15px">
           <!--        <div style="font-size: 22px; color: #fff; font-weight: bolder">团队列表</div>-->
           <van-tabs
             v-model:active="active"
             title-active-color="#000"
-            color="#fe694b"
+            color="#2a84c3"
             @change="tabChange"
           >
             <van-tab :title="'1代(' + (teamIds['one']?.length || 0) + ')'" name="one" />
@@ -142,12 +231,12 @@
           <!--            &lt;!&ndash;                        />&ndash;&gt;-->
           <!--          </t-tabs>-->
           <!--        </div>-->
-          <!--          <van-search v-model="searchId" placeholder="请输入下级ID" @search="onSearch" />-->
+          <van-search v-model="searchId" placeholder="请输入下级ID" @search="onSearch" />
           <van-list
             v-model:loading="loading"
             :finished="finished"
             finished-text="没有更多了"
-            style="margin-top: 10px"
+            style="margin-top: 20px"
             @load="getDataList"
           >
             <div v-for="item in dataList" class="card">
@@ -257,7 +346,7 @@
                           style="
                             font-size: 14px;
                             border: 1px solid #ccc;
-                            background-color: #ff6000;
+                            background-color: #ff8b19;
                             color: #fff;
                             border-radius: 10px;
                             padding: 2px 5px;
@@ -449,31 +538,24 @@ onActivated(() => {
 .team-benefits {
   height: 100%;
   overflow-y: auto;
-  background-color: rgb(247, 213, 152);
-  //background: url('@/assets/img/main-bg.jpg') no-repeat left top / 100% 100%;
+  background-color: #f7fcfa;
+  background: url('@/assets/img/main-bg.jpg') no-repeat left top / 100% 100%;
 
   :deep(.van-nav-bar) {
-    background-color: #f6d598 !important;
-
     .van-icon {
-      color: #fff !important;
+      color: #000 !important;
     }
   }
 
   :deep(.van-nav-bar__content) {
+    background-color: #fff;
     .van-nav-bar__title {
-      color: #fff !important;
+      color: #000 !important;
     }
   }
 
   :deep(.van-field__control) {
     color: #000 !important;
-  }
-
-  :deep(.van-tabs) {
-    .van-tabs__nav {
-      background-color: #fdfae9 !important;
-    }
   }
 }
 
@@ -554,7 +636,7 @@ onActivated(() => {
 
 .card-body {
   padding: 10px;
-  background-color: #fdfae9;
+  background-color: #f6fafb;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -629,9 +711,7 @@ onActivated(() => {
 
   .info {
     display: flex;
-    padding: 20px 20px 30px;
-    background: url('https://lx.aosenn.com/h5/static/find/teambj.png') no-repeat left top / 100%
-      100%;
+    padding: 20px 20px 0;
 
     .avatar {
       img {
@@ -650,9 +730,8 @@ onActivated(() => {
       .t {
         display: flex;
         align-items: center;
-        color: #303133;
+        color: #fff;
         font-size: 22px;
-        font-weight: 700;
         img {
           margin-right: 8px;
           width: 20px;
@@ -665,111 +744,11 @@ onActivated(() => {
 
       .b {
         display: flex;
-        font-size: 12px;
-        background-color: #ff6000;
         color: #fff;
-        border-radius: 18px;
-        margin-top: 4px;
-        align-items: center;
-        justify-content: center;
-        width: fit-content;
-        padding: 2px 10px;
+        fonnt-size: 12px;
       }
     }
   }
-
-  .sycontent {
-    position: relative;
-    width: 100%;
-    margin: 0 auto 10px auto;
-    background-repeat: no-repeat;
-    background-size: 100% 110px;
-    box-sizing: border-box;
-    padding: 0 4%;
-
-    .sycontent-tltle {
-      display: flex;
-      padding: 0 15px;
-      box-shadow: 0 2px 6px #f2debe;
-      color: #a17545;
-      background-color: #ffefd6;
-      height: 40px;
-      align-items: center;
-      border-top-right-radius: 7px;
-      border-top-left-radius: 7px;
-
-      .sycontent-tltle2 {
-        display: flex;
-        align-items: center;
-        margin-left: auto;
-      }
-    }
-    .table {
-      display: flex;
-      justify-content: center;
-      padding: 20px 0 20px 0;
-      background-color: #fdfae9;
-      border-bottom-right-radius: 7px;
-      border-bottom-left-radius: 7px;
-
-      & > div {
-        width: 50%;
-        p {
-          padding: 5px 0;
-          text-align: center;
-        }
-      }
-    }
-  }
-
-  .team-box-b {
-    width: 100%;
-    padding: 0 4%;
-    display: flex;
-    font-size: 14px;
-    box-sizing: border-box;
-    flex-direction: column;
-    margin: 10px 0;
-    position: relative;
-
-    .team-box-tle {
-      height: 40px;
-      line-height: 40px;
-      position: relative;
-      box-sizing: border-box;
-      padding-left: 15px;
-      display: flex;
-      background-image: url(https://lx.aosenn.com/h5/static/find/cloumnbj1.png);
-      background-size: 100% 100%;
-      color: #fff;
-    }
-    .team-box-list {
-      display: flex;
-      background-color: #ffefd6;
-      flex-wrap: wrap;
-      padding: 6px 0;
-
-      .team-box-list-item {
-        width: 33%;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        .team-box-list-item1 {
-          line-height: 32px;
-          font-size: 13px;
-          color: #cba67e;
-        }
-        .team-box-list-item2 {
-          font-weight: 700;
-          font-size: 14px;
-          color: #692e04;
-        }
-      }
-    }
-  }
-
   .num-info {
     margin: 14px;
     background: url('./images/team_bg.jpg') no-repeat;

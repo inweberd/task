@@ -11,9 +11,7 @@
           <img src="https://lx.aosenn.com/h5/static/tabbar/qw11.png" v-if="currentTab === 1" />
           <img src="https://lx.aosenn.com/h5/static/tabbar/q11.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 1 ? (currentTab === 1 ? '#ccc' : '#fed61f') : '' }">
-          首页
-        </div>
+        <div :style="{ color: currentTab === 1 ? '#fed61f' : '#ccc' }">首页</div>
       </div>
     </div>
     <!--    <div class="l-button" @click="refresh(2)">-->
@@ -37,26 +35,36 @@
     <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">棋牌娱乐</div>-->
     <!--      </div>-->
     <!--    </div>-->
-    <!--    <div class="l-button" @click="$router.push('/jubaopen')">-->
-    <!--      <div class="add-ctn">-->
-    <!--        <div class="img-box">-->
-    <!--          &lt;!&ndash;          <img src="@/assets/icon/3-active.png" alt="" class="add" v-if="currentTab === 2" />&ndash;&gt;-->
-    <!--          &lt;!&ndash;          <img src="@/assets/icon/3.png" alt="" class="add" v-else />&ndash;&gt;-->
-    <!--          <img src="@/assets/icon/10.png" alt="" class="add" v-if="currentTab === 2" />-->
-    <!--          <img src="@/assets/icon/10.png" alt="" class="add" v-else />-->
-    <!--        </div>-->
-    <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">聚宝盆</div>-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <div class="l-button" @click="$router.push('/publish')">
+      <div class="add-ctn">
+        <div class="img-box">
+          <!--          <img src="@/assets/icon/3-active.png" alt="" class="add" v-if="currentTab === 2" />-->
+          <!--          <img src="@/assets/icon/3.png" alt="" class="add" v-else />-->
+          <img
+            src="https://lx.aosenn.com/h5/static/tabbar/03.png"
+            alt=""
+            class="add"
+            v-if="currentTab === 2"
+          />
+          <img src="https://lx.aosenn.com/h5/static/tabbar/04.png" alt="" class="add" v-else />
+        </div>
+        <div :style="{ color: currentTab === 2 ? '#fed61f' : '#ccc' }">广告发布</div>
+      </div>
+    </div>
     <!--    <div class="l-button" @click="tab(5)">-->
     <!--      <div class="add-ctn">-->
     <!--        <div class="img-box">-->
     <!--          &lt;!&ndash;          <img src="@/assets/icon/4-active.png" alt="" class="add" v-if="currentTab === 5" />&ndash;&gt;-->
     <!--          &lt;!&ndash;          <img src="@/assets/icon/i4.png" alt="" class="add" v-else />&ndash;&gt;-->
-    <!--          <img src="@/assets/icon/12.png" alt="" class="add" v-if="currentTab === 2" />-->
-    <!--          <img src="@/assets/icon/12.png" alt="" class="add" v-else />-->
+    <!--          <img-->
+    <!--            src="https://lx.aosenn.com/h5/static/tabbar/01.png"-->
+    <!--            alt=""-->
+    <!--            class="add"-->
+    <!--            v-if="currentTab === 5"-->
+    <!--          />-->
+    <!--          <img src="https://lx.aosenn.com/h5/static/tabbar/02.png" alt="" class="add" v-else />-->
     <!--        </div>-->
-    <!--        <div :style="{ color: currentTab === 5 ? '#fff' : '' }">会员</div>-->
+    <!--        <div :style="{ color: currentTab === 5 ? '#fed61f' : '#ccc' }">会员</div>-->
     <!--      </div>-->
     <!--    </div>-->
     <div class="l-button" @click="tab(6)">
@@ -70,9 +78,7 @@
           />
           <img src="https://lx.aosenn.com/h5/static/tabbar/qw4.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 6 ? (currentTab === 1 ? '#ccc' : '#fed61f') : '' }">
-          我
-        </div>
+        <div :style="{ color: currentTab === 6 ? '#fed61f' : '#ccc' }">我</div>
       </div>
       <!-- <div class="badge">2</div> -->
     </div>

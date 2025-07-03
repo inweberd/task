@@ -143,15 +143,17 @@ onMounted(() => {
   margin-top: 10px;
 }
 .container {
-  background-color: #fff;
+  background-color: var(--wallet-bg);
   margin: 10px;
   border-radius: 10px;
   color: #000;
 }
 
 .login {
-  background: url('@/assets/img/main-bg.jpg');
-  background-size: 100% 100%;
+  //background: url('@/assets/img/main-bg.jpg');
+  //background-size: 100% 100%;
+  background-color: #f7d598;
+
   height: 100%;
   overflow-y: auto;
   :deep(.van-nav-bar) {

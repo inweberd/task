@@ -15,19 +15,28 @@
         <div style="height: 65px"></div>
         <div class="userA">
           <div class="nav_active">
-            <img src="https://lx.aosenn.com/assets/img/avatar.png" draggable="false" />
+            <img :src="userInfo.avatar || defaultAvatar" />
           </div>
           <div class="nav_title">
             <div class="nav_title_img">
-              <span>dong</span>
+              <span>
+                <template v-if="userInfo.nickname"> {{ userInfo.nickname }}</template>
+                <template v-else>
+                  {{
+                    userInfo.phone
+                      ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
+                      : ''
+                  }}
+                </template>
+              </span>
               <img
                 src="https://lx.aosenn.com//uploads/20230313/19d24c7d60f97599983aa79a7364aa4d.png"
                 draggable="false"
               />
             </div>
             <div class="nav_title_tel">
-              绑定手机：187****3130
-              <span style="margin-left: 7px">邀请ID:16931</span>
+              我的ID： {{ userInfo?.id }}
+              <span style="margin-left: 7px">邀请ID:{{ userInfo?.result?.invite?.code }}</span>
             </div>
           </div>
         </div>
@@ -57,20 +66,22 @@
         <div class="function-area renwu">
           <div class="list">
             <div class="items">
-              <p>0<font>人</font></p>
-              <p>累计推广</p>
+              <p>
+                {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}
+              </p>
+              <p>通用钻石</p>
             </div>
             <div class="items">
-              <p>0<font>人</font></p>
-              <p>今日推广</p>
+              <p>{{ (userIncomeInfo.today || 0).toFixed(2) }}</p>
+              <p>今日收益</p>
             </div>
             <div class="items">
-              <p>0<font>个</font></p>
-              <p>推广订单</p>
+              <p>{{ (userIncomeInfo.total || 0).toFixed(4) }}</p>
+              <p>历史收益</p>
             </div>
             <div class="items">
-              <p>0<font>元</font></p>
-              <p>推广收益</p>
+              <p>{{ walletInfo?.amount || 0 }}</p>
+              <p>绑钻数量</p>
             </div>
           </div>
         </div>
@@ -214,12 +225,78 @@
           <div class="serve">
             <div
               class="serveItem"
+              @click="$router.push('/jubaopen')"
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
             >
               <div style="width: 30px; height: 30px">
-                <img src="https://lx.aosenn.com/h5/static/user/fabuo.png" draggable="false" />
+                <!----><img src="./images/33.png" draggable="false" />
               </div>
-              <div style="font-size: 13px">发布悬赏</div>
+              <div style="font-size: 13px">钻石天梯</div>
+              <!----><!---->
+            </div>
+            <div
+              class="serveItem"
+              @click="$router.push('/invest')"
+              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
+            >
+              <div style="width: 30px; height: 30px">
+                <img src="./images/huiyuantequan.png" draggable="false" />
+              </div>
+              <div style="font-size: 13px">会员特权</div>
+              <!----><!---->
+            </div>
+            <div
+              class="serveItem"
+              @click="$router.push('/teamStat')"
+              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
+            >
+              <div style="width: 30px; height: 30px">
+                <!----><img src="./images/66.png" draggable="false" />
+              </div>
+              <div style="font-size: 13px">我的团队</div>
+              <!----><!---->
+            </div>
+            <div
+              class="serveItem"
+              @click="$router.push('/wallet')"
+              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
+            >
+              <div style="width: 30px; height: 30px">
+                <!----><img src="./images/77.png" draggable="false" />
+              </div>
+              <div style="font-size: 13px">收入明细</div>
+              <!----><!---->
+            </div>
+            <div
+              class="serveItem"
+              @click="$router.push('/conversion')"
+              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
+            >
+              <div style="width: 30px; height: 30px">
+                <!----><img src="./images/22.png" draggable="false" />
+              </div>
+              <div style="font-size: 13px">转赠</div>
+              <!----><!---->
+            </div>
+            <div
+              class="serveItem"
+              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
+            >
+              <div style="width: 30px; height: 30px">
+                <!----><img src="./images/jiaoliu.png" draggable="false" />
+              </div>
+              <div style="font-size: 13px">联系客服</div>
+              <!----><!---->
+            </div>
+            <div
+              class="serveItem"
+              @click="goDownload"
+              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
+            >
+              <div style="width: 30px; height: 30px">
+                <!----><img src="./images/99.png" draggable="false" />
+              </div>
+              <div style="font-size: 13px">下载APP</div>
               <!----><!---->
             </div>
             <div
@@ -232,16 +309,7 @@
               <div style="font-size: 13px">悬赏管理</div>
               <!----><!---->
             </div>
-            <div
-              class="serveItem"
-              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
-            >
-              <div style="width: 30px; height: 30px">
-                <!----><img src="https://lx.aosenn.com/h5/static/user/w2.png" draggable="false" />
-              </div>
-              <div style="font-size: 13px">我的团队</div>
-              <!----><!---->
-            </div>
+
             <div
               class="serveItem"
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
@@ -252,16 +320,7 @@
               <div style="font-size: 13px">分享收徒</div>
               <!----><!---->
             </div>
-            <div
-              class="serveItem"
-              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
-            >
-              <div style="width: 30px; height: 30px">
-                <!----><img src="https://lx.aosenn.com/h5/static/user/ww4.png" draggable="false" />
-              </div>
-              <div style="font-size: 13px">举报维权</div>
-              <!----><!---->
-            </div>
+
             <div
               class="serveItem"
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
@@ -272,36 +331,7 @@
               <div style="font-size: 13px">意见反馈</div>
               <!----><!---->
             </div>
-            <div
-              class="serveItem"
-              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
-            >
-              <div style="width: 30px; height: 30px">
-                <!----><img src="https://lx.aosenn.com/h5/static/user/ww6.png" draggable="false" />
-              </div>
-              <div style="font-size: 13px">我的店铺</div>
-              <!----><!---->
-            </div>
-            <div
-              class="serveItem"
-              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
-            >
-              <div style="width: 30px; height: 30px">
-                <!----><img src="https://lx.aosenn.com/h5/static/user/ww7.png" draggable="false" />
-              </div>
-              <div style="font-size: 13px">帮助中心</div>
-              <!----><!---->
-            </div>
-            <div
-              class="serveItem"
-              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
-            >
-              <div style="width: 30px; height: 30px">
-                <!----><img src="https://lx.aosenn.com/h5/static/user/ww8.png" draggable="false" />
-              </div>
-              <div style="font-size: 13px">联系客服</div>
-              <!----><!---->
-            </div>
+
             <div
               class="serveItem"
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
@@ -322,62 +352,13 @@
               <div style="font-size: 13px">我的导师</div>
               <!----><!---->
             </div>
-            <div
-              class="serveItem"
-              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
-            >
-              <div style="width: 30px; height: 30px">
-                <!----><img src="https://lx.aosenn.com/h5/static/user/ww11.png" draggable="false" />
-              </div>
-              <div style="font-size: 13px">下载APP</div>
-              <!----><!---->
-            </div>
           </div>
         </div>
       </div>
       <!----><!---->
     </div>
-    <div class="info">
-      <div class="avatar" @click="renzheng(userInfo.avatar)">
-        <img :src="userInfo.avatar || defaultAvatar" />
-        <!--        <div v-if="!userInfo.avatar" style="color: #999">点击更改头像</div>-->
-      </div>
-      <!--      <p-->
-      <!--        v-if="showRenzheng"-->
-      <!--        style="color: red; width: 100%; text-align: center; transform: translateY(-8px)"-->
-      <!--      >-->
-      <!--        点击头像可更换微信微信头像-->
-      <!--      </p>-->
+    <div class="info" v-if="false">
       <div class="info-r" style="position: relative">
-        <!--        <div class="edit" style="position: absolute; right: -30px; top: 0px; color: #fff">-->
-        <!--          <van-button-->
-        <!--            color="linear-gradient(to right, #fb5b4b, #9c38e5)"-->
-        <!--            @click="go('/editInfo')"-->
-        <!--            style="height: 25px"-->
-        <!--          >-->
-        <!--            修改昵称-->
-        <!--          </van-button>-->
-        <!--        </div>-->
-        <div class="t">
-          <template v-if="userInfo.nickname"> {{ userInfo.nickname }}</template>
-          <template v-else>
-            {{
-              userInfo.phone
-                ? userInfo.phone.substring(0, 3) + '****' + userInfo.phone.substring(7)
-                : ''
-            }}
-          </template>
-        </div>
-        <div class="c">
-          <!--          <p>上级会员ID : {{ userInfo?.invite_id }}</p>-->
-          <p>我的ID : {{ userInfo?.id }}</p>
-        </div>
-        <div class="b">
-          <p>我的邀请码 : {{ userInfo?.result?.invite?.code }}</p>
-        </div>
-        <!--        <div class="b">-->
-        <!--          <p>我的团队等级 : {{ walletInfo?.star || 0 }}星</p>-->
-        <!--        </div>-->
         <div class="b">
           <p>代理等级 : {{ userInfo?.result?.staff?.name || '暂无会员' }}</p>
         </div>
@@ -403,138 +384,9 @@
         top: 1120px;
         z-index: 2;
       "
-    >
-      <div class="money-box">
-        <div class="total">
-          <div class="l">
-            <div class="txt1">通用钻石:</div>
-            <div class="txt2">
-              {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}
-            </div>
-          </div>
-          <div class="r"></div>
-        </div>
-        <div class="total">
-          <div class="l">
-            <div class="txt1">今日已获得钻石:</div>
-            <div class="txt2">
-              {{ (userIncomeInfo.today || 0).toFixed(2) }}
-            </div>
-          </div>
-        </div>
-        <div class="total">
-          <div class="l">
-            <div class="txt1">历史累计获得钻石:</div>
-            <div class="txt2">
-              {{ (userIncomeInfo.total || 0).toFixed(4) }}
-            </div>
-          </div>
-        </div>
-        <div class="total">
-          <div class="l">
-            <div class="txt1">绑钻数量:</div>
-            <div class="txt2">
-              {{ walletInfo?.amount || 0 }}
-            </div>
-          </div>
-          <div class="r">
-            <el-button
-              @click="$router.push('/recharge')"
-              style="border-radius: 15px; color: #fff; font-weight: bolder"
-              type="primary"
-            >
-              购买绑钻
-            </el-button>
-            <el-button
-              @click="$router.push('/invest')"
-              style="border-radius: 15px; color: #fff; font-weight: bolder"
-              type="primary"
-              >兑换会员
-            </el-button>
-          </div>
-        </div>
-        <div class="border" v-if="false"></div>
-        <div class="border2" v-if="false"></div>
-        <div class="money-info" v-if="false">
-          <p>
-            <span class="title">今日已获得钻石</span>
-            <span class="num">{{ (userIncomeInfo.today || 0).toFixed(4) }}</span>
-          </p>
-          <p>
-            <span class="title">历史累计获得钻石</span>
-            <span class="num">{{ (userIncomeInfo.total || 0).toFixed(4) }}</span>
-          </p>
-          <p>
-            <span class="title">绑钻数量</span>
-            <span class="num">{{ walletInfo?.amount || 0 }}</span>
-          </p>
-        </div>
-        <div>
-          <img src="" alt="" />
-        </div>
-      </div>
-    </div>
+    ></div>
 
     <div class="container">
-      <img
-        src="./images/fenxiangzhuanqian.png"
-        alt=""
-        style="width: 100%"
-        @click="$router.push('/me/my-card')"
-      />
-      <div class="shionggongju">
-        <div class="title">实用工具</div>
-        <div class="list">
-          <div class="item" @click="$router.push('/jubaopen')">
-            <img src="./images/33.png" alt="" />
-            <span>钻石天梯</span>
-          </div>
-          <div class="item" @click="$router.push('/invest')">
-            <img src="./images/huiyuantequan.png" alt="" />
-            <span>会员特权</span>
-          </div>
-          <div class="item">
-            <img src="./images/66.png" alt="" @click="$router.push('/teamStat')" />
-            <span>我的团队</span>
-          </div>
-          <div class="item">
-            <img src="./images/77.png" alt="" @click="$router.push('/wallet')" />
-            <span>收入明细</span>
-          </div>
-          <div class="item" @click="$router.push('/conversion')">
-            <img src="./images/22.png" alt="" />
-            <span>转赠</span>
-          </div>
-          <!--          <div class="item">-->
-          <!--            <img src="./images/44.png" alt="" @click="$router.push('/dep')" />-->
-          <!--            <span>兑换</span>-->
-          <!--          </div>-->
-          <div class="item">
-            <img src="./images/99.png" alt="" @click="goDownload" />
-            <span>下载APP</span>
-          </div>
-
-          <div class="item" @click="showGonggaoOverlay = true">
-            <img src="./images/jiaoliu.png" alt="" />
-            <span>官方海鸥群</span>
-          </div>
-          <div class="item">
-            <img src="./images/55.png" alt="" @click="goQQ" />
-            <span>钻石qq黑市交易</span>
-          </div>
-
-          <div class="item" style="flex: 0 0 35%">
-            <img
-              style="width: 100%; height: 90%; margin-left: 10px"
-              @click="$router.push('/me/my-card')"
-              src="./images/fenxianganniu.png"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
-      <div class="chongzhiandtixian"></div>
-
       <!--      <el-button-->
       <!--        class="w-100"-->
       <!--        color="#00f7c4"-->
@@ -1402,88 +1254,6 @@ onDeactivated(() => {
       }
     }
   }
-  .money-box {
-    z-index: 9;
-    background-repeat: no-repeat;
-    background-image: url('./images/money-bg.png');
-    //background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
-
-    background-size: 100% 100%;
-    //height: 150px;
-    overflow: hidden;
-    border-radius: 10px;
-
-    .total {
-      color: #fff;
-      margin-top: 20px;
-      text-align: center;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 10px;
-      .l {
-        display: flex;
-        .txt1 {
-          font-size: 16px;
-        }
-
-        .txt2 {
-          margin-left: 15px;
-          font-size: 22px;
-
-          .eye {
-            width: 20px;
-            margin-left: 4px;
-          }
-        }
-      }
-      .r {
-      }
-    }
-
-    .border {
-      height: 35px;
-      width: 1px;
-      background-color: #eee;
-      position: absolute;
-      left: 33%;
-      transform: translateX(-50%);
-      bottom: 30px;
-    }
-
-    .border2 {
-      height: 35px;
-      width: 1px;
-      background-color: #eee;
-      position: absolute;
-      left: 66%;
-      transform: translateX(-50%);
-      bottom: 30px;
-    }
-
-    .money-info {
-      margin-top: 20px;
-      display: flex;
-      color: #fff;
-      justify-content: space-around;
-      width: 100%;
-
-      & > p {
-        width: 52%;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-
-        .title {
-          margin-bottom: 10px;
-        }
-
-        .num {
-          font-size: 20px;
-        }
-      }
-    }
-  }
 
   .container {
     background-color: #f5f5f5;
@@ -1527,119 +1297,6 @@ onDeactivated(() => {
           font-weight: bolder;
           font-size: 18px;
           padding-right: 6px;
-        }
-      }
-    }
-
-    .chongzhiandtixian {
-      margin-top: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      .chongzhiyue {
-        flex: 1;
-        font-size: 16px;
-        color: #fff;
-        display: flex;
-        align-items: center;
-
-        .num {
-          font-weight: bolder;
-        }
-      }
-
-      .btn-box {
-        width: 100%;
-        display: flex;
-        justify-content: end;
-        align-items: center;
-
-        .btn {
-          height: 35px;
-          border-radius: 8px;
-          padding: 2px 15px;
-        }
-      }
-    }
-
-    .huiyuanquanyi {
-      width: 100%;
-      background-color: #fff;
-      padding: 10px 10px;
-      border-radius: 10px;
-      margin-top: 10px;
-      box-sizing: border-box;
-
-      .title {
-        font-size: 16px;
-        color: #8c8c8c;
-        font-weight: bolder;
-        line-height: 30px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      }
-      .list {
-        margin-top: 10px;
-        width: 100%;
-        display: flex;
-
-        .item {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-
-          img {
-            width: 20px;
-            height: 20px;
-          }
-          span {
-            margin-top: 10px;
-            font-size: 12px;
-          }
-        }
-      }
-    }
-
-    .shionggongju {
-      width: 100%;
-      background-color: #fff;
-      padding: 10px 10px;
-      border-radius: 10px;
-      margin-top: 10px;
-      box-sizing: border-box;
-
-      .title {
-        font-size: 16px;
-        color: #8c8c8c;
-        font-weight: bolder;
-        line-height: 30px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      }
-      .list {
-        margin-top: 10px;
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-
-        .item {
-          flex: 0 0 25%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          &:nth-child(n + 5) {
-            margin-top: 25px;
-          }
-
-          img {
-            width: 20px;
-            height: 20px;
-          }
-          span {
-            margin-top: 10px;
-            font-size: 12px;
-            text-align: center;
-          }
         }
       }
     }

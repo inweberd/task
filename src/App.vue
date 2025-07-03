@@ -655,18 +655,37 @@ onMounted(() => {
   user-select: none;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition-delay: 111111s;
+  -webkit-transition:
+    color 11111s ease-out,
+    background-color 111111s ease-out;
+}
+
 :root {
   //--van-text-color: #fff;
   //--van-nav-bar-background: #0e0f13 !important;
   --van-cell-group-background: transparent !important;
   --van-cell-background: transparent !important;
-  --van-popup-background: #257cf3 !important;
+  --van-popup-background: #fff !important;
 
   --van-nav-bar-background: #fff !important;
 
   --van-active-color: #1f203d !important;
 
   --van-field-label-color: #fff;
+
+  --td-tab-track-color: #fe694b;
+
+  --td-tab-item-color: #646566;
+  --td-tab-item-active-color: #000;
+
+  --wallet-bg: #fdfae9;
+
+  --van-cell-active-color: transparent !important;
 }
 
 .big-title {

@@ -8,21 +8,61 @@
       text="钻石乐园拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3钻石，达标自动发放！"
     >
     </van-notice-bar>
+    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+      <van-swipe-item>
+        <img
+          src="https://lx.aosenn.com/uploads/20240312/6f74eaa2565ff52321bc7693d0bf0c52.jpg"
+          alt=""
+        />
+      </van-swipe-item>
+      <van-swipe-item>
+        <img
+          src="https://lx.aosenn.com/uploads/20240312/97d6df84900ad010c7eeed904e69fc91.jpg"
+          alt=""
+      /></van-swipe-item>
+      <van-swipe-item>
+        <img
+          src="https://lx.aosenn.com/uploads/20240312/6809ccd8b532c297ba7b02a203704339.jpg"
+          alt=""
+      /></van-swipe-item>
+      <van-swipe-item>
+        <img
+          src="https://lx.aosenn.com/uploads/20250221/174612a980e31bb308943876dc6c2bdd.jpg"
+          alt=""
+      /></van-swipe-item>
+    </van-swipe>
     <div class="info-banenr">
       <div class="one-box">
-        <div class="title">我的余额： <span>0.00</span>元</div>
+        <div class="title">
+          通用钻石：
+          <span>
+            {{
+              userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0
+            }} </span
+          >个
+        </div>
         <div class="btns">
-          <div class="btn1 btn" style="background-color: rgb(247, 228, 144)">余额明细</div>
-          <div class="btn2 btn">提现</div>
+          <div
+            class="btn1 btn"
+            style="background-color: rgb(247, 228, 144)"
+            @click="$router.push('/wallet')"
+          >
+            余额明细
+          </div>
+          <div class="btn2 btn" @click="$router.push('/dep')">提现</div>
         </div>
       </div>
       <div class="two-box">
         <div class="title">
           今日收益：
-          <span>0.00</span>
-          元
+          <span>
+            {{ (userIncomeInfo.today || 0).toFixed(2) }}
+          </span>
+          个
         </div>
-        <div class="title">累计收益 ： <span>0.00</span> 元</div>
+        <div class="title">
+          累计收益 ： <span>{{ (userIncomeInfo.total || 0).toFixed(4) }}</span> 个
+        </div>
       </div>
     </div>
     <div class="menuList">
@@ -87,30 +127,6 @@
     <!--        </div>-->
     <!--      </div>-->
     <!--    </div>-->
-
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item>
-        <img
-          src="https://lx.aosenn.com/uploads/20240312/6f74eaa2565ff52321bc7693d0bf0c52.jpg"
-          alt=""
-        />
-      </van-swipe-item>
-      <van-swipe-item>
-        <img
-          src="https://lx.aosenn.com/uploads/20240312/97d6df84900ad010c7eeed904e69fc91.jpg"
-          alt=""
-      /></van-swipe-item>
-      <van-swipe-item>
-        <img
-          src="https://lx.aosenn.com/uploads/20240312/6809ccd8b532c297ba7b02a203704339.jpg"
-          alt=""
-      /></van-swipe-item>
-      <van-swipe-item>
-        <img
-          src="https://lx.aosenn.com/uploads/20250221/174612a980e31bb308943876dc6c2bdd.jpg"
-          alt=""
-      /></van-swipe-item>
-    </van-swipe>
 
     <!--    <div class="linglu-box" v-if="!isIos">-->
     <!--      <img src="./images/k1.png" alt="" @click="loadXiangwan()" />-->
@@ -333,11 +349,11 @@ onActivated(() => {
     .two-box {
       display: flex;
       align-items: center;
-      margin-top: 10px;
+      justify-content: space-between;
+      margin-top: 18px;
 
       .title {
         font-size: 12px;
-        margin-right: 30px;
 
         span {
           color: #333;

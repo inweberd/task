@@ -674,7 +674,7 @@ input:-webkit-autofill:active {
 
   --van-nav-bar-background: #fff !important;
 
-  --van-active-color: #1f203d !important;
+  //--van-active-color: #1f203d !important;
 
   --van-field-label-color: #fff;
 

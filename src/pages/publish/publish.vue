@@ -1,10 +1,11 @@
 <template>
   <div class="publish">
-    <van-nav-bar fixed left-arrow placeholder safe-area-inset-top title="广告发布">
-      <template #right>
-        <!--        <van-icon name="friends-o" size="18" @click="service = true" />-->
-      </template>
-    </van-nav-bar>
+    <!--    <van-nav-bar fixed left-arrow placeholder safe-area-inset-top title="广告发布">-->
+    <!--      <template #right>-->
+    <!--        &lt;!&ndash;        <van-icon name="friends-o" size="18" @click="service = true" />&ndash;&gt;-->
+    <!--      </template>-->
+    <!--    </van-nav-bar>-->
+    <van-search placeholder="请输入搜索关键词" />
     <div class="content">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
         <van-swipe-item>
@@ -22,245 +23,225 @@
 
       <div class="list" style="min-height: 50vh">
         <div class="coupleta">
-          <div class="task">
-            <div class="left">
-              <div class="top">
-                <div style="width: 50px; height: 50px; border-radius: 5px; overflow: hidden">
-                  <!----><img
-                    src="https://lx.aosenn.com/uploads/20240312/e64fece94f5a8f6a71298b50bfce0086.gif"
-                    draggable="false"
-                  />
-                </div>
+          <div class="task top">
+            <div class="avatar">
+              <div class="img-box">
+                <!----><img
+                  src="https://lx.aosenn.com/uploads/20240312/e64fece94f5a8f6a71298b50bfce0086.gif"
+                  draggable="false"
+                />
               </div>
-              <div class="cen" style="margin-top: 5px">
-                <div class="cen_word"><span>数据仅供测试</span></div>
-                <div class="cen_btn">马上赚</div>
+            </div>
+            <div class="top">
+              <div class="title">星钻世界</div>
+              <div class="tag">游戏</div>
+            </div>
+            <van-grid :border="false" :column-num="4" :gutter="1">
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img3" />
+              </van-grid-item>
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img7" />
+              </van-grid-item>
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img6" />
+              </van-grid-item>
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img1" />
+              </van-grid-item>
+            </van-grid>
+            <div class="bottom">
+              <div class="visit">
+                <van-icon name="eye-o" />
+                3496人查看
               </div>
-              <div class="tuijian">
-                <div style="position: absolute; top: 0px; left: 0px; z-index: 99">
-                  <div style="width: 30px; height: 30px; border-radius: 5px">
-                    <img src="https://lx.aosenn.com/h5/static/tuijian.png" draggable="false" />
-                  </div>
-                </div>
+              <div class="date">2025-07-03 13:20</div>
+            </div>
+          </div>
+          <div class="task top">
+            <div class="avatar">
+              <div class="img-box">
+                <!----><img
+                  src="https://lx.aosenn.com/uploads/20240312/5eed09a854f831049dbb8d1e012eaa0b.jpg"
+                  draggable="false"
+                />
               </div>
-              <div class="bom_word">
-                <div class="bom_word0">
-                  5.00
-                  <span>元</span>
-                </div>
-                <div class="bom_word2">演示发布</div>
-                <div class="bom_word3"><div class="bom_worda">剩486单</div></div>
+            </div>
+            <div class="top">
+              <div class="title">星钻世界</div>
+              <div class="tag">游戏</div>
+            </div>
+            <van-grid :border="false" :column-num="4" :gutter="1">
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img4" />
+              </van-grid-item>
+            </van-grid>
+            <div class="bottom">
+              <div class="visit">
+                <van-icon name="eye-o" />
+                3496人查看
               </div>
+              <div class="date">2025-07-03 13:20</div>
             </div>
           </div>
           <div class="task">
-            <div class="left">
-              <div class="top">
-                <div style="width: 50px; height: 50px; border-radius: 5px">
-                  <div
-                    style="
-                      background-image: url('https://lx.aosenn.com/uploads/20240312/ff70392a2cfb34335b4ed4d8a887d9c3.png');
-                      background-position: center center;
-                      background-size: cover;
-                      background-repeat: no-repeat;
-                    "
-                  ></div>
-                  <!----><img
-                    src="https://lx.aosenn.com/uploads/20240312/ff70392a2cfb34335b4ed4d8a887d9c3.png"
-                    draggable="false"
-                  />
-                </div>
+            <div class="avatar">
+              <div class="img-box">
+                <!----><img
+                  src="https://lx.aosenn.com/uploads/20240312/5a134878c8a9632a34c6d380f1d70dd4.jpg"
+                  draggable="false"
+                />
               </div>
-              <div class="cen" style="margin-top: 5px">
-                <div class="cen_word"><span>数据仅供测试</span></div>
-                <div class="cen_btn">马上赚</div>
+            </div>
+            <div class="top">
+              <div class="title">星钻世界</div>
+              <div class="tag">游戏</div>
+            </div>
+            <van-grid :border="false" :column-num="4" :gutter="1">
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img2" />
+              </van-grid-item>
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img5" />
+              </van-grid-item>
+            </van-grid>
+            <div class="bottom">
+              <div class="visit">
+                <van-icon name="eye-o" />
+                3496人查看
               </div>
-              <div class="tuijian">
-                <div style="position: absolute; top: 0px; left: 0px; z-index: 99">
-                  <div style="width: 30px; height: 30px; border-radius: 5px">
-                    <div
-                      style="
-                        background-image: url('https://lx.aosenn.com/h5/static/tuijian.png');
-                        background-position: 0% 0%;
-                        background-size: 100% 100%;
-                        background-repeat: no-repeat;
-                      "
-                    ></div>
-                    <!----><img
-                      src="https://lx.aosenn.com/h5/static/tuijian.png"
-                      draggable="false"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="bom_word">
-                <div class="bom_word0">
-                  10.00
-                  <span>元</span>
-                </div>
-                <div class="bom_word2">后台添加</div>
-                <div class="bom_word3"><div class="bom_worda">剩595单</div></div>
-              </div>
+              <div class="date">2025-07-03 13:20</div>
             </div>
           </div>
           <div class="task">
-            <div class="left">
-              <div class="top">
-                <div style="width: 50px; height: 50px; border-radius: 5px">
-                  <div
-                    style="
-                      background-image: url('https://lx.aosenn.com/uploads/20231221/b24877a0168e080a1c4f4c7f8234fc68.png');
-                      background-position: center center;
-                      background-size: cover;
-                      background-repeat: no-repeat;
-                    "
-                  ></div>
-                  <!----><img
-                    src="https://lx.aosenn.com/uploads/20231221/b24877a0168e080a1c4f4c7f8234fc68.png"
-                    draggable="false"
-                  />
-                </div>
+            <div class="avatar">
+              <div class="img-box">
+                <!----><img
+                  src="https://lx.aosenn.com/uploads/20221225/c046992a3c3af37de31812957f573243.gif"
+                  draggable="false"
+                />
               </div>
-              <div class="cen" style="margin-top: 5px">
-                <div class="cen_word"><span>奥森演示发布</span></div>
-                <div class="cen_btn">马上赚</div>
+            </div>
+            <div class="top">
+              <div class="title">星钻世界</div>
+              <div class="tag">游戏</div>
+            </div>
+            <van-grid :border="false" :column-num="4" :gutter="1">
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img3" />
+              </van-grid-item>
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img7" />
+              </van-grid-item>
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img6" />
+              </van-grid-item>
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img1" />
+              </van-grid-item>
+            </van-grid>
+            <div class="bottom">
+              <div class="visit">
+                <van-icon name="eye-o" />
+                3496人查看
               </div>
-              <div class="tuijian">
-                <div style="position: absolute; top: 0px; left: 0px; z-index: 99">
-                  <div style="width: 30px; height: 30px; border-radius: 5px">
-                    <div
-                      style="
-                        background-image: url('https://lx.aosenn.com/h5/static/tuijian.png');
-                        background-position: 0% 0%;
-                        background-size: 100% 100%;
-                        background-repeat: no-repeat;
-                      "
-                    ></div>
-                    <!----><img
-                      src="https://lx.aosenn.com/h5/static/tuijian.png"
-                      draggable="false"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="bom_word">
-                <div class="bom_word0">
-                  5.00
-                  <span>元</span>
-                </div>
-                <div class="bom_word2">奥森演示</div>
-                <div class="bom_word3"><div class="bom_worda">剩795单</div></div>
-              </div>
+              <div class="date">2025-07-03 13:20</div>
             </div>
           </div>
           <div class="task">
-            <div class="left">
-              <div class="top">
-                <div style="width: 50px; height: 50px; border-radius: 5px">
-                  <div
-                    style="
-                      background-image: url('https://lx.aosenn.com/uploads/20221225/c046992a3c3af37de31812957f573243.gif');
-                      background-position: center center;
-                      background-size: cover;
-                      background-repeat: no-repeat;
-                    "
-                  ></div>
-                  <!----><img
-                    src="https://lx.aosenn.com/uploads/20221225/c046992a3c3af37de31812957f573243.gif"
-                    draggable="false"
-                  />
-                </div>
+            <div class="avatar">
+              <div class="img-box">
+                <!----><img
+                  src="https://lx.aosenn.com/uploads/20231221/b24877a0168e080a1c4f4c7f8234fc68.png"
+                  draggable="false"
+                />
               </div>
-              <div class="cen" style="margin-top: 5px">
-                <div class="cen_word"><span>项目名称悬赏标题</span></div>
-                <div class="cen_btn">马上赚</div>
+            </div>
+            <div class="top">
+              <div class="title">星钻世界</div>
+              <div class="tag">游戏</div>
+            </div>
+            <van-grid :border="false" :column-num="4" :gutter="1">
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img3" />
+              </van-grid-item>
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img7" />
+              </van-grid-item>
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img6" />
+              </van-grid-item>
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img1" />
+              </van-grid-item>
+            </van-grid>
+            <div class="bottom">
+              <div class="visit">
+                <van-icon name="eye-o" />
+                3496人查看
               </div>
-              <div><div style="position: absolute; top: 0px; left: 0px; z-index: 99"></div></div>
-              <div class="bom_word">
-                <div class="bom_word0">
-                  5.00
-                  <span>元</span>
-                </div>
-                <div class="bom_word2">奥森网络</div>
-                <div class="bom_word3"><div class="bom_worda">剩497单</div></div>
-              </div>
+              <div class="date">2025-07-03 13:20</div>
             </div>
           </div>
           <div class="task">
-            <div class="left">
-              <div class="top">
-                <div style="width: 50px; height: 50px; border-radius: 5px">
-                  <div
-                    style="
-                      background-image: url('https://lx.aosenn.com/uploads/20240312/5a134878c8a9632a34c6d380f1d70dd4.jpg');
-                      background-position: center center;
-                      background-size: cover;
-                      background-repeat: no-repeat;
-                    "
-                  ></div>
-                  <!----><img
-                    src="https://lx.aosenn.com/uploads/20240312/5a134878c8a9632a34c6d380f1d70dd4.jpg"
-                    draggable="false"
-                  />
-                </div>
-              </div>
-              <div class="cen" style="margin-top: 5px">
-                <div class="cen_word"><span>这里是任务的标题</span></div>
-                <div class="cen_btn">马上赚</div>
-              </div>
-              <div><div style="position: absolute; top: 0px; left: 0px; z-index: 99"></div></div>
-              <div class="bom_word">
-                <div class="bom_word0">
-                  6.00
-                  <span>元</span>
-                </div>
-                <div class="bom_word2">项目名称</div>
-                <div class="bom_word3"><div class="bom_worda">剩798单</div></div>
+            <div class="avatar">
+              <div class="img-box">
+                <!----><img
+                  src="https://lx.aosenn.com/uploads/20240312/ff70392a2cfb34335b4ed4d8a887d9c3.png"
+                  draggable="false"
+                />
               </div>
             </div>
-          </div>
-          <div class="task">
-            <div class="left">
-              <div class="top">
-                <div style="width: 50px; height: 50px; border-radius: 5px">
-                  <div
-                    style="
-                      background-image: url('https://lx.aosenn.com/uploads/20240312/5eed09a854f831049dbb8d1e012eaa0b.jpg');
-                      background-position: center center;
-                      background-size: cover;
-                      background-repeat: no-repeat;
-                    "
-                  ></div>
-                  <!----><img
-                    src="https://lx.aosenn.com/uploads/20240312/5eed09a854f831049dbb8d1e012eaa0b.jpg"
-                    draggable="false"
-                  />
-                </div>
+            <div class="top">
+              <div class="title">星钻世界</div>
+              <div class="tag">游戏</div>
+            </div>
+            <van-grid :border="false" :column-num="4" :gutter="1">
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img3" />
+              </van-grid-item>
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img7" />
+              </van-grid-item>
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img6" />
+              </van-grid-item>
+              <van-grid-item>
+                <van-image class="img-item" fit="cover" position="center" :src="img1" />
+              </van-grid-item>
+            </van-grid>
+            <div class="bottom">
+              <div class="visit">
+                <van-icon name="eye-o" />
+                3496人查看
               </div>
-              <div class="cen" style="margin-top: 5px">
-                <div class="cen_word"><span>奥森网络拉新</span></div>
-                <div class="cen_btn">马上赚</div>
-              </div>
-              <div><div style="position: absolute; top: 0px; left: 0px; z-index: 99"></div></div>
-              <div class="bom_word">
-                <div class="bom_word0">
-                  9.00
-                  <span>元</span>
-                </div>
-                <div class="bom_word2">演示数据</div>
-                <div class="bom_word3"><div class="bom_worda">剩565单</div></div>
-              </div>
+              <div class="date">2025-07-03 13:20</div>
             </div>
           </div>
         </div>
         <!---->
       </div>
     </div>
+    <van-floating-bubble
+      axis="xy"
+      icon="plus"
+      magnetic="x"
+      @click="$router.push('addPublish')"
+      style="background-color: #fed721"
+    >
+    </van-floating-bubble>
     <BaseFooter :is-white="true" v-bind:init-tab="2" />
   </div>
 </template>
 <script setup lang="ts">
 import BaseFooter from '@/components/BaseFooter.vue'
+import img1 from './images/1.jpg'
+import img2 from './images/2.jpg'
+import img3 from './images/3.jpg'
+import img4 from './images/4.jpg'
+import img5 from './images/5.jpg'
+import img6 from './images/6.jpg'
+import img7 from './images/7.jpg'
 </script>
 
 <style scoped lang="less">
@@ -279,6 +260,10 @@ import BaseFooter from '@/components/BaseFooter.vue'
       color: transparent !important;
       font-size: 18px !important;
     }
+  }
+
+  :deep(.van-search) {
+    background-color: #fed621;
   }
 
   .content {
@@ -306,108 +291,88 @@ import BaseFooter from '@/components/BaseFooter.vue'
     .list {
       display: flex;
       flex-wrap: wrap;
-      margin: 0px 12px 0 12px;
+      margin: 30px 12px 0 12px;
       justify-content: space-between;
 
       .coupleta {
         width: 98%;
-        background-color: #f8f8f8;
         margin: 5px auto;
 
         .task {
           width: 100%;
-          height: 75px;
           background-color: #fff;
-          border-radius: 5px;
-          margin-bottom: 10px;
+          border-radius: 10px;
+          margin-bottom: 30px;
           position: relative;
 
-          .left {
-            .top {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              //margin-left: 10px;
-              width: 20%;
-              height: 75px;
-              background-color: #fff;
-              float: left;
+          &.top {
+            &:after {
+              content: '置顶';
+              position: absolute;
+              top: -8px;
+              right: 20px;
+              background-image: linear-gradient(to right, #5742f6, #806dfb);
+              color: #fff;
+              padding: 2px 6px;
+              border-radius: 6px;
+            }
+          }
+
+          .avatar {
+            position: absolute;
+            top: -15px;
+            left: 10px;
+            overflow: hidden;
+            .img-box {
+              width: 45px;
+              height: 45px;
+              border-radius: 50%;
               overflow: hidden;
-              position: relative;
-
-              img {
-                width: 100%;
-                height: 100%;
-              }
-            }
-            .cen {
-              width: 80%;
-              height: 35px;
-              float: left;
-              overflow: hidden;
-              padding-left: 5px;
-              box-sizing: border-box;
-              .cen_word {
-                margin-top: 7px;
-                float: left;
-                font-size: 14px;
-                font-weight: 700;
-              }
-              .cen_btn {
-                float: right;
-                background: #fed61f;
-                font-size: 12px;
-                font-weight: 700;
-                padding: 6px 12px;
-                border-radius: 15px;
-                margin-right: 10px;
-                margin-top: 7px;
-              }
             }
 
-            .tuijian {
-              img {
-                width: 30px;
-                height: 30px;
-              }
+            img {
+              width: 100%;
+              height: 100%;
             }
-            .bom_word {
-              float: left;
-              width: 80%;
-              height: 25px;
-              box-sizing: border-box;
-              display: flex;
-              align-items: center;
+          }
 
-              .bom_word0 {
-                white-space: nowrap;
-                color: red;
-                font-weight: 700;
-                padding-left: 5px;
-              }
-              .bom_word2 {
-                float: left;
-                font-size: 12px;
-                color: #999;
-                border: 1px solid #ccc;
-                padding: 3px 6px;
-                margin-left: 10px;
-                border-radius: 5px;
-              }
-              .bom_word3 {
-                float: right;
-                box-sizing: border-box;
-                margin-top: 1px;
-                margin-left: auto;
-                margin-right: 20px;
-                text-align: center;
-                .bom_worda {
-                  float: right;
-                  font-size: 12px;
-                  color: #999;
-                }
-              }
+          .img-item {
+            aspect-ratio: 1;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 6px;
+          }
+
+          .top {
+            display: flex;
+            margin-left: 60px;
+            align-items: center;
+            padding-top: 4px;
+            margin-bottom: 10px;
+            .title {
+              font-size: 14px;
+              color: #777;
             }
+            .tag {
+              margin-left: 10px;
+              font-size: 12px;
+              padding: 1px 8px;
+              border: 1px solid #489fce;
+              color: #489fce;
+              border-radius: 5px;
+            }
+          }
+
+          .bottom {
+            margin-top: -6px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px 6px;
+            box-sizing: border-box;
+            color: #aaa;
+            font-size: 12px;
+            position: relative;
+            z-index: 2;
           }
         }
       }

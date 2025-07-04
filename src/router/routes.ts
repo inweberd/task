@@ -24,6 +24,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/weimaiquanDetail', component: () => import('@/pages/me/weimaiquanDetail.vue') },
   { path: '/moneybag', component: () => import('@/pages/moneybag/moneybag.vue') },
   { path: '/publish', component: () => import('@/pages/publish/publish.vue') },
+  { path: '/addPublish', component: () => import('@/pages/publish/addPublish.vue') },
 
   { path: '/me/my-card', name: 'myCard', component: () => import('@/pages/me/MyCard.vue') },
 

@@ -5,8 +5,8 @@
       ref="fieldRef"
       v-model.trim="content2"
       v-bind="$attrs"
-      autosize
       type="textarea"
+      autosize
       show-word-limit
     />
   </div>

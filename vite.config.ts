@@ -191,13 +191,13 @@ export default defineConfig((): Promise<UserConfig> => {
             '/api/': {
               // target: 'https://tc.q18m.cc/api',
               // target: 'https://api.fadc902.com/api',
-              target: 'https://wikw.jyjnh.com/api',
+              target: 'https://test.fadc902.com/api',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/api/'), '')
             },
             '/dev/': {
               // target: 'https://tc.q18m.cc/api',
-              target: 'https://wikw.jyjnh.com/dev',
+              target: 'https://test.fadc902.com/dev',
               changeOrigin: true,
               rewrite: (path) => path.replace(new RegExp('^' + '/dev/'), '')
             },

@@ -658,7 +658,7 @@ async function goPay() {
   // })
   const serial = user?.result?.staff?.serial
   if (money.value < 10) {
-    showToast('10个钻石起提！')
+    showToast('10个点券起提！')
     return
   }
   // if (!serial) {

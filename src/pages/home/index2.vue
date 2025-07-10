@@ -81,10 +81,10 @@
       </div>
       <van-notice-bar
         left-icon="volume-o"
-        text="钻石乐园欢迎您，邀请好友赚翻天，现金奖励无上限！"
+        text="点券乐园欢迎您，邀请好友赚翻天，现金奖励无上限！"
       />
       <div class="game-box">
-        <div class="title">钻石乐园--PG电子游戏</div>
+        <div class="title">点券乐园--PG电子游戏</div>
         <div class="img-list" @click="toGame('pg')">
           <div class="img-item" style="margin: 0 2px; width: calc(20% - 4px)">
             <img
@@ -124,7 +124,7 @@
         </div>
       </div>
       <div class="game-box">
-        <div class="title">钻石乐园-棋牌娱乐 (点击图标进行精彩游戏)</div>
+        <div class="title">点券乐园-棋牌娱乐 (点击图标进行精彩游戏)</div>
         <!--        <div class="img-list">-->
         <div class="img-list" @click="toGame('ky')">
           <div class="img-item">
@@ -182,7 +182,7 @@
         <!--<p style="color: #ccc; text-align: center">更多精彩、敬请期待！</p>-->
       </div>
       <div style="font-size: 16px; color: red; padding: 5px 15px 0">
-        钻石乐园--刷视频快速挣钱专区
+        点券乐园--刷视频快速挣钱专区
       </div>
       <div class="shulist">
         <!--        <div class="shu-item">-->
@@ -261,7 +261,7 @@
         <!--              <img src="@/assets/img/up/CA.png" alt="" />-->
         <!--            </div>-->
         <!--            <div>-->
-        <!--              <div>钻石乐园&#45;&#45;棋牌娱乐</div>-->
+        <!--              <div>点券乐园&#45;&#45;棋牌娱乐</div>-->
         <!--              <div>点击进行精彩游戏！</div>-->
         <!--            </div>-->
         <!--          </div>-->
@@ -439,7 +439,7 @@ const appList = ref([
   },
   // {
   //   name: '操作说明',
-  //   desc: '钻石乐园，精彩短视频。期待您的加入',
+  //   desc: '点券乐园，精彩短视频。期待您的加入',
   //   logo: 'hk',
   //   btnLabel: '查看',
   //   btnCb() {

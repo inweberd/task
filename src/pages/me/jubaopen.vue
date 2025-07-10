@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%; overflow: auto">
     <van-nav-bar
-      title="钻石天梯乐园"
+      title="点券天梯乐园"
       safe-area-inset-top
       fixed
       :class="{ inApp: getIsInApp() }"
@@ -58,34 +58,33 @@
       <!--      </van-image>-->
       <template v-for="(item, index) of staffList" :key="index">
         <div class="staff-item">
-          <img src="./images/jubaopen-item-bg.png" class="vImg" alt="" />
-          <img src="./images/level-bg.png" class="levelImg" alt="" />
-          <div class="name">{{ index + 1 }}级钻石天梯</div>
+          <!--          <img src="./images/jubaopen-item-bg.png" class="vImg" alt="" />-->
+          <div class="name">{{ index + 1 }}层</div>
           <div class="content-center">
-            需要：<span style="color: #d34545; font-weight: bolder">{{ vipList[index].touru }}</span
-            >钻石上阶梯
+            需要：<span style="color: #000; font-weight: bolder">{{ vipList[index].touru }}</span
+            >点券上阶梯
           </div>
           <div class="content-bottom">
             <!--            需要：<span style="color: #d34545; font-weight: bolder">{{ vipList[index].touru }}</span-->
-            <!--            >钻石上阶梯-->
+            <!--            >点券上阶梯-->
             <div>
               <template v-if="[0, 1, 2, 3].includes(index)">
                 立即释放
-                <span style="color: #ff6800; font-weight: bolder">{{ vipList[index].lirun }}</span>
-                通用钻石
+                <span style="color: #000; font-weight: bolder">{{ vipList[index].lirun }}</span>
+                点券
               </template>
               <template v-else>
                 到00:00分出
-                <span style="color: #ff6800; font-weight: bolder">{{ vipList[index].lirun }}</span>
-                通用钻石
+                <span style="color: #000; font-weight: bolder">{{ vipList[index].lirun }}</span>
+                点券
               </template>
             </div>
             <div>
               总获得
               <!--              <span style="color: #ff6800; font-weight: bolder">{{ getTotalZuanshi(index) }}</span-->
-              <span style="color: #ff6800; font-weight: bolder">
+              <span style="color: #000; font-weight: bolder">
                 {{ (vipList[index].lirun + vipList[index].touru).toFixed(1) }} </span
-              >钻石
+              >点券
             </div>
           </div>
           <!--          <img :src="getImgUrl(index + 1)" class="vImg" alt="" />-->
@@ -701,7 +700,7 @@ const staffList = ref([])
 onMounted(() => {
   reqTreasureBasinPage().then((res) => {
     console.log('reqTreasureBasinPage', res)
-    staffList.value = res.data?.data || []
+    staffList.value = res.data || []
   })
 })
 const jubaopenInfo = ref({
@@ -725,6 +724,10 @@ onDeactivated(() => {
   .staff-item {
     position: relative;
     margin-top: 10px;
+    height: 100px;
+    background-image: linear-gradient(135deg, #3cd500 10%, #fff720 100%);
+    border-radius: 10px;
+    overflow: hidden;
     .vImg {
       width: 100%;
     }
@@ -738,15 +741,16 @@ onDeactivated(() => {
     .name {
       display: flex;
       align-items: center;
-      text-indent: 10px;
-      letter-spacing: 2px;
-      width: 120px;
+      justify-content: center;
+      width: 60px;
       height: 30px;
       position: absolute;
       left: 0;
       top: 0;
       color: #326dfa;
       font-weight: bolder;
+      background-image: linear-gradient(135deg, #28c76f 10%, #81fbb8 100%);
+      border-radius: 0 0 10px 0;
     }
     .content-center {
       position: absolute;
@@ -758,11 +762,12 @@ onDeactivated(() => {
     }
 
     .content-bottom {
+      background-color: rgba(0, 0, 0, 0.2);
       letter-spacing: 2px;
       position: absolute;
-      bottom: 7px;
+      bottom: 0px;
       font-size: 12px;
-      padding: 0 20px;
+      padding: 5px 20px;
       box-sizing: border-box;
       left: 0;
       width: 100%;

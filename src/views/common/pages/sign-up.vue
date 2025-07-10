@@ -222,7 +222,7 @@ const SignUp = async () => {
   state.status.wait = true
 
   const { code, data, msg } = await POST(
-    '/api/comm/register',
+    '/api/comm/sign-up',
     {
       ...state.struct,
       account: state.struct.social

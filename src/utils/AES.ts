@@ -47,4 +47,21 @@ const token = (value = '', length = 32, prefix = '') => {
   return result
 }
 
-export { token, AES }
+// 根据ASCII排序
+const ASCII = (params) => {
+  const keys = Object.keys(params).sort()
+
+  let item = ''
+  keys.forEach((key) => {
+    const val = params[key]
+    if (key.length > 0 && String(val).length > 0) {
+      item += `${key}=${val}&`
+    }
+  })
+
+  if (item.length > 0) item = item.slice(0, -1)
+
+  return item
+}
+
+export { token, AES, ASCII }

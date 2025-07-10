@@ -31,7 +31,7 @@
           color="#fff"
           left-icon="volume-o"
           style="border-radius: 10px; height: 40px; border: 1px solid #fff"
-          text="钻石乐园欢迎您，邀请好友赚翻天，现金奖励无上限！"
+          text="点券乐园欢迎您，邀请好友赚翻天，现金奖励无上限！"
         >
         </van-notice-bar>
 
@@ -82,10 +82,10 @@
       <div class="bg"></div>
       <!--      <van-notice-bar-->
       <!--        left-icon="volume-o"-->
-      <!--        text="钻石乐园欢迎您，邀请好友赚翻天，现金奖励无上限！"-->
+      <!--        text="点券乐园欢迎您，邀请好友赚翻天，现金奖励无上限！"-->
       <!--      />-->
       <div style="text-align: center; font-size: 22px; text-shadow: 5px 5px 5px #081831">
-        <div>钻石乐园已经稳定运行</div>
+        <div>点券乐园已经稳定运行</div>
         <div>{{ timeStr }}</div>
       </div>
       <!--      <div-->
@@ -544,7 +544,7 @@ const appList = ref([
 
   {
     name: '棋牌娱乐',
-    desc: '钻石乐园，精彩短视频。期待您的加入',
+    desc: '点券乐园，精彩短视频。期待您的加入',
     logo: '11',
     btnLabel: '查看',
     btnCb() {

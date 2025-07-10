@@ -3,7 +3,7 @@
     <!--    <div :style="containerStyle" style="background-color: #fff; width: 100%"></div>-->
     <!--    <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />-->
     <Loading v-if="loading" />
-    <van-nav-bar left-arrow placeholder title="钻石代理" @click-left="$router.back()">
+    <van-nav-bar left-arrow placeholder title="会员列表" @click-left="$router.back()">
       <template #right>
         <span style="color: #1e83d3" @click="$router.push('/yiyouhuiyuan')"> 会员详情 </span>
         <!--        <van-icon name="friends-o" size="18" @click="service = true" />-->
@@ -64,34 +64,8 @@
           >点击查看剩余有效期</span
         >
       </div>
-      <!--      <div-->
-      <!--        style="-->
-      <!--          margin-top: 0px;-->
-      <!--          padding-right: 15px;-->
-      <!--          box-sizing: border-box;-->
-      <!--          text-align: center;-->
-      <!--          width: 100%;-->
-      <!--        "-->
-      <!--      >-->
-      <!--        当前可免费购买会员余额-->
-      <!--        <br />-->
-      <!--        <span style="font-size: 22px">{{ userIncomeInfo?.wallet?.money || 0 }}</span>-->
-      <!--        <div style="margin-top: 15px"></div>-->
-      <!--        当前充值余额-->
-      <!--        <br />-->
-      <!--        <span style="font-size: 22px">{{ walletInfo?.amount || 0 }}</span>-->
-      <!--        <p style="margin-top: 5px">以上两种余额可用于购买会员抵扣使用</p>-->
-      <!--      </div>-->
     </div>
-    <!--    <div style="font-size: 18px; padding: 0 10px">-->
-    <!--      &lt;!&ndash;      <div>注:购买会员请逐级从低到高购买，同时购买多个会员收入叠加生效！</div>&ndash;&gt;-->
-    <!--      <div>当前已拥有的最高会员等级界面，显示的总收益，即是叠加后的当日总收益！</div>-->
-    <!--      <div>100元体验卡到期可再次续购！</div>-->
-    <!--      &lt;!&ndash;      <div style="color: #ff3826; font-weight: bolder">&ndash;&gt;-->
-    <!--      &lt;!&ndash;        同时拥有多个会员，所有等级收益叠加生效！一次开通，永久有效！&ndash;&gt;-->
-    <!--      &lt;!&ndash;      </div>&ndash;&gt;-->
-    <!--    </div>-->
-    <!--    <img src="./images/invest-banner.jpg" style="width: 100%; margin-top: 10px" alt="" />-->
+
     <div class="v-list-box">
       <div class="v-list">
         <div
@@ -99,9 +73,9 @@
           :class="{ active: activeIndex === index, has: myStaffList.includes(item.id) }"
           class="v-list-item"
         >
-          <template v-if="item.serial === 1">
+          <template v-if="item.level === 1">
             <div class="box">
-              <img src="./images/v1.png" alt="" class="vipImg" />
+              <img src="./images/v1.jpg" alt="" class="vipImg" />
               <img
                 v-if="!myStaffList.includes(item.id)"
                 src="./images/duihuankaitong.png"
@@ -109,15 +83,11 @@
                 alt=""
                 @click="buy(0)"
               />
-              <div style="position: absolute; right: 0; bottom: 40px; color: #000; font-size: 12px">
-                <div>限量发售：抢完为止</div>
-                <div>总量：752名额</div>
-              </div>
             </div>
           </template>
-          <template v-if="item.serial === 2">
+          <template v-if="item.level === 2">
             <div class="box">
-              <img src="./images/v2.png" class="vipImg" alt="" />
+              <img src="./images/v2.jpg" class="vipImg" alt="" />
               <img
                 v-if="!myStaffList.includes(item.id)"
                 src="./images/duihuankaitong.png"
@@ -125,15 +95,11 @@
                 alt=""
                 @click="buy(1)"
               />
-              <div style="position: absolute; right: 0; bottom: 40px; color: #000; font-size: 12px">
-                <div>限量发售：抢完为止</div>
-                <div>总量：815名额</div>
-              </div>
             </div>
           </template>
-          <template v-if="item.serial === 3">
+          <template v-if="item.level === 3">
             <div class="box">
-              <img src="./images/v3.png" class="vipImg" alt="" />
+              <img src="./images/v3.jpg" class="vipImg" alt="" />
               <img
                 v-if="!myStaffList.includes(item.id)"
                 src="./images/duihuankaitong.png"
@@ -141,10 +107,18 @@
                 alt=""
                 @click="buy(2)"
               />
-              <div style="position: absolute; right: 0; bottom: 40px; color: #000; font-size: 12px">
-                <div>限量发售：抢完为止</div>
-                <div>总量：885名额</div>
-              </div>
+            </div>
+          </template>
+          <template v-if="item.level === 4">
+            <div class="box">
+              <img src="./images/v4.jpg" class="vipImg" alt="" />
+              <img
+                v-if="!myStaffList.includes(item.id)"
+                src="./images/duihuankaitong.png"
+                class="duihuankaitong"
+                alt=""
+                @click="buy(2)"
+              />
             </div>
           </template>
 
@@ -167,36 +141,6 @@
         </div>
       </div>
     </div>
-
-    <p
-      v-if="false"
-      style="
-        color: #000;
-        padding-left: 15px;
-        font-size: 18px;
-        font-weight: bolder;
-        margin-top: 254px;
-      "
-    >
-      <!--      说明：每份会员有效期30天-->
-      温馨提示： 每张会员卡可以使用365天！
-    </p>
-    <div style="padding: 10px; box-sizing: border-box; border-radius: 15px; overflow: hidden">
-      <img src="./images/huiyuanmianshouxufei.png" alt="" style="width: 100%" />
-    </div>
-    <!--    <div style="color: #222; padding-left: 15px; font-size: 14px; font-weight: bolder">-->
-    <!--      &lt;!&ndash;      可重复购买，达到数量后，系统将自动为您提升等级，享受更高收益！&ndash;&gt;-->
-    <!--      <p></p>-->
-    <!--      &lt;!&ndash;      <p style="color: red">&ndash;&gt;-->
-    <!--      &lt;!&ndash;        绑钻和通用钻石可以组合使用，若数量满足，点击兑换，奖为您自动抵扣兑换！&ndash;&gt;-->
-    <!--      &lt;!&ndash;      </p>&ndash;&gt;-->
-    <!--      <p style="margin-top: 6px; font-size: 14px; padding-right: 6px">-->
-    <!--        绑钻和通用钻石可以组合使用，若数量满足，点击兑换，奖为您自动抵扣兑换！-->
-    <!--      </p>-->
-    <!--      <p style="margin-top: 6px; font-size: 14px; padding-right: 6px">-->
-    <!--        会员收入的每日钻石可以直接兑换，也可以参与钻石天梯，获得更多收入！-->
-    <!--      </p>-->
-    <!--    </div>-->
   </div>
 
   <!--  <BaseFooter :is-white="false" v-bind:init-tab="5" />-->
@@ -247,7 +191,7 @@ const getAllStaff = () => {
   loading.value = true
 
   reqAllStaff(searchInfo).then((res: any) => {
-    staffList.value = res.data.data.filter((item) => item.serial)
+    staffList.value = res.data
     loading.value = false
     // res.data.data.forEach((item, index) => {
     //   for (const itemKey in item) {
@@ -258,7 +202,6 @@ const getAllStaff = () => {
     // })
 
     console.log('staffList', staffList.value)
-    // getMyStaff()
   })
 }
 const getIconPath = (icon) => {
@@ -312,10 +255,6 @@ const buy = throttle((index) => {
     })
   }
   if (userInfo.value.result.staff.serial + 1 != item.serial) {
-    // alert(item.serial)
-    // if (item.serial != 1 && !myStaffList.value.includes('171')) {
-    //   alert(myStaffList.value.join(','))
-    // }
     if (item.serial != 1) {
       return showToast({
         message: '请逐级购买！',
@@ -332,7 +271,7 @@ const buy = throttle((index) => {
     if (item.price > res.data.amount + res.data.money) {
       loading.value = false
       nextTick(() => {
-        _notice(' 钻石不足，兑换失败！即将为您跳转购买钻石通道！')
+        _notice(' 点券不足，兑换失败！即将为您跳转购买点券通道！')
       })
       setTimeout(() => {
         router.push('/recharge')
@@ -457,7 +396,7 @@ for (let i = 0; i < 6; i++) {
     //   '白银权益卡',
     //   '黄金权益卡',
     //   '白金权益卡',
-    //   '钻石权益卡',
+    //   '点券权益卡',
     //   '黑钻权益卡'
     // ][Math.floor()]
   })
@@ -480,19 +419,30 @@ const speed = ref(0.5) //滚动速度
   overflow-y: auto;
   //background-color: #fff;
   width: 100%;
-  height: calc(100% - 65px);
+  height: calc(100%);
   color: #fff;
   padding-bottom: 120px;
-  background-image: url('@/assets/img/main-bg.jpg');
-  background-size: 100% 100%;
+  background-color: #f7f7f7;
+  //background-image: url('@/assets/img/main-bg.jpg');
+  //background-size: 100% 100%;
+  :deep(.van-nav-bar) {
+    background-color: #fed61f !important;
+    .van-nav-bar__title {
+      color: #fff !important;
+    }
 
+    .van-icon {
+      color: #fff !important;
+      font-size: 18px !important;
+    }
+  }
   .top-box {
     display: flex;
     align-items: center;
     height: 180px;
     padding-left: 40%;
     //background-image: url('./images/vip-bg.png');
-    background-image: url('./images/invest-bg.jpg');
+    //background-image: url('./images/invest-bg.jpg');
     background-repeat: no-repeat;
     background-size: 100% 180px;
     & > div {
@@ -547,6 +497,7 @@ const speed = ref(0.5) //滚动速度
 
       .v-list-item {
         .box {
+          margin-bottom: 10px;
           position: relative;
           .vipImg {
             width: 100%;

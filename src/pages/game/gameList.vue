@@ -1,7 +1,7 @@
 <template>
   <div class="gameList gameListClass">
     <van-nav-bar
-      title="钻石消耗游戏"
+      title="点券消耗游戏"
       safe-area-inset-top
       fixed
       placeholder

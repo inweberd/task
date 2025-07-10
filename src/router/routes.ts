@@ -42,6 +42,12 @@ const routes: RouteRecordRaw[] = [
   { path: '/dep', component: () => import('@/pages/me/dep.vue') },
   { path: '/binddep', component: () => import('@/pages/me/binddep.vue') },
   { path: '/recharge', component: () => import('@/pages/me/recharge.vue') },
+  { path: '/dianziqianbao', component: () => import('@/pages/dianziqianbao/dianziqianbao.vue') },
+  {
+    path: '/addDianziqianbao',
+    component: () => import('@/pages/dianziqianbao/addDianziqianbao.vue')
+  },
+  { path: '/orderInfo', component: () => import('@/pages/orderInfo/orderInfo.vue') },
 
   { path: '/article', component: () => import('@/pages/me/article.vue') },
   { path: '/myteam', component: () => import('@/pages/me/myteam.vue') },

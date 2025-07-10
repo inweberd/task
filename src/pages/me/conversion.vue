@@ -4,10 +4,9 @@
     <van-nav-bar
       :class="{ inApp: getIsInApp() }"
       left-arrow
-      left-text="返回"
       placeholder
       safe-area-inset-top
-      title="钻石转赠"
+      title="点券转赠"
       @click-left="router.back()"
     >
       <template #right>
@@ -16,16 +15,36 @@
         </span>
       </template>
     </van-nav-bar>
-    <div class="logo-box">
-      <!--      <img alt="" src="@/assets/img/logo.png" />-->
-      <div class="logo-box-content">
-        <div class="info">
-          <!--          <p>钻石乐园</p>-->
-          <p>
-            可转赠通用钻石数量:
-            {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}
-          </p>
-          <!--                    <p>the big thumb video</p>-->
+    <!--    <div class="logo-box">-->
+    <!--      &lt;!&ndash;      <img alt="" src="@/assets/img/logo.png" />&ndash;&gt;-->
+    <!--      <div class="logo-box-content">-->
+    <!--        <div class="info">-->
+    <!--          &lt;!&ndash;          <p>点券乐园</p>&ndash;&gt;-->
+    <!--          <p>-->
+    <!--            可转赠通用点券数量:-->
+    <!--            {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}-->
+    <!--          </p>-->
+    <!--          &lt;!&ndash;                    <p>the big thumb video</p>&ndash;&gt;-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <div class="total-info">
+      <div class="top">
+        <div>
+          <van-icon name="user" color="#fff" />
+          <span style="padding-left: 4px">普通用户</span>
+        </div>
+        <div>点券</div>
+      </div>
+      <div class="center">
+        {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}
+        <span style="padding-left: 0px">点券</span>
+      </div>
+      <div class="bottom">
+        <div style="font-size: 10px; color: #eee">我的点券</div>
+        <div>
+          查看明细
+          <van-icon name="arrow" color="#fff" />
         </div>
       </div>
     </div>
@@ -33,137 +52,48 @@
       <div class="desc">
         <!--<van-image width="100" height="100" :src="imgg" />-->
       </div>
-      <van-form>
-        <!--        <div class="common-input-title">团队成员ID</div>-->
-        <!--        <van-field-->
-        <!--          v-model="data.uid"-->
-        <!--          :rules="[{ required: true, message: '请输入团队成员ID' }]"-->
-        <!--          placeholder="请输入对方ID"-->
-        <!--        />-->
-        <!--        <div class="common-input-title" style="margin-top: 10px">转账金额</div>-->
+      <div style="color: #fed61f; padding-left: 14px; padding-top: 10px">转赠</div>
+      <van-field label="买家ID" v-model="data.buyUid" clearable placeholder="请输入买家ID">
+      </van-field>
 
-        <van-field
-          left-icon="user"
-          v-model="data.uid"
-          :rules="[{ required: true, message: '请输入团队成员ID' }]"
-          clearable
-          placeholder="请输入对方ID"
-        >
-          <template #left-icon>
-            <img
-              src="https://lx.aosenn.com/h5/static/login/icon_name.png"
-              style="width: 15px; height: 16px"
-            />
-          </template>
-        </van-field>
+      <van-field v-model="data.points" label="金额" placeholder="请输入转赠数量" type="number">
+      </van-field>
+      <van-field v-model="data.remark" label="备注" placeholder="备注" type="textarea"> </van-field>
+      <!--        <div class="common-input-title" style="margin-top: 10px">短信验证码</div>-->
 
-        <van-field
-          v-model="data.amount"
-          :rules="[{ required: true, message: '请输入转赠数量' }]"
-          name="金额"
-          placeholder="请输入转赠数量"
-          type="number"
+      <div style="width: 100%">
+        <van-button
+          block
+          color="#fcd323"
+          @click="onSubmit"
+          round
+          style="border: none; color: #444; font-weight: bolder; width: 90%; margin: 0 auto"
+          type="primary"
         >
-          <template #left-icon>
-            <img
-              src="https://lx.aosenn.com/h5/static/login/icon_name.png"
-              style="width: 15px; height: 16px"
-            />
-          </template>
-        </van-field>
-        <!--        <div class="common-input-title" style="margin-top: 10px">短信验证码</div>-->
-        <van-field
-          v-model="data.code"
-          center
-          clearable
-          label=""
-          name="验证码"
-          placeholder="请输入短信验证码"
-        >
-          <template #button>
-            <!--            <van-button-->
-            <!--              v-if="!time"-->
-            <!--              size="small"-->
-            <!--              type="primary"-->
-            <!--              @click="getCode"-->
-            <!--              style="background: #01c5f0; border: none"-->
-            <!--              :disabled="countdown"-->
-            <!--            >-->
-            <!--              {{ countdown ? countdown + 's重新发送' : '发送验证码' }}-->
-            <!--            </van-button>-->
-            <p
-              v-if="!time"
-              style="
-                width: 80px;
-                height: 28px;
-                line-height: 28px;
-                text-align: center;
-                border-radius: 20px;
-                background-color: #fcd323;
-                font-size: 12px;
-                color: #000;
-              "
-              @click="getCode"
-            >
-              {{ countdown ? countdown + 's重新发送' : '发送验证码' }}
-            </p>
-            <div
-              style="
-                width: 80px;
-                height: 28px;
-                line-height: 28px;
-                text-align: center;
-                border-radius: 20px;
-                background-color: #fcd323;
-                font-size: 12px;
-                color: #000;
-              "
-              v-else
-            >
-              {{ time }}
-            </div>
-          </template>
-          <template #left-icon>
-            <img
-              src="https://lx.aosenn.com/h5/static/login/icon_name.png"
-              style="width: 15px; height: 16px"
-            />
-          </template>
-        </van-field>
+          确认转赠
+        </van-button>
+      </div>
 
-        <div style="width: 100%">
-          <van-button
-            block
-            color="#fcd323"
-            @click="onSubmit"
-            round
-            style="border: none; color: #444; font-weight: bolder"
-            type="primary"
-          >
-            确认转赠
-          </van-button>
-        </div>
-        <div style="width: 100%; margin-top: 20px">
-          <van-button
-            block
-            @click="$router.push('/invest')"
-            color="#fcd323"
-            round
-            style="border: none; color: #444; font-weight: bolder"
-            type="primary"
-          >
-            成为会员(降低手续费)
-          </van-button>
-        </div>
-      </van-form>
+      <!--      <div style="width: 100%; margin-top: 20px">-->
+      <!--        <van-button-->
+      <!--          block-->
+      <!--          @click="$router.push('/invest')"-->
+      <!--          color="#fcd323"-->
+      <!--          round-->
+      <!--          style="border: none; color: #444; font-weight: bolder"-->
+      <!--          type="primary"-->
+      <!--        >-->
+      <!--          成为会员(降低手续费)-->
+      <!--        </van-button>-->
+      <!--      </div>-->
       <!--      <p style="color: #ccc; margin-top: 10px">互转10元宝起，互转无手续费！</p>-->
       <!--      <p style="color: #ccc; margin-top: 10px">-->
       <!--        发起转账方自身需有任意会员，方可使用转账。接收方无门槛接收！-->
       <!--      </p>-->
       <!--      <p style="color: #ccc; margin-top: 10px">元宝互转交易时间为每天早上8点至晚上19点！</p>-->
-      <div style="box-sizing: border-box; border-radius: 15px; overflow: hidden">
-        <img src="./images/zhuanzengyaoqiu.png" alt="" style="width: 100%" />
-      </div>
+      <!--      <div style="box-sizing: border-box; border-radius: 15px; overflow: hidden">-->
+      <!--        <img src="./images/zhuanzengyaoqiu.png" alt="" style="width: 100%" />-->
+      <!--      </div>-->
       <!--      <p-->
       <!--        style="-->
       <!--          margin-top: 10px;-->
@@ -174,8 +104,8 @@
       <!--          line-height: 20px;-->
       <!--        "-->
       <!--      >-->
-      <!--        1、钻石转赠5个起转，账户需要预留手续费，转成功后自动扣除手续！<br />-->
-      <!--        2、非会员转增50%手续费，钻石会员转赠5%手续费。<br />-->
+      <!--        1、点券转赠5个起转，账户需要预留手续费，转成功后自动扣除手续！<br />-->
+      <!--        2、非会员转增50%手续费，点券会员转赠5%手续费。<br />-->
       <!--        3、转赠时间 上午10点&#45;&#45;下午18点-->
       <!--      </p>-->
 
@@ -207,6 +137,67 @@
 
       <!--        <p>长期稳定，信誉，正规企业，合法合规!</p>-->
       <!--      </div>-->
+    </div>
+
+    <div style="margin: 15px 0 6px 8px; color: #000; font-weight: bolder">交易进行中</div>
+    <div class="record">
+      <van-tabs
+        v-model:active="activeName"
+        title-active-color="#fed61f"
+        @change="init"
+        color="#fed61f"
+      >
+        <van-tab title="正在售卖" name="a"></van-tab>
+        <van-tab title="正在购买" name="b"></van-tab>
+        <van-list
+          v-model:loading="loading"
+          :finished="finished"
+          finished-text="没有更多了"
+          @load="getDataList"
+        >
+          <div
+            v-for="(item, index) in dataList"
+            style="position: relative"
+            :key="item.id"
+            class="card"
+            @click="handleOrderClick(item)"
+          >
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+              "
+            >
+              <div style="width: 60%">
+                <div>
+                  <span style="font-size: 14px; font-weight: bolder; color: #000">
+                    {{ activeName === 'a' ? '转出' : '转入' }}
+                  </span>
+                </div>
+                <div>
+                  <span style="font-size: 12px; color: #000">{{ item.sellRemark || '' }}</span>
+                </div>
+              </div>
+              <div style="flex: 1; text-align: right">
+                <div>
+                  <span
+                    style="font-size: 16px; color: #f6202b; font-weight: bolder"
+                    class="text-warning"
+                    >{{ item.points || 0 }}点券</span
+                  >
+                </div>
+                <div style="margin-top: 6px">
+                  <span style="font-size: 12px; color: #000">{{
+                    method.toDate(item.createTime)
+                  }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </van-list>
+      </van-tabs>
     </div>
     <TipDialog
       v-model="showGonggaoOverlay2"
@@ -253,18 +244,22 @@
 import {
   logout as fnlogout,
   register,
+  reqTradePage,
+  reqTransferLogs,
   reqUserIncome,
+  reqWalletLog,
   reqWalletTransfer,
   sociallogin
 } from '@/api/myApi'
 import { _no, _sleep, _notice } from '@/utils'
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
 import { useRoute } from 'vue-router'
-import { onActivated, onMounted, ref } from 'vue'
+import { onActivated, onMounted, reactive, ref } from 'vue'
 import { getIsInApp } from '@/utils/getTopPadding'
 import dayjs from 'dayjs'
 import isBetween from 'dayjs//plugin/isBetween'
 import { showToast } from 'vant'
+import utils from '@/utils/utils'
 
 const showGonggaoOverlay2 = ref(false)
 
@@ -272,9 +267,10 @@ const isVip = ref(JSON.parse(window.localStorage.getItem('userInfo'))?.result?.s
 const route = useRoute()
 const time = ref()
 const data = reactive({
-  uid: '',
-  code: '',
-  amount: ''
+  buyUid: '',
+  remark: '',
+  points: '',
+  eWalletScene: 'wechat'
   // fingerprint: ''
 })
 const countdown = ref(0)
@@ -308,69 +304,26 @@ function go(path) {
   router.push(path)
 }
 
-function getCode() {
-  // 获取今天的日期
-  // dayjs.extend(isBetween)
-  // const today = dayjs().startOf('day')
-  //
-  // // 获取今天 8 点和 19 点的时间
-  // const morning8 = today.add(8, 'hour')
-  // const evening7 = today.add(19, 'hour')
-  //
-  // // 获取当前时间
-  // const now = dayjs()
-  // // 判断当前时间是否在 8 点到 19 点之间
-  // const isbetween = now.isBetween(morning8, evening7, null, '[]')
-  //
-  // if (!isbetween) {
-  //   showToast({
-  //     duration: 5000,
-  //     message: '元宝互转交易时间为每天早上8点至晚上19点'
-  //   })
-  //   return
-  // }
-  // const serial = JSON.parse(window.localStorage.getItem('userInfo'))?.result?.staff?.serial
-  // if (!serial) {
-  //   showGonggaoOverlay2.value = true
-  //
-  //   return
-  // }
-  if (!data.uid) {
-    return _notice('请输入团队成员ID')
-  }
-
-  reqWalletTransfer(data).then((e) => {
-    _notice(e.msg)
-    if (e.code === 201) {
-      countdown.value = 60
-      timer = setInterval(updateCountdown, 1000)
-    }
-  })
-}
-
 function onSubmit() {
-  // if (!sessionStorage.isZhuanzengShare && window.android && window.android.shareImg) {
-  if (localStorage.isZhuanzengShare !== dayjs().format('YYYY-MM-DD') && window.android) {
-    // shareDialogShow.value = true
-    shareDialogOverlay.value = true
-    return
-    // window.showShareFriend()
-    //
-    // localStorage.isZhuanzengShare = dayjs().format('YYYY-MM-DD')
+  // // if (!sessionStorage.isZhuanzengShare && window.android && window.android.shareImg) {
+  // if (localStorage.isZhuanzengShare !== dayjs().format('YYYY-MM-DD') && window.android) {
+  //   // shareDialogShow.value = true
+  //   shareDialogOverlay.value = true
+  //   return
+  //   // window.showShareFriend()
+  //   //
+  //   // localStorage.isZhuanzengShare = dayjs().format('YYYY-MM-DD')
+  //
+  //   //   window.shareFriend()
+  //   // })
+  //   // return
+  // }
 
-    //   window.shareFriend()
-    // })
-    // return
+  if (!data.buyUid) {
+    return showToast('请输入买家ID')
   }
-
-  if (!data.uid) {
-    return showToast('请输入团队成员ID')
-  }
-  if (!data.amount) {
+  if (!data.points) {
     return showToast('请输入转赠数量')
-  }
-  if (!data.code) {
-    return showToast('请输入短信验证码')
   }
 
   // 获取今天的日期
@@ -385,25 +338,23 @@ function onSubmit() {
   const now = dayjs()
   const isbetween = now.isBetween(morning8, evening7, null, '[]')
 
-  if (!isbetween) {
-    showToast({
-      duration: 5000,
-      message: '转增时间为上午10点到晚上21点'
-    })
-    return
+  // if (!isbetween) {
+  //   showToast({
+  //     duration: 5000,
+  //     message: '转增时间为上午10点到晚上21点'
+  //   })
+  //   return
+  // }
+  if (data.points < 5) {
+    return _notice('点券转赠5个起！')
   }
-  if (data.amount < 5) {
-    return _notice('钻石转赠5个起！')
-  }
-  if (!data.code) {
-    return _notice('请输入验证码！')
-  }
+
   reqWalletTransfer(data).then((e) => {
     _notice(e.msg)
     if (e.code === 200) {
-      data.uid = ''
-      data.code = ''
-      data.amount = ''
+      data.buyUid = ''
+      data.remark = ''
+      data.points = ''
     }
   })
 }
@@ -416,8 +367,65 @@ const getUserIncome = (cb?) => {
     cb && cb()
   })
 }
+
+const handleOrderClick = (item) => {
+  console.log('item', item)
+  router.push({
+    path: '/orderInfo',
+    query: {
+      no: item.no
+    }
+  })
+}
+const searchInfo = reactive({
+  page: 0,
+  limit: 30
+})
+const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
+
+const getDataList = () => {
+  searchInfo.page++
+  const params = { ...searchInfo }
+  loading.value = true
+  console.log('asd', activeName.value)
+  if (activeName.value === 'a') {
+    params.sellUid = userInfo.value.id
+  } else {
+    params.buyUid = userInfo.value.id
+  }
+  reqTradePage(params).then(({ code, msg, data }) => {
+    loading.value = false
+    if (code !== 200) {
+      finished.value = true
+      return
+    }
+    // 数据全部加载完成
+    dataList.value.push(...(data.data || []))
+    if ((data.data || []).length === 0 || dataList.value.length >= data.count) {
+      finished.value = true
+    }
+  })
+}
+const init = () => {
+  searchInfo.page = 0
+  dataList.value = []
+  finished.value = false
+  getDataList()
+}
+
+const activeName = ref('a')
+
+const loading = ref(true)
+const finished = ref(false)
+
+const dataList = ref([])
+
+const method = {
+  toDate: (value) => utils.timeToDate(value, 'Y-M-D H:i')
+}
 onActivated(() => {
   getUserIncome()
+  getDataList()
 })
 </script>
 
@@ -449,27 +457,25 @@ onActivated(() => {
   height: 100vh;
   color: #666;
   //background-color: #1f203d;
-  background: url('https://lx.aosenn.com/h5/static/login/bolang.png') no-repeat;
+  //background: url('https://lx.aosenn.com/h5/static/login/bolang.png') no-repeat;
   //background-color: rgb(247, 213, 152);
   background-size: 250px;
   background-position: 100% 0;
+  background-color: #f3f3f3;
   overflow-y: auto;
   // background: linear-gradient(45deg, #fdfbfb 10%, #FFFFFF 48%, #ebedee 100%) !important;
   .van-divider {
     color: white;
   }
   :deep(.van-nav-bar) {
-    background: transparent !important;
+    background-color: #fed61f !important;
     .van-nav-bar__title {
-      color: #ffffff !important;
-    }
-
-    .van-nav-bar__text {
       color: #fff !important;
     }
 
     .van-icon {
-      color: #fff;
+      color: #fff !important;
+      font-size: 18px !important;
     }
   }
   :deep(.van-hairline--bottom) {
@@ -477,27 +483,54 @@ onActivated(() => {
       border-bottom: none;
     }
   }
+
+  :deep(.van-tabs) {
+    .van-tabs__line {
+      //background-color: red !important;
+      height: 2px;
+    }
+  }
+
+  .total-info {
+    background-color: #fed61f;
+    margin: 10px 10px;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    .top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+
+    .center {
+      font-weight: bolder;
+      font-size: 18px;
+      margin: 14px 0;
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+  }
   .content {
     box-sizing: border-box;
-    padding: 0 0px 30px;
-    width: 90%;
-    margin: 20px auto 0;
+    padding: 0 0px 10px;
+    margin: 10px 10px 0;
     //box-shadow: 0 0 10px #0000001f;
-    border-radius: 20px;
-    //background-color: #2e3350;
-
-    .desc {
-      margin-top: 10px;
-      margin-bottom: 30px;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-    }
+    border-radius: 10px;
+    background-color: #fff;
 
     .button {
       width: 100%;
       margin-bottom: 5px;
     }
+  }
+
+  .record {
+    background-color: #fff;
   }
 }
 
@@ -532,10 +565,14 @@ onActivated(() => {
   }
 }
 :deep(.van-cell) {
-  border-radius: 25px;
-  box-shadow: 0 0 10px #eee;
-  .van-field__control {
-    text-indent: 20px;
+  .van-cell__title.van-field__label {
+    color: #000;
+    font-size: 12px;
   }
+  //  border-radius: 25px;
+  //  box-shadow: 0 0 10px #eee;
+  //  .van-field__control {
+  //    text-indent: 20px;
+  //  }
 }
 </style>

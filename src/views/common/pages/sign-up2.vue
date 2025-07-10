@@ -4,7 +4,7 @@
       <img alt="" src="@/assets/img/logo.png" />
       <div class="logo-box-content">
         <div class="info">
-          <!--          <p>钻石乐园</p>-->
+          <!--          <p>点券乐园</p>-->
           <!--                    <p>the big thumb video</p>-->
         </div>
       </div>

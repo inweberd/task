@@ -25,7 +25,7 @@
     <!--            >{{ total || '0.00' }}</span-->
     <!--            >-->
     <!--            <img src="./images/fenhong.png" style="width: 100px; height: 120px"/>-->
-    <!--            <p style="position: absolute; text-align: center; width: 100%; bottom: 15px">钻石乐园</p>-->
+    <!--            <p style="position: absolute; text-align: center; width: 100%; bottom: 15px">点券乐园</p>-->
     <!--        </div>-->
     <van-overlay :show="showOverlayer" :z-index="99999999">
       <div class="wrapper" @click.stop="getRed">

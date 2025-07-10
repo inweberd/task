@@ -17,7 +17,7 @@
       </div>
       <div @click="$router.push('/myteam')">
         <div>
-          通用钻石
+          通用点券
           <img src="./images/zuanshi.png" alt="" />
         </div>
         <div>
@@ -35,7 +35,7 @@
       color="#fff"
       left-icon="volume-o"
       style="border-radius: 10px; height: 30px; border: 1px solid #fff; margin: 8px 8px 0"
-      text="钻石乐园拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3钻石，达标自动发放！"
+      text="点券乐园拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3点券，达标自动发放！"
     >
     </van-notice-bar>
 
@@ -75,8 +75,8 @@
       <!--        请使用68APP扫码进官方群-->
       <!--      </p>-->
       <div style="padding: 20px; color: #fff">
-        <p style="text-align: center; font-size: 18px; font-weight: bolder">钻石双重豪礼</p>
-        <div style="font-size: 15px; font-weight: bolder; margin-top: 8px">钻石天梯争上游活动</div>
+        <p style="text-align: center; font-size: 18px; font-weight: bolder">点券双重豪礼</p>
+        <div style="font-size: 15px; font-weight: bolder; margin-top: 8px">点券天梯争上游活动</div>
         <div>天梯等级达到20级 奖38现金</div>
         <div>天梯等级达到25级 奖88现金</div>
         <div>天梯等级达到30级 奖398现金</div>
@@ -135,7 +135,7 @@ const loadXuanShang = () => {
 
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
   const userId = userInfo?.id
-  window?.android?.initQie(userId, '钻石悬赏')
+  window?.android?.initQie(userId, '点券悬赏')
 }
 const goXiaoHaoGame = () => {
   router.push('/gameList')

@@ -88,7 +88,7 @@ import { POST } from '@/utils/axios'
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUsers } from '@/store/users'
-import { AES, token as aesToken } from '@/utils/AES'
+import { AES, ASCII, token as aesToken } from '@/utils/AES'
 import CryptoJS from 'crypto-js'
 import axios from 'axios'
 import { _notice } from '@/utils'
@@ -153,31 +153,47 @@ const SignIn = async () => {
   } else {
     unix = res.data?.data?.unix
   }
-  const iv = aesToken('inis-iv', 16, 'aes')
-  const key = aesToken('inis-key', 16, 'aes')
-  const item = new AES(key, iv)
+  const iv = aesToken(unix, 16)
+  const key = aesToken('method=GET', 16)
+  const item = new AES(key.toUpperCase(), iv.toUpperCase())
+
+  const params = {
+    account: state.struct.account,
+    password: state.struct.password
+  }
+
+  const account = state.struct.account
+  // 获取明文密码
+  const password = state.struct.password
+
+  // const XHelios = Buffer.from(`${key}${iv}`).toString('base64')
+  const XHelios = btoa(`${key}${iv}`)
+
+  const XSsStub = CryptoJS.MD5(ASCII(params)).toString().toUpperCase()
+
   const { code, data, msg } = await POST(
-    `/api/comm/login`,
+    `/api/comm/sign-in`,
     {
-      account: state.struct.account,
-      password: CryptoJS.AES.encrypt(
-        state.struct.password,
-        'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxppwc6CNrcLJRLFIWtuABYIf1U/5Hpwzaj4f17sZwaUf4LlHQXto50RB6c4wRDU9MFcI3gwmu6OQrMu211XVoE/P6u4R1/hYdcNaPAM9UGEJg+bVOFxBp4BXFtq+3kAkMYnOCpYygK0J5pJe4KEhfB4VucidKmtYlgCGdfhcRUp9CiuUF1zwx6+UN1JzYY3piVG4uIV//KydKtFcF4ZtDt2OmBnGy96T/GA3A1+Kx2Zjl3u+PDNjzSHwYiJ46h8rcqV+86LL2y/G2kKeXMBeQPHPiwNP8p6SjZEEmBKCc4w3wBZiXKsTBk8dVfO77A5tLf6x3tm9eFqQLUJs4fxcowIDAQAB'
-      ).toString()
+      // account: state.struct.account,
+      account: item.encrypt(account),
+      password: item.encrypt(password)
+      // password: state.struct.password
     },
     {
       headers: {
         'X-Khronos': unix,
-        'X-Gorgon': `${key} ${iv}`,
-        // 注意：每个签名有效时间只有60s
-        'X-Argus': item.encrypt(
-          JSON.stringify({
-            imei: getOaid() || getImei(),
-            unix,
-            account: state.struct.account,
-            password: state.struct.password
-          })
-        )
+        // 'X-Gorgon': `${key} ${iv}`,
+        'X-Helios': XHelios,
+        'X-SS-STUB': XSsStub,
+        'X-Medusa': item.encrypt(JSON.stringify(params))
+        // 'X-Argus': item.encrypt(
+        //   JSON.stringify({
+        //     imei: getOaid() || getImei(),
+        //     unix,
+        //     account: state.struct.account,
+        //     password: state.struct.password
+        //   })
+        // )
       }
     }
   )
@@ -189,11 +205,11 @@ const SignIn = async () => {
   info.value = data.user
   token.value = data.token
   status.value.login = true
-  cache.set('token', data.token)
+  cache.set('token', data.token.value)
   cache.set('users[info]', data.user)
 
   for (let i in state.struct) state.struct[i] = ''
-  window.localStorage.setItem('token', data.token)
+  window.localStorage.setItem('token', data.token.value)
   window.localStorage.setItem('userInfo', JSON.stringify(data.user))
 
   // 跳转到首页

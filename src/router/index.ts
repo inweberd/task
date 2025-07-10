@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import routes from './routes'
 import { useBaseStore } from '@/store/pinia'
-import { IS_SUB_DOMAIN } from '@/config'
 import { useUsers } from '@/store/users'
 import { storeToRefs } from 'pinia'
 

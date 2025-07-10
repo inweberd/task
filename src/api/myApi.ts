@@ -11,9 +11,6 @@ export function register(data) {
 export function sociallogin(data) {
   return axiosInstance({ url: 'api/comm/social-login', method: 'post', data })
 }
-export function mine(data) {
-  return axiosInstance({ url: 'api/staff-entry/mine', method: 'get', data })
-}
 export function column(data) {
   return axiosInstance({ url: 'api/staff/column', method: 'get', data })
 }
@@ -42,7 +39,7 @@ export function jsapi(data) {
 
 // 获取全部会员
 export function reqAllStaff(data) {
-  return axiosInstance({ url: 'api/staff/all', method: 'get', params: data })
+  return axiosInstance({ url: '/api/vip/rows', method: 'get' })
 }
 
 // 获取全部会员
@@ -169,9 +166,26 @@ export function reqCreateShareLog(data = {}) {
   return axiosInstance({ url: 'api/share-log/create', method: 'post', data })
 }
 
-// 添加一条分享记录
+// 卖家发起转赠
 export function reqWalletTransfer(data) {
-  return axiosInstance({ url: 'api/wallet/transfer', method: 'post', data })
+  return axiosInstance({ url: 'api/users-wallet-trade/transfer', method: 'post', data })
+}
+
+// 买家确认转赠
+export function reqWalletBuyConfirm(data) {
+  return axiosInstance({
+    url: '/api/users-wallet-trade/transfer-buy-confirm',
+    method: 'post',
+    data,
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+}
+
+// 转赠分页
+export function reqTradePage(params) {
+  return axiosInstance({ url: 'api/users-wallet-trade/find', method: 'get', params })
 }
 
 // 删除兑换方式
@@ -316,7 +330,7 @@ export function reqBonusInvite(mode) {
 // 聚宝盆分页
 export function reqTreasureBasinPage() {
   return axiosInstance({
-    url: '/api/treasure-basin/find?limit=100&order= serial asc',
+    url: '/api/climb-ladder/rows',
     method: 'get'
   })
 }
@@ -366,12 +380,33 @@ export function reqTransferLogs(params) {
   })
 }
 
-// 会员一键领取
-export function reqStaffSettle() {
-  return axiosInstance({ url: '/api/staff/settle', method: 'post' })
+// 电子钱包列表
+export function reqDianziQianbaoList() {
+  return axiosInstance({ url: '/api/users-wallet/e-find', method: 'get' })
 }
 
-// 会员查询可领取余额
-export function reqGetStaffSettle() {
-  return axiosInstance({ url: '/api/staff/settle', method: 'get' })
+// 电子钱包列表
+export function reqWalletSave(data) {
+  return axiosInstance({
+    url: '/api/users-wallet/e-save',
+    data,
+    method: 'post',
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+}
+
+// 电子钱包列表
+export function reqUpdateWalletAuth(params) {
+  return axiosInstance.put('/api/users-wallet/update', params)
+}
+
+// 获取转赠订单详情
+export function reqWalletTradeTake(params) {
+  return axiosInstance({
+    url: '/api/users-wallet-trade/take',
+    method: 'get',
+    params
+  })
 }

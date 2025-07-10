@@ -36,7 +36,7 @@
             </div>
             <div class="nav_title_tel">
               我的ID： {{ userInfo?.id }}
-              <span style="margin-left: 7px">邀请ID:{{ userInfo?.result?.invite?.code }}</span>
+              <span style="margin-left: 7px">邀请ID:{{ userInfo?.invite?.code }}</span>
             </div>
           </div>
         </div>
@@ -62,6 +62,7 @@
           </div>
         </div>
       </div>
+
       <div class="content-wrapper" style="margin-top: 35px">
         <div class="function-area renwu">
           <div class="list">
@@ -69,7 +70,7 @@
               <p>
                 {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}
               </p>
-              <p>通用钻石</p>
+              <p>通用点券</p>
             </div>
             <div class="items">
               <p>{{ (userIncomeInfo.today || 0).toFixed(2) }}</p>
@@ -102,6 +103,17 @@
         </div>
       </div>
       <div class="content-wrapper" style="margin-top: 10px">
+        <van-cell style="margin-bottom: 10px">
+          <!-- 使用 title 插槽来自定义标题 -->
+          <template #title>
+            <van-icon name="gem-o" color="#000" />
+            <span style="padding-left: 6px">开启收款权限</span>
+          </template>
+          <template #right-icon>
+            <van-switch v-model="checked" @change="shoukuanChange" size="20px" />
+          </template>
+        </van-cell>
+
         <div class="function-area">
           <div class="title flex">
             <div class="left">我的任务</div>
@@ -231,7 +243,7 @@
               <div style="width: 30px; height: 30px">
                 <!----><img src="./images/33.png" draggable="false" />
               </div>
-              <div style="font-size: 13px">钻石天梯</div>
+              <div style="font-size: 13px">点券天梯</div>
               <!----><!---->
             </div>
             <div
@@ -302,6 +314,17 @@
             <div
               class="serveItem"
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
+              @click="$router.push('/dianziqianbao')"
+            >
+              <div style="width: 30px; height: 30px">
+                <!----><img src="https://lx.aosenn.com/h5/static/user/ww10.png" draggable="false" />
+              </div>
+              <div style="font-size: 13px">电子钱包</div>
+              <!----><!---->
+            </div>
+            <div
+              class="serveItem"
+              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
             >
               <div style="width: 30px; height: 30px">
                 <!----><img src="https://lx.aosenn.com/h5/static/user/w1.png" draggable="false" />
@@ -340,16 +363,6 @@
                 <!----><img src="https://lx.aosenn.com/h5/static/user/ww9.png" draggable="false" />
               </div>
               <div style="font-size: 13px">消息列表</div>
-              <!----><!---->
-            </div>
-            <div
-              class="serveItem"
-              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
-            >
-              <div style="width: 30px; height: 30px">
-                <!----><img src="https://lx.aosenn.com/h5/static/user/ww10.png" draggable="false" />
-              </div>
-              <div style="font-size: 13px">我的导师</div>
               <!----><!---->
             </div>
           </div>
@@ -545,19 +558,13 @@ import {
   logout as fnlogout,
   reqAdvertisingCount,
   reqAdvertisingSinglePrice,
-  reqBonusInvite,
-  reqGetStaffSettle,
   reqMyStaff,
   reqNgTransfer,
-  reqPullNew,
-  reqPullNewLite,
   reqQuickReceive,
-  reqStaffSettle,
+  reqUpdateWalletAuth,
   reqUserCount,
   reqUserIncome,
   reqUserInfo,
-  reqUserMemberInfo,
-  reqUserStaff,
   reqWalletInfo
 } from '@/api/myApi'
 import { loadInteraction, wxLogin } from '@/utils/ad'
@@ -592,6 +599,15 @@ const goQQ = () => {
 }
 const showGonggaoOverlay = ref(false)
 
+const checked = ref(false)
+
+const shoukuanChange = () => {
+  console.log('asd', checked.value)
+  reqUpdateWalletAuth({
+    transfer: checked.value
+  })
+}
+
 const updateOverlay = ref(false)
 const goJiangshangjiangOverlay = ref(false)
 const goDepOverlay = ref(false)
@@ -604,7 +620,6 @@ const copy = () => {
   showGonggaoOverlay.value = false
 }
 
-const memberInfo = ref({})
 const userIncomeInfo = ref({})
 const walletInfo = ref({ credit: 0 })
 const star = ref(0)
@@ -679,14 +694,6 @@ const getShouyi = () => {
     }
   })
 }
-const getMemberInfo = async () => {
-  reqUserMemberInfo({
-    uid: userInfo.value.id
-  }).then((res) => {
-    console.log('memberInfo', memberInfo)
-    memberInfo.value = res.data
-  })
-}
 const getUserIncome = (cb?) => {
   // loading.value = true
   reqUserIncome().then((res) => {
@@ -704,7 +711,6 @@ const getUserCount = () => {
   })
 }
 const init = async () => {
-  getMemberInfo()
   getUserIncome()
   // getUserCount()
 }
@@ -801,15 +807,6 @@ const yijianlingqu = () => {
     })
     return
   }
-  reqStaffSettle().then((res) => {
-    keLingQuYue.value = 0
-    console.log('res')
-    if (!res.data.money) {
-      showToast('已领取过今日收益！')
-    } else {
-      showToast(`已领取${res.data.money}钻石`)
-    }
-  })
 }
 const toMySub = () => {
   // loadInteraction()
@@ -835,31 +832,13 @@ const handleEyeClick = () => {
   })
 }
 
-const bonus = ref(0)
-const getRed = () => {
-  reqBonusInvite('query')
-    .then((res) => {
-      bonus.value = res.data.bonus || 0
-    })
-    .finally(() => {
-      closeToast()
-    })
-}
-const keLingQuYue = ref(0)
-const getKeLingqu = () => {
-  reqGetStaffSettle().then((res) => {
-    keLingQuYue.value = res.data?.money || 0
-  })
-}
 onActivated(() => {
   // showGonggaoOverlay.value = true
   // updateOverlay.value = true
   userInfo.value = JSON.parse(window.localStorage.getItem('userInfo'))
   init()
-  getRed()
   getNewUserInfo()
   getMyStaff()
-  getKeLingqu()
   bus.on('userInfoChange', (data) => {
     userInfo.value = data
   })
@@ -1359,8 +1338,9 @@ onDeactivated(() => {
   }
 
   :deep(.van-cell) {
-    border-bottom: 1px solid #4d536a !important;
+    //border-bottom: 1px solid #4d536a !important;
     padding-bottom: 5px;
+    background-color: #fff;
 
     &::after {
       border: none !important;

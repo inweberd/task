@@ -5,36 +5,19 @@
       color="#303133"
       left-icon="volume-o"
       style="border-radius: 10px; height: 30px; border: 1px solid #303133; margin: 8px 8px 0"
-      text="钻石乐园拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3钻石，达标自动发放！"
+      text="点券乐园拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3点券，达标自动发放！"
     >
     </van-notice-bar>
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item>
-        <img
-          src="https://lx.aosenn.com/uploads/20240312/6f74eaa2565ff52321bc7693d0bf0c52.jpg"
-          alt=""
-        />
+        <img src="./images/banner1.jpg" alt="" />
       </van-swipe-item>
-      <van-swipe-item>
-        <img
-          src="https://lx.aosenn.com/uploads/20240312/97d6df84900ad010c7eeed904e69fc91.jpg"
-          alt=""
-      /></van-swipe-item>
-      <van-swipe-item>
-        <img
-          src="https://lx.aosenn.com/uploads/20240312/6809ccd8b532c297ba7b02a203704339.jpg"
-          alt=""
-      /></van-swipe-item>
-      <van-swipe-item>
-        <img
-          src="https://lx.aosenn.com/uploads/20250221/174612a980e31bb308943876dc6c2bdd.jpg"
-          alt=""
-      /></van-swipe-item>
+      <van-swipe-item> <img src="./images/banner2.jpg" alt="" /></van-swipe-item>
     </van-swipe>
-    <div class="info-banenr">
+    <div class="info-banenr" v-if="false">
       <div class="one-box">
         <div class="title">
-          通用钻石：
+          通用点券：
           <span>
             {{
               userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0
@@ -103,6 +86,123 @@
         <span>邀请好友</span>
       </div>
     </div>
+    <div class="shulist">
+      <div class="shu-item">
+        <div class="l">
+          <div class="img-box">
+            <img alt="" src="./home-image/canyujieti.jpg" />
+          </div>
+          <div>
+            <div>参与阶梯</div>
+            <!--            <div>点击查看每周现金分红排行榜！</div>-->
+          </div>
+        </div>
+        <div class="r">
+          <div @click="$router.push('/rank')">详情</div>
+        </div>
+      </div>
+      <div v-if="!isIos" class="shu-item">
+        <div class="l">
+          <div class="img-box">
+            <img alt="" src="./home-image/dataoshayouxi.jpg" />
+          </div>
+          <div>
+            <div>大逃杀游戏</div>
+            <!--            <div>遇到广告直接X掉或跳过，每日获得1元！</div>-->
+          </div>
+        </div>
+        <div class="r">
+          <div @click="loadShort(1)">详情</div>
+        </div>
+      </div>
+      <div class="shu-item">
+        <div class="l">
+          <div class="img-box">
+            <img alt="" src="./home-image/fabuguanggao.jpg" />
+          </div>
+          <div>
+            <div>发布广告</div>
+
+            <!--            <div>购买会员刷视频无广告，2分钟极速完成！</div>-->
+          </div>
+          <div class="r">
+            <div @click="loadShort(3)">详情</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shu-item">
+        <div class="l">
+          <div class="img-box">
+            <img alt="" src="./home-image/paihangbangfenhong.jpg" />
+          </div>
+          <div>
+            <div>排行榜分红</div>
+            <!--            <div>PG电子-&#45;&#45;拼手气-&#45;&#45;一夜暴富！</div>-->
+          </div>
+        </div>
+        <div class="r">
+          <div @click="handleGame">详情</div>
+        </div>
+      </div>
+
+      <div class="shu-item">
+        <div class="l">
+          <div class="img-box">
+            <img alt="" src="./home-image/dingshangquanyi.png" />
+          </div>
+          <div>
+            <div>顶商权益</div>
+            <!--            <div>点击查看每周奖池分红规则！</div>-->
+          </div>
+        </div>
+        <div class="r">
+          <div @click="$router.push('/fenhong')">详情</div>
+        </div>
+      </div>
+      <div class="shu-item">
+        <div class="l">
+          <div class="img-box">
+            <img alt="" src="./home-image/chuanshanjia.png" />
+          </div>
+          <div>
+            <div>穿山甲广告</div>
+            <!--            <div>点击查看每周奖池分红规则！</div>-->
+          </div>
+        </div>
+        <div class="r">
+          <div @click="$router.push('/fenhong')">详情</div>
+        </div>
+      </div>
+      <div class="shu-item">
+        <div class="l">
+          <div class="img-box">
+            <img alt="" src="./home-image/lianghao.png" />
+          </div>
+          <div>
+            <div>靓号免费选</div>
+            <!--            <div>点击查看每周奖池分红规则！</div>-->
+          </div>
+        </div>
+        <div class="r">
+          <div @click="$router.push('/fenhong')">详情</div>
+        </div>
+      </div>
+      <div class="shu-item">
+        <div class="l">
+          <div class="img-box">
+            <img alt="" src="./home-image/zhuanzeng.png" />
+          </div>
+          <div>
+            <div>转赠</div>
+            <!--            <div>点击查看每周奖池分红规则！</div>-->
+          </div>
+        </div>
+        <div class="r">
+          <div @click="$router.push('/fenhong')">详情</div>
+        </div>
+      </div>
+    </div>
     <!--    <div class="top-box">-->
     <!--      <div @click="$router.push('/recharge')">-->
     <!--        <div>-->
@@ -116,7 +216,7 @@
     <!--      </div>-->
     <!--      <div @click="$router.push('/myteam')">-->
     <!--        <div>-->
-    <!--          通用钻石-->
+    <!--          通用点券-->
     <!--          <img src="./images/zuanshi.png" alt="" />-->
     <!--        </div>-->
     <!--        <div>-->
@@ -161,8 +261,8 @@
       <!--        请使用68APP扫码进官方群-->
       <!--      </p>-->
       <div style="padding: 20px; color: #fff">
-        <p style="text-align: center; font-size: 18px; font-weight: bolder">钻石双重豪礼</p>
-        <div style="font-size: 15px; font-weight: bolder; margin-top: 8px">钻石天梯争上游活动</div>
+        <p style="text-align: center; font-size: 18px; font-weight: bolder">点券双重豪礼</p>
+        <div style="font-size: 15px; font-weight: bolder; margin-top: 8px">点券天梯争上游活动</div>
         <div>天梯等级达到20级 奖38现金</div>
         <div>天梯等级达到25级 奖88现金</div>
         <div>天梯等级达到30级 奖398现金</div>
@@ -221,7 +321,7 @@ const loadXuanShang = () => {
 
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
   const userId = userInfo?.id
-  window?.android?.initQie(userId, '钻石悬赏')
+  window?.android?.initQie(userId, '点券悬赏')
 }
 const goXiaoHaoGame = () => {
   router.push('/gameList')
@@ -382,6 +482,86 @@ onActivated(() => {
         img {
           width: 40px;
           height: 40px;
+        }
+      }
+    }
+  }
+
+  .shulist {
+    padding: 15px;
+
+    .shu-item {
+      display: flex;
+      background-color: #fff;
+      border-radius: 6px;
+      padding: 8px;
+      color: #000;
+      margin-bottom: 10px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+      padding-left: 20px;
+
+      &:nth-child(1),
+      &:nth-child(2),
+      &:nth-child(3) {
+        &:before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 35px;
+          height: 35px;
+          content: '';
+          background: url('https://lx.aosenn.com/h5/static/tuijian.png') no-repeat;
+          background-size: 100%, 100%;
+          z-index: 2;
+        }
+      }
+
+      .l {
+        flex: 1;
+        display: flex;
+
+        .img-box {
+          border-radius: 10px;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          img {
+            width: 45px;
+            height: auto;
+          }
+        }
+
+        & > div:nth-child(2) {
+          margin-left: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+          flex: 1;
+
+          & > div:nth-child(2) {
+            color: red;
+            font-size: 12px;
+          }
+        }
+      }
+
+      .r {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        div {
+          background: #fed61f;
+
+          //background-image: linear-gradient(to right, #ff8b6e, #ff625c);
+          color: #000;
+          border-radius: 15px;
+          padding: 4px 10px;
         }
       }
     }

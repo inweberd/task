@@ -40,7 +40,7 @@
         <div class="info">
           <p>TOP1</p>
           <p>{{ getPhone(rankList?.[0]?.phone) || '--' }}</p>
-          <p style="font-size: 22px">{{ rankList?.[0]?.total || '--' }}钻石</p>
+          <p style="font-size: 22px">{{ rankList?.[0]?.total || '--' }}点券</p>
         </div>
       </div>
       <div class="two">
@@ -50,7 +50,7 @@
         <div class="info">
           <p>TOP2</p>
           <p>{{ getPhone(rankList?.[1]?.phone) || '--' }}</p>
-          <p>{{ rankList?.[1]?.total || '--' }}钻石</p>
+          <p>{{ rankList?.[1]?.total || '--' }}点券</p>
         </div>
       </div>
       <div class="three">
@@ -60,7 +60,7 @@
         <div class="info">
           <p>TOP3</p>
           <p>{{ getPhone(rankList?.[2]?.phone) || '--' }}</p>
-          <p>{{ rankList?.[2]?.total || '--' }}钻石</p>
+          <p>{{ rankList?.[2]?.total || '--' }}点券</p>
         </div>
       </div>
     </div>

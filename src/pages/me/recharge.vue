@@ -143,8 +143,8 @@
         <van-field
           v-model="state.struct.amount"
           class="unp"
-          label="购买钻石数量"
-          placeholder="请输入购买钻石数量"
+          label="购买点券数量"
+          placeholder="请输入购买点券数量"
           style="
             font-weight: bolder;
             margin-bottom: 10px;
@@ -217,7 +217,7 @@
         </div>
       </div>
       <div class="recharge-money">
-        <div class="txt">购买钻石数量</div>
+        <div class="txt">购买点券数量</div>
         <div class="money-box">
           <div class="input-content">
             <div class="input-content-icon">￥</div>

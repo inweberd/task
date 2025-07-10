@@ -73,13 +73,13 @@
         color="#fff"
         left-icon="volume-o"
         style="border-radius: 10px; height: 30px; border: 1px solid #fff; margin: 0px 4px 8px"
-        text="钻石乐园拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3钻石，达标自动发放！"
+        text="点券乐园拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3点券，达标自动发放！"
       >
       </van-notice-bar>
       <div class="money-box">
         <div class="total">
           <div class="l">
-            <div class="txt1">通用钻石:</div>
+            <div class="txt1">通用点券:</div>
             <div class="txt2">
               {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}
             </div>
@@ -115,7 +115,7 @@
         </div>
         <div class="total">
           <div class="l">
-            <div class="txt1">今日已获得钻石:</div>
+            <div class="txt1">今日已获得点券:</div>
             <div class="txt2">
               {{ (userIncomeInfo.today || 0).toFixed(2) }}
             </div>
@@ -126,7 +126,7 @@
         </div>
         <div class="total">
           <div class="l">
-            <div class="txt1">历史累计获得钻石:</div>
+            <div class="txt1">历史累计获得点券:</div>
             <div class="txt2">
               {{ (userIncomeInfo.total || 0).toFixed(4) }}
             </div>
@@ -159,11 +159,11 @@
         <div class="border2" v-if="false"></div>
         <div class="money-info" v-if="false">
           <p>
-            <span class="title">今日已获得钻石</span>
+            <span class="title">今日已获得点券</span>
             <span class="num">{{ (userIncomeInfo.today || 0).toFixed(4) }}</span>
           </p>
           <p>
-            <span class="title">历史累计获得钻石</span>
+            <span class="title">历史累计获得点券</span>
             <span class="num">{{ (userIncomeInfo.total || 0).toFixed(4) }}</span>
           </p>
           <p>
@@ -198,12 +198,12 @@
       <!--            font-weight: bolder;-->
       <!--          "-->
       <!--        >-->
-      <!--          今日预估钻石收入:{{ keLingQuYue }}-->
+      <!--          今日预估点券收入:{{ keLingQuYue }}-->
       <!--        </span>-->
       <!--        <img src="./images/yijianlingqu.png" alt="" style="width: 100%" />-->
       <!--      </div>-->
       <!--      <div class="huiyuanquanyi">-->
-      <!--        <div class="title">钻石会员</div>-->
+      <!--        <div class="title">点券会员</div>-->
       <!--        <div class="list">-->
       <!--          &lt;!&ndash;          <div class="item">&ndash;&gt;-->
       <!--          &lt;!&ndash;            <img src="./images/zhekoushangcheng.png" alt="" />&ndash;&gt;-->
@@ -238,7 +238,7 @@
 
           <div class="item" @click="$router.push('/jubaopen')">
             <img src="./images/33.png" alt="" />
-            <span>钻石天梯</span>
+            <span>点券天梯</span>
           </div>
           <div class="item" @click="$router.push('/invest')">
             <img src="./images/huiyuantequan.png" alt="" />
@@ -271,7 +271,7 @@
           </div>
           <div class="item">
             <img src="./images/55.png" alt="" @click="goQQ" />
-            <span>钻石qq黑市交易</span>
+            <span>点券qq黑市交易</span>
           </div>
 
           <div class="item" style="flex: 0 0 35%">
@@ -1487,7 +1487,7 @@ const yijianlingqu = () => {
     if (!res.data.money) {
       showToast('已领取过今日收益！')
     } else {
-      showToast(`已领取${res.data.money}钻石`)
+      showToast(`已领取${res.data.money}点券`)
     }
   })
 }

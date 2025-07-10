@@ -147,7 +147,7 @@
     @confirm="shareFriendFn"
   >
     <div style="padding: 20px; color: #fff; text-align: center">
-      <p>请先分享邀请海报到朋友圈，再进行下一步操作！ 钻石乐园，您的创业首选，财富不打烊！</p>
+      <p>请先分享邀请海报到朋友圈，再进行下一步操作！ 点券乐园，您的创业首选，财富不打烊！</p>
     </div>
   </TipDialog>
   <!--  <van-floating-bubble-->
@@ -192,7 +192,8 @@ const keepAliveBlackList = [
   'myCard',
   'signIn',
   'iframeCom',
-  'conversionRecord'
+  'conversionRecord',
+  'orderInfo'
 ]
 import {
   androidUpdate,
@@ -483,7 +484,7 @@ onMounted(() => {
   if (isWeChatBrowser) {
     // loadWx(() => {
     //   wx.onMenuShareTimeline({
-    //     title: '钻石乐园',
+    //     title: '点券乐园',
     //     // link: 'http://movie.douban.com/subject/25785114asd/',
     //     imgUrl: 'http://tc.izakq.com/media/logo2.png',
     //     trigger: function (res) {

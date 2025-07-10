@@ -30,8 +30,8 @@
                 </template>
               </span>
               <img
-                src="https://lx.aosenn.com//uploads/20230313/19d24c7d60f97599983aa79a7364aa4d.png"
                 draggable="false"
+                src="https://lx.aosenn.com//uploads/20230313/19d24c7d60f97599983aa79a7364aa4d.png"
               />
             </div>
             <div class="nav_title_tel">
@@ -87,7 +87,7 @@
           </div>
         </div>
       </div>
-      <div class="content-wrapper">
+      <div v-if="false" class="content-wrapper">
         <div class="function-area shouyi">
           <div class="list">
             <div class="items">
@@ -106,23 +106,23 @@
         <van-cell style="margin-bottom: 10px">
           <!-- 使用 title 插槽来自定义标题 -->
           <template #title>
-            <van-icon name="gem-o" color="#000" />
+            <van-icon color="#000" name="gem-o" />
             <span style="padding-left: 6px">开启收款权限</span>
           </template>
           <template #right-icon>
-            <van-switch v-model="checked" @change="shoukuanChange" size="20px" />
+            <van-switch v-model="checked" size="20px" @change="shoukuanChange" />
           </template>
         </van-cell>
 
-        <div class="function-area">
+        <div v-if="false" class="function-area">
           <div class="title flex">
             <div class="left">我的任务</div>
             <div class="right">
               所有任务
               <div class="img-box">
                 <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAgCAYAAAASYli2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkNGRjIzNTMwRDRDMzExRUI4ODQ5OEE5MzI2NjcyNEI3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkNGRjIzNTMxRDRDMzExRUI4ODQ5OEE5MzI2NjcyNEI3Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Q0ZGMjM1MkVENEMzMTFFQjg4NDk4QTkzMjY2NzI0QjciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6Q0ZGMjM1MkZENEMzMTFFQjg4NDk4QTkzMjY2NzI0QjciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5rSA6XAAAB5klEQVR42qSWTUhUURiGrzlSuagWttJcRcjQIiRatPAnjH4IS2whGGEtBkEMspaKitssyoXNLKxFgoIhijAQ6VBoCwkJighp5c+qNikYkWbPB69wFRdzv/vCA/Myw3O5nPOdMwXpdPpYEATTcAia4HMQIalUalc/AGVQCUmYhfNBjJjwCzxUPwJv4XIcoaUf7sI/OAyTen230PICbsJfKIJhaI0jtIzrddf13SB0xhFaZqAOfqr3wWMo8Aot81ANq+r3YQgKvULLV22h7+ot8BoOeoWWJUk/qV+HrLaXS2j5ATXwXr1Wk3XcK7T8giswpX5WDyjzCi0b0ACv1CvgQyaTOeUVWjbhNgyon4A5pJVeoWUb7kGPegnkkFZ7hTvplXjnUMkiLY8jDOKs8n7phmf6vGa7gMN2KeEQ2Uw/hXZ1m/lLyBasRBUmdMzdUl+2gwTZYvgH+aYYRuGa+je4iGxl7xPzyVGd4lXqH+GqxjKIKrSZfQNn1HNwQwsReZXLbbxCsgnN9Jpn2yQlO6n+Ehrhj2cfnoN3UKr+RLfilmdjX9DdXKLeBR2a4bz2VTgN2hpFuqPb4Ll39O7AmGR2NzdHlYWFD3SrWf8N9TDiGXB75dPwKDzkWt3AK7TRWfD+ndub/wIMAARDZ7lFLF6hAAAAAElFTkSuQmCC"
                   draggable="false"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAgCAYAAAASYli2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkNGRjIzNTMwRDRDMzExRUI4ODQ5OEE5MzI2NjcyNEI3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkNGRjIzNTMxRDRDMzExRUI4ODQ5OEE5MzI2NjcyNEI3Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Q0ZGMjM1MkVENEMzMTFFQjg4NDk4QTkzMjY2NzI0QjciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6Q0ZGMjM1MkZENEMzMTFFQjg4NDk4QTkzMjY2NzI0QjciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5rSA6XAAAB5klEQVR42qSWTUhUURiGrzlSuagWttJcRcjQIiRatPAnjH4IS2whGGEtBkEMspaKitssyoXNLKxFgoIhijAQ6VBoCwkJighp5c+qNikYkWbPB69wFRdzv/vCA/Myw3O5nPOdMwXpdPpYEATTcAia4HMQIalUalc/AGVQCUmYhfNBjJjwCzxUPwJv4XIcoaUf7sI/OAyTen230PICbsJfKIJhaI0jtIzrddf13SB0xhFaZqAOfqr3wWMo8Aot81ANq+r3YQgKvULLV22h7+ot8BoOeoWWJUk/qV+HrLaXS2j5ATXwXr1Wk3XcK7T8giswpX5WDyjzCi0b0ACv1CvgQyaTOeUVWjbhNgyon4A5pJVeoWUb7kGPegnkkFZ7hTvplXjnUMkiLY8jDOKs8n7phmf6vGa7gMN2KeEQ2Uw/hXZ1m/lLyBasRBUmdMzdUl+2gwTZYvgH+aYYRuGa+je4iGxl7xPzyVGd4lXqH+GqxjKIKrSZfQNn1HNwQwsReZXLbbxCsgnN9Jpn2yQlO6n+Ehrhj2cfnoN3UKr+RLfilmdjX9DdXKLeBR2a4bz2VTgN2hpFuqPb4Ll39O7AmGR2NzdHlYWFD3SrWf8N9TDiGXB75dPwKDzkWt3AK7TRWfD+ndub/wIMAARDZ7lFLF6hAAAAAElFTkSuQmCC"
                 />
               </div>
             </div>
@@ -151,8 +151,8 @@
               发布/管理任务
               <div class="img-box">
                 <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAgCAYAAAASYli2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkNGRjIzNTMwRDRDMzExRUI4ODQ5OEE5MzI2NjcyNEI3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkNGRjIzNTMxRDRDMzExRUI4ODQ5OEE5MzI2NjcyNEI3Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Q0ZGMjM1MkVENEMzMTFFQjg4NDk4QTkzMjY2NzI0QjciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6Q0ZGMjM1MkZENEMzMTFFQjg4NDk4QTkzMjY2NzI0QjciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5rSA6XAAAB5klEQVR42qSWTUhUURiGrzlSuagWttJcRcjQIiRatPAnjH4IS2whGGEtBkEMspaKitssyoXNLKxFgoIhijAQ6VBoCwkJighp5c+qNikYkWbPB69wFRdzv/vCA/Myw3O5nPOdMwXpdPpYEATTcAia4HMQIalUalc/AGVQCUmYhfNBjJjwCzxUPwJv4XIcoaUf7sI/OAyTen230PICbsJfKIJhaI0jtIzrddf13SB0xhFaZqAOfqr3wWMo8Aot81ANq+r3YQgKvULLV22h7+ot8BoOeoWWJUk/qV+HrLaXS2j5ATXwXr1Wk3XcK7T8giswpX5WDyjzCi0b0ACv1CvgQyaTOeUVWjbhNgyon4A5pJVeoWUb7kGPegnkkFZ7hTvplXjnUMkiLY8jDOKs8n7phmf6vGa7gMN2KeEQ2Uw/hXZ1m/lLyBasRBUmdMzdUl+2gwTZYvgH+aYYRuGa+je4iGxl7xPzyVGd4lXqH+GqxjKIKrSZfQNn1HNwQwsReZXLbbxCsgnN9Jpn2yQlO6n+Ehrhj2cfnoN3UKr+RLfilmdjX9DdXKLeBR2a4bz2VTgN2hpFuqPb4Ll39O7AmGR2NzdHlYWFD3SrWf8N9TDiGXB75dPwKDzkWt3AK7TRWfD+ndub/wIMAARDZ7lFLF6hAAAAAElFTkSuQmCC"
                   draggable="false"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAgCAYAAAASYli2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkNGRjIzNTMwRDRDMzExRUI4ODQ5OEE5MzI2NjcyNEI3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkNGRjIzNTMxRDRDMzExRUI4ODQ5OEE5MzI2NjcyNEI3Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Q0ZGMjM1MkVENEMzMTFFQjg4NDk4QTkzMjY2NzI0QjciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6Q0ZGMjM1MkZENEMzMTFFQjg4NDk4QTkzMjY2NzI0QjciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5rSA6XAAAB5klEQVR42qSWTUhUURiGrzlSuagWttJcRcjQIiRatPAnjH4IS2whGGEtBkEMspaKitssyoXNLKxFgoIhijAQ6VBoCwkJighp5c+qNikYkWbPB69wFRdzv/vCA/Myw3O5nPOdMwXpdPpYEATTcAia4HMQIalUalc/AGVQCUmYhfNBjJjwCzxUPwJv4XIcoaUf7sI/OAyTen230PICbsJfKIJhaI0jtIzrddf13SB0xhFaZqAOfqr3wWMo8Aot81ANq+r3YQgKvULLV22h7+ot8BoOeoWWJUk/qV+HrLaXS2j5ATXwXr1Wk3XcK7T8giswpX5WDyjzCi0b0ACv1CvgQyaTOeUVWjbhNgyon4A5pJVeoWUb7kGPegnkkFZ7hTvplXjnUMkiLY8jDOKs8n7phmf6vGa7gMN2KeEQ2Uw/hXZ1m/lLyBasRBUmdMzdUl+2gwTZYvgH+aYYRuGa+je4iGxl7xPzyVGd4lXqH+GqxjKIKrSZfQNn1HNwQwsReZXLbbxCsgnN9Jpn2yQlO6n+Ehrhj2cfnoN3UKr+RLfilmdjX9DdXKLeBR2a4bz2VTgN2hpFuqPb4Ll39O7AmGR2NzdHlYWFD3SrWf8N9TDiGXB75dPwKDzkWt3AK7TRWfD+ndub/wIMAARDZ7lFLF6hAAAAAElFTkSuQmCC"
                 />
               </div>
             </div>
@@ -209,17 +209,17 @@
 
       <div style="width: 92%; margin: 10px auto 0px; position: relative">
         <div class="swiper_box">
-          <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+          <van-swipe :autoplay="3000" class="my-swipe" indicator-color="white">
             <van-swipe-item>
               <img
-                src="https://lx.aosenn.com//uploads/20240312/b1cf54aec769b3bcd54b8af59ec0c98c.png"
                 alt=""
+                src="https://lx.aosenn.com//uploads/20240312/b1cf54aec769b3bcd54b8af59ec0c98c.png"
               />
             </van-swipe-item>
             <van-swipe-item>
               <img
-                src="https://lx.aosenn.com//uploads/20240312/e52e49ac7f835ef671aff4fec3561cb1.png"
                 alt=""
+                src="https://lx.aosenn.com//uploads/20240312/e52e49ac7f835ef671aff4fec3561cb1.png"
             /></van-swipe-item>
           </van-swipe>
         </div>
@@ -237,55 +237,55 @@
           <div class="serve">
             <div
               class="serveItem"
-              @click="$router.push('/jubaopen')"
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
+              @click="$router.push('/jubaopen')"
             >
               <div style="width: 30px; height: 30px">
-                <!----><img src="./images/33.png" draggable="false" />
+                <!----><img draggable="false" src="./images/33.png" />
               </div>
               <div style="font-size: 13px">点券天梯</div>
               <!----><!---->
             </div>
             <div
               class="serveItem"
-              @click="$router.push('/invest')"
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
+              @click="$router.push('/invest')"
             >
               <div style="width: 30px; height: 30px">
-                <img src="./images/huiyuantequan.png" draggable="false" />
+                <img draggable="false" src="./images/huiyuantequan.png" />
               </div>
               <div style="font-size: 13px">会员特权</div>
               <!----><!---->
             </div>
             <div
               class="serveItem"
-              @click="$router.push('/teamStat')"
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
+              @click="$router.push('/teamStat')"
             >
               <div style="width: 30px; height: 30px">
-                <!----><img src="./images/66.png" draggable="false" />
+                <!----><img draggable="false" src="./images/66.png" />
               </div>
               <div style="font-size: 13px">我的团队</div>
               <!----><!---->
             </div>
             <div
               class="serveItem"
-              @click="$router.push('/wallet')"
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
+              @click="$router.push('/wallet')"
             >
               <div style="width: 30px; height: 30px">
-                <!----><img src="./images/77.png" draggable="false" />
+                <!----><img draggable="false" src="./images/77.png" />
               </div>
               <div style="font-size: 13px">收入明细</div>
               <!----><!---->
             </div>
             <div
               class="serveItem"
-              @click="$router.push('/conversion')"
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
+              @click="$router.push('/conversion')"
             >
               <div style="width: 30px; height: 30px">
-                <!----><img src="./images/22.png" draggable="false" />
+                <!----><img draggable="false" src="./images/22.png" />
               </div>
               <div style="font-size: 13px">转赠</div>
               <!----><!---->
@@ -295,18 +295,18 @@
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
             >
               <div style="width: 30px; height: 30px">
-                <!----><img src="./images/jiaoliu.png" draggable="false" />
+                <!----><img draggable="false" src="./images/jiaoliu.png" />
               </div>
               <div style="font-size: 13px">联系客服</div>
               <!----><!---->
             </div>
             <div
               class="serveItem"
-              @click="goDownload"
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
+              @click="goDownload"
             >
               <div style="width: 30px; height: 30px">
-                <!----><img src="./images/99.png" draggable="false" />
+                <!----><img draggable="false" src="./images/99.png" />
               </div>
               <div style="font-size: 13px">下载APP</div>
               <!----><!---->
@@ -317,7 +317,7 @@
               @click="$router.push('/dianziqianbao')"
             >
               <div style="width: 30px; height: 30px">
-                <!----><img src="https://lx.aosenn.com/h5/static/user/ww10.png" draggable="false" />
+                <!----><img draggable="false" src="https://lx.aosenn.com/h5/static/user/ww10.png" />
               </div>
               <div style="font-size: 13px">电子钱包</div>
               <!----><!---->
@@ -327,7 +327,7 @@
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
             >
               <div style="width: 30px; height: 30px">
-                <!----><img src="https://lx.aosenn.com/h5/static/user/w1.png" draggable="false" />
+                <!----><img draggable="false" src="https://lx.aosenn.com/h5/static/user/w1.png" />
               </div>
               <div style="font-size: 13px">悬赏管理</div>
               <!----><!---->
@@ -338,7 +338,7 @@
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
             >
               <div style="width: 30px; height: 30px">
-                <!----><img src="https://lx.aosenn.com/h5/static/user/w36.png" draggable="false" />
+                <!----><img draggable="false" src="https://lx.aosenn.com/h5/static/user/w36.png" />
               </div>
               <div style="font-size: 13px">分享收徒</div>
               <!----><!---->
@@ -349,7 +349,7 @@
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
             >
               <div style="width: 30px; height: 30px">
-                <!----><img src="https://lx.aosenn.com/h5/static/user/ww5.png" draggable="false" />
+                <!----><img draggable="false" src="https://lx.aosenn.com/h5/static/user/ww5.png" />
               </div>
               <div style="font-size: 13px">意见反馈</div>
               <!----><!---->
@@ -360,7 +360,7 @@
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
             >
               <div style="width: 30px; height: 30px">
-                <!----><img src="https://lx.aosenn.com/h5/static/user/ww9.png" draggable="false" />
+                <!----><img draggable="false" src="https://lx.aosenn.com/h5/static/user/ww9.png" />
               </div>
               <div style="font-size: 13px">消息列表</div>
               <!----><!---->
@@ -370,7 +370,7 @@
       </div>
       <!----><!---->
     </div>
-    <div class="info" v-if="false">
+    <div v-if="false" class="info">
       <div class="info-r" style="position: relative">
         <div class="b">
           <p>代理等级 : {{ userInfo?.result?.staff?.name || '暂无会员' }}</p>
@@ -442,9 +442,9 @@
     </TipDialog>
     <TipDialog
       v-model="updateOverlay"
+      :show-close="false"
       confirm-text="进入官方群"
       @confirm="handleUpdateOverlayConfirm"
-      :show-close="false"
     >
       <!--      <p-->
       <!--        style="-->
@@ -487,6 +487,7 @@
 
     <TipDialog
       v-model="goJiangshangjiangOverlay"
+      :show-close="false"
       confirm-text="已阅"
       @confirm="
         () => {
@@ -494,7 +495,6 @@
           go('/yongjinjiajiang')
         }
       "
-      :show-close="false"
     >
       <p
         style="
@@ -518,6 +518,7 @@
     </TipDialog>
     <TipDialog
       v-model="goDepOverlay"
+      :show-close="false"
       confirm-text="已阅"
       @confirm="
         () => {
@@ -525,7 +526,6 @@
           go('/dep')
         }
       "
-      :show-close="false"
     >
       <p
         style="

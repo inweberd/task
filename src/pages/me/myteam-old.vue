@@ -75,26 +75,34 @@
       <div class="team-box-b">
         <div class="team-box-tle">今日团队订单数据</div>
         <div class="team-box-list">
+        <div class="team-box-list-item">
+            <div class="team-box-list-item1">团队总数</div>
+            <div class="team-box-list-item2">{{ memberInfo.team?.total || 0 }}</div>
+        </div>
           <div class="team-box-list-item">
-            <div class="team-box-list-item1">团队会员</div>
+            <div class="team-box-list-item1">团队有效</div>
             <div class="team-box-list-item2">{{ memberInfo.team?.vip || 0 }}</div>
           </div>
           <div class="team-box-list-item">
-            <div class="team-box-list-item1">直推总人数</div>
+            <div class="team-box-list-item1">直推总数</div>
             <div class="team-box-list-item2">{{ memberInfo.first?.total || 0 }}</div>
           </div>
           <div class="team-box-list-item">
-            <div class="team-box-list-item1">直推会员人数</div>
+            <div class="team-box-list-item1">直推有效</div>
             <div class="team-box-list-item2">{{ memberInfo.first?.vip || 0 }}</div>
           </div>
+        <div class="team-box-list-item">
+            <div class="team-box-list-item1">团队充值</div>
+            <div class="team-box-list-item2">{{ memberInfo.first?.vip || 0 }}</div>
+        </div>
           <div class="team-box-list-item">
             <div class="team-box-list-item1">团队总兑换</div>
             <div class="team-box-list-item2">{{ memberInfo.team?.withdraw || 0 }}</div>
           </div>
-          <div class="team-box-list-item">
-            <div class="team-box-list-item1">直推有效下级</div>
-            <div class="team-box-list-item2">{{ memberInfo.team?.direct || 0 }}</div>
-          </div>
+<!--          <div class="team-box-list-item">-->
+<!--            <div class="team-box-list-item1">直推有效下级</div>-->
+<!--            <div class="team-box-list-item2">{{ memberInfo.team?.direct || 0 }}</div>-->
+<!--          </div>-->
           <!--          <div class="team-box-list-item">-->
           <!--            <div class="team-box-list-item1">收益(元)</div>-->
           <!--            <div class="team-box-list-item2">0</div>-->
@@ -117,13 +125,13 @@
           <!--        <div style="font-size: 22px; color: #fff; font-weight: bolder">团队列表</div>-->
           <van-tabs
             v-model:active="active"
-            title-active-color="#000"
             color="#fe694b"
+            title-active-color="#000"
             @change="tabChange"
           >
-            <van-tab :title="'1代(' + (teamIds['one']?.length || 0) + ')'" name="one" />
-            <van-tab :title="'2代(' + (teamIds['two']?.length || 0) + ')'" name="two" />
-            <van-tab :title="'3代(' + (teamIds['three']?.length || 0) + ')'" name="three" />
+            <van-tab :title="'直推(' + (teamIds['one']?.length || 0) + ')'" name="one" />
+            <van-tab :title="'间推(' + (teamIds['two']?.length || 0) + ')'" name="two" />
+<!--            <van-tab :title="'3代(' + (teamIds['three']?.length || 0) + ')'" name="three" />-->
             <!--                  <van-tab :title="'三级(' + (teamIds['three']?.length || 0) + ')'" name="three" />-->
           </van-tabs>
           <!--        <div style="background-color: #1f203d; margin: 10px; border-radius: 10px; overflow: hidden">-->
@@ -186,7 +194,7 @@
                           "
                         >
                           <div style="display: flex; align-items: center; justify-content: center">
-                            <img src="./images/icon-rz.png" style="width: 15px" alt="" />
+                            <img alt="" src="./images/icon-rz.png" style="width: 15px" />
 
                             <span
                               style="

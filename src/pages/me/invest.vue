@@ -4,11 +4,17 @@
     <!--    <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />-->
     <Loading v-if="loading" />
     <van-nav-bar left-arrow placeholder title="会员列表" @click-left="$router.back()">
-      <template #right>
-        <span style="color: #1e83d3" @click="$router.push('/yiyouhuiyuan')"> 会员详情 </span>
-        <!--        <van-icon name="friends-o" size="18" @click="service = true" />-->
-      </template>
+<!--      <template #right>-->
+<!--        <span style="color: #1e83d3" @click="$router.push('/yiyouhuiyuan')"> 会员详情 </span>-->
+<!--        &lt;!&ndash;        <van-icon name="friends-o" size="18" @click="service = true" />&ndash;&gt;-->
+<!--      </template>-->
     </van-nav-bar>
+      <van-swipe :autoplay="3000" class="my-swipe" indicator-color="white">
+          <van-swipe-item>
+              <img alt="" src="@/pages/home/images/banner1.jpg" />
+          </van-swipe-item>
+          <van-swipe-item> <img alt="" src="@/pages/home/images/banner1.jpg" /></van-swipe-item>
+      </van-swipe>
     <!--    <div class="title" style="color: #b4a482; font-size: 22px">会员权益卡</div>-->
     <!--    <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>-->
 
@@ -41,7 +47,7 @@
         </van-swipe-item>
       </van-swipe>
     </div>
-    <div class="top-box" v-if="false">
+    <div v-if="false" class="top-box">
       <div style="align-items: center; justify-content: end" @click="$router.push('/yiyouhuiyuan')">
         <div class="avatar" @click="renzheng(userInfo.avatar)">
           <img :src="userInfo.avatar || defaultAvatar" />
@@ -75,50 +81,70 @@
         >
           <template v-if="item.level === 1">
             <div class="box">
-              <img src="./images/v1.jpg" alt="" class="vipImg" />
+              <img alt="" class="vipImg" src="./images/v1.png" />
               <img
                 v-if="!myStaffList.includes(item.id)"
-                src="./images/duihuankaitong.png"
-                class="duihuankaitong"
                 alt=""
+                class="duihuankaitong"
+                src="./images/duihuankaitong.png"
                 @click="buy(0)"
               />
+                <img
+                    v-else
+                    class="duihuankaitong"
+                    src="./images/shengxiaozhong.png"
+                />
             </div>
           </template>
           <template v-if="item.level === 2">
             <div class="box">
-              <img src="./images/v2.jpg" class="vipImg" alt="" />
+              <img alt="" class="vipImg" src="./images/v2.png" />
               <img
                 v-if="!myStaffList.includes(item.id)"
-                src="./images/duihuankaitong.png"
-                class="duihuankaitong"
                 alt=""
+                class="duihuankaitong"
+                src="./images/duihuankaitong.png"
                 @click="buy(1)"
               />
+                <img
+                    v-else
+                    class="duihuankaitong"
+                    src="./images/shengxiaozhong.png"
+                />
             </div>
           </template>
           <template v-if="item.level === 3">
             <div class="box">
-              <img src="./images/v3.jpg" class="vipImg" alt="" />
+              <img alt="" class="vipImg" src="./images/v3.png" />
               <img
                 v-if="!myStaffList.includes(item.id)"
-                src="./images/duihuankaitong.png"
-                class="duihuankaitong"
                 alt=""
+                class="duihuankaitong"
+                src="./images/duihuankaitong.png"
                 @click="buy(2)"
               />
+                <img
+                    v-else
+                    class="duihuankaitong"
+                    src="./images/shengxiaozhong.png"
+                />
             </div>
           </template>
           <template v-if="item.level === 4">
             <div class="box">
-              <img src="./images/v4.jpg" class="vipImg" alt="" />
+              <img alt="" class="vipImg" src="./images/v4.png" />
               <img
                 v-if="!myStaffList.includes(item.id)"
-                src="./images/duihuankaitong.png"
-                class="duihuankaitong"
                 alt=""
+                class="duihuankaitong"
+                src="./images/duihuankaitong.png"
                 @click="buy(2)"
               />
+                <img
+                    v-else
+                    class="duihuankaitong"
+                    src="./images/shengxiaozhong.png"
+                />
             </div>
           </template>
 
@@ -503,10 +529,11 @@ const speed = ref(0.5) //滚动速度
             width: 100%;
           }
           .duihuankaitong {
-            width: 30%;
+            width: 25%;
             position: absolute;
-            bottom: 10px;
-            right: 6px;
+            top: 8px;
+            left: 50%;
+              transform: translateX(-50%);
           }
         }
 
@@ -798,13 +825,17 @@ const speed = ref(0.5) //滚动速度
 }
 
 .my-swipe {
-  .van-swipe-item {
-    color: #fff;
-    font-size: 20px;
-    line-height: 150px;
-    text-align: center;
-    background-color: #5d5e5f;
-  }
+    margin: 8px 10px 0;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .van-swipe-item {
+        height: 130px;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
 }
 
 .announcement {

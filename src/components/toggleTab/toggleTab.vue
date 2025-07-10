@@ -5,24 +5,30 @@
         <ul class="filter-tabs">
           <li>
             <button class="filter-button filter-active" data-translate-value="0">
-              全网分红排行榜
+              初级商榜
             </button>
           </li>
           <li>
-            <button class="filter-button" data-translate-value="100%">全网手续费分红榜</button>
+            <button class="filter-button" data-translate-value="100%">中级商榜</button>
           </li>
+            <li>
+                <button class="filter-button" data-translate-value="200%">高级商榜</button>
+            </li>
+            <li>
+                <button class="filter-button" data-translate-value="300%">顶级商榜</button>
+            </li>
           <!--          <li>-->
           <!--            <button class="filter-button" data-translate-value="200%">Following</button>-->
           <!--          </li>-->
         </ul>
-        <div class="filter-slider" aria-hidden="true">
+        <div aria-hidden="true" class="filter-slider">
           <div class="filter-slider-rect">&nbsp;</div>
         </div>
       </div>
     </div>
   </nav>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 // resources in description
 import { onMounted } from 'vue'
 
@@ -84,7 +90,7 @@ onMounted(() => {
   --filters-wrapper-opacity: 1;
 }
 </style>
-<style scoped lang="less">
+<style lang="less" scoped>
 button {
   border: none;
   cursor: pointer;
@@ -155,7 +161,7 @@ ul.filter-tabs {
   position: relative;
   z-index: 1;
   display: flex;
-  flex: 1 0 50%;
+  flex: 1 0 25%;
 }
 
 .filter-button {
@@ -165,11 +171,12 @@ ul.filter-tabs {
   border-radius: 8px;
   flex-grow: 1;
   height: 30px;
-  padding: 0 15px;
+  padding: 0 10px;
   color: var(--orange-700);
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 14px;
+    //white-space: nowrap;
 }
 
 .filter-button.filter-active {
@@ -190,7 +197,7 @@ ul.filter-tabs {
 
 .filter-slider-rect {
   height: 30px;
-  width: 50%;
+  width: 25%;
   border-radius: 8px;
   background-color: var(--white);
   box-shadow: 0 1px 10px -4px rgba(0, 0, 0, 0.12);

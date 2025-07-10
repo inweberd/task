@@ -1,15 +1,17 @@
 <template>
   <div class="rank">
     <van-nav-bar
-      title="排行榜"
-      safe-area-inset-top
       :class="{ inApp: getIsInApp() }"
-      placeholder
-      left-text="返回"
       left-arrow
+      left-text="返回"
+      placeholder
+      safe-area-inset-top
+      title="排行榜"
       @click-left="$router.back()"
     />
-    <!--    <van-swipe-->
+      <ToggleTab style="margin-top: 40px" @change="tabChange"></ToggleTab>
+
+      <!--    <van-swipe-->
     <!--      style="transform: translateY(120px)"-->
     <!--      class="my-swipe"-->
     <!--      :autoplay="3000"-->
@@ -50,7 +52,7 @@
       <div class="one">
         <div class="box">
           <div class="img-box">
-            <img :src="rankList?.[0]?.avatar || headImg" style="width: 100%; height: 100%" alt="" />
+            <img :src="rankList?.[0]?.avatar || headImg" alt="" style="width: 100%; height: 100%" />
           </div>
           <p>1</p>
         </div>
@@ -65,7 +67,7 @@
       <div class="two">
         <div class="box">
           <div class="img-box">
-            <img :src="rankList?.[1]?.avatar || headImg" style="width: 100%; height: 100%" alt="" />
+            <img :src="rankList?.[1]?.avatar || headImg" alt="" style="width: 100%; height: 100%" />
           </div>
 
           <p>2</p>
@@ -80,7 +82,7 @@
       <div class="three">
         <div class="box">
           <div class="img-box">
-            <img :src="rankList?.[2]?.avatar || headImg" style="width: 100%; height: 100%" alt="" />
+            <img :src="rankList?.[2]?.avatar || headImg" alt="" style="width: 100%; height: 100%" />
           </div>
           <p>3</p>
         </div>
@@ -112,10 +114,10 @@
         <div v-if="!rankListCom?.length" style="text-align: center; line-height: 200px">
           暂无数据
         </div>
-        <div class="list-item" v-for="(item, index) of rankListCom">
+        <div v-for="(item, index) of rankListCom" class="list-item">
           <div style="color: #000">{{ index + 4 }}</div>
           <section>
-            <img :src="item.avatar || headImg" style="width: 100%; height: 100%" alt="" />
+            <img :src="item.avatar || headImg" alt="" style="width: 100%; height: 100%" />
           </section>
           <div style="color: #000">{{ item.nickname || getPhone(item.phone) }}</div>
           <div style="color: #000">￥{{ item.total }}</div>
@@ -142,6 +144,8 @@ import { computed, onBeforeUnmount, ref } from 'vue'
 import imageSrc1 from './images/rank1.png'
 import imageSrc4 from './images/rank2.png'
 import headImg from '@/assets/img/logo.png'
+import ToggleTab from '@/components/toggleTab/toggleTab.vue'
+
 
 const getPhone = (phone) => {
   if (!phone) {
@@ -209,6 +213,9 @@ const getRank = () => {
 }
 
 getRank()
+const tabChange = (type) => {
+    // activeTab.value = type
+}
 reqWalletStat().then((res) => {
   console.log('reqWalletStat', res)
   if (res.code !== 200) {

@@ -8,13 +8,13 @@
       text="点券乐园拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3点券，达标自动发放！"
     >
     </van-notice-bar>
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+    <van-swipe :autoplay="3000" class="my-swipe" indicator-color="white">
       <van-swipe-item>
-        <img src="./images/banner1.jpg" alt="" />
+        <img alt="" src="./images/banner1.jpg" />
       </van-swipe-item>
-      <van-swipe-item> <img src="./images/banner2.jpg" alt="" /></van-swipe-item>
+      <van-swipe-item> <img alt="" src="./images/banner2.jpg" /></van-swipe-item>
     </van-swipe>
-    <div class="info-banenr" v-if="false">
+    <div v-if="false" class="info-banenr">
       <div class="one-box">
         <div class="title">
           通用点券：
@@ -52,41 +52,107 @@
       <div class="menu">
         <div style="height: 40px">
           <img
+            draggable="false"
             src="https://lx.aosenn.com/uploads/20221225/1d7e27a10dde72f7aae357871724e031.png"
-            draggable="false"
           />
         </div>
-        <span>天天抽奖</span>
+        <span>顶商权益</span>
       </div>
       <div class="menu">
         <div style="height: 40px">
           <img
+            draggable="false"
             src="https://lx.aosenn.com/uploads/20221225/ceffbcc032b1af6c8f1517a08bfb489e.png"
-            draggable="false"
           />
         </div>
-        <span>排行榜</span>
+        <span>参与阶梯</span>
       </div>
       <div class="menu">
         <div style="height: 40px">
           <img
-            src="https://lx.aosenn.com/uploads/20221225/d041ab71bb5e53c781738179ef61216d.png"
             draggable="false"
+            src="https://lx.aosenn.com/uploads/20221225/d041ab71bb5e53c781738179ef61216d.png"
           />
         </div>
-        <span>充场大厅</span>
+        <span>分红榜</span>
       </div>
       <div class="menu">
         <div style="height: 38px">
           <img
-            src="https://lx.aosenn.com/uploads/20221225/a9f4cef239d1c9b5154678150c5fd4e0.png"
             draggable="false"
+            src="https://lx.aosenn.com/uploads/20221225/a9f4cef239d1c9b5154678150c5fd4e0.png"
           />
         </div>
-        <span>邀请好友</span>
+        <span>大逃杀</span>
       </div>
     </div>
-    <div class="shulist">
+      <div class="icon-list">
+          <div class="item">
+              <div class="img-box">
+                  <img alt="" src="./home-image/canyujieti.jpg" />
+              </div>
+              <div class="name">
+                  参与阶梯
+              </div>
+          </div>
+          <div class="item">
+              <div class="img-box">
+                  <img alt="" src="./home-image/dataoshayouxi.jpg" />
+              </div>
+              <div class="name">
+                  大逃杀游戏
+              </div>
+          </div>
+          <div class="item">
+              <div class="img-box">
+                  <img alt="" src="./home-image/fabuguanggao.jpg" />
+              </div>
+              <div class="name">
+                  发布广告
+              </div>
+          </div>
+          <div class="item">
+              <div class="img-box">
+                  <img alt="" src="./home-image/paihangbangfenhong.jpg" />
+              </div>
+              <div class="name">
+                  排行榜分红
+              </div>
+          </div>
+          <div class="item">
+              <div class="img-box">
+                  <img alt="" src="./home-image/dingshangquanyi.png" />
+              </div>
+              <div class="name">
+                  顶商权益
+              </div>
+          </div>
+          <div class="item">
+              <div class="img-box">
+                  <img alt="" src="./home-image/chuanshanjia.png" />
+              </div>
+              <div class="name">
+                  穿山甲广告
+              </div>
+          </div>
+          <div class="item">
+              <div class="img-box">
+                  <img alt="" src="./home-image/lianghao.png" />
+              </div>
+              <div class="name">
+                  靓号免费选
+              </div>
+          </div>
+          <div class="item">
+              <div class="img-box">
+                  <img alt="" src="./home-image/zhuanzeng.png" />
+              </div>
+              <div class="name">
+                  转赠
+              </div>
+          </div>
+      </div>
+    <div v-if="false" class="shulist">
       <div class="shu-item">
         <div class="l">
           <div class="img-box">
@@ -245,8 +311,8 @@
     <BaseFooter :is-white="true" v-bind:init-tab="1" />
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="已阅"
       :show-close="false"
+      confirm-text="已阅"
       @confirm="showGonggaoOverlay = false"
     >
       <!--      <p-->
@@ -566,6 +632,33 @@ onActivated(() => {
       }
     }
   }
+
+    .icon-list{
+        display: flex;
+        flex-wrap: wrap;
+
+        .item{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 50%;
+            padding: 0 10px;
+            .img-box{
+                border-radius: 10px;
+                overflow: hidden;
+                width: 100%;
+                img{
+                    width: 100%;
+                }
+            }
+            .name{
+                color:#000;
+                font-weight: bolder;
+                margin-bottom: 8px;
+            }
+        }
+    }
   .my-swipe {
     margin: 20px 10px 0;
     border-radius: 10px;

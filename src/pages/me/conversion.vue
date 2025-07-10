@@ -31,7 +31,7 @@
     <div class="total-info">
       <div class="top">
         <div>
-          <van-icon name="user" color="#fff" />
+          <van-icon color="#000" name="user" />
           <span style="padding-left: 4px">普通用户</span>
         </div>
         <div>点券</div>
@@ -41,10 +41,10 @@
         <span style="padding-left: 0px">点券</span>
       </div>
       <div class="bottom">
-        <div style="font-size: 10px; color: #eee">我的点券</div>
+        <div style="font-size: 10px; color: #333">我的点券</div>
         <div>
           查看明细
-          <van-icon name="arrow" color="#fff" />
+          <van-icon color="#000" name="arrow" />
         </div>
       </div>
     </div>
@@ -53,7 +53,7 @@
         <!--<van-image width="100" height="100" :src="imgg" />-->
       </div>
       <div style="color: #fed61f; padding-left: 14px; padding-top: 10px">转赠</div>
-      <van-field label="买家ID" v-model="data.buyUid" clearable placeholder="请输入买家ID">
+      <van-field v-model="data.buyUid" clearable label="买家ID" placeholder="请输入买家ID">
       </van-field>
 
       <van-field v-model="data.points" label="金额" placeholder="请输入转赠数量" type="number">
@@ -65,10 +65,10 @@
         <van-button
           block
           color="#fcd323"
-          @click="onSubmit"
           round
           style="border: none; color: #444; font-weight: bolder; width: 90%; margin: 0 auto"
           type="primary"
+          @click="onSubmit"
         >
           确认转赠
         </van-button>
@@ -143,12 +143,12 @@
     <div class="record">
       <van-tabs
         v-model:active="activeName"
+        color="#fed61f"
         title-active-color="#fed61f"
         @change="init"
-        color="#fed61f"
       >
-        <van-tab title="正在售卖" name="a"></van-tab>
-        <van-tab title="正在购买" name="b"></van-tab>
+        <van-tab name="a" title="正在售卖"></van-tab>
+        <van-tab name="b" title="正在购买"></van-tab>
         <van-list
           v-model:loading="loading"
           :finished="finished"
@@ -157,9 +157,9 @@
         >
           <div
             v-for="(item, index) in dataList"
-            style="position: relative"
             :key="item.id"
             class="card"
+            style="position: relative"
             @click="handleOrderClick(item)"
           >
             <div
@@ -183,8 +183,8 @@
               <div style="flex: 1; text-align: right">
                 <div>
                   <span
-                    style="font-size: 16px; color: #f6202b; font-weight: bolder"
                     class="text-warning"
+                    style="font-size: 16px; color: #f6202b; font-weight: bolder"
                     >{{ item.points || 0 }}点券</span
                   >
                 </div>
@@ -232,7 +232,7 @@
           height: 100vh;
         "
       >
-        <img @click="share" src="./images/zhuanzengfenxiang.png" alt="" style="width: 80%" />
+        <img alt="" src="./images/zhuanzengfenxiang.png" style="width: 80%" @click="share" />
       </div>
     </van-overlay>
   </div>
@@ -492,11 +492,12 @@ onActivated(() => {
   }
 
   .total-info {
-    background-color: #fed61f;
+    //background-color: #fed61f;
+    background-color: #fff;
     margin: 10px 10px;
     padding: 10px;
     border-radius: 10px;
-    color: #fff;
+    color: #000;
     .top {
       display: flex;
       justify-content: space-between;

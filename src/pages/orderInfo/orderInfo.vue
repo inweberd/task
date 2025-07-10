@@ -16,20 +16,20 @@
     </van-nav-bar>
     <div class="content">
       <detail-info
-        style="background-color: #fff"
         :column-list="columnList"
         :detail-info="detail.order || {}"
         group-title="基础信息"
+        style="background-color: #fff"
       >
         <template #points>
           <span>{{ detail.order?.points || 0 }} 点券</span>
         </template>
       </detail-info>
       <detail-info
-        style="margin-top: 10px; background-color: #fff"
         :column-list="columnList2"
         :detail-info="detail.sellEWallet || {}"
         group-title="支付信息"
+        style="margin-top: 10px; background-color: #fff"
       >
         <template #scene>
           <span>{{ detail.sellEWallet?.scene === 'wechat' ? '微信' : '支付宝' }} </span>
@@ -37,32 +37,32 @@
         <template #qrCode>
           <van-image
             v-if="detail?.sellEWallet?.qrCode"
-            width="50px"
-            height="50px"
-            fit="contain"
             :src="detail?.sellEWallet.qrCode"
+            fit="contain"
+            height="50px"
+            width="50px"
             @click="showImgDetail(detail.sellEWallet.qrCode)"
           />
         </template>
       </detail-info>
     </div>
     <div
+      v-if="detail?.order?.buyUid === userInfo.id && detail?.order?.status === 'pending'"
       class="content"
       style="background-color: #fff; padding: 10px; box-sizing: border-box"
-      v-if="detail?.order?.buyUid === userInfo.id && detail?.order?.status === 'pending'"
     >
       <!--      </div>-->
-      <text-area label="实付金额" v-model:content="detailForm.cny" rows="1" placeholder="请输入" />
+      <text-area v-model:content="detailForm.cny" label="实付金额" placeholder="请输入" rows="1" />
 
       <text-area
-        label="备注"
-        :is-require="false"
         v-model:content="detailForm.remark"
-        rows="2"
+        :is-require="false"
+        label="备注"
         placeholder="请输入"
+        rows="2"
       />
 
-      <LabelTitle tips="支付凭证" icon-name="text_area" :is-require="true" />
+      <LabelTitle :is-require="true" icon-name="text_area" tips="支付凭证" />
       <van-uploader v-model="fileList" :max-count="1" />
 
       <el-button
@@ -76,7 +76,7 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import { getIsInApp } from '@/utils/getTopPadding'
 import { computed, onActivated, onMounted, reactive, ref, toRefs } from 'vue'
 import { reqWalletBuyConfirm, reqWalletSave, reqWalletTradeTake } from '@/api/myApi'
@@ -173,7 +173,7 @@ const save = () => {
       return showToast(res.msg)
     }
 
-    showToast('操作成功！')
+    showToast(res.msg)
     getDetail()
   })
 }
@@ -194,7 +194,7 @@ onMounted(() => {
 })
 </script>
 
-<style scoped lang="less">
+<style lang="less" scoped>
 .orderInfo {
   color: #000;
   background-color: #f3f3f3;

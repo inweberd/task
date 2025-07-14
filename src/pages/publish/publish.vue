@@ -1,34 +1,28 @@
 <template>
   <div class="publish">
-    <!--    <van-nav-bar fixed left-arrow placeholder safe-area-inset-top title="广告发布">-->
-    <!--      <template #right>-->
-    <!--        &lt;!&ndash;        <van-icon name="friends-o" size="18" @click="service = true" />&ndash;&gt;-->
-    <!--      </template>-->
-    <!--    </van-nav-bar>-->
-    <van-search placeholder="请输入搜索关键词" />
+        <van-nav-bar fixed left-arrow placeholder safe-area-inset-top title="广告发布">
+          <template #right>
+<!--                    <van-icon name="friends-o" size="18" @click="service = true" />-->
+            发布规则
+          </template>
+        </van-nav-bar>
+<!--    <van-search placeholder="请输入搜索关键词" />-->
     <div class="content">
-      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-        <van-swipe-item>
-          <img
-            src="https://lx.aosenn.com/uploads/20240312/1e8aa821d90c892ca000c98ee4d81273.jpg"
-            alt=""
-          />
-        </van-swipe-item>
-        <van-swipe-item>
-          <img
-            src="https://lx.aosenn.com/uploads/20240312/06149f3d015ab35855e6e6482d17cba6.jpg"
-            alt=""
-        /></van-swipe-item>
-      </van-swipe>
+        <van-swipe :autoplay="3000" class="my-swipe" indicator-color="white">
+            <van-swipe-item>
+                <img alt="" src="@/pages/home/images/banner1.jpg" />
+            </van-swipe-item>
+            <van-swipe-item> <img alt="" src="@/pages/home/images/banner2.jpg" /></van-swipe-item>
+        </van-swipe>
 
-      <div class="list" style="min-height: 50vh">
+      <div v-if="false" class="list" style="min-height: 50vh">
         <div class="coupleta">
           <div class="task top">
             <div class="avatar">
               <div class="img-box">
                 <!----><img
-                  src="https://lx.aosenn.com/uploads/20240312/e64fece94f5a8f6a71298b50bfce0086.gif"
                   draggable="false"
+                  src="https://lx.aosenn.com/uploads/20240312/e64fece94f5a8f6a71298b50bfce0086.gif"
                 />
               </div>
             </div>
@@ -38,16 +32,16 @@
             </div>
             <van-grid :border="false" :column-num="4" :gutter="1">
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img3" />
+                <van-image :src="img3" class="img-item" fit="cover" position="center" />
               </van-grid-item>
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img7" />
+                <van-image :src="img7" class="img-item" fit="cover" position="center" />
               </van-grid-item>
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img6" />
+                <van-image :src="img6" class="img-item" fit="cover" position="center" />
               </van-grid-item>
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img1" />
+                <van-image :src="img1" class="img-item" fit="cover" position="center" />
               </van-grid-item>
             </van-grid>
             <div class="bottom">
@@ -62,8 +56,8 @@
             <div class="avatar">
               <div class="img-box">
                 <!----><img
+                  draggable="false"
                   src="https://lx.aosenn.com/uploads/20240312/5eed09a854f831049dbb8d1e012eaa0b.jpg"
-                  draggable="false"
                 />
               </div>
             </div>
@@ -73,7 +67,7 @@
             </div>
             <van-grid :border="false" :column-num="4" :gutter="1">
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img4" />
+                <van-image :src="img4" class="img-item" fit="cover" position="center" />
               </van-grid-item>
             </van-grid>
             <div class="bottom">
@@ -88,8 +82,8 @@
             <div class="avatar">
               <div class="img-box">
                 <!----><img
+                  draggable="false"
                   src="https://lx.aosenn.com/uploads/20240312/5a134878c8a9632a34c6d380f1d70dd4.jpg"
-                  draggable="false"
                 />
               </div>
             </div>
@@ -99,10 +93,10 @@
             </div>
             <van-grid :border="false" :column-num="4" :gutter="1">
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img2" />
+                <van-image :src="img2" class="img-item" fit="cover" position="center" />
               </van-grid-item>
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img5" />
+                <van-image :src="img5" class="img-item" fit="cover" position="center" />
               </van-grid-item>
             </van-grid>
             <div class="bottom">
@@ -117,8 +111,8 @@
             <div class="avatar">
               <div class="img-box">
                 <!----><img
+                  draggable="false"
                   src="https://lx.aosenn.com/uploads/20221225/c046992a3c3af37de31812957f573243.gif"
-                  draggable="false"
                 />
               </div>
             </div>
@@ -128,16 +122,16 @@
             </div>
             <van-grid :border="false" :column-num="4" :gutter="1">
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img3" />
+                <van-image :src="img3" class="img-item" fit="cover" position="center" />
               </van-grid-item>
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img7" />
+                <van-image :src="img7" class="img-item" fit="cover" position="center" />
               </van-grid-item>
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img6" />
+                <van-image :src="img6" class="img-item" fit="cover" position="center" />
               </van-grid-item>
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img1" />
+                <van-image :src="img1" class="img-item" fit="cover" position="center" />
               </van-grid-item>
             </van-grid>
             <div class="bottom">
@@ -152,8 +146,8 @@
             <div class="avatar">
               <div class="img-box">
                 <!----><img
+                  draggable="false"
                   src="https://lx.aosenn.com/uploads/20231221/b24877a0168e080a1c4f4c7f8234fc68.png"
-                  draggable="false"
                 />
               </div>
             </div>
@@ -163,16 +157,16 @@
             </div>
             <van-grid :border="false" :column-num="4" :gutter="1">
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img3" />
+                <van-image :src="img3" class="img-item" fit="cover" position="center" />
               </van-grid-item>
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img7" />
+                <van-image :src="img7" class="img-item" fit="cover" position="center" />
               </van-grid-item>
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img6" />
+                <van-image :src="img6" class="img-item" fit="cover" position="center" />
               </van-grid-item>
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img1" />
+                <van-image :src="img1" class="img-item" fit="cover" position="center" />
               </van-grid-item>
             </van-grid>
             <div class="bottom">
@@ -187,8 +181,8 @@
             <div class="avatar">
               <div class="img-box">
                 <!----><img
-                  src="https://lx.aosenn.com/uploads/20240312/ff70392a2cfb34335b4ed4d8a887d9c3.png"
                   draggable="false"
+                  src="https://lx.aosenn.com/uploads/20240312/ff70392a2cfb34335b4ed4d8a887d9c3.png"
                 />
               </div>
             </div>
@@ -198,16 +192,16 @@
             </div>
             <van-grid :border="false" :column-num="4" :gutter="1">
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img3" />
+                <van-image :src="img3" class="img-item" fit="cover" position="center" />
               </van-grid-item>
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img7" />
+                <van-image :src="img7" class="img-item" fit="cover" position="center" />
               </van-grid-item>
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img6" />
+                <van-image :src="img6" class="img-item" fit="cover" position="center" />
               </van-grid-item>
               <van-grid-item>
-                <van-image class="img-item" fit="cover" position="center" :src="img1" />
+                <van-image :src="img1" class="img-item" fit="cover" position="center" />
               </van-grid-item>
             </van-grid>
             <div class="bottom">
@@ -226,14 +220,14 @@
       axis="xy"
       icon="plus"
       magnetic="x"
-      @click="$router.push('addPublish')"
       style="background-color: #fed721"
+      @click="$router.push('addPublish')"
     >
     </van-floating-bubble>
     <BaseFooter :is-white="true" v-bind:init-tab="2" />
   </div>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import BaseFooter from '@/components/BaseFooter.vue'
 import img1 from './images/1.jpg'
 import img2 from './images/2.jpg'
@@ -244,7 +238,7 @@ import img6 from './images/6.jpg'
 import img7 from './images/7.jpg'
 </script>
 
-<style scoped lang="less">
+<style lang="less" scoped>
 .publish {
   color: #303133;
   font-size: 14px;
@@ -280,7 +274,7 @@ import img7 from './images/7.jpg'
       overflow: hidden;
 
       .van-swipe-item {
-        height: 130px;
+        height: 180px;
         img {
           width: 100%;
           height: 100%;

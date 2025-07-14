@@ -42,9 +42,12 @@ export function reqAllStaff(data) {
   return axiosInstance({ url: '/api/vip/rows', method: 'get' })
 }
 
-// 获取全部会员
+// 获取已有会员列表
 export function reqMyStaff() {
-  return axiosInstance({ url: 'api/staff-entry/mine', method: 'get' })
+
+  const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+
+  return axiosInstance({ url: '/api/vip/order?uid='+userInfo.id, method: 'get' })
 }
 
 // 创建订单
@@ -54,7 +57,7 @@ export function reqCreateOrder(data) {
 
 // 获取钱包信息
 export function reqWalletInfo() {
-  return axiosInstance({ url: 'api/wallet/query', method: 'get' })
+  return axiosInstance({ url: '/api/users-wallet/mine', method: 'get' })
 }
 
 // 获取用户信息 返回值和登录时返回值相同
@@ -73,12 +76,12 @@ export function reqUserIncome() {
 }
 
 // 购买会员
-export function reqEnterStaff(data) {
+export function reqEnterStaff(id) {
   // return Promise.resolve({
   //   code: 200
   // })
   // return axiosInstance({ url: 'api/staff-entry/ok', method: 'post', data })
-  return axiosInstance({ url: 'api/staff-entry/rent', method: 'post', data })
+  return axiosInstance({ url: '/api/vip/exchange?vipId='+id, method: 'post' })
 }
 
 // 记录任务
@@ -175,6 +178,18 @@ export function reqWalletTransfer(data) {
 export function reqWalletBuyConfirm(data) {
   return axiosInstance({
     url: '/api/users-wallet-trade/transfer-buy-confirm',
+    method: 'post',
+    data,
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+}
+
+// 卖家确认转赠
+export function reqWalletSellConfirm(data) {
+  return axiosInstance({
+    url: '/api/users-wallet-trade/transfer-sell-confirm',
     method: 'post',
     data,
     headers: {
@@ -337,7 +352,7 @@ export function reqTreasureBasinPage() {
 
 // 聚宝盆购买
 export function reqTreasureBasinBuy(id) {
-  return axiosInstance({ url: '/api/treasure-basin/buy?id=' + id, method: 'post' })
+  return axiosInstance({ url: '/api/climb-ladder/exchange?climbLadderId=' + id, method: 'post' })
 }
 
 // 查询聚宝盆
@@ -361,7 +376,7 @@ export function getAlreadyBuyTreasureBasin() {
   console.log('今天开始的时间戳:', startOfDay)
   console.log('今天结束的时间戳:', endOfDay)
   return axiosInstance({
-    url: `/api/treasure-basin/order?limit=100&create_time=${startOfDay},${endOfDay}`,
+    url: `/api/climb-ladder/order?limit=100&create_time=${startOfDay},${endOfDay}`,
     method: 'get'
   })
 }

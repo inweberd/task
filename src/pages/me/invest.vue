@@ -72,11 +72,12 @@
       </div>
     </div>
 
+<!--          :class="{ active: activeIndex === index, has: myStaffList.includes(item.id) }"-->
     <div class="v-list-box">
       <div class="v-list">
         <div
           v-for="(item, index) of staffList"
-          :class="{ active: activeIndex === index, has: myStaffList.includes(item.id) }"
+          :class="{ active: activeIndex === index}"
           class="v-list-item"
         >
           <template v-if="item.level === 1">
@@ -273,15 +274,19 @@ const buy = throttle((index) => {
     })
     return
   }
+    console.log('asd',)
 
-  if (userInfo.value.result.staff.id == 0 && item.serial != 1) {
+  if (!originMyStaffList.value?.length && item.serial != 1) {
     return showToast({
       message: '请逐级购买！',
       icon: 'warning'
     })
   }
-  if (userInfo.value.result.staff.serial + 1 != item.serial) {
-    if (item.serial != 1) {
+
+  let currentLevel=originMyStaffList.value[originMyStaffList.value.length-1].vip.level;
+  // if (userInfo.value.result.staff.serial + 1 != item.level) {
+  if (currentLevel +1!= item.level) {
+    if (item.level != 1) {
       return showToast({
         message: '请逐级购买！',
         icon: 'warning'
@@ -294,7 +299,7 @@ const buy = throttle((index) => {
     loading.value = false
 
     // if (item.price * finallyCount > res.data.amount + res.data.money) {
-    if (item.price > res.data.amount + res.data.money) {
+    if (item.price > res.data.balance + res.data.points) {
       loading.value = false
       nextTick(() => {
         _notice(' 点券不足，兑换失败！即将为您跳转购买点券通道！')
@@ -303,10 +308,7 @@ const buy = throttle((index) => {
         router.push('/recharge')
       }, 2500)
     } else {
-      reqEnterStaff({
-        staff_id: item.id
-        // staff_id: item.id
-      }).then((sub_res) => {
+      reqEnterStaff(item.id).then((sub_res) => {
         loading.value = false
         _notice(sub_res.msg)
         if (res.code === 200) {
@@ -362,23 +364,19 @@ const getMyStaff = () => {
   reqMyStaff().then((res) => {
     loading.value = false
 
-    originMyStaffList.value = res.data
-    myStaffList.value = res.data.map((item) => item.staff_id)
+    originMyStaffList.value = res.data?.data||[]
+    myStaffList.value = (res.data?.data||[]).map((item) => item.vipId)
     console.log('staffList', staffList.value)
-    if (res.data.length) {
-      res.data.sort((a, b) => a.result.staff.serial - b.result.staff.serial)
-      userInfo.value.result.staff = res.data[res.data.length - 1].result.staff
-      window.localStorage.setItem('userInfo', JSON.stringify(userInfo.value))
-    }
+    console.log('myStaffList', myStaffList.value)
+    // if (res.data.length) {
+    //   res.data.sort((a, b) => a.result.staff.serial - b.result.staff.serial)
+    //   userInfo.value.result.staff = res.data[res.data.length - 1].result.staff
+    //   window.localStorage.setItem('userInfo', JSON.stringify(userInfo.value))
+    // }
   })
 }
 
-const walletInfo = ref({ credit: 0 })
 const getUserInfo = () => {
-  reqWalletInfo().then((res) => {
-    if (res.code !== 200) return
-    walletInfo.value = res.data
-  })
   reqUserIncome().then((res) => {
     // loading.value = false
     userIncomeInfo.value = res.data
@@ -830,7 +828,7 @@ const speed = ref(0.5) //滚动速度
     overflow: hidden;
 
     .van-swipe-item {
-        height: 130px;
+        height: 180px;
         img {
             width: 100%;
             height: 100%;

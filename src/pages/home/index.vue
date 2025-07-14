@@ -1,13 +1,13 @@
 <template>
   <div class="home-index">
-    <van-notice-bar
-      background="transparent"
-      color="#303133"
-      left-icon="volume-o"
-      style="border-radius: 10px; height: 30px; border: 1px solid #303133; margin: 8px 8px 0"
-      text="点券乐园拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3点券，达标自动发放！"
-    >
-    </van-notice-bar>
+<!--    <van-notice-bar-->
+<!--      background="transparent"-->
+<!--      color="#303133"-->
+<!--      left-icon="volume-o"-->
+<!--      style="border-radius: 10px; height: 30px; border: 1px solid #303133; margin: 8px 8px 0"-->
+<!--      text="点券乐园拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3点券，达标自动发放！"-->
+<!--    >-->
+<!--    </van-notice-bar>-->
     <van-swipe :autoplay="3000" class="my-swipe" indicator-color="white">
       <van-swipe-item>
         <img alt="" src="./images/banner1.jpg" />
@@ -50,7 +50,7 @@
     </div>
     <div class="menuList">
       <div class="menu">
-        <div style="height: 40px">
+        <div style="height: 40px" @click="$router.push('/invest')">
           <img
             draggable="false"
             src="https://lx.aosenn.com/uploads/20221225/1d7e27a10dde72f7aae357871724e031.png"
@@ -58,7 +58,7 @@
         </div>
         <span>顶商权益</span>
       </div>
-      <div class="menu">
+      <div class="menu" @click="$router.push('/jubaopen')">
         <div style="height: 40px">
           <img
             draggable="false"
@@ -67,7 +67,7 @@
         </div>
         <span>参与阶梯</span>
       </div>
-      <div class="menu">
+      <div class="menu" @click="$router.push('/rank')">
         <div style="height: 40px">
           <img
             draggable="false"
@@ -76,7 +76,7 @@
         </div>
         <span>分红榜</span>
       </div>
-      <div class="menu">
+      <div class="menu" >
         <div style="height: 38px">
           <img
             draggable="false"
@@ -87,7 +87,7 @@
       </div>
     </div>
       <div class="icon-list">
-          <div class="item">
+          <div class="item" @click="$router.push('/jubaopen')">
               <div class="img-box">
                   <img alt="" src="./home-image/canyujieti.jpg" />
               </div>
@@ -119,14 +119,7 @@
                   排行榜分红
               </div>
           </div>
-          <div class="item">
-              <div class="img-box">
-                  <img alt="" src="./home-image/dingshangquanyi.png" />
-              </div>
-              <div class="name">
-                  顶商权益
-              </div>
-          </div>
+
           <div class="item">
               <div class="img-box">
                   <img alt="" src="./home-image/chuanshanjia.png" />
@@ -141,6 +134,14 @@
               </div>
               <div class="name">
                   靓号免费选
+              </div>
+          </div>
+          <div class="item">
+              <div class="img-box">
+                  <img alt="" src="./home-image/dingshangquanyi.png" />
+              </div>
+              <div class="name">
+                  顶商权益
               </div>
           </div>
           <div class="item">
@@ -647,7 +648,7 @@ onActivated(() => {
             .img-box{
                 border-radius: 10px;
                 overflow: hidden;
-                width: 100%;
+                width: 80%;
                 img{
                     width: 100%;
                 }
@@ -665,7 +666,7 @@ onActivated(() => {
     overflow: hidden;
 
     .van-swipe-item {
-      height: 130px;
+      height: 180px;
       img {
         width: 100%;
         height: 100%;

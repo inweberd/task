@@ -5,7 +5,7 @@
       left-arrow
       left-text="返回"
       style="background-color: transparent"
-      title="收支明细"
+      title="收支详情"
       @click-left="router.back()"
     >
       <template #right>
@@ -15,15 +15,15 @@
     <Loading v-if="loading" />
 
     <div style="background-color: #fdfae9; margin: 10px; border-radius: 10px; overflow: hidden">
-      <t-tabs :space-evenly="false" default-value="天梯明细" @change="tabChange">
-        <t-tab-panel label="收入" value="收入" />
+      <t-tabs :space-evenly="false" default-value="收入" @change="tabChange">
+        <t-tab-panel label="收入详情" value="收入" />
         <!--        <t-tab-panel label="佣金嘉奖" value="佣金嘉奖" />-->
-        <t-tab-panel value="排行榜奖励" label="排行榜" />
-        <t-tab-panel value="推荐奖" label="推荐奖" />
+        <t-tab-panel label="排行榜" value="分红榜" />
+        <t-tab-panel label="推荐奖" value="商人返利" />
         <!--        <t-tab-panel value="游戏" label="游戏" />-->
-        <t-tab-panel value="天梯明细" label="天梯明细" />
-        <t-tab-panel label="支出" value="支出" />
-        <t-tab-panel label="兑换" value="兑换" />
+        <t-tab-panel label="阶梯" value="天梯明细" />
+        <t-tab-panel label="消费变动" value="支出" />
+        <t-tab-panel label="变现" value="兑换" />
       </t-tabs>
     </div>
 
@@ -59,7 +59,7 @@ import Paihangjiangli from '@/pages/me/wallet/paihangjiangli.vue'
 
 const router = useRouter()
 const service = ref(false)
-const activeTab = ref('天梯明细')
+const activeTab = ref('收入')
 const tabChange = (a) => {
   console.log(a)
   activeTab.value = a

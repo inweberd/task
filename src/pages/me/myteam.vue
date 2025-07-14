@@ -38,6 +38,10 @@
               我的ID： {{ userInfo?.id }}
               <span style="margin-left: 7px">邀请ID:{{ userInfo?.invite?.code }}</span>
             </div>
+              <div class="nav_title_tel">
+                  商人等级： XXX
+                  <span style="margin-left: 7px">上墙等级:XXX</span>
+              </div>
           </div>
         </div>
         <div class="center">
@@ -56,37 +60,37 @@
               class="text2"
               style="color: rgba(255, 255, 255, 0.8); font-size: 14px; margin-left: 50px"
             >
-              升级服务商 收益上涨100%
+<!--              升级服务商 收益上涨100%-->
             </p>
             <p class="text3">立即升级</p>
           </div>
         </div>
       </div>
 
-      <div class="content-wrapper" style="margin-top: 35px">
-        <div class="function-area renwu">
-          <div class="list">
-            <div class="items">
-              <p>
-                {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}
-              </p>
-              <p>通用点券</p>
-            </div>
-            <div class="items">
-              <p>{{ (userIncomeInfo.today || 0).toFixed(2) }}</p>
-              <p>今日收益</p>
-            </div>
-            <div class="items">
-              <p>{{ (userIncomeInfo.total || 0).toFixed(4) }}</p>
-              <p>历史收益</p>
-            </div>
-            <div class="items">
-              <p>{{ walletInfo?.amount || 0 }}</p>
-              <p>绑钻数量</p>
-            </div>
-          </div>
-        </div>
-      </div>
+<!--      <div class="content-wrapper" style="margin-top: 35px">-->
+<!--        <div class="function-area renwu">-->
+<!--          <div class="list">-->
+<!--            <div class="items">-->
+<!--              <p>-->
+<!--                {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}-->
+<!--              </p>-->
+<!--              <p>通用点券</p>-->
+<!--            </div>-->
+<!--            <div class="items">-->
+<!--              <p>{{ (userIncomeInfo.today || 0).toFixed(2) }}</p>-->
+<!--              <p>今日收益</p>-->
+<!--            </div>-->
+<!--            <div class="items">-->
+<!--              <p>{{ (userIncomeInfo.total || 0).toFixed(4) }}</p>-->
+<!--              <p>历史收益</p>-->
+<!--            </div>-->
+<!--            <div class="items">-->
+<!--              <p>{{ walletInfo?.amount || 0 }}</p>-->
+<!--              <p>绑钻数量</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
       <div v-if="false" class="content-wrapper">
         <div class="function-area shouyi">
           <div class="list">
@@ -102,7 +106,7 @@
           </div>
         </div>
       </div>
-      <div class="content-wrapper" style="margin-top: 10px">
+      <div class="content-wrapper" style="margin-top: 35px">
         <van-cell style="margin-bottom: 10px">
           <!-- 使用 title 插槽来自定义标题 -->
           <template #title>
@@ -182,6 +186,7 @@
                 margin-right: 26px;
                 color: rgb(255, 255, 255);
               "
+              @click="$router.push('/wallet')"
             >
               进入钱包&gt;
             </div>
@@ -199,10 +204,10 @@
               <div style="font-weight: bold">0.00</div>
               <div style="margin-top: 14px">账户余额</div>
             </div>
-            <div class="walletInfo">
-              <div style="font-weight: bold">0.00</div>
-              <div style="margin-top: 14px">保证金</div>
-            </div>
+<!--            <div class="walletInfo">-->
+<!--              <div style="font-weight: bold">0.00</div>-->
+<!--              <div style="margin-top: 14px">保证金</div>-->
+<!--            </div>-->
           </div>
         </div>
       </div>
@@ -235,28 +240,85 @@
             实用服务
           </div>
           <div class="serve">
-            <div
-              class="serveItem"
-              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
-              @click="$router.push('/jubaopen')"
-            >
-              <div style="width: 30px; height: 30px">
-                <!----><img draggable="false" src="./images/33.png" />
+<!--            <div-->
+<!--              class="serveItem"-->
+<!--              style="width: 25%; text-align: center; margin-top: 20px; position: relative"-->
+<!--              @click="$router.push('/jubaopen')"-->
+<!--            >-->
+<!--              <div style="width: 30px; height: 30px">-->
+<!--&lt;!&ndash;                <img draggable="false" src="./images/33.png" />&ndash;&gt;-->
+<!--                <img draggable="false" src="@/pages/home/home-image/canyujieti.jpg" />-->
+<!--              </div>-->
+<!--              <div style="font-size: 13px">参与阶梯</div>-->
+<!--              &lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;-->
+<!--            </div>-->
+<!--              <div-->
+<!--                  class="serveItem"-->
+<!--                  style="width: 25%; text-align: center; margin-top: 20px; position: relative"-->
+<!--                  @click="$router.push('/conversion')"-->
+<!--              >-->
+<!--                  <div style="width: 30px; height: 30px">-->
+<!--&lt;!&ndash;                     <img draggable="false" src="./images/22.png" />&ndash;&gt;-->
+<!--                      <img draggable="false" src="@/pages/home/home-image/zhuanzeng.png" />-->
+
+<!--                  </div>-->
+<!--                  <div style="font-size: 13px">转赠</div>-->
+<!--              </div>-->
+<!--            <div-->
+<!--              class="serveItem"-->
+<!--              style="width: 25%; text-align: center; margin-top: 20px; position: relative"-->
+<!--              @click="$router.push('/invest')"-->
+<!--            >-->
+<!--              <div style="width: 30px; height: 30px">-->
+<!--&lt;!&ndash;                <img draggable="false" src="./images/huiyuantequan.png" />&ndash;&gt;-->
+<!--                  <img draggable="false" src="@/pages/home/home-image/dingshangquanyi.png" />-->
+
+<!--              </div>-->
+<!--              <div style="font-size: 13px">顶商特权</div>-->
+<!--            </div>-->
+<!--              <div-->
+<!--                  class="serveItem"-->
+<!--                  style="width: 25%; text-align: center; margin-top: 20px; position: relative"-->
+<!--                  @click="$router.push('/invest')"-->
+<!--              >-->
+<!--                  <div style="width: 30px; height: 30px">-->
+<!--                      <img draggable="false" src="@/pages/home/home-image/dataoshayouxi.jpg" />-->
+
+<!--                  </div>-->
+<!--                  <div style="font-size: 13px">大逃杀</div>-->
+<!--              </div>-->
+<!--              <div-->
+<!--                  class="serveItem"-->
+<!--                  style="width: 25%; text-align: center; margin-top: 20px; position: relative"-->
+<!--                  @click="$router.push('/invest')"-->
+<!--              >-->
+<!--                  <div style="width: 30px; height: 30px">-->
+<!--                      <img draggable="false" src="@/pages/home/home-image/fabuguanggao.jpg" />-->
+
+<!--                  </div>-->
+<!--                  <div style="font-size: 13px">发布广告</div>-->
+<!--              </div>-->
+              <div
+                  class="serveItem"
+                  style="width: 25%; text-align: center; margin-top: 20px; position: relative"
+              >
+                  <div style="width: 30px; height: 30px">
+                      <!----><img draggable="false" src="https://lx.aosenn.com/h5/static/user/w36.png" />
+                  </div>
+                  <div style="font-size: 13px">分享好友</div>
+                  <!----><!---->
               </div>
-              <div style="font-size: 13px">点券天梯</div>
-              <!----><!---->
-            </div>
-            <div
-              class="serveItem"
-              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
-              @click="$router.push('/invest')"
-            >
-              <div style="width: 30px; height: 30px">
-                <img draggable="false" src="./images/huiyuantequan.png" />
+              <div
+                  class="serveItem"
+                  style="width: 25%; text-align: center; margin-top: 20px; position: relative"
+                  @click="$router.push('/wallet')"
+              >
+                  <div style="width: 30px; height: 30px">
+                      <!----><img draggable="false" src="./images/77.png" />
+                  </div>
+                  <div style="font-size: 13px">收入详情</div>
+                  <!----><!---->
               </div>
-              <div style="font-size: 13px">会员特权</div>
-              <!----><!---->
-            </div>
             <div
               class="serveItem"
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
@@ -268,28 +330,8 @@
               <div style="font-size: 13px">我的团队</div>
               <!----><!---->
             </div>
-            <div
-              class="serveItem"
-              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
-              @click="$router.push('/wallet')"
-            >
-              <div style="width: 30px; height: 30px">
-                <!----><img draggable="false" src="./images/77.png" />
-              </div>
-              <div style="font-size: 13px">收入明细</div>
-              <!----><!---->
-            </div>
-            <div
-              class="serveItem"
-              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
-              @click="$router.push('/conversion')"
-            >
-              <div style="width: 30px; height: 30px">
-                <!----><img draggable="false" src="./images/22.png" />
-              </div>
-              <div style="font-size: 13px">转赠</div>
-              <!----><!---->
-            </div>
+
+
             <div
               class="serveItem"
               style="width: 25%; text-align: center; margin-top: 20px; position: relative"
@@ -319,52 +361,43 @@
               <div style="width: 30px; height: 30px">
                 <!----><img draggable="false" src="https://lx.aosenn.com/h5/static/user/ww10.png" />
               </div>
-              <div style="font-size: 13px">电子钱包</div>
+              <div style="font-size: 13px">绑定收款</div>
               <!----><!---->
             </div>
-            <div
-              class="serveItem"
-              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
-            >
-              <div style="width: 30px; height: 30px">
-                <!----><img draggable="false" src="https://lx.aosenn.com/h5/static/user/w1.png" />
-              </div>
-              <div style="font-size: 13px">悬赏管理</div>
-              <!----><!---->
-            </div>
+<!--            <div-->
+<!--              class="serveItem"-->
+<!--              style="width: 25%; text-align: center; margin-top: 20px; position: relative"-->
+<!--            >-->
+<!--              <div style="width: 30px; height: 30px">-->
+<!--                &lt;!&ndash;&ndash;&gt;<img draggable="false" src="https://lx.aosenn.com/h5/static/user/w1.png" />-->
+<!--              </div>-->
+<!--              <div style="font-size: 13px">悬赏管理</div>-->
+<!--              &lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;-->
+<!--            </div>-->
 
-            <div
-              class="serveItem"
-              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
-            >
-              <div style="width: 30px; height: 30px">
-                <!----><img draggable="false" src="https://lx.aosenn.com/h5/static/user/w36.png" />
-              </div>
-              <div style="font-size: 13px">分享收徒</div>
-              <!----><!---->
-            </div>
 
-            <div
-              class="serveItem"
-              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
-            >
-              <div style="width: 30px; height: 30px">
-                <!----><img draggable="false" src="https://lx.aosenn.com/h5/static/user/ww5.png" />
-              </div>
-              <div style="font-size: 13px">意见反馈</div>
-              <!----><!---->
-            </div>
 
-            <div
-              class="serveItem"
-              style="width: 25%; text-align: center; margin-top: 20px; position: relative"
-            >
-              <div style="width: 30px; height: 30px">
-                <!----><img draggable="false" src="https://lx.aosenn.com/h5/static/user/ww9.png" />
-              </div>
-              <div style="font-size: 13px">消息列表</div>
-              <!----><!---->
-            </div>
+<!--            <div-->
+<!--              class="serveItem"-->
+<!--              style="width: 25%; text-align: center; margin-top: 20px; position: relative"-->
+<!--            >-->
+<!--              <div style="width: 30px; height: 30px">-->
+<!--                &lt;!&ndash;&ndash;&gt;<img draggable="false" src="https://lx.aosenn.com/h5/static/user/ww5.png" />-->
+<!--              </div>-->
+<!--              <div style="font-size: 13px">意见反馈</div>-->
+<!--              &lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;-->
+<!--            </div>-->
+
+<!--            <div-->
+<!--              class="serveItem"-->
+<!--              style="width: 25%; text-align: center; margin-top: 20px; position: relative"-->
+<!--            >-->
+<!--              <div style="width: 30px; height: 30px">-->
+<!--                &lt;!&ndash;&ndash;&gt;<img draggable="false" src="https://lx.aosenn.com/h5/static/user/ww9.png" />-->
+<!--              </div>-->
+<!--              <div style="font-size: 13px">消息列表</div>-->
+<!--              &lt;!&ndash;&ndash;&gt;&lt;!&ndash;&ndash;&gt;-->
+<!--            </div>-->
           </div>
         </div>
       </div>
@@ -711,7 +744,7 @@ const getUserCount = () => {
   })
 }
 const init = async () => {
-  getUserIncome()
+  // getUserIncome()
   // getUserCount()
 }
 
@@ -821,15 +854,15 @@ const handleEyeClick = () => {
     loadingType: 'spinner',
     duration: 0
   })
-  reqNgTransfer({ plat: 'ky' }).then((res) => {
-    console.log('res', res)
-  })
-  reqNgTransfer().finally(() => {
-    getUserIncome(() => {
-      showTotal.value = true
-      closeToast()
-    })
-  })
+  // reqNgTransfer({ plat: 'ky' }).then((res) => {
+  //   console.log('res', res)
+  // })
+  // reqNgTransfer().finally(() => {
+  //   getUserIncome(() => {
+  //     showTotal.value = true
+  //     closeToast()
+  //   })
+  // })
 }
 
 onActivated(() => {
@@ -837,7 +870,7 @@ onActivated(() => {
   // updateOverlay.value = true
   userInfo.value = JSON.parse(window.localStorage.getItem('userInfo'))
   init()
-  getNewUserInfo()
+  // getNewUserInfo()
   getMyStaff()
   bus.on('userInfoChange', (data) => {
     userInfo.value = data
@@ -932,7 +965,7 @@ onDeactivated(() => {
           }
 
           .nav_title_tel {
-            margin-top: 10px;
+            margin-top: 6px;
             font-size: 12px;
             font-weight: 700;
           }
@@ -968,13 +1001,16 @@ onDeactivated(() => {
           display: flex;
           align-items: center;
           justify-content: space-around;
+            background: url("./images/myteam-invest-bg.png") no-repeat;
+            background-size: 100% 100%;
+
           .text3 {
-            color: #3d2400;
+            color: #fff;
             font-size: 11px;
-            background: #fcca04;
+            background: #8252ff;
             border-radius: 11px;
             line-height: 22px;
-            margin-left: 40px;
+            margin-left: 220px;
             padding: 0 6px;
             margin-right: 15px;
           }

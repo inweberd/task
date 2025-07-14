@@ -48,32 +48,32 @@
         </div>
       </div>
 
-      <div class="sycontent">
-        <div class="sycontent-tltle">
-          <div class="sycontent-tltle1">账户信息</div>
-          <div class="sycontent-tltle2" @click="$router.push('/wallet')">
-            查看明细<van-icon name="arrow" />
-          </div>
-        </div>
-        <div class="table">
-          <div>
-            <p style="color: rgb(203, 166, 126); font-size: 13px">团队总业绩</p>
-            <p style="color: rgb(105, 46, 4); font-size: 22px">
-              {{ memberInfo.team?.deposit || 0 }}
-            </p>
-          </div>
-          <div>
-            <p style="color: rgb(203, 166, 126); font-size: 13px">团队人数</p>
-            <p style="color: rgb(105, 46, 4); font-size: 22px">{{ memberInfo.team?.total || 0 }}</p>
-          </div>
-          <div>
-            <p style="color: rgb(203, 166, 126); font-size: 13px">今日收益</p>
-            <p style="color: rgb(105, 46, 4); font-size: 22px">{{ userIncomeInfo.today || 0 }}</p>
-          </div>
-        </div>
-      </div>
+<!--      <div class="sycontent">-->
+<!--        <div class="sycontent-tltle">-->
+<!--          <div class="sycontent-tltle1">账户信息</div>-->
+<!--          <div class="sycontent-tltle2" @click="$router.push('/wallet')">-->
+<!--            查看明细<van-icon name="arrow" />-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="table">-->
+<!--          <div>-->
+<!--            <p style="color: rgb(203, 166, 126); font-size: 13px">团队总业绩</p>-->
+<!--            <p style="color: rgb(105, 46, 4); font-size: 22px">-->
+<!--              {{ memberInfo.team?.deposit || 0 }}-->
+<!--            </p>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <p style="color: rgb(203, 166, 126); font-size: 13px">团队人数</p>-->
+<!--            <p style="color: rgb(105, 46, 4); font-size: 22px">{{ memberInfo.team?.total || 0 }}</p>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <p style="color: rgb(203, 166, 126); font-size: 13px">今日收益</p>-->
+<!--            <p style="color: rgb(105, 46, 4); font-size: 22px">{{ userIncomeInfo.today || 0 }}</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="team-box-b">
-        <div class="team-box-tle">今日团队订单数据</div>
+        <div class="team-box-tle">团队订单数据</div>
         <div class="team-box-list">
         <div class="team-box-list-item">
             <div class="team-box-list-item1">团队总数</div>
@@ -95,10 +95,10 @@
             <div class="team-box-list-item1">团队充值</div>
             <div class="team-box-list-item2">{{ memberInfo.first?.vip || 0 }}</div>
         </div>
-          <div class="team-box-list-item">
-            <div class="team-box-list-item1">团队总兑换</div>
-            <div class="team-box-list-item2">{{ memberInfo.team?.withdraw || 0 }}</div>
-          </div>
+<!--          <div class="team-box-list-item">-->
+<!--            <div class="team-box-list-item1">团队总兑换</div>-->
+<!--            <div class="team-box-list-item2">{{ memberInfo.team?.withdraw || 0 }}</div>-->
+<!--          </div>-->
 <!--          <div class="team-box-list-item">-->
 <!--            <div class="team-box-list-item1">直推有效下级</div>-->
 <!--            <div class="team-box-list-item2">{{ memberInfo.team?.direct || 0 }}</div>-->

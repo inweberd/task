@@ -1,14 +1,14 @@
 <template>
-  <div style="height: 100%; overflow: auto">
+  <div style="height: 100%; overflow: auto;background-color: #f3f3f3">
     <van-nav-bar
-      title="点券天梯乐园"
-      safe-area-inset-top
-      fixed
       :class="{ inApp: getIsInApp() }"
-      placeholder
-      @click-left="$router.back()"
-      left-text="返回"
+      fixed
       left-arrow
+      left-text="返回"
+      placeholder
+      safe-area-inset-top
+      title="点券天梯乐园"
+      @click-left="$router.back()"
     >
       <template #right>
         <span style="color: #000" @click="$router.push('/wallet')"> 天梯明细 </span>
@@ -16,18 +16,18 @@
       </template>
     </van-nav-bar>
     <template v-if="false">
-      <van-image width="100%" height="200" lazy-load :src="jubaopenTitle">
+      <van-image :src="jubaopenTitle" height="200" lazy-load width="100%">
         <template v-slot:loading>
-          <van-loading type="spinner" size="20" />
+          <van-loading size="20" type="spinner" />
         </template>
       </van-image>
-      <img src="./images/xianshijieshu.png" alt="" style="width: 90%; margin-left: 5%" />
+      <img alt="" src="./images/xianshijieshu.png" style="width: 90%; margin-left: 5%" />
       <div style="text-align: center; font-size: 22px">
         <p
           v-if="myDataList?.length"
           style="font-size: 24px; display: flex; align-items: center; padding-left: 5%"
         >
-          <img src="./images/xiacifanhuan.png" alt="" style="height: 40px" />
+          <img alt="" src="./images/xiacifanhuan.png" style="height: 40px" />
           <!--        <span style="font-family: 'DS-DIGI'; font-weight: bolder; font-size: 28px">-->
           {{ timeTxt }}
           <!--        </span>-->
@@ -35,22 +35,32 @@
         <div style="font-size: 14px; color: #999">注：奖励发放时间可能会提前或延后15分钟。</div>
 
         <p style="margin-top: 6px; display: flex; align-items: center; padding-left: 5%">
-          <img src="./images/touru.png" alt="" style="height: 40px" />
+          <img alt="" src="./images/touru.png" style="height: 40px" />
           <!--        <span style="font-family: 'DS-DIGI'; font-weight: bolder; font-size: 32px">-->
           {{ (jubaopenInfo.unFinish + jubaopenInfo.finished).toFixed(2) }}
           <!--        </span>-->
         </p>
 
         <p style="margin-top: 6px; display: flex; align-items: center; padding-left: 5%">
-          <img src="./images/leiji.png" alt="" style="height: 40px" />
+          <img alt="" src="./images/leiji.png" style="height: 40px" />
           <!--        <span style="font-family: 'DS-DIGI'; font-weight: bolder; font-size: 32px">-->
           {{ jubaopenInfo.finished.toFixed(2) }}
           <!--        </span>-->
         </p>
       </div>
     </template>
-
-    <div style="position: relative" class="staffList">
+      <div class="info">
+          <div style="display: flex;justify-content: space-between">
+              <div> 我的点券：XXXX</div>
+              <div>收入来源</div>
+          </div>
+          <div>
+              徒弟参与阶梯比例：  直20%+间10%
+          </div>
+          <div>每日星级阶梯分红榜</div>
+          <div>每日奖励榜（每日前1500名达到15层）</div>
+      </div>
+    <div class="staffList" style="position: relative">
       <!--      <van-image width="100%" height="3145" lazy-load :src="jubaopen">-->
       <!--        <template v-slot:loading>-->
       <!--          <van-loading type="spinner" size="20" />-->
@@ -91,33 +101,33 @@
           <template v-if="myDataList.includes(item.id)">
             <template v-if="[0, 1, 2, 3].includes(index)">
               <img
-                style="width: 80px; position: absolute; right: 15px; margin-left: -35px; top: 30%"
-                src="./images/hybaopen-yiwancheng.png"
                 alt=""
+                src="./images/hybaopen-yiwancheng.png"
+                style="width: 80px; position: absolute; right: 15px; margin-left: -35px; top: 30%"
               />
             </template>
             <template v-else>
               <img
-                style="width: 80px; position: absolute; right: 15px; margin-left: -35px; top: 30%"
-                src="./images/jubaopen-daijiesuan.png"
                 alt=""
+                src="./images/jubaopen-daijiesuan.png"
+                style="width: 80px; position: absolute; right: 15px; margin-left: -35px; top: 30%"
               />
             </template>
           </template>
           <img
             v-else
-            style="width: 80px; position: absolute; right: 15px; margin-left: -35px; top: 30%"
             :src="btn"
-            @click="buy(item.id, index)"
             alt=""
+            style="width: 80px; position: absolute; right: 15px; margin-left: -35px; top: 30%"
+            @click="buy(item.id, index)"
           />
         </div>
       </template>
     </div>
     <TipDialog
       v-model="showGonggaoOverlay"
-      confirm-text="已阅"
       :show-close="false"
+      confirm-text="已阅"
       @confirm="showGonggaoOverlay = false"
     >
       <p
@@ -170,7 +180,7 @@
           height: 100vh;
         "
       >
-        <img @click="share" src="./images/jubaopenfenxiang.png" alt="" style="width: 80%" />
+        <img alt="" src="./images/jubaopenfenxiang.png" style="width: 80%" @click="share" />
       </div>
     </van-overlay>
     <!--    <div v-html="articleInfo.content" style="padding: 10px"></div>-->
@@ -540,10 +550,10 @@ const getMyStaff = () => {
     if (!res.data?.data.length) {
       return
     }
-    res.data.data = (res.data?.data || []).filter(
-      (item) => item.finished === 0 || [1, 2, 3, 4].includes(item.bind_id)
-    )
-    myDataList.value = (res.data?.data || []).map((item) => item.bind_id)
+    // res.data.data = (res.data?.data || []).filter(
+    //   (item) => item.finished === 0 || [1, 2, 3, 4].includes(item.climbLadderId)
+    // )
+    myDataList.value = (res.data?.data || []).map((item) => item.climbLadderId)
     // res.data.data[0].rebate_time=1745591200
     res.data.data = (res.data?.data || []).filter(
       (item) => item.finished === 0 && item.rebate_time * 1000 > new Date().getTime()
@@ -589,12 +599,12 @@ const share = () => {
 }
 
 const buy = (id, index) => {
-  if (localStorage.isTiantiShare !== dayjs().format('YYYY-MM-DD') && window.android) {
-    shareDialogOverlay.value = true
-    return
-    // localStorage.isTiantiShare = dayjs().format('YYYY-MM-DD')
-    // window.showShareFriend()
-  }
+  // if (localStorage.isTiantiShare !== dayjs().format('YYYY-MM-DD') && window.android) {
+  //   shareDialogOverlay.value = true
+  //   return
+  //   // localStorage.isTiantiShare = dayjs().format('YYYY-MM-DD')
+  //   // window.showShareFriend()
+  // }
   // showGonggaoOverlay.value = true
   // return
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
@@ -718,7 +728,7 @@ onDeactivated(() => {
   clearInterval(timer)
 })
 </script>
-<style scoped lang="less">
+<style lang="less" scoped>
 .staffList {
   padding: 0 10px;
   .staff-item {
@@ -775,5 +785,16 @@ onDeactivated(() => {
       justify-content: space-between;
     }
   }
+}
+.info{
+    color:#000;
+
+    &>div{
+        display: flex;
+        align-items: center;
+        margin:10px;
+        height: 40px;
+        background-color: #fff;
+    }
 }
 </style>

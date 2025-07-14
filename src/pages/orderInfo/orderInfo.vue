@@ -47,7 +47,7 @@
       </detail-info>
     </div>
     <div
-      v-if="detail?.order?.buyUid === userInfo.id && detail?.order?.status === 'pending'"
+      v-if="detail?.order?.buyUid === userInfo.id && !detail?.order?.buyConfirm"
       class="content"
       style="background-color: #fff; padding: 10px; box-sizing: border-box"
     >
@@ -70,16 +70,30 @@
         size="large"
         style="border-radius: 30px; border: none; color: #444; width: calc(100%); height: 40px"
         type="primary"
-        @click="save"
+        @click="buySave"
         >提交
       </el-button>
     </div>
+      <div
+          v-if="detail?.order?.sellUid === userInfo.id && detail?.order?.buyConfirm && !detail?.order?.sellConfirm"
+          class="content"
+          style="background-color: #fff; padding: 10px; box-sizing: border-box"
+      >
+          <el-button
+              color="#fcd323"
+              size="large"
+              style="border-radius: 30px; border: none; color: #444; width: calc(100%); height: 40px"
+              type="primary"
+              @click="sellSave"
+          >放币
+          </el-button>
+      </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { getIsInApp } from '@/utils/getTopPadding'
 import { computed, onActivated, onMounted, reactive, ref, toRefs } from 'vue'
-import { reqWalletBuyConfirm, reqWalletSave, reqWalletTradeTake } from '@/api/myApi'
+import { reqWalletBuyConfirm, reqWalletSave, reqWalletTradeTake,reqWalletSellConfirm } from '@/api/myApi'
 import { useRoute } from 'vue-router'
 import { showToast } from 'vant'
 import LabelTitle from '@/components/labelTitle/LabelTitle.vue'
@@ -149,7 +163,7 @@ const detailForm = ref({
   remark: ''
 })
 
-const save = () => {
+const buySave = () => {
   console.log('fileList', fileList.value)
 
   if (!detailForm.value.cny) {
@@ -176,6 +190,22 @@ const save = () => {
     showToast(res.msg)
     getDetail()
   })
+}
+
+const sellSave = () => {
+
+
+    const formdata = new FormData()
+    formdata.append('no', route.query.no)
+
+    reqWalletSellConfirm(formdata).then((res) => {
+        if (res.code !== 200) {
+            return showToast(res.msg)
+        }
+
+        showToast(res.msg)
+        getDetail()
+    })
 }
 
 const getDetail = () => {

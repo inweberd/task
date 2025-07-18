@@ -49,13 +49,13 @@ const canvas = ref()
 const canvasWidth = ref(window.innerWidth)
 const canvasHeight = ref(window.innerWidth / (1242 / 2208))
 // const qrCodeText = ref(
-//   'https://wmaw.lnyzd.com/#/signUp?invite=' +
+//   'https://wwew.rdhlkm.com/#/signUp?invite=' +
 //     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
 // )
 const qrCodeText = ref(
-  'http://bbbuyuwx0530ffxxjkf19.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+  'http://bbbnklswx0717ffxxjkf11.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     // encodeURIComponent(
-    'https://wmaw.lnyzd.com/#/signUp?invite=' +
+    'https://wwew.rdhlkm.com/#/signUp?invite=' +
     JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
   // )
 )

@@ -44,15 +44,14 @@ export function reqAllStaff(data) {
 
 // 获取已有会员列表
 export function reqMyStaff() {
-
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
 
-  return axiosInstance({ url: '/api/vip/order?uid='+userInfo.id, method: 'get' })
+  return axiosInstance({ url: '/api/vip/order?uid=' + userInfo.id, method: 'get' })
 }
 
 // 创建订单
 export function reqCreateOrder(data) {
-  return axiosInstance({ url: 'api/order/create', method: 'post', data })
+  return axiosInstance({ url: '/api/users-wallet/recharge', method: 'post', data })
 }
 
 // 获取钱包信息
@@ -72,7 +71,7 @@ export function reqUpdateUserInfo(data) {
 
 // 获取个人收益
 export function reqUserIncome() {
-  return axiosInstance({ url: 'api/users/income', method: 'get' })
+  return axiosInstance({ url: '/api/users-wallet/summary', method: 'get' })
 }
 
 // 购买会员
@@ -81,7 +80,7 @@ export function reqEnterStaff(id) {
   //   code: 200
   // })
   // return axiosInstance({ url: 'api/staff-entry/ok', method: 'post', data })
-  return axiosInstance({ url: '/api/vip/exchange?vipId='+id, method: 'post' })
+  return axiosInstance({ url: '/api/vip/exchange?vipId=' + id, method: 'post' })
 }
 
 // 记录任务
@@ -110,18 +109,18 @@ export function reqUserMemberTeamIds() {
 }
 
 // 获取成员信息一二三级
-export function reqUserMemberTeamList(data) {
-  if (!data.ids) {
-    return Promise.resolve({
-      code: 200,
-      data: {
-        page: 0,
-        count: 0,
-        data: []
-      }
-    })
-  }
-  return axiosInstance({ url: 'api/users/all', method: 'post', data })
+export function reqUserMemberTeamList(params) {
+  // if (!data.ids) {
+  //   return Promise.resolve({
+  //     code: 200,
+  //     data: {
+  //       page: 0,
+  //       count: 0,
+  //       data: []
+  //     }
+  //   })
+  // }
+  return axiosInstance({ url: '/api/users/member', method: 'get', params })
 }
 
 // 查询我的会员信息
@@ -136,7 +135,7 @@ export function reqResetPwd(data) {
 
 // 收入支出日志
 export function reqWalletLog(params) {
-  return axiosInstance({ url: '/api/wallet-logs/find', method: 'get', params })
+  return axiosInstance({ url: '/api/users-wallet/logs', method: 'get', params })
   // return axiosInstance({ url: 'api/wallet-log/all', method: 'get', params })
 }
 
@@ -210,7 +209,7 @@ export function reqDeleteCard(params) {
 
 // 获取充值方式
 export function reqRechargeColumn(params) {
-  return axiosInstance({ url: 'api/payment/column', method: 'get', params })
+  return axiosInstance({ url: 'api/pay/channel', method: 'get', params })
 }
 
 // 钱包统计
@@ -253,9 +252,9 @@ export function reqQuickReceive() {
 }
 
 // 排行榜
-export function getWalletRank(params = {}) {
+export function getWalletRank(id) {
   // return axiosInstance({ url: '/api/wallet-logs/rank', method: 'get', params })
-  return axiosInstance({ url: '/api/treasure-basin/rank', method: 'get', params })
+  return axiosInstance({ url: '/api/climb-ladder/rank?limit=100&vipId=' + id, method: 'get' })
 }
 
 // 手续费排行榜
@@ -372,11 +371,13 @@ export function getAlreadyBuyTreasureBasin() {
   // 今天结束的时间戳（23:59:59.999）
   let endOfDay = dayjs().endOf('day').valueOf()
   endOfDay = parseInt(endOfDay / 1000)
+  const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
 
   console.log('今天开始的时间戳:', startOfDay)
   console.log('今天结束的时间戳:', endOfDay)
   return axiosInstance({
-    url: `/api/climb-ladder/order?limit=100&create_time=${startOfDay},${endOfDay}`,
+    // url: `/api/climb-ladder/order?limit=100&create_time=${startOfDay},${endOfDay}&status[]=pending&onlyTrashed=false&page=1&order=id desc`,
+    url: `api/climb-ladder/order?page=1&limit=10&onlyTrashed=false&createTime[]=${startOfDay}&createTime[]=${endOfDay}&uid=${userInfo.id}`,
     method: 'get'
   })
 }

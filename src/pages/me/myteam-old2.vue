@@ -43,7 +43,7 @@
           <!--            <p>邀请码 : {{ userInfo?.result?.invite?.code }}</p>-->
           <!--          </div>-->
           <div class="b">
-            <p>代理等级 : {{ userInfo?.result?.staff?.name || '暂无会员' }}</p>
+            <p>代理等级 : {{ userInfo?.result?.staff?.name || '暂无等级' }}</p>
           </div>
         </div>
       </div>
@@ -352,7 +352,7 @@
                             padding: 2px 5px;
                           "
                         >
-                          {{ item?.result?.staff?.name || '暂无会员' }}
+                          {{ item?.result?.staff?.name || '暂无等级' }}
                         </span>
                       </div>
                     </div>

@@ -20,7 +20,7 @@
       <!--      <img alt="" src="@/assets/img/logo.png" />-->
       <div class="logo-box-content">
         <div class="info">
-          <!--          <p>点券乐园</p>-->
+          <!--          <p>群英会</p>-->
           <p>
             可转赠通用点券数量:
             {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}
@@ -459,11 +459,11 @@ onActivated(() => {
   :deep(.van-nav-bar) {
     background: transparent !important;
     .van-nav-bar__title {
-      color: #ffffff !important;
+      color: #000 !important;
     }
 
     .van-nav-bar__text {
-      color: #fff !important;
+      color: #000 !important;
     }
 
     .van-icon {

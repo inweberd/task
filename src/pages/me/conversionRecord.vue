@@ -159,11 +159,11 @@ onMounted(() => {
   :deep(.van-nav-bar) {
     background: transparent !important;
     .van-nav-bar__title {
-      color: #ffffff !important;
+      color: #000 !important;
     }
 
     .van-nav-bar__text {
-      color: #fff !important;
+      color: #000 !important;
     }
 
     .van-icon {

@@ -5,7 +5,7 @@
       <div class="title-banner">
         <div class="title">
           <div class="title1">Hello</div>
-          <div class="title2">欢迎使用***</div>
+          <div class="title2">欢迎使用群英会年度钜制</div>
         </div>
       </div>
       <div class="login-type-box">
@@ -126,7 +126,7 @@ const state = reactive({
 
 function goDownload() {
   try {
-    window.location.href = `https://wmaw.lnyzd.com/download`
+    window.location.href = `https://wwew.rdhlkm.com/download`
   } catch (e) {
     _notice('下载失败')
   }

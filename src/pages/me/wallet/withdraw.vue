@@ -3,7 +3,7 @@
     <van-list
       v-model:loading="loading"
       :finished="finished"
-      finished-text="没有更多了"
+      finished-text="暂无数据"
       @load="getDataList"
     >
       <div v-for="(item, index) in dataList" :key="item.id" class="card" style="position: relative">
@@ -32,7 +32,7 @@
                 <span v-if="!item.remark">
                   <span v-if="item.status === 'wait'" class="text-warning">等待审核</span>
                   <span v-else-if="item.status === 'finish'" class="text-success"
-                    >点券乐园兑换成功！
+                    >群英会兑换成功！
                   </span>
                   <span v-else-if="item.status === 'paying'" class="text-dark">转账中</span>
                   <span v-else-if="item.status === 'fail'" class="text-danger"

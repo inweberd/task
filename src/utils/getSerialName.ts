@@ -22,7 +22,7 @@ const serialNameMap = {
 }
 export const getSerialName = (val) => {
   if (!val) {
-    return '暂无会员'
+    return '暂无等级'
   } else if (val === 1) {
     return '蓝钻会员'
   } else if (val === 2) {

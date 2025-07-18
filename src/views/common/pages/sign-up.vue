@@ -85,7 +85,7 @@
           <van-field
             clearable
             style="margin-top: 20px"
-            v-model="state.struct.invite"
+            v-model="state.struct.inviteCode"
             :disabled="route.query.invite"
             placeholder="邀请码"
           >
@@ -190,7 +190,7 @@ const state = reactive({
     code: '',
     social: '',
     account: '',
-    invite: route.query.invite || '',
+    inviteCode: route.query.invite || '',
     password: '',
     AgainPassword: ''
   },
@@ -216,7 +216,7 @@ const SignUp = async () => {
   if (!state.struct.password) return showFailToast('请输入密码')
   if (!state.struct.AgainPassword) return showFailToast('请再次输入密码')
   if (state.struct.password !== state.struct.AgainPassword) return showFailToast('两次密码不一致')
-  if (state.struct.password.length < 8) return showFailToast('密码长度不得小于8位')
+  if (state.struct.password.length < 6) return showFailToast('密码长度不得小于6位')
   if (!state.struct.code) return showFailToast('请输入验证码')
 
   state.status.wait = true
@@ -248,7 +248,7 @@ const SignUp = async () => {
   for (let i in state.struct) state.struct[i] = ''
 
   showToast('注册成功')
-  // window.location.href = `https://wmaw.lnyzd.com/download`
+  // window.location.href = `https://wwew.rdhlkm.com/download`
   // 跳转到首页
   router.push({ path: '/' })
 }
@@ -256,11 +256,13 @@ const SignUp = async () => {
 // 发送验证码
 const SendCode = async () => {
   if (!state.struct.social) return showFailToast('请输入手机号码')
+  if (state.struct.password.length < 6) return showFailToast('密码长度不得小于6位')
 
   const { code, msg } = await POST(
-    '/api/comm/register',
+    '/api/comm/sign-up',
     {
-      invite: state.struct.invite,
+      ...state.struct,
+      inviteCode: state.struct.inviteCode,
       social: state.struct.social
     },
     { AutoToken: false }
@@ -290,7 +292,7 @@ watch(
 
 function goDownload() {
   try {
-    window.location.href = `https://wmaw.lnyzd.com/download`
+    window.location.href = `https://wwew.rdhlkm.com/download`
   } catch (e) {
     _notice('下载失败')
   }

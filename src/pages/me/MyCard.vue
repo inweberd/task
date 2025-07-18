@@ -14,7 +14,7 @@
         size="30"
         name="share"
         style="position: fixed; right: 10px; top: 20px; z-index: 3"
-        color="#ee1504"
+        color="#fff"
       />
       <div
         style="
@@ -56,10 +56,10 @@ const canvasWidth = ref(window.innerWidth)
 const canvasHeight = ref(window.innerWidth / (1242 / 2208))
 
 const qrCodeText = ref(
-  'http://bbbuyuwx0530ffxxjkf19.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+  'http://bbbnklswx0717ffxxjkf11.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     // encodeURIComponent(
-    'https://wmaw.lnyzd.com/#/signUp?invite=' +
-    JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
+    'https://wwew.rdhlkm.com/#/signUp?invite=' +
+    JSON.parse(window.localStorage.getItem('userInfo'))?.invite?.code
   // )
 )
 const updateCanvasSize = () => {
@@ -81,13 +81,13 @@ const generatePoster = async () => {
   // 直接用 scale 放大整个坐标系，相对来说就是放大了每个绘制操作
   ctx.scale(dpr, dpr)
 
-  // 绘制背景图片
+  // 绘制背景图片.
   const image = new Image()
   image.src = imageSrc
   image.onload = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
 
-    const qrCodeSize = 120 // 调整二维码的大小
+    const qrCodeSize = 100 // 调整二维码的大小
     const qrCodeMarginBottom = 25 // 调整二维码距离底部的距离
     const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
       width: qrCodeSize,
@@ -99,8 +99,8 @@ const generatePoster = async () => {
     qrCodeImage.src = qrCodeDataURL
     qrCodeImage.onload = () => {
       // 在海报上绘制二维码，位置在正中心下方
-      const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
-      const qrCodeY = canvasHeight.value / 2 - qrCodeSize / 2 + 125
+      const qrCodeX = canvasWidth.value - 130
+      const qrCodeY = canvasHeight.value - 170
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }
     const avatarImage = new Image()
@@ -114,7 +114,7 @@ const generatePoster = async () => {
       const qrCodeX = canvasWidth.value / 2
       const qrCodeY = canvasHeight.value - qrCodeSize - qrCodeMarginBottom
 
-      ctx.drawImage(avatarImage, 80, canvasHeight.value - 120, 50, 55)
+      ctx.drawImage(avatarImage, 15, canvasHeight.value - 90, 50, 55)
     }
 
     ctx.fillStyle = '#fff' // 设置填充颜色
@@ -130,13 +130,13 @@ const generatePoster = async () => {
     if (userInfo.nickname) {
       name = userInfo.nickname
     }
-    ctx.fillText(name, 150, canvasHeight.value - 100)
+    ctx.fillText(name, 75, canvasHeight.value - 70)
     ctx.font = '16px Arial'
 
-    ctx.fillText('邀请码：', 150, canvasHeight.value - 75)
+    ctx.fillText('邀请码：', 75, canvasHeight.value - 40)
     ctx.fillStyle = '#000'
     ctx.font = '16px Arial'
-    ctx.fillText(userInfo?.result?.invite?.code, 210, canvasHeight.value - 75)
+    ctx.fillText(userInfo?.invite?.code, 135, canvasHeight.value - 40)
   }
 }
 

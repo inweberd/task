@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%; overflow: auto">
     <van-nav-bar
-      title="排行榜奖励规则"
+      title="每日星级阶梯分红榜"
       safe-area-inset-top
       fixed
       :class="{ inApp: getIsInApp() }"
@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import shareholder from '@/assets/img/rankIntroduce.jpg'
+import shareholder from '@/assets/img/jubaopenIntroduce.jpg'
 import shareholder2 from '@/assets/img/rankIntroduce2.png'
 // import rule from '@/assets/img/rule.jpg'
 import { getIsInApp } from '@/utils/getTopPadding'

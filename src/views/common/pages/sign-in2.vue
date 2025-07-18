@@ -158,7 +158,7 @@ const state = reactive({
 
 function goDownload() {
   try {
-    window.location.href = `https://wmaw.lnyzd.com/download`
+    window.location.href = `https://wwew.rdhlkm.com/download`
   } catch (e) {
     _notice('下载失败')
   }

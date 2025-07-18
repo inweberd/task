@@ -3,7 +3,7 @@
     <van-list
       v-model:loading="loading"
       :finished="finished"
-      finished-text="没有更多了"
+      finished-text="暂无数据"
       @load="getDataList"
     >
       <div v-for="(item, index) in dataList" style="position: relative" :key="item.id" class="card">
@@ -28,11 +28,11 @@
           <div style="width: 60%">
             <div>
               <span style="font-size: 14px; font-weight: bolder; color: #000">{{
-                item.content
+                item.title
               }}</span>
             </div>
             <div>
-              <span style="font-size: 12px; color: #000">{{ item.remark }}</span>
+              <span style="font-size: 12px; color: #000">{{ item.subtitle }}</span>
             </div>
           </div>
           <div style="flex: 1; text-align: right">
@@ -40,13 +40,11 @@
               <span
                 style="font-size: 16px; color: #f6202b; font-weight: bolder"
                 class="text-warning"
-                >+ {{ item.money || 0 }}点券</span
+                >+ {{ (item.value / 10).toFixed(2) || 0 }}点券</span
               >
             </div>
             <div style="margin-top: 6px">
-              <span style="font-size: 12px; color: #000">{{
-                method.toDate(item.create_time)
-              }}</span>
+              <span style="font-size: 12px; color: #000">{{ method.toDate(item.createTime) }}</span>
             </div>
           </div>
         </div>
@@ -83,7 +81,8 @@ const getDataList = () => {
     limit: searchInfo.limit,
     uid: userInfo.value.id,
     order: 'id desc',
-    type: '1'
+    type: '1',
+    scene: 'reward'
     // bind_type: 'incentive'
   }).then(({ code, msg, data }) => {
     loading.value = false

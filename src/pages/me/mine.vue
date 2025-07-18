@@ -79,7 +79,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://wmaw.lnyzd.com/download`
+    window.location.href = `https://wwew.rdhlkm.com/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false
@@ -197,7 +197,7 @@ function getData() {
         </div>
         <div class="flex-row justify-between equal-division group_4">
           <div class="flex-col items-start equal-division-item_2" @click="go('/dep', true)">
-            <span class="font_3">{{ userIncomeInfo.today || 0 }}</span>
+            <span class="font_3">{{ userIncomeInfo.today / 10 || 0 }}</span>
             <span class="font_4 text_1 mt-12">今日收益</span>
           </div>
           <div class="horiz-divider section_4"></div>

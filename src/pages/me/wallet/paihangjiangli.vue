@@ -3,7 +3,7 @@
     <van-list
       v-model:loading="loading"
       :finished="finished"
-      finished-text="没有更多了"
+      finished-text="暂无数据"
       @load="getDataList"
     >
       <!--      <div v-for="(item, index) in dataList" :key="item.id" class="card" style="position: relative">-->
@@ -113,7 +113,8 @@ const getDataList = () => {
     limit: searchInfo.limit,
     order: 'id desc',
     uid: userInfo.value.id,
-    bind_type: 'bonus-pool'
+    bind_type: 'bonus-pool',
+    objectType: ''
     // where: [
     // ['type', '=', '1'],
     //   ['bind_type', '=', 'bonus-pool'],

@@ -14,7 +14,7 @@
         <div class="user-money-item11">当前余额（元）</div>
         <div class="user-money-item12">0.00</div>
       </div>
-      <div class="user-money-item2">充值记录</div>
+      <!--      <div class="user-money-item2">充值记录</div>-->
     </div>
     <div class="recharge-box">
       <div class="recharge-title">充值金额</div>
@@ -34,21 +34,21 @@
           </div>
         </div>
       </div>
-      <div class="recharge-list">
-        <div
-          v-for="(item, index) of columns"
-          class="recharge-item"
-          :class="[activeIndex === index ? 'recharge-item-active' : '']"
-          @click="
-            () => {
-              activeIndex = index
-              state.struct.amount = null
-            }
-          "
-        >
-          冲{{ item.text }}元
-        </div>
-      </div>
+      <!--      <div class="recharge-list">-->
+      <!--        <div-->
+      <!--          v-for="(item, index) of columns"-->
+      <!--          class="recharge-item"-->
+      <!--          :class="[activeIndex === index ? 'recharge-item-active' : '']"-->
+      <!--          @click="-->
+      <!--            () => {-->
+      <!--              activeIndex = index-->
+      <!--              state.struct.amount = null-->
+      <!--            }-->
+      <!--          "-->
+      <!--        >-->
+      <!--          冲{{ item.text }}元-->
+      <!--        </div>-->
+      <!--      </div>-->
     </div>
 
     <van-radio-group v-model="state.item.pay.id" checked-color="#ffce42">
@@ -532,7 +532,7 @@ import imageSrc6 from '@/pages/me/images/banner6.jpg'
 
 const loading = ref(false)
 
-const activeIndex = ref(0)
+const activeIndex = ref(-1)
 
 const downloadList = [
   // {
@@ -600,23 +600,23 @@ const columns = ref([
   { text: '5000', value: '5000' }
 ])
 const getIcon = (item) => {
-  if (item.type === 'alipay') {
+  if (item.scene === 'alipay') {
     return alipayLarge
-  } else if (item.type === 'bank') {
+  } else if (item.scene === 'bank') {
     return bankLarge
-  } else if (item.type === 'wechat') {
+  } else if (item.scene === 'wechat') {
     return wechatLarge
     // return ysf
-  } else if (item.type === 'custom') {
-    if (item.key === 'jdpay') {
+  } else if (item.scene === 'virtual') {
+    if (item.scene === 'jdpay') {
       return jd
-    } else if (item.key === 'kdpay') {
+    } else if (item.scene === 'kdpay') {
       return kd
-    } else if (item.key === 'bs') {
+    } else if (item.type === 'bs') {
       return usdt
-    } else if (item.key === 'bishengusdt') {
+    } else if (item.scene === 'bishengusdt') {
       return usdt2
-    } else if (item.key === '365') {
+    } else if (item.scene === '365') {
       return img365
     }
   }
@@ -698,11 +698,11 @@ const state = reactive({
 const method = {
   init: async () => {
     reqRechargeColumn({
-      order: 'indexes desc'
+      // order: 'indexes desc'
     }).then((res) => {
       console.log('reqRechargeColumn', res)
       if (res.code !== 200) _notice('获取购买方式失败，请联系客服')
-      state.select.pay = res.data.filter((item) => item.status === 1)
+      state.select.pay = (res.data?.data || []).filter((item) => item.status === 'normal')
       method.setPay()
     })
   },
@@ -725,7 +725,7 @@ const method = {
     let amount = 0
 
     if (activeIndex.value !== -1) {
-      amount = columns[activeIndex.value].value
+      amount = columns.value[activeIndex.value].value
     } else {
       amount = state.struct.amount
     }
@@ -737,20 +737,20 @@ const method = {
     }
     loading.value = true
     reqCreateOrder({
-      key: state.item.pay.data.key,
-      code: state.item.pay.data.code,
-      amount: amount,
-      return: `${method.domain()}/#/me`
+      // key: state.item.pay.data.key,
+      // code: state.item.pay.data.code,
+      payChannelId: state.item.pay.id,
+      amount: amount
+      // return: `${method.domain()}/#/me`
+    }).then((res: any) => {
+      // loading.value = false
+      if (res.code !== 200) return _notice(res.msg)
+      window.location.href = decodeURIComponent(res.data.url)
     })
-      .then((res: any) => {
-        loading.value = false
-        if (res.code !== 200) return _notice(res.msg)
-        window.location.href = decodeURIComponent(res.data.url)
-      })
-      .catch((err) => {
-        loading.value = false
-        _notice('请求超时，请稍后重试')
-      })
+    // .catch((err) => {
+    //   loading.value = false
+    //   _notice('请求超时，请稍后重试')
+    // })
     // axios.post('/api/order/create', {
     //   key: state.item.pay.data.key,
     //   code: state.item.pay.data.code,

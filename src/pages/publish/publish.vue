@@ -1,19 +1,19 @@
 <template>
   <div class="publish">
-        <van-nav-bar fixed left-arrow placeholder safe-area-inset-top title="广告发布">
-          <template #right>
-<!--                    <van-icon name="friends-o" size="18" @click="service = true" />-->
-            发布规则
-          </template>
-        </van-nav-bar>
-<!--    <van-search placeholder="请输入搜索关键词" />-->
+    <van-nav-bar fixed left-arrow placeholder safe-area-inset-top title="广告发布">
+      <template #right>
+        <!--                    <van-icon name="friends-o" size="18" @click="service = true" />-->
+        <span @click="$router.push('/publishIntroduce')"> 发布规则 </span>
+      </template>
+    </van-nav-bar>
+    <!--    <van-search placeholder="请输入搜索关键词" />-->
     <div class="content">
-        <van-swipe :autoplay="3000" class="my-swipe" indicator-color="white">
-            <van-swipe-item>
-                <img alt="" src="@/pages/home/images/banner1.jpg" />
-            </van-swipe-item>
-            <van-swipe-item> <img alt="" src="@/pages/home/images/banner2.jpg" /></van-swipe-item>
-        </van-swipe>
+      <van-swipe :autoplay="3000" class="my-swipe" indicator-color="white">
+        <van-swipe-item>
+          <img alt="" src="@/pages/home/images/banner1.jpg" />
+        </van-swipe-item>
+        <van-swipe-item> <img alt="" src="@/pages/home/images/banner2.jpg" /></van-swipe-item>
+      </van-swipe>
 
       <div v-if="false" class="list" style="min-height: 50vh">
         <div class="coupleta">

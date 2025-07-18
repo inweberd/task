@@ -4,17 +4,17 @@
     <!--    <dy-back mode="light" img="back" @click="$router.back()" class="fixed-back" direction="left" />-->
     <Loading v-if="loading" />
     <van-nav-bar left-arrow placeholder title="会员列表" @click-left="$router.back()">
-<!--      <template #right>-->
-<!--        <span style="color: #1e83d3" @click="$router.push('/yiyouhuiyuan')"> 会员详情 </span>-->
-<!--        &lt;!&ndash;        <van-icon name="friends-o" size="18" @click="service = true" />&ndash;&gt;-->
-<!--      </template>-->
+      <template #right>
+        <span style="color: #000" @click="$router.push('/yiyouhuiyuan')"> 顶商权益有效期 </span>
+        <!--        <van-icon name="friends-o" size="18" @click="service = true" />-->
+      </template>
     </van-nav-bar>
-      <van-swipe :autoplay="3000" class="my-swipe" indicator-color="white">
-          <van-swipe-item>
-              <img alt="" src="@/pages/home/images/banner1.jpg" />
-          </van-swipe-item>
-          <van-swipe-item> <img alt="" src="@/pages/home/images/banner1.jpg" /></van-swipe-item>
-      </van-swipe>
+    <van-swipe :autoplay="3000" class="my-swipe" indicator-color="white">
+      <van-swipe-item> <img alt="" src="@/pages/home/images/banner11.jpg" /></van-swipe-item>
+      <van-swipe-item>
+        <img alt="" src="@/pages/home/images/banner1.jpg" />
+      </van-swipe-item>
+    </van-swipe>
     <!--    <div class="title" style="color: #b4a482; font-size: 22px">会员权益卡</div>-->
     <!--    <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>-->
 
@@ -72,12 +72,12 @@
       </div>
     </div>
 
-<!--          :class="{ active: activeIndex === index, has: myStaffList.includes(item.id) }"-->
+    <!--          :class="{ active: activeIndex === index, has: myStaffList.includes(item.id) }"-->
     <div class="v-list-box">
       <div class="v-list">
         <div
           v-for="(item, index) of staffList"
-          :class="{ active: activeIndex === index}"
+          :class="{ active: activeIndex === index }"
           class="v-list-item"
         >
           <template v-if="item.level === 1">
@@ -90,11 +90,7 @@
                 src="./images/duihuankaitong.png"
                 @click="buy(0)"
               />
-                <img
-                    v-else
-                    class="duihuankaitong"
-                    src="./images/shengxiaozhong.png"
-                />
+              <img v-else class="duihuankaitong" src="./images/shengxiaozhong.png" />
             </div>
           </template>
           <template v-if="item.level === 2">
@@ -107,11 +103,7 @@
                 src="./images/duihuankaitong.png"
                 @click="buy(1)"
               />
-                <img
-                    v-else
-                    class="duihuankaitong"
-                    src="./images/shengxiaozhong.png"
-                />
+              <img v-else class="duihuankaitong" src="./images/shengxiaozhong.png" />
             </div>
           </template>
           <template v-if="item.level === 3">
@@ -124,11 +116,7 @@
                 src="./images/duihuankaitong.png"
                 @click="buy(2)"
               />
-                <img
-                    v-else
-                    class="duihuankaitong"
-                    src="./images/shengxiaozhong.png"
-                />
+              <img v-else class="duihuankaitong" src="./images/shengxiaozhong.png" />
             </div>
           </template>
           <template v-if="item.level === 4">
@@ -139,13 +127,9 @@
                 alt=""
                 class="duihuankaitong"
                 src="./images/duihuankaitong.png"
-                @click="buy(2)"
+                @click="buy(3)"
               />
-                <img
-                    v-else
-                    class="duihuankaitong"
-                    src="./images/shengxiaozhong.png"
-                />
+              <img v-else class="duihuankaitong" src="./images/shengxiaozhong.png" />
             </div>
           </template>
 
@@ -274,23 +258,19 @@ const buy = throttle((index) => {
     })
     return
   }
-    console.log('asd',)
+  console.log('asd')
 
-  if (!originMyStaffList.value?.length && item.serial != 1) {
-    return showToast({
-      message: '请逐级购买！',
-      icon: 'warning'
-    })
+  if (!originMyStaffList.value?.length && item.level != 1) {
+    return showToast('请先完成上一个等级！')
   }
 
-  let currentLevel=originMyStaffList.value[originMyStaffList.value.length-1].vip.level;
+  let currentLevel = originMyStaffList.value.length
+    ? originMyStaffList.value[originMyStaffList.value.length - 1].vip.level
+    : 0
   // if (userInfo.value.result.staff.serial + 1 != item.level) {
-  if (currentLevel +1!= item.level) {
+  if (currentLevel + 1 != item.level) {
     if (item.level != 1) {
-      return showToast({
-        message: '请逐级购买！',
-        icon: 'warning'
-      })
+      return showToast('请先完成上一个等级！')
     }
   }
 
@@ -299,10 +279,10 @@ const buy = throttle((index) => {
     loading.value = false
 
     // if (item.price * finallyCount > res.data.amount + res.data.money) {
-    if (item.price > res.data.balance + res.data.points) {
+    if (item.price > res.data.wallet.balance + res.data.wallet.points) {
       loading.value = false
       nextTick(() => {
-        _notice(' 点券不足，兑换失败！即将为您跳转购买点券通道！')
+        _notice(' 点券不足，急活失败！即将为您跳转购买点券通道！')
       })
       setTimeout(() => {
         router.push('/recharge')
@@ -364,8 +344,8 @@ const getMyStaff = () => {
   reqMyStaff().then((res) => {
     loading.value = false
 
-    originMyStaffList.value = res.data?.data||[]
-    myStaffList.value = (res.data?.data||[]).map((item) => item.vipId)
+    originMyStaffList.value = res.data?.data || []
+    myStaffList.value = (res.data?.data || []).map((item) => item.vipId)
     console.log('staffList', staffList.value)
     console.log('myStaffList', myStaffList.value)
     // if (res.data.length) {
@@ -452,11 +432,11 @@ const speed = ref(0.5) //滚动速度
   :deep(.van-nav-bar) {
     background-color: #fed61f !important;
     .van-nav-bar__title {
-      color: #fff !important;
+      color: #000 !important;
     }
 
     .van-icon {
-      color: #fff !important;
+      color: #000 !important;
       font-size: 18px !important;
     }
   }
@@ -531,7 +511,7 @@ const speed = ref(0.5) //滚动速度
             position: absolute;
             top: 8px;
             left: 50%;
-              transform: translateX(-50%);
+            transform: translateX(-50%);
           }
         }
 
@@ -823,17 +803,17 @@ const speed = ref(0.5) //滚动速度
 }
 
 .my-swipe {
-    margin: 8px 10px 0;
-    border-radius: 10px;
-    overflow: hidden;
+  margin: 8px 10px 0;
+  border-radius: 10px;
+  overflow: hidden;
 
-    .van-swipe-item {
-        height: 180px;
-        img {
-            width: 100%;
-            height: 100%;
-        }
+  .van-swipe-item {
+    height: 180px;
+    img {
+      width: 100%;
+      height: 100%;
     }
+  }
 }
 
 .announcement {

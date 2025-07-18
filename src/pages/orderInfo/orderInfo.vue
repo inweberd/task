@@ -28,7 +28,7 @@
       <detail-info
         :column-list="columnList2"
         :detail-info="detail.sellEWallet || {}"
-        group-title="支付信息"
+        group-title="卖方收款信息"
         style="margin-top: 10px; background-color: #fff"
       >
         <template #scene>
@@ -54,13 +54,13 @@
       <!--      </div>-->
       <text-area v-model:content="detailForm.cny" label="实付金额" placeholder="请输入" rows="1" />
 
-      <text-area
-        v-model:content="detailForm.remark"
-        :is-require="false"
-        label="备注"
-        placeholder="请输入"
-        rows="2"
-      />
+      <!--      <text-area-->
+      <!--        v-model:content="detailForm.remark"-->
+      <!--        :is-require="false"-->
+      <!--        label="备注"-->
+      <!--        placeholder="请输入"-->
+      <!--        rows="2"-->
+      <!--      />-->
 
       <LabelTitle :is-require="true" icon-name="text_area" tips="支付凭证" />
       <van-uploader v-model="fileList" :max-count="1" />
@@ -74,26 +74,35 @@
         >提交
       </el-button>
     </div>
-      <div
-          v-if="detail?.order?.sellUid === userInfo.id && detail?.order?.buyConfirm && !detail?.order?.sellConfirm"
-          class="content"
-          style="background-color: #fff; padding: 10px; box-sizing: border-box"
-      >
-          <el-button
-              color="#fcd323"
-              size="large"
-              style="border-radius: 30px; border: none; color: #444; width: calc(100%); height: 40px"
-              type="primary"
-              @click="sellSave"
-          >放币
-          </el-button>
-      </div>
+    <div
+      v-if="
+        detail?.order?.sellUid === userInfo.id &&
+        detail?.order?.buyConfirm &&
+        !detail?.order?.sellConfirm
+      "
+      class="content"
+      style="background-color: #fff; padding: 10px; box-sizing: border-box"
+    >
+      <el-button
+        color="#fcd323"
+        size="large"
+        style="border-radius: 30px; border: none; color: #444; width: calc(100%); height: 40px"
+        type="primary"
+        @click="sellSave"
+        >放币
+      </el-button>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { getIsInApp } from '@/utils/getTopPadding'
 import { computed, onActivated, onMounted, reactive, ref, toRefs } from 'vue'
-import { reqWalletBuyConfirm, reqWalletSave, reqWalletTradeTake,reqWalletSellConfirm } from '@/api/myApi'
+import {
+  reqWalletBuyConfirm,
+  reqWalletSave,
+  reqWalletTradeTake,
+  reqWalletSellConfirm
+} from '@/api/myApi'
 import { useRoute } from 'vue-router'
 import { showToast } from 'vant'
 import LabelTitle from '@/components/labelTitle/LabelTitle.vue'
@@ -141,14 +150,14 @@ let columnList2 = reactive([
   },
   {
     key: 'account',
-    label: '买家账号'
+    label: '卖方账号'
     // hide: computed(() => {
     //   return !detail.relId
     // })
   },
   {
     key: 'qrCode',
-    label: '收款码'
+    label: '卖方收款码'
   }
 ])
 
@@ -193,19 +202,17 @@ const buySave = () => {
 }
 
 const sellSave = () => {
+  const formdata = new FormData()
+  formdata.append('no', route.query.no)
 
+  reqWalletSellConfirm(formdata).then((res) => {
+    if (res.code !== 200) {
+      return showToast(res.msg)
+    }
 
-    const formdata = new FormData()
-    formdata.append('no', route.query.no)
-
-    reqWalletSellConfirm(formdata).then((res) => {
-        if (res.code !== 200) {
-            return showToast(res.msg)
-        }
-
-        showToast(res.msg)
-        getDetail()
-    })
+    showToast(res.msg)
+    getDetail()
+  })
 }
 
 const getDetail = () => {
@@ -234,11 +241,11 @@ onMounted(() => {
   :deep(.van-nav-bar) {
     background-color: #fed61f !important;
     .van-nav-bar__title {
-      color: #fff !important;
+      color: #000 !important;
     }
 
     .van-icon {
-      color: #fff !important;
+      color: #000 !important;
       font-size: 18px !important;
     }
   }

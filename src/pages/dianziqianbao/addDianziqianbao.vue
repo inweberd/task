@@ -25,9 +25,9 @@
         @click="showPicker = true"
       />
       <!--      </div>-->
-      <text-area label="姓名" v-model:content="detail.name" rows="2" placeholder="请输入" />
+      <text-area label="收款姓名" v-model:content="detail.name" rows="2" placeholder="请输入" />
 
-      <text-area label="账号" v-model:content="detail.account" rows="2" placeholder="请输入" />
+      <text-area label="收款账号" v-model:content="detail.account" rows="2" placeholder="请输入" />
 
       <LabelTitle tips="收款码" icon-name="text_area" :is-require="true" />
       <van-uploader v-model="fileList" :after-read="afterRead" :max-count="1" />
@@ -163,11 +163,11 @@ const save = () => {
   :deep(.van-nav-bar) {
     background-color: #fed61f !important;
     .van-nav-bar__title {
-      color: #fff !important;
+      color: #000 !important;
     }
 
     .van-icon {
-      color: #fff !important;
+      color: #000 !important;
       font-size: 18px !important;
     }
   }

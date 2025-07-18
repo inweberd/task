@@ -147,7 +147,7 @@
     @confirm="shareFriendFn"
   >
     <div style="padding: 20px; color: #fff; text-align: center">
-      <p>请先分享邀请海报到朋友圈，再进行下一步操作！ 点券乐园，您的创业首选，财富不打烊！</p>
+      <p>请先分享邀请海报到朋友圈，再进行下一步操作！ 群英会，您的创业首选，财富不打烊！</p>
     </div>
   </TipDialog>
   <!--  <van-floating-bubble-->
@@ -226,7 +226,7 @@ const showOverlay = ref(false)
 
 const goDownload = () => {
   try {
-    window.location.href = `https://wmaw.lnyzd.com/download`
+    window.location.href = `https://wwew.rdhlkm.com/download`
   } catch (e) {
     _notice('下载失败')
   }
@@ -315,10 +315,10 @@ const generatePoster = async () => {
     return
   }
   qrCodeText.value =
-    'http://bbbuyuwx0530ffxxjkf19.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+    'http://bbbnklswx0717ffxxjkf11.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     // encodeURIComponent(
-    'https://wmaw.lnyzd.com/#/signUp?invite=' +
-    JSON.parse(window.localStorage.getItem('userInfo')).result?.invite?.code
+    'https://wwew.rdhlkm.com/#/signUp?invite=' +
+    JSON.parse(window.localStorage.getItem('userInfo'))?.invite?.code
   // )
   canvas.value.width = canvasWidth.value
   canvas.value.height = canvasHeight.value
@@ -350,7 +350,7 @@ const generatePoster = async () => {
     ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
     const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
 
-    const qrCodeSize = 120 // 调整二维码的大小
+    const qrCodeSize = 100 // 调整二维码的大小
     const qrCodeDataURL = await QRCode.toDataURL(qrCodeText.value, {
       width: qrCodeSize,
       height: qrCodeSize,
@@ -360,8 +360,8 @@ const generatePoster = async () => {
     qrCodeImage.src = qrCodeDataURL
     qrCodeImage.onload = () => {
       // 在海报上绘制二维码，位置在正中心下方
-      const qrCodeX = canvasWidth.value / 2 - qrCodeSize / 2
-      const qrCodeY = canvasHeight.value / 2 - qrCodeSize / 2 + 125
+      const qrCodeX = canvasWidth.value - 130
+      const qrCodeY = canvasHeight.value - 170
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }
     const avatarImage = new Image()
@@ -390,7 +390,7 @@ const generatePoster = async () => {
     } else {
       avatarImage.src = avatar
       avatarImage.onload = () => {
-        ctx.drawImage(avatarImage, 80, canvasHeight.value - 120, 50, 55)
+        ctx.drawImage(avatarImage, 15, canvasHeight.value - 90, 50, 55)
 
         closeToast()
       }
@@ -407,13 +407,13 @@ const generatePoster = async () => {
     if (userInfo.nickname) {
       name = userInfo.nickname
     }
-    ctx.fillText(name, 150, canvasHeight.value - 100)
+    ctx.fillText(name, 75, canvasHeight.value - 70)
     ctx.font = '16px Arial'
 
-    ctx.fillText('邀请码：', 150, canvasHeight.value - 75)
+    ctx.fillText('邀请码：', 75, canvasHeight.value - 40)
     ctx.fillStyle = '#000'
     ctx.font = '16px Arial'
-    ctx.fillText(userInfo?.result?.invite?.code, 210, canvasHeight.value - 75)
+    ctx.fillText(userInfo?.invite?.code, 135, canvasHeight.value - 40)
     // ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
     //
     // const qrCodeSize = canvasWidth.value * 0.33 // 调整二维码的大小
@@ -459,13 +459,13 @@ function clipboardCopy(content) {
 }
 
 const toDownload = () => {
-  window.android.openBrowser('https://wmaw.lnyzd.com/download/android.apk')
+  window.android.openBrowser('https://wwew.rdhlkm.com/download/android.apk')
 
-  // window.location.href = `https://wmaw.lnyzd.com/download/android.apk`
+  // window.location.href = `https://wwew.rdhlkm.com/download/android.apk`
 }
 
 const upGrade = () => {
-  window.android.openBrowser('https://wmaw.lnyzd.com/download/android.apk')
+  window.android.openBrowser('https://wwew.rdhlkm.com/download/android.apk')
   // clipboardCopy('')
   // navigator.clipboard.writeText('12312').then(() => {
   //   alert('复制成功')
@@ -484,7 +484,7 @@ onMounted(() => {
   if (isWeChatBrowser) {
     // loadWx(() => {
     //   wx.onMenuShareTimeline({
-    //     title: '点券乐园',
+    //     title: '群英会',
     //     // link: 'http://movie.douban.com/subject/25785114asd/',
     //     imgUrl: 'http://tc.izakq.com/media/logo2.png',
     //     trigger: function (res) {

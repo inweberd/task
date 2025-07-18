@@ -43,66 +43,70 @@
           <!--            <p>邀请码 : {{ userInfo?.result?.invite?.code }}</p>-->
           <!--          </div>-->
           <div class="b">
-            <p>{{ userInfo?.result?.staff?.name || '暂无会员' }}</p>
+            <p>{{ userInfo?.result?.staff?.name || '暂无等级' }}</p>
           </div>
         </div>
       </div>
 
-<!--      <div class="sycontent">-->
-<!--        <div class="sycontent-tltle">-->
-<!--          <div class="sycontent-tltle1">账户信息</div>-->
-<!--          <div class="sycontent-tltle2" @click="$router.push('/wallet')">-->
-<!--            查看明细<van-icon name="arrow" />-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="table">-->
-<!--          <div>-->
-<!--            <p style="color: rgb(203, 166, 126); font-size: 13px">团队总业绩</p>-->
-<!--            <p style="color: rgb(105, 46, 4); font-size: 22px">-->
-<!--              {{ memberInfo.team?.deposit || 0 }}-->
-<!--            </p>-->
-<!--          </div>-->
-<!--          <div>-->
-<!--            <p style="color: rgb(203, 166, 126); font-size: 13px">团队人数</p>-->
-<!--            <p style="color: rgb(105, 46, 4); font-size: 22px">{{ memberInfo.team?.total || 0 }}</p>-->
-<!--          </div>-->
-<!--          <div>-->
-<!--            <p style="color: rgb(203, 166, 126); font-size: 13px">今日收益</p>-->
-<!--            <p style="color: rgb(105, 46, 4); font-size: 22px">{{ userIncomeInfo.today || 0 }}</p>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+      <!--      <div class="sycontent">-->
+      <!--        <div class="sycontent-tltle">-->
+      <!--          <div class="sycontent-tltle1">账户信息</div>-->
+      <!--          <div class="sycontent-tltle2" @click="$router.push('/wallet')">-->
+      <!--            查看明细<van-icon name="arrow" />-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--        <div class="table">-->
+      <!--          <div>-->
+      <!--            <p style="color: rgb(203, 166, 126); font-size: 13px">团队总业绩</p>-->
+      <!--            <p style="color: rgb(105, 46, 4); font-size: 22px">-->
+      <!--              {{ memberInfo.team?.deposit || 0 }}-->
+      <!--            </p>-->
+      <!--          </div>-->
+      <!--          <div>-->
+      <!--            <p style="color: rgb(203, 166, 126); font-size: 13px">团队人数</p>-->
+      <!--            <p style="color: rgb(105, 46, 4); font-size: 22px">{{ memberInfo.team?.total || 0 }}</p>-->
+      <!--          </div>-->
+      <!--          <div>-->
+      <!--            <p style="color: rgb(203, 166, 126); font-size: 13px">今日收益</p>-->
+      <!--            <p style="color: rgb(105, 46, 4); font-size: 22px">{{ userIncomeInfo.today || 0 }}</p>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
       <div class="team-box-b">
         <div class="team-box-tle">团队订单数据</div>
         <div class="team-box-list">
-        <div class="team-box-list-item">
+          <div class="team-box-list-item">
             <div class="team-box-list-item1">团队总数</div>
-            <div class="team-box-list-item2">{{ memberInfo.team?.total || 0 }}</div>
-        </div>
+            <div class="team-box-list-item2">{{ userIncomeInfo.teamPeopleNumber || 0 }}</div>
+          </div>
           <div class="team-box-list-item">
             <div class="team-box-list-item1">团队有效</div>
-            <div class="team-box-list-item2">{{ memberInfo.team?.vip || 0 }}</div>
+            <div class="team-box-list-item2">
+              {{ userIncomeInfo.teamEffectivePeopleNumber || 0 }}
+            </div>
           </div>
           <div class="team-box-list-item">
             <div class="team-box-list-item1">直推总数</div>
-            <div class="team-box-list-item2">{{ memberInfo.first?.total || 0 }}</div>
+            <div class="team-box-list-item2">{{ userIncomeInfo.directlyPeopleNumber || 0 }}</div>
           </div>
           <div class="team-box-list-item">
             <div class="team-box-list-item1">直推有效</div>
-            <div class="team-box-list-item2">{{ memberInfo.first?.vip || 0 }}</div>
+            <div class="team-box-list-item2">
+              {{ userIncomeInfo.directlyEffectivePeopleNumber || 0 }}
+            </div>
           </div>
-        <div class="team-box-list-item">
+          <div class="team-box-list-item">
             <div class="team-box-list-item1">团队充值</div>
-            <div class="team-box-list-item2">{{ memberInfo.first?.vip || 0 }}</div>
-        </div>
-<!--          <div class="team-box-list-item">-->
-<!--            <div class="team-box-list-item1">团队总兑换</div>-->
-<!--            <div class="team-box-list-item2">{{ memberInfo.team?.withdraw || 0 }}</div>-->
-<!--          </div>-->
-<!--          <div class="team-box-list-item">-->
-<!--            <div class="team-box-list-item1">直推有效下级</div>-->
-<!--            <div class="team-box-list-item2">{{ memberInfo.team?.direct || 0 }}</div>-->
-<!--          </div>-->
+            <div class="team-box-list-item2">{{ userIncomeInfo.teamTotalRecharge || 0 }}</div>
+          </div>
+          <!--          <div class="team-box-list-item">-->
+          <!--            <div class="team-box-list-item1">团队总兑换</div>-->
+          <!--            <div class="team-box-list-item2">{{ memberInfo.team?.withdraw || 0 }}</div>-->
+          <!--          </div>-->
+          <!--          <div class="team-box-list-item">-->
+          <!--            <div class="team-box-list-item1">直推有效下级</div>-->
+          <!--            <div class="team-box-list-item2">{{ memberInfo.team?.direct || 0 }}</div>-->
+          <!--          </div>-->
           <!--          <div class="team-box-list-item">-->
           <!--            <div class="team-box-list-item1">收益(元)</div>-->
           <!--            <div class="team-box-list-item2">0</div>-->
@@ -129,9 +133,11 @@
             title-active-color="#000"
             @change="tabChange"
           >
-            <van-tab :title="'直推(' + (teamIds['one']?.length || 0) + ')'" name="one" />
-            <van-tab :title="'间推(' + (teamIds['two']?.length || 0) + ')'" name="two" />
-<!--            <van-tab :title="'3代(' + (teamIds['three']?.length || 0) + ')'" name="three" />-->
+            <!--            <van-tab :title="'直推(' + (teamIds['one']?.length || 0) + ')'" name="one" />-->
+            <!--            <van-tab :title="'间推(' + (teamIds['two']?.length || 0) + ')'" name="two" />-->
+            <van-tab title="直推" name="one" />
+            <van-tab title="间推" name="two" />
+            <!--            <van-tab :title="'3代(' + (teamIds['three']?.length || 0) + ')'" name="three" />-->
             <!--                  <van-tab :title="'三级(' + (teamIds['three']?.length || 0) + ')'" name="three" />-->
           </van-tabs>
           <!--        <div style="background-color: #1f203d; margin: 10px; border-radius: 10px; overflow: hidden">-->
@@ -209,16 +215,16 @@
                                   <div>
                                     {{ item.nickname || item.phone }}
                                   </div>
-                                  <div>
-                                    <span style="color: #999; font-size: 12px"
-                                      >天梯等级：
-                                      {{
-                                        item?.result?.treasure?.bind_id
-                                          ? item?.result?.treasure?.bind_id + '级'
-                                          : '暂无'
-                                      }}</span
-                                    >
-                                  </div>
+                                  <!--                                  <div>-->
+                                  <!--                                    <span style="color: #999; font-size: 12px"-->
+                                  <!--                                      >天梯等级：-->
+                                  <!--                                      {{-->
+                                  <!--                                        item?.result?.treasure?.bind_id-->
+                                  <!--                                          ? item?.result?.treasure?.bind_id + '级'-->
+                                  <!--                                          : '暂无'-->
+                                  <!--                                      }}</span-->
+                                  <!--                                    >-->
+                                  <!--                                  </div>-->
                                 </div>
                               </template>
                               <template v-else>
@@ -232,16 +238,16 @@
                                         : '') || item.nickname
                                     }}
                                   </div>
-                                  <div>
-                                    <span style="color: #999; font-size: 12px"
-                                      >天梯等级：
-                                      {{
-                                        item?.result?.treasure?.bind_id
-                                          ? item?.result?.treasure?.bind_id + '级'
-                                          : '暂无'
-                                      }}</span
-                                    >
-                                  </div>
+                                  <!--                                  <div>-->
+                                  <!--                                    <span style="color: #999; font-size: 12px"-->
+                                  <!--                                      >天梯等级：-->
+                                  <!--                                      {{-->
+                                  <!--                                        item?.result?.treasure?.bind_id-->
+                                  <!--                                          ? item?.result?.treasure?.bind_id + '级'-->
+                                  <!--                                          : '暂无'-->
+                                  <!--                                      }}</span-->
+                                  <!--                                    >-->
+                                  <!--                                  </div>-->
                                 </div>
                               </template>
                             </span>
@@ -271,7 +277,7 @@
                             padding: 2px 5px;
                           "
                         >
-                          {{ item?.result?.staff?.name || '暂无会员' }}
+                          {{ item?.result?.staff?.name || '暂无等级' }}
                         </span>
                       </div>
                     </div>
@@ -289,7 +295,7 @@
                     color: #999;
                   "
                 >
-                  注册时间： {{ utils.timeToDate(item.create_time, 'Y-M-D H:i') }}
+                  注册时间： {{ utils.timeToDate(item.signInTime, 'Y-M-D H:i') }}
                 </div>
                 <!--            <div class="money">￥{{ parseFloat(item?.result?.staff?.money || 0).toFixed(2) }}</div>-->
                 <div class="money">
@@ -373,30 +379,31 @@ const teamIds = ref({})
 let isHaveIds = false
 const getDataList = async () => {
   // debugger
-  if (!isHaveIds) {
-    const idsRes = await reqUserMemberTeamIds()
-    teamIds.value = idsRes.data
-    isHaveIds = true
-  }
+  // if (!isHaveIds) {
+  //   const idsRes = await reqUserMemberTeamIds()
+  //   teamIds.value = idsRes.data
+  //   isHaveIds = true
+  // }
   loading.value = true
 
-  let ids = teamIds.value[active.value]
-  if (searchId.value) {
-    if (ids.includes(searchId.value * 1)) {
-      ids = [searchId.value]
-    } else {
-      loading.value = false
-
-      finished.value = true
-      return
-    }
-  }
+  // let ids = teamIds.value[active.value]
+  // if (searchId.value) {
+  //   if (ids.includes(searchId.value * 1)) {
+  //     ids = [searchId.value]
+  //   } else {
+  //     loading.value = false
+  //
+  //     finished.value = true
+  //     return
+  //   }
+  // }
   searchInfo.page++
 
   // const { code, msg, data } = await reqUserDistribution({
   const { code, msg, data } = await reqUserMemberTeamList({
     // ids: teamIds.value[active.value],
-    ids: ids,
+    // ids: ids,
+    isDirectly: active.value == 'one',
     page: searchInfo.page,
     limit: searchInfo.limit
   })

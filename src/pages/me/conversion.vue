@@ -10,8 +10,11 @@
       @click-left="router.back()"
     >
       <template #right>
-        <span style="color: #fff; font-size: 14px" @click="$router.push('/conversionRecord')">
-          转增记录
+        <!--        <span style="color: #fff; font-size: 14px" @click="$router.push('/conversionRecord')">-->
+        <!--          转增记录-->
+        <!--        </span>-->
+        <span style="color: #000; font-size: 14px" @click="$router.push('/conversionIntroduce')">
+          转增规则
         </span>
       </template>
     </van-nav-bar>
@@ -19,7 +22,7 @@
     <!--      &lt;!&ndash;      <img alt="" src="@/assets/img/logo.png" />&ndash;&gt;-->
     <!--      <div class="logo-box-content">-->
     <!--        <div class="info">-->
-    <!--          &lt;!&ndash;          <p>点券乐园</p>&ndash;&gt;-->
+    <!--          &lt;!&ndash;          <p>群英会</p>&ndash;&gt;-->
     <!--          <p>-->
     <!--            可转赠通用点券数量:-->
     <!--            {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}-->
@@ -34,18 +37,18 @@
           <van-icon color="#000" name="user" />
           <span style="padding-left: 4px">普通用户</span>
         </div>
-        <div>点券</div>
+        <!--        <div>点券</div>-->
       </div>
       <div class="center">
-        {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}
+        {{ (walletInfo.wallet?.points / 10 || 0).toFixed(2) }}
         <span style="padding-left: 0px">点券</span>
       </div>
       <div class="bottom">
-        <div style="font-size: 10px; color: #333">我的点券</div>
-        <div>
-          查看明细
-          <van-icon color="#000" name="arrow" />
-        </div>
+        <!--        <div style="font-size: 10px; color: #333">我的点券</div>-->
+        <!--        <div>-->
+        <!--          查看明细-->
+        <!--          <van-icon color="#000" name="arrow" />-->
+        <!--        </div>-->
       </div>
     </div>
     <div class="content">
@@ -58,7 +61,7 @@
 
       <van-field v-model="data.points" label="金额" placeholder="请输入转赠数量" type="number">
       </van-field>
-      <van-field v-model="data.remark" label="备注" placeholder="备注" type="textarea"> </van-field>
+      <!--      <van-field v-model="data.remark" label="备注" placeholder="备注" type="textarea"> </van-field>-->
       <!--        <div class="common-input-title" style="margin-top: 10px">短信验证码</div>-->
 
       <div style="width: 100%">
@@ -139,7 +142,7 @@
       <!--      </div>-->
     </div>
 
-    <div style="margin: 15px 0 6px 8px; color: #000; font-weight: bolder">交易进行中</div>
+    <div style="margin: 15px 0 6px 8px; color: #000; font-weight: bolder">转赠记录</div>
     <div class="record">
       <van-tabs
         v-model:active="activeName"
@@ -147,8 +150,8 @@
         title-active-color="#fed61f"
         @change="init"
       >
-        <van-tab name="a" title="正在售卖"></van-tab>
-        <van-tab name="b" title="正在购买"></van-tab>
+        <van-tab name="a" title="转出"></van-tab>
+        <van-tab name="b" title="转入"></van-tab>
         <van-list
           v-model:loading="loading"
           :finished="finished"
@@ -173,7 +176,12 @@
               <div style="width: 60%">
                 <div>
                   <span style="font-size: 14px; font-weight: bolder; color: #000">
-                    {{ activeName === 'a' ? '转出' : '转入' }}
+                    <span v-if="activeName === 'a'">
+                      转出到ID：<span style="color: #f6202b">{{ item.buyUid }}</span></span
+                    >
+                    <span v-else
+                      >转入来自ID:<span style="color: #f6202b">{{ item.sellUid }}</span>
+                    </span>
                   </span>
                 </div>
                 <div>
@@ -247,6 +255,7 @@ import {
   reqTradePage,
   reqTransferLogs,
   reqUserIncome,
+  reqWalletInfo,
   reqWalletLog,
   reqWalletTransfer,
   sociallogin
@@ -262,6 +271,7 @@ import { showToast } from 'vant'
 import utils from '@/utils/utils'
 
 const showGonggaoOverlay2 = ref(false)
+const walletInfo = ref({ wallet: { transfer: null } })
 
 const isVip = ref(JSON.parse(window.localStorage.getItem('userInfo'))?.result?.staff?.serial)
 const route = useRoute()
@@ -349,6 +359,8 @@ function onSubmit() {
     return _notice('点券转赠5个起！')
   }
 
+  const params = JSON.parse(JSON.stringify(data))
+  params.points = params.points * 10
   reqWalletTransfer(data).then((e) => {
     _notice(e.msg)
     if (e.code === 200) {
@@ -426,6 +438,10 @@ const method = {
 onActivated(() => {
   getUserIncome()
   getDataList()
+  reqWalletInfo().then((res) => {
+    if (res.code !== 200) return
+    walletInfo.value = res.data
+  })
 })
 </script>
 
@@ -470,7 +486,7 @@ onActivated(() => {
   :deep(.van-nav-bar) {
     background-color: #fed61f !important;
     .van-nav-bar__title {
-      color: #fff !important;
+      color: #000 !important;
     }
 
     .van-icon {

@@ -35,22 +35,22 @@
     <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">棋牌娱乐</div>-->
     <!--      </div>-->
     <!--    </div>-->
-    <div class="l-button" @click="$router.push('/publish')">
-      <div class="add-ctn">
-        <div class="img-box">
-          <!--          <img src="@/assets/icon/3-active.png" alt="" class="add" v-if="currentTab === 2" />-->
-          <!--          <img src="@/assets/icon/3.png" alt="" class="add" v-else />-->
-          <img
-            src="https://lx.aosenn.com/h5/static/tabbar/03.png"
-            alt=""
-            class="add"
-            v-if="currentTab === 2"
-          />
-          <img src="https://lx.aosenn.com/h5/static/tabbar/04.png" alt="" class="add" v-else />
-        </div>
-        <div :style="{ color: currentTab === 2 ? '#fed61f' : '#ccc' }">广告发布</div>
-      </div>
-    </div>
+    <!--    <div class="l-button" @click="$router.push('/publish')">-->
+    <!--      <div class="add-ctn">-->
+    <!--        <div class="img-box">-->
+    <!--          &lt;!&ndash;          <img src="@/assets/icon/3-active.png" alt="" class="add" v-if="currentTab === 2" />&ndash;&gt;-->
+    <!--          &lt;!&ndash;          <img src="@/assets/icon/3.png" alt="" class="add" v-else />&ndash;&gt;-->
+    <!--          <img-->
+    <!--            src="https://lx.aosenn.com/h5/static/tabbar/03.png"-->
+    <!--            alt=""-->
+    <!--            class="add"-->
+    <!--            v-if="currentTab === 2"-->
+    <!--          />-->
+    <!--          <img src="https://lx.aosenn.com/h5/static/tabbar/04.png" alt="" class="add" v-else />-->
+    <!--        </div>-->
+    <!--        <div :style="{ color: currentTab === 2 ? '#fed61f' : '#ccc' }">广告发布</div>-->
+    <!--      </div>-->
+    <!--    </div>-->
     <!--    <div class="l-button" @click="tab(5)">-->
     <!--      <div class="add-ctn">-->
     <!--        <div class="img-box">-->

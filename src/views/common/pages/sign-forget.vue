@@ -134,7 +134,7 @@
 import { POST } from '@/utils/axios'
 import { reactive, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { showToast } from 'vant'
+import { showFailToast, showToast } from 'vant'
 import ToggleLoginAndRegister from '@/views/common/components/ToggleLoginAndRegister.vue'
 
 const router = useRouter()
@@ -169,7 +169,6 @@ const SignUp = async () => {
   if (!state.struct.password) return showFailToast('请输入密码')
   if (!state.struct.AgainPassword) return showFailToast('请再次输入密码')
   if (state.struct.password !== state.struct.AgainPassword) return showFailToast('两次密码不一致')
-  if (state.struct.password.length < 8) return showFailToast('密码长度不得小于8位')
   if (!state.struct.code) return showFailToast('请输入验证码')
 
   state.status.wait = true
@@ -198,10 +197,12 @@ const SignUp = async () => {
 // 发送验证码
 const SendCode = async () => {
   if (!state.struct.social) return showFailToast('请输入手机号码')
+  if (state.struct.password.length < 6) return showFailToast('密码长度不得小于6位')
 
   const { code, msg } = await POST(
     '/api/comm/reset-password',
     {
+      ...state.struct,
       social: state.struct.social
     },
     { AutoToken: false }

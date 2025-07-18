@@ -175,7 +175,7 @@ function onSubmit() {
       data.password2 = ''
       data.invite = ''
       // router.replace('/login')
-      window.location.href = `https://wmaw.lnyzd.com/download`
+      window.location.href = `https://wwew.rdhlkm.com/download`
     }
   })
 }

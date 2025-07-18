@@ -9,6 +9,7 @@
       @click-left="$router.back()"
     >
       <template #right>
+        <span style="color: #000" @click="$router.push('/publishIntroduce')"> 发布规则 </span>
         <!--        <van-icon name="friends-o" size="18" @click="service = true" />-->
       </template>
     </van-nav-bar>
@@ -71,11 +72,11 @@ const afterRead = () => {}
   :deep(.van-nav-bar) {
     background-color: #fed61f !important;
     .van-nav-bar__title {
-      color: #fff !important;
+      color: #000 !important;
     }
 
     .van-icon {
-      color: #fff !important;
+      color: #000 !important;
       font-size: 18px !important;
     }
   }

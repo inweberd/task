@@ -35,7 +35,7 @@
       color="#fff"
       left-icon="volume-o"
       style="border-radius: 10px; height: 30px; border: 1px solid #fff; margin: 8px 8px 0"
-      text="点券乐园拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3点券，达标自动发放！"
+      text="群英会拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3点券，达标自动发放！"
     >
     </van-notice-bar>
 

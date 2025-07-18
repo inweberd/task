@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%; overflow: auto">
     <van-nav-bar
-      title="会员列表"
+      title="顶商权益有效期"
       safe-area-inset-top
       fixed
       :class="{ inApp: getIsInApp() }"
@@ -10,7 +10,7 @@
       left-text="返回"
       left-arrow
     ></van-nav-bar>
-    <!--      <van-empty :image="empty" image-size="120" description="暂无会员 " />-->
+    <!--      <van-empty :image="empty" image-size="120" description="暂无等级 " />-->
     <div
       v-if="!myStaffList?.length"
       style="
@@ -23,16 +23,16 @@
         flex-direction: column;
       "
     >
-      <span>暂无会员</span>
+      <span>暂无等级</span>
     </div>
     <div class="list">
       <div class="list-item" v-for="item of myStaffList">
         <div class="name">
-          {{ item?.result?.staff?.name }}
+          {{ item?.vip?.name }}
         </div>
-        <div>有效期：<span>永久</span></div>
+        <div>有效期：<span>一个月</span></div>
         <div>
-          购买时间：<span>{{ getExpireTimeStr(item.entry_time) }}</span>
+          过期时间：<span>{{ getExpireTimeStr(item.expired) }}</span>
         </div>
         <!--        <div v-if="item?.result?.staff?.serial == 1">-->
         <!--          剩余时间：<span>{{ getShengyuTimeStr(item.expire_time) }}</span>-->
@@ -64,7 +64,7 @@ const getMyStaff = () => {
     .then((res) => {
       loading.value = false
 
-      myStaffList.value = (res.data || []).filter((item) => item?.result?.staff?.serial)
+      myStaffList.value = res.data?.data || []
     })
     .finally(() => {
       closeToast()
@@ -103,8 +103,8 @@ onActivated(() => {
     //background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
     padding: 10px;
     margin-bottom: 15px;
-    color: #ddd;
-    background-image: url('@/assets/img/main-bg.jpg');
+    color: #fff;
+    background-image: url('@/assets/img/dianpuBG.png');
     background-size: 100% 100%;
     & > div {
       margin-top: 5px;

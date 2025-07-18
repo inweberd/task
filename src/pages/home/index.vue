@@ -1,18 +1,29 @@
 <template>
   <div class="home-index">
-<!--    <van-notice-bar-->
-<!--      background="transparent"-->
-<!--      color="#303133"-->
-<!--      left-icon="volume-o"-->
-<!--      style="border-radius: 10px; height: 30px; border: 1px solid #303133; margin: 8px 8px 0"-->
-<!--      text="点券乐园拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3点券，达标自动发放！"-->
-<!--    >-->
-<!--    </van-notice-bar>-->
+    <!--    <van-notice-bar-->
+    <!--      background="transparent"-->
+    <!--      color="#303133"-->
+    <!--      left-icon="volume-o"-->
+    <!--      style="border-radius: 10px; height: 30px; border: 1px solid #303133; margin: 8px 8px 0"-->
+    <!--      text="群英会拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3点券，达标自动发放！"-->
+    <!--    >-->
+    <!--    </van-notice-bar>-->
+    <p
+      style="
+        color: #000;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bolder;
+        margin-top: 10px;
+      "
+    >
+      群英会主页
+    </p>
     <van-swipe :autoplay="3000" class="my-swipe" indicator-color="white">
+      <van-swipe-item> <img alt="" src="./images/banner2.jpg" /></van-swipe-item>
       <van-swipe-item>
         <img alt="" src="./images/banner1.jpg" />
       </van-swipe-item>
-      <van-swipe-item> <img alt="" src="./images/banner2.jpg" /></van-swipe-item>
     </van-swipe>
     <div v-if="false" class="info-banenr">
       <div class="one-box">
@@ -76,7 +87,7 @@
         </div>
         <span>分红榜</span>
       </div>
-      <div class="menu" >
+      <div class="menu" @click="loadXiangwan">
         <div style="height: 38px">
           <img
             draggable="false"
@@ -86,73 +97,57 @@
         <span>大逃杀</span>
       </div>
     </div>
-      <div class="icon-list">
-          <div class="item" @click="$router.push('/jubaopen')">
-              <div class="img-box">
-                  <img alt="" src="./home-image/canyujieti.jpg" />
-              </div>
-              <div class="name">
-                  参与阶梯
-              </div>
-          </div>
-          <div class="item">
-              <div class="img-box">
-                  <img alt="" src="./home-image/dataoshayouxi.jpg" />
-              </div>
-              <div class="name">
-                  大逃杀游戏
-              </div>
-          </div>
-          <div class="item">
-              <div class="img-box">
-                  <img alt="" src="./home-image/fabuguanggao.jpg" />
-              </div>
-              <div class="name">
-                  发布广告
-              </div>
-          </div>
-          <div class="item">
-              <div class="img-box">
-                  <img alt="" src="./home-image/paihangbangfenhong.jpg" />
-              </div>
-              <div class="name">
-                  排行榜分红
-              </div>
-          </div>
-
-          <div class="item">
-              <div class="img-box">
-                  <img alt="" src="./home-image/chuanshanjia.png" />
-              </div>
-              <div class="name">
-                  穿山甲广告
-              </div>
-          </div>
-          <div class="item">
-              <div class="img-box">
-                  <img alt="" src="./home-image/lianghao.png" />
-              </div>
-              <div class="name">
-                  靓号免费选
-              </div>
-          </div>
-          <div class="item">
-              <div class="img-box">
-                  <img alt="" src="./home-image/dingshangquanyi.png" />
-              </div>
-              <div class="name">
-                  顶商权益
-              </div>
-          </div>
-          <div class="item">
-              <div class="img-box">
-                  <img alt="" src="./home-image/zhuanzeng.png" />
-              </div>
-              <div class="name">
-                  转赠
-              </div>
-          </div>
+    <div class="icon-list">
+      <div class="item" @click="$router.push('/jubaopen')">
+        <div class="img-box">
+          <img alt="" src="./home-image/canyujieti.jpg" />
+        </div>
+        <div class="name">参与阶梯</div>
       </div>
+      <div class="item" @click="loadXiangwan">
+        <div class="img-box">
+          <img alt="" src="./home-image/dataoshayouxi.jpg" />
+        </div>
+        <div class="name">大逃杀游戏</div>
+      </div>
+      <div class="item" @click="loadXiangwan">
+        <div class="img-box">
+          <img alt="" src="./home-image/fabuguanggao.jpg" />
+        </div>
+        <div class="name">发布广告</div>
+      </div>
+      <div class="item" @click="$router.push('/rank')">
+        <div class="img-box">
+          <img alt="" src="./home-image/paihangbangfenhong.jpg" />
+        </div>
+        <div class="name">排行榜分红</div>
+      </div>
+
+      <div class="item" @click="loadXiangwan">
+        <div class="img-box">
+          <img alt="" src="./home-image/chuanshanjia.png" />
+        </div>
+        <div class="name">穿山甲广告</div>
+      </div>
+      <div class="item" @click="loadXiangwan">
+        <div class="img-box">
+          <img alt="" src="./home-image/lianghao.png" />
+        </div>
+        <div class="name">悬赏任务</div>
+      </div>
+      <div class="item" @click="$router.push('/invest')">
+        <div class="img-box">
+          <img alt="" src="./home-image/dingshangquanyi.png" />
+        </div>
+        <div class="name">顶商权益</div>
+      </div>
+      <div class="item" @click="$router.push('/conversion')">
+        <div class="img-box">
+          <img alt="" src="./home-image/zhuanzeng.png" />
+        </div>
+        <div class="name">转赠</div>
+      </div>
+    </div>
     <div v-if="false" class="shulist">
       <div class="shu-item">
         <div class="l">
@@ -398,7 +393,7 @@ const loadXiangwan = () => {
   // if (!window?.android?.initQie) {
   //   return showToast('请下载最新版本APP体验！')
   // }
-  showToast('开发测试中！敬请期待！')
+  showToast('等待上线！')
   return
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
   const userId = userInfo?.id
@@ -634,34 +629,34 @@ onActivated(() => {
     }
   }
 
-    .icon-list{
-        display: flex;
-        flex-wrap: wrap;
+  .icon-list {
+    display: flex;
+    flex-wrap: wrap;
 
-        .item{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            width: 50%;
-            padding: 0 10px;
-            .img-box{
-                border-radius: 10px;
-                overflow: hidden;
-                width: 80%;
-                img{
-                    width: 100%;
-                }
-            }
-            .name{
-                color:#000;
-                font-weight: bolder;
-                margin-bottom: 8px;
-            }
+    .item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 50%;
+      padding: 0 10px;
+      .img-box {
+        border-radius: 10px;
+        overflow: hidden;
+        width: 80%;
+        img {
+          width: 100%;
         }
+      }
+      .name {
+        color: #000;
+        font-weight: bolder;
+        margin-bottom: 8px;
+      }
     }
+  }
   .my-swipe {
-    margin: 20px 10px 0;
+    margin: 10px 10px 0;
     border-radius: 10px;
     overflow: hidden;
 

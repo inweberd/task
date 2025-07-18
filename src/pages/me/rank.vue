@@ -3,15 +3,18 @@
     <van-nav-bar
       :class="{ inApp: getIsInApp() }"
       left-arrow
-      left-text="返回"
       placeholder
       safe-area-inset-top
       title="排行榜"
       @click-left="$router.back()"
-    />
-      <ToggleTab style="margin-top: 40px" @change="tabChange"></ToggleTab>
+    >
+      <template #right>
+        <span style="color: #000" @click="$router.push('/rankIntroduce')"> 排行榜奖励规则 </span>
+      </template>
+    </van-nav-bar>
+    <ToggleTab style="margin-top: 40px" @change="tabChange"></ToggleTab>
 
-      <!--    <van-swipe-->
+    <!--    <van-swipe-->
     <!--      style="transform: translateY(120px)"-->
     <!--      class="my-swipe"-->
     <!--      :autoplay="3000"-->
@@ -52,46 +55,58 @@
       <div class="one">
         <div class="box">
           <div class="img-box">
-            <img :src="rankList?.[0]?.avatar || headImg" alt="" style="width: 100%; height: 100%" />
+            <img
+              :src="rankList?.[0]?.user?.avatar || headImg"
+              alt=""
+              style="width: 100%; height: 100%"
+            />
           </div>
           <p>1</p>
         </div>
         <div class="info">
           <p style="color: #000">
-            {{ rankList?.[0]?.nickname || getPhone(rankList?.[0]?.phone) || '--' }}
+            {{ rankList?.[0]?.user?.nickname || getPhone(rankList?.[0]?.user?.phone) || '--' }}
           </p>
 
-          <p>￥{{ rankList?.[0]?.total || '--' }}</p>
+          <!--          <p>￥{{ rankList?.[0]?.totalRebatePoints || '&#45;&#45;' }}</p>-->
         </div>
       </div>
       <div class="two">
         <div class="box">
           <div class="img-box">
-            <img :src="rankList?.[1]?.avatar || headImg" alt="" style="width: 100%; height: 100%" />
+            <img
+              :src="rankList?.[1]?.user?.avatar || headImg"
+              alt=""
+              style="width: 100%; height: 100%"
+            />
           </div>
 
           <p>2</p>
         </div>
         <div class="info">
           <p style="color: #000">
-            {{ rankList?.[1]?.nickname || getPhone(rankList?.[1]?.phone) || '--' }}
+            {{ rankList?.[1]?.user?.nickname || getPhone(rankList?.[1]?.user?.phone) || '--' }}
           </p>
-          <p>￥{{ rankList?.[1]?.total || '--' }}</p>
+          <!--          <p>￥{{ rankList?.[1]?.totalRebatePoints || '&#45;&#45;' }}</p>-->
         </div>
       </div>
       <div class="three">
         <div class="box">
           <div class="img-box">
-            <img :src="rankList?.[2]?.avatar || headImg" alt="" style="width: 100%; height: 100%" />
+            <img
+              :src="rankList?.[2]?.user?.avatar || headImg"
+              alt=""
+              style="width: 100%; height: 100%"
+            />
           </div>
           <p>3</p>
         </div>
         <div class="info">
           <p style="color: #000">
-            {{ rankList?.[2]?.nickname || getPhone(rankList?.[2]?.phone) || '--' }}
+            {{ rankList?.[2]?.user?.nickname || getPhone(rankList?.[2]?.user?.phone) || '--' }}
           </p>
 
-          <p>￥{{ rankList?.[2]?.total || '--' }}</p>
+          <!--          <p>￥{{ rankList?.[2]?.totalRebatePoints || '&#45;&#45;' }}</p>-->
         </div>
       </div>
     </div>
@@ -117,10 +132,10 @@
         <div v-for="(item, index) of rankListCom" class="list-item">
           <div style="color: #000">{{ index + 4 }}</div>
           <section>
-            <img :src="item.avatar || headImg" alt="" style="width: 100%; height: 100%" />
+            <img :src="item.user?.avatar || headImg" alt="" style="width: 100%; height: 100%" />
           </section>
-          <div style="color: #000">{{ item.nickname || getPhone(item.phone) }}</div>
-          <div style="color: #000">￥{{ item.total }}</div>
+          <div style="color: #000">{{ item.user?.nickname || getPhone(item.user?.phone) }}</div>
+          <!--          <div style="color: #000">￥{{ item.totalRebatePoints }}</div>-->
         </div>
       </div>
     </div>
@@ -146,7 +161,6 @@ import imageSrc4 from './images/rank2.png'
 import headImg from '@/assets/img/logo.png'
 import ToggleTab from '@/components/toggleTab/toggleTab.vue'
 
-
 const getPhone = (phone) => {
   if (!phone) {
     return '--'
@@ -157,9 +171,23 @@ const getPhone = (phone) => {
     return '--'
   }
 }
-const rankList = ref([])
+const r1 = ref([])
+const r2 = ref([])
+const r3 = ref([])
+const r4 = ref([])
+const rankList = computed(() => {
+  if (activeTab.value === 0) {
+    return r1.value
+  } else if (activeTab.value === 1) {
+    return r2.value
+  } else if (activeTab.value === 2) {
+    return r3.value
+  } else {
+    return r4.value
+  }
+})
 const rankListCom = computed(() => {
-  const arr = rankList.value.slice(3)
+  const arr = (rankList.value || []).slice(3)
   return arr
 })
 const total = ref(0)
@@ -169,52 +197,70 @@ const getRank = () => {
     message: '加载中...',
     duration: 0
   })
-  getWalletRank({
-    limit: 50
-  }).then((res) => {
+  getWalletRank(1).then((res) => {
     Toast.clear()
-    console.log('getWalletRank', res)
-    rankList.value = res.data?.list || []
-    rankList.value = [
-      {
-        avatar:
-          'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
-        id: 1,
-        nickname: '暴走兔',
-        phone: '',
-        total: 101
-      },
-      { avatar: '', id: 2, nickname: '', phone: '18743133130', total: 102 },
-      {
-        avatar:
-          'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
-        id: 3,
-        nickname: '暴走兔',
-        phone: '',
-        total: 103
-      },
-      { avatar: '', id: 4, nickname: '暴走兔', phone: '', total: 104 },
-      { avatar: '', id: 5, nickname: '暴走兔', phone: '', total: 105 },
-      {
-        avatar:
-          'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
-        id: 6,
-        nickname: '暴走兔',
-        phone: '',
-        total: 106
-      },
-      { avatar: '', id: 7, nickname: '暴走兔', phone: '', total: 107 },
-      { avatar: '', id: 8, nickname: '暴走兔', phone: '', total: 108 },
-      { avatar: '', id: 9, nickname: '暴走兔', phone: '', total: 109 },
-      { avatar: '', id: 10, nickname: '暴走兔', phone: '', total: 110 },
-      { avatar: '', id: 11, nickname: '暴走兔', phone: '', total: 111 }
-    ]
+    if (res.code === 200) {
+      r1.value = res.data || []
+    }
+    // rankList.value = [
+    //   {
+    //     avatar:
+    //       'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
+    //     id: 1,
+    //     nickname: '暴走兔',
+    //     phone: '',
+    //     total: 101
+    //   },
+    //   { avatar: '', id: 2, nickname: '', phone: '18743133130', total: 102 },
+    //   {
+    //     avatar:
+    //       'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
+    //     id: 3,
+    //     nickname: '暴走兔',
+    //     phone: '',
+    //     total: 103
+    //   },
+    //   { avatar: '', id: 4, nickname: '暴走兔', phone: '', total: 104 },
+    //   { avatar: '', id: 5, nickname: '暴走兔', phone: '', total: 105 },
+    //   {
+    //     avatar:
+    //       'https://thirdwx.qlogo.cn/mmopen/vi_32/aOTngDEqxRwRbfzBZ5bFJoTXcia5WMoq5F0QwdYLkw2BJ6R3ib5mQ0Qpjv87pwUs66sVHQ6WtFUHw0xRZk8hZl9MAHY6AHkbNkP4vaQGibYJ2c/132',
+    //     id: 6,
+    //     nickname: '暴走兔',
+    //     phone: '',
+    //     total: 106
+    //   },
+    //   { avatar: '', id: 7, nickname: '暴走兔', phone: '', total: 107 },
+    //   { avatar: '', id: 8, nickname: '暴走兔', phone: '', total: 108 },
+    //   { avatar: '', id: 9, nickname: '暴走兔', phone: '', total: 109 },
+    //   { avatar: '', id: 10, nickname: '暴走兔', phone: '', total: 110 },
+    //   { avatar: '', id: 11, nickname: '暴走兔', phone: '', total: 111 }
+    // ]
+  })
+  getWalletRank(2).then((res) => {
+    Toast.clear()
+    if (res.code === 200) {
+      r2.value = res.data || []
+    }
+  })
+  getWalletRank(3).then((res) => {
+    Toast.clear()
+    if (res.code === 200) {
+      r3.value = res.data || []
+    }
+  })
+  getWalletRank(4).then((res) => {
+    Toast.clear()
+    if (res.code === 200) {
+      r4.value = res.data || []
+    }
   })
 }
 
 getRank()
+const activeTab = ref(0)
 const tabChange = (type) => {
-    // activeTab.value = type
+  activeTab.value = type
 }
 reqWalletStat().then((res) => {
   console.log('reqWalletStat', res)
@@ -392,7 +438,7 @@ onBeforeUnmount(() => {
     }
 
     .van-icon {
-      color: #fff;
+      color: #000;
     }
   }
   :deep(.van-hairline--bottom) {

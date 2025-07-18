@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100%; overflow: auto;background-color: #f3f3f3">
+  <div style="height: 100%; overflow: auto; background-color: #f3f3f3">
     <van-nav-bar
       :class="{ inApp: getIsInApp() }"
       fixed
@@ -7,11 +7,11 @@
       left-text="返回"
       placeholder
       safe-area-inset-top
-      title="点券天梯乐园"
+      title="群英会阶梯"
       @click-left="$router.back()"
     >
       <template #right>
-        <span style="color: #000" @click="$router.push('/wallet')"> 天梯明细 </span>
+        <span style="color: #000" @click="$router.push('/wallet')"> 阶梯详情 </span>
         <!--        <van-icon name="friends-o" size="18" @click="service = true" />-->
       </template>
     </van-nav-bar>
@@ -49,17 +49,16 @@
         </p>
       </div>
     </template>
-      <div class="info">
-          <div style="display: flex;justify-content: space-between">
-              <div> 我的点券：XXXX</div>
-              <div>收入来源</div>
-          </div>
-          <div>
-              徒弟参与阶梯比例：  直20%+间10%
-          </div>
-          <div>每日星级阶梯分红榜</div>
-          <div>每日奖励榜（每日前1500名达到15层）</div>
+    <div class="info">
+      <div style="display: flex; justify-content: space-between">
+        <div>可用点券：{{ (walletInfo.wallet?.points / 10 || 0).toFixed(2) || 0 }}</div>
+        <div style="text-decoration: underline; color: #333" @click="$router.push('/wallet')">
+          收入来源
+        </div>
       </div>
+      <div @click="$router.push('/tudicanyuIntroduce')">徒弟参与阶梯比例： 直20%+间10%</div>
+      <div @click="$router.push('/jubaopenIntroduce')">每日星级阶梯分红榜（达到20层自动开启）</div>
+    </div>
     <div class="staffList" style="position: relative">
       <!--      <van-image width="100%" height="3145" lazy-load :src="jubaopen">-->
       <!--        <template v-slot:loading>-->
@@ -180,7 +179,7 @@
           height: 100vh;
         "
       >
-        <img alt="" src="./images/jubaopenfenxiang.png" style="width: 80%" @click="share" />
+        <img alt="" src="./images/jubaopenfenxiang.jpg" style="width: 80%" @click="share" />
       </div>
     </van-overlay>
     <!--    <div v-html="articleInfo.content" style="padding: 10px"></div>-->
@@ -203,7 +202,8 @@ import {
   reqTreasureBasinBuy,
   reqTreasureBasinPage,
   reqTreasureBasinSummary,
-  reqUserIncome
+  reqUserIncome,
+  reqWalletInfo
 } from '@/api/myApi'
 import { closeToast, showToast } from 'vant'
 import { _notice } from '@/utils'
@@ -215,6 +215,7 @@ const shareDialogOverlay = ref(false)
 
 const timeTxt = ref('')
 const buyDialogShow = ref(false)
+const walletInfo = ref({ wallet: { transfer: null } })
 
 const vipList = ref([
   {
@@ -599,12 +600,12 @@ const share = () => {
 }
 
 const buy = (id, index) => {
-  // if (localStorage.isTiantiShare !== dayjs().format('YYYY-MM-DD') && window.android) {
-  //   shareDialogOverlay.value = true
-  //   return
-  //   // localStorage.isTiantiShare = dayjs().format('YYYY-MM-DD')
-  //   // window.showShareFriend()
-  // }
+  if (localStorage.isTiantiShare !== dayjs().format('YYYY-MM-DD') && window.android) {
+    shareDialogOverlay.value = true
+    return
+    // localStorage.isTiantiShare = dayjs().format('YYYY-MM-DD')
+    // window.showShareFriend()
+  }
   // showGonggaoOverlay.value = true
   // return
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
@@ -627,7 +628,7 @@ const buy = (id, index) => {
   if (![0, 1, 2, 3].includes(index)) {
     if (!myDataList.value?.length && index !== 4) {
       return showToast({
-        message: '请逐级参与！'
+        message: '请先完成上一个等级！'
       })
     }
     const arr = []
@@ -641,7 +642,7 @@ const buy = (id, index) => {
 
     if (!flag) {
       return showToast({
-        message: '请逐级参与！'
+        message: '请先完成上一个等级！'
       })
     }
   }
@@ -723,6 +724,10 @@ onActivated(() => {
   reqTreasureBasinSummary().then((res) => {
     jubaopenInfo.value = res.data
   })
+  reqWalletInfo().then((res) => {
+    if (res.code !== 200) return
+    walletInfo.value = res.data
+  })
 })
 onDeactivated(() => {
   clearInterval(timer)
@@ -786,15 +791,16 @@ onDeactivated(() => {
     }
   }
 }
-.info{
-    color:#000;
+.info {
+  color: #000;
 
-    &>div{
-        display: flex;
-        align-items: center;
-        margin:10px;
-        height: 40px;
-        background-color: #fff;
-    }
+  & > div {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    height: 40px;
+    background-color: #fff;
+    padding: 0 8px;
+  }
 }
 </style>

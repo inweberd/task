@@ -3,7 +3,7 @@
     <van-list
       v-model:loading="loading"
       :finished="finished"
-      finished-text="没有更多了"
+      finished-text="暂无数据"
       @load="getDataList"
     >
       <div v-for="(item, index) in dataList" style="position: relative" :key="item.id" class="card">

@@ -4,7 +4,7 @@
       <img alt="" src="@/assets/img/logo.png" />
       <div class="logo-box-content">
         <div class="info">
-          <!--          <p>点券乐园</p>-->
+          <!--          <p>群英会阶梯</p>-->
           <!--                    <p>the big thumb video</p>-->
         </div>
       </div>
@@ -209,7 +209,7 @@ const SignUp = async () => {
   for (let i in state.struct) state.struct[i] = ''
 
   showToast('注册成功')
-  // window.location.href = `https://wmaw.lnyzd.com/download`
+  // window.location.href = `https://wwew.rdhlkm.com/download`
   // 跳转到首页
   router.push({ path: '/' })
 }
@@ -251,7 +251,7 @@ watch(
 
 function goDownload() {
   try {
-    window.location.href = `https://wmaw.lnyzd.com/download`
+    window.location.href = `https://wwew.rdhlkm.com/download`
   } catch (e) {
     _notice('下载失败')
   }

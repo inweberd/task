@@ -597,7 +597,7 @@ const deleteCard = (item, index) => {
   :deep(.van-nav-bar) {
     //background: #65b63f !important;
     .van-nav-bar__title {
-      color: #ffffff !important;
+      color: #000 !important;
     }
 
     .van-nav-bar__text {

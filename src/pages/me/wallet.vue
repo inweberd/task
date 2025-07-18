@@ -18,12 +18,12 @@
       <t-tabs :space-evenly="false" default-value="收入" @change="tabChange">
         <t-tab-panel label="收入详情" value="收入" />
         <!--        <t-tab-panel label="佣金嘉奖" value="佣金嘉奖" />-->
-        <t-tab-panel label="排行榜" value="分红榜" />
-        <t-tab-panel label="推荐奖" value="商人返利" />
+        <!--        <t-tab-panel label="排行榜" value="分红榜" />-->
+        <t-tab-panel label="商人返利" value="推荐奖" />
         <!--        <t-tab-panel value="游戏" label="游戏" />-->
-        <t-tab-panel label="阶梯" value="天梯明细" />
-        <t-tab-panel label="消费变动" value="支出" />
-        <t-tab-panel label="变现" value="兑换" />
+        <t-tab-panel label="阶梯" value="阶梯详情" />
+        <!--        <t-tab-panel label="消费变动" value="支出" />-->
+        <!--        <t-tab-panel label="变现" value="兑换" />-->
       </t-tabs>
     </div>
 
@@ -36,9 +36,9 @@
     <!--      <van-tab title="兑换记录" name="兑换">-->
     <wallet-withdraw v-if="activeTab === '兑换'"></wallet-withdraw>
     <rengoufanli v-if="activeTab === '推荐奖'"></rengoufanli>
-    <paihangjiangli v-if="activeTab === '排行榜奖励'"></paihangjiangli>
+    <paihangjiangli v-if="activeTab === '分红榜'"></paihangjiangli>
     <youxilog v-if="activeTab === '游戏'"></youxilog>
-    <jubaopenlog v-if="activeTab === '天梯明细'"></jubaopenlog>
+    <jubaopenlog v-if="activeTab === '阶梯详情'"></jubaopenlog>
     <!--      </van-tab>-->
     <!--    </van-tabs>-->
     <modzz v-model="service"></modzz>

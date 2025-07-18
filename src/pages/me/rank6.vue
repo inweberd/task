@@ -182,7 +182,7 @@
               </div>
             </template>
             <template v-else>
-              <div>暂无会员</div>
+              <div>暂无等级</div>
             </template>
             <!--            <div>￥0</div>-->
           </div>

@@ -4,19 +4,17 @@
       <div class="filters-wrapper">
         <ul class="filter-tabs">
           <li>
-            <button class="filter-button filter-active" data-translate-value="0">
-              初级商榜
-            </button>
+            <button class="filter-button filter-active" data-translate-value="0">初级商榜</button>
           </li>
           <li>
             <button class="filter-button" data-translate-value="100%">中级商榜</button>
           </li>
-            <li>
-                <button class="filter-button" data-translate-value="200%">高级商榜</button>
-            </li>
-            <li>
-                <button class="filter-button" data-translate-value="300%">顶级商榜</button>
-            </li>
+          <li>
+            <button class="filter-button" data-translate-value="200%">高级商榜</button>
+          </li>
+          <li>
+            <button class="filter-button" data-translate-value="300%">顶级商榜</button>
+          </li>
           <!--          <li>-->
           <!--            <button class="filter-button" data-translate-value="200%">Following</button>-->
           <!--          </li>-->
@@ -53,8 +51,12 @@ onMounted(() => {
     const targetTranslateValue = event.target.dataset.translateValue
     if (targetTranslateValue == 0) {
       emits('change', 0)
-    } else {
+    } else if (targetTranslateValue == '100%') {
       emits('change', 1)
+    } else if (targetTranslateValue == '200%') {
+      emits('change', 2)
+    } else if (targetTranslateValue == '300%') {
+      emits('change', 3)
     }
     if (event.target.classList.contains('filter-button')) {
       root.style.setProperty('--translate-filters-slider', targetTranslateValue)
@@ -176,7 +178,7 @@ ul.filter-tabs {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 14px;
-    //white-space: nowrap;
+  //white-space: nowrap;
 }
 
 .filter-button.filter-active {

@@ -43,7 +43,7 @@
         <!--          <p>我的团队等级 : {{ walletInfo?.star || 0 }}星</p>-->
         <!--        </div>-->
         <div class="b">
-          <p>代理等级 : {{ userInfo?.result?.staff?.name || '暂无会员' }}</p>
+          <p>代理等级 : {{ userInfo?.result?.staff?.name || '暂无等级' }}</p>
         </div>
         <div class="b">
           <p>
@@ -73,7 +73,7 @@
         color="#fff"
         left-icon="volume-o"
         style="border-radius: 10px; height: 30px; border: 1px solid #fff; margin: 0px 4px 8px"
-        text="点券乐园拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3点券，达标自动发放！"
+        text="群英会拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3点券，达标自动发放！"
       >
       </van-notice-bar>
       <div class="money-box">
@@ -1421,7 +1421,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://wmaw.lnyzd.com/download`
+    window.location.href = `https://wwew.rdhlkm.com/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false

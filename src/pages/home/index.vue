@@ -68,6 +68,7 @@
           />
         </div>
         <span>顶商权益</span>
+        <div class="chat-bubble">降低手续费</div>
       </div>
       <div class="menu" @click="$router.push('/jubaopen')">
         <div style="height: 40px">
@@ -104,6 +105,24 @@
         </div>
         <div class="name">参与阶梯</div>
       </div>
+      <div class="item" @click="$router.push('/rank')">
+        <div class="img-box">
+          <img alt="" src="./home-image/paihangbangfenhong.jpg" />
+        </div>
+        <div class="name">排行榜分红</div>
+      </div>
+      <div class="item" @click="$router.push('/invest')">
+        <div class="img-box">
+          <img alt="" src="./home-image/dingshangquanyi.png" />
+        </div>
+        <div class="name">顶商权益</div>
+      </div>
+      <div class="item" @click="$router.push('/conversion')">
+        <div class="img-box">
+          <img alt="" src="./home-image/zhuanzeng.png" />
+        </div>
+        <div class="name">转赠</div>
+      </div>
       <div class="item" @click="loadXiangwan">
         <div class="img-box">
           <img alt="" src="./home-image/dataoshayouxi.jpg" />
@@ -115,12 +134,6 @@
           <img alt="" src="./home-image/fabuguanggao.jpg" />
         </div>
         <div class="name">发布广告</div>
-      </div>
-      <div class="item" @click="$router.push('/rank')">
-        <div class="img-box">
-          <img alt="" src="./home-image/paihangbangfenhong.jpg" />
-        </div>
-        <div class="name">排行榜分红</div>
       </div>
 
       <div class="item" @click="loadXiangwan">
@@ -135,17 +148,17 @@
         </div>
         <div class="name">悬赏任务</div>
       </div>
-      <div class="item" @click="$router.push('/invest')">
+      <div class="item" @click="loadXiangwan">
         <div class="img-box">
-          <img alt="" src="./home-image/dingshangquanyi.png" />
+          <img alt="" src="./home-image/lianghao1.png" />
         </div>
-        <div class="name">顶商权益</div>
+        <div class="name">免费靓号</div>
       </div>
-      <div class="item" @click="$router.push('/conversion')">
+      <div class="item" @click="loadXiangwan">
         <div class="img-box">
-          <img alt="" src="./home-image/zhuanzeng.png" />
+          <img alt="" src="./home-image/daoju1.png" />
         </div>
-        <div class="name">转赠</div>
+        <div class="name">置顶卡-刷新卡</div>
       </div>
     </div>
     <div v-if="false" class="shulist">
@@ -306,10 +319,10 @@
     <!--    </div>-->
     <BaseFooter :is-white="true" v-bind:init-tab="1" />
     <TipDialog
+      :show-close="true"
       v-model="showGonggaoOverlay"
-      :show-close="false"
-      confirm-text="已阅"
-      @confirm="showGonggaoOverlay = false"
+      confirm-text="点击加入"
+      @confirm="goQQ"
     >
       <!--      <p-->
       <!--        style="-->
@@ -322,29 +335,43 @@
       <!--      >-->
       <!--        请使用68APP扫码进官方群-->
       <!--      </p>-->
-      <div style="padding: 20px; color: #fff">
-        <p style="text-align: center; font-size: 18px; font-weight: bolder">点券双重豪礼</p>
-        <div style="font-size: 15px; font-weight: bolder; margin-top: 8px">点券天梯争上游活动</div>
-        <div>天梯等级达到20级 奖38现金</div>
-        <div>天梯等级达到25级 奖88现金</div>
-        <div>天梯等级达到30级 奖398现金</div>
-        <div>天梯等级达到35级 奖888现金</div>
-        <div>天梯等级达到40级 奖1988现金</div>
-        <div style="font-size: 15px; font-weight: bolder; margin-top: 8px">
-          争上游活动奖励领取要求：
-        </div>
-        <div>限新用户，6月20日之后注册的，</div>
-        <div>连续保持等级18天，联系客服领取</div>
-        <div style="font-size: 15px; font-weight: bolder; margin-top: 8px">
-          推荐人拉新活动如下：
-        </div>
-        <div>推荐5个20层直属，奖58现金</div>
-        <div>推荐5个25层直属，奖188现金</div>
-        <div>推荐5个30层直属，奖588现金</div>
-        <div style="margin-top: 6px; color: #ddd; font-size: 10px">
-          拉新奖领取要求：直属必须是6月20日以后注册的新用户
-        </div>
+      <!--      <p-->
+      <!--        style="-->
+      <!--          transform: translateY(10px);-->
+      <!--          text-align: center;-->
+      <!--          font-size: 18px;-->
+      <!--          color: #fff;-->
+      <!--          font-weight: bolder;-->
+      <!--        "-->
+      <!--      >-->
+      <!--        请使用土豆APP扫码进官方群-->
+      <!--      </p>-->
+      <div style="padding: 20px">
+        <img alt="" src="@/assets/img/weimaiquan.jpg" style="width: 100%" />
       </div>
+      <!--      <div style="padding: 20px; color: #fff">-->
+      <!--        <p style="text-align: center; font-size: 18px; font-weight: bolder">点券双重豪礼</p>-->
+      <!--        <div style="font-size: 15px; font-weight: bolder; margin-top: 8px">点券天梯争上游活动</div>-->
+      <!--        <div>天梯等级达到20级 奖38现金</div>-->
+      <!--        <div>天梯等级达到25级 奖88现金</div>-->
+      <!--        <div>天梯等级达到30级 奖398现金</div>-->
+      <!--        <div>天梯等级达到35级 奖888现金</div>-->
+      <!--        <div>天梯等级达到40级 奖1988现金</div>-->
+      <!--        <div style="font-size: 15px; font-weight: bolder; margin-top: 8px">-->
+      <!--          争上游活动奖励领取要求：-->
+      <!--        </div>-->
+      <!--        <div>限新用户，6月20日之后注册的，</div>-->
+      <!--        <div>连续保持等级18天，联系客服领取</div>-->
+      <!--        <div style="font-size: 15px; font-weight: bolder; margin-top: 8px">-->
+      <!--          推荐人拉新活动如下：-->
+      <!--        </div>-->
+      <!--        <div>推荐5个20层直属，奖58现金</div>-->
+      <!--        <div>推荐5个25层直属，奖188现金</div>-->
+      <!--        <div>推荐5个30层直属，奖588现金</div>-->
+      <!--        <div style="margin-top: 6px; color: #ddd; font-size: 10px">-->
+      <!--          拉新奖领取要求：直属必须是6月20日以后注册的新用户-->
+      <!--        </div>-->
+      <!--      </div>-->
     </TipDialog>
   </div>
 </template>
@@ -352,7 +379,7 @@
 <script lang="tsx" setup>
 import BaseFooter from '@/components/BaseFooter.vue'
 import { onActivated, ref } from 'vue'
-import { reqNgTransfer, reqUserIncome, reqWalletInfo } from '@/api/myApi'
+import { reqNgTransfer, reqUpdateWalletAuth, reqUserIncome, reqWalletInfo } from '@/api/myApi'
 import { useRouter } from 'vue-router'
 import { closeToast } from 'vant'
 
@@ -399,8 +426,13 @@ const loadXiangwan = () => {
   const userId = userInfo?.id
   window?.android?.initXiangWan(userId)
 }
+const goQQ = () => {
+  window.location.href = 'https://qm.qq.com/q/x00vQBFn4A'
+  showGonggaoOverlay.value = false
+}
+
 onActivated(() => {
-  // showGonggaoOverlay.value = true
+  showGonggaoOverlay.value = true
   // reqNgTransfer({ plat: 'ky' }).then((res) => {
   //   closeToast()
   //   // Toast.clear()
@@ -535,6 +567,7 @@ onActivated(() => {
     color: #333;
     font-size: 12px;
     .menu {
+      position: relative;
       width: 25%;
       text-align: center;
       padding: 10px 0;
@@ -544,6 +577,37 @@ onActivated(() => {
         img {
           width: 40px;
           height: 40px;
+        }
+      }
+
+      .chat-bubble {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        font-size: 10px;
+        background: #fecf1f;
+        border-radius: 0.4em;
+        color: #000 !important;
+        padding: 3px;
+        max-width: 200px;
+        margin: 1em auto;
+        text-align: left;
+        box-shadow:
+          0 10px 20px rgba(0, 0, 0, 0.19),
+          0 6px 6px rgba(0, 0, 0, 0.23);
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 15px;
+          width: 0;
+          height: 0;
+          border: 15px solid transparent;
+          border-top-color: #fecf1f;
+          border-bottom: 0;
+          border-left: 0;
+          margin-left: -10px;
+          margin-bottom: -10px;
         }
       }
     }

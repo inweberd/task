@@ -681,7 +681,7 @@ const appList = ref([
 
 function goDownload() {
   try {
-    window.location.href = `https://wwew.rdhlkm.com/download`
+    window.location.href = `https://qyh.88tong.cn/download`
   } catch (e) {
     _notice('下载失败')
   }

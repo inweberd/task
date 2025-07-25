@@ -1,7 +1,7 @@
 <template>
   <div class="register">
     <div class="top-navbar">
-      <div class="left" @click="router.back()">
+      <div class="left" @click="$router.push('/login')">
         <img
           style="width: 25px; height: 20px"
           src="https://lx.aosenn.com/h5/static/register/arrow.png"
@@ -25,7 +25,7 @@
           <van-field
             style="margin-top: 20px"
             clearable
-            v-model="state.struct.code"
+            v-model.trim="state.struct.code"
             placeholder="请输入验证码"
           >
             <template #left-icon>
@@ -97,6 +97,13 @@
             </template>
           </van-field>
         </van-cell-group>
+        <div class="pass_con" style="margin-top: 20px">
+          <div style="font-size: 14px; display: flex; justify-content: space-between">
+            <!--            <span @click="$router.push('/common/sign-up')">注册账号</span>-->
+            <span @click="goDownload">下载APP</span>
+            <span @click="goQQ">官方客服</span>
+          </div>
+        </div>
         <!--          <div style="text-align: right; width: 100%; margin: 10px 10px 20px 0">-->
         <!--            <span @click="$router.push('/common/sign-forget')"> 找回密码 </span>-->
         <!--          </div>-->
@@ -174,6 +181,7 @@ import { showFailToast, showToast } from 'vant'
 import { DocumentCopy, User, Lock, Connection } from '@element-plus/icons-vue'
 import { _notice } from '@/utils'
 import ToggleLoginAndRegister from '@/views/common/components/ToggleLoginAndRegister.vue'
+import { throttle } from 'lodash'
 
 const showGonggaoOverlay = ref(false)
 
@@ -210,7 +218,9 @@ const state = reactive({
     second: 0
   }
 })
-
+const goQQ = () => {
+  window.location.href = 'https://qm.qq.com/q/x00vQBFn4A'
+}
 const SignUp = async () => {
   if (!state.struct.social) return showFailToast('请输入手机号码')
   if (!state.struct.password) return showFailToast('请输入密码')
@@ -218,7 +228,7 @@ const SignUp = async () => {
   if (state.struct.password !== state.struct.AgainPassword) return showFailToast('两次密码不一致')
   if (state.struct.password.length < 6) return showFailToast('密码长度不得小于6位')
   if (!state.struct.code) return showFailToast('请输入验证码')
-
+  state.struct.code = state.struct.code.trim()
   state.status.wait = true
 
   const { code, data, msg } = await POST(
@@ -248,14 +258,17 @@ const SignUp = async () => {
   for (let i in state.struct) state.struct[i] = ''
 
   showToast('注册成功')
-  // window.location.href = `https://wwew.rdhlkm.com/download`
+  // window.location.href = `https://qyh.88tong.cn/download`
   // 跳转到首页
   router.push({ path: '/' })
 }
 
 // 发送验证码
-const SendCode = async () => {
+const SendCode = throttle(async () => {
+  if (state.code.second) return
   if (!state.struct.social) return showFailToast('请输入手机号码')
+  if (!state.struct.password) return showFailToast('请输入密码')
+
   if (state.struct.password.length < 6) return showFailToast('密码长度不得小于6位')
 
   const { code, msg } = await POST(
@@ -275,7 +288,7 @@ const SendCode = async () => {
   state.code.timer = setInterval(() => {
     state.code.second--
   }, 1000) as unknown as number
-}
+}, 2000)
 
 // 监听验证码倒计时
 watch(
@@ -292,7 +305,7 @@ watch(
 
 function goDownload() {
   try {
-    window.location.href = `https://wwew.rdhlkm.com/download`
+    window.location.href = `https://qyh.88tong.cn/download`
   } catch (e) {
     _notice('下载失败')
   }

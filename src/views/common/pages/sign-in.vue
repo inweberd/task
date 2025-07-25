@@ -45,7 +45,13 @@
         <div class="pass_con">
           <div class="pava">
             <span @click="$router.push('/common/sign-up')">注册账号</span>
+            <span @click="goDownload">下载APP</span>
             <span @click="$router.push('/common/sign-forget')">忘记密码</span>
+          </div>
+          <div class="pava" style="margin-top: 10px">
+            <span></span>
+            <span></span>
+            <span @click="goQQ">官方QQ群</span>
           </div>
         </div>
         <div style="margin-top: 10px"></div>
@@ -96,7 +102,9 @@ import { getImei, getOaid } from '@/utils/ad'
 import bus from '@/utils/bus'
 import ToggleLoginAndRegister from '@/views/common/components/ToggleLoginAndRegister.vue'
 import { showToast } from 'vant'
-
+const goQQ = () => {
+  window.location.href = 'https://qm.qq.com/q/x00vQBFn4A'
+}
 defineOptions({
   name: 'signIn'
 })
@@ -126,7 +134,7 @@ const state = reactive({
 
 function goDownload() {
   try {
-    window.location.href = `https://wwew.rdhlkm.com/download`
+    window.location.href = `https://qyh.88tong.cn/download`
   } catch (e) {
     _notice('下载失败')
   }

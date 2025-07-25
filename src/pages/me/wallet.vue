@@ -22,12 +22,15 @@
         <t-tab-panel label="商人返利" value="推荐奖" />
         <!--        <t-tab-panel value="游戏" label="游戏" />-->
         <t-tab-panel label="阶梯" value="阶梯详情" />
+        <t-tab-panel label="转赠记录" value="转赠记录" />
+        <t-tab-panel label="搬砖收益" value="搬砖收益" />
         <!--        <t-tab-panel label="消费变动" value="支出" />-->
         <!--        <t-tab-panel label="变现" value="兑换" />-->
       </t-tabs>
     </div>
 
     <wallet-income v-if="activeTab === '收入'"></wallet-income>
+    <zhuanzengjilu v-if="activeTab === '转赠记录'"></zhuanzengjilu>
     <yongjinjiajiang v-if="activeTab === '佣金嘉奖'"></yongjinjiajiang>
     <!--      </van-tab>-->
     <!--      <van-tab title="支出明细" name="支出">-->
@@ -56,6 +59,7 @@ import jubaopenlog from './wallet/jubaopenlog.vue'
 import modzz from '../login/model.vue'
 import { getIsInApp } from '@/utils/getTopPadding'
 import Paihangjiangli from '@/pages/me/wallet/paihangjiangli.vue'
+import Zhuanzengjilu from '@/pages/me/wallet/zhuanzengjilu.vue'
 
 const router = useRouter()
 const service = ref(false)

@@ -2,16 +2,6 @@
   <div class="investClass">
     <div class="user_box">
       <div class="top-content">
-        <div class="beitu">
-          <div
-            style="
-              background-image: url('@/assets/img/dianpuBG.png');
-              background-position: 0% 0%;
-              background-size: 100% 100%;
-              background-repeat: no-repeat;
-            "
-          ></div>
-        </div>
         <div style="height: 65px"></div>
         <div class="userA">
           <div class="nav_active">
@@ -36,7 +26,7 @@
             </div>
             <div class="nav_title_tel">
               我的ID： {{ userInfo?.id }}
-              <span style="margin-left: 7px">邀请ID:{{ userInfo?.invite?.code }}</span>
+              <span style="margin-left: 7px">邀请码:{{ userInfo?.invite?.code }}</span>
             </div>
             <div class="nav_title_tel">
               商人等级：
@@ -52,26 +42,16 @@
             </div>
           </div>
         </div>
-        <div class="center">
-          <div class="img1">
-            <div
-              style="
-                background-image: url('https://lx.aosenn.com/h5/static/user//bg-primary.5063dd2b.png');
-                background-position: 0% 0%;
-                background-size: 100% 100%;
-                background-repeat: no-repeat;
-              "
-            ></div>
-          </div>
-          <div class="content">
-            <p
-              class="text2"
-              style="color: rgba(255, 255, 255, 0.8); font-size: 14px; margin-left: 50px"
-            >
-              <!--              升级服务商 收益上涨100%-->
-            </p>
-            <p class="text3" @click="$router.push('/invest')">立即升级</p>
-          </div>
+      </div>
+      <div class="center">
+        <div class="content">
+          <p
+            class="text2"
+            style="color: rgba(255, 255, 255, 0.8); font-size: 14px; margin-left: 50px"
+          >
+            <!--              升级服务商 收益上涨100%-->
+          </p>
+          <p class="text3" @click="$router.push('/invest')">立即升级</p>
         </div>
       </div>
 
@@ -114,12 +94,12 @@
           </div>
         </div>
       </div>
-      <div class="content-wrapper" style="margin-top: 35px">
+      <div class="content-wrapper">
         <van-cell style="margin-bottom: 10px">
           <!-- 使用 title 插槽来自定义标题 -->
           <template #title>
             <van-icon color="#000" name="gem-o" />
-            <span style="padding-left: 6px">开启收款权限</span>
+            <span style="padding-left: 6px">开启转赠权限</span>
           </template>
           <template #right-icon>
             <van-switch v-model="walletInfo.wallet.transfer" size="20px" @change="shoukuanChange" />
@@ -210,7 +190,7 @@
               <div style="font-weight: bold">
                 {{ (userIncomeInfo.totalIncome / 10 || 0).toFixed(2) }}
               </div>
-              <div style="margin-top: 14px">累计收益</div>
+              <div style="margin-top: 14px">历史收益</div>
             </div>
             <div class="walletInfo">
               <div style="font-weight: bold">
@@ -306,7 +286,7 @@
               <div style="width: 30px; height: 30px">
                 <!----><img draggable="false" src="https://lx.aosenn.com/h5/static/user/ww10.png" />
               </div>
-              <div style="font-size: 13px">绑定收款</div>
+              <div style="font-size: 13px">电子实名认证</div>
               <!----><!---->
             </div>
             <!--              <div-->
@@ -339,7 +319,7 @@
               <div style="width: 30px; height: 30px">
                 <!----><img draggable="false" src="./images/jiaoliu.png" />
               </div>
-              <div style="font-size: 13px">联系客服</div>
+              <div style="font-size: 13px">转赠交易QQ群</div>
               <!----><!---->
             </div>
             <div
@@ -454,26 +434,25 @@
       "
     ></div>
 
-    <div class="container">
-      <!--      <el-button-->
-      <!--        class="w-100"-->
-      <!--        color="#00f7c4"-->
-      <!--        size="large"-->
-      <!--        style="-->
-      <!--          width: 100%;-->
-      <!--          border-radius: 15px;-->
-      <!--          margin-top: 10px !important;-->
-      <!--          color: #fff;-->
-      <!--          background-image: linear-gradient(to right, #fb5b4b, #9c38e5);-->
-
-      <!--          border: 1px solid transparent !important;-->
-      <!--        "-->
-      <!--        type="primary"-->
-      <!--        @click="logout"-->
-      <!--      >-->
-      <!--        退出登录-->
-      <!--      </el-button>-->
-    </div>
+    <!--    <div class="container">-->
+    <el-button
+      class="w-100"
+      color="#00f7c4"
+      size="large"
+      style="
+        width: 100%;
+        border-radius: 15px;
+        margin-top: 10px !important;
+        color: #fff;
+        background-color: rgb(244, 200, 41);
+        border: 1px solid transparent !important;
+      "
+      type="primary"
+      @click="logout"
+    >
+      退出登录
+    </el-button>
+    <!--    </div>-->
     <BaseFooter :is-white="false" v-bind:init-tab="6" />
     <!--    <div class="contact" @click="jumpToQQ">-->
     <!--      <div>-->
@@ -651,7 +630,7 @@ const renzheng = (avatar) => {
   wxLogin()
 }
 const goQQ = () => {
-  window.location.href = 'https://qm.qq.com/q/JzLA1NJT2w'
+  window.location.href = 'https://qm.qq.com/q/x00vQBFn4A'
 }
 const showGonggaoOverlay = ref(false)
 
@@ -817,7 +796,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://wwew.rdhlkm.com/download`
+    window.location.href = `https://qyh.88tong.cn/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false
@@ -941,20 +920,11 @@ onDeactivated(() => {
     background-color: #f8f8f8;
     .top-content {
       position: relative;
-      height: 45vw;
-
-      .beitu {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 45vw;
-        z-index: 0;
-        div {
-          width: 100%;
-          height: 100%;
-        }
-      }
+      background-image: url('@/assets/img/dianpuBG.png');
+      background-position: 0% 0%;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      padding-bottom: 15px;
 
       .userA {
         position: relative;
@@ -1008,49 +978,47 @@ onDeactivated(() => {
           }
         }
       }
-
-      .center {
-        height: 50px;
-        width: 92%;
-        margin: 10px auto;
-        margin-bottom: 0;
-        opacity: 1;
-        position: absolute;
-        z-index: 999;
-        border-radius: 5px 5px 0 0;
-        left: 4%;
-        bottom: -25px;
-        .img1 {
+    }
+    .center {
+      height: 50px;
+      width: 92%;
+      margin: 10px auto;
+      margin-top: -30px;
+      opacity: 1;
+      border-radius: 5px 5px 0 0;
+      //transform: translateY(-40px);
+      .img1 {
+        width: 100%;
+        height: 100%;
+        div {
           width: 100%;
           height: 100%;
-          div {
-            width: 100%;
-            height: 100%;
-          }
         }
-        .content {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 0;
-          bottom: -5px;
-          left: 0;
-          display: flex;
-          align-items: center;
-          justify-content: space-around;
-          background: url('./images/myteam-invest-bg.png') no-repeat;
-          background-size: 100% 100%;
+      }
+      .content {
+        width: 100%;
+        height: 100%;
+        //position: absolute;
+        //top: 0;
+        //bottom: -5px;
+        //left: 0;
+        display: flex;
+        position: relative;
+        z-index: 2;
+        align-items: center;
+        justify-content: space-around;
+        background: url('./images/myteam-invest-bg.png') no-repeat;
+        background-size: 100% 100%;
 
-          .text3 {
-            color: #fff;
-            font-size: 11px;
-            background: #8252ff;
-            border-radius: 11px;
-            line-height: 22px;
-            margin-left: 220px;
-            padding: 0 6px;
-            margin-right: 15px;
-          }
+        .text3 {
+          color: #fff;
+          font-size: 11px;
+          background: #8252ff;
+          border-radius: 11px;
+          line-height: 22px;
+          margin-left: 220px;
+          padding: 0 6px;
+          margin-right: 15px;
         }
       }
     }

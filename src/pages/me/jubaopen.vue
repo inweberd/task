@@ -57,7 +57,7 @@
         </div>
       </div>
       <div @click="$router.push('/tudicanyuIntroduce')">徒弟参与阶梯比例： 直20%+间10%</div>
-      <div @click="$router.push('/jubaopenIntroduce')">每日星级阶梯分红榜（达到20层自动开启）</div>
+      <!--      <div @click="$router.push('/jubaopenIntroduce')">每日星级阶梯分红榜（达到20层自动开启）</div>-->
     </div>
     <div class="staffList" style="position: relative">
       <!--      <van-image width="100%" height="3145" lazy-load :src="jubaopen">-->

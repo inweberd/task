@@ -12,7 +12,23 @@
         <span style="color: #000" @click="$router.push('/rankIntroduce')"> 排行榜奖励规则 </span>
       </template>
     </van-nav-bar>
-    <ToggleTab style="margin-top: 40px" @change="tabChange"></ToggleTab>
+    <div class="fenhong">
+      <div>
+        <div class="title">
+          <!--        本次周期分红总金额 <br />-->
+          <!--          （每X天进行一轮分红） <br />-->
+          <div>奖池点券</div>
+        </div>
+        <div class="money">{{ total / 10 }}</div>
+        <!--        <div class="money" style="font-size: 28px">等待更新</div>-->
+      </div>
+      <!--      <van-divider style="border-color: #bababa"></van-divider>-->
+      <!--      <div style="text-align: center; margin-top: 10px">-->
+      <!--        <div class="" style="font-size: 24px; font-weight: bolder">本轮奖池金额发放倒计时</div>-->
+      <!--        <div class="money" style="font-size: 22px; color: #000">{{ timeTxt }}</div>-->
+      <!--      </div>-->
+    </div>
+    <ToggleTab style="margin-top: 10px" @change="tabChange"></ToggleTab>
 
     <!--    <van-swipe-->
     <!--      style="transform: translateY(120px)"-->
@@ -36,21 +52,7 @@
     <!--    <div style="display: flex; justify-content: center; margin-top: 10px">-->
     <!--      <img src="./images/rank-bg2.png" style="width: 95%" alt="" />-->
     <!--    </div>-->
-    <div class="fenhong">
-      <!--      <div>-->
-      <!--        <div class="title">-->
-      <!--          &lt;!&ndash;        本次周期分红总金额 <br />&ndash;&gt;-->
-      <!--          &lt;!&ndash;          （每X天进行一轮分红） <br />&ndash;&gt;-->
-      <!--          <div>本周（第七周）奖池金额</div>-->
-      <!--        </div>-->
-      <!--        <div class="money">￥{{ total }}</div>-->
-      <!--      </div>-->
-      <!--      <van-divider style="border-color: #bababa"></van-divider>-->
-      <!--      <div style="text-align: center; margin-top: 10px">-->
-      <!--        <div class="" style="font-size: 24px; font-weight: bolder">本轮奖池金额发放倒计时</div>-->
-      <!--        <div class="money" style="font-size: 22px; color: #000">{{ timeTxt }}</div>-->
-      <!--      </div>-->
-    </div>
+
     <div class="qiansan">
       <div class="one">
         <div class="box">
@@ -67,8 +69,12 @@
           <p style="color: #000">
             {{ rankList?.[0]?.user?.nickname || getPhone(rankList?.[0]?.user?.phone) || '--' }}
           </p>
-
-          <!--          <p>￥{{ rankList?.[0]?.totalRebatePoints || '&#45;&#45;' }}</p>-->
+          <!--          <p>-->
+          <!--            {{ rankList?.[0]?.name }}-->
+          <!--          </p>-->
+          <p>
+            {{ rankList?.[0]?.name }}
+          </p>
         </div>
       </div>
       <div class="two">
@@ -86,6 +92,9 @@
         <div class="info">
           <p style="color: #000">
             {{ rankList?.[1]?.user?.nickname || getPhone(rankList?.[1]?.user?.phone) || '--' }}
+          </p>
+          <p>
+            {{ rankList?.[1]?.name }}
           </p>
           <!--          <p>￥{{ rankList?.[1]?.totalRebatePoints || '&#45;&#45;' }}</p>-->
         </div>
@@ -105,7 +114,9 @@
           <p style="color: #000">
             {{ rankList?.[2]?.user?.nickname || getPhone(rankList?.[2]?.user?.phone) || '--' }}
           </p>
-
+          <p>
+            {{ rankList?.[2]?.name }}
+          </p>
           <!--          <p>￥{{ rankList?.[2]?.totalRebatePoints || '&#45;&#45;' }}</p>-->
         </div>
       </div>
@@ -135,7 +146,8 @@
             <img :src="item.user?.avatar || headImg" alt="" style="width: 100%; height: 100%" />
           </section>
           <div style="color: #000">{{ item.user?.nickname || getPhone(item.user?.phone) }}</div>
-          <!--          <div style="color: #000">￥{{ item.totalRebatePoints }}</div>-->
+          <!--          <div style="color: #000">{{ item.name }}</div>-->
+          <div style="color: #000">上墙等级： {{ item?.name }}</div>
         </div>
       </div>
     </div>
@@ -153,7 +165,7 @@
 
 <script lang="ts" setup>
 import { getIsInApp } from '@/utils/getTopPadding'
-import { getRankRecord, getWalletRank, reqWalletStat } from '@/api/myApi'
+import { getRankRecord, getWalletRank, reqConfigTake, reqWalletStat } from '@/api/myApi'
 import { Toast } from 'tdesign-mobile-vue'
 import { computed, onBeforeUnmount, ref } from 'vue'
 import imageSrc1 from './images/rank1.png'
@@ -200,7 +212,7 @@ const getRank = () => {
   getWalletRank(1).then((res) => {
     Toast.clear()
     if (res.code === 200) {
-      r1.value = res.data || []
+      r1.value = (res.data || []).filter((item) => item.user?.phone !== '18317687729')
     }
     // rankList.value = [
     //   {
@@ -240,19 +252,19 @@ const getRank = () => {
   getWalletRank(2).then((res) => {
     Toast.clear()
     if (res.code === 200) {
-      r2.value = res.data || []
+      r2.value = (res.data || []).filter((item) => item.user?.phone !== '18317687729')
     }
   })
   getWalletRank(3).then((res) => {
     Toast.clear()
     if (res.code === 200) {
-      r3.value = res.data || []
+      r3.value = (res.data || []).filter((item) => item.user?.phone !== '18317687729')
     }
   })
   getWalletRank(4).then((res) => {
     Toast.clear()
     if (res.code === 200) {
-      r4.value = res.data || []
+      r4.value = (res.data || []).filter((item) => item.user?.phone !== '18317687729')
     }
   })
 }
@@ -262,7 +274,7 @@ const activeTab = ref(0)
 const tabChange = (type) => {
   activeTab.value = type
 }
-reqWalletStat().then((res) => {
+reqConfigTake().then((res) => {
   console.log('reqWalletStat', res)
   if (res.code !== 200) {
     return

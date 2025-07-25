@@ -25,21 +25,26 @@
         @click="showPicker = true"
       />
       <!--      </div>-->
-      <text-area label="收款姓名" v-model:content="detail.name" rows="2" placeholder="请输入" />
+      <text-area
+        label="实名认证"
+        v-model:content="detail.name"
+        rows="2"
+        placeholder="请输入真实姓名"
+      />
 
       <text-area label="收款账号" v-model:content="detail.account" rows="2" placeholder="请输入" />
 
       <LabelTitle tips="收款码" icon-name="text_area" :is-require="true" />
       <van-uploader v-model="fileList" :after-read="afterRead" :max-count="1" />
 
-      <text-area
-        :is-require="false"
-        label="备注"
-        v-model:content="detail.remark"
-        rows="5"
-        maxlength="200"
-        placeholder="请输入"
-      />
+      <!--      <text-area-->
+      <!--        :is-require="false"-->
+      <!--        label="备注"-->
+      <!--        v-model:content="detail.remark"-->
+      <!--        rows="5"-->
+      <!--        maxlength="200"-->
+      <!--        placeholder="请输入"-->
+      <!--      />-->
     </div>
     <el-button
       color="#fcd323"

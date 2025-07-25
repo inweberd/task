@@ -183,7 +183,8 @@ ul.filter-tabs {
 
 .filter-button.filter-active {
   transition: color 0.4s ease-in-out;
-  color: var(--grey-900);
+  //color: var(--grey-900);
+  color: #fff;
 }
 
 .filter-slider {
@@ -201,7 +202,8 @@ ul.filter-tabs {
   height: 30px;
   width: 25%;
   border-radius: 8px;
-  background-color: var(--white);
+  //background-color: var(--white);
+  background-color: #6ba9ff;
   box-shadow: 0 1px 10px -4px rgba(0, 0, 0, 0.12);
   transition: transform 0.4s ease-in-out;
   transform: translateX(var(--translate-filters-slider));

@@ -209,7 +209,7 @@ const SignUp = async () => {
   for (let i in state.struct) state.struct[i] = ''
 
   showToast('注册成功')
-  // window.location.href = `https://wwew.rdhlkm.com/download`
+  // window.location.href = `https://qyh.88tong.cn/download`
   // 跳转到首页
   router.push({ path: '/' })
 }
@@ -251,7 +251,7 @@ watch(
 
 function goDownload() {
   try {
-    window.location.href = `https://wwew.rdhlkm.com/download`
+    window.location.href = `https://qyh.88tong.cn/download`
   } catch (e) {
     _notice('下载失败')
   }

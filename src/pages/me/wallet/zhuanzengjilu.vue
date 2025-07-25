@@ -6,7 +6,7 @@
       finished-text="暂无数据"
       @load="getDataList"
     >
-      <div v-for="item in dataList" :key="item.id" class="card" style="position: relative">
+      <div v-for="(item, index) in dataList" style="position: relative" :key="item.id" class="card">
         <!--        <div-->
         <!--          v-if="item.count"-->
         <!--          style="-->
@@ -24,7 +24,6 @@
         <!--        >-->
         <!--          *{{ item.count }}-->
         <!--        </div>-->
-
         <div style="display: flex; justify-content: space-between; align-items: center">
           <div style="width: 60%">
             <div>
@@ -41,7 +40,8 @@
               <span
                 style="font-size: 16px; color: #f6202b; font-weight: bolder"
                 class="text-warning"
-                >{{ (item.value / 10).toFixed(2) || 0 }}点券</span
+              >
+                {{ (item.value / 10).toFixed(2) || 0 }}点券</span
               >
             </div>
             <div style="margin-top: 6px">
@@ -55,49 +55,37 @@
 </template>
 
 <script setup>
-import { axiosInstance as axios } from '@/utils/myrequest'
-
-import utils from '@/utils/utils.js'
 import { reactive, onMounted, ref } from 'vue'
 import { reqWalletLog } from '@/api/myApi'
 import { _notice } from '@/utils/index'
+import { axiosInstance as axios } from '@/utils/myrequest'
+import utils from '@/utils/utils.js'
 const loading = ref(true)
 const finished = ref(false)
 
 const userInfo = ref(JSON.parse(window.localStorage.getItem('userInfo')))
 
-const method = {
-  // 时间戳转日期
-  toDate: (value) => utils.timeToDate(value)
-}
 const dataList = ref([])
 const searchInfo = reactive({
   page: 0,
-  limit: 10,
+  limit: 30,
   phone: ''
 })
+const method = {
+  toDate: (value) => utils.timeToDate(value, 'Y-M-D H:i')
+}
 const getDataList = () => {
   searchInfo.page++
   loading.value = true
   reqWalletLog({
     page: searchInfo.page,
     limit: searchInfo.limit,
-    order: 'id desc',
     uid: userInfo.value.id,
-    // bind_type: 'treasure-basin-bonus'
-    bind_type: 'treasure-basin',
-    // scene: ['table'],
-    objectType: ['climb-ladder']
-    // type: '0'
-    // where: [
-    //   ['type', '=', '1'],
-    //   ['bind_type', '=', 'ng-game-transfer'],
-    //   ['uid', '=', userInfo.value.id]
-    // ]
-    // where: [
-    //   ['type', '=', 0],
-    //   ['uid', '=', userInfo.value.id]
-    // ]
+    // order: 'id desc',
+    // type: '1',
+    // scene: 'reward'
+    objectType: 'wallet-trade-order'
+    // bind_type: 'incentive'
   }).then(({ code, msg, data }) => {
     loading.value = false
     if (code !== 200) {
@@ -131,11 +119,10 @@ onMounted(() => {
   border-radius: 10px;
   margin-top: 10px;
 }
-
 .container {
-  background-color: #fdfae9;
+  background-color: var(--wallet-bg);
   margin: 10px;
   border-radius: 10px;
-  color: #000;
+  color: #fff;
 }
 </style>

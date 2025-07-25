@@ -35,20 +35,20 @@
       <div class="top">
         <div>
           <van-icon color="#000" name="user" />
-          <span style="padding-left: 4px">普通用户</span>
+          <!--          <span style="padding-left: 4px">普通用户</span>-->
         </div>
-        <!--        <div>点券</div>-->
+        <div>点券</div>
       </div>
       <div class="center">
         {{ (walletInfo.wallet?.points / 10 || 0).toFixed(2) }}
         <span style="padding-left: 0px">点券</span>
       </div>
-      <div class="bottom">
-        <!--        <div style="font-size: 10px; color: #333">我的点券</div>-->
-        <!--        <div>-->
-        <!--          查看明细-->
-        <!--          <van-icon color="#000" name="arrow" />-->
-        <!--        </div>-->
+      <div class="bottom" @click="go('/dianziqianbao')">
+        <div style="font-size: 10px; color: #333">10个点券起转</div>
+        <div>
+          电子钱包
+          <van-icon color="#000" name="arrow" />
+        </div>
       </div>
     </div>
     <div class="content">
@@ -61,9 +61,32 @@
 
       <van-field v-model="data.points" label="金额" placeholder="请输入转赠数量" type="number">
       </van-field>
+
+      <van-field
+        is-link
+        v-model="sceneDesc"
+        label="收款方式"
+        readonly
+        placeholder="选择收款方式"
+        @click="showPicker = true"
+      >
+      </van-field>
       <!--      <van-field v-model="data.remark" label="备注" placeholder="备注" type="textarea"> </van-field>-->
       <!--        <div class="common-input-title" style="margin-top: 10px">短信验证码</div>-->
-
+      <van-popup v-model:show="showPicker" destroy-on-close round position="bottom">
+        <van-picker
+          :model-value="pickerValue"
+          :columns="columns"
+          @cancel="showPicker = false"
+          @confirm="
+            ({ selectedValues }) => {
+              console.log(selectedValues)
+              data.eWalletScene = selectedValues[0]
+              showPicker = false
+            }
+          "
+        />
+      </van-popup>
       <div style="width: 100%">
         <van-button
           block
@@ -151,7 +174,7 @@
         @change="init"
       >
         <van-tab name="a" title="转出"></van-tab>
-        <van-tab name="b" title="转入"></van-tab>
+        <van-tab name="b" title="接收"></van-tab>
         <van-list
           v-model:loading="loading"
           :finished="finished"
@@ -173,7 +196,7 @@
                 padding: 10px;
               "
             >
-              <div style="width: 60%">
+              <div style="width: 40%">
                 <div>
                   <span style="font-size: 14px; font-weight: bolder; color: #000">
                     <span v-if="activeName === 'a'">
@@ -188,12 +211,17 @@
                   <span style="font-size: 12px; color: #000">{{ item.sellRemark || '' }}</span>
                 </div>
               </div>
+              <div>
+                <van-button v-if="activeName === 'b'" type="primary" style="height: 25px">
+                  查看收款信息
+                </van-button>
+              </div>
               <div style="flex: 1; text-align: right">
                 <div>
                   <span
                     class="text-warning"
                     style="font-size: 16px; color: #f6202b; font-weight: bolder"
-                    >{{ item.points || 0 }}点券</span
+                    >{{ item.points / 10 || 0 }}点券</span
                   >
                 </div>
                 <div style="margin-top: 6px">
@@ -263,12 +291,13 @@ import {
 import { _no, _sleep, _notice } from '@/utils'
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
 import { useRoute } from 'vue-router'
-import { onActivated, onMounted, reactive, ref } from 'vue'
+import { computed, onActivated, onMounted, reactive, ref } from 'vue'
 import { getIsInApp } from '@/utils/getTopPadding'
 import dayjs from 'dayjs'
 import isBetween from 'dayjs//plugin/isBetween'
 import { showToast } from 'vant'
 import utils from '@/utils/utils'
+import { find } from '@/utils/tree'
 
 const showGonggaoOverlay2 = ref(false)
 const walletInfo = ref({ wallet: { transfer: null } })
@@ -280,11 +309,24 @@ const data = reactive({
   buyUid: '',
   remark: '',
   points: '',
-  eWalletScene: 'wechat'
+  eWalletScene: ''
   // fingerprint: ''
 })
 const countdown = ref(0)
+const showPicker = ref(false)
+const pickerValue = ref([])
+const columns = [
+  { text: '支付宝', value: 'alipay' },
+  { text: '微信', value: 'wechat' }
+]
 
+const sceneDesc = computed(() => {
+  const result = find(columns, true, (item) => {
+    return data.eWalletScene === item.value
+  })
+  console.log(result ? result?.text : '')
+  return result ? result?.text : ''
+})
 // const fprint = () => {
 //   FingerprintJS.load().then((FP) => {
 //     FP.get().then(({ visitorId }) => (data.fingerprint = visitorId))
@@ -336,32 +378,35 @@ function onSubmit() {
     return showToast('请输入转赠数量')
   }
 
+  if (!data.eWalletScene) {
+    return showToast('请选择收款方式')
+  }
   // 获取今天的日期
   dayjs.extend(isBetween)
   const today = dayjs().startOf('day')
 
   // 获取今天 8 点和 19 点的时间
   const morning8 = today.add(10, 'hour')
-  const evening7 = today.add(21, 'hour')
+  const evening7 = today.add(20, 'hour')
 
   // 获取当前时间
   const now = dayjs()
   const isbetween = now.isBetween(morning8, evening7, null, '[]')
 
-  // if (!isbetween) {
-  //   showToast({
-  //     duration: 5000,
-  //     message: '转增时间为上午10点到晚上21点'
-  //   })
-  //   return
-  // }
-  if (data.points < 5) {
-    return _notice('点券转赠5个起！')
+  if (!isbetween) {
+    showToast({
+      duration: 5000,
+      message: '转增时间为上午10点到晚上20点'
+    })
+    return
+  }
+  if (data.points < 10) {
+    return _notice('点券转赠10个起！')
   }
 
   const params = JSON.parse(JSON.stringify(data))
   params.points = params.points * 10
-  reqWalletTransfer(data).then((e) => {
+  reqWalletTransfer(params).then((e) => {
     _notice(e.msg)
     if (e.code === 200) {
       data.buyUid = ''

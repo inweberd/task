@@ -42,9 +42,9 @@
           <!--          <div class="b">-->
           <!--            <p>邀请码 : {{ userInfo?.result?.invite?.code }}</p>-->
           <!--          </div>-->
-          <div class="b">
-            <p>{{ userInfo?.result?.staff?.name || '暂无等级' }}</p>
-          </div>
+          <!--          <div class="b">-->
+          <!--            <p>{{ userInfo?.result?.staff?.name || '暂无等级' }}</p>-->
+          <!--          </div>-->
         </div>
       </div>
 
@@ -156,7 +156,11 @@
           <!--            &lt;!&ndash;                        />&ndash;&gt;-->
           <!--          </t-tabs>-->
           <!--        </div>-->
-          <!--          <van-search v-model="searchId" placeholder="请输入下级ID" @search="onSearch" />-->
+          <van-search
+            v-model="searchInfo.phone"
+            placeholder="请输入下级手机号码"
+            @search="onSearch"
+          />
           <van-list
             v-model:loading="loading"
             :finished="finished"
@@ -277,7 +281,7 @@
                             padding: 2px 5px;
                           "
                         >
-                          {{ item?.result?.staff?.name || '暂无等级' }}
+                          上墙{{ item?.MaxClimbLadder?.level }}层
                         </span>
                       </div>
                     </div>
@@ -349,7 +353,7 @@ const onSearch = () => {
   dataList.value = []
   finished.value = false
   searchInfo.page = 0
-  // getDataList()
+  getDataList()
 }
 
 const format = (price = 0) => {
@@ -405,7 +409,8 @@ const getDataList = async () => {
     // ids: ids,
     isDirectly: active.value == 'one',
     page: searchInfo.page,
-    limit: searchInfo.limit
+    limit: searchInfo.limit,
+    phone: searchInfo.phone
   })
   loading.value = false
   if (code !== 200) {

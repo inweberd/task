@@ -377,7 +377,7 @@ export function getAlreadyBuyTreasureBasin() {
   console.log('今天结束的时间戳:', endOfDay)
   return axiosInstance({
     // url: `/api/climb-ladder/order?limit=100&create_time=${startOfDay},${endOfDay}&status[]=pending&onlyTrashed=false&page=1&order=id desc`,
-    url: `api/climb-ladder/order?page=1&limit=10&onlyTrashed=false&createTime[]=${startOfDay}&createTime[]=${endOfDay}&uid=${userInfo.id}`,
+    url: `api/climb-ladder/order?page=1&limit=100&onlyTrashed=false&createTime[]=${startOfDay}&createTime[]=${endOfDay}&uid=${userInfo.id}`,
     method: 'get'
   })
 }
@@ -425,4 +425,9 @@ export function reqWalletTradeTake(params) {
     method: 'get',
     params
   })
+}
+
+// 排行榜金额
+export function reqConfigTake() {
+  return axiosInstance.get('/api/config/take?no=PRIZE_POOL')
 }

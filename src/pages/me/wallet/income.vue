@@ -80,8 +80,8 @@ const getDataList = () => {
     page: searchInfo.page,
     limit: searchInfo.limit,
     uid: userInfo.value.id,
-    order: 'id desc',
-    type: '1',
+    // order: 'id desc',
+    // type: '1',
     scene: 'reward'
     // bind_type: 'incentive'
   }).then(({ code, msg, data }) => {

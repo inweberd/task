@@ -226,7 +226,7 @@ const showOverlay = ref(false)
 
 const goDownload = () => {
   try {
-    window.location.href = `https://wwew.rdhlkm.com/download`
+    window.location.href = `https://qyh.88tong.cn/download`
   } catch (e) {
     _notice('下载失败')
   }
@@ -315,9 +315,9 @@ const generatePoster = async () => {
     return
   }
   qrCodeText.value =
-    'http://bbbnklswx0717ffxxjkf11.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+    'http://bbbnklswx0717ffxxjkf15.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     // encodeURIComponent(
-    'https://wwew.rdhlkm.com/#/signUp?invite=' +
+    'https://qyh.88tong.cn/#/signUp?invite=' +
     JSON.parse(window.localStorage.getItem('userInfo'))?.invite?.code
   // )
   canvas.value.width = canvasWidth.value
@@ -459,13 +459,13 @@ function clipboardCopy(content) {
 }
 
 const toDownload = () => {
-  window.android.openBrowser('https://wwew.rdhlkm.com/download/android.apk')
+  window.android.openBrowser('https://qyh.88tong.cn/download/android.apk')
 
-  // window.location.href = `https://wwew.rdhlkm.com/download/android.apk`
+  // window.location.href = `https://qyh.88tong.cn/download/android.apk`
 }
 
 const upGrade = () => {
-  window.android.openBrowser('https://wwew.rdhlkm.com/download/android.apk')
+  window.android.openBrowser('https://qyh.88tong.cn/download/android.apk')
   // clipboardCopy('')
   // navigator.clipboard.writeText('12312').then(() => {
   //   alert('复制成功')
@@ -535,7 +535,7 @@ onMounted(() => {
   // testCb
 
   let timer = setInterval(() => {
-    if (JSON.parse(window.localStorage.getItem('userInfo'))?.result?.invite?.code) {
+    if (JSON.parse(window.localStorage.getItem('userInfo'))?.invite?.code) {
       clearInterval(timer)
 
       generatePoster()

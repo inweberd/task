@@ -3,12 +3,12 @@
     <div class="wrapper" @click.stop>
       <div class="update-container">
         <!--        <div class="title">{{ title }}</div>-->
-        <div style="padding: 0px 0">
+        <div style="padding: 0px 0; color: #000">
           <slot></slot>
         </div>
         <van-button
           v-if="showConfirm"
-          color="linear-gradient(to right, #bfd8d8, #bfd8d8)"
+          color="#fff"
           style="border-radius: 20px; width: 80%; color: #0775f1; font-weight: bolder"
           @click="handleConfirm"
         >
@@ -73,9 +73,9 @@ const handleConfirm = () => {
   flex-direction: column;
   position: relative;
   width: 80%;
-  //background-color: #202022;
+  background-color: #ffdb58;
   //background-image: linear-gradient(to bottom, #4e76bc 0%, #4e76bc 30%, #4e76bc 100%);
-  background: url('@/assets/img/main-bg.jpg');
+  //background: url('@/assets/img/main-bg.jpg');
   background-size: 100% 100%;
   border-radius: 15px;
   padding: 0px 0 20px;

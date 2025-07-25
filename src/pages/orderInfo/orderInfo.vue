@@ -22,7 +22,7 @@
         style="background-color: #fff"
       >
         <template #points>
-          <span>{{ detail.order?.points || 0 }} 点券</span>
+          <span>{{ detail.order?.points / 10 || 0 }} 点券</span>
         </template>
       </detail-info>
       <detail-info
@@ -34,6 +34,7 @@
         <template #scene>
           <span>{{ detail.sellEWallet?.scene === 'wechat' ? '微信' : '支付宝' }} </span>
         </template>
+
         <template #qrCode>
           <van-image
             v-if="detail?.sellEWallet?.qrCode"
@@ -46,40 +47,47 @@
         </template>
       </detail-info>
     </div>
+    <!--    <div-->
+    <!--      v-if="detail?.order?.buyUid === userInfo.id && !detail?.order?.buyConfirm"-->
+    <!--      class="content"-->
+    <!--      style="background-color: #fff; padding: 10px; box-sizing: border-box"-->
+    <!--    >-->
+    <!--      &lt;!&ndash;      </div>&ndash;&gt;-->
+    <!--      <text-area v-model:content="detailForm.cny" label="实付金额" placeholder="请输入" rows="1" />-->
+
+    <!--      &lt;!&ndash;      <text-area&ndash;&gt;-->
+    <!--      &lt;!&ndash;        v-model:content="detailForm.remark"&ndash;&gt;-->
+    <!--      &lt;!&ndash;        :is-require="false"&ndash;&gt;-->
+    <!--      &lt;!&ndash;        label="备注"&ndash;&gt;-->
+    <!--      &lt;!&ndash;        placeholder="请输入"&ndash;&gt;-->
+    <!--      &lt;!&ndash;        rows="2"&ndash;&gt;-->
+    <!--      &lt;!&ndash;      />&ndash;&gt;-->
+
+    <!--      &lt;!&ndash;      <LabelTitle :is-require="true" icon-name="text_area" tips="支付凭证" />&ndash;&gt;-->
+    <!--      &lt;!&ndash;      <van-uploader v-model="fileList" :max-count="1" />&ndash;&gt;-->
+
+    <!--      <el-button-->
+    <!--        color="#fcd323"-->
+    <!--        size="large"-->
+    <!--        style="-->
+    <!--          border-radius: 30px;-->
+    <!--          border: none;-->
+    <!--          color: #444;-->
+    <!--          width: calc(100%);-->
+    <!--          height: 40px;-->
+    <!--          margin-top: 10px;-->
+    <!--        "-->
+    <!--        type="primary"-->
+    <!--        @click="buySave"-->
+    <!--        >提交-->
+    <!--      </el-button>-->
+    <!--    </div>-->
+
+    <!--    detail?.order?.sellUid === userInfo.id &&-->
+    <!--    detail?.order?.buyConfirm &&-->
+    <!--    !detail?.order?.sellConfirm-->
     <div
-      v-if="detail?.order?.buyUid === userInfo.id && !detail?.order?.buyConfirm"
-      class="content"
-      style="background-color: #fff; padding: 10px; box-sizing: border-box"
-    >
-      <!--      </div>-->
-      <text-area v-model:content="detailForm.cny" label="实付金额" placeholder="请输入" rows="1" />
-
-      <!--      <text-area-->
-      <!--        v-model:content="detailForm.remark"-->
-      <!--        :is-require="false"-->
-      <!--        label="备注"-->
-      <!--        placeholder="请输入"-->
-      <!--        rows="2"-->
-      <!--      />-->
-
-      <LabelTitle :is-require="true" icon-name="text_area" tips="支付凭证" />
-      <van-uploader v-model="fileList" :max-count="1" />
-
-      <el-button
-        color="#fcd323"
-        size="large"
-        style="border-radius: 30px; border: none; color: #444; width: calc(100%); height: 40px"
-        type="primary"
-        @click="buySave"
-        >提交
-      </el-button>
-    </div>
-    <div
-      v-if="
-        detail?.order?.sellUid === userInfo.id &&
-        detail?.order?.buyConfirm &&
-        !detail?.order?.sellConfirm
-      "
+      v-if="detail?.order?.sellUid === userInfo.id && !detail?.order?.sellConfirm"
       class="content"
       style="background-color: #fff; padding: 10px; box-sizing: border-box"
     >
@@ -175,21 +183,21 @@ const detailForm = ref({
 const buySave = () => {
   console.log('fileList', fileList.value)
 
-  if (!detailForm.value.cny) {
-    showToast('请输入实付金额')
-    return
-  }
-
-  if (!fileList.value.length) {
-    showToast('请上传支付凭证')
-    return
-  }
+  // if (!detailForm.value.cny) {
+  //   showToast('请输入实付金额')
+  //   return
+  // }
+  //
+  // if (!fileList.value.length) {
+  //   showToast('请上传支付凭证')
+  //   return
+  // }
 
   const formdata = new FormData()
   formdata.append('no', route.query.no)
   formdata.append('cny', detailForm.value.cny)
   formdata.append('remark', detailForm.value.remark)
-  formdata.append('cert', fileList.value[0].file)
+  // formdata.append('cert', fileList.value[0].file)
 
   reqWalletBuyConfirm(formdata).then((res) => {
     if (res.code !== 200) {

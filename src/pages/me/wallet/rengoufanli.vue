@@ -84,8 +84,10 @@ const getDataList = () => {
     order: 'id desc',
     uid: userInfo.value.id,
     // bind_type: 'staff-award'
-    bind_type: 'first-staff-award',
-    scene: 'reward'
+    // bind_type: 'first-staff-award',
+    // scene: 'reward'
+    objectType: ['buy-vip'],
+    onlyTrashed: false
     // where: [
     //   ['bind_type', '=', 'staff-award'],
     //   ['uid', '=', userInfo.value.id]

@@ -5,7 +5,7 @@
       left-arrow
       placeholder
       safe-area-inset-top
-      title="电子钱包"
+      title="绑定转赠收款方式"
       @click-left="$router.back()"
     >
       <template #right>
@@ -60,7 +60,7 @@
       "
       type="primary"
       @click="$router.push('/addDianziqianbao')"
-      >添加钱包
+      >实名认证电子钱包
     </el-button>
     <template v-if="!dataList.length">
       <div style="height: 300px; display: flex; justify-content: center; align-items: center">

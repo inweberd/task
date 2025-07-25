@@ -35,38 +35,39 @@
     <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">棋牌娱乐</div>-->
     <!--      </div>-->
     <!--    </div>-->
-    <!--    <div class="l-button" @click="$router.push('/publish')">-->
-    <!--      <div class="add-ctn">-->
-    <!--        <div class="img-box">-->
-    <!--          &lt;!&ndash;          <img src="@/assets/icon/3-active.png" alt="" class="add" v-if="currentTab === 2" />&ndash;&gt;-->
-    <!--          &lt;!&ndash;          <img src="@/assets/icon/3.png" alt="" class="add" v-else />&ndash;&gt;-->
-    <!--          <img-->
-    <!--            src="https://lx.aosenn.com/h5/static/tabbar/03.png"-->
-    <!--            alt=""-->
-    <!--            class="add"-->
-    <!--            v-if="currentTab === 2"-->
-    <!--          />-->
-    <!--          <img src="https://lx.aosenn.com/h5/static/tabbar/04.png" alt="" class="add" v-else />-->
-    <!--        </div>-->
-    <!--        <div :style="{ color: currentTab === 2 ? '#fed61f' : '#ccc' }">广告发布</div>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="l-button" @click="tab(5)">-->
-    <!--      <div class="add-ctn">-->
-    <!--        <div class="img-box">-->
-    <!--          &lt;!&ndash;          <img src="@/assets/icon/4-active.png" alt="" class="add" v-if="currentTab === 5" />&ndash;&gt;-->
-    <!--          &lt;!&ndash;          <img src="@/assets/icon/i4.png" alt="" class="add" v-else />&ndash;&gt;-->
-    <!--          <img-->
-    <!--            src="https://lx.aosenn.com/h5/static/tabbar/01.png"-->
-    <!--            alt=""-->
-    <!--            class="add"-->
-    <!--            v-if="currentTab === 5"-->
-    <!--          />-->
-    <!--          <img src="https://lx.aosenn.com/h5/static/tabbar/02.png" alt="" class="add" v-else />-->
-    <!--        </div>-->
-    <!--        <div :style="{ color: currentTab === 5 ? '#fed61f' : '#ccc' }">会员</div>-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <div class="l-button" @click="loadShangXian">
+      <div class="add-ctn">
+        <div class="img-box">
+          <!--          <img src="@/assets/icon/3-active.png" alt="" class="add" v-if="currentTab === 2" />-->
+          <!--          <img src="@/assets/icon/3.png" alt="" class="add" v-else />-->
+          <img
+            src="https://lx.aosenn.com/h5/static/tabbar/03.png"
+            alt=""
+            class="add"
+            v-if="currentTab === 2"
+          />
+          <img src="https://lx.aosenn.com/h5/static/tabbar/04.png" alt="" class="add" v-else />
+        </div>
+        <div :style="{ color: currentTab === 2 ? '#fed61f' : '#ccc' }">广告发布</div>
+      </div>
+    </div>
+    <div class="l-button" @click="tab(5)">
+      <div class="add-ctn">
+        <div class="img-box">
+          <!--          <img src="@/assets/icon/4-active.png" alt="" class="add" v-if="currentTab === 5" />-->
+          <!--          <img src="@/assets/icon/i4.png" alt="" class="add" v-else />-->
+          <img
+            src="https://lx.aosenn.com/h5/static/tabbar/01.png"
+            alt=""
+            class="add"
+            v-if="currentTab === 5"
+          />
+          <img src="https://lx.aosenn.com/h5/static/tabbar/02.png" alt="" class="add" v-else />
+        </div>
+        <div class="chat-bubble">降低手续费</div>
+        <div :style="{ color: currentTab === 5 ? '#fed61f' : '#ccc' }">商人特权</div>
+      </div>
+    </div>
     <div class="l-button" @click="tab(6)">
       <div class="add-ctn">
         <div class="img-box">
@@ -89,7 +90,7 @@
 import bus, { EVENT_KEY } from '../utils/bus'
 import { loadInteraction, loadShortPlayVideo, loadShortVideo } from '@/utils/ad'
 import dayjs from 'dayjs'
-import { closeToast, showDialog } from 'vant'
+import { closeToast, showDialog, showToast } from 'vant'
 import { reqAdvertisingCount, reqAdvertisingSinglePrice } from '@/api/myApi'
 import { Toast } from 'tdesign-mobile-vue'
 const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent)
@@ -116,6 +117,12 @@ export default {
     bus.off(EVENT_KEY.EXIT_FULLSCREEN)
   },
   methods: {
+    loadShangXian() {
+      // if (!window?.android?.initQie) {
+      //   return showToast('请下载最新版本APP体验！')
+      // }
+      showToast('等待上线！')
+    },
     async loadShort(type) {
       const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
       const userId = userInfo?.id
@@ -338,6 +345,36 @@ export default {
       top: 12px;
       position: absolute;
     }
+  }
+}
+.chat-bubble {
+  position: absolute;
+  top: -5px;
+  right: -30%;
+  font-size: 10px;
+  background: #fecf1f;
+  border-radius: 0.4em;
+  color: #000 !important;
+  padding: 3px;
+  max-width: 200px;
+  margin: 1em auto;
+  text-align: left;
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.19),
+    0 6px 6px rgba(0, 0, 0, 0.23);
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    width: 0;
+    height: 0;
+    border: 15px solid transparent;
+    border-top-color: #fecf1f;
+    border-bottom: 0;
+    border-left: 0;
+    margin-left: -10px;
+    margin-bottom: -10px;
   }
 }
 </style>

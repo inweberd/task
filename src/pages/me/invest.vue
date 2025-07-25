@@ -274,27 +274,43 @@ const buy = throttle((index) => {
     }
   }
 
-  loading.value = true
-  reqWalletInfo().then((res: any) => {
+  // loading.value = true
+  // reqWalletInfo().then((res: any) => {
+  //   loading.value = false
+  //
+  //   // if (item.price * finallyCount > res.data.amount + res.data.money) {
+  //   if (item.price > res.data.wallet.balance + res.data.wallet.points) {
+  //     loading.value = false
+  //     nextTick(() => {
+  //       _notice(' 点券不足，激活失败！即将为您跳转购买点券通道！')
+  //     })
+  //     setTimeout(() => {
+  //       router.push('/recharge')
+  //     }, 2500)
+  //   } else {
+  //     reqEnterStaff(item.id).then((sub_res) => {
+  //       loading.value = false
+  //       _notice(sub_res.msg)
+  //       if (sub_res.code === 200) {
+  //         getMyStaff()
+  //       }
+  //     })
+  //   }
+  // })
+  reqEnterStaff(item.id).then((sub_res) => {
     loading.value = false
-
-    // if (item.price * finallyCount > res.data.amount + res.data.money) {
-    if (item.price > res.data.wallet.balance + res.data.wallet.points) {
-      loading.value = false
+    if (sub_res.msg === '余额不足，无法兑换！') {
       nextTick(() => {
-        _notice(' 点券不足，急活失败！即将为您跳转购买点券通道！')
+        _notice('余额不足，激活失败，即将为您跳转充值余额通道！')
       })
       setTimeout(() => {
         router.push('/recharge')
       }, 2500)
     } else {
-      reqEnterStaff(item.id).then((sub_res) => {
-        loading.value = false
-        _notice(sub_res.msg)
-        if (res.code === 200) {
-          getMyStaff()
-        }
-      })
+      _notice(sub_res.msg)
+      if (sub_res.code === 200) {
+        getMyStaff()
+      }
     }
   })
 }, 1000)

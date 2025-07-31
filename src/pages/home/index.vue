@@ -88,7 +88,7 @@
         </div>
         <span>分红榜</span>
       </div>
-      <div class="menu" @click="loadXiangwan">
+      <div class="menu" @click="$router.push('/dataosha')">
         <div style="height: 38px">
           <img
             draggable="false"
@@ -123,13 +123,13 @@
         </div>
         <div class="name">转赠</div>
       </div>
-      <div class="item" @click="loadXiangwan">
+      <div class="item" @click="$router.push('/dataosha')">
         <div class="img-box">
           <img alt="" src="./home-image/dataoshayouxi.jpg" />
         </div>
         <div class="name">大逃杀游戏</div>
       </div>
-      <div class="item" @click="loadXiangwan">
+      <div class="item" @click="$router.push('/publish')">
         <div class="img-box">
           <img alt="" src="./home-image/fabuguanggao.jpg" />
         </div>
@@ -427,7 +427,7 @@ const loadXiangwan = () => {
   window?.android?.initXiangWan(userId)
 }
 const goQQ = () => {
-  window.location.href = 'https://qm.qq.com/q/x00vQBFn4A'
+  window.location.href = 'https://qm.qq.com/q/JXgJRgIn8O'
   showGonggaoOverlay.value = false
 }
 

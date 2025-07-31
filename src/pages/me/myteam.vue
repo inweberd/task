@@ -630,7 +630,7 @@ const renzheng = (avatar) => {
   wxLogin()
 }
 const goQQ = () => {
-  window.location.href = 'https://qm.qq.com/q/x00vQBFn4A'
+  window.location.href = 'https://qm.qq.com/q/JXgJRgIn8O'
 }
 const showGonggaoOverlay = ref(false)
 

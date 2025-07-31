@@ -103,7 +103,7 @@ import bus from '@/utils/bus'
 import ToggleLoginAndRegister from '@/views/common/components/ToggleLoginAndRegister.vue'
 import { showToast } from 'vant'
 const goQQ = () => {
-  window.location.href = 'https://qm.qq.com/q/x00vQBFn4A'
+  window.location.href = 'https://qm.qq.com/q/JXgJRgIn8O'
 }
 defineOptions({
   name: 'signIn'

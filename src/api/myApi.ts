@@ -431,3 +431,32 @@ export function reqWalletTradeTake(params) {
 export function reqConfigTake() {
   return axiosInstance.get('/api/config/take?no=PRIZE_POOL')
 }
+
+// 广告分页
+export function reqFindPoster(params) {
+  // return axiosInstance.get('/api/poster/find', params)
+
+  return axiosInstance({ url: 'api/poster/find', method: 'get', params })
+}
+
+// 发布广告
+export function getPosterCreate(data) {
+  return axiosInstance({
+    url: '/api/poster/create',
+    method: 'post',
+    data
+    // headers: {
+    //   'Content-Type': 'multipart/form-data'
+    // }
+  })
+}
+
+// 置顶广告
+export function reqPosterTop(params) {
+  return axiosInstance({ url: '/api/poster/top', method: 'put', params })
+}
+
+// 刷新广告
+export function reqPosterRefresh(params) {
+  return axiosInstance({ url: '/api/poster/refresh', method: 'put', params })
+}

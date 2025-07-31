@@ -35,7 +35,7 @@
     <!--        <div :style="{ color: currentTab === 2 ? '#666' : '' }">棋牌娱乐</div>-->
     <!--      </div>-->
     <!--    </div>-->
-    <div class="l-button" @click="loadShangXian">
+    <div class="l-button" @click="$router.push('/publish')">
       <div class="add-ctn">
         <div class="img-box">
           <!--          <img src="@/assets/icon/3-active.png" alt="" class="add" v-if="currentTab === 2" />-->

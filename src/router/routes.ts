@@ -24,6 +24,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/weimaiquanDetail', component: () => import('@/pages/me/weimaiquanDetail.vue') },
   { path: '/moneybag', component: () => import('@/pages/moneybag/moneybag.vue') },
   { path: '/publish', component: () => import('@/pages/publish/publish.vue') },
+  { path: '/myPublish', component: () => import('@/pages/publish/myPublish.vue') },
   { path: '/addPublish', component: () => import('@/pages/publish/addPublish.vue') },
 
   { path: '/me/my-card', name: 'myCard', component: () => import('@/pages/me/MyCard.vue') },
@@ -40,6 +41,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/publishIntroduce', component: () => import('@/pages/me/publishIntroduce.vue') },
   { path: '/jubaopenIntroduce', component: () => import('@/pages/me/jubaopenIntroduce.vue') },
   { path: '/tudicanyuIntroduce', component: () => import('@/pages/me/tudicanyuIntroduce.vue') },
+  { path: '/dataosha', component: () => import('@/pages/me/dataosha.vue') },
   { path: '/rank', component: () => import('@/pages/me/rank.vue') },
   { path: '/invest', component: () => import('@/pages/me/invest.vue') },
   { path: '/myServe', component: () => import('@/pages/me/myServe.vue') },

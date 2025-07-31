@@ -1,14 +1,17 @@
 <template>
   <div class="publish">
-    <van-nav-bar fixed left-arrow placeholder safe-area-inset-top title="广告发布">
-      <template #right>
-        <!--                    <van-icon name="friends-o" size="18" @click="service = true" />-->
-        <span @click="$router.push('/publishIntroduce')"> 发布规则 </span>
-      </template>
-      <template #left>
-        <!--                    <van-icon name="friends-o" size="18" @click="service = true" />-->
-        <span @click="$router.push('/myPublish')"> 我发布的 </span>
-      </template>
+    <van-nav-bar
+      @click-left="$router.back()"
+      fixed
+      left-arrow
+      placeholder
+      safe-area-inset-top
+      title="我发布的"
+    >
+      <!--      <template #right>-->
+      <!--        &lt;!&ndash;                    <van-icon name="friends-o" size="18" @click="service = true" />&ndash;&gt;-->
+      <!--        <span @click="$router.push('/publishIntroduce')"> 我发布的 </span>-->
+      <!--      </template>-->
     </van-nav-bar>
     <!--    <van-search placeholder="请输入搜索关键词" />-->
     <div class="content">
@@ -93,6 +96,16 @@
                     <div class="visit">
                       <!--                    <van-icon name="eye-o" />-->
                       <!--                    3496人查看-->
+                      <van-button
+                        size="small"
+                        type="primary"
+                        style="margin-right: 10px"
+                        @click="toTop(item)"
+                        >置顶</van-button
+                      >
+                      <van-button @click="toRefresh(item)" size="small" type="success"
+                        >刷新</van-button
+                      >
                     </div>
                     <div class="date">{{ toDate(item.updateTime) }}</div>
                   </div>
@@ -304,15 +317,15 @@
         <!---->
       </div>
     </div>
-    <van-floating-bubble
-      axis="xy"
-      icon="plus"
-      magnetic="x"
-      style="background-color: #fed721"
-      @click="$router.push('addPublish')"
-    >
-    </van-floating-bubble>
-    <BaseFooter :is-white="true" v-bind:init-tab="2" />
+    <!--    <van-floating-bubble-->
+    <!--      axis="xy"-->
+    <!--      icon="plus"-->
+    <!--      magnetic="x"-->
+    <!--      style="background-color: #fed721"-->
+    <!--      @click="$router.push('addPublish')"-->
+    <!--    >-->
+    <!--    </van-floating-bubble>-->
+    <!--    <BaseFooter :is-white="true" v-bind:init-tab="2" />-->
   </div>
 </template>
 <script lang="ts" setup>
@@ -325,9 +338,10 @@ import img5 from './images/5.jpg'
 import img6 from './images/6.jpg'
 import img7 from './images/7.jpg'
 import { onActivated, onMounted, reactive, ref } from 'vue'
-import { reqFindPoster, reqWalletLog } from '@/api/myApi'
+import { reqFindPoster, reqPosterRefresh, reqPosterTop, reqWalletLog } from '@/api/myApi'
 import avatar from '@/assets/img/logo.png'
 import utils from '@/utils/utils'
+import { showToast } from 'vant'
 
 const loading = ref(true)
 const finished = ref(false)
@@ -345,8 +359,8 @@ const getDataList = () => {
   reqFindPoster({
     page: searchInfo.page,
     limit: searchInfo.limit,
-    order: 'top_time desc, refresh_time desc'
-    // uid: userInfo.value.id,
+    order: 'id desc',
+    uid: userInfo.value.id
     // order: 'id desc',
     // type: '1',
     // scene: 'reward'
@@ -366,7 +380,14 @@ const getDataList = () => {
     }
   })
 }
-
+const getClass = (item) => {
+  const now = new Date().getTime()
+  if (item.topTime * 1000 > now) {
+    return 'top'
+  } else {
+    return ''
+  }
+}
 const showImage = (img) => {
   showImagePreview([img])
 }
@@ -377,20 +398,30 @@ const onRefresh = () => {
   searchInfo.page = 0
   getDataList()
 }
+const toTop = (item) => {
+  console.log('toTop', item)
+  reqPosterTop({
+    id: item.id
+  }).then((res) => {
+    console.log('res', res)
+    showToast(res.msg)
+  })
+}
 
-const getClass = (item) => {
-  const now = new Date().getTime()
-  if (item.topTime * 1000 > now) {
-    return 'top'
-  } else {
-    return ''
-  }
+const toRefresh = (item) => {
+  console.log('toTop', item)
+  reqPosterRefresh({
+    id: item.id
+  }).then((res) => {
+    console.log('res', res)
+    showToast(res.msg)
+  })
 }
 onMounted(() => {
   dataList.value = []
-  finished.value = true
+  finished.value = false
   searchInfo.page = 0
-  // getDataList()
+  getDataList()
 })
 </script>
 
@@ -398,7 +429,7 @@ onMounted(() => {
 .publish {
   color: #303133;
   font-size: 14px;
-  height: calc(100vh - var(--footer-height));
+  height: 100vh;
   background-color: #f3f3f3;
   overflow: hidden;
   display: flex;
@@ -407,7 +438,7 @@ onMounted(() => {
     background-color: #fed61f !important;
 
     .van-icon {
-      color: transparent !important;
+      color: #000 !important;
       font-size: 18px !important;
     }
   }

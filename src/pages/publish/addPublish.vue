@@ -17,17 +17,17 @@
     <div class="content">
       <text-area
         label="标题"
-        v-model:content="messageContent"
+        v-model:content="formData.title"
         rows="2"
         maxlength="40"
         placeholder="请输入标题，40字以内"
       />
 
       <LabelTitle tips="截图" icon-name="text_area" :is-require="true" />
-      <van-uploader :after-read="afterRead" />
+      <van-uploader :after-read="afterRead" max-count="1" v-model="fileList" @delete="afterDel" />
       <text-area
         label="内容描述"
-        v-model:content="messageContent"
+        v-model:content="formData.content"
         rows="5"
         maxlength="200"
         placeholder="请输入内容描述"
@@ -36,6 +36,7 @@
     <el-button
       color="#fcd323"
       size="large"
+      @click="submit"
       style="
         border-radius: 30px;
         border: none;
@@ -53,10 +54,63 @@
 import TextArea from '@/components/textArea/TextArea.vue'
 import LabelTitle from '@/components/labelTitle/LabelTitle.vue'
 import { ref } from 'vue'
+import { showToast } from 'vant'
+import { getPosterCreate, reqUpload, reqWalletSave } from '@/api/myApi'
 
 const messageContent = ref('')
+const fileList = ref([])
+const formData = ref({
+  title: '',
+  content: '',
+  image: ''
+})
 
-const afterRead = () => {}
+const router = useRouter()
+
+const afterRead = (fileInfo) => {
+  fileInfo.status = 'uploading'
+  fileInfo.message = '上传中...'
+  reqUpload(fileInfo.file).then((res) => {
+    console.log('res', res)
+    fileInfo.status = 'success'
+    fileInfo.message = '上传成功'
+    formData.value.image = res.data.path
+  })
+}
+const afterDel = () => {
+  console.log('asdsad')
+  formData.value.image = ''
+}
+
+const submit = () => {
+  if (!formData.value.title) {
+    showToast('请输入标题')
+    return
+  }
+  if (!formData.value.content) {
+    showToast('请输入内容描述')
+    return
+  }
+  if (!fileList.value.length) {
+    showToast('请上传截图')
+    return
+  }
+
+  // const formdata = new FormData()
+  // formdata.append('title', formData.value.title)
+  // formdata.append('content', formData.value.title)
+  // formdata.append('image', fileList.value[0].file)
+  // console.log('formdata', formdata)
+  getPosterCreate(formData.value).then((res) => {
+    if (res.code !== 200) {
+      return showToast(res.msg)
+    }
+
+    console.log('reqWalletSave', res)
+    showToast('添加成功！')
+    router.back()
+  })
+}
 </script>
 
 <style scoped lang="less">

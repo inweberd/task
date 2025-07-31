@@ -15,6 +15,12 @@
         <img alt="" src="@/pages/home/images/banner1.jpg" />
       </van-swipe-item>
     </van-swipe>
+    <div class="shandongBox">
+      <div class="shandong">
+        <p>下级激活商人，返上级2代点券</p>
+        <p>比例：10%+5%</p>
+      </div>
+    </div>
     <!--    <div class="title" style="color: #b4a482; font-size: 22px">会员权益卡</div>-->
     <!--    <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>-->
 
@@ -943,6 +949,32 @@ const speed = ref(0.5) //滚动速度
   img {
     width: 100%;
     height: 200px;
+  }
+}
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.shandongBox {
+  margin: 10px 0;
+  background-color: #000;
+
+  .shandong {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #f9d423, #ff4e50, #7b4397, #00c6ff);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 2s ease infinite;
   }
 }
 </style>

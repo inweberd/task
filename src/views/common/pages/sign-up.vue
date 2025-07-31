@@ -219,7 +219,7 @@ const state = reactive({
   }
 })
 const goQQ = () => {
-  window.location.href = 'https://qm.qq.com/q/x00vQBFn4A'
+  window.location.href = 'https://qm.qq.com/q/JXgJRgIn8O'
 }
 const SignUp = async () => {
   if (!state.struct.social) return showFailToast('请输入手机号码')

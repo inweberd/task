@@ -212,7 +212,9 @@ const getRank = () => {
   getWalletRank(1).then((res) => {
     Toast.clear()
     if (res.code === 200) {
-      r1.value = (res.data || []).filter((item) => item.user?.phone !== '18317687729')
+      r1.value = (res.data || []).filter(
+        (item) => !['18317687729', '15616911928', '19273022704'].includes(item.user?.phone)
+      )
     }
     // rankList.value = [
     //   {
@@ -252,19 +254,25 @@ const getRank = () => {
   getWalletRank(2).then((res) => {
     Toast.clear()
     if (res.code === 200) {
-      r2.value = (res.data || []).filter((item) => item.user?.phone !== '18317687729')
+      r2.value = (res.data || []).filter(
+        (item) => !['18317687729', '15616911928', '19273022704'].includes(item.user?.phone)
+      )
     }
   })
   getWalletRank(3).then((res) => {
     Toast.clear()
     if (res.code === 200) {
-      r3.value = (res.data || []).filter((item) => item.user?.phone !== '18317687729')
+      r3.value = (res.data || []).filter(
+        (item) => !['18317687729', '15616911928', '19273022704'].includes(item.user?.phone)
+      )
     }
   })
   getWalletRank(4).then((res) => {
     Toast.clear()
     if (res.code === 200) {
-      r4.value = (res.data || []).filter((item) => item.user?.phone !== '18317687729')
+      r4.value = (res.data || []).filter(
+        (item) => !['18317687729', '15616911928', '19273022704'].includes(item.user?.phone)
+      )
     }
   })
 }

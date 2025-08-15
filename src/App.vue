@@ -147,8 +147,18 @@
     @confirm="shareFriendFn"
   >
     <div style="padding: 20px; color: #fff; text-align: center">
-      <p>请先分享邀请海报到朋友圈，再进行下一步操作！ 群英会，您的创业首选，财富不打烊！</p>
+      <p>请先分享邀请海报到朋友圈，再进行下一步操作！ 蚂蚁优选，您的创业首选，财富不打烊！</p>
     </div>
+  </TipDialog>
+  <TipDialog
+    :show-close="true"
+    v-model="showDownloadOverLay"
+    confirm-text="点击下载"
+    @confirm="toDownload"
+  >
+    <p style="height: 5px; color: #000; margin: 10px 10px 30px">
+      下载app，进行微信认证，获得更高收益
+    </p>
   </TipDialog>
   <!--  <van-floating-bubble-->
   <!--    axis="xy"-->
@@ -204,7 +214,13 @@ import {
   testCallback,
   wechatShareImg
 } from '@/utils/ad'
-import { reqCreateShareLog, reqUpdateUserInfo, reqUserInfo, reqUserStaff } from '@/api/myApi'
+import {
+  reqCreateShareLog,
+  reqUpdateUserInfo,
+  reqUserInfo,
+  reqUserStaff,
+  reqWechatSignin
+} from '@/api/myApi'
 import dayjs from 'dayjs'
 import imageSrc from '@/assets/img/share2.jpg'
 
@@ -217,6 +233,7 @@ import { Toast } from 'tdesign-mobile-vue'
 import { _notice } from '@/utils'
 import bus from '@/utils/bus'
 import { closeToast } from 'vant'
+import { copyToClipboard } from '@/utils/copyToClipboard'
 
 const store = useBaseStore()
 const route = useRoute()
@@ -226,7 +243,7 @@ const showOverlay = ref(false)
 
 const goDownload = () => {
   try {
-    window.location.href = `https://qyh.88tong.cn/download`
+    window.location.href = `https://fx.kujspvp.cn/download`
   } catch (e) {
     _notice('下载失败')
   }
@@ -315,9 +332,9 @@ const generatePoster = async () => {
     return
   }
   qrCodeText.value =
-    'http://bbbnklswx0717ffxxjkf15.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+    'http://bbbnklswx0811ffxxjkf11.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     // encodeURIComponent(
-    'https://qyh.88tong.cn/#/signUp?invite=' +
+    'https://fx.kujspvp.cn/#/signUp?invite=' +
     JSON.parse(window.localStorage.getItem('userInfo'))?.invite?.code
   // )
   canvas.value.width = canvasWidth.value
@@ -361,13 +378,13 @@ const generatePoster = async () => {
     qrCodeImage.onload = () => {
       // 在海报上绘制二维码，位置在正中心下方
       const qrCodeX = canvasWidth.value - 130
-      const qrCodeY = canvasHeight.value - 170
+      const qrCodeY = canvasHeight.value - 130
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }
     const avatarImage = new Image()
     // avatarImage.style.borderRadius = '50%'
-    if (userInfo.avatar) {
-      fetch(userInfo.avatar, {
+    if (userInfo?.display?.avatar) {
+      fetch(userInfo.display.avatar, {
         responseType: 'blob'
       })
         .then((response) => {
@@ -407,13 +424,13 @@ const generatePoster = async () => {
     if (userInfo.nickname) {
       name = userInfo.nickname
     }
-    ctx.fillText(name, 75, canvasHeight.value - 70)
+    // ctx.fillText(name, 75, canvasHeight.value - 70)
     ctx.font = '16px Arial'
 
-    ctx.fillText('邀请码：', 75, canvasHeight.value - 40)
+    ctx.fillText('邀请码：', 75, canvasHeight.value - 60)
     ctx.fillStyle = '#000'
     ctx.font = '16px Arial'
-    ctx.fillText(userInfo?.invite?.code, 135, canvasHeight.value - 40)
+    ctx.fillText(userInfo?.invite?.code, 135, canvasHeight.value - 60)
     // ctx.drawImage(image, 0, 0, canvasWidth.value, canvasHeight.value)
     //
     // const qrCodeSize = canvasWidth.value * 0.33 // 调整二维码的大小
@@ -459,18 +476,21 @@ function clipboardCopy(content) {
 }
 
 const toDownload = () => {
-  window.android.openBrowser('https://qyh.88tong.cn/download/android.apk')
+  // window.android.openBrowser('https://fx.kujspvp.cn/download/android.apk')
+  window.location.href = `https://fx.kujspvp.cn/download`
 
-  // window.location.href = `https://qyh.88tong.cn/download/android.apk`
+  // window.location.href = `https://fx.kujspvp.cn/download/android.apk`
 }
 
 const upGrade = () => {
-  window.android.openBrowser('https://qyh.88tong.cn/download/android.apk')
+  window.android.openBrowser('https://fx.kujspvp.cn/download/android.apk')
   // clipboardCopy('')
   // navigator.clipboard.writeText('12312').then(() => {
   //   alert('复制成功')
   // })
 }
+const showDownloadOverLay = ref(false)
+
 const shareFriendFn = () => {
   shareDialogShow.value = false
   window.shareFriend()
@@ -484,7 +504,7 @@ onMounted(() => {
   if (isWeChatBrowser) {
     // loadWx(() => {
     //   wx.onMenuShareTimeline({
-    //     title: '群英会',
+    //     title: '蚂蚁优选',
     //     // link: 'http://movie.douban.com/subject/25785114asd/',
     //     imgUrl: 'http://tc.izakq.com/media/logo2.png',
     //     trigger: function (res) {
@@ -551,6 +571,20 @@ onMounted(() => {
     // alert(13311)
   }
   window.setU = function (params) {
+    // copyToClipboard(params.code)
+    // alert(params.code)
+    reqWechatSignin({
+      code: params.code
+    }).then((res) => {
+      // alert(JSON.stringify(res))
+      mui.toast(res.msg)
+      console.log('res')
+      window.alreadyRenzheng && window.alreadyRenzheng()
+    })
+    // .catch((err) => {
+    //   alert(JSON.stringify(err))
+    // })
+    return
     console.log('params', params)
     const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
     const data = {
@@ -590,6 +624,19 @@ onMounted(() => {
 
   window.showShareFriend = function () {
     shareDialogShow.value = true
+  }
+
+  window.goRenzheng = function () {
+    const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
+    if (userInfo.unionid) {
+      mui.toast('此账号已经认证！')
+      return
+    }
+    if (!window.android && !window.android?.wxLogin) {
+      showDownloadOverLay.value = true
+      return
+    }
+    window.android.wxLogin()
   }
 
   window.shareFriend = function () {
@@ -651,6 +698,8 @@ onMounted(() => {
 
 <style lang="less">
 @import './assets/less/index';
+@import url('@/assets/css/mui.min.css');
+@import url('@/assets/font-awesome/css/font-awesome.min.css');
 
 * {
   user-select: none;
@@ -667,6 +716,7 @@ input:-webkit-autofill:active {
 }
 
 :root {
+  font-size: 10px;
   //--van-text-color: #fff;
   //--van-nav-bar-background: #0e0f13 !important;
   --van-cell-group-background: transparent !important;
@@ -679,12 +729,12 @@ input:-webkit-autofill:active {
 
   --van-field-label-color: #fff;
 
-  --td-tab-track-color: #fe694b;
+  --td-tab-track-color: #4bcfe3;
 
   --td-tab-item-color: #646566;
   --td-tab-item-active-color: #000;
 
-  --wallet-bg: #fdfae9;
+  --wallet-bg: #eaeaea;
 
   --van-cell-active-color: transparent !important;
 }

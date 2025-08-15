@@ -13,7 +13,7 @@
       </template>
     </van-nav-bar>
     <div class="container">
-      <div class="info">
+      <div class="info" v-if="false">
         <div class="avatar" @click="renzheng(userInfo.avatar)">
           <img :src="userInfo.avatar || headImg" />
         </div>
@@ -99,6 +99,14 @@
             <div class="team-box-list-item1">团队充值</div>
             <div class="team-box-list-item2">{{ userIncomeInfo.teamTotalRecharge || 0 }}</div>
           </div>
+          <div class="team-box-list-item">
+            <div class="team-box-list-item1">直属30级下级</div>
+            <div class="team-box-list-item2">0</div>
+          </div>
+          <div class="team-box-list-item">
+            <div class="team-box-list-item1">直属35级下级</div>
+            <div class="team-box-list-item2">0</div>
+          </div>
           <!--          <div class="team-box-list-item">-->
           <!--            <div class="team-box-list-item1">团队总兑换</div>-->
           <!--            <div class="team-box-list-item2">{{ memberInfo.team?.withdraw || 0 }}</div>-->
@@ -115,21 +123,13 @@
       </div>
 
       <div>
-        <div class="stats"></div>
         <!--      <van-search v-model="searchInfo.phone" placeholder="请输入要查询的手机号码" />-->
         <!--      <van-button color="#01c5f0" style="width: 100%; border-radius: 20px">直推人员列表</van-button>-->
-        <div
-          style="
-            padding: 10px;
-            background-color: #ffefd6;
-            margin: 15px;
-            border-radius: 15px 10px 0 0;
-          "
-        >
+        <div style="padding: 10px; margin: 15px; border-radius: 15px 10px 0 0">
           <!--        <div style="font-size: 22px; color: #fff; font-weight: bolder">团队列表</div>-->
           <van-tabs
             v-model:active="active"
-            color="#fe694b"
+            color="#4dd0e3"
             title-active-color="#000"
             @change="tabChange"
           >
@@ -156,11 +156,11 @@
           <!--            &lt;!&ndash;                        />&ndash;&gt;-->
           <!--          </t-tabs>-->
           <!--        </div>-->
-          <van-search
-            v-model="searchInfo.phone"
-            placeholder="请输入下级手机号码"
-            @search="onSearch"
-          />
+          <!--          <van-search-->
+          <!--            v-model="searchInfo.phone"-->
+          <!--            placeholder="请输入下级手机号码"-->
+          <!--            @search="onSearch"-->
+          <!--          />-->
           <van-list
             v-model:loading="loading"
             :finished="finished"
@@ -281,7 +281,7 @@
                             padding: 2px 5px;
                           "
                         >
-                          上墙{{ item?.MaxClimbLadder?.level }}层
+                          爬塔等级:{{ item?.MaxClimbLadder?.level }}级
                         </span>
                       </div>
                     </div>
@@ -290,17 +290,17 @@
                     <!--                </div>-->
                   </div>
                 </div>
-                <div
-                  style="
-                    width: 100%;
-                    text-align: left;
-                    padding-top: 8px;
-                    font-size: 12px;
-                    color: #999;
-                  "
-                >
-                  注册时间： {{ utils.timeToDate(item.signInTime, 'Y-M-D H:i') }}
-                </div>
+                <!--                <div-->
+                <!--                  style="-->
+                <!--                    width: 100%;-->
+                <!--                    text-align: left;-->
+                <!--                    padding-top: 8px;-->
+                <!--                    font-size: 12px;-->
+                <!--                    color: #999;-->
+                <!--                  "-->
+                <!--                >-->
+                <!--                  注册时间： {{ utils.timeToDate(item.signInTime, 'Y-M-D H:i') }}-->
+                <!--                </div>-->
                 <!--            <div class="money">￥{{ parseFloat(item?.result?.staff?.money || 0).toFixed(2) }}</div>-->
                 <div class="money">
                   <!--              ￥{{ parseFloat(item?.result?.wallet?.today?.profit || 0).toFixed(2) }}-->
@@ -469,20 +469,20 @@ onActivated(() => {
 .team-benefits {
   height: 100%;
   overflow-y: auto;
-  background-color: rgb(247, 213, 152);
+  //background-color: rgb(247, 213, 152);
   //background: url('@/assets/img/main-bg.jpg') no-repeat left top / 100% 100%;
 
   :deep(.van-nav-bar) {
-    background-color: #f6d598 !important;
+    background-color: #fff !important;
 
     .van-icon {
-      color: #fff !important;
+      color: #000 !important;
     }
   }
 
   :deep(.van-nav-bar__content) {
     .van-nav-bar__title {
-      color: #fff !important;
+      color: #000 !important;
     }
   }
 
@@ -492,7 +492,7 @@ onActivated(() => {
 
   :deep(.van-tabs) {
     .van-tabs__nav {
-      background-color: #fdfae9 !important;
+      background-color: #eaeaea !important;
     }
   }
 }
@@ -574,7 +574,7 @@ onActivated(() => {
 
 .card-body {
   padding: 10px;
-  background-color: #fdfae9;
+  background-color: #eaeaea;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -728,7 +728,7 @@ onActivated(() => {
       display: flex;
       justify-content: center;
       padding: 20px 0 20px 0;
-      background-color: #fdfae9;
+      background-color: #eaeaea;
       border-bottom-right-radius: 7px;
       border-bottom-left-radius: 7px;
 
@@ -759,13 +759,19 @@ onActivated(() => {
       box-sizing: border-box;
       padding-left: 15px;
       display: flex;
-      background-image: url(https://lx.aosenn.com/h5/static/find/cloumnbj1.png);
+      background: linear-gradient(-90deg, rgb(63, 205, 235), rgb(188, 226, 158));
+
+      //background-image: url(https://lx.aosenn.com/h5/static/find/cloumnbj1.png);
       background-size: 100% 100%;
-      color: #fff;
+      color: #000;
     }
     .team-box-list {
       display: flex;
-      background-color: #ffefd6;
+      //background-color: #ffefd6;
+      background: linear-gradient(-90deg, rgb(63, 205, 235), rgb(188, 226, 158));
+
+      //background: url('./images/team_bg.jpg') no-repeat;
+
       flex-wrap: wrap;
       padding: 6px 0;
 
@@ -779,7 +785,7 @@ onActivated(() => {
         .team-box-list-item1 {
           line-height: 32px;
           font-size: 13px;
-          color: #cba67e;
+          color: #000;
         }
         .team-box-list-item2 {
           font-weight: 700;

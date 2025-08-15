@@ -1,5 +1,5 @@
 <template>
-  <van-overlay :show="modelValue" :z-index="99999999">
+  <van-overlay :show="modelValue" :z-index="2">
     <div class="wrapper" @click.stop>
       <div class="update-container">
         <!--        <div class="title">{{ title }}</div>-->
@@ -8,15 +8,15 @@
         </div>
         <van-button
           v-if="showConfirm"
-          color="#fff"
+          color="linear-gradient(-90deg, rgb(63, 205, 235), rgb(188, 226, 158))"
           style="border-radius: 20px; width: 80%; color: #0775f1; font-weight: bolder"
           @click="handleConfirm"
         >
           {{ confirmText }}
         </van-button>
-      </div>
-      <div v-if="showClose" class="close" @click="modelValue = false">
-        <img src="./img/close.png" />
+        <div v-if="showClose" class="close" @click="modelValue = false">
+          <van-icon name="cross" />
+        </div>
       </div>
     </div>
   </van-overlay>
@@ -52,13 +52,20 @@ const handleConfirm = () => {
   justify-content: center;
   height: 100%;
   flex-direction: column;
+  position: relative;
 }
 
 .close {
+  position: absolute;
+  top: -20px;
+  right: -10px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  margin-top: 10px;
+  background-color: #c2c7d2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   img {
     width: 100%;
@@ -73,7 +80,7 @@ const handleConfirm = () => {
   flex-direction: column;
   position: relative;
   width: 80%;
-  background-color: #ffdb58;
+  background-color: #fff;
   //background-image: linear-gradient(to bottom, #4e76bc 0%, #4e76bc 30%, #4e76bc 100%);
   //background: url('@/assets/img/main-bg.jpg');
   background-size: 100% 100%;

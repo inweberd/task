@@ -1,84 +1,130 @@
 <template>
-  <div class="signupClass">
-    <div class="logo-box">
-      <img alt="" src="@/assets/img/logo.png" />
-      <div class="logo-box-content">
-        <div class="info">
-          <!--          <p>群英会阶梯</p>-->
-          <!--                    <p>the big thumb video</p>-->
-        </div>
+  <div class="register">
+    <div class="top-navbar">
+      <div class="left" @click="$router.push('/login')">
+        <img
+          style="width: 25px; height: 20px"
+          src="https://lx.aosenn.com/h5/static/register/arrow.png"
+          draggable="false"
+        />
       </div>
+      <div class="right">注册</div>
     </div>
-    <!--    <ToggleLoginAndRegister :active="1" style="margin-top: 50px"></ToggleLoginAndRegister>-->
 
-    <div class="container d-flex justify-content-around user-select-none">
+    <div class="container">
       <div class="right card backdrop-filter" style="width: 100%">
-        <div
-          class="card-body p-lg-4"
-          style="
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            width: 100%;
-          "
-        >
-          <van-cell-group style="width: 100%">
-            <van-field v-model="state.struct.social" placeholder="请输入手机号码" />
-            <van-field
-              style="margin-top: 20px"
-              v-model="state.struct.code"
-              placeholder="请输入短信验证码"
-            >
-              <template #button>
-                <div style="color: #999" @click="SendCode">
-                  <span v-if="!state.status.code">发送验证码</span>
-                  <span v-else>{{ state.code.second }}秒重新发送</span>
-                </div>
-              </template>
-            </van-field>
-            <van-field
-              style="margin-top: 20px"
-              v-model="state.struct.password"
-              placeholder="请输入密码"
-              type="password"
-            />
-            <van-field
-              v-model="state.struct.AgainPassword"
-              placeholder="请再次输入密码"
-              type="password"
-              style="margin-top: 20px"
-            />
+        <van-cell-group style="width: 100%">
+          <van-field clearable v-model="state.struct.social" placeholder="请输入手机号">
+            <template #left-icon>
+              <img
+                src="https://lx.aosenn.com/h5/static/login/icon_name.png"
+                style="width: 15px; height: 16px"
+              />
+            </template>
+          </van-field>
+          <van-field
+            style="margin-top: 20px"
+            clearable
+            v-model.trim="state.struct.code"
+            placeholder="请输入验证码"
+          >
+            <template #left-icon>
+              <img
+                src="https://lx.aosenn.com/h5/static/login/icon_yzm@2x.png"
+                style="width: 15px; height: 16px"
+              />
+            </template>
+            <template #button>
+              <div
+                style="
+                  width: 80px;
+                  height: 28px;
+                  line-height: 28px;
+                  text-align: center;
+                  border-radius: 20px;
+                  background-color: #fcd323;
+                  font-size: 12px;
+                  color: #000;
+                "
+                @click="SendCode"
+              >
+                <span v-if="!state.status.code">发送验证码</span>
+                <span v-else>{{ state.code.second }}秒重新发送</span>
+              </div>
+            </template>
+          </van-field>
+          <van-field
+            clearable
+            style="margin-top: 20px"
+            v-model="state.struct.password"
+            placeholder="请输入密码"
+            type="password"
+          >
+            <template #left-icon>
+              <img
+                src="https://lx.aosenn.com/h5/static/login/icon_mm.png"
+                style="width: 15px; height: 16px"
+              />
+            </template>
+          </van-field>
+          <van-field
+            clearable
+            v-model="state.struct.AgainPassword"
+            placeholder="请确认密码"
+            type="password"
+            style="margin-top: 20px"
+          >
+            <template #left-icon>
+              <img
+                src="https://lx.aosenn.com/h5/static/login/icon_mm.png"
+                style="width: 15px; height: 16px"
+              />
+            </template>
+          </van-field>
 
-            <van-field
-              style="margin-top: 20px"
-              v-model="state.struct.invite"
-              :disabled="route.query.invite"
-              placeholder="请输入邀请码"
-            />
-          </van-cell-group>
-          <!--          <div style="text-align: right; width: 100%; margin: 10px 10px 20px 0">-->
-          <!--            <span @click="$router.push('/common/sign-forget')"> 找回密码 </span>-->
-          <!--          </div>-->
-          <el-button
-            :loading="state.status.wait"
-            class="w-100"
-            color="#01c5f0"
-            size="large"
-            style="
-              margin-top: 20px;
-              border-radius: 15px;
-              color: #0775f1;
-              background-color: #bfd8d8;
-              font-weight: bolder;
-            "
-            type="primary"
-            @click="SignUp"
-            >注册
-          </el-button>
+          <van-field
+            clearable
+            style="margin-top: 20px"
+            v-model="state.struct.inviteCode"
+            :disabled="route.query.invite"
+            placeholder="邀请码"
+          >
+            <template #left-icon>
+              <img
+                src="https://lx.aosenn.com/h5/static/login/icon_name.png"
+                style="width: 15px; height: 16px"
+              />
+            </template>
+          </van-field>
+        </van-cell-group>
+        <div class="pass_con" style="margin-top: 20px">
+          <div style="font-size: 14px; display: flex; justify-content: space-between">
+            <!--            <span @click="$router.push('/common/sign-up')">注册账号</span>-->
+            <span @click="goDownload">下载APP</span>
+            <span @click="goQQ">官方客服</span>
+          </div>
         </div>
+        <!--          <div style="text-align: right; width: 100%; margin: 10px 10px 20px 0">-->
+        <!--            <span @click="$router.push('/common/sign-forget')"> 找回密码 </span>-->
+        <!--          </div>-->
+        <el-button
+          :loading="state.status.wait"
+          color="#fcd323"
+          size="large"
+          style="
+            border-radius: 30px;
+            border: none;
+            color: #444;
+            width: 100%;
+            height: 45px;
+            margin-top: 50px;
+          "
+          type="primary"
+          @click="SignUp"
+          >注册
+        </el-button>
       </div>
-      <div style="width: 80%; margin: 30px auto 0">
+      <div style="width: 80%; margin: 30px auto 0" v-if="false">
         <!--      <van-divider-->
         <!--        :style="{ color: '#666', borderColor: '#666', padding: '0 16px' }"-->
         <!--        style="width: 100%; margin-top: 20px"-->
@@ -87,12 +133,12 @@
         <!--      </van-divider>-->
         <div style="display: flex; justify-content: space-evenly; align-items: center; width: 100%">
           <a
-            style="font-size: 16px; color: #fff; padding: 4px 12px; border-radius: 8px"
+            style="font-size: 16px; color: #000; padding: 4px 12px; border-radius: 8px"
             @click="goDownload"
             >下载app</a
           >
           <a
-            style="font-size: 16px; color: #fff; padding: 4px 12px; border-radius: 8px"
+            style="font-size: 16px; color: #000; padding: 4px 12px; border-radius: 8px"
             @click="jumpToQQ2"
             >官方交流群
           </a>
@@ -135,6 +181,7 @@ import { showFailToast, showToast } from 'vant'
 import { DocumentCopy, User, Lock, Connection } from '@element-plus/icons-vue'
 import { _notice } from '@/utils'
 import ToggleLoginAndRegister from '@/views/common/components/ToggleLoginAndRegister.vue'
+import { throttle } from 'lodash'
 
 const showGonggaoOverlay = ref(false)
 
@@ -151,7 +198,7 @@ const state = reactive({
     code: '',
     social: '',
     account: '',
-    invite: route.query.invite || '',
+    inviteCode: route.query.invite || '',
     password: '',
     AgainPassword: ''
   },
@@ -171,19 +218,21 @@ const state = reactive({
     second: 0
   }
 })
-
+const goQQ = () => {
+  window.location.href = 'https://qm.qq.com/q/LVWCgqGSKQ'
+}
 const SignUp = async () => {
   if (!state.struct.social) return showFailToast('请输入手机号码')
   if (!state.struct.password) return showFailToast('请输入密码')
   if (!state.struct.AgainPassword) return showFailToast('请再次输入密码')
   if (state.struct.password !== state.struct.AgainPassword) return showFailToast('两次密码不一致')
-  if (state.struct.password.length < 8) return showFailToast('密码长度不得小于8位')
+  if (state.struct.password.length < 6) return showFailToast('密码长度不得小于6位')
   if (!state.struct.code) return showFailToast('请输入验证码')
-
+  state.struct.code = state.struct.code.trim()
   state.status.wait = true
 
   const { code, data, msg } = await POST(
-    '/api/comm/register',
+    '/api/comm/sign-up',
     {
       ...state.struct,
       account: state.struct.social
@@ -209,19 +258,24 @@ const SignUp = async () => {
   for (let i in state.struct) state.struct[i] = ''
 
   showToast('注册成功')
-  // window.location.href = `https://qyh.88tong.cn/download`
+  // window.location.href = `https://fx.kujspvp.cn/download`
   // 跳转到首页
   router.push({ path: '/' })
 }
 
 // 发送验证码
-const SendCode = async () => {
+const SendCode = throttle(async () => {
+  if (state.code.second) return
   if (!state.struct.social) return showFailToast('请输入手机号码')
+  if (!state.struct.password) return showFailToast('请输入密码')
+
+  if (state.struct.password.length < 6) return showFailToast('密码长度不得小于6位')
 
   const { code, msg } = await POST(
-    '/api/comm/register',
+    '/api/comm/sign-up',
     {
-      invite: state.struct.invite,
+      ...state.struct,
+      inviteCode: state.struct.inviteCode,
       social: state.struct.social
     },
     { AutoToken: false }
@@ -234,7 +288,7 @@ const SendCode = async () => {
   state.code.timer = setInterval(() => {
     state.code.second--
   }, 1000) as unknown as number
-}
+}, 2000)
 
 // 监听验证码倒计时
 watch(
@@ -251,7 +305,7 @@ watch(
 
 function goDownload() {
   try {
-    window.location.href = `https://qyh.88tong.cn/download`
+    window.location.href = `https://fx.kujspvp.cn/download`
   } catch (e) {
     _notice('下载失败')
   }
@@ -266,148 +320,37 @@ function jumpToQQ2() {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/css/root.css';
-// 通过scss覆盖element-plus样式
-@import '@/assets/css/el-plus.scss';
-// 覆盖element-plus样式
-@import '@/assets/css/el-plus.css';
-// Bootstrap样式
-@import 'bootstrap/dist/css/bootstrap.css';
-// 覆盖bootstrap样式
-@import '@/assets/css/bootstrap.css';
-// 导入样式
-@import '@/assets/css/index.css';
-
-.el-segmented {
-  --el-border-radius-base: 50px;
-  --el-text-color-regular: white;
-  --el-segmented-bg-color: transparent;
-  --el-segmented-item-hover-color: white;
-  --el-segmented-item-selected-color: white;
-  --el-segmented-item-hover-bg-color: transparent;
-  --el-segmented-item-active-bg-color: transparent;
-  --el-segmented-item-selected-bg-color: rgba(var(--inis-theme));
-}
-
-body {
-  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
-}
-
-.text-white {
-  color: #666 !important;
-}
-
-.contact {
-  position: fixed;
-  top: 10%;
-  right: 0;
-  display: flex;
-  align-items: center;
-  background-color: #fff;
-  color: #000;
-  border-radius: 20px 0 0 20px;
-  padding: 4px;
-  box-shadow:
-    0px 0.1px 2.2px rgba(0, 0, 0, 0.02),
-    0px 0.3px 5.3px rgba(0, 0, 0, 0.028),
-    0px 0.5px 10px rgba(0, 0, 0, 0.035),
-    0px 0.9px 17.9px rgba(0, 0, 0, 0.042),
-    0px 1.7px 33.4px rgba(0, 0, 0, 0.05),
-    0px 4px 80px rgba(0, 0, 0, 0.07);
-
-  img {
-    margin-right: 4px;
-    width: 25px;
+.register {
+  color: #303133;
+  .top-navbar {
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-top: 0;
+    .left {
+    }
+    .right {
+      font-size: 18px;
+    }
   }
-}
-
-:deep(.el-input) {
-  overflow: hidden;
-  border-radius: 50px;
-  margin-bottom: 10px;
-}
-
-.signupClass {
-  width: 100%;
-  height: 100vh;
-  overflow-y: auto;
-  color: #666;
-  background: url('../assets/images/login-bg.png') no-repeat;
-  background-size: 100% 100%;
-  //background-repeat: no-repeat;
-  //background-image: url('@/assets/img/bg.png');
-  //background-size: 100% auto;
   .container {
-    flex-direction: column;
-    width: 80%;
-    margin: 20px auto 0;
-    //background-color: #2e3350;
+    margin: 0 auto;
     padding: 20px 20px;
-    border-radius: 20px;
-    //box-shadow: 0 0 10px #0000001f;
-  }
-}
 
-:deep(.van-cell) {
-  border-bottom: 1px solid #4d536a;
-  background: #3b82f2;
-  border-radius: 10px;
-
-  &::after {
-    border: none !important;
-  }
-
-  .van-field__body {
-    input {
-      text-align: center;
-      color: #fff !important;
-
-      &::placeholder {
-        color: #fff !important;
+    :deep(.van-cell) {
+      border-bottom: 0.5px solid #f2f2f2;
+      &:after {
+        border: none !important;
+      }
+      .van-field__control {
+        text-indent: 20px;
       }
     }
-  }
-}
-
-:deep(.van-hairline--top-bottom) {
-  &::after {
-    border-width: 0;
-  }
-}
-
-.input {
-  background-color: transparent !important;
-  border: 1px solid #666;
-  border-radius: 15px;
-}
-
-.logo-box {
-  margin-top: 30px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-
-  & > img {
-    width: 100px;
-  }
-
-  .logo-box-content {
-    display: flex;
-
-    img {
-      width: 60px;
-    }
-
-    .info {
-      color: #fff;
-      margin-left: 16px;
-      text-align: center;
-
-      p:nth-child(1) {
-        font-size: 26px;
-        letter-spacing: 8px;
+    :deep(.van-hairline--top-bottom) {
+      &:after {
+        border-width: 0 !important;
       }
     }
   }

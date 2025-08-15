@@ -175,7 +175,7 @@ function onSubmit() {
       data.password2 = ''
       data.invite = ''
       // router.replace('/login')
-      window.location.href = `https://qyh.88tong.cn/download`
+      window.location.href = `https://fx.kujspvp.cn/download`
     }
   })
 }

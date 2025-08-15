@@ -32,7 +32,7 @@
         placeholder="请输入真实姓名"
       />
 
-      <text-area label="收款账号" v-model:content="detail.account" rows="2" placeholder="请输入" />
+      <!--      <text-area label="收款账号" v-model:content="detail.account" rows="2" placeholder="请输入" />-->
 
       <LabelTitle tips="收款码" icon-name="text_area" :is-require="true" />
       <van-uploader v-model="fileList" :after-read="afterRead" :max-count="1" />
@@ -50,6 +50,8 @@
       color="#fcd323"
       size="large"
       style="
+        background: linear-gradient(-90deg, rgb(63, 205, 235), rgb(188, 226, 158));
+
         border-radius: 30px;
         border: none;
         color: #444;
@@ -79,7 +81,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onActivated } from 'vue'
 import TextArea from '@/components/textArea/TextArea.vue'
 import LabelTitle from '@/components/labelTitle/LabelTitle.vue'
 import { find } from '@/utils/tree'
@@ -127,10 +129,10 @@ const save = () => {
     showToast('请输入姓名')
     return
   }
-  if (!detail.value.account) {
-    showToast('请输入账号')
-    return
-  }
+  // if (!detail.value.account) {
+  //   showToast('请输入账号')
+  //   return
+  // }
   if (!fileList.value.length) {
     showToast('请上传收款码')
     return
@@ -153,6 +155,15 @@ const save = () => {
     router.back()
   })
 }
+onActivated(() => {
+  detail.value = {
+    scene: '',
+    name: '',
+    account: '',
+    remark: ''
+  }
+  fileList.value = []
+})
 </script>
 
 <style scoped lang="less">
@@ -160,13 +171,21 @@ const save = () => {
   color: #303133;
   font-size: 14px;
   height: calc(100vh);
-  background-color: #f3f3f3;
+  background-color: #fff;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 
+  :deep(.van-field__control) {
+    background-color: transparent;
+    border: none;
+    margin-bottom: 0;
+    padding: 0;
+    height: auto;
+  }
+
   :deep(.van-nav-bar) {
-    background-color: #fed61f !important;
+    background-color: #fff !important;
     .van-nav-bar__title {
       color: #000 !important;
     }

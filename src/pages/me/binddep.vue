@@ -610,10 +610,10 @@ const deleteCard = (item, index) => {
   }
   :deep(.t-tabs__nav) {
     .t-tabs__wrapper {
-      background-color: #fdfae9 !important;
+      background-color: #eaeaea !important;
     }
     .t-tabs__scroll {
-      background-color: #fdfae9 !important;
+      background-color: #eaeaea !important;
     }
   }
   :deep(.van-hairline--bottom) {

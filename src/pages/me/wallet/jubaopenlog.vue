@@ -41,7 +41,7 @@
               <span
                 style="font-size: 16px; color: #f6202b; font-weight: bolder"
                 class="text-warning"
-                >{{ (item.value / 10).toFixed(2) || 0 }}点券</span
+                >{{ (item.value / 10).toFixed(2) || 0 }}金币</span
               >
             </div>
             <div style="margin-top: 6px">
@@ -133,7 +133,7 @@ onMounted(() => {
 }
 
 .container {
-  background-color: #fdfae9;
+  background-color: #eaeaea;
   margin: 10px;
   border-radius: 10px;
   color: #000;

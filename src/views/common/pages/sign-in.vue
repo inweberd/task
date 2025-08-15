@@ -1,86 +1,78 @@
 <template>
-  <!--  <div class="signinClass">sa</div>-->
   <div class="login_box">
-    <div class="back">
-      <div class="title-banner">
-        <div class="title">
-          <div class="title1">Hello</div>
-          <div class="title2">欢迎使用群英会年度钜制</div>
-        </div>
+    <header class="mui-bar mui-bar-transparent">
+      <!---<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>--->
+      <h1 class="mui-title"></h1>
+    </header>
+    <div class="content">
+      <div class="header">
+        <!--img src="/upload/default_mobile/images/logo.png"-->
+        <!--        <i class="fa fa-user-o"></i>-->
       </div>
-      <div class="login-type-box">
-        <!--        <div class="login-type-item ">账号登录</div>-->
-        <div class="login-type-item login-type-item-active">手机号登录</div>
-      </div>
-      <div class="item">
-        <van-cell-group style="width: 100%">
-          <van-field
-            left-icon="user"
-            v-model="state.struct.account"
-            clearable
-            placeholder="手机号码"
-          >
-            <template #left-icon>
-              <img
-                src="https://lx.aosenn.com/h5/static/login/icon_name.png"
-                style="width: 15px; height: 16px"
-              />
-            </template>
-          </van-field>
-          <van-field
-            style="margin-top: 20px"
-            v-model="state.struct.password"
-            placeholder="密码"
-            type="password"
-          >
-            <template #left-icon>
-              <img
-                src="https://lx.aosenn.com/h5/static/login/icon_mm.png"
-                style="width: 15px; height: 16px"
-              />
-            </template>
-          </van-field>
-        </van-cell-group>
+      <p
+        style="text-align: center; margin-top: 20px; text-decoration: underline"
+        @click="goDownload"
+      >
+        已有账号，去下载
+      </p>
 
-        <div class="pass_con">
-          <div class="pava">
-            <span @click="$router.push('/common/sign-up')">注册账号</span>
-            <span @click="goDownload">下载APP</span>
-            <span @click="$router.push('/common/sign-forget')">忘记密码</span>
+      <div class="list">
+        <div class="list-call">
+          <div class="ico">
+            <i class="now-ui-icons fa fa-user"></i>
           </div>
-          <div class="pava" style="margin-top: 10px">
-            <span></span>
-            <span></span>
-            <span @click="goQQ">官方QQ群</span>
-          </div>
+          <input
+            v-model="state.struct.account"
+            class="biaoti"
+            type="tel"
+            id="yhname"
+            name="yhname"
+            placeholder="请输入手机号码"
+            oninput="value=value.replace(/[^\d]/g,'')"
+            maxlength="11"
+            autocomplete="off"
+          />
         </div>
-        <div style="margin-top: 10px"></div>
-        <el-button
-          :loading="state.status.wait"
-          color="#fcd323"
-          size="large"
-          style="
-            border-radius: 30px;
-            border: none;
-            color: #444;
-            width: 100%;
-            height: 45px;
-            margin-top: 50px;
-          "
-          type="primary"
+        <div class="list-call">
+          <div class="ico">
+            <i class="now-ui-icons fa fa-lock"></i>
+          </div>
+          <input
+            v-model="state.struct.password"
+            class="biaoti"
+            type="password"
+            id="yhpass"
+            name="yhpass"
+            placeholder="请输入密码"
+          />
+        </div>
+      </div>
+
+      <div style="text-align: center">
+        <button
+          type="submit"
+          class="dlbutton"
+          id="yhdl"
+          :disabled="state.status.wait"
           @click="SignIn"
-          >登录
-        </el-button>
-        <div class="agreement_box">
-          <van-checkbox v-model="checked" checked-color="#ffce42" icon-size="16px" shape="square">
-            <div>
-              <span>我已经详细阅读</span>
-              <span @click.stop style="color: rgb(255, 206, 66)">《服务协议》</span>
-              <span>和</span>
-              <span @click.stop style="color: rgb(255, 206, 66)">《隐私协议》</span>
-            </div>
-          </van-checkbox>
-        </div>
+        >
+          登 录
+        </button>
+      </div>
+      <div class="xieyi">
+        <a
+          @click="$router.push('/common/sign-forget')"
+          class="window"
+          data-type="1"
+          data-url="/?type=forgetPwd"
+          id="kefu"
+          data-title="忘记密码"
+          >忘记密码</a
+        >
+        <span>|</span>
+        <a class="window" data-url="reg.html" id="reg" @click="$router.push('/common/sign-up')"
+          >注册账户</a
+        >
       </div>
     </div>
   </div>
@@ -103,7 +95,7 @@ import bus from '@/utils/bus'
 import ToggleLoginAndRegister from '@/views/common/components/ToggleLoginAndRegister.vue'
 import { showToast } from 'vant'
 const goQQ = () => {
-  window.location.href = 'https://qm.qq.com/q/JXgJRgIn8O'
+  window.location.href = 'https://qm.qq.com/q/LVWCgqGSKQ'
 }
 defineOptions({
   name: 'signIn'
@@ -134,7 +126,7 @@ const state = reactive({
 
 function goDownload() {
   try {
-    window.location.href = `https://qyh.88tong.cn/download`
+    window.location.href = `https://fx.kujspvp.cn/download`
   } catch (e) {
     _notice('下载失败')
   }
@@ -150,7 +142,6 @@ function jumpToQQ2() {
 const SignIn = async () => {
   if (!state.struct.account) return showToast('请输入手机号')
   if (!state.struct.password) return showToast('请输入密码')
-  if (!checked.value) return showToast('请先勾选下方协议')
   state.status.wait = true
 
   let unix
@@ -225,7 +216,6 @@ const SignIn = async () => {
   router.replace({ path: '/' })
 }
 
-const checked = ref(false)
 onMounted(() => {
   window.localStorage.removeItem('userInfo')
   window.localStorage.removeItem('token')
@@ -253,98 +243,124 @@ onMounted(() => {
 </style>
 <style lang="scss" scoped>
 .login_box {
-  color: #303133;
   width: 100%;
   height: 100vh;
-  background-color: #fff;
-  background-image: url(https://lx.aosenn.com/h5/static/login/bolang.png);
-  background-repeat: no-repeat;
-  background-size: 250px;
-  background-position: 100% 0;
   overflow: hidden;
 
-  :deep(.van-cell) {
-    border-radius: 25px;
-    box-shadow: 0 0 10px #eee;
-    .van-field__control {
-      text-indent: 20px;
-    }
+  .mui-bar {
+    box-shadow: none;
+    height: 76px;
+    padding-top: 32px;
   }
 
-  .back {
-    width: 85%;
-    border-radius: 0 0 10% 10%;
-    margin: 82px auto 0;
-    .title-banner {
-      margin-top: 115px;
-      .title {
-        display: flex;
-        align-items: flex-end;
-        .title1 {
-          font-size: 40px;
-        }
-        .title2 {
-          font-size: 20px;
-          padding-left: 7px;
-          padding-bottom: 8px;
-        }
-      }
-    }
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .header {
+    width: 101px;
+    height: 101px;
+    background:
+      url('@/assets/img/logo.png') no-repeat center / 100% 100%,
+      linear-gradient(
+        -30deg,
+        rgba(63, 205, 235, 1),
+        rgba(188, 226, 158, 1)
+      ); /*rgba(63,205,235,1);*/
+    box-shadow: 0px 12px 13px 0px rgba(63, 205, 235, 0.47);
+    border-radius: 50%;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    line-height: 101px;
+    color: #fff;
+    font-size: 50px;
+  }
 
-    .login-type-box {
-      width: 100%;
-      height: 35px;
-      display: flex;
-      align-items: center;
-      margin-top: 60px;
-      margin-bottom: 20px;
+  .header img {
+    width: 101px;
+    height: 101px;
+    border-radius: 50%;
+  }
 
-      .login-type-item {
-        margin-right: 22px;
-        font-size: 15px;
-        position: relative;
+  .list {
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
-        &-active {
-          color: #fcd323;
-          font-weight: 600;
-          height: 100%;
-          line-height: 35px;
+  .list-call {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    color: #333333;
+    border-bottom: 1px solid rgba(230, 230, 230, 1);
+  }
+  .list-call .img {
+    width: 24px;
+    height: 24px;
+  }
+  .list-call .ico {
+    width: 24px;
+    height: 24px;
+    color: #ffbe42;
+    text-align: center;
+    line-height: 24px;
+  }
+  .list-call .biaoti {
+    text-align: left;
+    margin: 0 0 0 0;
+    border: 0;
+    color: #666;
+  }
 
-          &::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 2px;
-            background-color: #fcd323;
-            bottom: 0;
-            left: 50%;
-            margin-left: -10px;
-          }
-        }
-      }
-    }
-
-    .item {
-      margin: 0 auto;
-      border-radius: 10px;
-      padding: 0px 0 20px 0;
-    }
-
-    .pass_con {
-      margin: 30px auto 0;
-      .pava {
-        font-size: 14px;
-        display: flex;
-        justify-content: space-between;
-      }
-    }
-
-    .agreement_box {
-      width: 321px;
-      margin-left: 17px;
-      font-size: 13px;
-      margin-top: 30px;
-    }
+  .dlbutton {
+    color: #ffffff;
+    font-size: 26px;
+    width: 260px;
+    height: 60px;
+    background: linear-gradient(-90deg, rgba(63, 205, 235, 1), rgba(188, 226, 158, 1));
+    box-shadow: 0px 0px 13px 0px rgba(164, 217, 228, 0.2);
+    border-radius: 50px;
+    line-height: 60px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    padding: 0;
+  }
+  .dlbutton:hover {
+    background: linear-gradient(-90deg, rgba(63, 205, 235, 0.9), rgba(188, 226, 158, 0.9));
+  }
+  .dlbutton button {
+    background: none;
+    border: 0;
+    height: 60px;
+    width: 100%;
+  }
+  .xieyi {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-top: 40px;
+    color: #ffa800;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+  }
+  .xieyi a {
+    font-size: 18px;
+    margin-left: 15px;
+    margin-right: 15px;
+    color: #ffa800;
   }
 }
 </style>

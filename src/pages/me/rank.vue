@@ -1,177 +1,125 @@
 <template>
   <div class="rank">
-    <van-nav-bar
-      :class="{ inApp: getIsInApp() }"
-      left-arrow
-      placeholder
-      safe-area-inset-top
-      title="排行榜"
-      @click-left="$router.back()"
-    >
-      <template #right>
-        <span style="color: #000" @click="$router.push('/rankIntroduce')"> 排行榜奖励规则 </span>
-      </template>
-    </van-nav-bar>
-    <div class="fenhong">
-      <div>
-        <div class="title">
-          <!--        本次周期分红总金额 <br />-->
-          <!--          （每X天进行一轮分红） <br />-->
-          <div>奖池点券</div>
-        </div>
-        <div class="money">{{ total / 10 }}</div>
-        <!--        <div class="money" style="font-size: 28px">等待更新</div>-->
-      </div>
-      <!--      <van-divider style="border-color: #bababa"></van-divider>-->
-      <!--      <div style="text-align: center; margin-top: 10px">-->
-      <!--        <div class="" style="font-size: 24px; font-weight: bolder">本轮奖池金额发放倒计时</div>-->
-      <!--        <div class="money" style="font-size: 22px; color: #000">{{ timeTxt }}</div>-->
-      <!--      </div>-->
-    </div>
-    <ToggleTab style="margin-top: 10px" @change="tabChange"></ToggleTab>
-
-    <!--    <van-swipe-->
-    <!--      style="transform: translateY(120px)"-->
-    <!--      class="my-swipe"-->
-    <!--      :autoplay="3000"-->
-    <!--      indicator-color="white"-->
+    <!--    <van-nav-bar-->
+    <!--      :class="{ inApp: getIsInApp() }"-->
+    <!--      left-arrow-->
+    <!--      placeholder-->
+    <!--      safe-area-inset-top-->
+    <!--      title="排行榜"-->
+    <!--      @click-left="$router.back()"-->
     <!--    >-->
-    <!--      &lt;!&ndash;          <van-swipe-item>&ndash;&gt;-->
-    <!--      &lt;!&ndash;            <img src="./images/banner3.png" alt="" />&ndash;&gt;-->
-    <!--      &lt;!&ndash;          </van-swipe-item>&ndash;&gt;-->
-    <!--      &lt;!&ndash;          <van-swipe-item>&ndash;&gt;-->
-    <!--      &lt;!&ndash;            <img src="./images/banner4.png" alt="" />&ndash;&gt;-->
-    <!--      &lt;!&ndash;          </van-swipe-item>&ndash;&gt;-->
-    <!--      <van-swipe-item>-->
-    <!--        <van-image :src="imageSrc1" width="100%" height="200" fit="fill"></van-image>-->
-    <!--      </van-swipe-item>-->
-    <!--      <van-swipe-item>-->
-    <!--        <van-image :src="imageSrc4" width="100%" height="200" fit="fill"></van-image>-->
-    <!--      </van-swipe-item>-->
-    <!--    </van-swipe>-->
-    <!--    <div style="display: flex; justify-content: center; margin-top: 10px">-->
-    <!--      <img src="./images/rank-bg2.png" style="width: 95%" alt="" />-->
-    <!--    </div>-->
-
-    <div class="qiansan">
-      <div class="one">
-        <div class="box">
-          <div class="img-box">
-            <img
-              :src="rankList?.[0]?.user?.avatar || headImg"
-              alt=""
-              style="width: 100%; height: 100%"
-            />
+    <!--      <template #right>-->
+    <!--        <span style="color: #000" @click="$router.push('/rankIntroduce')"> 排行榜奖励规则 </span>-->
+    <!--      </template>-->
+    <!--    </van-nav-bar>-->
+    <div class="ranking">
+      <div class="mui-content">
+        <!--        <div class="hdgz" @click="$router.push('/rankIntroduce')">-->
+        <!--          <a class="href" href="###" id="hdgz"> 查看活动规则 </a>-->
+        <!--        </div>-->
+        <div class="top">
+          <img src="./images/ranking_top.png" alt="" class="tit" />
+          <!--          <div class="date" id="hdsj">活动时间：2021年2月1日 - 2021年5月1日</div>-->
+          <div class="str">排名越高，奖励越高</div>
+          <div class="but">积分冲刺奖</div>
+        </div>
+        <div
+          style="height: calc(100% - 250px); margin-bottom: 30px"
+          class="mui-slider mui-fullscreen"
+        >
+          <!---<div style="font-size: 0.6rem; margin-top: 10px;margin-bottom: 10px;">
+          <img src="images/ranking_laba.png" height="26" style="display: inline-block;vertical-align: bottom; margin-left: 14px;">
+          <div style="display:inline-block;color: #f37a38;height:26px; line-height: 26px;" id="ad">
+            每月积分都会清零
           </div>
-          <p>1</p>
-        </div>
-        <div class="info">
-          <p style="color: #000">
-            {{ rankList?.[0]?.user?.nickname || getPhone(rankList?.[0]?.user?.phone) || '--' }}
-          </p>
-          <!--          <p>-->
-          <!--            {{ rankList?.[0]?.name }}-->
-          <!--          </p>-->
-          <p>
-            {{ rankList?.[0]?.name }}
-          </p>
-        </div>
-      </div>
-      <div class="two">
-        <div class="box">
-          <div class="img-box">
-            <img
-              :src="rankList?.[1]?.user?.avatar || headImg"
-              alt=""
-              style="width: 100%; height: 100%"
-            />
+        </div>--->
+          <div
+            id="sliderSegmentedControl"
+            class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted"
+            style="display: none"
+          >
+            <div class="mui-scroll" id="rankingtype">
+              <!---<a class="mui-control-item mui-active" href="#" data-id="1" data-first="0">ggggggg</a>--->
+            </div>
           </div>
-
-          <p>2</p>
-        </div>
-        <div class="info">
-          <p style="color: #000">
-            {{ rankList?.[1]?.user?.nickname || getPhone(rankList?.[1]?.user?.phone) || '--' }}
-          </p>
-          <p>
-            {{ rankList?.[1]?.name }}
-          </p>
-          <!--          <p>￥{{ rankList?.[1]?.totalRebatePoints || '&#45;&#45;' }}</p>-->
-        </div>
-      </div>
-      <div class="three">
-        <div class="box">
-          <div class="img-box">
-            <img
-              :src="rankList?.[2]?.user?.avatar || headImg"
-              alt=""
-              style="width: 100%; height: 100%"
-            />
+          <div class="mui-slider-group" style="bottom: 0px; top: 10px">
+            <div
+              class="mui-slider-item mui-control-content mui-active"
+              data-id="0"
+              data-rn="广告体验"
+            >
+              <div id="scroll1" class="mui-scroll-wrapper">
+                <div class="mui-scroll" style="height: 100%">
+                  <ul
+                    class="mui-grid-view mui-grid-9 table-time"
+                    data-type="广告体验"
+                    data-id="0"
+                    style="background: #f5f5f5"
+                  >
+                    <!---<li class="mui-table-cell mui-col-xs-2" data-date="day">日榜</li>
+                  <li class="mui-table-cell mui-col-xs-2" data-date="week" style="display: none;">周榜</li>
+                  <li class="mui-table-cell mui-col-xs-2 mui-active" data-date="month">月榜</li>
+                  <li class="mui-table-cell mui-col-xs-2" data-date="yesterDay">昨天</li>
+                  <li class="mui-table-cell mui-col-xs-2" data-date="lastWeek" style="display: none;">上周</li>
+                  <li class="mui-table-cell mui-col-xs-2" data-date="lastMonth">上月</li>--->
+                  </ul>
+                  <ul class="mui-grid-view mui-grid-9 table-title" style="display: flex !important">
+                    <li class="mui-table-cell mui-col-xs-4">排名</li>
+                    <li class="mui-table-cell mui-col-xs-4">用户</li>
+                    <li class="mui-table-cell mui-col-xs-4">会员等级</li>
+                  </ul>
+                  <ul
+                    class="mui-table-view"
+                    id="paihangbang"
+                    style="overflow-y: auto; height: calc(100% - 20px)"
+                  >
+                    <li
+                      class="mui-table-view-cell ranking-list"
+                      v-for="(item, index) in rankListCom"
+                    >
+                      <ul class="mui-grid-view mui-grid-9" style="display: flex">
+                        <li class="mui-table-cell mui-col-xs-4">
+                          <div class="index">a</div>
+                          <div class="money">
+                            <div class="money_a">{{ index + 1 }}</div>
+                          </div>
+                        </li>
+                        <li class="mui-table-cell mui-col-xs-4">
+                          <template v-if="item.nickname"> {{ item.nickname }}</template>
+                          <template v-else>
+                            {{
+                              item.phone
+                                ? item.phone.substring(0, 3) + '****' + item.phone.substring(7)
+                                : ''
+                            }}
+                          </template>
+                        </li>
+                        <li class="mui-table-cell mui-col-xs-4">
+                          {{ getSerialName(item.maxVipId) }}
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
-          <p>3</p>
-        </div>
-        <div class="info">
-          <p style="color: #000">
-            {{ rankList?.[2]?.user?.nickname || getPhone(rankList?.[2]?.user?.phone) || '--' }}
-          </p>
-          <p>
-            {{ rankList?.[2]?.name }}
-          </p>
-          <!--          <p>￥{{ rankList?.[2]?.totalRebatePoints || '&#45;&#45;' }}</p>-->
         </div>
       </div>
     </div>
-
-    <div class="list">
-      <!--      <div style="position: absolute; left: 0; top: -40px; width: 100%; color: #cda65b">-->
-      <!--        <p style="text-align: center; width: 100%">每周统计一次分红资格</p>-->
-      <!--        <p style="text-align: center; width: 100%; font-weight: bolder; font-size: 15px">-->
-      <!--          前50名在榜的用户可获得全网超级分红-->
-      <!--        </p>-->
-      <!--      </div>-->
-      <!--      <div class="list-header">-->
-      <!--        <div class="list-item">-->
-      <!--          <div style="background: none; color: #fff">排名</div>-->
-      <!--          <div>手机号</div>-->
-      <!--          <div>本周佣金</div>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <div class="list-container">
-        <div v-if="!rankListCom?.length" style="text-align: center; line-height: 200px">
-          暂无数据
-        </div>
-        <div v-for="(item, index) of rankListCom" class="list-item">
-          <div style="color: #000">{{ index + 4 }}</div>
-          <section>
-            <img :src="item.user?.avatar || headImg" alt="" style="width: 100%; height: 100%" />
-          </section>
-          <div style="color: #000">{{ item.user?.nickname || getPhone(item.user?.phone) }}</div>
-          <!--          <div style="color: #000">{{ item.name }}</div>-->
-          <div style="color: #000">上墙等级： {{ item?.name }}</div>
-        </div>
-      </div>
-    </div>
-    <!--    <div style="width: 100%; color: #cda65b; font-size: 16px; margin-bottom: 6px">-->
-    <!--      <p class="linear" style="text-align: center; width: 100%">每周统计一次分红资格</p>-->
-    <!--      <p-->
-    <!--        class="linear"-->
-    <!--        style="text-align: center; width: 100%; font-weight: bolder; font-size: 15px"-->
-    <!--      >-->
-    <!--        前50名在榜的用户可获得全网超级分红-->
-    <!--      </p>-->
-    <!--    </div>-->
   </div>
 </template>
 
 <script lang="ts" setup>
 import { getIsInApp } from '@/utils/getTopPadding'
-import { getRankRecord, getWalletRank, reqConfigTake, reqWalletStat } from '@/api/myApi'
+import { getRankRecord, getWalletRank, reqConfigTake, reqRank, reqWalletStat } from '@/api/myApi'
 import { Toast } from 'tdesign-mobile-vue'
 import { computed, onBeforeUnmount, ref } from 'vue'
 import imageSrc1 from './images/rank1.png'
 import imageSrc4 from './images/rank2.png'
 import headImg from '@/assets/img/logo.png'
 import ToggleTab from '@/components/toggleTab/toggleTab.vue'
+import { getSerialName } from '@/utils/getSerialName'
 
 const getPhone = (phone) => {
   if (!phone) {
@@ -209,7 +157,7 @@ const getRank = () => {
     message: '加载中...',
     duration: 0
   })
-  getWalletRank(1).then((res) => {
+  reqRank().then((res) => {
     Toast.clear()
     if (res.code === 200) {
       r1.value = (res.data || []).filter(
@@ -250,30 +198,6 @@ const getRank = () => {
     //   { avatar: '', id: 10, nickname: '暴走兔', phone: '', total: 110 },
     //   { avatar: '', id: 11, nickname: '暴走兔', phone: '', total: 111 }
     // ]
-  })
-  getWalletRank(2).then((res) => {
-    Toast.clear()
-    if (res.code === 200) {
-      r2.value = (res.data || []).filter(
-        (item) => !['18317687729', '15616911928', '19273022704'].includes(item.user?.phone)
-      )
-    }
-  })
-  getWalletRank(3).then((res) => {
-    Toast.clear()
-    if (res.code === 200) {
-      r3.value = (res.data || []).filter(
-        (item) => !['18317687729', '15616911928', '19273022704'].includes(item.user?.phone)
-      )
-    }
-  })
-  getWalletRank(4).then((res) => {
-    Toast.clear()
-    if (res.code === 200) {
-      r4.value = (res.data || []).filter(
-        (item) => !['18317687729', '15616911928', '19273022704'].includes(item.user?.phone)
-      )
-    }
   })
 }
 
@@ -366,9 +290,8 @@ onBeforeUnmount(() => {
 
   //background-image: url('@/assets/img/bg.png');
   //background-size: 100% 100%;
-  background-image: linear-gradient(180deg, #fed61f 10%, rgba(213, 254, 31, 0.22) 100%);
+  //background-image: linear-gradient(180deg, #fed61f 10%, rgba(213, 254, 31, 0.22) 100%);
   overflow: auto;
-  border: 1px solid transparent;
   .list {
     position: relative;
     //width: 90%;
@@ -608,5 +531,169 @@ onBeforeUnmount(() => {
       color: #ff1300;
     }
   }
+}
+.ranking {
+  overflow: hidden;
+  height: 100vh;
+  background: url('./images/ranking_bg.jpg');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-color: #ac0000;
+}
+.mui-content {
+  padding-bottom: 230px !important;
+  top: 0;
+  background: none;
+}
+.ranking .mui-bar-index {
+  height: 230px;
+  box-shadow: none;
+  background: none;
+}
+.ranking .mui-slider {
+  top: 230px !important;
+  background: #fff;
+  border-radius: 3px;
+  margin-left: 14px;
+  width: calc(100% - 28px);
+}
+.mui-table-view-cell:after {
+  background: none;
+}
+.top {
+  margin-top: 30px;
+  padding: 0 20px;
+  position: relative;
+}
+.top .tit {
+  width: 100%;
+  display: block;
+}
+.top .date {
+  text-align: center;
+  font-size: 12px;
+  color: #ffeca0;
+  padding-top: 0.6rem;
+}
+.top .str {
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  padding-top: 6px;
+}
+.top .but {
+  width: 70px;
+  margin: 0 auto;
+  margin-top: 5px;
+  font-size: 8px;
+  padding: 3px;
+  color: #fff;
+  background-image: linear-gradient(to top, #ff716f, #ff4e60);
+  background-color: #ff716f;
+  text-align: center;
+  border-radius: 20px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+.top .but a {
+  display: block;
+  color: #fff;
+}
+.top .shang {
+  position: absolute;
+  font-size: 8px;
+  bottom: 5px;
+  right: 5px;
+  display: none;
+}
+.top .shang a {
+  color: #fff;
+}
+
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item {
+  color: #fb6c70;
+}
+.ranking-list .index {
+  background: url('./images/ranking_index.png') no-repeat;
+  display: inline-block;
+  background-size: 100%;
+  color: #f47f24;
+  font-weight: 600;
+  text-align: center;
+  width: 12px;
+  height: 20px;
+  font-size: 7px;
+  position: relative;
+  z-index: 10;
+}
+.ranking-list .money {
+  display: inline-block;
+  background: #fc6a2d;
+  color: #fff;
+  height: 12px;
+  line-height: 12px;
+  font-size: 12px;
+  padding: 0 3px 0 4px;
+  position: relative;
+  left: -2px;
+  z-index: 1;
+  letter-spacing: 1px;
+  transform: skewX(-20deg);
+}
+
+.ranking .mui-table-cell {
+  color: #f37a38;
+}
+.mui-fullscreen .mui-segmented-control ~ .mui-slider-group {
+  top: 100px;
+}
+
+.mui-slider-indicator.mui-segmented-control {
+  border-radius: 22px;
+  border: 2px #f37a38 solid;
+  height: 44px;
+  padding: 1px;
+  width: calc(100% - 28px);
+  margin-left: 14px;
+}
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+  background-image: linear-gradient(to top, #ff716f, #ff4e60);
+  background-color: #ff716f;
+  border-radius: 20px;
+  color: #ffffff !important;
+}
+
+.ranking
+  .mui-slider
+  .mui-segmented-control.mui-segmented-control-inverted
+  ~ .mui-slider-group
+  .mui-slider-item {
+  border-top: 0px solid #ddd;
+}
+
+.hdgz {
+  position: fixed;
+  top: 30px;
+  right: 0;
+  background: #ffe421;
+  border-radius: 15px 0 0 15px;
+  height: 30px;
+  line-height: 30px;
+  padding-right: 10px;
+  padding-left: 20px;
+  font-size: 1rem;
+  z-index: 999;
+}
+.hdgz a {
+  color: #f00;
+  font-weight: 500;
+}
+.ranking .table-title {
+  background: #fff;
+}
+
+.table-time .mui-active {
+  color: #f00 !important;
 }
 </style>

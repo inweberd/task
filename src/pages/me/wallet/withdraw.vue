@@ -32,7 +32,7 @@
                 <span v-if="!item.remark">
                   <span v-if="item.status === 'wait'" class="text-warning">等待审核</span>
                   <span v-else-if="item.status === 'finish'" class="text-success"
-                    >群英会兑换成功！
+                    >蚂蚁优选兑换成功！
                   </span>
                   <span v-else-if="item.status === 'paying'" class="text-dark">转账中</span>
                   <span v-else-if="item.status === 'fail'" class="text-danger"
@@ -57,7 +57,7 @@
               <span
                 class="text-warning"
                 style="font-size: 16px; color: #f6202b; font-weight: bolder"
-                >{{ item.money || 0 }}点券</span
+                >{{ item.money || 0 }}金币</span
               >
             </div>
             <!--            <div style="margin-top: 6px">-->

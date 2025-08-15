@@ -3,7 +3,6 @@
     <van-nav-bar
       :class="{ inApp: getIsInApp() }"
       left-arrow
-      left-text="返回"
       style="background-color: transparent"
       title="收支详情"
       @click-left="router.back()"
@@ -14,17 +13,17 @@
     </van-nav-bar>
     <Loading v-if="loading" />
 
-    <div style="background-color: #fdfae9; margin: 10px; border-radius: 10px; overflow: hidden">
+    <div style="background-color: #f3f3f3; margin: 10px; border-radius: 10px; overflow: hidden">
       <t-tabs :space-evenly="false" default-value="收入" @change="tabChange">
-        <t-tab-panel label="收入详情" value="收入" />
+        <t-tab-panel label="收入" value="收入" />
         <!--        <t-tab-panel label="佣金嘉奖" value="佣金嘉奖" />-->
         <!--        <t-tab-panel label="排行榜" value="分红榜" />-->
-        <t-tab-panel label="商人返利" value="推荐奖" />
+        <t-tab-panel label="月卡2代奖" value="推荐奖" />
         <!--        <t-tab-panel value="游戏" label="游戏" />-->
-        <t-tab-panel label="阶梯" value="阶梯详情" />
-        <t-tab-panel label="转赠记录" value="转赠记录" />
-        <t-tab-panel label="搬砖收益" value="搬砖收益" />
-        <!--        <t-tab-panel label="消费变动" value="支出" />-->
+        <t-tab-panel label="爬塔" value="阶梯详情" />
+        <t-tab-panel label="转赠" value="转赠记录" />
+        <!--        <t-tab-panel label="搬砖收益" value="搬砖收益" />-->
+        <t-tab-panel label="支出" value="支出" />
         <!--        <t-tab-panel label="变现" value="兑换" />-->
       </t-tabs>
     </div>
@@ -81,7 +80,7 @@ const loading = ref(false)
 }
 
 .wallet-page {
-  background-color: #f7d598;
+  background-color: #fff;
   //background: url('@/assets/img/main-bg.jpg');
   //background-size: 100% 100%;
   height: 100%;
@@ -90,15 +89,15 @@ const loading = ref(false)
   :deep(.van-nav-bar) {
     //background: #65b63f !important;
     .van-nav-bar__title {
-      color: #ffffff !important;
+      color: #000 !important;
     }
 
     .van-nav-bar__text {
-      color: #fff !important;
+      color: #000 !important;
     }
 
     .van-icon {
-      color: #fff;
+      color: #000;
     }
   }
   :deep(.van-hairline--bottom) {
@@ -109,10 +108,10 @@ const loading = ref(false)
 
   :deep(.t-tabs__nav) {
     .t-tabs__wrapper {
-      background-color: #fdfae9 !important;
+      background-color: #eaeaea !important;
     }
     .t-tabs__scroll {
-      background-color: #fdfae9 !important;
+      background-color: #eaeaea !important;
     }
   }
 }
@@ -172,7 +171,7 @@ const loading = ref(false)
     align-content: center;
     justify-content: center;
     line-height: 32px;
-    color: rgb(180, 164, 130);
+    color: #f3f3f3;
 
     &.active {
       background-color: #4b6fff;

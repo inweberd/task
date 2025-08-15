@@ -1,0 +1,113 @@
+html,
+body {
+	background-color: #FFF;
+}
+.mui-bar{
+	box-shadow:none;
+	height: 76px;
+	padding-top: 32px;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content:center;
+}
+.header {
+	width:101px;
+	height:101px;
+	background:linear-gradient(-30deg,rgba(63,205,235,1),rgba(188,226,158,1));/*rgba(63,205,235,1);*/
+	box-shadow:0px 12px 13px 0px rgba(63,205,235,0.47);
+	border-radius:50%;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	line-height: 101px;
+	color: #FFF;
+	font-size: 50px;
+}
+
+.header img{
+	width:101px;
+	height:101px;
+	border-radius:50%;
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	padding-top: 50px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.list-call{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+	color: #333333;
+	border-bottom: 1px solid rgba(230,230,230,1);
+}
+.list-call .img{
+	width: 24px;
+	height: 24px;
+}
+.list-call .ico{
+	width: 24px;
+	height: 24px;
+	color: #ffbe42;
+	text-align: center;
+	line-height: 24px;
+}
+.list-call .biaoti{
+	text-align: left;
+	margin:0 0 0 0;
+	border: 0;
+	color: #666;
+}
+
+.dlbutton {
+	color: #FFFFFF;
+	font-size: 26px;
+	width:260px;
+	height:60px;
+	background:linear-gradient(-90deg,rgba(63,205,235,1),rgba(188,226,158,1));
+	box-shadow:0px 0px 13px 0px rgba(164,217,228,0.2);
+	border-radius:50px;
+	line-height: 60px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 60px;
+	padding: 0;
+}
+.dlbutton:hover {
+	background:linear-gradient(-90deg,rgba(63,205,235,0.9),rgba(188,226,158,0.9));
+}
+.dlbutton button{
+	background: none;
+	border: 0;
+	height: 60px;
+	width: 100%;
+}
+.xieyi{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+	margin-top: 40px;
+	color: #FFA800;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+}
+.xieyi a{
+	font-size: 18px;
+	margin-left: 15px;
+	margin-right: 15px;
+	color: #FFA800;
+}

@@ -61,7 +61,7 @@ export function reqWalletInfo() {
 
 // 获取用户信息 返回值和登录时返回值相同
 export function reqUserInfo(data) {
-  return axiosInstance({ url: 'api/users/one', method: 'get', params: data })
+  return axiosInstance({ url: '/api/users/take', method: 'get', params: data })
 }
 
 // 更新用户信息
@@ -459,4 +459,23 @@ export function reqPosterTop(params) {
 // 刷新广告
 export function reqPosterRefresh(params) {
   return axiosInstance({ url: '/api/poster/refresh', method: 'put', params })
+}
+
+// 刷新广告
+export function reqWechatSignin(params) {
+  return axiosInstance({ url: '/api/we-chat/bind', method: 'post', params })
+}
+
+// 大逃杀游戏
+export function reqDataoshaGame() {
+  return axiosInstance({ url: '/api/game/play', method: 'get' })
+}
+
+// 领取每日点券
+export function reqReceivePoints() {
+  return axiosInstance({ url: '/api/vip/receive-points', method: 'post', params: {} })
+}
+
+export function reqRank() {
+  return axiosInstance({ url: 'api/vip/rank', method: 'get' })
 }

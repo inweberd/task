@@ -40,7 +40,7 @@
               <span
                 style="font-size: 16px; color: #f6202b; font-weight: bolder"
                 class="text-warning"
-                >+ {{ (item.value / 10).toFixed(2) || 0 }}点券</span
+                >+ {{ (item.value / 10).toFixed(2) || 0 }}金币</span
               >
             </div>
             <div style="margin-top: 6px">
@@ -82,7 +82,7 @@ const getDataList = () => {
     uid: userInfo.value.id,
     // order: 'id desc',
     // type: '1',
-    scene: 'reward'
+    scene: 'rebate'
     // bind_type: 'incentive'
   }).then(({ code, msg, data }) => {
     loading.value = false

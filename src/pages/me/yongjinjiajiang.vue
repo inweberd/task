@@ -56,7 +56,7 @@
             font-size: 26px;
           "
         >
-          {{ money }}点券
+          {{ money }}金币
         </span>
       </div>
     </div>

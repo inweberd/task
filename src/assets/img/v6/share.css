@@ -1,0 +1,732 @@
+.content{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url(rwlb_bg@2x.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.contImg{
+	margin: 8vw 4vw 0 4vw;
+}
+
+/* Write your styles */
+body {
+	background: #FFFFFF;
+}
+
+.shareCont{
+	display: none;
+	margin-top: -25px;
+}
+.am-list-news-default{
+	margin: 0;
+}
+
+/*��Ϣ*/
+.message {
+	position: fixed;
+	top: 1%;
+	left: 0;
+	right: 0;
+	display: flex;
+	z-index: 10;
+
+}
+
+.notification {
+	margin-right: 2%;
+	margin-left: 8%;
+	padding: 4px;
+	display: flex;
+	background: #ffefa1;
+	border-radius: 50px;
+	width: 73%;
+}
+
+.messageText {
+	background: #ffefa1;
+	border-radius: 50%;
+	color: rgba(16, 16, 16, 1);
+	font-size: 16px;
+	font-family: PingFangSC-regular;
+	line-height: 26px;
+	width: 30px;
+	text-align: center;
+}
+
+.noticeImg {
+	margin-right: 4%;
+	width: 20px;
+	height: 20px;
+}
+
+.noticeImg img {
+	margin-top: 2px;
+}
+
+.am-flex {
+	width: 100%;
+}
+
+.am-slider .am-slides > li {
+	color: rgba(16, 16, 16, 1);
+	font-size: 12px;
+	font-family: PingFangSC-regular;
+
+}
+
+.am-control-nav {
+	display: none;
+}
+
+/*����*/
+.guide {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 10;
+}
+
+.first_order {
+	/*display: none;*/
+}
+
+.second_order {
+	display: none;
+}
+
+.third_order {
+	display: none;
+}
+
+.fourth_order {
+	display: none;
+}
+
+.fifth_order {
+	display: none;
+}
+
+.mask {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 10;
+	display: none;
+}
+
+.maskImg {
+	margin-left: auto;
+	width: 64%;
+}
+
+/*��ͽ����*/
+.appretMask {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 10;
+	display: none;
+}
+
+.apprentImg {
+	position: fixed;
+	top: 38vw;
+	left: 10vw;
+	width: 80%;
+}
+
+.apprentClose {
+	position: absolute;
+	top: -11vw;
+	right: 6vw;
+	width: 8vw;
+	height: 14vw;
+}
+
+.appentCont {
+	position: absolute;
+	top: 40vw;
+	margin: 0 4vw;
+}
+
+.am_appent {
+	margin-bottom: 10px;
+	font-size: 18px;
+	font-family: PingFangSC-Regular;
+	font-weight: bold;
+	color: #333333;
+	text-align: center;
+}
+
+.appentList {
+	display: flex;
+	display: -webkit-flex;
+	margin-bottom: 4vw;
+}
+
+.appentList img {
+	width: 6vw;
+	height: 6vw;
+}
+
+.appentList p {
+	margin: 0;
+	margin-left: 2vw;
+	/* font-size: 16px; */
+	/* font-family: PingFangSC-Medium; */
+	/* font-weight: 500; */
+	color: #FEEFD1;
+	line-height: 6vw;
+	font-size: 3.6vw;
+	font-family: PingFangSC-Regular;
+	/*font-weight:bold;*/
+	/*color: #333333;*/
+}
+
+.appentList p span {
+	/*color: red;*/
+	font-weight: bold;
+
+}
+
+.appentBtn {
+	margin: auto;
+	margin-top: 8vw;
+	/*margin-top: 16%;*/
+	width: 100%;
+}
+
+.appentTime {
+	margin: 0;
+	margin-top: 14%;
+	font-size: 10px;
+	font-family: PingFangSC-Regular;
+	font-weight: 400;
+	color: #999999;
+	text-align: center;
+}
+
+.remind {
+	margin: 0;
+	margin-top: 4vw;
+	font-size: 3vw;
+	font-family: PingFangSC-Regular;
+	font-weight: 400;
+	color: #fff;
+	text-align: center;
+}
+
+/*����*/
+.am-header {
+	text-align: center;
+	background: #fff;
+	font-size: 16px;
+	font-family: PingFangSC-Regular;
+	font-weight: 400;
+	color: rgba(1, 1, 1, 1);
+}
+
+.am-container {
+	padding: 0 16px;
+}
+
+/*������Ϣ*/
+.cont_info {
+	position: relative;
+	width: 100%;
+}
+
+.container {
+	padding: 10vw 9vw;
+	position: absolute;
+	top: 4vw;
+	left: 0;
+}
+
+.contHead {
+	display: flex;
+	display: -webkit-flex;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+}
+
+.headInfo {
+	display: flex;
+	display: -webkit-flex;
+}
+
+.headIcon {
+	width: 18vw;
+	height: 18vw;
+	border-radius: 50%;
+}
+
+.conPhone {
+	margin: auto 0 auto 4vw;
+	font-size: 4.6vw;
+	font-family: PingFangSC-Semibold;
+	font-weight: 600;
+	color: #FFFFFF;
+}
+
+/* .contSign {
+	margin-top: 6px;
+	display: flex;
+	display: -webkit-flex;
+	padding: 0 20px;
+	height: 30px;
+	line-height: 30px;
+	background: rgba(212, 182, 124, 1);
+	border-radius: 15px;
+} */
+
+.contSign {
+	margin-top: 6px;
+	display: flex;
+	display: -webkit-flex;
+	height: 60px;
+	line-height: 60px;
+
+}
+
+.signIcon {
+	margin-top: 7px;
+	width: 24px;
+	height: 22px;
+}
+
+.singText {
+	margin: 0;
+	margin-left: 8px;
+	font-size: 12px;
+	font-family: PingFangSC-Regular;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 1);
+}
+
+.am-income {
+	margin-top: 4vw;
+	display: flex;
+	display: -webkit-flex;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+}
+
+.income p {
+	margin: 0;
+	margin-top: 0.2vw;
+	font-size: 3vw;
+	font-family: PingFangSC-Regular;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 1);
+}
+
+.income_ti {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+	transform: translateY(-10px);
+}
+
+.income_money {
+	margin: 0;
+	margin-top: -6%;
+	font-size: 9.6vw;
+	font-family: PingFangSC-Semibold;
+	font-weight: 600;
+	color: #FFD307;
+}
+
+.income_with {
+	margin: 0;
+	margin-left: 0.6vw;
+	line-height: 13vw;
+	font-size: 3vw;
+	font-family: PingFangSC-Regular;
+	font-weight: 400;
+	color: #FFD307;
+}
+
+.am-avg-task{
+	margin-top: 10px;
+}
+/*����*/
+.am-actives {
+	margin-top: 10px;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+
+}
+
+.am-avg-left {
+	width: 37%;
+}
+
+.am-avg-right {
+	margin-left: 10px;
+	width: 60%;
+}
+
+.am-pai img {
+	/*margin-bottom: 6%;*/
+}
+
+/*���ӵ���*/
+.modalDialog {
+	border-radius: 10px;
+}
+
+.modalDialogText {
+	padding: 40px 10px 30px 10px;
+	font-size: 14px;
+	font-family: PingFangSC-Regular;
+	font-weight: 400;
+	color: #333333;
+}
+
+.modalBtn {
+	font-size: 16px;
+	font-family: PingFangSC-Regular;
+	font-weight: 400;
+	color: #333;
+}
+
+/*����*/
+.maskIndex {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0);
+	z-index: 10;
+	display: none;
+}
+
+.am-modal-dialog {
+	border-radius: 10px;
+}
+
+.modelBd {
+	padding: 10px;
+}
+
+.am-modal-footer {
+	border-top: 1px solid #EFF2F9;
+}
+
+/*��������*/
+.maskShare {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 4;
+	background: rgba(0, 0, 0, 0);
+}
+
+/*��׿����*/
+.andriodMask {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 10;
+	display: none;
+}
+
+.andriod_Mask {
+	position: fixed;
+	padding: 6% 4%;
+	background: #FFFFFF;
+	top: 37%;
+	left: 10%;
+	width: 78%;
+	z-index: 20;
+	border-radius: 10px;
+	display: none;
+}
+
+.andriodImg {
+	position: absolute;
+	margin: auto;
+	top: -28%;
+	left: 38%;
+	width: 28%;
+}
+
+.andriodImg img {
+	margin: auto;
+}
+
+.andriod_text {
+	margin-top: 12%;
+}
+
+.andriod_text p {
+	margin: 0;
+	font-size: 20px;
+	text-align: center;
+	font-family: PingFangSC-Regular;
+	font-weight: 400;
+}
+
+/*�ر��޺�ģʽ*/
+.incognitoMode {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 10;
+	background: rgba(0, 0, 0, 0.94);
+	display: none;
+}
+
+.incognitoImg {
+	margin: auto;
+	width: 80%;
+	margin-top: 50%;
+}
+
+.incognitoClose{
+	position: fixed;
+	top:10%;
+	right:10%;
+	width:30px;
+	height:30px;
+}
+
+
+
+/*����*/
+.am-reward{
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom: 0;
+	z-index: 10;
+	background: rgba(0,0,0,0.5);
+	display: none;
+}
+.rewardEven{
+	position: fixed;
+	top:20%;
+	left:10%;
+}
+
+/*��ȡ����*/
+.envelopes{
+	position: relative;
+	width: 86%;
+	/*display: none;*/
+}
+.enReard{
+	position: absolute;
+	bottom: 10%;
+	left: 35%;
+	width: 32%;
+}
+
+/*����*/
+.download{
+	position: relative;
+	width: 86%;
+	display: none;
+}
+.doenReard{
+	position: absolute;
+	bottom: 13%;
+	left: 16%;
+	width: 70%;
+}
+
+.doenReard p{
+	margin: 0;
+	position: absolute;
+	top:0;
+	width:100%;
+	text-align: center;
+	height:100%;
+	line-height: 16.4vw;
+	color: #AE6D3E;
+}
+.doenText{
+	position: absolute;
+	bottom: 10%;
+	width: 100%;
+	margin: 0;
+	font-size:3vw;
+	font-family:PingFangSC-Semibold;
+	color: #ffffff;
+	text-align: center;
+}
+
+.downText{
+	position: absolute;
+	top: 40%;
+	left: 4%;
+	width: 100%;
+	text-align: center;
+}
+.downMoney{
+	margin: 0;
+	font-size:50px;
+	font-family:Helvetica-Bold;
+	font-weight:bold;
+	color: #CD4823;
+}
+.downMoney span{
+	font-size:18px;
+	font-family:PingFangSC-Semibold;
+	font-weight:600;
+	color: #9C5C27;
+}
+
+
+
+.footer{
+	margin-top: 14px;
+	display: flex;
+}
+.footIcon{
+	margin-right: 10px;
+	margin-left: 22%;
+	width: 46px;
+	height: 46px;
+}
+.footer p{
+	margin: 0;
+	margin-bottom: auto;
+	margin-top: auto;
+	color: rgba(106, 97, 97, 1);
+	font-size: 14px;
+	text-align: left;
+	font-family: SourceHanSansSC-regular;
+
+}
+
+
+
+/*Υ�洦��*/
+.violation{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #999999;
+	z-index: 10;
+	display: none;
+}
+.violationMask{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,0.5);
+	z-index: 12;
+	display: none;
+}
+.vidialog{
+	top: 50vw;
+	left: 8vw;
+	width:83%;
+	background: #ffffff;
+}
+.am-modal-hd{
+	margin-bottom: 10px;
+	text-align: center;
+}
+.vibd{
+	padding: 20px;
+	text-align: left;
+	border:0;
+}
+.vibd text{
+	font-family:PingFangSC-Medium;
+	font-weight:500;
+	color: #F46C2C;
+}
+.viBotton{
+	width: 68%;
+	margin: auto;
+	margin-bottom: 28px;
+	background:linear-gradient(317deg,rgba(255,124,0,1) 0%,rgba(255,212,0,1) 100%);
+	font-size:14px;
+	font-family:PingFangSC-Regular;
+	font-weight:400;
+	color: #ffffff;
+	border-radius: 50px;
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+}
+
+
+
+
+/*�¼ӵ���*/
+.maskGroup{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,0.5);
+	z-index: 12;
+	display: none;
+}
+.groupImg{
+	width: 90%;
+	margin: auto;
+	margin-top: 20vw;
+}
+
+
+/*ǩ��*/
+.signIn{
+	position: absolute;
+	right: 2.6vw;
+	top: 69vw;
+	z-index: 8;
+	width: 13vw;
+	height: 14vw;
+}
+.menu {
+
+}
+.menu ul{
+	padding: 10px;
+	margin: 0;
+}
+.menu ul li{
+	float: left;
+	width: 50%;
+	list-style: none;
+	text-align: center;
+
+}
+.menu ul li a img{
+	width: 90%;
+}

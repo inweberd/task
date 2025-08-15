@@ -10,17 +10,17 @@
       </template>
     </van-nav-bar>
     <van-swipe :autoplay="3000" class="my-swipe" indicator-color="white">
-      <van-swipe-item> <img alt="" src="@/pages/home/images/banner11.jpg" /></van-swipe-item>
-      <van-swipe-item>
-        <img alt="" src="@/pages/home/images/banner1.jpg" />
-      </van-swipe-item>
+      <van-swipe-item> <img alt="" src="./images/invest-banner2.jpg" /></van-swipe-item>
+      <!--      <van-swipe-item>-->
+      <!--        <img alt="" src="@/pages/home/images/banner1.jpg" />-->
+      <!--      </van-swipe-item>-->
     </van-swipe>
-    <div class="shandongBox">
-      <div class="shandong">
-        <p>下级激活商人，返上级2代点券</p>
-        <p>比例：10%+5%</p>
-      </div>
-    </div>
+    <!--    <div class="shandongBox">-->
+    <!--      <div class="shandong">-->
+    <!--        <p>下级激活商人，返上级2代金币</p>-->
+    <!--        <p>比例：10%+5%</p>-->
+    <!--      </div>-->
+    <!--    </div>-->
     <!--    <div class="title" style="color: #b4a482; font-size: 22px">会员权益卡</div>-->
     <!--    <van-image :src="imageSrc1" width="100%" height="280" fit="fill"></van-image>-->
 
@@ -36,7 +36,6 @@
     <!--      <van-swipe-item>1</van-swipe-item>-->
     <!--      <van-swipe-item>2</van-swipe-item>-->
     <!--      <van-swipe-item>3</van-swipe-item>-->
-    <!--      <van-swipe-item>4</van-swipe-item>-->
     <!--    </van-swipe>-->
     <!--    <div class="black-tip">-->
     <!--      <div>-->
@@ -87,55 +86,122 @@
           class="v-list-item"
         >
           <template v-if="item.level === 1">
-            <div class="box">
+            <div class="box" @click="buy(0)">
               <img alt="" class="vipImg" src="./images/v1.png" />
+              <!--              <img-->
+              <!--                v-if="!myStaffList.includes(item.id)"-->
+              <!--                alt=""-->
+              <!--                class="duihuankaitong"-->
+              <!--                src="./images/duihuankaitong.png"-->
+              <!--                @click="buy(0)"-->
+              <!--              />-->
               <img
-                v-if="!myStaffList.includes(item.id)"
-                alt=""
+                v-if="myStaffList.includes(item.id)"
                 class="duihuankaitong"
-                src="./images/duihuankaitong.png"
-                @click="buy(0)"
+                src="./images/shengxiaozhong.png"
               />
-              <img v-else class="duihuankaitong" src="./images/shengxiaozhong.png" />
             </div>
           </template>
           <template v-if="item.level === 2">
-            <div class="box">
+            <div class="box" @click="buy(1)">
               <img alt="" class="vipImg" src="./images/v2.png" />
+              <!--              <img-->
+              <!--                v-if="!myStaffList.includes(item.id)"-->
+              <!--                alt=""-->
+              <!--                class="duihuankaitong"-->
+              <!--                src="./images/duihuankaitong.png"-->
+              <!--                @click="buy(1)"-->
+              <!--              />-->
               <img
-                v-if="!myStaffList.includes(item.id)"
-                alt=""
+                v-if="myStaffList.includes(item.id)"
                 class="duihuankaitong"
-                src="./images/duihuankaitong.png"
-                @click="buy(1)"
+                src="./images/shengxiaozhong.png"
               />
-              <img v-else class="duihuankaitong" src="./images/shengxiaozhong.png" />
             </div>
           </template>
           <template v-if="item.level === 3">
-            <div class="box">
+            <div class="box" @click="buy(2)">
               <img alt="" class="vipImg" src="./images/v3.png" />
+              <!--              <img-->
+              <!--                v-if="!myStaffList.includes(item.id)"-->
+              <!--                alt=""-->
+              <!--                class="duihuankaitong"-->
+              <!--                src="./images/duihuankaitong.png"-->
+              <!--                @click="buy(2)"-->
+              <!--              />-->
               <img
-                v-if="!myStaffList.includes(item.id)"
-                alt=""
+                v-if="myStaffList.includes(item.id)"
                 class="duihuankaitong"
-                src="./images/duihuankaitong.png"
-                @click="buy(2)"
+                src="./images/shengxiaozhong.png"
               />
-              <img v-else class="duihuankaitong" src="./images/shengxiaozhong.png" />
             </div>
           </template>
           <template v-if="item.level === 4">
-            <div class="box">
+            <div class="box" @click="buy(3)">
               <img alt="" class="vipImg" src="./images/v4.png" />
+              <!--              <img-->
+              <!--                v-if="!myStaffList.includes(item.id)"-->
+              <!--                alt=""-->
+              <!--                class="duihuankaitong"-->
+              <!--                src="./images/duihuankaitong.png"-->
+              <!--                @click="buy(3)"-->
+              <!--              />-->
               <img
-                v-if="!myStaffList.includes(item.id)"
-                alt=""
+                v-if="myStaffList.includes(item.id)"
                 class="duihuankaitong"
-                src="./images/duihuankaitong.png"
-                @click="buy(3)"
+                src="./images/shengxiaozhong.png"
               />
-              <img v-else class="duihuankaitong" src="./images/shengxiaozhong.png" />
+            </div>
+          </template>
+          <template v-if="item.level === 5">
+            <div class="box" @click="buy(4)">
+              <img alt="" class="vipImg" src="./images/v5.png" />
+              <!--              <img-->
+              <!--                v-if="!myStaffList.includes(item.id)"-->
+              <!--                alt=""-->
+              <!--                class="duihuankaitong"-->
+              <!--                src="./images/duihuankaitong.png"-->
+              <!--                @click="buy(4)"-->
+              <!--              />-->
+              <img
+                v-if="myStaffList.includes(item.id)"
+                class="duihuankaitong"
+                src="./images/shengxiaozhong.png"
+              />
+            </div>
+          </template>
+          <template v-if="item.level === 6">
+            <div class="box" @click="buy(5)">
+              <img alt="" class="vipImg" src="./images/v6.png" />
+              <!--              <img-->
+              <!--                v-if="!myStaffList.includes(item.id)"-->
+              <!--                alt=""-->
+              <!--                class="duihuankaitong"-->
+              <!--                src="./images/duihuankaitong.png"-->
+              <!--                @click="buy(5)"-->
+              <!--              />-->
+              <img
+                v-if="myStaffList.includes(item.id)"
+                class="duihuankaitong"
+                src="./images/shengxiaozhong.png"
+              />
+            </div>
+          </template>
+          <template v-if="item.level === 7">
+            <div class="box" @click="buy(6)">
+              <img alt="" class="vipImg" src="./images/v7.png" />
+              <!--              <img-->
+              <!--                v-if="!myStaffList.includes(item.id)"-->
+              <!--                alt=""-->
+              <!--                class="duihuankaitong"-->
+              <!--                src="./images/duihuankaitong.png"-->
+              <!--                @click="buy(6)"-->
+              <!--              />-->
+              <img
+                v-if="myStaffList.includes(item.id)"
+                class="duihuankaitong"
+                src="./images/shengxiaozhong.png"
+              />
             </div>
           </template>
 
@@ -259,8 +325,7 @@ const buy = throttle((index) => {
   // const finallyCount = customCount || count.value
   if (myStaffList.value.includes(item.id)) {
     showToast({
-      message: '您已拥有此会员！',
-      icon: 'warning'
+      message: '您已拥有此会员！'
     })
     return
   }
@@ -288,7 +353,7 @@ const buy = throttle((index) => {
   //   if (item.price > res.data.wallet.balance + res.data.wallet.points) {
   //     loading.value = false
   //     nextTick(() => {
-  //       _notice(' 点券不足，激活失败！即将为您跳转购买点券通道！')
+  //       _notice(' 金币不足，激活失败！即将为您跳转购买金币通道！')
   //     })
   //     setTimeout(() => {
   //       router.push('/recharge')
@@ -307,7 +372,7 @@ const buy = throttle((index) => {
     loading.value = false
     if (sub_res.msg === '余额不足，无法兑换！') {
       nextTick(() => {
-        _notice('余额不足，激活失败，即将为您跳转充值余额通道！')
+        _notice('余额不足，激活失败，即将为您跳转金豆通道！')
       })
       setTimeout(() => {
         router.push('/recharge')
@@ -422,7 +487,7 @@ for (let i = 0; i < 6; i++) {
     //   '白银权益卡',
     //   '黄金权益卡',
     //   '白金权益卡',
-    //   '点券权益卡',
+    //   '金币权益卡',
     //   '黑钻权益卡'
     // ][Math.floor()]
   })
@@ -452,7 +517,7 @@ const speed = ref(0.5) //滚动速度
   //background-image: url('@/assets/img/main-bg.jpg');
   //background-size: 100% 100%;
   :deep(.van-nav-bar) {
-    background-color: #fed61f !important;
+    background-color: #fff !important;
     .van-nav-bar__title {
       color: #000 !important;
     }
@@ -530,10 +595,11 @@ const speed = ref(0.5) //滚动速度
           }
           .duihuankaitong {
             width: 25%;
+            height: 35px;
             position: absolute;
-            top: 8px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 20px;
+            right: 25px;
+            //transform: translateX(-50%);
           }
         }
 
@@ -830,10 +896,10 @@ const speed = ref(0.5) //滚动速度
   overflow: hidden;
 
   .van-swipe-item {
-    height: 180px;
+    height: 120px;
     img {
       width: 100%;
-      height: 100%;
+      height: 120px !important;
     }
   }
 }

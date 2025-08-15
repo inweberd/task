@@ -29,11 +29,11 @@
           <div style="width: 60%">
             <div>
               <span style="font-size: 14px; font-weight: bolder; color: #000">{{
-                item.content
+                item.title
               }}</span>
             </div>
             <div>
-              <span style="font-size: 12px; color: #000">{{ item.remark }}</span>
+              <span style="font-size: 12px; color: #000">{{ item.subtitle }}</span>
             </div>
           </div>
           <div style="flex: 1; text-align: right">
@@ -41,13 +41,12 @@
               <span
                 style="font-size: 16px; color: #f6202b; font-weight: bolder"
                 class="text-warning"
-                >-{{ item.money || 0 }}点券</span
+              >
+                {{ (item.value / 10).toFixed(2) || 0 }}金币</span
               >
             </div>
             <div style="margin-top: 6px">
-              <span style="font-size: 12px; color: #000">{{
-                method.toDate(item.create_time)
-              }}</span>
+              <span style="font-size: 12px; color: #000">{{ method.toDate(item.createTime) }}</span>
             </div>
           </div>
         </div>
@@ -84,9 +83,10 @@ const getDataList = () => {
   reqWalletLog({
     page: searchInfo.page,
     limit: searchInfo.limit,
-    order: 'id desc',
+    // order: 'id desc',
     uid: userInfo.value.id,
-    type: '0'
+    objectType: ['vip']
+    // type: '0'
     // where: [
     //   ['type', '=', 0],
     //   ['uid', '=', userInfo.value.id]

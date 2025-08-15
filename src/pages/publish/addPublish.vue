@@ -24,7 +24,7 @@
       />
 
       <LabelTitle tips="截图" icon-name="text_area" :is-require="true" />
-      <van-uploader :after-read="afterRead" max-count="1" v-model="fileList" @delete="afterDel" />
+      <van-uploader :after-read="afterRead" max-count="9" v-model="fileList" @delete="afterDel" />
       <text-area
         label="内容描述"
         v-model:content="formData.content"
@@ -39,6 +39,7 @@
       @click="submit"
       style="
         border-radius: 30px;
+        background: linear-gradient(-90deg, rgb(63, 205, 235), rgb(188, 226, 158));
         border: none;
         color: #444;
         width: calc(100% - 20px);
@@ -48,6 +49,15 @@
       type="primary"
       >发布
     </el-button>
+    <div style="background-color: #fff; border-radius: 10px; margin: 10px; padding: 8px">
+      发布一条广告3金币/次 <br />
+      置顶24小时，10金币/次 <br />
+      刷新广告排名4金币/次 <br />
+
+      安全提示，投资有风险，合作需谨慎 <br />
+      蚂蚁优选对于广告内容双方在沟通时，发生的投资，交易行为，不做任何承诺和担保， <br />
+      请谨慎甄别，注意骗子行径！慎重考虑！ <br />
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -66,7 +76,7 @@ const formData = ref({
 })
 
 const router = useRouter()
-
+const filePathArr = []
 const afterRead = (fileInfo) => {
   fileInfo.status = 'uploading'
   fileInfo.message = '上传中...'
@@ -74,12 +84,13 @@ const afterRead = (fileInfo) => {
     console.log('res', res)
     fileInfo.status = 'success'
     fileInfo.message = '上传成功'
-    formData.value.image = res.data.path
+    filePathArr.push(res.data.path)
+    // formData.value.image = res.data.path
   })
 }
-const afterDel = () => {
-  console.log('asdsad')
-  formData.value.image = ''
+const afterDel = (fileInfo, delInfo) => {
+  filePathArr.splice(delInfo.index, 1)
+  // formData.value.image = ''
 }
 
 const submit = () => {
@@ -91,11 +102,12 @@ const submit = () => {
     showToast('请输入内容描述')
     return
   }
-  if (!fileList.value.length) {
+  if (!filePathArr.length) {
     showToast('请上传截图')
     return
   }
 
+  formData.value.image = filePathArr.join(',')
   // const formdata = new FormData()
   // formdata.append('title', formData.value.title)
   // formdata.append('content', formData.value.title)
@@ -124,7 +136,7 @@ const submit = () => {
   flex-direction: column;
 
   :deep(.van-nav-bar) {
-    background-color: #fed61f !important;
+    background-color: #fff !important;
     .van-nav-bar__title {
       color: #000 !important;
     }

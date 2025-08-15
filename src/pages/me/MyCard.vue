@@ -14,7 +14,7 @@
         size="30"
         name="share"
         style="position: fixed; right: 10px; top: 20px; z-index: 3"
-        color="#fff"
+        color="#000"
       />
       <div
         style="
@@ -28,7 +28,7 @@
         <canvas ref="canvas"></canvas>
       </div>
       <!--<div class="btns">-->
-      <!--  <van-image :src="weixin" width="60" height="60" fit="fill" @click="share"></van-image>-->
+      <van-image :src="weixin" width="60" height="60" fit="fill" @click="share"></van-image>
       <!--  <van-image :src="pengyouquan" width="50" height="50" fit="fill" @click="share"></van-image>-->
     </div>
     <!--    <div class="contact" @click="share">-->
@@ -56,9 +56,9 @@ const canvasWidth = ref(window.innerWidth)
 const canvasHeight = ref(window.innerWidth / (1242 / 2208))
 
 const qrCodeText = ref(
-  'http://bbbnklswx0717ffxxjkf15.s3-website-us-east-1.amazonaws.com/index.html?token=' +
+  'http://bbbnklswx0811ffxxjkf11.s3-website-us-east-1.amazonaws.com/index.html?token=' +
     // encodeURIComponent(
-    'https://qyh.88tong.cn/#/signUp?invite=' +
+    'https://fx.kujspvp.cn/#/signUp?invite=' +
     JSON.parse(window.localStorage.getItem('userInfo'))?.invite?.code
   // )
 )
@@ -100,13 +100,13 @@ const generatePoster = async () => {
     qrCodeImage.onload = () => {
       // 在海报上绘制二维码，位置在正中心下方
       const qrCodeX = canvasWidth.value - 130
-      const qrCodeY = canvasHeight.value - 170
+      const qrCodeY = canvasHeight.value - 130
       ctx.drawImage(qrCodeImage, qrCodeX, qrCodeY, qrCodeSize, qrCodeSize)
     }
     const avatarImage = new Image()
     avatarImage.style.borderRadius = '50%'
-    if (userInfo.avatar) {
-      avatarImage.src = userInfo.avatar
+    if (userInfo?.display?.avatar) {
+      avatarImage.src = userInfo.display.avatar
     } else {
       avatarImage.src = avatar
     }
@@ -130,13 +130,13 @@ const generatePoster = async () => {
     if (userInfo.nickname) {
       name = userInfo.nickname
     }
-    ctx.fillText(name, 75, canvasHeight.value - 70)
+    // ctx.fillText(name, 75, canvasHeight.value - 70)
     ctx.font = '16px Arial'
 
-    ctx.fillText('邀请码：', 75, canvasHeight.value - 40)
+    ctx.fillText('邀请码：', 75, canvasHeight.value - 60)
     ctx.fillStyle = '#000'
     ctx.font = '16px Arial'
-    ctx.fillText(userInfo?.invite?.code, 135, canvasHeight.value - 40)
+    ctx.fillText(userInfo?.invite?.code, 135, canvasHeight.value - 60)
   }
 }
 

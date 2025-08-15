@@ -7,7 +7,7 @@
       left-text="返回"
       placeholder
       safe-area-inset-top
-      title="点券转赠"
+      title="金币转赠"
       @click-left="router.back()"
     >
       <template #right>
@@ -20,9 +20,9 @@
       <!--      <img alt="" src="@/assets/img/logo.png" />-->
       <div class="logo-box-content">
         <div class="info">
-          <!--          <p>群英会</p>-->
+          <!--          <p>蚂蚁优选</p>-->
           <p>
-            可转赠通用点券数量:
+            可转赠通用金币数量:
             {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}
           </p>
           <!--                    <p>the big thumb video</p>-->
@@ -172,8 +172,8 @@
       <!--          line-height: 20px;-->
       <!--        "-->
       <!--      >-->
-      <!--        1、点券转赠5个起转，账户需要预留手续费，转成功后自动扣除手续！<br />-->
-      <!--        2、非会员转增50%手续费，点券会员转赠5%手续费。<br />-->
+      <!--        1、金币转赠5个起转，账户需要预留手续费，转成功后自动扣除手续！<br />-->
+      <!--        2、非会员转增50%手续费，金币会员转赠5%手续费。<br />-->
       <!--        3、转赠时间 上午10点&#45;&#45;下午18点-->
       <!--      </p>-->
 
@@ -391,7 +391,7 @@ function onSubmit() {
     return
   }
   if (data.amount < 5) {
-    return _notice('点券转赠5个起！')
+    return _notice('金币转赠5个起！')
   }
   if (!data.code) {
     return _notice('请输入验证码！')

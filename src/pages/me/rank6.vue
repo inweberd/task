@@ -13,7 +13,7 @@
       style="position: fixed; top: 0; left: 0; z-index: 9; width: 100%; background-color: #e5f4f2"
       left-arrow
       placeholder
-      title="每日点券奖励分红榜"
+      title="每日金币奖励分红榜"
       @click-left="$router.back()"
     >
       <template #right>
@@ -27,7 +27,7 @@
         <!--        本次周期分红总金额 <br />-->
         <!--          （每X天进行一轮分红） <br />-->
         <!--          <div style="display: flex; align-items: center">-->
-        <span>{{ activeTab == 0 ? '本日奖池总点券' : '本日手续费奖池' }}</span>
+        <span>{{ activeTab == 0 ? '本日奖池总金币' : '本日手续费奖池' }}</span>
         <div class="money" v-if="activeTab == 0">{{ (total * 1).toFixed(2) }}</div>
         <div class="money" v-else>{{ (total2 * 1).toFixed(2) }}</div>
         <!--          </div>-->

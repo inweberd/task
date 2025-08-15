@@ -8,10 +8,10 @@
     <div class="l-button" @click="refresh(1)">
       <div class="add-ctn">
         <div class="img-box">
-          <img src="https://lx.aosenn.com/h5/static/tabbar/qw11.png" v-if="currentTab === 1" />
-          <img src="https://lx.aosenn.com/h5/static/tabbar/q11.png" alt="" class="add" v-else />
+          <img src="@/assets/img/appLogo/qw11.png" v-if="currentTab === 1" />
+          <img src="@/assets/img/appLogo/qw11.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 1 ? '#fed61f' : '#ccc' }">首页</div>
+        <div :style="{ color: currentTab === 1 ? '#F05C52' : '#ccc' }">首页</div>
       </div>
     </div>
     <!--    <div class="l-button" @click="refresh(2)">-->
@@ -40,15 +40,10 @@
         <div class="img-box">
           <!--          <img src="@/assets/icon/3-active.png" alt="" class="add" v-if="currentTab === 2" />-->
           <!--          <img src="@/assets/icon/3.png" alt="" class="add" v-else />-->
-          <img
-            src="https://lx.aosenn.com/h5/static/tabbar/03.png"
-            alt=""
-            class="add"
-            v-if="currentTab === 2"
-          />
-          <img src="https://lx.aosenn.com/h5/static/tabbar/04.png" alt="" class="add" v-else />
+          <img src="@/assets/img/appLogo/04.png" alt="" class="add" v-if="currentTab === 2" />
+          <img src="@/assets/img/appLogo/04.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 2 ? '#fed61f' : '#ccc' }">广告发布</div>
+        <div :style="{ color: currentTab === 2 ? '#F05C52' : '#ccc' }">引流爆粉</div>
       </div>
     </div>
     <div class="l-button" @click="tab(5)">
@@ -56,30 +51,20 @@
         <div class="img-box">
           <!--          <img src="@/assets/icon/4-active.png" alt="" class="add" v-if="currentTab === 5" />-->
           <!--          <img src="@/assets/icon/i4.png" alt="" class="add" v-else />-->
-          <img
-            src="https://lx.aosenn.com/h5/static/tabbar/01.png"
-            alt=""
-            class="add"
-            v-if="currentTab === 5"
-          />
-          <img src="https://lx.aosenn.com/h5/static/tabbar/02.png" alt="" class="add" v-else />
+          <img src="@/assets/img/appLogo/01.png" alt="" class="add" v-if="currentTab === 5" />
+          <img src="@/assets/img/appLogo/02.png" alt="" class="add" v-else />
         </div>
-        <div class="chat-bubble">降低手续费</div>
-        <div :style="{ color: currentTab === 5 ? '#fed61f' : '#ccc' }">商人特权</div>
+        <!--        <div class="chat-bubble">降低手续费</div>-->
+        <div :style="{ color: currentTab === 5 ? '#F05C52' : '#ccc' }">商人特权</div>
       </div>
     </div>
     <div class="l-button" @click="tab(6)">
       <div class="add-ctn">
         <div class="img-box">
-          <img
-            src="https://lx.aosenn.com/h5/static/tabbar/qqqw4.png"
-            alt=""
-            class="add"
-            v-if="currentTab === 6"
-          />
-          <img src="https://lx.aosenn.com/h5/static/tabbar/qw4.png" alt="" class="add" v-else />
+          <img src="@/assets/img/appLogo/qqqw4.png" alt="" class="add" v-if="currentTab === 6" />
+          <img src="@/assets/img/appLogo/qqqw4.png" alt="" class="add" v-else />
         </div>
-        <div :style="{ color: currentTab === 6 ? '#fed61f' : '#ccc' }">我</div>
+        <div :style="{ color: currentTab === 6 ? '#F05C52' : '#ccc' }">我</div>
       </div>
       <!-- <div class="badge">2</div> -->
     </div>
@@ -253,6 +238,7 @@ export default {
 @import '../assets/less/index';
 
 .footer {
+  margin-top: 0 !important;
   font-size: 14px;
   position: fixed;
   width: 100%;
@@ -313,8 +299,8 @@ export default {
       justify-content: center;
 
       .img-box {
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         img {
           width: 100%;
           height: 100%;
@@ -324,7 +310,6 @@ export default {
       & > div {
         white-space: nowrap;
         color: #9f8b8b;
-        margin-top: 4px;
         font-size: 12px;
       }
     }

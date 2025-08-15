@@ -79,7 +79,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://qyh.88tong.cn/download`
+    window.location.href = `https://fx.kujspvp.cn/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false
@@ -208,7 +208,7 @@ function getData() {
           <div class="horiz-divider section_4"></div>
           <div class="flex-col items-start equal-division-item" @click="go('/dep', true)">
             <span class="font_3">{{ format(walletInfo?.amount || 0) }}</span>
-            <span class="font_4 text_1 mt-12">充值余额</span>
+            <span class="font_4 text_1 mt-12">金豆</span>
           </div>
           <div class="horiz-divider section_4"></div>
 

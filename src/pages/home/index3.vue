@@ -31,7 +31,7 @@
           color="#fff"
           left-icon="volume-o"
           style="border-radius: 10px; height: 40px; border: 1px solid #fff"
-          text="群英会欢迎您，邀请好友赚翻天，现金奖励无上限！"
+          text="蚂蚁优选欢迎您，邀请好友赚翻天，现金奖励无上限！"
         >
         </van-notice-bar>
 
@@ -82,10 +82,10 @@
       <div class="bg"></div>
       <!--      <van-notice-bar-->
       <!--        left-icon="volume-o"-->
-      <!--        text="群英会欢迎您，邀请好友赚翻天，现金奖励无上限！"-->
+      <!--        text="蚂蚁优选欢迎您，邀请好友赚翻天，现金奖励无上限！"-->
       <!--      />-->
       <div style="text-align: center; font-size: 22px; text-shadow: 5px 5px 5px #081831">
-        <div>群英会已经稳定运行</div>
+        <div>蚂蚁优选已经稳定运行</div>
         <div>{{ timeStr }}</div>
       </div>
       <!--      <div-->
@@ -544,7 +544,7 @@ const appList = ref([
 
   {
     name: '棋牌娱乐',
-    desc: '群英会，精彩短视频。期待您的加入',
+    desc: '蚂蚁优选，精彩短视频。期待您的加入',
     logo: '11',
     btnLabel: '查看',
     btnCb() {
@@ -681,7 +681,7 @@ const appList = ref([
 
 function goDownload() {
   try {
-    window.location.href = `https://qyh.88tong.cn/download`
+    window.location.href = `https://fx.kujspvp.cn/download`
   } catch (e) {
     _notice('下载失败')
   }

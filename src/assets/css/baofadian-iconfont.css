@@ -1,0 +1,44 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1591328935043'); /* IE9 */
+  src: url('iconfont.eot?t=1591328935043#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/baofadian-iconfont.ttf?t=1591328935043') format('truetype')
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-jiaoyin:before {
+  content: "\e65a";
+}
+
+.icon-jiaoyinzujilishixianxing:before {
+  content: "\e60d";
+}
+
+.icon-wo:before {
+  content: "\e64d";
+}
+
+.icon-faxian:before {
+  content: "\e641";
+}
+
+.icon-paihang:before {
+  content: "\e694";
+}
+
+.icon-paihang1:before {
+  content: "\e950";
+}
+
+.icon-dongtai2:before {
+  content: "\e610";
+}
+
+.icon-dongtai:before {
+  content: "\e908";
+}

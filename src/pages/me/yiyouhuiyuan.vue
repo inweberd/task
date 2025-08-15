@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100%; overflow: auto">
+  <div style="height: 100%; overflow: auto" class="youxiaohuiyuan">
     <van-nav-bar
       title="顶商权益有效期"
       safe-area-inset-top
@@ -7,7 +7,6 @@
       :class="{ inApp: getIsInApp() }"
       placeholder
       @click-left="$router.back()"
-      left-text="返回"
       left-arrow
     ></van-nav-bar>
     <!--      <van-empty :image="empty" image-size="120" description="暂无等级 " />-->
@@ -103,22 +102,32 @@ onActivated(() => {
     //background-image: linear-gradient(to right, #fb5b4b, #9c38e5);
     padding: 10px;
     margin-bottom: 15px;
-    color: #fff;
-    background-image: url('@/assets/img/dianpuBG.png');
+    color: #000;
+    //background-image: url('@/assets/img/dianpuBG.png');
+    background: linear-gradient(-90deg, rgb(63, 205, 235), rgb(188, 226, 158));
+
     background-size: 100% 100%;
     & > div {
       margin-top: 5px;
     }
 
     span {
-      color: #fff;
+      color: #000;
       font-weight: bolder;
     }
 
     .name {
-      color: #fff;
+      color: #000;
       font-size: 20px;
       font-weight: bolder;
+    }
+  }
+}
+.youxiaohuiyuan {
+  :deep(.van-nav-bar) {
+    .van-icon {
+      color: #000 !important;
+      font-size: 18px !important;
     }
   }
 }

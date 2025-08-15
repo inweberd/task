@@ -73,10 +73,10 @@
                     {{ item.content }}
                   </div>
                   <van-grid :border="false" :column-num="4" :gutter="1">
-                    <van-grid-item>
+                    <van-grid-item v-for="sub_item in item.image.split(',')" :key="sub_item">
                       <van-image
-                        @click="showImage(item.image)"
-                        :src="item.image"
+                        @click="showImage(sub_item)"
+                        :src="sub_item"
                         class="img-item"
                         fit="cover"
                         position="center"
@@ -382,10 +382,18 @@ const getDataList = () => {
 }
 const getClass = (item) => {
   const now = new Date().getTime()
+  if (item.status === 'pending') {
+    return 'pending'
+  }
+
+  if (item.status === 'fail') {
+    return 'fail'
+  }
+
   if (item.topTime * 1000 > now) {
     return 'top'
   } else {
-    return ''
+    return 'success'
   }
 }
 const showImage = (img) => {
@@ -435,7 +443,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   :deep(.van-nav-bar) {
-    background-color: #fed61f !important;
+    background-color: #fff !important;
 
     .van-icon {
       color: #000 !important;
@@ -450,9 +458,9 @@ onMounted(() => {
   .content {
     flex: 1;
     overflow-y: auto;
-    background: url('https://lx.aosenn.com/h5/static/shouye/homepage_nav_bg_img@.png') no-repeat;
-    background-size: 100% 150px;
-    background-position: 0 0;
+    //background: url('https://lx.aosenn.com/h5/static/shouye/homepage_nav_bg_img@.png') no-repeat;
+    //background-size: 100% 150px;
+    //background-position: 0 0;
     //padding-top: 20px;
     color: #303133;
     .my-swipe {
@@ -493,6 +501,45 @@ onMounted(() => {
               top: -8px;
               right: 20px;
               background-image: linear-gradient(to right, #5742f6, #806dfb);
+              color: #fff;
+              padding: 2px 6px;
+              border-radius: 6px;
+            }
+          }
+
+          &.success {
+            &:after {
+              content: '发布成功';
+              position: absolute;
+              top: -8px;
+              right: 20px;
+              background: #07c160;
+              color: #fff;
+              padding: 2px 6px;
+              border-radius: 6px;
+            }
+          }
+
+          &.pending {
+            &:after {
+              content: '待审核';
+              position: absolute;
+              top: -8px;
+              right: 20px;
+              background: #1989fa;
+              color: #fff;
+              padding: 2px 6px;
+              border-radius: 6px;
+            }
+          }
+
+          &.fail {
+            &:after {
+              content: '发布失败';
+              position: absolute;
+              top: -8px;
+              right: 20px;
+              background: #c91a05;
               color: #fff;
               padding: 2px 6px;
               border-radius: 6px;

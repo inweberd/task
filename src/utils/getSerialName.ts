@@ -22,13 +22,30 @@ const serialNameMap = {
 }
 export const getSerialName = (val) => {
   if (!val) {
-    return '暂无等级'
+    return '暂无会员'
   } else if (val === 1) {
-    return '蓝钻会员'
+    return '青铜卡'
   } else if (val === 2) {
-    return '黄钻会员'
+    return '白银卡'
   } else if (val === 3) {
-    return '紫钻会员'
+    return '黄金卡'
+  } else if (val === 4) {
+    return '白金卡'
+  } else if (val === 5) {
+    return '黑金卡'
+  } else if (val === 6) {
+    return '钻石卡'
+  } else if (val === 7) {
+    return '至尊卡'
   }
   // return serialNameMap[val] || '--'
+}
+const conversionStatusNameMap = {
+  pending: '待放币',
+  completed: '完成',
+  timeout: '超时',
+  failed: '失败'
+}
+export const getConversionStatusName = (val) => {
+  return conversionStatusNameMap[val] || ''
 }

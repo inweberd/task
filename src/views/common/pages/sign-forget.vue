@@ -1,131 +1,112 @@
 <template>
   <div class="forget">
-    <div class="top-navbar">
-      <div class="left" @click="router.back()">
-        <img
-          style="width: 25px; height: 20px"
-          src="https://lx.aosenn.com/h5/static/register/arrow.png"
-          draggable="false"
-        />
+    <header class="mui-bar mui-bar-transparent">
+      <a
+        class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"
+        @click="$router.push('/login')"
+      ></a>
+      <h1 class="mui-title"></h1>
+    </header>
+    <div class="content">
+      <div class="header">
+        <!--img src="/upload/default_mobile/images/logo.png"-->
+        <!--        <i class="fa fa-user-o"></i>-->
       </div>
-      <div class="right">找回密码</div>
-    </div>
-    <div class="container d-flex justify-content-around user-select-none">
-      <div class="right card backdrop-filter" style="width: 100%">
-        <van-cell-group style="width: 100%">
-          <van-field
-            style="margin-top: 20px"
+
+      <div class="list">
+        <div class="list-call" id="method1">
+          <div class="ico">
+            <i class="now-ui-icons fa fa-user-o"></i>
+          </div>
+          <input
+            type="tel"
+            name="account"
+            class="biaoti"
+            id="reg_phone"
+            @blur="validate_phone"
             v-model="state.struct.social"
-            placeholder="请输入手机号"
-            clearable
-          >
-            <template #left-icon>
-              <img
-                src="https://lx.aosenn.com/h5/static/login/icon_name.png"
-                style="width: 15px; height: 16px"
-              />
-            </template>
-          </van-field>
-          <van-field
-            style="margin-top: 20px"
+            oninput="value=value.replace(/[^\d]/g,'')"
+            maxlength="11"
+            autocomplete="off"
+            placeholder="请输入手机号码"
+          />
+        </div>
+        <div class="list-call" style="position: relative">
+          <div class="ico">
+            <i class="now-ui-icons fa fa-lock"></i>
+          </div>
+          <input
+            type="text"
             v-model="state.struct.code"
-            center
-            clearable
             placeholder="请输入验证码"
+            class="biaoti"
+            @blur="validate_password()"
+          />
+          <button
+            style="position: absolute; top: 15px; right: 0"
+            type="button"
+            class="mui-btn mui-btn-primary"
+            @click="SendCode"
           >
-            <template #left-icon>
-              <img
-                src="https://lx.aosenn.com/h5/static/login/icon_yzm@2x.png"
-                style="width: 15px; height: 16px"
-              />
-            </template>
-            <template #button>
-              <div
-                style="
-                  width: 80px;
-                  height: 28px;
-                  line-height: 28px;
-                  text-align: center;
-                  border-radius: 20px;
-                  background-color: #fcd323;
-                  font-size: 12px;
-                  color: #000;
-                "
-                @click="SendCode"
-              >
-                <span v-if="!state.status.code">发送验证码</span>
-                <span v-else>{{ state.code.second }}秒重新发送</span>
-              </div>
-            </template>
-          </van-field>
+            <span v-if="!state.status.code">发送验证码</span>
+            <span v-else>{{ state.code.second }}秒重新发送</span>
+          </button>
+        </div>
 
-          <van-field
-            style="margin-top: 20px"
+        <div class="list-call">
+          <div class="ico">
+            <i class="now-ui-icons fa fa-lock"></i>
+          </div>
+          <input
+            type="password"
+            name="password"
+            id="reg_password"
             v-model="state.struct.password"
-            clearable
             placeholder="请输入密码"
-            type="password"
-          >
-            <template #left-icon>
-              <img
-                src="https://lx.aosenn.com/h5/static/login/icon_mm.png"
-                style="width: 15px; height: 16px"
-              />
-            </template>
-          </van-field>
+            class="biaoti"
+            @blur="validate_password()"
+          />
+        </div>
 
-          <van-field
-            style="margin-top: 20px"
-            v-model="state.struct.AgainPassword"
-            clearable
-            placeholder="请确认密码"
+        <div class="list-call">
+          <div class="ico">
+            <i class="now-ui-icons fa fa-lock"></i>
+          </div>
+          <input
             type="password"
-          >
-            <template #left-icon>
-              <img
-                src="https://lx.aosenn.com/h5/static/login/icon_mm.png"
-                style="width: 15px; height: 16px"
-              />
-            </template>
-          </van-field>
-        </van-cell-group>
-        <!--        <div style="text-align: right; width: 100%; margin: 10px 10px 20px 0; color: #fff">-->
-        <!--          <span @click="$router.push('/common/sign-in')"> 去登录 </span>-->
-        <!--        </div>-->
-        <el-button
-          :loading="state.status.wait"
-          color="#fcd323"
-          size="large"
-          style="
-            border-radius: 30px;
-            border: none;
-            color: #444;
-            width: 100%;
-            height: 45px;
-            margin-top: 50px;
-          "
-          type="primary"
-          @click="SignUp"
-          >重置
-        </el-button>
-        <span></span>
-        <!--          <el-button-->
-        <!--            class="w-100"-->
-        <!--            color="#00f7c4"-->
-        <!--            size="large"-->
-        <!--            style="-->
-        <!--              border-radius: 15px;-->
-        <!--              margin-top: 20px !important;-->
-        <!--              color: #666;-->
-        <!--              background-color: #fff;-->
-        <!--              border: 1px solid #ccc !important;-->
-        <!--            "-->
-        <!--            type="primary"-->
-        <!--            @click="$router.push('/common/sign-in')"-->
-        <!--          >-->
-        <!--            登录-->
-        <!--          </el-button>-->
+            name="password2"
+            id="reg_password2"
+            v-model="state.struct.AgainPassword"
+            placeholder="请重复输入密码"
+            class="biaoti"
+            @blur="validate_password2()"
+          />
+        </div>
+        <div class="list-call" style="display: none">
+          <div class="ico">
+            <i class="now-ui-icons fa fa-lock"></i>
+          </div>
+          <input type="text" name="sbm" id="sbm" class="biaoti" />
+        </div>
       </div>
+
+      <div style="text-align: center">
+        <button
+          type="submit"
+          class="dlbutton"
+          id="submit"
+          @click="SignUp"
+          :disabled="state.status.wait"
+        >
+          重 置
+        </button>
+      </div>
+
+      <!--div class="xieyi">
+        <img @tap="xieyitong" :src="xieyi==true?'/upload/default_mobile/images/ty1.png':'/upload/default_mobile/images/ty0.png'">
+        <span @tap="xieyitong"> 同意</span>
+        <navigator url="blog?id=1" open-type="navigate">《软件用户协议》</navigator>
+      </div-->
     </div>
   </div>
 </template>
@@ -136,6 +117,7 @@ import { reactive, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { showFailToast, showToast } from 'vant'
 import ToggleLoginAndRegister from '@/views/common/components/ToggleLoginAndRegister.vue'
+import $ from 'jquery'
 
 const router = useRouter()
 const state = reactive({
@@ -163,7 +145,59 @@ const state = reactive({
     second: 0
   }
 })
-
+function validate_phone() {
+  if (/(^0{0,1}1[3|4|5|6|7|8|9][0-9]{9}$)/.test($('#reg_phone').val())) {
+  } else {
+    mui.toast('手机号码格式不正确!')
+    return
+  }
+}
+function validate_password() {
+  if ($('#reg_password').val() == '') {
+    $('#reg_password_box').removeClass('has-success')
+    $('#reg_password_box').addClass('has-error')
+    mui.toast('请输入密码!')
+    return
+  } else if ($('#reg_password').val().length < 6) {
+    $('#reg_password_box').removeClass('has-success')
+    $('#reg_password_box').addClass('has-error')
+    mui.toast('密码不能少于6位!')
+    return
+  } else {
+    $('#reg_password_box').removeClass('has-error')
+    $('#reg_password_box').addClass('has-success')
+    validate_password2()
+  }
+}
+function validate_password2() {
+  if (
+    $('#reg_password').val() == '' ||
+    $('#reg_password2').val() == '' ||
+    $('#reg_password').val().length < 6 ||
+    $('#reg_password2').val().length < 6
+  ) {
+    $('#reg_password_box').removeClass('has-success')
+    $('#reg_password_box').addClass('has-error')
+    $('#reg_password2_box').removeClass('has-success')
+    $('#reg_password2_box').addClass('has-error')
+    mui.toast('再次请输入密码!')
+    return
+  }
+  if ($('#reg_password').val() == $('#reg_password2').val()) {
+    $('#reg_password_box').removeClass('has-error')
+    $('#reg_password_box').addClass('has-success')
+    $('#reg_password2_box').removeClass('has-error')
+    $('#reg_password2_box').addClass('has-success')
+    //console.log('可以')
+  } else {
+    $('#reg_password_box').removeClass('has-success')
+    $('#reg_password_box').addClass('has-error')
+    $('#reg_password2_box').removeClass('has-success')
+    $('#reg_password2_box').addClass('has-error')
+    mui.toast('两次密码输入不一致!')
+    return
+  }
+}
 const SignUp = async () => {
   if (!state.struct.social) return showFailToast('请输入手机号码')
   if (!state.struct.password) return showFailToast('请输入密码')
@@ -235,37 +269,124 @@ watch(
 <style lang="scss" scoped>
 .forget {
   color: #303133;
-  .top-navbar {
-    display: flex;
-    padding: 15px;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 18px;
-    margin-top: 0;
-    .left {
-    }
-    .right {
-      font-size: 18px;
-    }
+  html,
+  body {
+    background-color: #fff;
   }
-  .container {
-    margin: 0 auto;
-    padding: 20px 20px;
+  .mui-bar {
+    box-shadow: none;
+    height: 76px;
+    padding-top: 32px;
+  }
 
-    :deep(.van-cell) {
-      border-bottom: 0.5px solid #f2f2f2;
-      &:after {
-        border: none !important;
-      }
-      .van-field__control {
-        text-indent: 20px;
-      }
-    }
-    :deep(.van-hairline--top-bottom) {
-      &:after {
-        border-width: 0 !important;
-      }
-    }
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .header {
+    width: 101px;
+    height: 101px;
+    background:
+      url('@/assets/img/logo.png') no-repeat center / 100% 100%,
+      linear-gradient(
+        -30deg,
+        rgba(63, 205, 235, 1),
+        rgba(188, 226, 158, 1)
+      ); /*rgba(63,205,235,1);*/
+    box-shadow: 0px 12px 13px 0px rgba(63, 205, 235, 0.47);
+    border-radius: 50%;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    line-height: 101px;
+    color: #fff;
+    font-size: 50px;
+  }
+
+  .header img {
+    width: 101px;
+    height: 101px;
+    border-radius: 50%;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .list-call {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    color: #333333;
+    border-bottom: 1px solid rgba(230, 230, 230, 1);
+  }
+  .list-call .img {
+    width: 24px;
+    height: 24px;
+  }
+  .list-call .ico {
+    width: 24px;
+    height: 24px;
+    color: #ffbe42;
+    text-align: center;
+    line-height: 24px;
+  }
+  .list-call .biaoti {
+    text-align: left;
+    margin: 0 0 0 0;
+    border: 0;
+    color: #666;
+  }
+
+  .dlbutton {
+    color: #ffffff;
+    font-size: 26px;
+    width: 260px;
+    height: 60px;
+    background: linear-gradient(-90deg, rgba(63, 205, 235, 1), rgba(188, 226, 158, 1));
+    box-shadow: 0px 0px 13px 0px rgba(164, 217, 228, 0.2);
+    border-radius: 50px;
+    line-height: 60px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    padding: 0;
+  }
+  .dlbutton:hover {
+    background: linear-gradient(-90deg, rgba(63, 205, 235, 0.9), rgba(188, 226, 158, 0.9));
+  }
+  .dlbutton button {
+    background: none;
+    border: 0;
+    height: 60px;
+    width: 100%;
+  }
+  .xieyi {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    margin-top: 40px;
+    color: #ffa800;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+  }
+  .xieyi a {
+    font-size: 18px;
+    margin-left: 15px;
+    margin-right: 15px;
+    color: #ffa800;
   }
 }
 </style>

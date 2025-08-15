@@ -6,15 +6,16 @@
       left-arrow
       placeholder
       safe-area-inset-top
-      title="点券转赠"
+      title="金币转赠"
       @click-left="router.back()"
     >
       <template #right>
         <!--        <span style="color: #fff; font-size: 14px" @click="$router.push('/conversionRecord')">-->
         <!--          转增记录-->
         <!--        </span>-->
-        <span style="color: #000; font-size: 14px" @click="$router.push('/conversionIntroduce')">
-          转增规则
+        <!--        <span style="color: #000; font-size: 14px" @click="$router.push('/conversionIntroduce')">-->
+        <span style="color: #000; font-size: 14px" @click="$router.push('/wallet')">
+          赠送记录
         </span>
       </template>
     </van-nav-bar>
@@ -22,9 +23,9 @@
     <!--      &lt;!&ndash;      <img alt="" src="@/assets/img/logo.png" />&ndash;&gt;-->
     <!--      <div class="logo-box-content">-->
     <!--        <div class="info">-->
-    <!--          &lt;!&ndash;          <p>群英会</p>&ndash;&gt;-->
+    <!--          &lt;!&ndash;          <p>蚂蚁优选</p>&ndash;&gt;-->
     <!--          <p>-->
-    <!--            可转赠通用点券数量:-->
+    <!--            可转赠通用金币数量:-->
     <!--            {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}-->
     <!--          </p>-->
     <!--          &lt;!&ndash;                    <p>the big thumb video</p>&ndash;&gt;-->
@@ -34,19 +35,21 @@
     <div class="total-info">
       <div class="top">
         <div>
-          <van-icon color="#000" name="user" />
-          <!--          <span style="padding-left: 4px">普通用户</span>-->
+          <!--          <van-icon color="#000" name="user" />-->
+          <span style="padding-left: 4px">可转增数量</span>
         </div>
-        <div>点券</div>
+        <!--        <div>金币</div>-->
       </div>
       <div class="center">
         {{ (walletInfo.wallet?.points / 10 || 0).toFixed(2) }}
-        <span style="padding-left: 0px">点券</span>
+        <span style="padding-left: 0px">金币</span>
       </div>
       <div class="bottom" @click="go('/dianziqianbao')">
-        <div style="font-size: 10px; color: #333">10个点券起转</div>
+        <div style="font-size: 10px; color: #333">
+          <!--          10个金币起转-->
+        </div>
         <div>
-          电子钱包
+          绑定收款方式
           <van-icon color="#000" name="arrow" />
         </div>
       </div>
@@ -55,22 +58,22 @@
       <div class="desc">
         <!--<van-image width="100" height="100" :src="imgg" />-->
       </div>
-      <div style="color: #fed61f; padding-left: 14px; padding-top: 10px">转赠</div>
-      <van-field v-model="data.buyUid" clearable label="买家ID" placeholder="请输入买家ID">
+      <div style="color: #000; padding-left: 14px; padding-top: 10px">转赠</div>
+      <van-field v-model="data.buyUid" clearable label="对方ID" placeholder="请输入对方ID">
       </van-field>
 
-      <van-field v-model="data.points" label="金额" placeholder="请输入转赠数量" type="number">
+      <van-field v-model="data.points" label="转增数量" placeholder="请输入转赠数量" type="number">
       </van-field>
 
-      <van-field
-        is-link
-        v-model="sceneDesc"
-        label="收款方式"
-        readonly
-        placeholder="选择收款方式"
-        @click="showPicker = true"
-      >
-      </van-field>
+      <!--      <van-field-->
+      <!--        is-link-->
+      <!--        v-model="sceneDesc"-->
+      <!--        label="收款方式"-->
+      <!--        readonly-->
+      <!--        placeholder="选择收款方式"-->
+      <!--        @click="showPicker = true"-->
+      <!--      >-->
+      <!--      </van-field>-->
       <!--      <van-field v-model="data.remark" label="备注" placeholder="备注" type="textarea"> </van-field>-->
       <!--        <div class="common-input-title" style="margin-top: 10px">短信验证码</div>-->
       <van-popup v-model:show="showPicker" destroy-on-close round position="bottom">
@@ -90,14 +93,16 @@
       <div style="width: 100%">
         <van-button
           block
-          color="#fcd323"
+          color="linear-gradient(-90deg, rgb(63, 205, 235), rgb(188, 226, 158))"
           round
           style="border: none; color: #444; font-weight: bolder; width: 90%; margin: 0 auto"
           type="primary"
           @click="onSubmit"
         >
-          确认转赠
+          同意转增
         </van-button>
+        <div style="text-align: center; font-weight: bolder; margin-top: 8px">10个金币起转增</div>
+        <div style="text-align: center; font-weight: bolder">转增时间上午10点-晚间19点</div>
       </div>
 
       <!--      <div style="width: 100%; margin-top: 20px">-->
@@ -130,8 +135,8 @@
       <!--          line-height: 20px;-->
       <!--        "-->
       <!--      >-->
-      <!--        1、点券转赠5个起转，账户需要预留手续费，转成功后自动扣除手续！<br />-->
-      <!--        2、非会员转增50%手续费，点券会员转赠5%手续费。<br />-->
+      <!--        1、金币转赠5个起转，账户需要预留手续费，转成功后自动扣除手续！<br />-->
+      <!--        2、非会员转增50%手续费，金币会员转赠5%手续费。<br />-->
       <!--        3、转赠时间 上午10点&#45;&#45;下午18点-->
       <!--      </p>-->
 
@@ -169,12 +174,12 @@
     <div class="record">
       <van-tabs
         v-model:active="activeName"
-        color="#fed61f"
-        title-active-color="#fed61f"
+        color="#4acfe4"
+        title-active-color="#4acfe4"
         @change="init"
       >
-        <van-tab name="a" title="转出"></van-tab>
-        <van-tab name="b" title="接收"></van-tab>
+        <van-tab name="a" title="我转出的"></van-tab>
+        <van-tab name="b" title="我收到的"></van-tab>
         <van-list
           v-model:loading="loading"
           :finished="finished"
@@ -205,6 +210,17 @@
                     <span v-else
                       >转入来自ID:<span style="color: #f6202b">{{ item.sellUid }}</span>
                     </span>
+                    <div
+                      style="
+                        background: linear-gradient(-90deg, rgb(63, 205, 235), rgb(188, 226, 158));
+                        width: fit-content;
+                        padding: 1px 4px;
+                        border-radius: 4px;
+                        font-size: 12px;
+                      "
+                    >
+                      {{ getConversionStatusName(item.status) }}
+                    </div>
                   </span>
                 </div>
                 <div>
@@ -212,8 +228,8 @@
                 </div>
               </div>
               <div>
-                <van-button v-if="activeName === 'b'" type="primary" style="height: 25px">
-                  查看收款信息
+                <van-button v-if="activeName === 'b'" type="warning" style="height: 25px">
+                  进入扫码付款
                 </van-button>
               </div>
               <div style="flex: 1; text-align: right">
@@ -221,7 +237,7 @@
                   <span
                     class="text-warning"
                     style="font-size: 16px; color: #f6202b; font-weight: bolder"
-                    >{{ item.points / 10 || 0 }}点券</span
+                    >{{ item.points / 10 || 0 }}金币</span
                   >
                 </div>
                 <div style="margin-top: 6px">
@@ -298,6 +314,7 @@ import isBetween from 'dayjs//plugin/isBetween'
 import { showToast } from 'vant'
 import utils from '@/utils/utils'
 import { find } from '@/utils/tree'
+import { getConversionStatusName } from '@/utils/getSerialName'
 
 const showGonggaoOverlay2 = ref(false)
 const walletInfo = ref({ wallet: { transfer: null } })
@@ -372,22 +389,22 @@ function onSubmit() {
   // }
 
   if (!data.buyUid) {
-    return showToast('请输入买家ID')
+    return showToast('请输入对方ID')
   }
   if (!data.points) {
     return showToast('请输入转赠数量')
   }
 
-  if (!data.eWalletScene) {
-    return showToast('请选择收款方式')
-  }
+  // if (!data.eWalletScene) {
+  //   return showToast('请选择收款方式')
+  // }
   // 获取今天的日期
   dayjs.extend(isBetween)
   const today = dayjs().startOf('day')
 
   // 获取今天 8 点和 19 点的时间
   const morning8 = today.add(10, 'hour')
-  const evening7 = today.add(20, 'hour')
+  const evening7 = today.add(19, 'hour')
 
   // 获取当前时间
   const now = dayjs()
@@ -401,7 +418,7 @@ function onSubmit() {
     return
   }
   if (data.points < 10) {
-    return _notice('点券转赠10个起！')
+    return _notice('金币转赠10个起！')
   }
 
   const params = JSON.parse(JSON.stringify(data))
@@ -412,6 +429,8 @@ function onSubmit() {
       data.buyUid = ''
       data.remark = ''
       data.points = ''
+      activeName.value = 'a'
+      init()
     }
   })
 }
@@ -482,7 +501,7 @@ const method = {
 }
 onActivated(() => {
   getUserIncome()
-  getDataList()
+  init()
   reqWalletInfo().then((res) => {
     if (res.code !== 200) return
     walletInfo.value = res.data
@@ -528,14 +547,21 @@ onActivated(() => {
   .van-divider {
     color: white;
   }
+  :deep(.van-field__control) {
+    background-color: transparent;
+    border: none;
+    margin-bottom: 0;
+    padding: 0;
+    height: auto;
+  }
   :deep(.van-nav-bar) {
-    background-color: #fed61f !important;
+    background-color: #fff !important;
     .van-nav-bar__title {
       color: #000 !important;
     }
 
     .van-icon {
-      color: #fff !important;
+      color: #000 !important;
       font-size: 18px !important;
     }
   }
@@ -554,7 +580,8 @@ onActivated(() => {
 
   .total-info {
     //background-color: #fed61f;
-    background-color: #fff;
+    //background-color: #fff;
+    background: linear-gradient(-90deg, rgb(63, 205, 235), rgb(188, 226, 158));
     margin: 10px 10px;
     padding: 10px;
     border-radius: 10px;

@@ -22,27 +22,28 @@
         style="background-color: #fff"
       >
         <template #points>
-          <span>{{ detail.order?.points / 10 || 0 }} 点券</span>
+          <span>{{ (detail?.order?.points || 0) / 10 || 0 }} 金币</span>
         </template>
       </detail-info>
       <detail-info
+        v-for="item of detail.wallets"
         :column-list="columnList2"
-        :detail-info="detail.sellEWallet || {}"
-        group-title="卖方收款信息"
+        :detail-info="item || {}"
+        :group-title="item.scene === 'alipay' ? '支持宝' : '微信'"
         style="margin-top: 10px; background-color: #fff"
       >
         <template #scene>
-          <span>{{ detail.sellEWallet?.scene === 'wechat' ? '微信' : '支付宝' }} </span>
+          <span>{{ item.scene === 'wechat' ? '微信' : '支付宝' }} </span>
         </template>
 
         <template #qrCode>
           <van-image
-            v-if="detail?.sellEWallet?.qrCode"
-            :src="detail?.sellEWallet.qrCode"
+            v-if="item?.qrCode"
+            :src="item.qrCode"
             fit="contain"
             height="50px"
             width="50px"
-            @click="showImgDetail(detail.sellEWallet.qrCode)"
+            @click="showImgDetail(item.qrCode)"
           />
         </template>
       </detail-info>
@@ -89,12 +90,27 @@
     <div
       v-if="detail?.order?.sellUid === userInfo.id && !detail?.order?.sellConfirm"
       class="content"
-      style="background-color: #fff; padding: 10px; box-sizing: border-box"
+      style="
+        padding: 0 10px;
+        margin: 0;
+        box-sizing: border-box;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+      "
     >
       <el-button
         color="#fcd323"
         size="large"
-        style="border-radius: 30px; border: none; color: #444; width: calc(100%); height: 40px"
+        style="
+          border-radius: 30px;
+          border: none;
+          color: #444;
+          width: calc(100%);
+          height: 40px;
+          background: linear-gradient(-90deg, rgb(63, 205, 235), rgb(188, 226, 158));
+        "
         type="primary"
         @click="sellSave"
         >放币
@@ -119,11 +135,11 @@ const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
 
 const route = useRoute()
 let columnList = reactive([
-  {
-    key: 'no',
-    label: '订单号'
-    // required: true
-  },
+  // {
+  //   key: 'no',
+  //   label: '订单号'
+  //   // required: true
+  // },
   {
     key: 'buyUid',
     label: '买家ID'
@@ -139,11 +155,11 @@ let columnList = reactive([
   {
     key: 'points',
     label: '交易金额'
-  },
-  {
-    key: 'sellRemark',
-    label: '买家备注'
   }
+  // {
+  //   key: 'sellRemark',
+  //   label: '买家备注'
+  // }
 ])
 let columnList2 = reactive([
   {
@@ -151,14 +167,14 @@ let columnList2 = reactive([
     label: '支付方式'
     // required: true
   },
-  {
-    key: 'remark',
-    label: '备注'
-    // required: true
-  },
+  // {
+  //   key: 'remark',
+  //   label: '备注'
+  //   // required: true
+  // },
   {
     key: 'account',
-    label: '卖方账号'
+    label: '姓名'
     // hide: computed(() => {
     //   return !detail.relId
     // })
@@ -247,7 +263,7 @@ onMounted(() => {
   overflow-y: auto;
 
   :deep(.van-nav-bar) {
-    background-color: #fed61f !important;
+    background-color: #fff !important;
     .van-nav-bar__title {
       color: #000 !important;
     }
@@ -261,6 +277,7 @@ onMounted(() => {
     margin: 10px;
     border-radius: 10px;
     overflow: hidden;
+    padding-bottom: 40px;
   }
 }
 </style>

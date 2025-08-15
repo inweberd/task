@@ -73,13 +73,13 @@
         color="#fff"
         left-icon="volume-o"
         style="border-radius: 10px; height: 30px; border: 1px solid #fff; margin: 0px 4px 8px"
-        text="群英会拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3点券，达标自动发放！"
+        text="蚂蚁优选拉新活动持续火热进行中！ 下级只要天梯达到7级， 就视为有效，3代奖励分别0.8 0.5 0.3金币，达标自动发放！"
       >
       </van-notice-bar>
       <div class="money-box">
         <div class="total">
           <div class="l">
-            <div class="txt1">通用点券:</div>
+            <div class="txt1">通用金币:</div>
             <div class="txt2">
               {{ userIncomeInfo?.wallet?.money ? userIncomeInfo?.wallet?.money.toFixed(2) : 0 }}
             </div>
@@ -115,7 +115,7 @@
         </div>
         <div class="total">
           <div class="l">
-            <div class="txt1">今日已获得点券:</div>
+            <div class="txt1">今日已获得金币:</div>
             <div class="txt2">
               {{ (userIncomeInfo.today || 0).toFixed(2) }}
             </div>
@@ -126,7 +126,7 @@
         </div>
         <div class="total">
           <div class="l">
-            <div class="txt1">历史累计获得点券:</div>
+            <div class="txt1">历史累计获得金币:</div>
             <div class="txt2">
               {{ (userIncomeInfo.total || 0).toFixed(4) }}
             </div>
@@ -159,11 +159,11 @@
         <div class="border2" v-if="false"></div>
         <div class="money-info" v-if="false">
           <p>
-            <span class="title">今日已获得点券</span>
+            <span class="title">今日已获得金币</span>
             <span class="num">{{ (userIncomeInfo.today || 0).toFixed(4) }}</span>
           </p>
           <p>
-            <span class="title">历史累计获得点券</span>
+            <span class="title">历史累计获得金币</span>
             <span class="num">{{ (userIncomeInfo.total || 0).toFixed(4) }}</span>
           </p>
           <p>
@@ -172,7 +172,7 @@
           </p>
           <!--          <p>-->
           <!--            <span>{{ walletInfo?.amount || 0 }}</span>-->
-          <!--            <span>充值余额</span>-->
+          <!--            <span>金豆</span>-->
           <!--          </p>-->
         </div>
         <div>
@@ -198,12 +198,12 @@
       <!--            font-weight: bolder;-->
       <!--          "-->
       <!--        >-->
-      <!--          今日预估点券收入:{{ keLingQuYue }}-->
+      <!--          今日预估金币收入:{{ keLingQuYue }}-->
       <!--        </span>-->
       <!--        <img src="./images/yijianlingqu.png" alt="" style="width: 100%" />-->
       <!--      </div>-->
       <!--      <div class="huiyuanquanyi">-->
-      <!--        <div class="title">点券会员</div>-->
+      <!--        <div class="title">金币会员</div>-->
       <!--        <div class="list">-->
       <!--          &lt;!&ndash;          <div class="item">&ndash;&gt;-->
       <!--          &lt;!&ndash;            <img src="./images/zhekoushangcheng.png" alt="" />&ndash;&gt;-->
@@ -238,7 +238,7 @@
 
           <div class="item" @click="$router.push('/jubaopen')">
             <img src="./images/33.png" alt="" />
-            <span>点券天梯</span>
+            <span>金币天梯</span>
           </div>
           <div class="item" @click="$router.push('/invest')">
             <img src="./images/huiyuantequan.png" alt="" />
@@ -271,7 +271,7 @@
           </div>
           <div class="item">
             <img src="./images/55.png" alt="" @click="goQQ" />
-            <span>点券qq黑市交易</span>
+            <span>金币qq黑市交易</span>
           </div>
 
           <div class="item" style="flex: 0 0 35%">
@@ -291,7 +291,7 @@
       </div>
       <div class="chongzhiandtixian">
         <!--        <div class="chongzhiyue">-->
-        <!--          充值余额(元)&nbsp;&nbsp;-->
+        <!--          金豆(元)&nbsp;&nbsp;-->
         <!--          <div class="num">{{ walletInfo?.amount || 0 }}</div>-->
         <!--        </div>-->
         <!--        <div class="btn-box">-->
@@ -342,7 +342,7 @@
       <!--      </div>-->
       <!--      <div class="chongzhiandtixian">-->
       <!--        &lt;!&ndash;        <div class="chongzhiyue">&ndash;&gt;-->
-      <!--        &lt;!&ndash;          充值余额(元)&nbsp;&nbsp;&ndash;&gt;-->
+      <!--        &lt;!&ndash;          金豆(元)&nbsp;&nbsp;&ndash;&gt;-->
       <!--        &lt;!&ndash;          <div class="num">{{ walletInfo?.amount || 0 }}</div>&ndash;&gt;-->
       <!--        &lt;!&ndash;        </div>&ndash;&gt;-->
       <!--        <div></div>-->
@@ -1421,7 +1421,7 @@ function goDownload() {
 
     // const { VITE_APP_URL } = import.meta.env
     // 跳转下载
-    window.location.href = `https://qyh.88tong.cn/download`
+    window.location.href = `https://fx.kujspvp.cn/download`
   } catch (e) {
     _notice('下载失败')
     // state.loading.app = false
@@ -1487,7 +1487,7 @@ const yijianlingqu = () => {
     if (!res.data.money) {
       showToast('已领取过今日收益！')
     } else {
-      showToast(`已领取${res.data.money}点券`)
+      showToast(`已领取${res.data.money}金币`)
     }
   })
 }

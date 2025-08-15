@@ -180,16 +180,16 @@
           <!--          <div class="label">团队总收益</div>-->
           <!--        </div>-->
           <div class="stat-item">
-            <div class="label">团队总业绩(点券)</div>
+            <div class="label">团队总业绩(金币)</div>
             <div class="number">{{ memberInfo.team?.deposit || 0 }}</div>
           </div>
           <div class="stat-item">
-            <div class="label">团队总兑换(点券)</div>
+            <div class="label">团队总兑换(金币)</div>
             <div class="number">{{ memberInfo.team?.withdraw || 0 }}</div>
           </div>
           <div class="stat-item" style="width: 100%">
             <div class="label">今日我的收益</div>
-            <div class="number">{{ userIncomeInfo.today || 0 }}点券</div>
+            <div class="number">{{ userIncomeInfo.today || 0 }}金币</div>
           </div>
           <!--        <div class="stat-item">-->
           <!--          <div class="number">{{ userIncomeInfo.total || 0 }}</div>-->

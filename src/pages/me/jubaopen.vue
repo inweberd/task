@@ -4,14 +4,13 @@
       :class="{ inApp: getIsInApp() }"
       fixed
       left-arrow
-      left-text="返回"
       placeholder
       safe-area-inset-top
-      title="群英会阶梯"
+      title="爬塔"
       @click-left="$router.back()"
     >
       <template #right>
-        <span style="color: #000" @click="$router.push('/wallet')"> 阶梯详情 </span>
+        <span style="color: #000" @click="$router.push('/wallet')"> 爬塔详情 </span>
         <!--        <van-icon name="friends-o" size="18" @click="service = true" />-->
       </template>
     </van-nav-bar>
@@ -49,16 +48,16 @@
         </p>
       </div>
     </template>
-    <div class="info">
-      <div style="display: flex; justify-content: space-between">
-        <div>可用点券：{{ (walletInfo.wallet?.points / 10 || 0).toFixed(2) || 0 }}</div>
-        <div style="text-decoration: underline; color: #333" @click="$router.push('/wallet')">
-          收入来源
-        </div>
-      </div>
-      <div @click="$router.push('/tudicanyuIntroduce')">徒弟参与阶梯比例： 直20%+间10%</div>
-      <!--      <div @click="$router.push('/jubaopenIntroduce')">每日星级阶梯分红榜（达到20层自动开启）</div>-->
-    </div>
+    <!--    <div class="info">-->
+    <!--      <div style="display: flex; justify-content: space-between">-->
+    <!--        <div>可用金币：{{ (walletInfo.wallet?.points / 10 || 0).toFixed(2) || 0 }}</div>-->
+    <!--        <div style="text-decoration: underline; color: #333" @click="$router.push('/wallet')">-->
+    <!--          收入来源-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--      <div @click="$router.push('/tudicanyuIntroduce')">徒弟参与阶梯比例： 直20%+间10%</div>-->
+    <!--      &lt;!&ndash;      <div @click="$router.push('/jubaopenIntroduce')">每日星级阶梯分红榜（达到20层自动开启）</div>&ndash;&gt;-->
+    <!--    </div>-->
     <div class="staffList" style="position: relative">
       <!--      <van-image width="100%" height="3145" lazy-load :src="jubaopen">-->
       <!--        <template v-slot:loading>-->
@@ -68,24 +67,24 @@
       <template v-for="(item, index) of staffList" :key="index">
         <div class="staff-item">
           <!--          <img src="./images/jubaopen-item-bg.png" class="vImg" alt="" />-->
-          <div class="name">{{ index + 1 }}层</div>
+          <div class="name">{{ index + 1 }}级</div>
           <div class="content-center">
             需要：<span style="color: #000; font-weight: bolder">{{ vipList[index].touru }}</span
-            >点券上阶梯
+            >金币爬塔
           </div>
           <div class="content-bottom">
             <!--            需要：<span style="color: #d34545; font-weight: bolder">{{ vipList[index].touru }}</span-->
-            <!--            >点券上阶梯-->
+            <!--            >金币上阶梯-->
             <div>
               <template v-if="[0, 1, 2, 3].includes(index)">
                 立即释放
                 <span style="color: #000; font-weight: bolder">{{ vipList[index].lirun }}</span>
-                点券
+                金币
               </template>
               <template v-else>
                 到00:00分出
                 <span style="color: #000; font-weight: bolder">{{ vipList[index].lirun }}</span>
-                点券
+                金币
               </template>
             </div>
             <div>
@@ -93,7 +92,7 @@
               <!--              <span style="color: #ff6800; font-weight: bolder">{{ getTotalZuanshi(index) }}</span-->
               <span style="color: #000; font-weight: bolder">
                 {{ (vipList[index].lirun + vipList[index].touru).toFixed(1) }} </span
-              >点券
+              >金币
             </div>
           </div>
           <!--          <img :src="getImgUrl(index + 1)" class="vImg" alt="" />-->
@@ -168,7 +167,14 @@
         <p>聚宝盆板块为会员进阶福利玩法，检测到您不是会员用户，请先购买任意会员!</p>
       </div>
     </TipDialog>
-
+    <TipDialog
+      :show-close="true"
+      v-model="showrenzhengOverlay"
+      confirm-text="微信认证"
+      @confirm="goRenzheng"
+    >
+      <p style="height: 5px"></p>
+    </TipDialog>
     <van-overlay :show="shareDialogOverlay" :z-index="99999999">
       <div
         style="
@@ -212,7 +218,11 @@ import { loadShortVideo } from '@/utils/ad'
 
 const showGonggaoOverlay = ref(false)
 const shareDialogOverlay = ref(false)
-
+const showrenzhengOverlay = ref(false)
+const goRenzheng = () => {
+  window.goRenzheng()
+  showrenzhengOverlay.value = false
+}
 const timeTxt = ref('')
 const buyDialogShow = ref(false)
 const walletInfo = ref({ wallet: { transfer: null } })
@@ -600,12 +610,12 @@ const share = () => {
 }
 
 const buy = (id, index) => {
-  if (localStorage.isTiantiShare !== dayjs().format('YYYY-MM-DD') && window.android) {
-    shareDialogOverlay.value = true
-    return
-    // localStorage.isTiantiShare = dayjs().format('YYYY-MM-DD')
-    // window.showShareFriend()
-  }
+  // if (localStorage.isTiantiShare !== dayjs().format('YYYY-MM-DD') && window.android) {
+  //   shareDialogOverlay.value = true
+  //   return
+  //   // localStorage.isTiantiShare = dayjs().format('YYYY-MM-DD')
+  //   // window.showShareFriend()
+  // }
   // showGonggaoOverlay.value = true
   // return
   const userInfo = JSON.parse(window.localStorage.getItem('userInfo'))
@@ -656,6 +666,9 @@ const buy = (id, index) => {
     _notice(res.msg)
     if (res.code === 200) {
       getMyStaff()
+    }
+    if (res.code === 412) {
+      showrenzhengOverlay.value = true
     }
   })
 }
@@ -740,7 +753,7 @@ onDeactivated(() => {
     position: relative;
     margin-top: 10px;
     height: 100px;
-    background-image: linear-gradient(135deg, #3cd500 10%, #fff720 100%);
+    background-image: linear-gradient(135deg, #e1eeff 10%, #b5dbff 100%);
     border-radius: 10px;
     overflow: hidden;
     .vImg {
@@ -758,13 +771,12 @@ onDeactivated(() => {
       align-items: center;
       justify-content: center;
       width: 60px;
-      height: 30px;
+      height: 20px;
       position: absolute;
       left: 0;
       top: 0;
-      color: #326dfa;
-      font-weight: bolder;
-      background-image: linear-gradient(135deg, #28c76f 10%, #81fbb8 100%);
+      color: #fff;
+      background-image: linear-gradient(135deg, #a0b4e6 10%, #7896de 100%);
       border-radius: 0 0 10px 0;
     }
     .content-center {
@@ -777,7 +789,9 @@ onDeactivated(() => {
     }
 
     .content-bottom {
-      background-color: rgba(0, 0, 0, 0.2);
+      background-image: linear-gradient(135deg, #ecf2fe 10%, #d3e4fe 100%);
+
+      //background-color: rgba(0, 0, 0, 0.2);
       letter-spacing: 2px;
       position: absolute;
       bottom: 0px;

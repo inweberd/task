@@ -31,7 +31,7 @@
       <el-table-column prop="date" label="日期" width="110" />
       <el-table-column prop="name" label="广告名称" width="120" />
       <el-table-column prop="num" label="展现数" width="100" />
-      <el-table-column prop="price" label="收益（点券）" width="110" />
+      <el-table-column prop="price" label="收益（金币）" width="110" />
     </el-table>
     <div
       style="
@@ -93,7 +93,7 @@ const dataList = [
     count: computed(() => {
       return data.value.total || 0
     }),
-    unit: '点券'
+    unit: '金币'
   }
 ]
 const chart1Ref = ref()

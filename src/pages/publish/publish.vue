@@ -1,10 +1,10 @@
 <template>
   <div class="publish">
-    <van-nav-bar fixed left-arrow placeholder safe-area-inset-top title="广告发布">
-      <template #right>
-        <!--                    <van-icon name="friends-o" size="18" @click="service = true" />-->
-        <span @click="$router.push('/publishIntroduce')"> 发布规则 </span>
-      </template>
+    <van-nav-bar fixed left-arrow placeholder safe-area-inset-top title="爆粉引流">
+      <!--      <template #right>-->
+      <!--        &lt;!&ndash;                    <van-icon name="friends-o" size="18" @click="service = true" />&ndash;&gt;-->
+      <!--        <span @click="$router.push('/publishIntroduce')"> 发布规则 </span>-->
+      <!--      </template>-->
       <template #left>
         <!--                    <van-icon name="friends-o" size="18" @click="service = true" />-->
         <span @click="$router.push('/myPublish')"> 我发布的 </span>
@@ -49,19 +49,18 @@
       <!--      ></van-divider>-->
       <div class="list">
         <div class="coupleta">
-          <van-pull-refresh style="padding-top: 20px" v-model="refreshing" @refresh="onRefresh">
-            <van-list
-              v-model:loading="loading"
-              :finished="finished"
-              finished-text="暂无数据"
-              @load="getDataList"
-            >
+          <van-pull-refresh
+            style="padding-top: 20px; height: 100%"
+            v-model="refreshing"
+            @refresh="onRefresh"
+          >
+            <van-list v-model:loading="loading" :finished="finished" @load="getDataList">
               <template v-for="(item, index) in dataList" :key="item.id">
                 <!--              <div class="task top">-->
                 <div class="task" :class="getClass(item)">
-                  <div class="avatar">
-                    <div class="img-box"><!----><img draggable="false" :src="avatar" /></div>
-                  </div>
+                  <!--                  <div class="avatar">-->
+                  <!--                    <div class="img-box">&lt;!&ndash;&ndash;&gt;<img draggable="false" :src="avatar" /></div>-->
+                  <!--                  </div>-->
                   <div class="top">
                     <div class="title">{{ item.title }}</div>
                     <!--                  <div class="tag">游戏</div>-->
@@ -308,9 +307,21 @@
       axis="xy"
       icon="plus"
       magnetic="x"
-      style="background-color: #fed721"
+      style="background-color: #7143e3"
       @click="$router.push('addPublish')"
     >
+      <div
+        style="
+          width: 100%;
+          height: 100%;
+          font-size: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        发布
+      </div>
     </van-floating-bubble>
     <BaseFooter :is-white="true" v-bind:init-tab="2" />
   </div>
@@ -340,12 +351,16 @@ const searchInfo = reactive({
   limit: 15
 })
 const getDataList = () => {
+  if (refreshing.value) {
+    refreshing.value = false
+  }
   searchInfo.page++
   loading.value = true
   reqFindPoster({
     page: searchInfo.page,
     limit: searchInfo.limit,
-    order: 'top_time desc, refresh_time desc'
+    order: 'top_time desc, refresh_time desc',
+    status: 'done'
     // uid: userInfo.value.id,
     // order: 'id desc',
     // type: '1',
@@ -353,7 +368,6 @@ const getDataList = () => {
     // bind_type: 'incentive'
   }).then(({ code, msg, data }) => {
     loading.value = false
-    refreshing.value = false
 
     if (code !== 200) {
       finished.value = true
@@ -387,9 +401,10 @@ const getClass = (item) => {
   }
 }
 onMounted(() => {
-  dataList.value = []
-  finished.value = true
-  searchInfo.page = 0
+  onRefresh()
+  // dataList.value = []
+  // finished.value = true
+  // searchInfo.page = 0
   // getDataList()
 })
 </script>
@@ -404,7 +419,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   :deep(.van-nav-bar) {
-    background-color: #fed61f !important;
+    //background-color: #6e3fe1 !important;
 
     .van-icon {
       color: transparent !important;
@@ -419,9 +434,9 @@ onMounted(() => {
   .content {
     flex: 1;
     overflow-y: auto;
-    background: url('https://lx.aosenn.com/h5/static/shouye/homepage_nav_bg_img@.png') no-repeat;
-    background-size: 100% 150px;
-    background-position: 0 0;
+    //background: url('https://lx.aosenn.com/h5/static/shouye/homepage_nav_bg_img@.png') no-repeat;
+    //background-size: 100% 150px;
+    //background-position: 0 0;
     //padding-top: 20px;
     color: #303133;
     .my-swipe {
@@ -443,6 +458,7 @@ onMounted(() => {
       flex-wrap: wrap;
       margin: 30px 12px 0 12px;
       justify-content: space-between;
+      height: 100%;
 
       .coupleta {
         width: 98%;
@@ -495,7 +511,7 @@ onMounted(() => {
 
           .top {
             display: flex;
-            margin-left: 60px;
+            margin-left: 20px;
             align-items: center;
             padding-top: 4px;
             margin-bottom: 10px;

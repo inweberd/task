@@ -9,49 +9,58 @@
     />
 
     <Loading v-if="loading"></Loading>
-    <div class="user-money">
-      <div class="user-money-item1">
-        <div class="user-money-item11">当前余额（元）</div>
-        <div class="user-money-item12">0.00</div>
-      </div>
+    <div
+      style="
+        margin: 0 10px;
+        padding: 10px;
+        border-radius: 15px;
+        background: linear-gradient(-60deg, #6433dc, #9771f8);
+        box-shadow: 0 0.3rem 1.2rem 0 rgba(151, 113, 248, 0.6);
+      "
+    >
+      <!--      <div class="user-money">-->
+      <!--        <div class="user-money-item1">-->
+      <!--          <div class="user-money-item11">当前余额（元）</div>-->
+      <!--          <div class="user-money-item12">0.00</div>-->
+      <!--        </div>-->
       <!--      <div class="user-money-item2">充值记录</div>-->
-    </div>
-    <div class="recharge-box">
-      <div class="recharge-title">充值金额</div>
-      <div class="recharge-sdje">
-        ￥
-        <div class="uni-input">
-          <div class="uni-input-wrapper">
-            <input
-              v-model="state.struct.amount"
-              @click="activeIndex = -1"
-              maxlength="140"
-              autocomplete="off"
-              type="number"
-              class="uni-input-input"
-              placeholder="请输入金额"
-            />
+      <!--      </div>-->
+      <div class="recharge-box">
+        <div class="recharge-title">充值金额</div>
+        <div class="recharge-sdje">
+          ￥
+          <div class="uni-input">
+            <div class="uni-input-wrapper">
+              <input
+                v-model="state.struct.amount"
+                @click="activeIndex = -1"
+                maxlength="140"
+                autocomplete="off"
+                type="number"
+                class="uni-input-input"
+                placeholder="请输入金额"
+              />
+            </div>
           </div>
         </div>
+        <!--      <div class="recharge-list">-->
+        <!--        <div-->
+        <!--          v-for="(item, index) of columns"-->
+        <!--          class="recharge-item"-->
+        <!--          :class="[activeIndex === index ? 'recharge-item-active' : '']"-->
+        <!--          @click="-->
+        <!--            () => {-->
+        <!--              activeIndex = index-->
+        <!--              state.struct.amount = null-->
+        <!--            }-->
+        <!--          "-->
+        <!--        >-->
+        <!--          冲{{ item.text }}元-->
+        <!--        </div>-->
+        <!--      </div>-->
       </div>
-      <!--      <div class="recharge-list">-->
-      <!--        <div-->
-      <!--          v-for="(item, index) of columns"-->
-      <!--          class="recharge-item"-->
-      <!--          :class="[activeIndex === index ? 'recharge-item-active' : '']"-->
-      <!--          @click="-->
-      <!--            () => {-->
-      <!--              activeIndex = index-->
-      <!--              state.struct.amount = null-->
-      <!--            }-->
-      <!--          "-->
-      <!--        >-->
-      <!--          冲{{ item.text }}元-->
-      <!--        </div>-->
-      <!--      </div>-->
     </div>
-
-    <van-radio-group v-model="state.item.pay.id" checked-color="#ffce42">
+    <van-radio-group v-model="state.item.pay.id" checked-color="#6635dd">
       <van-cell-group inset>
         <van-cell
           title="单选框 1"
@@ -85,7 +94,7 @@
       </van-cell-group>
     </van-radio-group>
     <div class="bot-box">
-      <div class="bot-box-czxy">点击立即充值,即表示您已经同意<span>充值协议</span></div>
+      <!--      <div class="bot-box-czxy">点击立即充值,即表示您已经同意<span>充值协议</span></div>-->
       <div class="bot-box-ljcz" @click="method.emit">立即充值</div>
     </div>
     <template v-if="false">
@@ -143,8 +152,8 @@
         <van-field
           v-model="state.struct.amount"
           class="unp"
-          label="购买点券数量"
-          placeholder="请输入购买点券数量"
+          label="购买金币数量"
+          placeholder="请输入购买金币数量"
           style="
             font-weight: bolder;
             margin-bottom: 10px;
@@ -217,7 +226,7 @@
         </div>
       </div>
       <div class="recharge-money">
-        <div class="txt">购买点券数量</div>
+        <div class="txt">购买金币数量</div>
         <div class="money-box">
           <div class="input-content">
             <div class="input-content-icon">￥</div>
@@ -818,14 +827,14 @@ onMounted(() => method.init())
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  background: #f4f4f4 url('https://lx.aosenn.com/h5/static/shouye/homepage_nav_bg_img@.png')
-    no-repeat;
-  background-size: 100% auto;
+  //background: #f4f4f4 url('https://lx.aosenn.com/h5/static/shouye/homepage_nav_bg_img@.png')
+  //  no-repeat;
+  //background-size: 100% auto;
   color: #303133;
   padding-top: 50px;
 
   :deep(.van-nav-bar) {
-    background-color: #fed61f !important;
+    background-color: #fff !important;
     .van-nav-bar__title {
       //color: #ffffff !important;
     }
@@ -874,7 +883,7 @@ onMounted(() => method.init())
   }
 
   .recharge-box {
-    margin: 14px 14px;
+    //margin: 14px 14px;
     background-color: #fff;
     padding: 10px 10px;
     border-radius: 10px;
@@ -988,7 +997,7 @@ onMounted(() => method.init())
     .bot-box-ljcz {
       width: 85%;
       height: 40px;
-      background-image: linear-gradient(90deg, #fed620, #fed721);
+      background: linear-gradient(-90deg, rgb(63, 205, 235), rgb(188, 226, 158));
       line-height: 40px;
       border-radius: 40px;
       margin: 0 auto;

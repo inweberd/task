@@ -40,7 +40,7 @@
               <span
                 style="font-size: 16px; color: #f6202b; font-weight: bolder"
                 class="text-warning"
-                >+ {{ item.money || 0 }}点券</span
+                >+ {{ item.money || 0 }}金币</span
               >
             </div>
             <div style="margin-top: 6px">
